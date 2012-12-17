@@ -1,7 +1,7 @@
 /*
 Navicat MySQL Data Transfer
 
-Source Server         : JTM
+Source Server         : xxs
 Source Server Version : 50154
 Source Host           : localhost:3306
 Source Database       : card
@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50154
 File Encoding         : 65001
 
-Date: 2012-12-17 15:41:18
+Date: 2012-12-17 23:34:48
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -43,7 +43,7 @@ CREATE TABLE `xx_admin` (
 -- ----------------------------
 -- Records of xx_admin
 -- ----------------------------
-INSERT INTO `xx_admin` VALUES ('0731dcsoft2010031200000000000017', '2011-01-01 00:00:00', '2012-12-17 15:15:29', '技术部', 'xxs@163.com', '', '', '', '', '2012-12-17 14:28:34', '2012-12-17 15:15:29', '0', '127.0.0.1', 'ADMIN', '21232f297a57a5a743894a0e4a801fc3', 'admin');
+INSERT INTO `xx_admin` VALUES ('0731dcsoft2010031200000000000017', '2011-01-01 00:00:00', '2012-12-17 23:25:04', '技术部', 'xxs@163.com', '', '', '', '', '2012-12-17 14:28:34', '2012-12-17 23:25:04', '0', '127.0.0.1', 'ADMIN', '21232f297a57a5a743894a0e4a801fc3', 'admin');
 
 -- ----------------------------
 -- Table structure for `xx_admin_role`
@@ -411,6 +411,8 @@ CREATE TABLE `xx_log` (
 -- ----------------------------
 -- Records of xx_log
 -- ----------------------------
+INSERT INTO `xx_log` VALUES ('8a9182fc3ba86bc8013ba9782e800002', '2012-12-17 23:25:23', '2012-12-17 23:25:23', 'net.xxs.action.admin.MemberAction', 'save', '添加会员: 123123', '127.0.0.1', '添加会员', 'admin');
+INSERT INTO `xx_log` VALUES ('8a9182fc3ba86bc8013ba97939a00004', '2012-12-17 23:26:32', '2012-12-17 23:26:32', 'net.xxs.action.admin.MemberAction', 'update', '编辑会员: 123123', '127.0.0.1', '编辑会员', 'admin');
 
 -- ----------------------------
 -- Table structure for `xx_member`
@@ -474,6 +476,7 @@ CREATE TABLE `xx_member` (
 -- ----------------------------
 -- Records of xx_member
 -- ----------------------------
+INSERT INTO `xx_member` VALUES ('8a9182fc3ba86bc8013ba9782de60001', '2012-12-17 23:25:23', '2012-12-17 23:30:29', null, null, null, '0.00000', '123@qq.com', null, '', '', null, '2012-12-17 23:30:29', '0', '127.0.0.1', null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, '4297f44b13955235245b2497399d7a93', null, null, '', '127.0.0.1', null, null, '0', '123123', null, '');
 
 -- ----------------------------
 -- Table structure for `xx_member_attribute`
@@ -520,7 +523,8 @@ CREATE TABLE `xx_member_rank` (
 -- ----------------------------
 -- Records of xx_member_rank
 -- ----------------------------
-INSERT INTO `xx_member_rank` VALUES ('', null, null, '0', '', '0', '', '0', '0');
+INSERT INTO `xx_member_rank` VALUES ('', null, '2012-12-17 23:25:57', '0', '', '0', '1级', '0', '0');
+INSERT INTO `xx_member_rank` VALUES ('8a9182fc3ba86bc8013ba978ff870003', '2012-12-17 23:26:17', '2012-12-17 23:26:17', '100', '', '100', '2级', '100', '1111');
 
 -- ----------------------------
 -- Table structure for `xx_message`
@@ -719,6 +723,7 @@ CREATE TABLE `xx_payment_config` (
 -- ----------------------------
 -- Records of xx_payment_config
 -- ----------------------------
+INSERT INTO `xx_payment_config` VALUES ('8a9182fc3ba86bc8013ba97620b30000', '2012-12-17 23:23:09', '2012-12-17 23:23:09', 'a', 'b', '<span style=\"color:#666666;font-family:tahoma, Arial, 宋体, Verdana, sans-serif;line-height:25px;background-color:#f6fafd;\">易宝支付</span>', '', '', '易宝支付', '3', '2', '0.00000', '0', 'yeepay');
 
 -- ----------------------------
 -- Table structure for `xx_payment_discount`
