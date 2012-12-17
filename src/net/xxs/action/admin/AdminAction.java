@@ -11,7 +11,6 @@ import net.xxs.service.AdminService;
 import net.xxs.service.RoleService;
 import net.xxs.util.StringUtil;
 
-import org.apache.commons.codec.digest.DigestUtils;
 import org.apache.commons.lang.StringUtils;
 import org.apache.struts2.convention.annotation.ParentPackage;
 import org.springframework.beans.BeanUtils;

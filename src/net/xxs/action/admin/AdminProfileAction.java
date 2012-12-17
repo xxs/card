@@ -6,7 +6,6 @@ import net.xxs.entity.Admin;
 import net.xxs.service.AdminService;
 import net.xxs.util.StringUtil;
 
-import org.apache.commons.codec.digest.DigestUtils;
 import org.apache.commons.lang.StringUtils;
 import org.apache.struts2.convention.annotation.ParentPackage;
 
