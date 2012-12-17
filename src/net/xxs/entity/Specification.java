@@ -21,7 +21,7 @@ import org.codehaus.jackson.type.TypeReference;
 import org.hibernate.annotations.ForeignKey;
 
 /**
- * 实体类 - 商品规格
+ * 实体类 - 充值卡规格
  */
 
 @Entity
@@ -30,18 +30,18 @@ public class Specification extends BaseEntity {
 
 	private static final long serialVersionUID = -6346775052811140926L;
 
-	// 商品规格类型（文字类型、图片类型）
+	// 充值卡规格类型（文字类型、图片类型）
 	public enum SpecificationType {
 		text, picture
 	};
 	
 	private String name;// 名称
-	private SpecificationType specificationType;// 商品规格类型
+	private SpecificationType specificationType;// 充值卡规格类型
 	private String memo;// 备注
-	private String specificationValueStore;// 商品规格值存储
+	private String specificationValueStore;// 充值卡规格值存储
 	private Integer orderList;// 排序
 	
-	private Set<Cards> cardsSet = new HashSet<Cards>();// 商品
+	private Set<Cards> cardsSet = new HashSet<Cards>();// 充值卡
 	
 	@Column(nullable = false)
 	public String getName() {
@@ -97,7 +97,7 @@ public class Specification extends BaseEntity {
 		this.cardsSet = cardsSet;
 	}
 	
-	// 获取商品规格值
+	// 获取充值卡规格值
 	@Transient
 	public List<SpecificationValue> getSpecificationValueList() {
 		if (StringUtils.isEmpty(specificationValueStore)) {
@@ -110,7 +110,7 @@ public class Specification extends BaseEntity {
 		}
 	}
 	
-	// 设置商品规格值
+	// 设置充值卡规格值
 	@Transient
 	public void setSpecificationValueList(List<SpecificationValue> specificationValueList) {
 		if (specificationValueList == null || specificationValueList.size() == 0) {

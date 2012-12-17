@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="content-type" content="text/html; charset=utf-8" />
-<title>商品分类列表 - XXS</title>
+<title>充值卡分类列表 - XXS</title>
 <meta name="Author" content="XXS-DW" />
 <meta name="Copyright" content="XXS" />
 <link rel="icon" href="favicon.ico" type="image/x-icon" />
@@ -18,9 +18,9 @@ $().ready(function() {
 	var $deleteCardsCategory = $("#listTable .deleteCardsCategory");
 	var $cardsCategoryName = $("#listTable .cardsCategoryName");
 	
-	// 删除商品分类
+	// 删除充值卡分类
 	$deleteCardsCategory.click( function() {
-		if (confirm("您确定要删除此商品分类吗?") == false) {
+		if (confirm("您确定要删除此充值卡分类吗?") == false) {
 			return false;
 		}
 	});
@@ -54,7 +54,7 @@ $().ready(function() {
 </head>
 <body class="list cardsCategory">
 	<div class="bar">
-		商品分类列表&nbsp;<span class="pageInfo">总记录数: ${cardsCategoryTreeList?size}
+		充值卡分类列表&nbsp;<span class="pageInfo">总记录数: ${cardsCategoryTreeList?size}
 	</div>
 	<div class="body">
 		<form id="listForm" action="cards_category!list.action" method="post">

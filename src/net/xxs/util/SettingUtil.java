@@ -9,12 +9,9 @@ import java.text.DecimalFormat;
 import java.text.NumberFormat;
 
 import net.xxs.bean.Setting;
-import net.xxs.bean.Setting.CommentAuthority;
-import net.xxs.bean.Setting.CommentDisplayType;
 import net.xxs.bean.Setting.CurrencyType;
 import net.xxs.bean.Setting.InstantMessagingPosition;
 import net.xxs.bean.Setting.LeaveMessageDisplayType;
-import net.xxs.bean.Setting.Operator;
 import net.xxs.bean.Setting.RoundType;
 import net.xxs.bean.Setting.ScoreType;
 import net.xxs.bean.Setting.WatermarkPosition;

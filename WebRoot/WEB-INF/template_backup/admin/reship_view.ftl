@@ -125,7 +125,7 @@
 		<table class="inputTable">
 			<tr class="title">
 				<th>货号</th>
-				<th>商品名称</th>
+				<th>充值卡名称</th>
 				<th>退货数</th>
 			</tr>
 			<#list reship.deliveryItemSet as deliveryItem>

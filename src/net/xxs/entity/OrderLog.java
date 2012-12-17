@@ -18,9 +18,9 @@ public class OrderLog extends BaseEntity {
 
 	private static final long serialVersionUID = -8602286694018650587L;
 	
-	// 订单日志类型（订单创建、订单修改、订单支付、订单退款、订单发货、订单退货、订单完成、订单作废）
+	// 订单日志类型（订单创建、订单修改、订单支付、订单完成、订单作废）
 	public enum OrderLogType {
-		create, modify, payment, refund, shipping, reship, completed, invalid
+		create, modify, payment, completed, invalid
 	};
 
 	private OrderLogType orderLogType;// 订单日志类型

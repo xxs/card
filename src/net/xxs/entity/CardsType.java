@@ -22,7 +22,7 @@ import org.codehaus.jackson.type.TypeReference;
 import org.hibernate.annotations.ForeignKey;
 
 /**
- * 实体类 - 商品类型
+ * 实体类 - 充值卡类型
  */
 
 @Entity
@@ -31,12 +31,12 @@ public class CardsType extends BaseEntity {
 	private static final long serialVersionUID = -6173231303962800416L;
 
 	private String name;// 类型名称
-	private String cardsParameterStore;// 商品参数存储
+	private String cardsParameterStore;// 充值卡参数存储
 	
-	private Set<CardsAttribute> cardsAttributeSet = new HashSet<CardsAttribute>();// 商品属性
-	private Set<Cards> cardsSet = new HashSet<Cards>();// 商品
-	private Set<CardsCategory> cardsCategorySet = new HashSet<CardsCategory>();// 商品分类
-	private Set<Brand> brandSet = new HashSet<Brand>();// 商品品牌
+	private Set<CardsAttribute> cardsAttributeSet = new HashSet<CardsAttribute>();// 充值卡属性
+	private Set<Cards> cardsSet = new HashSet<Cards>();// 充值卡
+	private Set<CardsCategory> cardsCategorySet = new HashSet<CardsCategory>();// 充值卡分类
+	private Set<Brand> brandSet = new HashSet<Brand>();// 充值卡品牌
 	
 	@Column(nullable = false)
 	public String getName() {
@@ -95,7 +95,7 @@ public class CardsType extends BaseEntity {
 		this.brandSet = brandSet;
 	}
 
-	// 获取商品参数集合
+	// 获取充值卡参数集合
 	@SuppressWarnings("unchecked")
 	@Transient
 	public List<CardsParameter> getCardsParameterList() {
@@ -109,7 +109,7 @@ public class CardsType extends BaseEntity {
 		}
 	}
 	
-	// 设置商品参数集合
+	// 设置充值卡参数集合
 	@Transient
 	public void setCardsParameterList(List<CardsParameter> cardsParameterList) {
 		if (cardsParameterList == null || cardsParameterList.size() == 0) {

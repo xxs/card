@@ -22,7 +22,7 @@ import org.hibernate.criterion.Restrictions;
 import org.springframework.stereotype.Repository;
 
 /**
- * Dao实现类 - 商品
+ * Dao实现类 - 充值卡
  */
 
 @Repository("cardsDaoImpl")

@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="content-type" content="text/html; charset=utf-8" />
-<title>商品收藏<#if setting.isShowPoweredInfo> - XXS</#if></title>
+<title>充值卡收藏<#if setting.isShowPoweredInfo> - XXS</#if></title>
 <meta name="Author" content="XXS-DW" />
 <meta name="Copyright" content="XXS" />
 <link rel="icon" href="favicon.ico" type="image/x-icon" />
@@ -74,7 +74,7 @@ $().ready( function() {
 	                    </li>
 	                    <li class="category favorite">
 	                    	<ul>
-	                        	<li class="current"><a href="favorite!list.action">商品收藏</a></li>
+	                        	<li class="current"><a href="favorite!list.action">充值卡收藏</a></li>
 	                        	<li><a href="goods_notify!list.action">缺货登记</a></li>
 	                        </ul>
 	                    </li>
@@ -106,14 +106,14 @@ $().ready( function() {
 		</div>
 		<div class="bodyRight">
 			<div class="memberCenterDetail">
-				<div class="top">商品收藏</div>
+				<div class="top">充值卡收藏</div>
 				<div class="middle">
 					<div class="blank"></div>
 					<table id="favoriteTable" class="listTable">
 						<tr>
-							<th>商品图片</th>
-							<th>商品名称</th>
-							<th>商品价格</th>
+							<th>充值卡图片</th>
+							<th>充值卡名称</th>
+							<th>充值卡价格</th>
 							<th>操作</th>
 						</tr>
 						<#list pager.result as favoriteGoods>

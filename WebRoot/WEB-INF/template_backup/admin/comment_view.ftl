@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="content-type" content="text/html; charset=utf-8" />
-<title>查看商品评论 - XXS</title>
+<title>查看充值卡评论 - XXS</title>
 <meta name="Author" content="XXS-DW" />
 <meta name="Copyright" content="XXS" />
 <link rel="icon" href="favicon.ico" type="image/x-icon" />
@@ -148,7 +148,7 @@ $().ready(function() {
 </script>
 </head>
 <body class="input">
-	<div class="bar">查看商品评论</div>
+	<div class="bar">查看充值卡评论</div>
 	<div class="body">
 		<div id="validateErrorContainer" class="validateErrorContainer">
 			<div class="validateErrorTitle">以下信息填写有误,请重新填写</div>
@@ -160,7 +160,7 @@ $().ready(function() {
 				<table class="inputTable">
 					<tr>
 						<th colspan="2" class="title">
-							商品评论
+							充值卡评论
 						</th>
 					</tr>
 					<tr>
@@ -180,7 +180,7 @@ $().ready(function() {
 					</tr>
 					<tr>
 						<th>
-							评论商品: 
+							评论充值卡: 
 						</th>
 						<td>
 							<a href="${base}${comment.goods.htmlPath}" target="_blank" title="${comment.goods.name}">

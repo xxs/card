@@ -52,15 +52,15 @@ public interface JobService {
 	public void buildArticleContentHtml();
 	
 	/**
-	 * 根据ID生成商品内容HTML
+	 * 根据ID生成充值卡内容HTML
 	 * 
 	 * @param id
-	 *            商品ID
+	 *            充值卡ID
 	 */
 	public void buildCardsContentHtml(String id);
 	
 	/**
-	 * 生成商品内容HTML
+	 * 生成充值卡内容HTML
 	 * 
 	 */
 	public void buildCardsContentHtml();
@@ -83,7 +83,7 @@ public interface JobService {
 	public void deleteArticleContentHtml(String htmlPath, Integer pageCount);
 	
 	/**
-	 * 根据HTML路径删除商品内容HTML
+	 * 根据HTML路径删除充值卡内容HTML
 	 * 
 	 * @param htmlPath
 	 *            HTML路径

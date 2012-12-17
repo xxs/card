@@ -38,9 +38,9 @@ public class Order extends BaseEntity {
 		unprocessed, processed, completed, invalid
 	};
 
-	// 付款状态（未支付、部分支付、已支付、部分退款、全额退款）
+	// 付款状态（未支付、部分支付、已支付）
 	public enum PaymentStatus {
-		unpaid, partPayment, paid, partRefund, refunded
+		unpaid, partPayment, paid
 	};
 
 	// 配送状态（未发货、部分发货、已发货、部分退货、已退货）
@@ -53,13 +53,13 @@ public class Order extends BaseEntity {
 	private OrderStatus orderStatus;// 订单状态
 	private PaymentStatus paymentStatus;// 支付状态
 	private String paymentConfigName;// 支付方式名称
-	private BigDecimal totalProductPrice;// 总商品价格
+	private BigDecimal totalProductPrice;// 总充值卡价格
 	private BigDecimal paymentFee;// 支付费用
 	private BigDecimal totalAmount;// 订单总额
 	private BigDecimal paidAmount;// 已付金额
-	private Integer totalProductQuantity;// 总商品数量
+	private Integer totalProductQuantity;// 总充值卡数量
 	private String memo;// 附言
-	private String cardsIdListStore;// 商品ID集合储存
+	private String cardsIdListStore;// 充值卡ID集合储存
 	
 	private Member member;// 会员
 	private PaymentConfig paymentConfig;// 支付方式
@@ -239,7 +239,7 @@ public class Order extends BaseEntity {
 		this.paymentSet = paymentSet;
 	}
 
-	// 获取商品ID集合
+	// 获取充值卡ID集合
 	@SuppressWarnings("unchecked")
 	@Transient
 	public List<String> getCardsIdList() {
@@ -249,7 +249,7 @@ public class Order extends BaseEntity {
 		return JsonUtil.toObject(cardsIdListStore, ArrayList.class);
 	}
 	
-	// 设置商品ID集合
+	// 设置充值卡ID集合
 	@Transient
 	public void setCardsIdList(List<String> cardsIdList) {
 		if (cardsIdList == null || cardsIdList.size() == 0) {

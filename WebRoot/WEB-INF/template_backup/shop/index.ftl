@@ -23,7 +23,7 @@
 	<div class="body">
 		<div class="bodyLeft">
 			<div class="goodsCategory">
-            	<div class="top">商品分类</div>
+            	<div class="top">充值卡分类</div>
             	<div class="middle">
             		<ul id="goodsCategoryMenu" class="menu">
             			<@goods_category_tree; goodsCategoryTree>
@@ -77,7 +77,7 @@
 			<div class="blank"></div>
 			<div class="hotGoodsSlider">
 				<div class="title">
-					<strong>热卖商品</strong>HOT
+					<strong>热卖充值卡</strong>HOT
 				</div>
 				<a class="prev browse"></a>
 				<@goods_list type="hot" count=12; goodsList>

@@ -46,7 +46,7 @@
 	                    </li>
 	                    <li class="category favorite">
 	                    	<ul>
-	                        	<li><a href="favorite!list.action">商品收藏</a></li>
+	                        	<li><a href="favorite!list.action">充值卡收藏</a></li>
 	                        	<li><a href="goods_notify!list.action">缺货登记</a></li>
 	                        </ul>
 	                    </li>
@@ -167,7 +167,7 @@
 							<td>${order.paymentConfigName}</td>
 						</tr>
 						<tr>
-							<td class="title">商品重量: </td>
+							<td class="title">充值卡重量: </td>
 							<td>${order.totalProductWeight} 克</td>
 							<td class="title">配送费用: </td>
 							<td><span class="red">${order.deliveryFee?string(currencyFormat)}</span></td>
@@ -177,7 +177,7 @@
 					<div class="blank"></div>
 					<table class="listTable">
 						<tr>
-							<th>商品名称</th>
+							<th>充值卡名称</th>
 							<th>购买价格</th>
 							<th>购买数量</th>
 							<th>小计</th>
@@ -202,7 +202,7 @@
 						</#list>
 						<tr>
 							<td class="info" colspan="4">
-								商品总金额: <span class="red">${order.totalProductPrice?string(currencyFormat)}</span>&nbsp;&nbsp;
+								充值卡总金额: <span class="red">${order.totalProductPrice?string(currencyFormat)}</span>&nbsp;&nbsp;
 								配送费用: <span class="red">${order.deliveryFee?string(currencyFormat)!}</span>&nbsp;&nbsp;
 								支付手续费: <span class="red">${order.paymentFee?string(currencyFormat)!}</span>&nbsp;&nbsp;
 								订单总金额: <span class="red">${order.totalAmount?string(currencyFormat)}</span>

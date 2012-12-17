@@ -28,7 +28,7 @@ import com.opensymphony.xwork2.validator.annotations.RequiredStringValidator;
 import com.opensymphony.xwork2.validator.annotations.Validations;
 
 /**
- * 后台Action类 - 商品类型
+ * 后台Action类 - 充值卡类型
  */
 
 @ParentPackage("admin")
@@ -172,13 +172,13 @@ public class CardsTypeAction extends BaseAdminAction {
 		return SUCCESS;
 	}
 	
-	// 获取商品属性类型集合
+	// 获取充值卡属性类型集合
 	@Transient
 	public List<AttributeType> getAttributeTypeList() {
 		return Arrays.asList(AttributeType.values());
 	}
 	
-	// 获取所有商品品牌集合
+	// 获取所有充值卡品牌集合
 	@Transient
 	public List<Brand> getAllBrandList() {
 		return brandService.getAllList();

@@ -31,8 +31,8 @@ public class Brand extends BaseEntity {
 	private Integer orderList;// 排序
 	
 	private Set<PaymentDiscount> paymentDiscountSet = new HashSet<PaymentDiscount>();// 费率设置
-	private Set<Cards> cardsSet = new HashSet<Cards>();// 商品
-	private Set<CardsType> cardsTypeSet = new HashSet<CardsType>();// 商品类型
+	private Set<Cards> cardsSet = new HashSet<Cards>();// 充值卡
+	private Set<CardsType> cardsTypeSet = new HashSet<CardsType>();// 充值卡类型
 
 	@Column(nullable = false)
 	public String getName() {

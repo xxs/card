@@ -23,9 +23,9 @@ public class Deposit extends BaseEntity {
 
 	private static final long serialVersionUID = 4527727387983423232L;
 	
-	// 预存款操作类型（会员充值、会员支付、后台代支付、后台代扣费、后台代充值、后台退款、会员提现、提成）
+	// 预存款操作类型（会员充值、会员支付、后台代支付、后台代扣费、后台代充值、会员提现、提成）
 	public enum DepositType {
-		memberRecharge, memberPayment, adminRecharge, adminChargeback, adminPayment, adminRefund, memberWithdraw, benefits
+		memberRecharge, memberPayment, adminRecharge, adminChargeback, adminPayment, memberWithdraw, benefits
 	};
 	
 	private DepositType depositType;// 预存款操作类型

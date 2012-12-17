@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="content-type" content="text/html; charset=utf-8" />
-<title>添加/编辑商品规格 - XXS</title>
+<title>添加/编辑充值卡规格 - XXS</title>
 <meta name="Author" content="XXS-DW" />
 <meta name="Copyright" content="XXS" />
 <link rel="icon" href="favicon.ico" type="image/x-icon" />
@@ -25,7 +25,7 @@ $().ready(function() {
 	var $specificationSpecificationType = $("#specificationSpecificationType");
 	var $addSpecificationValueButton = $("#addSpecificationValueButton");
 	
-	// 变更商品规格类型
+	// 变更充值卡规格类型
 	$specificationSpecificationType.change( function() {
 		if ($(this).val() == "text") {
 			$("#specificationTable :file").attr("disabled", true);
@@ -34,7 +34,7 @@ $().ready(function() {
 		}
 	})
 
-	// 增加商品规格值
+	// 增加充值卡规格值
 	var specificationValueIndex = ${(specification.specificationValueList?size)!1};
 	$addSpecificationValueButton.click( function() {
 		
@@ -86,11 +86,11 @@ $().ready(function() {
 		specificationValueIndex ++;
 	});
 	
-	// 删除商品规格值
+	// 删除充值卡规格值
 	$("#specificationTable .deleteSpecificationValueIcon").live("click", function() {
 		var $this = $(this);
 		if ($specificationTable.find(".specificationValueTr").length <= 1) {
-			$.dialog({type: "warn", content: "必须至少保留一个商品规格值!", modal: true, autoCloseTime: 3000});
+			$.dialog({type: "warn", content: "必须至少保留一个充值卡规格值!", modal: true, autoCloseTime: 3000});
 		} else {
 			$this.parent().parent().remove();
 		}
@@ -136,7 +136,7 @@ $().ready(function() {
 </head>
 <body class="input specification">
 	<div class="bar">
-		<#if isAddAction>添加商品规格<#else>编辑商品规格</#if>
+		<#if isAddAction>添加充值卡规格<#else>编辑充值卡规格</#if>
 	</div>
 	<div id="validateErrorContainer" class="validateErrorContainer">
 		<div class="validateErrorTitle">以下信息填写有误,请重新填写</div>
@@ -188,7 +188,7 @@ $().ready(function() {
 				<#if (specification.cardsSet?? && specification.cardsSet?size > 0)!>
 					<th>&nbsp;</th>
 					<td colspan="4">
-						<span class="warnInfo">此商品规格被引用,不允许修改规格值名称或删除规格值</span>
+						<span class="warnInfo">此充值卡规格被引用,不允许修改规格值名称或删除规格值</span>
 					</td>
 				</#if>
 				<tr class="noneHover">

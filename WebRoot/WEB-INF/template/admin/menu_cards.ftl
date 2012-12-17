@@ -15,19 +15,14 @@
 		<@sec.authorize ifAnyGranted="ROLE_CARDS,ROLE_CARDS_NOTIFY">
 			<dl>
 				<dt>
-					<span>商品管理&nbsp;</span>
+					<span>充值卡管理&nbsp;</span>
 				</dt>
 				<@sec.authorize ifAnyGranted="ROLE_CARDS">
 					<dd>
-						<a href="cards!list.action" target="mainFrame">商品列表</a>
+						<a href="cards!list.action" target="mainFrame">充值卡列表</a>
 					</dd>
 					<dd>
-						<a href="cards!add.action" target="mainFrame">添加商品</a>
-					</dd>
-				</@sec.authorize>
-				<@sec.authorize ifAnyGranted="ROLE_CARDS_NOTIFY">
-					<dd>
-						<a href="cards_notify!list.action" target="mainFrame">到货通知</a>
+						<a href="cards!add.action" target="mainFrame">添加充值卡</a>
 					</dd>
 				</@sec.authorize>
 			</dl>
@@ -35,7 +30,7 @@
 		<@sec.authorize ifAnyGranted="ROLE_CARDS_CATEGORY">
 			<dl>
 				<dt>
-					<span>商品分类管理&nbsp;</span>
+					<span>充值卡分类管理&nbsp;</span>
 				</dt>
 				<dd>
 					<a href="cards_category!list.action" target="mainFrame">分类列表</a>
@@ -48,7 +43,7 @@
 		<@sec.authorize ifAnyGranted="ROLE_CARDS_TYPE,ROLE_CARDS_ATTRIBUTE">
 			<dl>
 				<dt>
-					<span>商品类型管理&nbsp;</span>
+					<span>充值卡类型管理&nbsp;</span>
 				</dt>
 				<@sec.authorize ifAnyGranted="ROLE_CARDS_TYPE">
 					<dd>
@@ -63,10 +58,10 @@
 		<@sec.authorize ifAnyGranted="ROLE_SPECIFICATION">
 			<dl>
 				<dt>
-					<span>商品规格管理&nbsp;</span>
+					<span>充值卡规格管理&nbsp;</span>
 				</dt>
 				<dd>
-					<a href="specification!list.action" target="mainFrame">商品规格</a>
+					<a href="specification!list.action" target="mainFrame">充值卡规格</a>
 				</dd>
 				<dd>
 					<a href="specification!add.action" target="mainFrame">添加规格</a>

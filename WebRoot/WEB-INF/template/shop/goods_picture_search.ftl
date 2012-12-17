@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="content-type" content="text/html; charset=utf-8" />
-<title>${(pager.keyword)!} 商品搜索结果<#if setting.isShowPoweredInfo> - XXS</#if></title>
+<title>${(pager.keyword)!} 充值卡搜索结果<#if setting.isShowPoweredInfo> - XXS</#if></title>
 <meta name="Author" content="XXS-DW" />
 <meta name="Copyright" content="XXS" />
 <meta name="keywords" content="${pager.keyword}" />
@@ -22,7 +22,7 @@
 	<div class="body">
 		<div class="bodyLeft">
 			<div class="goodsCategory">
-            	<div class="top">商品分类</div>
+            	<div class="top">充值卡分类</div>
             	<div class="middle">
             		<ul id="goodsCategoryMenu" class="menu">
             			<@goods_category_tree; goodsCategoryTree>
@@ -88,7 +88,7 @@
 						<div class="path">
 							<a href="${base}/" class="shop"><span class="icon">&nbsp;</span>首页</a> &gt; 搜索 "${pager.keyword}" 结果列表
 						</div>
-						<div class="total">共计: ${pager.totalCount} 款商品</div>
+						<div class="total">共计: ${pager.totalCount} 款充值卡</div>
 					</div>
 					<div class="right"></div>
 				</div>
@@ -151,7 +151,7 @@
 							</li>
 						</#list>
 						<#if (pager.result?size == 0)!>
-                			<li class="noRecord">非常抱歉,没有找到相关商品!</li>
+                			<li class="noRecord">非常抱歉,没有找到相关充值卡!</li>
                 		</#if>
 					</ul>
 					<div class="blank"></div>

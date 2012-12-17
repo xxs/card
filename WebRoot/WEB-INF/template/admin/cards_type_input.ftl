@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="content-type" content="text/html; charset=utf-8" />
-<title>添加/编辑商品类型 - XXS</title>
+<title>添加/编辑充值卡类型 - XXS</title>
 <meta name="Author" content="XXS-DW" />
 <meta name="Copyright" content="XXS" />
 <link rel="icon" href="favicon.ico" type="image/x-icon" />
@@ -32,7 +32,7 @@ $().ready(function() {
 		tabs: "input"
 	});
 	
-	// 增加商品属性
+	// 增加充值卡属性
 	var cardsAttributeIndex = ${(cardsType.cardsAttributeSet?size)!0};
 	$addCardsAttributeButton.click( function() {
 	
@@ -64,14 +64,14 @@ $().ready(function() {
 		</@compress>
 		
 		if ($cardsAttributeTable.find(".cardsAttributeTr").length >= 20) {
-			$.dialog({type: "warn", content: "商品属性个数超出限制!", modal: true, autoCloseTime: 3000});
+			$.dialog({type: "warn", content: "充值卡属性个数超出限制!", modal: true, autoCloseTime: 3000});
 		} else {
 			$cardsAttributeTable.append(cardsAttributeTrHtml);
 			cardsAttributeIndex ++;
 		}
 	});
 	
-	// 修改商品属性类型
+	// 修改充值卡属性类型
 	$("#cardsAttributeTable .attributeType").live("click", function() {
 		var $this = $(this);
 		var $optionText = $this.parent().parent().find(".optionText")
@@ -82,12 +82,12 @@ $().ready(function() {
 		}
 	});
 	
-	// 删除商品属性
+	// 删除充值卡属性
 	$("#cardsAttributeTable .deleteCardsAttributeIcon").live("click", function() {
 		$(this).parent().parent().remove();
 	});
 	
-	// 增加商品参数
+	// 增加充值卡参数
 	var cardsParameterIndex = ${(cardsType.cardsParameterList?size)!0};
 	$addCardsParameterButton.click( function() {
 		
@@ -110,7 +110,7 @@ $().ready(function() {
 		cardsParameterIndex ++;
 	});
 	
-	// 删除商品参数
+	// 删除充值卡参数
 	$("#cardsParameterTable .deleteCardsParameterIcon").live("click", function() {
 		var $this = $(this);
 		$this.parent().parent().remove();
@@ -139,11 +139,11 @@ $().ready(function() {
 		}
 	});
 	
-	$.validator.addMethod("cardsAttributeListNameRequired", $.validator.methods.required, "请填写商品属性名称");
-	$.validator.addMethod("cardsAttributeListOptionTextRequired", $.validator.methods.required, "请填写商品属性可选项");
-	$.validator.addMethod("cardsAttributeListOrderListDigits", $.validator.methods.digits, "商品属性排序必须为零或正整数");
-	$.validator.addMethod("cardsParameterListNameRequired", $.validator.methods.required, "请填写商品参数名称");
-	$.validator.addMethod("cardsParameterListOrderListDigits", $.validator.methods.digits, "商品参数排序必须为零或正整数");
+	$.validator.addMethod("cardsAttributeListNameRequired", $.validator.methods.required, "请填写充值卡属性名称");
+	$.validator.addMethod("cardsAttributeListOptionTextRequired", $.validator.methods.required, "请填写充值卡属性可选项");
+	$.validator.addMethod("cardsAttributeListOrderListDigits", $.validator.methods.digits, "充值卡属性排序必须为零或正整数");
+	$.validator.addMethod("cardsParameterListNameRequired", $.validator.methods.required, "请填写充值卡参数名称");
+	$.validator.addMethod("cardsParameterListOrderListDigits", $.validator.methods.digits, "充值卡参数排序必须为零或正整数");
 	
 	$.validator.addClassRules("cardsAttributeListName", {
 		cardsAttributeListNameRequired: true
@@ -166,7 +166,7 @@ $().ready(function() {
 </head>
 <body class="input cardsType">
 	<div class="bar">
-		<#if isAddAction>添加商品类型<#else>编辑商品类型</#if>
+		<#if isAddAction>添加充值卡类型<#else>编辑充值卡类型</#if>
 	</div>
 	<div id="validateErrorContainer" class="validateErrorContainer">
 		<div class="validateErrorTitle">以下信息填写有误,请重新填写</div>
@@ -180,13 +180,13 @@ $().ready(function() {
 					<input type="button" value="基本信息" hidefocus />
 				</li>
 				<li>
-					<input type="button" value="商品品牌" hidefocus />
+					<input type="button" value="充值卡品牌" hidefocus />
 				</li>
 				<li>
-					<input type="button" value="商品属性" hidefocus />
+					<input type="button" value="充值卡属性" hidefocus />
 				</li>
 				<li>
-					<input type="button" value="商品参数" hidefocus />
+					<input type="button" value="充值卡参数" hidefocus />
 				</li>
 			</ul>
 			<table class="inputTable tabContent">
@@ -203,7 +203,7 @@ $().ready(function() {
 			<table class="inputTable tabContent">
 				<tr class="noneHover">
 					<th>
-						商品品牌: 
+						充值卡品牌: 
 					</th>
 					<td>
 						<div class="brandSelect">
@@ -224,7 +224,7 @@ $().ready(function() {
 						&nbsp;
 					</th>
 					<td>
-						<span class="warnInfo"><span class="icon">&nbsp;</span>未选择的商品品牌前台页面无法进行品牌筛选</span>
+						<span class="warnInfo"><span class="icon">&nbsp;</span>未选择的充值卡品牌前台页面无法进行品牌筛选</span>
 					</td>
 				</tr>
 			</table>

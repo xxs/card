@@ -21,7 +21,7 @@ public class MenuAction extends BaseAdminAction {
 		return "member";
 	}
 	
-	// 商品
+	// 充值卡
 	public String cards() {
 		return "cards";
 	}

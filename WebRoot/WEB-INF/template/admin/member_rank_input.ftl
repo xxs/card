@@ -94,7 +94,7 @@ $().ready(function() {
 						优惠百分比: 
 					</th>
 					<td>
-						<input type="text" name="memberRank.preferentialScale" class="formText" value="${(memberRank.preferentialScale)!"100"}" title="单位: %, 若输入90,表示该会员等级以商品价格的90%进行销售" />单位: %, 若输入90,表示该会员等级以商品价格的90%进行销售
+						<input type="text" name="memberRank.preferentialScale" class="formText" value="${(memberRank.preferentialScale)!"100"}" title="单位: %, 若输入90,表示该会员等级以充值卡价格的90%进行销售" />单位: %, 若输入90,表示该会员等级以充值卡价格的90%进行销售
 						<label class="requireField">*</label>
 					</td>
 				</tr>
@@ -103,7 +103,7 @@ $().ready(function() {
 						手续费率: 
 					</th>
 					<td>
-						<input type="text" name="memberRank.lossrate" class="formText" value="${(memberRank.lossrate)!"100"}" title="单位: %, 若输入90,表示该会员等级以商品价格的90%进行销售" />
+						<input type="text" name="memberRank.lossrate" class="formText" value="${(memberRank.lossrate)!"100"}" title="单位: %, 若输入90,表示该会员等级以充值卡价格的90%进行销售" />
 						<label class="requireField">*</label>
 					</td>
 				</tr>
@@ -112,7 +112,7 @@ $().ready(function() {
 						提成率: 
 					</th>
 					<td>
-						<input type="text" name="memberRank.benefits" class="formText" value="${(memberRank.benefits)!"100"}" title="单位: %, 若输入90,表示该会员等级以商品价格的90%进行销售" />
+						<input type="text" name="memberRank.benefits" class="formText" value="${(memberRank.benefits)!"100"}" title="单位: %, 若输入90,表示该会员等级以充值卡价格的90%进行销售" />
 						<label class="requireField">*</label>
 					</td>
 				</tr>

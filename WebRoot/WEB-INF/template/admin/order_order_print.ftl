@@ -150,7 +150,7 @@ try {
 					货号
 				</th>
 				<th>
-					商品名称
+					充值卡名称
 				</th>
 				<th>
 					单价
@@ -194,7 +194,7 @@ try {
 					订单附言: ${order.memo}<br />
 				</td>
 				<td colspan="3">
-					商品总金额: ${order.totalProductPrice?string(currencyFormat)}<br />
+					充值卡总金额: ${order.totalProductPrice?string(currencyFormat)}<br />
 					配送费用: ${order.deliveryFee?string(currencyFormat)}<br />
 					支付手续费: ${order.paymentFee?string(currencyFormat)}<br />
 					订单总金额: ${order.totalAmount?string(currencyFormat)}

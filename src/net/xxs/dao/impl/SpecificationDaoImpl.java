@@ -6,7 +6,7 @@ import net.xxs.entity.Specification;
 import org.springframework.stereotype.Repository;
 
 /**
- * Dao实现类 - 商品规格
+ * Dao实现类 - 充值卡规格
  */
 
 @Repository("specificationDaoImpl")

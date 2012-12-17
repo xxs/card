@@ -7,7 +7,7 @@ import net.xxs.util.CommonUtil;
 
 
 /**
- * Bean类 - 商品规格值
+ * Bean类 - 充值卡规格值
  */
 
 public class SpecificationValue implements Comparable<SpecificationValue> {

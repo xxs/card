@@ -17,7 +17,7 @@ import org.codehaus.jackson.annotate.JsonIgnoreProperties;
 import org.hibernate.annotations.ForeignKey;
 
 /**
- * 实体类 - 商品属性
+ * 实体类 - 充值卡属性
  */
 
 @Entity
@@ -28,7 +28,7 @@ public class CardsAttribute extends BaseEntity {
 	
 	public static final String OPTION_TEXT_SEPARATOR = ",";// 可选项文本分隔符
 	
-	// 商品属性类型（筛选项、输入项）
+	// 充值卡属性类型（筛选项、输入项）
 	public enum AttributeType {
 		filter, input
 	}
@@ -39,7 +39,7 @@ public class CardsAttribute extends BaseEntity {
 	private Integer orderList;// 排序
 	private Integer propertyIndex;// 对象属性序号
 	
-	private CardsType cardsType;// 商品类型
+	private CardsType cardsType;// 充值卡类型
 
 	@Column(nullable = false)
 	public String getName() {

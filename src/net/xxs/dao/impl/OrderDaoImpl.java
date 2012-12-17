@@ -54,7 +54,7 @@ public class OrderDaoImpl extends BaseDaoImpl<Order, String> implements OrderDao
 		return (Long) getSession().createQuery(hql).setParameter("paymentStatus", PaymentStatus.paid).setParameter("shippingStatus", ShippingStatus.unshipped).setParameter("orderStatusCompleted", OrderStatus.completed).setParameter("orderStatusInvalid", OrderStatus.invalid).uniqueResult();
 	}
 
-	// 保存对象时,自动更新商品ID集合
+	// 保存对象时,自动更新充值卡ID集合
 	@Override
 	public String save(Order order) {
 		List<String> cardsIdList = new ArrayList<String>();
@@ -68,7 +68,7 @@ public class OrderDaoImpl extends BaseDaoImpl<Order, String> implements OrderDao
 		return super.save(order);
 	}
 
-	// 更新对象时,自动更新商品ID集合
+	// 更新对象时,自动更新充值卡ID集合
 	@Override
 	public void update(Order order) {
 		List<String> cardsIdList = new ArrayList<String>();

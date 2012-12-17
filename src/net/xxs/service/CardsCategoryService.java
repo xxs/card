@@ -6,7 +6,7 @@ import net.xxs.entity.Cards;
 import net.xxs.entity.CardsCategory;
 
 /**
- * Service接口 - 商品分类
+ * Service接口 - 充值卡分类
  */
 
 public interface CardsCategoryService extends BaseService<CardsCategory, String> {
@@ -42,28 +42,28 @@ public interface CardsCategoryService extends BaseService<CardsCategory, String>
 	public CardsCategory getCardsCategoryBySign(String sign);
 	
 	/**
-	 * 获取商品分类树集合
+	 * 获取充值卡分类树集合
 	 * 
-	 * @return 商品分类树集合
+	 * @return 充值卡分类树集合
 	 * 
 	 */
 	public List<CardsCategory> getCardsCategoryTree();
 	
 	/**
-	 * 获取商品分类树集合;
+	 * 获取充值卡分类树集合;
 	 * 
-	 * @return 商品分类树集合
+	 * @return 充值卡分类树集合
 	 * 
 	 */
 	public List<CardsCategory> getCardsCategoryTreeList();
 	
 	/**
-	 * 获取顶级商品分类集合
+	 * 获取顶级充值卡分类集合
 	 * 
 	 * @param maxResults
 	 *            最大结果数,null表示无限制
 	 * 
-	 * @return 顶级商品分类集合
+	 * @return 顶级充值卡分类集合
 	 * 
 	 */
 	public List<CardsCategory> getRootCardsCategoryList(Integer maxResults);

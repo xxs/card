@@ -50,7 +50,7 @@ public class ProductServiceImpl extends BaseServiceImpl<Product, String> impleme
 		}
 	}
 	
-	// 处理货品名称、货品默认、商品销售价、商品市场价、商品重量、商品库存、商品被占用库存数
+	// 处理货品名称、货品默认、充值卡销售价、充值卡市场价、充值卡重量、充值卡库存、充值卡被占用库存数
 	@Override
 	public String save(Product product) {
 		Cards cards = product.getCards();
@@ -85,7 +85,7 @@ public class ProductServiceImpl extends BaseServiceImpl<Product, String> impleme
 		return id;
 	}
 	
-	// 处理货品名称、货品默认、商品销售价、商品市场价、商品重量、商品库存、商品被占用库存数
+	// 处理货品名称、货品默认、充值卡销售价、充值卡市场价、充值卡重量、充值卡库存、充值卡被占用库存数
 	@Override
 	public void update(Product product) {
 		Cards cards = product.getCards();

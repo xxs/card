@@ -20,15 +20,15 @@
 		
 		<!-- 后台登录 -->
 		<sec:intercept-url pattern="/admin/index.jsp" filters="none" />
-		<!-- 商品管理 -->
+		<!-- 充值卡管理 -->
 		<sec:intercept-url pattern="/admin/cards!**" access="ROLE_CARDS" />
-		<!-- 商品分类管理 -->
+		<!-- 充值卡分类管理 -->
 		<sec:intercept-url pattern="/admin/cards_category!**" access="ROLE_CARDS_CATEGORY" />
-		<!-- 商品类型管理 -->
+		<!-- 充值卡类型管理 -->
 		<sec:intercept-url pattern="/admin/cards_type!**" access="ROLE_CARDS_TYPE" />
-		<!-- 商品规格管理 -->
+		<!-- 充值卡规格管理 -->
 		<sec:intercept-url pattern="/admin/specification!**" access="ROLE_SPECIFICATION" />
-		<!-- 商品品牌管理 -->
+		<!-- 充值卡品牌管理 -->
 		<sec:intercept-url pattern="/admin/brand!**" access="ROLE_BRAND" />
 		<!-- 订单管理 -->
 		<sec:intercept-url pattern="/admin/order!**" access="ROLE_ORDER" />

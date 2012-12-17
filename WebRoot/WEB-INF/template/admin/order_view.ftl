@@ -35,19 +35,10 @@ $().ready( function() {
 				<input type="button" value="订单信息" hidefocus />
 			</li>
 			<li>
-				<input type="button" value="商品信息" hidefocus />
+				<input type="button" value="充值卡信息" hidefocus />
 			</li>
 			<li>
 				<input type="button" value="收款记录" hidefocus />
-			</li>
-			<li>
-				<input type="button" value="退款记录" hidefocus />
-			</li>
-			<li>
-				<input type="button" value="收货记录" hidefocus />
-			</li>
-			<li>
-				<input type="button" value="退货记录" hidefocus />
 			</li>
 			<li>
 				<input type="button" value="订单日志" hidefocus />
@@ -87,7 +78,7 @@ $().ready( function() {
 			</tr>
 			<tr>
 				<th>
-					商品总金额: 
+					充值卡总金额: 
 				</th>
 				<td>
 					<span class="red">${order.totalProductPrice?string(currencyFormat)}</span>
@@ -102,38 +93,10 @@ $().ready( function() {
 			</tr>
 			<tr>
 				<th>
-					配送方式: 
-				</th>
-				<td>
-					${order.deliveryTypeName}
-				</td>
-				<th>
 					支付方式: 
 				</th>
 				<td>
 					${order.paymentConfigName}
-				</td>
-			</tr>
-			<tr>
-				<th>
-					配送费用: 
-				</th>
-				<td>
-					${order.deliveryFee?string(currencyFormat)}
-				</td>
-				<th>
-					支付手续费: 
-				</th>
-				<td>
-					${order.paymentFee?string(currencyFormat)}
-				</td>
-			</tr>
-			<tr>
-				<th>
-					商品总重量: 
-				</th>
-				<td>
-					${order.totalProductWeight} 克
 				</td>
 				<th>
 					附言: 
@@ -145,48 +108,6 @@ $().ready( function() {
 			<tr>
 				<td colspan="4">
 					&nbsp;
-				</td>
-			</tr>
-			<tr>
-				<th>
-					收货人姓名: 
-				</th>
-				<td>
-					${order.shipName}
-				</td>
-				<th>
-					收货地区: 
-				</th>
-				<td>
-					${order.shipArea.displayName}
-				</td>
-			</tr>
-			<tr>
-				<th>
-					收货地址: 
-				</th>
-				<td>
-					${order.shipAddress}
-				</td>
-				<th>
-					邮编: 
-				</th>
-				<td>
-					${order.shipZipCode}
-				</td>
-			</tr>
-			<tr>
-				<th>
-					电话: 
-				</th>
-				<td>
-					${order.shipPhone}
-				</td>
-				<th>
-					手机: 
-				</th>
-				<td>
-					${order.shipMobile}
 				</td>
 			</tr>
 			<tr>
@@ -255,7 +176,7 @@ $().ready( function() {
 		<table class="inputTable tabContent">
 			<tr class="title">
 				<th>货号</th>
-				<th>商品名称</th>
+				<th>充值卡名称</th>
 				<th>价格</th>
 				<th>购买数量</th>
 			</tr>
@@ -320,130 +241,6 @@ $().ready( function() {
 					</td>
 					<td>
 						<span title="${payment.createDate?string("yyyy-MM-dd HH:mm:ss")}">${payment.createDate}</span>
-					</td>
-				</tr>
-			</#list>
-		</table>
-		<table class="inputTable tabContent">
-			<tr class="title">
-				<th>序号</th>
-				<th>退款编号</th>
-				<th>退款类型</th>
-				<th>支付方式</th>
-				<th>退款金额</th>
-				<th>收款人</th>
-				<th>退款时间</th>
-			</tr>
-			<#list order.refundSet as refund>
-				<tr>
-					<td>${refund_index + 1}</td>
-					<td>
-						<a href="refund!view.action?id=${refund.id}">
-							${refund.refundSn}
-						</a>
-					</td>
-					<td>
-						${action.getText("RefundType." + refund.refundType)}
-					</td>
-					<td>
-						${refund.paymentConfigName}
-					</td>
-					<td>
-						${refund.totalAmount?string(currencyFormat)}
-					</td>
-					<td>
-						${refund.payee}
-					</td>
-					<td>
-						<span title="${refund.createDate?string("yyyy-MM-dd HH:mm:ss")}">${refund.createDate}</span>
-					</td>
-				</tr>
-			</#list>
-		</table>
-		<table class="inputTable tabContent">
-			<tr class="title">
-				<th>序号</th>
-				<th>发货编号</th>
-				<th>配送方式名称</th>
-				<th>物流公司名称</th>
-				<th>物流单号</th>
-				<th>物流费用</th>
-				<th>收货人姓名</th>
-				<th>收货地区</th>
-				<th>发货时间</th>
-			</tr>
-			<#list order.shippingSet as shipping>
-				<tr>
-					<td>${shipping_index + 1}</td>
-					<td>
-						<a href="shipping!view.action?id=${shipping.id}">
-							${shipping.shippingSn}
-						</a>
-					</td>
-					<td>
-						${shipping.deliveryTypeName}
-					</td>
-					<td>
-						${shipping.deliveryCorpName}
-					</td>
-					<td>
-						${shipping.deliverySn}
-					</td>
-					<td>
-						${shipping.deliveryFee?string(currencyFormat)}
-					</td>
-					<td>
-						${shipping.shipName}
-					</td>
-					<td>
-						${shipping.shipArea.displayName}
-					</td>
-					<td>
-						<span title="${shipping.createDate?string("yyyy-MM-dd HH:mm:ss")}">${shipping.createDate}</span>
-					</td>
-				</tr>
-			</#list>
-		</table>
-		<table class="inputTable tabContent">
-			<tr class="title">
-				<th>序号</th>
-				<th>退货编号</th>
-				<th>配送方式名称</th>
-				<th>物流公司名称</th>
-				<th>物流单号</th>
-				<th>物流费用</th>
-				<th>退货人姓名</th>
-				<th>退货地区</th>
-				<th>退货时间</th>
-			</tr>
-			<#list order.reshipSet as reship>
-				<tr>
-					<td>${reship_index + 1}</td>
-					<td>
-						<a href="reship!view.action?id=${reship.id}">
-							${reship.reshipSn}
-						</a>
-					</td>
-					<td>
-						${reship.deliveryTypeName}
-					</td>
-					<td>
-						${reship.deliveryCorpName}
-					</td>
-					<td>
-						${reship.deliverySn}
-					</td>
-					<td>
-						${reship.deliveryFee?string(currencyFormat)}
-					</td>
-					<td>
-						${reship.reshipName}
-					</td>
-					<td>
-						${reship.reshipArea.displayName}
-					</td>
-					<td>
-						<span title="${reship.createDate?string("yyyy-MM-dd HH:mm:ss")}">${reship.createDate}</span>
 					</td>
 				</tr>
 			</#list>

@@ -58,7 +58,7 @@
 				<input type="hidden" name="product.id" value="${product.id}" />
 				<table class="inputTable">
 					<tr>
-						<th>商品名称: </th>
+						<th>充值卡名称: </th>
 						<td>
 							${product.name}
 						</td>

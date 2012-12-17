@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="content-type" content="text/html; charset=utf-8" />
-<title>商品类型列表 - XXS</title>
+<title>充值卡类型列表 - XXS</title>
 <meta name="Author" content="XXS-DW" />
 <meta name="Copyright" content="XXS" />
 <link rel="icon" href="favicon.ico" type="image/x-icon" />
@@ -15,7 +15,7 @@
 </head>
 <body class="list">
 	<div class="bar">
-		商品类型列表&nbsp;总记录数: ${pager.totalCount} (共${pager.pageCount}页)
+		充值卡类型列表&nbsp;总记录数: ${pager.totalCount} (共${pager.pageCount}页)
 	</div>
 	<div class="body">
 		<form id="listForm" action="cards_type!list.action" method="post">
@@ -56,7 +56,7 @@
 						<a href="#" class="sort" name="name" hidefocus>类型名称</a>
 					</th>
 					<th>
-						<span>商品属性</span>
+						<span>充值卡属性</span>
 					</th>
 					<th>
 						<a href="#" class="sort" name="createDate" hidefocus>创建日期</a>

@@ -9,7 +9,7 @@ import net.xxs.service.CardsTypeService;
 import org.springframework.stereotype.Service;
 
 /**
- * Service实现类 - 商品类型
+ * Service实现类 - 充值卡类型
  */
 
 @Service("cardsTypeServiceImpl")

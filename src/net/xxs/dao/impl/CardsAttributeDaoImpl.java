@@ -13,7 +13,7 @@ import org.hibernate.criterion.Restrictions;
 import org.springframework.stereotype.Repository;
 
 /**
- * Dao实现类 - 商品属性
+ * Dao实现类 - 充值卡属性
  */
 
 @Repository("cardsAttributeDaoImpl")
@@ -48,7 +48,7 @@ public class CardsAttributeDaoImpl extends BaseDaoImpl<CardsAttribute, String> i
 		return findPager(pager, Restrictions.eq("cardsType", cardsType));
 	}
 	
-	// 删除的同时清除商品对应属性值
+	// 删除的同时清除充值卡对应属性值
 	@Override
 	public void delete(CardsAttribute cardsAttribute) {
 		String propertyName = Cards.CARDS_ATTRIBUTE_VALUE_PROPERTY_NAME_PREFIX + cardsAttribute.getPropertyIndex();
@@ -57,14 +57,14 @@ public class CardsAttributeDaoImpl extends BaseDaoImpl<CardsAttribute, String> i
 		super.delete(cardsAttribute);
 	}
 
-	// 删除的同时清除商品对应属性值
+	// 删除的同时清除充值卡对应属性值
 	@Override
 	public void delete(String id) {
 		CardsAttribute cardsAttribute = load(id);
 		this.delete(cardsAttribute);
 	}
 
-	// 删除的同时清除商品对应属性值
+	// 删除的同时清除充值卡对应属性值
 	@Override
 	public void delete(String[] ids) {
 		for (String id : ids) {

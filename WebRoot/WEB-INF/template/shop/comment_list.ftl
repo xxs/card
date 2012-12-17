@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="content-type" content="text/html; charset=utf-8" />
-<title>商品评论<#if setting.isShowPoweredInfo> - XXS</#if></title>
+<title>充值卡评论<#if setting.isShowPoweredInfo> - XXS</#if></title>
 <meta name="Author" content="XXS-DW" />
 <meta name="Copyright" content="XXS" />
 <link rel="icon" href="favicon.ico" type="image/x-icon" />
@@ -26,7 +26,7 @@
 		<div class="titleBar">
 			<div class="left"></div>
 			<div class="middle">
-				<span class="icon">&nbsp;</span>商品评论 [ <a href="${base}${goods.htmlPath}">${goods.name}</a> ]
+				<span class="icon">&nbsp;</span>充值卡评论 [ <a href="${base}${goods.htmlPath}">${goods.name}</a> ]
 			</div>
 			<div class="right"></div>
 		</div>
@@ -70,7 +70,7 @@
          			</@pagination>
 				<#else>
 					<div class="commentItem">
-						暂无商品评论!
+						暂无充值卡评论!
 					</div>
 				</#if>
 				<div class="blank"></div>

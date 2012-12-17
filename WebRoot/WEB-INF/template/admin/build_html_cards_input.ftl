@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="content-type" content="text/html; charset=utf-8" />
-<title>商品更新 - XXS</title>
+<title>充值卡更新 - XXS</title>
 <meta name="Author" content="XXS-DW" />
 <meta name="Copyright" content="XXS" />
 <link rel="icon" href="favicon.ico" type="image/x-icon" />
@@ -51,7 +51,7 @@ $().ready(function() {
 			if (data.status == "PRODUCT_BUILDING") {
 				var maxResults = Number($("#maxResults").val());
 				var firstResult = Number(data.firstResult);
-				$("#status").text("正在更新商品[" + (firstResult + 1) + " - " + (firstResult + maxResults) + "],请稍后...");
+				$("#status").text("正在更新充值卡[" + (firstResult + 1) + " - " + (firstResult + maxResults) + "],请稍后...");
 				$("#firstResult").val(firstResult);
 				$("#inputForm").submit();
 			} else if (data.status == "PRODUCT_FINISH") {
@@ -67,7 +67,7 @@ $().ready(function() {
 				} else {
 					time = (buildTime / 60000).toFixed(2) + "分";
 				}
-				$.dialog({type: "success", content: "商品更新成功! [更新总数: " + buildCount + " 耗时: " + time + "]", width: 380, modal: true, autoCloseTime: 3000});
+				$.dialog({type: "success", content: "充值卡更新成功! [更新总数: " + buildCount + " 耗时: " + time + "]", width: 380, modal: true, autoCloseTime: 3000});
 				isInitialized = false;
 				buildCount = 0;
 				buildTime = 0;
@@ -80,7 +80,7 @@ $().ready(function() {
 </head>
 <body class="input">
 	<div class="bar">
-		商品更新
+		充值卡更新
 	</div>
 	<div class="body">
 		<form id="inputForm" action="build_html!cards.action" method="post">
@@ -90,7 +90,7 @@ $().ready(function() {
 			<table class="inputTable">
 				<tr>
 					<th>
-						商品分类: 
+						充值卡分类: 
 					</th>
 					<td>
 						<select id="idSelect" name="">

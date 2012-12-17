@@ -27,21 +27,6 @@
 						<a href="payment!list.action" target="mainFrame">收款单</a>
 					</dd>
 				</@sec.authorize>
-				<@sec.authorize ifAnyGranted="ROLE_REFUND">
-					<dd>
-						<a href="refund!list.action" target="mainFrame">退款单</a>
-					</dd>
-				</@sec.authorize>
-				<@sec.authorize ifAnyGranted="ROLE_SHIPPING">
-					<dd>
-						<a href="shipping!list.action" target="mainFrame">发货单</a>
-					</dd>
-				</@sec.authorize>
-				<@sec.authorize ifAnyGranted="ROLE_RESHIP">
-					<dd>
-						<a href="reship!list.action" target="mainFrame">退货单</a>
-					</dd>
-				</@sec.authorize>
 			</dl>
 		</@sec.authorize>
 		<@sec.authorize ifAnyGranted="ROLE_WITHDRAW">
@@ -52,23 +37,6 @@
 				<@sec.authorize ifAnyGranted="ROLE_WITHDRAW">
 					<dd>
 						<a href="withdraw!list.action" target="mainFrame">提现单列表</a>
-					</dd>
-				</@sec.authorize>
-			</dl>
-		</@sec.authorize>
-		<@sec.authorize ifAnyGranted="ROLE_DELIVERY_CENTER,ROLE_DELIVERY_TEMPLATE">
-			<dl>
-				<dt>
-					<span>快递单管理</span>
-				</dt>
-				<@sec.authorize ifAnyGranted="ROLE_DELIVERY_CENTER">
-					<dd>
-						<a href="delivery_center!list.action" target="mainFrame">发货点管理</a>
-					</dd>
-				</@sec.authorize>
-				<@sec.authorize ifAnyGranted="ROLE_DELIVERY_TEMPLATE">
-					<dd>
-						<a href="delivery_template!list.action" target="mainFrame">快递单模板</a>
 					</dd>
 				</@sec.authorize>
 			</dl>

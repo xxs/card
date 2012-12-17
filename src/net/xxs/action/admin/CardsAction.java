@@ -41,7 +41,7 @@ import com.opensymphony.xwork2.validator.annotations.RequiredStringValidator;
 import com.opensymphony.xwork2.validator.annotations.Validations;
 
 /**
- * 后台Action类 - 商品
+ * 后台Action类 - 充值卡
  */
 
 @ParentPackage("admin")
@@ -101,7 +101,7 @@ public class CardsAction extends BaseAdminAction {
 		}
 	}
 	
-	// AJAX获取商品属性
+	// AJAX获取充值卡属性
 	@InputConfig(resultName = "ajaxError")
 	public String ajaxCardsAttribute() {
 		CardsType cardsType = cardsTypeService.load(id);
@@ -109,7 +109,7 @@ public class CardsAction extends BaseAdminAction {
 		return ajax(cardsAttributeSet);
 	}
 	
-	// AJAX获取商品参数
+	// AJAX获取充值卡参数
 	@InputConfig(resultName = "ajaxError")
 	public String ajaxCardsParameter() {
 		CardsType cardsType = cardsTypeService.load(id);
@@ -117,7 +117,7 @@ public class CardsAction extends BaseAdminAction {
 		return ajax(cardsParameterList);
 	}
 	
-	// AJAX获取商品规格值
+	// AJAX获取充值卡规格值
 	@InputConfig(resultName = "ajaxError")
 	public String ajaxSpecification() {
 		Specification specification = specificationService.load(id);
@@ -144,7 +144,7 @@ public class CardsAction extends BaseAdminAction {
 
 	// 删除
 	public String delete() throws Exception {
-		StringBuffer logInfoStringBuffer = new StringBuffer("删除商品: ");
+		StringBuffer logInfoStringBuffer = new StringBuffer("删除充值卡: ");
 		for (String id : ids) {
 			Cards cards = cardsService.load(id);
 			Set<Product> productSet = cards.getProductSet();
@@ -152,7 +152,7 @@ public class CardsAction extends BaseAdminAction {
 				Set<OrderItem> orderItemSet = product.getOrderItemSet();
 				for (OrderItem orderItem : orderItemSet) {
 					if (orderItem.getOrder().getOrderStatus() != OrderStatus.completed && orderItem.getOrder().getOrderStatus() != OrderStatus.invalid) {
-						return ajax(Status.error, "商品[" + cards.getName() + "]订单处理未完成,删除失败!");
+						return ajax(Status.error, "充值卡[" + cards.getName() + "]订单处理未完成,删除失败!");
 					}
 				}
 			}
@@ -169,18 +169,18 @@ public class CardsAction extends BaseAdminAction {
 	// 保存
 	@Validations(
 		requiredStrings = {
-			@RequiredStringValidator(fieldName = "cards.name", message = "商品名称不允许为空!"),
-			@RequiredStringValidator(fieldName = "cards.cardsCategory.id", message = "商品分类不允许为空!")
+			@RequiredStringValidator(fieldName = "cards.name", message = "充值卡名称不允许为空!"),
+			@RequiredStringValidator(fieldName = "cards.cardsCategory.id", message = "充值卡分类不允许为空!")
 		},
 		requiredFields = {
 			@RequiredFieldValidator(fieldName = "cards.isMarketable", message = "是否上架不允许为空!"),
-			@RequiredFieldValidator(fieldName = "cards.isSpecificationEnabled", message = "是否开启商品规格不允许为空!")
+			@RequiredFieldValidator(fieldName = "cards.isSpecificationEnabled", message = "是否开启充值卡规格不允许为空!")
 		}
 	)
 	@InputConfig(resultName = "error")
 	public String save() {
 		if (StringUtils.isNotEmpty(cards.getCardsSn()) && cardsService.isExistByCardsSn(cards.getCardsSn())) {
-			addActionError("商品编号重复,请重新输入!");
+			addActionError("充值卡编号重复,请重新输入!");
 			return ERROR;
 		}
 		
@@ -255,7 +255,7 @@ public class CardsAction extends BaseAdminAction {
 		}
 		
 		cardsService.save(cards);
-		logInfo = "添加商品: " + cards.getName();
+		logInfo = "添加充值卡: " + cards.getName();
 		
 		if (cards.getIsSpecificationEnabled()) {
 			for (int i = 0; i < productList.size(); i ++) {
@@ -295,12 +295,12 @@ public class CardsAction extends BaseAdminAction {
 	// 更新
 	@Validations(
 		requiredStrings = {
-			@RequiredStringValidator(fieldName = "cards.name", message = "商品名称不允许为空!"),
-			@RequiredStringValidator(fieldName = "cards.cardsCategory.id", message = "商品分类不允许为空!")
+			@RequiredStringValidator(fieldName = "cards.name", message = "充值卡名称不允许为空!"),
+			@RequiredStringValidator(fieldName = "cards.cardsCategory.id", message = "充值卡分类不允许为空!")
 		},
 		requiredFields = {
 			@RequiredFieldValidator(fieldName = "cards.isMarketable", message = "是否上架不允许为空!"),
-			@RequiredFieldValidator(fieldName = "cards.isSpecificationEnabled", message = "是否开启商品规格不允许为空!")
+			@RequiredFieldValidator(fieldName = "cards.isSpecificationEnabled", message = "是否开启充值卡规格不允许为空!")
 		}
 	)
 	@InputConfig(resultName = "error")
@@ -308,7 +308,7 @@ public class CardsAction extends BaseAdminAction {
 		Cards persistent = cardsService.load(id);
 		
 		if (StringUtils.isNotEmpty(cards.getCardsSn()) && !cardsService.isUniqueByCardsSn(persistent.getCardsSn(), cards.getCardsSn())) {
-			addActionError("商品编号重复,请重新输入!");
+			addActionError("充值卡编号重复,请重新输入!");
 			return ERROR;
 		}
 		
@@ -444,7 +444,7 @@ public class CardsAction extends BaseAdminAction {
 		
 		BeanUtils.copyProperties(cards, persistent, new String[] {"id", "createDate", "modifyDate", "freezeStore", "productSet"});
 		cardsService.update(persistent);
-		logInfo = "编辑商品: " + cards.getName();
+		logInfo = "编辑充值卡: " + cards.getName();
 		
 		if (cards.getIsSpecificationEnabled()) {
 			for (int i = 0; i < productList.size(); i ++) {
@@ -495,12 +495,12 @@ public class CardsAction extends BaseAdminAction {
 		return SUCCESS;
 	}
 	
-	// 获取商品分类树
+	// 获取充值卡分类树
 	public List<CardsCategory> getCardsCategoryTreeList() {
 		return cardsCategoryService.getCardsCategoryTreeList();
 	}
 	
-	// 获取所有商品类型
+	// 获取所有充值卡类型
 	public List<CardsType> getAllCardsTypeList() {
 		return cardsTypeService.getAllList();
 	}
@@ -510,7 +510,7 @@ public class CardsAction extends BaseAdminAction {
 		return brandService.getAllList();
 	}
 	
-	// 获取所有商品规格
+	// 获取所有充值卡规格
 	public List<Specification> getAllSpecificationList() {
 		return specificationService.getAllList();
 	}

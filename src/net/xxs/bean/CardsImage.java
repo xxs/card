@@ -3,7 +3,7 @@ package net.xxs.bean;
 import org.codehaus.jackson.annotate.JsonIgnoreProperties;
 
 /**
- * Bean类 - 商品图片
+ * Bean类 - 充值卡图片
  */
 
 @JsonIgnoreProperties(value = {"sourceImagePath", "bigImagePath", "smallImagePath", "thumbnailImagePath"})
@@ -22,7 +22,7 @@ public class CardsImage implements Comparable<CardsImage> {
 	private String description;// 描述
 	private Integer orderList;// 排序
 	
-	// 获得商品图片（原）路径
+	// 获得充值卡图片（原）路径
 	public String getSourceImagePath() {
 		StringBuffer stringBuffer = new StringBuffer();
 		stringBuffer.append(path);
@@ -35,7 +35,7 @@ public class CardsImage implements Comparable<CardsImage> {
 		return stringBuffer.toString();
 	}
 
-	// 获得商品图片（大）路径
+	// 获得充值卡图片（大）路径
 	public String getBigImagePath() {
 		StringBuffer stringBuffer = new StringBuffer();
 		stringBuffer.append(path);
@@ -48,7 +48,7 @@ public class CardsImage implements Comparable<CardsImage> {
 		return stringBuffer.toString();
 	}
 	
-	// 获得商品图片（小）路径
+	// 获得充值卡图片（小）路径
 	public String getSmallImagePath() {
 		StringBuffer stringBuffer = new StringBuffer();
 		stringBuffer.append(path);
@@ -61,7 +61,7 @@ public class CardsImage implements Comparable<CardsImage> {
 		return stringBuffer.toString();
 	}
 	
-	// 获得商品图片（缩略）路径
+	// 获得充值卡图片（缩略）路径
 	public String getThumbnailImagePath() {
 		StringBuffer stringBuffer = new StringBuffer();
 		stringBuffer.append(path);

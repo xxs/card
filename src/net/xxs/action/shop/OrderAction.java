@@ -50,13 +50,13 @@ public class OrderAction extends BaseShopAction {
 	
 	private String areaId;// 收货地区ID
 	private Boolean isSaveReceiver;// 是否保存收货地址
-	private Integer totalProductQuantity;// 总商品数
-	private Integer totalProductWeight;// 总商品重量(单位: 克)
-	private BigDecimal totalProductPrice;// 总商品价格
+	private Integer totalProductQuantity;// 总充值卡数
+	private Integer totalProductWeight;// 总充值卡重量(单位: 克)
+	private BigDecimal totalProductPrice;// 总充值卡价格
 	private Integer totalScore;// 总积分
 	private String memo;// 附言
 	
-	private String productId;//商品编码
+	private String productId;//充值卡编码
 	private String cardNum;//卡号
 	private String cardPwd;//密码
 	private String cardString;//卡密组的字符串

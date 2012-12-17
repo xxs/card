@@ -37,9 +37,9 @@ public class Product extends BaseEntity {
 	private BigDecimal price;// 销售价
 	private Boolean isMarketable;// 是否上架
 	private Boolean isDefault;// 是否默认
-	private String specificationValueStore;// 商品规格值存储
+	private String specificationValueStore;// 充值卡规格值存储
 	
-	private Cards cards;// 商品
+	private Cards cards;// 充值卡
 	
 	private Set<OrderItem> orderItemSet = new HashSet<OrderItem>();// 订单项
 	
@@ -118,7 +118,7 @@ public class Product extends BaseEntity {
 	}
 
 	
-	// 获取商品规格值
+	// 获取充值卡规格值
 	@Transient
 	public List<SpecificationValue> getSpecificationValueList() {
 		if (StringUtils.isEmpty(specificationValueStore)) {
@@ -131,7 +131,7 @@ public class Product extends BaseEntity {
 		}
 	}
 	
-	// 设置商品规格值
+	// 设置充值卡规格值
 	@Transient
 	public void setSpecificationValueList(List<SpecificationValue> specificationValueList) {
 		if (specificationValueList == null || specificationValueList.size() == 0) {

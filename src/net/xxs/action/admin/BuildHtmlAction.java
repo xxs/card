@@ -245,7 +245,7 @@ public class BuildHtmlAction extends BaseAdminAction {
 		return "cards_input";
 	}
 	
-	// 更新商品
+	// 更新充值卡
 	@InputConfig(resultName = "ajaxError")
 	public String cards() {
 		long beginTimeMillis = System.currentTimeMillis();
@@ -289,7 +289,7 @@ public class BuildHtmlAction extends BaseAdminAction {
 		return articleCategoryService.getArticleCategoryTreeList();
 	}
 	
-	// 获取商品分类树
+	// 获取充值卡分类树
 	public List<CardsCategory> getCardsCategoryTreeList() {
 		return cardsCategoryService.getCardsCategoryTreeList();
 	}

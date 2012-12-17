@@ -107,12 +107,12 @@
 		<item operation="添加会员" actionClass="net.xxs.action.admin.MemberAction" actionMethod="save"/>  
 		<item operation="删除会员" actionClass="net.xxs.action.admin.MemberAction" actionMethod="delete"/>  
 		<item operation="编辑会员" actionClass="net.xxs.action.admin.MemberAction" actionMethod="update"/>  
-		<item operation="添加商品分类" actionClass="net.xxs.action.admin.CardsCategoryAction" actionMethod="save"/>  
-		<item operation="删除商品分类" actionClass="net.xxs.action.admin.CardsCategoryAction" actionMethod="delete"/>  
-		<item operation="编辑商品分类" actionClass="net.xxs.action.admin.CardsCategoryAction" actionMethod="update"/>  
-		<item operation="添加商品" actionClass="net.xxs.action.admin.CardsAction" actionMethod="save"/>  
-		<item operation="删除商品" actionClass="net.xxs.action.admin.CardsAction" actionMethod="delete"/>  
-		<item operation="编辑商品" actionClass="net.xxs.action.admin.CardsAction" actionMethod="update"/>  
+		<item operation="添加充值卡分类" actionClass="net.xxs.action.admin.CardsCategoryAction" actionMethod="save"/>  
+		<item operation="删除充值卡分类" actionClass="net.xxs.action.admin.CardsCategoryAction" actionMethod="delete"/>  
+		<item operation="编辑充值卡分类" actionClass="net.xxs.action.admin.CardsCategoryAction" actionMethod="update"/>  
+		<item operation="添加充值卡" actionClass="net.xxs.action.admin.CardsAction" actionMethod="save"/>  
+		<item operation="删除充值卡" actionClass="net.xxs.action.admin.CardsAction" actionMethod="delete"/>  
+		<item operation="编辑充值卡" actionClass="net.xxs.action.admin.CardsAction" actionMethod="update"/>  
 		<item operation="添加文章分类" actionClass="net.xxs.action.admin.ArticleCategoryAction" actionMethod="save"/>  
 		<item operation="删除文章分类" actionClass="net.xxs.action.admin.ArticleCategoryAction" actionMethod="delete"/>  
 		<item operation="编辑文章分类" actionClass="net.xxs.action.admin.ArticleCategoryAction" actionMethod="update"/>  

@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="content-type" content="text/html; charset=utf-8" />
-<title>商品规格管理 - XXS</title>
+<title>充值卡规格管理 - XXS</title>
 <meta name="Author" content="XXS-DW" />
 <meta name="Copyright" content="XXS" />
 <link rel="icon" href="favicon.ico" type="image/x-icon" />
@@ -15,7 +15,7 @@
 </head>
 <body class="list">
 	<div class="bar">
-		商品规格管理&nbsp;<span class="pageInfo">总记录数: ${pager.totalCount} (共${pager.pageCount}页)
+		充值卡规格管理&nbsp;<span class="pageInfo">总记录数: ${pager.totalCount} (共${pager.pageCount}页)
 	</div>
 	<div class="body">
 		<form id="listForm" action="specification!list.action" method="post">

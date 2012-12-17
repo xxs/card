@@ -219,31 +219,31 @@ $().ready(function() {
 			"shopLogo": "网店LOGO格式错误",
 			"setting.email": "E-mail格式不正确",
 			"setting.bigCardsImageWidth": {
-				required: "请填写商品图片(大)的宽度",
-				positiveInteger: "商品图片(大)的宽度必须为正整数"
+				required: "请填写充值卡图片(大)的宽度",
+				positiveInteger: "充值卡图片(大)的宽度必须为正整数"
 			},
 			"setting.bigCardsImageHeight": {
-				required: "请填写商品图片(大)的高度",
-				positiveInteger: "商品图片(大)的高度必须为正整数"
+				required: "请填写充值卡图片(大)的高度",
+				positiveInteger: "充值卡图片(大)的高度必须为正整数"
 			},
 			"setting.smallCardsImageWidth": {
-				required: "请填写商品图片(小)的宽度",
-				positiveInteger: "商品图片(小)的宽度必须为正整数"
+				required: "请填写充值卡图片(小)的宽度",
+				positiveInteger: "充值卡图片(小)的宽度必须为正整数"
 			},
 			"setting.smallCardsImageHeight": {
-				required: "请填写商品图片(小)的高度",
-				positiveInteger: "商品图片(小)的高度必须为正整数"
+				required: "请填写充值卡图片(小)的高度",
+				positiveInteger: "充值卡图片(小)的高度必须为正整数"
 			},
 			"setting.thumbnailCardsImageWidth": {
-				required: "请填写商品缩略图的宽度",
-				positiveInteger: "商品缩略图的宽度必须为正整数"
+				required: "请填写充值卡缩略图的宽度",
+				positiveInteger: "充值卡缩略图的宽度必须为正整数"
 			},
 			"setting.thumbnailCardsImageHeight": {
-				required: "请填写商品缩略图的高度",
-				positiveInteger: "商品缩略图的高度必须为正整数"
+				required: "请填写充值卡缩略图的高度",
+				positiveInteger: "充值卡缩略图的高度必须为正整数"
 			},
-			"defaultBigCardsImage": "默认商品图片(大)格式错误",
-			"defaultSmallCardsImage": "默认商品图片(小)格式错误",
+			"defaultBigCardsImage": "默认充值卡图片(大)格式错误",
+			"defaultSmallCardsImage": "默认充值卡图片(小)格式错误",
 			"defaultThumbnailCardsImage": "默认缩略图格式错误",
 			"watermarkImage": "水印图片格式错误",
 			"setting.watermarkAlpha": {
@@ -276,8 +276,8 @@ $().ready(function() {
 			"setting.currencySign": "请填写货币符号",
 			"setting.currencyUnit": "请填写货币单位",
 			"setting.storeAlertCount": {
-				required: "请填写商品库存报警数量",
-				digits: "商品库存报警数量必须为零或正整数"
+				required: "请填写充值卡库存报警数量",
+				digits: "充值卡库存报警数量必须为零或正整数"
 			},
 			"setting.scoreScale": {
 				required: "请填写积分换算比率",
@@ -420,7 +420,7 @@ $().ready(function() {
 			<table class="inputTable tabContent">
 				<tr>
 					<th>
-						商品图片(大): 
+						充值卡图片(大): 
 					</th>
 					<td>
 						<span class="fieldTitle">宽度: </span>
@@ -433,7 +433,7 @@ $().ready(function() {
 				</tr>
 				<tr>
 					<th>
-						商品图片(小): 
+						充值卡图片(小): 
 					</th>
 					<td>
 						<span class="fieldTitle">宽度: </span>
@@ -446,7 +446,7 @@ $().ready(function() {
 				</tr>
 				<tr>
 					<th>
-						商品缩略图: 
+						充值卡缩略图: 
 					</th>
 					<td>
 						<span class="fieldTitle">宽度: </span>
@@ -459,7 +459,7 @@ $().ready(function() {
 				</tr>
 				<tr>
 					<th>
-						默认商品图片(大): 
+						默认充值卡图片(大): 
 					</th>
 					<td>
 						<input type="file" name="defaultBigCardsImage" />
@@ -468,7 +468,7 @@ $().ready(function() {
 				</tr>
 				<tr>
 					<th>
-						默认商品图片(小): 
+						默认充值卡图片(小): 
 					</th>
 					<td>
 						<input type="file" name="defaultSmallCardsImage" />
@@ -715,7 +715,7 @@ $().ready(function() {
 				</tr>
 				<tr>
 					<th>
-						商品库存报警数量: 
+						充值卡库存报警数量: 
 					</th>
 					<td>
 						<input type="text" name="setting.storeAlertCount" class="formText" value="${setting.storeAlertCount}" title="只允许输入零或正整数" />

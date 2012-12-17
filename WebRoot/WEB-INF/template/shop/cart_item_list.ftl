@@ -36,13 +36,13 @@ $().ready( function() {
 	var $orderInfoButton = $("#orderInfoButton");
 	
 	
-	// 记录初始商品购买数
+	// 记录初始充值卡购买数
 	$quantity.each(function(){
 		$this = $(this);
 		$this.data("previousQuantity", $this.val());
 	});
 	
-	// 修改商品数量
+	// 修改充值卡数量
 	$quantity.change( function() {
 		$this = $(this);
 		var productId = $this.attr("productId");
@@ -56,8 +56,8 @@ $().ready( function() {
 		if (!reg.test(quantity)) {
 			var previousQuantity = $this.data("previousQuantity");
 			$this.val(previousQuantity);
-			$changeQuantityTipTopMessage.text("商品数量修改失败!");
-			$changeQuantityTipBottomMessage.text("商品数量必须为正整数!");
+			$changeQuantityTipTopMessage.text("充值卡数量修改失败!");
+			$changeQuantityTipBottomMessage.text("充值卡数量必须为正整数!");
 			$changeQuantityTip.fadeIn();
 			setTimeout(function() {$changeQuantityTip.fadeOut()}, 3000);
 			return false;
@@ -80,14 +80,14 @@ $().ready( function() {
 					$totalProductQuantity.text(data.totalProductQuantity);
 					$totalProductPrice.text(currencyFormat(data.totalProductPrice));
 					$totalScore.text(currencyFormat(data.totalScore));
-					$changeQuantityTipTopMessage.text("商品数量修改成功!");
-					$changeQuantityTipBottomMessage.text("商品总金额: " + currencyFormat(data.totalProductPrice));
+					$changeQuantityTipTopMessage.text("充值卡数量修改成功!");
+					$changeQuantityTipBottomMessage.text("充值卡总金额: " + currencyFormat(data.totalProductPrice));
 					$changeQuantityTip.fadeIn();
 					setTimeout(function() {$changeQuantityTip.fadeOut()}, 3000);
 				} else {
 					var previousQuantity = $this.data("previousQuantity");
 					$this.val(previousQuantity);
-					$changeQuantityTipTopMessage.text("商品数量修改失败!");
+					$changeQuantityTipTopMessage.text("充值卡数量修改失败!");
 					$changeQuantityTipBottomMessage.text(data.message);
 					$changeQuantityTip.fadeIn();
 					setTimeout(function() {$changeQuantityTip.fadeOut()}, 3000);
@@ -97,7 +97,7 @@ $().ready( function() {
 		});
 	});
 	
-	// 修改商品数量提示框隐藏
+	// 修改充值卡数量提示框隐藏
 	$changeQuantityTipClose.click( function() {
 		$changeQuantityTip.fadeOut();
 		return false;
@@ -107,7 +107,7 @@ $().ready( function() {
 	$deleteCartItem.click( function() {
 		$this = $(this);
 		var productId = $this.attr("productId");
-		$.dialog({type: "warn", content: "您确定要移除此商品吗?", ok: "确 定", cancel: "取 消", modal: true, okCallback: deleteCartItem});
+		$.dialog({type: "warn", content: "您确定要移除此充值卡吗?", ok: "确 定", cancel: "取 消", modal: true, okCallback: deleteCartItem});
 		function deleteCartItem() {
 			$.ajax({
 				url: "cart_item!ajaxDelete.action",
@@ -141,9 +141,9 @@ $().ready( function() {
 					if (data.status == "success") {
 						$(".listTable tr:gt(0)").remove();
 						<#if (loginMember.memberRank.preferentialScale != 100)!>
-							$listTable.append('<tr><td class="noRecord" colspan="7">购物车目前没有加入任何商品!</td></tr>');
+							$listTable.append('<tr><td class="noRecord" colspan="7">购物车目前没有加入任何充值卡!</td></tr>');
 						<#else>
-							$listTable.append('<tr><td class="noRecord" colspan="6">购物车目前没有加入任何商品!</td></tr>');
+							$listTable.append('<tr><td class="noRecord" colspan="6">购物车目前没有加入任何充值卡!</td></tr>');
 						</#if>
 						$orderInfoButton.remove();
 						$clearCartItem.remove();
@@ -158,7 +158,7 @@ $().ready( function() {
 	$orderInfoButton.click( function() {
 		var $this = $(this);
 		if (parseInt($totalProductQuantity.text()) < 1) {
-			$.message({type: "warn", content: "购物车目前没有加入任何商品!"});
+			$.message({type: "warn", content: "购物车目前没有加入任何充值卡!"});
 			return false;
 		}
 		if (!$.memberVerify()) {
@@ -186,14 +186,14 @@ $().ready( function() {
 		<div class="cartItemListDetail">
 			<div class="top">
 				<div class="topLeft"></div>
-				<div class="topMiddle">已放入购物车的商品: </div>
+				<div class="topMiddle">已放入购物车的充值卡: </div>
 				<div class="topRight"></div>
 			</div>
 			<div class="middle">
 				<table id="cartItemTable" class="listTable">
 					<tr>
-						<th>商品图片</th>
-						<th>商品名称</th>
+						<th>充值卡图片</th>
+						<th>充值卡名称</th>
 						<th>销售价格</th>
 						<#if (loginMember.memberRank.preferentialScale != 100)!>
 							<th>优惠价格</th>
@@ -244,16 +244,16 @@ $().ready( function() {
 					</#list>
 					<#if (cartItemList == null || cartItemList?size == 0)!>
 						<tr>
-							<td class="noRecord" colspan="<#if (loginMember.memberRank.preferentialScale != 100)!>7<#else>6</#if>">购物车目前没有加入任何商品!</td>
+							<td class="noRecord" colspan="<#if (loginMember.memberRank.preferentialScale != 100)!>7<#else>6</#if>">购物车目前没有加入任何充值卡!</td>
 						</tr>
 					<#else>
 						<tr>
 							<td class="info" colspan="<#if (loginMember.memberRank.preferentialScale != 100)!>7<#else>6</#if>">
-								商品共计: <span id="totalProductQuantity" class="red">${totalProductQuantity}</span> 件&nbsp;&nbsp;
+								充值卡共计: <span id="totalProductQuantity" class="red">${totalProductQuantity}</span> 件&nbsp;&nbsp;
 								<#if setting.scoreType != "disable">
 									积分: <span id="totalScore" class="red">${totalScore}</span>&nbsp;&nbsp;
 								</#if>
-								商品总金额(不含运费): <span id="totalProductPrice" class="red">${totalProductPrice?string(currencyFormat)}</span>
+								充值卡总金额(不含运费): <span id="totalProductPrice" class="red">${totalProductPrice?string(currencyFormat)}</span>
 							</td>
 						</tr>
 					</#if>

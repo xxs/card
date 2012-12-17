@@ -9,7 +9,7 @@ import org.quartz.Job;
 import org.quartz.JobExecutionContext;
 
 /**
- * Service接口 - 删除商品内容HTML任务
+ * Service接口 - 删除充值卡内容HTML任务
  */
 
 public class DeleteCardsContentHtmlJob implements Job {

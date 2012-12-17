@@ -40,7 +40,7 @@ import org.compass.annotations.Store;
 import org.hibernate.annotations.ForeignKey;
 
 /**
- * 实体类 - 商品
+ * 实体类 - 充值卡
  */
 
 @Entity
@@ -49,48 +49,48 @@ public class Cards extends BaseEntity {
 
 	private static final long serialVersionUID = 8394952361534286179L;
 	
-	public static final int DEFAULT_CARDS_LIST_PAGE_SIZE = 12;// 商品列表默认每页显示数
-	public static final int CARDS_ATTRIBUTE_VALUE_PROPERTY_COUNT = 20;// 商品属性值对象属性个数
-	public static final String CARDS_ATTRIBUTE_VALUE_PROPERTY_NAME_PREFIX = "cardsAttributeValue";// 商品属性值对象属性名称前缀
+	public static final int DEFAULT_CARDS_LIST_PAGE_SIZE = 12;// 充值卡列表默认每页显示数
+	public static final int CARDS_ATTRIBUTE_VALUE_PROPERTY_COUNT = 20;// 充值卡属性值对象属性个数
+	public static final String CARDS_ATTRIBUTE_VALUE_PROPERTY_NAME_PREFIX = "cardsAttributeValue";// 充值卡属性值对象属性名称前缀
 	
-	private String cardsSn;// 商品编号
-	private String name;// 商品名称
+	private String cardsSn;// 充值卡编号
+	private String name;// 充值卡名称
 	private BigDecimal price;// 销售价
 	private Integer score;// 积分
 	private Boolean isMarketable;// 是否上架
-	private Boolean isBest;// 是否为精品商品
-	private Boolean isNew;// 是否为新品商品
-	private Boolean isHot;// 是否为热销商品
-	private Boolean isSpecificationEnabled;// 是否启用商品规格
+	private Boolean isBest;// 是否为精品充值卡
+	private Boolean isNew;// 是否为新品充值卡
+	private Boolean isHot;// 是否为热销充值卡
+	private Boolean isSpecificationEnabled;// 是否启用充值卡规格
 	private String introduction;// 介绍
 	private String metaKeywords;// 页面关键词
 	private String metaDescription;// 页面描述
 	private String htmlPath;// HTML静态文件路径
-	private String cardsImageStore;// 商品图片存储
-	private String cardsAttributeValue0;// 商品属性值0
-	private String cardsAttributeValue1;// 商品属性值1
-	private String cardsAttributeValue2;// 商品属性值2
-	private String cardsAttributeValue3;// 商品属性值3
-	private String cardsAttributeValue4;// 商品属性值4
-	private String cardsAttributeValue5;// 商品属性值5
-	private String cardsAttributeValue6;// 商品属性值6
-	private String cardsAttributeValue7;// 商品属性值7
-	private String cardsAttributeValue8;// 商品属性值8
-	private String cardsAttributeValue9;// 商品属性值9
-	private String cardsAttributeValue10;// 商品属性值10
-	private String cardsAttributeValue11;// 商品属性值11
-	private String cardsAttributeValue12;// 商品属性值12
-	private String cardsAttributeValue13;// 商品属性值13
-	private String cardsAttributeValue14;// 商品属性值14
-	private String cardsAttributeValue15;// 商品属性值15
-	private String cardsAttributeValue16;// 商品属性值16
-	private String cardsAttributeValue17;// 商品属性值17
-	private String cardsAttributeValue18;// 商品属性值18
-	private String cardsAttributeValue19;// 商品属性值19
-	private String cardsParameterValueStore;// 商品参数存储
+	private String cardsImageStore;// 充值卡图片存储
+	private String cardsAttributeValue0;// 充值卡属性值0
+	private String cardsAttributeValue1;// 充值卡属性值1
+	private String cardsAttributeValue2;// 充值卡属性值2
+	private String cardsAttributeValue3;// 充值卡属性值3
+	private String cardsAttributeValue4;// 充值卡属性值4
+	private String cardsAttributeValue5;// 充值卡属性值5
+	private String cardsAttributeValue6;// 充值卡属性值6
+	private String cardsAttributeValue7;// 充值卡属性值7
+	private String cardsAttributeValue8;// 充值卡属性值8
+	private String cardsAttributeValue9;// 充值卡属性值9
+	private String cardsAttributeValue10;// 充值卡属性值10
+	private String cardsAttributeValue11;// 充值卡属性值11
+	private String cardsAttributeValue12;// 充值卡属性值12
+	private String cardsAttributeValue13;// 充值卡属性值13
+	private String cardsAttributeValue14;// 充值卡属性值14
+	private String cardsAttributeValue15;// 充值卡属性值15
+	private String cardsAttributeValue16;// 充值卡属性值16
+	private String cardsAttributeValue17;// 充值卡属性值17
+	private String cardsAttributeValue18;// 充值卡属性值18
+	private String cardsAttributeValue19;// 充值卡属性值19
+	private String cardsParameterValueStore;// 充值卡参数存储
 	
-	private CardsCategory cardsCategory;// 商品分类
-	private CardsType cardsType;// 商品类型
+	private CardsCategory cardsCategory;// 充值卡分类
+	private CardsType cardsType;// 充值卡类型
 	private Brand brand;// 品牌
 	
 	private Set<Specification> specificationSet = new HashSet<Specification>();// 规格
@@ -451,7 +451,7 @@ public class Cards extends BaseEntity {
 	}
 
 	
-	// 获取商品图片
+	// 获取充值卡图片
 	@Transient
 	public List<CardsImage> getCardsImageList() {
 		if (StringUtils.isEmpty(cardsImageStore)) {
@@ -464,7 +464,7 @@ public class Cards extends BaseEntity {
 		}
 	}
 	
-	// 设置商品图片
+	// 设置充值卡图片
 	@Transient
 	public void setCardsImageList(List<CardsImage> cardsImageList) {
 		if (cardsImageList == null || cardsImageList.size() == 0) {
@@ -475,7 +475,7 @@ public class Cards extends BaseEntity {
 		cardsImageStore = JsonUtil.toJson(cardsImageList);
 	}
 	
-	// 获取商品属性值
+	// 获取充值卡属性值
 	@Transient
 	public Object getCardsAttributeValue(CardsAttribute cardsAttribute) {
 		if (cardsAttribute == null) {
@@ -485,7 +485,7 @@ public class Cards extends BaseEntity {
 		return (String) ReflectionUtil.invokeGetterMethod(this, propertyName);
 	}
 	
-	// 设置商品属性值
+	// 设置充值卡属性值
 	@Transient
 	public void setCardsAttributeValue(CardsAttribute cardsAttribute, String cardsAttributeValue) {
 		if (cardsAttribute == null) {
@@ -498,7 +498,7 @@ public class Cards extends BaseEntity {
 		ReflectionUtil.invokeSetterMethod(this, propertyName, cardsAttributeValue);
 	}
 	
-	// 获取商品参数值
+	// 获取充值卡参数值
 	@Transient
 	public Map<String, String> getCardsParameterValueMap() {
 		if (StringUtils.isEmpty(cardsParameterValueStore)) {
@@ -511,7 +511,7 @@ public class Cards extends BaseEntity {
 		}
 	}
 	
-	// 设置商品参数值
+	// 设置充值卡参数值
 	@Transient
 	public void setCardsParameterValueMap(Map<String, String> cardsParameterValueMap) {
 		if (cardsParameterValueMap == null || cardsParameterValueMap.size() == 0) {
@@ -599,7 +599,7 @@ public class Cards extends BaseEntity {
 		return null;
 	}
 	
-	// 获取默认商品图片（大）
+	// 获取默认充值卡图片（大）
 	@Transient
 	public String getDefaultBigCardsImagePath() {
 		List<CardsImage> cardsImageList = getCardsImageList();
@@ -611,7 +611,7 @@ public class Cards extends BaseEntity {
 		}
 	}
 	
-	// 获取默认商品图片（小）
+	// 获取默认充值卡图片（小）
 	@Transient
 	public String getDefaultSmallCardsImagePath() {
 		List<CardsImage> cardsImageList = getCardsImageList();
@@ -623,7 +623,7 @@ public class Cards extends BaseEntity {
 		}
 	}
 	
-	// 获取默认商品图片（缩略图）
+	// 获取默认充值卡图片（缩略图）
 	@Transient
 	public String getDefaultThumbnailCardsImagePath() {
 		List<CardsImage> cardsImageList = getCardsImageList();
@@ -635,7 +635,7 @@ public class Cards extends BaseEntity {
 		}
 	}
 	
-	// 获取商品规格值
+	// 获取充值卡规格值
 	@Transient
 	public Set<SpecificationValue> getSpecificationValueSet() {
 		Set<SpecificationValue> specificationValueSet = new HashSet<SpecificationValue>();
@@ -647,7 +647,7 @@ public class Cards extends BaseEntity {
 		return specificationValueSet;
 	}
 	
-	// 设置商品属性值为NULL
+	// 设置充值卡属性值为NULL
 	@Transient
 	public void setCardsAttributeValueToNull() {
 		for (int i = 0; i < CARDS_ATTRIBUTE_VALUE_PROPERTY_COUNT; i ++) {

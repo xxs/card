@@ -33,7 +33,7 @@ $().ready( function() {
 	var $productQuantity = $("#orderItemTable input.productQuantity");
 	var $deleteOrderItem = $("#orderItemTable .deleteOrderItem");
 	
-	var totalProductPrice = parseFloat("${order.totalProductPrice}");// 商品总价格
+	var totalProductPrice = parseFloat("${order.totalProductPrice}");// 充值卡总价格
 	var deliveryFee = parseFloat("${order.deliveryFee}");// 配送费用
 	var paymentFee = parseFloat("${order.paymentFee}");// 支付费用
 
@@ -47,7 +47,7 @@ $().ready( function() {
 		url: "${base}/shop/area!ajaxArea.action"// AJAX数据获取url
 	});
 	
-	// 修改商品总金额
+	// 修改充值卡总金额
 	function modifyTotalProductPrice() {
 		totalProductPrice = 0.0;
 		$("#orderItemTable input.productPrice").each(function(){
@@ -91,26 +91,26 @@ $().ready( function() {
 		}
 	});
 	
-	// 记录初始商品价格
+	// 记录初始充值卡价格
 	$productPrice.each(function(){
 		$this = $(this);
 		$this.data("previousProductPrice", $this.val());
 	});
 	
-	// 记录初始商品购买数
+	// 记录初始充值卡购买数
 	$productQuantity.each(function(){
 		$this = $(this);
 		$this.data("previousProductQuantity", $this.val());
 	});
 	
-	// 商品价格修改
+	// 充值卡价格修改
 	$productPrice.change( function() {
 		$this = $(this);
 		var productPriceValue = $this.val();
 		if (!/^(([0-9]+\.?[0-9]+)|[0-9])$/.test(productPriceValue)) {
 			var previousProductPrice = $this.data("previousProductPrice");
 			$this.val(previousProductPrice);
-			$.message({type: "warn", content: "商品价格输入有误!"});
+			$.message({type: "warn", content: "充值卡价格输入有误!"});
 		} else {
 			$this.data("previousProductPrice", productPriceValue);
 			modifyTotalProductPrice();
@@ -118,7 +118,7 @@ $().ready( function() {
 		}
 	});
 	
-	// 商品数量修改
+	// 充值卡数量修改
 	$productQuantity.change( function() {
 		$this = $(this);
 		var productQuantityValue = $this.val();
@@ -126,12 +126,12 @@ $().ready( function() {
 		if (!/^[0-9]*[1-9][0-9]*$/.test(productQuantityValue)) {
 			var previousProductQuantity = $this.data("previousProductQuantity");
 			$this.val(previousProductQuantity);
-			$.message({type: "warn", content: "商品数量输入有误!"});
+			$.message({type: "warn", content: "充值卡数量输入有误!"});
 		} else {
 			if (availableStore != null && parseInt(productQuantityValue) > parseInt(availableStore)) {
 				var previousProductQuantity = $this.data("previousProductQuantity");
 				$this.val(previousProductQuantity);
-				$.message({type: "warn", content: "商品数量超出可用库存数!"});
+				$.message({type: "warn", content: "充值卡数量超出可用库存数!"});
 				return false;
 			}
 			$this.data("previousProductQuantity", productQuantityValue);
@@ -144,7 +144,7 @@ $().ready( function() {
 	$deleteOrderItem.click( function() {
 		$this = $(this);
 		if ($("#orderItemTable input.productPrice").size() <= 1) {
-			$.dialog({type: "warn", content: "请保留至少一个商品!", modal: true, autoCloseTime: 2000});
+			$.dialog({type: "warn", content: "请保留至少一个充值卡!", modal: true, autoCloseTime: 2000});
 			return false;
 		}
 		$.dialog({type: "warn", content: "您确定要删除吗?", ok: "确 定", cancel: "取 消", modal: true, okCallback: deleteOrderItem});
@@ -196,8 +196,8 @@ $().ready( function() {
 				min: "支付手续费必须为零或正数"
 			},
 			"order.totalProductWeight": {
-				required: "请填写商品总重量",
-				min: "商品总重量必须为零或正数"
+				required: "请填写充值卡总重量",
+				min: "充值卡总重量必须为零或正数"
 			},
 			"order.shipName": "请填写收货人姓名",
 			"shipAreaId": "请选择收货地区",
@@ -212,9 +212,9 @@ $().ready( function() {
 		}
 	});
 	
-	$.validator.addMethod("priceRequired", $.validator.methods.required, "请填写商品价格");
-	$.validator.addMethod("priceMin", $.validator.methods.min, "商品价格必须为零或正数");
-	$.validator.addMethod("productQuantityPositiveInteger", $.validator.methods.positiveInteger, "商品数量必须为正整数");
+	$.validator.addMethod("priceRequired", $.validator.methods.required, "请填写充值卡价格");
+	$.validator.addMethod("priceMin", $.validator.methods.min, "充值卡价格必须为零或正数");
+	$.validator.addMethod("productQuantityPositiveInteger", $.validator.methods.positiveInteger, "充值卡数量必须为正整数");
 	
 	$.validator.addClassRules("productPrice", {
 		priceRequired: true,
@@ -242,7 +242,7 @@ $().ready( function() {
 					<input type="button" value="订单信息" hidefocus />
 				</li>
 				<li>
-					<input type="button" value="商品信息" hidefocus />
+					<input type="button" value="充值卡信息" hidefocus />
 				</li>
 			</ul>
 			<table class="inputTable tabContent">
@@ -262,7 +262,7 @@ $().ready( function() {
 				</tr>
 				<tr>
 					<th>
-						商品总金额: 
+						充值卡总金额: 
 					</th>
 					<td>
 						<span id="totalProductPrice" class="red">${order.totalProductPrice?string(currencyFormat)}</span>
@@ -321,7 +321,7 @@ $().ready( function() {
 				</tr>
 				<tr>
 					<th>
-						商品总重量: 
+						充值卡总重量: 
 					</th>
 					<td>
 						<input type="text" name="order.totalProductWeight" class="formText" value="${order.totalProductWeight}" title="单位: 克" />
@@ -461,7 +461,7 @@ $().ready( function() {
 			<table id="orderItemTable" class="inputTable tabContent">
 				<tr class="title">
 					<th>货号</th>
-					<th>商品名称</th>
+					<th>充值卡名称</th>
 					<th>价格</th>
 					<th>购买数量</th>
 					<th>删除</th>

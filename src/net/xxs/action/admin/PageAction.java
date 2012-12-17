@@ -79,12 +79,12 @@ public class PageAction extends BaseAdminAction {
 		return withdrawService.getUnprocessedWithdrawCount();
 	}
 	
-	// 获取已上架商品数
+	// 获取已上架充值卡数
 	public Long getMarketableCardsCount() {
 		return cardsService.getMarketableCardsCount();
 	}
 	
-	// 获取已下架商品数
+	// 获取已下架充值卡数
 	public Long getUnMarketableCardsCount() {
 		return cardsService.getUnMarketableCardsCount();
 	}

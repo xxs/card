@@ -23,7 +23,7 @@ import com.opensymphony.xwork2.validator.annotations.RequiredStringValidator;
 import com.opensymphony.xwork2.validator.annotations.Validations;
 
 /**
- * 后台Action类 - 商品分类
+ * 后台Action类 - 充值卡分类
  */
 
 @ParentPackage("admin")
@@ -74,16 +74,16 @@ public class CardsCategoryAction extends BaseAdminAction {
 		Set<CardsCategory> childrenCardsCategorySet = cardsCategory.getChildren();
 		redirectUrl = "cards_category!list.action";
 		if (childrenCardsCategorySet != null && childrenCardsCategorySet.size() > 0) {
-			addActionError("此商品分类存在下级分类,删除失败!");
+			addActionError("此充值卡分类存在下级分类,删除失败!");
 			return ERROR;
 		}
 		Set<Cards> cardsSet = cardsCategory.getCardsSet();
 		if (cardsSet != null && cardsSet.size() > 0) {
-			addActionError("此商品分类下存在商品,删除失败!");
+			addActionError("此充值卡分类下存在充值卡,删除失败!");
 			return ERROR;
 		}
 		cardsCategoryService.delete(id);
-		logInfo = "删除商品分类: " + cardsCategory.getName();
+		logInfo = "删除充值卡分类: " + cardsCategory.getName();
 		
 		cacheService.flushCardsListPageCache(getRequest());
 		
@@ -119,7 +119,7 @@ public class CardsCategoryAction extends BaseAdminAction {
 			cardsCategory.setCardsType(null);
 		}
 		cardsCategoryService.save(cardsCategory);
-		logInfo = "添加商品分类: " + cardsCategory.getName();
+		logInfo = "添加充值卡分类: " + cardsCategory.getName();
 		
 		cacheService.flushCardsListPageCache(getRequest());
 		
@@ -152,7 +152,7 @@ public class CardsCategoryAction extends BaseAdminAction {
 		}
 		BeanUtils.copyProperties(cardsCategory, persistent, new String[]{"id", "createDate", "modifyDate", "path", "parent", "children", "cardsSet"});
 		cardsCategoryService.update(persistent);
-		logInfo = "更新商品分类: " + cardsCategory.getName();
+		logInfo = "更新充值卡分类: " + cardsCategory.getName();
 		
 		cacheService.flushCardsListPageCache(getRequest());
 		
@@ -160,12 +160,12 @@ public class CardsCategoryAction extends BaseAdminAction {
 		return SUCCESS;
 	}
 	
-	// 获取商品分类树
+	// 获取充值卡分类树
 	public List<CardsCategory> getCardsCategoryTreeList() {
 		return cardsCategoryService.getCardsCategoryTreeList();
 	}
 	
-	// 获取所有商品类型集合
+	// 获取所有充值卡类型集合
 	public List<CardsType> getAllCardsTypeList() {
 		return cardsTypeService.getAllList();
 	}

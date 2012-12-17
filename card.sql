@@ -804,7 +804,7 @@ INSERT INTO `xx_log` VALUES ('4028bc743abe9afa013abf1e106c0003', '2012-11-02 11:
 INSERT INTO `xx_log` VALUES ('4028bc743abf206b013abf27b8c60002', '2012-11-02 11:26:22', '2012-11-02 11:26:22', 'net.xxs.action.admin.MemberAction', 'save', '添加会员: 123456', '127.0.0.1', '添加会员', 'admin');
 INSERT INTO `xx_log` VALUES ('4028bc743abf206b013abf28c6cb0004', '2012-11-02 11:27:31', '2012-11-02 11:27:31', 'net.xxs.action.admin.MemberAction', 'update', '编辑会员: 123456', '127.0.0.1', '编辑会员', 'admin');
 INSERT INTO `xx_log` VALUES ('4028bc743ac000ea013ac00c08b60001', '2012-11-02 15:35:45', '2012-11-02 15:35:45', 'net.xxs.action.admin.AdminAction', 'update', '编辑管理员: admin', '127.0.0.1', '编辑管理员', 'admin');
-INSERT INTO `xx_log` VALUES ('4028e3373b17db72013b17eaf0180002', '2012-11-19 17:06:11', '2012-11-19 17:06:11', 'net.xxs.action.admin.GoodsAction', 'save', '添加商品: 盛大一卡通', '127.0.0.1', '添加商品', 'admin');
+INSERT INTO `xx_log` VALUES ('4028e3373b17db72013b17eaf0180002', '2012-11-19 17:06:11', '2012-11-19 17:06:11', 'net.xxs.action.admin.GoodsAction', 'save', '添加充值卡: 盛大一卡通', '127.0.0.1', '添加充值卡', 'admin');
 INSERT INTO `xx_log` VALUES ('8a8f83943ab198ff013ab1e97f1a0000', '2012-10-30 21:43:20', '2012-10-30 21:43:20', 'net.xxs.action.admin.ArticleAction', 'update', '编辑文章: 收卡价格', '127.0.0.1', '编辑文章', 'admin');
 INSERT INTO `xx_log` VALUES ('8a8f83943ab198ff013ab1e9ae360001', '2012-10-30 21:43:32', '2012-10-30 21:43:32', 'net.xxs.action.admin.ArticleAction', 'update', '编辑文章: 联系我们', '127.0.0.1', '编辑文章', 'admin');
 INSERT INTO `xx_log` VALUES ('8a9182e13ab666b7013ab6acda4f000a', '2012-10-31 19:55:12', '2012-10-31 19:55:12', 'net.xxs.action.admin.OrderAction', 'shipping', '订单编号: DD100003', '127.0.0.1', '订单发货', 'admin');
@@ -1317,7 +1317,7 @@ INSERT INTO `xx_order_log` VALUES ('8a91807c3b70d14d013b70d44ab1000b', '2012-12-
 INSERT INTO `xx_order_log` VALUES ('8a91807c3b70d14d013b70d4e107000f', '2012-12-06 23:28:17', '2012-12-06 23:28:17', '支付总金额: ￥17.60元', null, '2', 'DD100035', '8a91807c3b70d14d013b70d44a5e0009');
 INSERT INTO `xx_order_log` VALUES ('8a9182e13ab666b7013ab6707bbf0004', '2012-10-31 18:49:15', '2012-10-31 18:49:15', null, null, '0', 'DD100003', '8a9182e13ab666b7013ab6707b5a0002');
 INSERT INTO `xx_order_log` VALUES ('8a9182e13ab666b7013ab67096960006', '2012-10-31 18:49:22', '2012-10-31 18:49:22', '支付总金额: ￥69.00元', null, '2', 'DD100003', '8a9182e13ab666b7013ab6707b5a0002');
-INSERT INTO `xx_order_log` VALUES ('8a9182e13ab666b7013ab6acd9a40009', '2012-10-31 19:55:12', '2012-10-31 19:55:12', '物流公司: xxs<br />商品信息: 腾讯一卡通 [30元] × 2<br />', 'admin', '4', 'DD100003', '8a9182e13ab666b7013ab6707b5a0002');
+INSERT INTO `xx_order_log` VALUES ('8a9182e13ab666b7013ab6acd9a40009', '2012-10-31 19:55:12', '2012-10-31 19:55:12', '物流公司: xxs<br />充值卡信息: 腾讯一卡通 [30元] × 2<br />', 'admin', '4', 'DD100003', '8a9182e13ab666b7013ab6707b5a0002');
 INSERT INTO `xx_order_log` VALUES ('8a9182e13ab666b7013ab6aced52000b', '2012-10-31 19:55:17', '2012-10-31 19:55:17', '订单完成,获得积分: 57', 'admin', '6', 'DD100003', '8a9182e13ab666b7013ab6707b5a0002');
 INSERT INTO `xx_order_log` VALUES ('ff8080813adff468013ae07397060003', '2012-11-08 22:36:42', '2012-11-08 22:36:42', null, null, '0', 'DD100006', 'ff8080813adff468013ae07396a60001');
 INSERT INTO `xx_order_log` VALUES ('ff8080813adff468013ae073dc3c0005', '2012-11-08 22:37:00', '2012-11-08 22:37:00', '支付总金额: ￥25.50元', null, '2', 'DD100006', 'ff8080813adff468013ae07396a60001');

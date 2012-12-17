@@ -102,12 +102,12 @@ $().ready( function() {
 								<option value="${currentDay}">当前日期 - 日</option>
 								<option value=""></option>
 								<option value="${order.orderSn}">订单 - 订单编号</option>
-								<option value="${order.totalProductPrice}">订单 - 总商品价格</option>
+								<option value="${order.totalProductPrice}">订单 - 总充值卡价格</option>
 								<option value="${order.deliveryFee}">订单 - 配送费用</option>
 								<option value="${order.paymentFee}">订单 - 支付费用</option>
 								<option value="${order.totalAmount}">订单 - 订单总额</option>
-								<option value="${order.totalProductWeight}">订单 - 总商品重量</option>
-								<option value="${order.totalProductQuantity}">订单 - 总商品数量</option>
+								<option value="${order.totalProductWeight}">订单 - 总充值卡重量</option>
+								<option value="${order.totalProductQuantity}">订单 - 总充值卡数量</option>
 								<option value="${order.totalAmount}">订单 - 订单总额</option>
 								<option value="${order.memo}">订单 - 附言</option>
 								<option value=""></option>

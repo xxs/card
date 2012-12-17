@@ -25,7 +25,7 @@ public class YeepayForZY extends BasePaymentProduct {
 	//public static final String PAYMENT_URL = "http://tech.yeepay.com:8080/robot/debug.action";// 测试支付请求 
 	public static final String RETURN_URL = ":8080/shop/payment!payreturn.action";// 回调处理URL
 	public static final String NOTIFY_URL = ":8080/shop/payment!paynotify.action";// 消息通知URL
-	public static final String SHOW_URL = "/";// 商品显示URL
+	public static final String SHOW_URL = "/";// 充值卡显示URL
 
 	// 支持货币种类
 	public static final CurrencyType[] currencyType = { CurrencyType.CNY };
@@ -80,9 +80,9 @@ public class YeepayForZY extends BasePaymentProduct {
 		String p2_Order = paymentSn;// 商户订单号
 		String p3_Amt = "0.1";// 支付金额（单位：元）
 		String p4_verifyAmt = "true";// 是否校验金额 （值：true校验金额; false不校验金额）
-		String p5_Pid = paymentSn;// 商品名称(选填项)
-		String p6_Pcat = "";// 商品种类(选填项)
-		String p7_Pdesc = paymentSn;// 商品描述(选填项)
+		String p5_Pid = paymentSn;// 充值卡名称(选填项)
+		String p6_Pcat = "";// 充值卡种类(选填项)
+		String p7_Pdesc = paymentSn;// 充值卡描述(选填项)
 		String p8_Url = SettingUtil.getSetting().getShopUrl() + RETURN_URL
 				+ "?paymentsn=" + paymentSn;// 回调处理URL
 		String pa_MP = "";// 扩展信息(选填项)

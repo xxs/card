@@ -9,7 +9,7 @@ import org.quartz.Job;
 import org.quartz.JobExecutionContext;
 
 /**
- * Service接口 - 生成商品内容HTML任务
+ * Service接口 - 生成充值卡内容HTML任务
  */
 
 public class BuildCardsContentHtmlJob implements Job {

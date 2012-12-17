@@ -17,7 +17,7 @@ public interface ProductDao extends BaseDao<Product, String> {
 	public boolean isExistByProductSn(String productSn);
 	
 	/**
-	 * 根据货品ID获取同属商品的货品
+	 * 根据货品ID获取同属充值卡的货品
 	 * 
 	 */
 	public List<Product> getSiblingsProductList(String productId);

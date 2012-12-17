@@ -98,7 +98,7 @@ $().ready(function() {
 						<input type="checkbox" class="allCheck" />
 					</th>
 					<th>
-						<a href="#" class="sort" name="product" hidefocus>缺货商品名称</a>
+						<a href="#" class="sort" name="product" hidefocus>缺货充值卡名称</a>
 					</th>
 					<th>
 						<a href="#" class="sort" name="member" hidefocus>会员</a>

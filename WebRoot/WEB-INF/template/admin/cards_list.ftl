@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="content-type" content="text/html; charset=utf-8" />
-<title>商品列表 - XXS</title>
+<title>充值卡列表 - XXS</title>
 <meta name="Author" content="XXS-DW" />
 <meta name="Copyright" content="XXS" />
 <link rel="icon" href="favicon.ico" type="image/x-icon" />
@@ -15,20 +15,20 @@
 </head>
 <body class="list">
 	<div class="bar">
-		商品列表&nbsp;总记录数: ${pager.totalCount} (共${pager.pageCount}页)
+		充值卡列表&nbsp;总记录数: ${pager.totalCount} (共${pager.pageCount}页)
 	</div>
 	<div class="body">
 		<form id="listForm" action="cards!list.action" method="post">
 			<div class="listBar">
-				<input type="button" class="formButton" onclick="location.href='cards!add.action'" value="添加商品" hidefocus />
+				<input type="button" class="formButton" onclick="location.href='cards!add.action'" value="添加充值卡" hidefocus />
 				&nbsp;&nbsp;
 				<label>查找: </label>
 				<select name="pager.searchBy">
 					<option value="name"<#if pager.searchBy == "name"> selected</#if>>
-						商品名称
+						充值卡名称
 					</option>
 					<option value="cardsSn"<#if pager.searchBy == "cardsSn"> selected</#if>>
-						商品编号
+						充值卡编号
 					</option>
 				</select>
 				<input type="text" name="pager.keyword" value="${pager.keyword!}" />
@@ -56,10 +56,10 @@
 						<input type="checkbox" class="allCheck" />
 					</th>
 					<th>
-						<a href="#" class="sort" name="name" hidefocus>商品名称</a>
+						<a href="#" class="sort" name="name" hidefocus>充值卡名称</a>
 					</th>
 					<th>
-						<a href="#" class="sort" name="cardsSn" hidefocus>商品编号</a>
+						<a href="#" class="sort" name="cardsSn" hidefocus>充值卡编号</a>
 					</th>
 					<th>
 						<a href="#" class="sort" name="cardsCategory" hidefocus>分类</a>

@@ -184,7 +184,7 @@
 				</tr>
 				<tr>
 					<td width="110">
-						已上架商品: 
+						已上架充值卡: 
 					</td>
 					<td>
 						${marketableGoodsCount}
@@ -192,7 +192,7 @@
 				</tr>
 				<tr>
 					<td>
-						已下架商品: 
+						已下架充值卡: 
 					</td>
 					<td>
 						${unMarketableGoodsCount}

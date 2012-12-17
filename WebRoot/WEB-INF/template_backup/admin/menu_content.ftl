@@ -83,7 +83,7 @@
 					<a href="build_html!articleInput.action" target="mainFrame">文章更新</a>
 				</dd>
 				<dd>
-					<a href="build_html!goodsInput.action" target="mainFrame">商品更新</a>
+					<a href="build_html!goodsInput.action" target="mainFrame">充值卡更新</a>
 				</dd>
 			</dl>
 		</@sec.authorize>

@@ -477,11 +477,11 @@ $().ready( function() {
 	
 	$.addCartItem = function(id, quantity) {
 		if ($.trim(id) == "") {
-			$.dialog({type: "warn", content: "请选择购买商品!", modal: true, autoCloseTime: 3000});
+			$.dialog({type: "warn", content: "请选择购买充值卡!", modal: true, autoCloseTime: 3000});
 			return false;
 		}
 		if (!/^[0-9]*[1-9][0-9]*$/.test($.trim(quantity))) {
-			$.dialog({type: "warn", content: "商品品数量必须为正整数!", modal: true, autoCloseTime: 3000});
+			$.dialog({type: "warn", content: "充值卡品数量必须为正整数!", modal: true, autoCloseTime: 3000});
 			return false;
 		}
 
@@ -493,7 +493,7 @@ $().ready( function() {
 			cache: false,
 			success: function(data) {
 				if (data.status == "success") {
-					$.dialog({type: "success", content: "<span class=\"red\">" + data.message + "</span><br />商品总计: " + data.totalProductQuantity + " 件, 总金额: " + currencyFormat(data.totalProductPrice), width: 360, modal: true, autoCloseTime: 3000});
+					$.dialog({type: "success", content: "<span class=\"red\">" + data.message + "</span><br />充值卡总计: " + data.totalProductQuantity + " 件, 总金额: " + currencyFormat(data.totalProductPrice), width: 360, modal: true, autoCloseTime: 3000});
 				} else {
 					$.dialog({type: data.status, content: data.message, modal: true, autoCloseTime: 3000});
 				}
@@ -644,7 +644,7 @@ $().ready( function() {
 		
 		$commentForm.submit( function() {
 			<#if !setting.isCommentEnabled>
-				$.dialog({type: "warn", content: "本站商品评论功能已关闭!", modal: true, autoCloseTime: 3000});
+				$.dialog({type: "warn", content: "本站充值卡评论功能已关闭!", modal: true, autoCloseTime: 3000});
 				return false;
 			</#if>
 			<#if setting.commentAuthority != "anyone">

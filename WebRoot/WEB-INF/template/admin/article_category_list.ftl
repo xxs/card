@@ -17,7 +17,7 @@ $(document).ready(function() {
 	var $deleteArticleCategory = $("#listTable .deleteArticleCategory");
 	var $articleCategoryName = $("#listTable .articleCategoryName");
 
-	// 删除商品分类
+	// 删除充值卡分类
 	$deleteArticleCategory.click( function() {
 		if (confirm("您确定要删除此文章分类吗?") == false) {
 			return false;

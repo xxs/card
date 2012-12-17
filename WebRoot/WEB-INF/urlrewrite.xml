@@ -9,15 +9,9 @@
 	</rule>
 	
 	<rule>
-		<note>商品分类</note>
+		<note>充值卡分类</note>
 		<from>^/shop/cards_list/(\w+).htm$</from>
 		<to type="forward">/shop/cards!list.action?sign=$1</to>
-	</rule>
-	
-	<rule>
-		<note>商品评论</note>
-		<from>^/shop/comment_list/(\w+).htm$</from>
-		<to type="forward">/shop/comment!list.action?id=$1</to>
 	</rule>
 	
 	<rule>

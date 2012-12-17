@@ -98,26 +98,23 @@ $().ready(function() {
 				</tr>
 				<tr class="authorityList">
 					<th>
-						<a href="#" class="allChecked" title="点击全选此类权限">商品管理: </a>
+						<a href="#" class="allChecked" title="点击全选此类权限">充值卡管理: </a>
 					</th>
 					<td>
 						<label>
-							<input type="checkbox" name="role.authorityList" class="roleAuthorityList" value="ROLE_CARDS"<#if (isAddAction || role.authorityList.contains("ROLE_CARDS"))!> checked</#if> />商品管理
+							<input type="checkbox" name="role.authorityList" class="roleAuthorityList" value="ROLE_CARDS"<#if (isAddAction || role.authorityList.contains("ROLE_CARDS"))!> checked</#if> />充值卡管理
 						</label>
 						<label>
-							<input type="checkbox" name="role.authorityList" class="roleAuthorityList" value="ROLE_CARDS_NOTIFY"<#if (isAddAction || role.authorityList.contains("ROLE_CARDS_NOTIFY"))!> checked</#if> />到货通知
+							<input type="checkbox" name="role.authorityList" class="roleAuthorityList" value="ROLE_CARDS_CATEGORY"<#if (isAddAction || role.authorityList.contains("ROLE_CARDS_CATEGORY"))!> checked</#if> />充值卡分类管理
 						</label>
 						<label>
-							<input type="checkbox" name="role.authorityList" class="roleAuthorityList" value="ROLE_CARDS_CATEGORY"<#if (isAddAction || role.authorityList.contains("ROLE_CARDS_CATEGORY"))!> checked</#if> />商品分类管理
+							<input type="checkbox" name="role.authorityList" class="roleAuthorityList" value="ROLE_CARDS_TYPE"<#if (isAddAction || role.authorityList.contains("ROLE_CARDS_TYPE"))!> checked</#if> />充值卡类型管理
 						</label>
 						<label>
-							<input type="checkbox" name="role.authorityList" class="roleAuthorityList" value="ROLE_CARDS_TYPE"<#if (isAddAction || role.authorityList.contains("ROLE_CARDS_TYPE"))!> checked</#if> />商品类型管理
+							<input type="checkbox" name="role.authorityList" class="roleAuthorityList" value="ROLE_SPECIFICATION"<#if (isAddAction || role.authorityList.contains("ROLE_SPECIFICATION"))!> checked</#if> />充值卡规格管理
 						</label>
 						<label>
-							<input type="checkbox" name="role.authorityList" class="roleAuthorityList" value="ROLE_SPECIFICATION"<#if (isAddAction || role.authorityList.contains("ROLE_SPECIFICATION"))!> checked</#if> />商品规格管理
-						</label>
-						<label>
-							<input type="checkbox" name="role.authorityList" class="roleAuthorityList" value="ROLE_BRAND"<#if (isAddAction || role.authorityList.contains("ROLE_BRAND"))!> checked</#if> />商品品牌管理
+							<input type="checkbox" name="role.authorityList" class="roleAuthorityList" value="ROLE_BRAND"<#if (isAddAction || role.authorityList.contains("ROLE_BRAND"))!> checked</#if> />充值卡品牌管理
 						</label>
 					</td>
 				</tr>
@@ -135,21 +132,6 @@ $().ready(function() {
 						<label>
 							<input type="checkbox" name="role.authorityList" class="roleAuthorityList" value="ROLE_PAYMENT"<#if (isAddAction || role.authorityList.contains("ROLE_PAYMENT"))!> checked</#if> />收款管理
 						</label>
-						<label>
-							<input type="checkbox" name="role.authorityList" class="roleAuthorityList" value="ROLE_REFUND"<#if (isAddAction || role.authorityList.contains("ROLE_REFUND"))!> checked</#if> />退款管理
-						</label>
-						<label>
-							<input type="checkbox" name="role.authorityList" class="roleAuthorityList" value="ROLE_SHIPPING"<#if (isAddAction || role.authorityList.contains("ROLE_SHIPPING"))!> checked</#if> />发货管理
-						</label>
-						<label>
-							<input type="checkbox" name="role.authorityList" class="roleAuthorityList" value="ROLE_RESHIP"<#if (isAddAction || role.authorityList.contains("ROLE_RESHIP"))!> checked</#if> />退货管理
-						</label>
-						<label>
-							<input type="checkbox" name="role.authorityList" class="roleAuthorityList" value="ROLE_DELIVERY_CENTER"<#if (isAddAction || role.authorityList.contains("ROLE_DELIVERY_CENTER"))!> checked</#if> />发货点管理
-						</label>
-						<label>
-							<input type="checkbox" name="role.authorityList" class="roleAuthorityList" value="ROLE_DELIVERY_TEMPLATE"<#if (isAddAction || role.authorityList.contains("ROLE_DELIVERY_TEMPLATE"))!> checked</#if> />快递单模板管理
-						</label>
 					</td>
 				</tr>
 				<tr class="authorityList">
@@ -165,9 +147,6 @@ $().ready(function() {
 						</label>
 						<label>
 							<input type="checkbox" name="role.authorityList" class="roleAuthorityList" value="ROLE_MEMBER_ATTRIBUTE"<#if (isAddAction || role.authorityList.contains("ROLE_MEMBER_ATTRIBUTE"))!> checked</#if> />会员注册项管理
-						</label>
-						<label>
-							<input type="checkbox" name="role.authorityList" class="roleAuthorityList" value="ROLE_COMMENT"<#if (isAddAction || role.authorityList.contains("ROLE_COMMENT"))!> checked</#if> />商品评论管理
 						</label>
 						<label>
 							<input type="checkbox" name="role.authorityList" class="roleAuthorityList" value="ROLE_LEAVE_MESSAGE"<#if (isAddAction || role.authorityList.contains("ROLE_LEAVE_MESSAGE"))!> checked</#if> />在线留言管理
@@ -196,9 +175,6 @@ $().ready(function() {
 						</label>
 						<label>
 							<input type="checkbox" name="role.authorityList" class="roleAuthorityList" value="ROLE_MAIL_TEMPLATE"<#if (isAddAction || role.authorityList.contains("ROLE_MAIL_TEMPLATE"))!> checked</#if> />邮件模板管理
-						</label>
-						<label>
-							<input type="checkbox" name="role.authorityList" class="roleAuthorityList" value="ROLE_PRINT_TEMPLATE"<#if (isAddAction || role.authorityList.contains("ROLE_PRINT_TEMPLATE"))!> checked</#if> />打印模板管理
 						</label>
 						<label>
 							<input type="checkbox" name="role.authorityList" class="roleAuthorityList" value="ROLE_CACHE"<#if (isAddAction || role.authorityList.contains("ROLE_CACHE"))!> checked</#if> />缓存管理
@@ -240,15 +216,6 @@ $().ready(function() {
 						</label>
 						<label>
 							<input type="checkbox" name="role.authorityList" class="roleAuthorityList" value="ROLE_PAYMENT_CONFIG"<#if (isAddAction || role.authorityList.contains("ROLE_PAYMENT_CONFIG"))!> checked</#if> />支付方式管理
-						</label>
-						<label>
-							<input type="checkbox" name="role.authorityList" class="roleAuthorityList" value="ROLE_DELIVERY_TYPE"<#if (isAddAction || role.authorityList.contains("ROLE_DELIVERY_TYPE"))!> checked</#if> />配送方式管理
-						</label>
-						<label>
-							<input type="checkbox" name="role.authorityList" class="roleAuthorityList" value="ROLE_AREA"<#if (isAddAction || role.authorityList.contains("ROLE_AREA"))!> checked</#if> />地区管理
-						</label>
-						<label>
-							<input type="checkbox" name="role.authorityList" class="roleAuthorityList" value="ROLE_DELIVERY_CORP"<#if (isAddAction || role.authorityList.contains("ROLE_DELIVERY_CORP"))!> checked</#if> />物流公司管理
 						</label>
 					</td>
 				</tr>

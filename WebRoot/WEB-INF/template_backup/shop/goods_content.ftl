@@ -24,7 +24,7 @@
 	<div class="body">
 		<div class="bodyLeft">
 			<div class="goodsCategory">
-            	<div class="top">商品分类</div>
+            	<div class="top">充值卡分类</div>
             	<div class="middle">
             		<ul id="goodsCategoryMenu" class="menu">
             			<@goods_category_tree; goodsCategoryTree>
@@ -128,7 +128,7 @@
 				<div class="goodsTopRight">
 					<h1 class="title">${substring(goods.name, 50, "...")}</h1>
 					<ul class="goodsAttribute">
-						<li>商品编号: ${goods.goodsSn}</li>
+						<li>充值卡编号: ${goods.goodsSn}</li>
 						<li>货品编号: <span id="productSn">${goods.defaultProduct.productSn}</span><input type="text" name="productId" value="${goods.defaultProduct.id}" /></li>
 						<#list (goods.goodsType.goodsAttributeSet)! as goodsAttribute>
 							<#if goods.getGoodsAttributeValue(goodsAttribute)?? && goods.getGoodsAttributeValue(goodsAttribute) != "">
@@ -279,14 +279,14 @@
 			<div class="goodsBottom">
 				<ul id="goodsParameterTab" class="goodsParameterTab">
 					<li>
-						<a href="javascript: void(0);" class="current" hidefocus>商品介绍</a>
+						<a href="javascript: void(0);" class="current" hidefocus>充值卡介绍</a>
 					</li>
 					<li>
-						<a href="javascript: void(0);" name="goodsAttribute" hidefocus>商品参数</a>
+						<a href="javascript: void(0);" name="goodsAttribute" hidefocus>充值卡参数</a>
 					</li>
 					<#if setting.isCommentEnabled>
 						<li>
-							<a href="javascript: void(0);" hidefocus>商品评论</a>
+							<a href="javascript: void(0);" hidefocus>充值卡评论</a>
 						</li>
 					</#if>
 				</ul>
@@ -414,7 +414,7 @@
 		$quantity = $("#quantity");
 		$goodsButton = $("#goodsButton");
 	
-		// 添加商品浏览记录
+		// 添加充值卡浏览记录
 		$.addGoodsHistory("${substring(goods.name, 24, "...")}", "${base}${goods.htmlPath}");
 		
 		<#if goods.isSpecificationEnabled>
@@ -498,7 +498,7 @@
 				});
 			});
 			
-			// 添加商品至购物车/到货通知
+			// 添加充值卡至购物车/到货通知
 			$goodsButton.click(function () {
 				var $this = $(this);
 				if (selectedProductId != null) {
@@ -510,7 +510,7 @@
 				} else {
 					$buyInfo.addClass("highlight");
 					$tipsTitle.text('系统提示:');
-					$tipsContent.text('请选择商品信息!');
+					$tipsContent.text('请选择充值卡信息!');
 				}
 			});
 			
@@ -555,7 +555,7 @@
 		<#else>
 			var selectedProductId = "${goods.defaultProduct.id}";
 			
-			// 添加商品至购物车/到货通知
+			// 添加充值卡至购物车/到货通知
 			$goodsButton.click(function () {
 				var $this = $(this);
 				if ($this.hasClass("addCartItemButton")) {

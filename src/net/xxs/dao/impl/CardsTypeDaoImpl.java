@@ -9,7 +9,7 @@ import net.xxs.entity.CardsType;
 import org.springframework.stereotype.Repository;
 
 /**
- * Dao实现类 - 商品类型
+ * Dao实现类 - 充值卡类型
  */
 
 @Repository("cardsTypeDaoImpl")

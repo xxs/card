@@ -29,7 +29,7 @@ public class Setting {
 		no, topLeft, topRight, center, bottomLeft, bottomRight
 	}
 	
-	// 积分获取方式(禁用积分获取、按订单总额计算、为商品单独设置)
+	// 积分获取方式(禁用积分获取、按订单总额计算、为充值卡单独设置)
 	public enum ScoreType {
 		disable, orderAmount, cardsSet
 	}
@@ -41,16 +41,6 @@ public class Setting {
 	
 	// 在线留言显示方式(立即显示、回复后显示)
 	public enum LeaveMessageDisplayType {
-		direct, reply
-	}
-	
-	// 评论发表权限(任何访问者、注册会员、已购买会员)
-	public enum CommentAuthority {
-		anyone, member, purchased
-	}
-	
-	// 评论显示方式(立即显示、回复后显示)
-	public enum CommentDisplayType {
 		direct, reply
 	}
 	
@@ -93,14 +83,14 @@ public class Setting {
 	private String watermarkImagePath; // 水印图片路径
 	private WatermarkPosition watermarkPosition; // 水印位置
 	private Integer watermarkAlpha;// 水印透明度
-	private Integer bigCardsImageWidth;// 商品图片(大)宽度
-	private Integer bigCardsImageHeight;// 商品图片(大)高度
-	private Integer smallCardsImageWidth;// 商品图片(小)宽度
-	private Integer smallCardsImageHeight;// 商品图片(小)高度
-	private Integer thumbnailCardsImageWidth;// 商品缩略图宽度
-	private Integer thumbnailCardsImageHeight;// 商品缩略图高度
-	private String defaultBigCardsImagePath;// 默认商品图片(大)
-	private String defaultSmallCardsImagePath;// 默认商品图片(小)
+	private Integer bigCardsImageWidth;// 充值卡图片(大)宽度
+	private Integer bigCardsImageHeight;// 充值卡图片(大)高度
+	private Integer smallCardsImageWidth;// 充值卡图片(小)宽度
+	private Integer smallCardsImageHeight;// 充值卡图片(小)高度
+	private Integer thumbnailCardsImageWidth;// 充值卡缩略图宽度
+	private Integer thumbnailCardsImageHeight;// 充值卡缩略图高度
+	private String defaultBigCardsImagePath;// 默认充值卡图片(大)
+	private String defaultSmallCardsImagePath;// 默认充值卡图片(小)
 	private String defaultThumbnailCardsImagePath;// 默认缩略图
 	private String smtpFromMail;// 发件人邮箱
 	private String smtpHost;// SMTP服务器地址

@@ -26,17 +26,17 @@ public class OrderItem extends BaseEntity {
 	
 	private static final long serialVersionUID = 5030818078599298690L;
 	
-	private String productSn;// 商品货号
-	private String productName;// 商品名称
-	private BigDecimal productPrice;// 商品价格（面额）
-	private Integer productQuantity;// 商品数量
+	private String productSn;// 充值卡货号
+	private String productName;// 充值卡名称
+	private BigDecimal productPrice;// 充值卡价格（面额）
+	private Integer productQuantity;// 充值卡数量
 	private Integer deliveryQuantity;// 发货数量
-	private String cardsHtmlPath;// 商品HTML静态文件路径
+	private String cardsHtmlPath;// 充值卡HTML静态文件路径
 	private String cardNum;//卡号
 	private String cardPwd;//密码
 	
 	private Order order;// 订单
-	private Product product;// 商品
+	private Product product;// 充值卡
 	
 	@Column(nullable = false, updatable = false)
 	public String getProductSn() {

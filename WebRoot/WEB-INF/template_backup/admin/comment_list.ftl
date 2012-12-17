@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="content-type" content="text/html; charset=utf-8" />
-<title>商品评论列表 - XXS</title>
+<title>充值卡评论列表 - XXS</title>
 <meta name="Author" content="XXS-DW" />
 <meta name="Copyright" content="XXS" />
 <link rel="icon" href="favicon.ico" type="image/x-icon" />
@@ -15,7 +15,7 @@
 </head>
 <body class="list">
 	<div class="bar">
-		商品评论列表&nbsp;总记录数: ${pager.totalCount} (共${pager.pageCount}页)
+		充值卡评论列表&nbsp;总记录数: ${pager.totalCount} (共${pager.pageCount}页)
 	</div>
 	<div class="body">
 		<form id="listForm" action="comment!list.action" method="post">
@@ -59,7 +59,7 @@
 						<a href="#" class="sort" name="username" hidefocus>评论人</a>
 					</th>
 					<th>
-						<a href="#" class="sort" name="goods" hidefocus>评论商品</a>
+						<a href="#" class="sort" name="goods" hidefocus>评论充值卡</a>
 					</th>
 					<th>
 						<a href="#" class="sort" name="isShow" hidefocus>是否显示</a>

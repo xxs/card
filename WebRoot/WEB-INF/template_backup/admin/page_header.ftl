@@ -50,7 +50,7 @@ $().ready(function() {
 				<ul>
 					<@sec.authorize ifAnyGranted="ROLE_GOODS,ROLE_GOODS_NOTIFY,ROLE_GOODS_CATEGORY,ROLE_GOODS_TYPE,ROLE_GOODS_ATTRIBUTE,ROLE_SPECIFICATION,ROLE_BRAND">
 						<li class="menuItem">
-							<a href="menu!goods.action" target="menuFrame" hidefocus>商品管理</a>
+							<a href="menu!goods.action" target="menuFrame" hidefocus>充值卡管理</a>
 						</li>
 					</@sec.authorize>
 					<@sec.authorize ifAnyGranted="ROLE_ORDER,ROLE_PAYMENT,ROLE_REFUND,ROLE_SHIPPING,ROLE_RESHIP,ROLE_DELIVERY_CENTER,ROLE_DELIVERY_TEMPLATE">

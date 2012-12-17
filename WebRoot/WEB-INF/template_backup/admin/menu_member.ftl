@@ -35,7 +35,7 @@
 		<@sec.authorize ifAnyGranted="ROLE_COMMENT">
 			<dl>
 				<dt>
-					<span>商品评论</span>
+					<span>充值卡评论</span>
 				</dt>
 				<dd>
 					<a href="comment!list.action" target="mainFrame">评论列表</a>

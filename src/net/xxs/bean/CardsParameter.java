@@ -3,7 +3,7 @@ package net.xxs.bean;
 import net.xxs.util.CommonUtil;
 
 /**
- * Bean类 - 商品参数
+ * Bean类 - 充值卡参数
  */
 
 public class CardsParameter implements Comparable<CardsParameter> {

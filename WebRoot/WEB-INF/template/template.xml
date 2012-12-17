@@ -19,19 +19,19 @@
 			<templatePath>WEB-INF/template/shop/leave_message_list.ftl</templatePath>
 		</leaveMessageList>
 		<cardsPictureList>
-			<description>商品列表[图片]</description>
+			<description>充值卡列表[图片]</description>
 			<templatePath>WEB-INF/template/shop/cards_picture_list.ftl</templatePath>
 		</cardsPictureList>
 		<cardsPictureSearch>
-			<description>商品搜索[图片]</description>
+			<description>充值卡搜索[图片]</description>
 			<templatePath>WEB-INF/template/shop/cards_picture_search.ftl</templatePath>
 		</cardsPictureSearch>
 		<cardsTableList>
-			<description>商品列表[表格]</description>
+			<description>充值卡列表[表格]</description>
 			<templatePath>WEB-INF/template/shop/cards_table_list.ftl</templatePath>
 		</cardsTableList>
 		<cardsTableSearch>
-			<description>商品搜索[表格]</description>
+			<description>充值卡搜索[表格]</description>
 			<templatePath>WEB-INF/template/shop/cards_table_search.ftl</templatePath>
 		</cardsTableSearch>
 		<articleList>
@@ -42,14 +42,6 @@
 			<description>文章搜索</description>
 			<templatePath>WEB-INF/template/shop/article_search.ftl</templatePath>
 		</articleSearch>
-		<commentList>
-			<description>商品评论列表</description>
-			<templatePath>WEB-INF/template/shop/comment_list.ftl</templatePath>
-		</commentList>
-		<cardsNotifyAdd>
-			<description>添加到货通知</description>
-			<templatePath>WEB-INF/template/shop/cards_notify_add.ftl</templatePath>
-		</cardsNotifyAdd>
 		<cartItemList>
 			<description>查看购物车</description>
 			<templatePath>WEB-INF/template/shop/cart_item_list.ftl</templatePath>
@@ -79,7 +71,7 @@
 			<templatePath>WEB-INF/template/shop/order_view.ftl</templatePath>
 		</orderView>
 		<favoriteList>
-			<description>会员中心 - 商品收藏</description>
+			<description>会员中心 - 充值卡收藏</description>
 			<templatePath>WEB-INF/template/shop/favorite_list.ftl</templatePath>
 		</favoriteList>
 		<cardsNotifyList>
@@ -185,7 +177,7 @@
 			<htmlPath>/html/{date(yyyyMM)}/{uuid}.html</htmlPath>
 		</articleContent>
 		<cardsContent>
-			<description>商品内容</description>
+			<description>充值卡内容</description>
 			<templatePath>WEB-INF/template/shop/cards_content.ftl</templatePath>
 			<htmlPath>/html/{date(yyyyMM)}/{uuid}.html</htmlPath>
 		</cardsContent>
@@ -226,11 +218,6 @@
 			<subject>密码找回</subject>
 			<templatePath>WEB-INF/template/shop/mail_password_recover.ftl</templatePath>
 		</passwordRecover>
-		<cardsNotify>
-			<description>到货通知</description>
-			<subject>到货通知</subject>
-			<templatePath>WEB-INF/template/shop/mail_cards_notify.ftl</templatePath>
-		</cardsNotify>
 	</mail>
 	<print>
 		<order>

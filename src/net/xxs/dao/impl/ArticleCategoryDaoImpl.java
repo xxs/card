@@ -43,7 +43,7 @@ public class ArticleCategoryDaoImpl extends BaseDaoImpl<ArticleCategory, String>
 		return articleCategoryTreeList;
 	}
 	
-	// 递归实例化商品分类对象
+	// 递归实例化充值卡分类对象
 	private void initializeArticleCategoryList(List<ArticleCategory> articleCategoryList) {
 		for (ArticleCategory articleCategory : articleCategoryList) {
 			Set<ArticleCategory> children = articleCategory.getChildren();

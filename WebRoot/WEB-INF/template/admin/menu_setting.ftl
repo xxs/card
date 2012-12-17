@@ -39,28 +39,6 @@
 				</dd>
 			</dl>
 		</@sec.authorize>
-		<@sec.authorize ifAnyGranted="ROLE_DELIVERY_TYPE,ROLE_AREA,ROLE_DELIVERY_CORP">
-			<dl>
-				<dt>
-					<span>配送管理</span>
-				</dt>
-				<@sec.authorize ifAnyGranted="ROLE_DELIVERY_TYPE">
-					<dd>
-						<a href="delivery_type!list.action" target="mainFrame">配送方式</a>
-					</dd>
-				</@sec.authorize>
-				<@sec.authorize ifAnyGranted="ROLE_AREA">
-					<dd>
-						<a href="area!list.action" target="mainFrame">地区管理</a>
-					</dd>
-				</@sec.authorize>
-				<@sec.authorize ifAnyGranted="ROLE_DELIVERY_CORP">
-					<dd>
-						<a href="delivery_corp!list.action" target="mainFrame">物流公司</a>
-					</dd>
-				</@sec.authorize>
-			</dl>
-		</@sec.authorize>
 	</div>
 </body>
 </html>

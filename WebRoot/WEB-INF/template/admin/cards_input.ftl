@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="content-type" content="text/html; charset=utf-8" />
-<title>添加/编辑商品 - XXS</title>
+<title>添加/编辑充值卡 - XXS</title>
 <meta name="Author" content="XXS-DW" />
 <meta name="Copyright" content="XXS" />
 <link rel="icon" href="favicon.ico" type="image/x-icon" />
@@ -48,7 +48,7 @@ $().ready(function() {
 		tabs: "input"
 	});
 	
-	// 增加商品图片
+	// 增加充值卡图片
 	var cardsImageIndex = ${(cards.cardsImageList?size)!0};
 	$addCardsImageButton.click( function() {
 		
@@ -74,7 +74,7 @@ $().ready(function() {
 		cardsImageIndex ++;
 	});
 	
-	// 删除商品图片
+	// 删除充值卡图片
 	$("#cardsImageTable .deleteCardsImage").live("click", function() {
 		var $this = $(this);
 		$.dialog({type: "warn", content: "您确定要删除吗?", ok: "确 定", cancel: "取 消", modal: true, okCallback: deleteCardsImage});
@@ -83,10 +83,10 @@ $().ready(function() {
 		}
 	});
 	
-	// 切换商品规格
+	// 切换充值卡规格
 	$specificationTab.click( function() {
 		if (!$isSpecificationEnabled.attr("checked")) {
-			$.dialog({type: "warn", content: "确定启用商品规格?", ok: "确 定", cancel: "取 消", modal: true, okCallback: specificationEnabled});
+			$.dialog({type: "warn", content: "确定启用充值卡规格?", ok: "确 定", cancel: "取 消", modal: true, okCallback: specificationEnabled});
 			function specificationEnabled() {
 				$isSpecificationEnabled.attr("checked", true);
 				$specificationDisabledInfo.hide().find(":input").attr("disabled", true);
@@ -96,7 +96,7 @@ $().ready(function() {
 		}
 	});
 	
-	// 开启/关闭商品规格
+	// 开启/关闭充值卡规格
 	$isSpecificationEnabled.click( function() {
 		if ($isSpecificationEnabled.attr("checked")) {
 			$specificationDisabledInfo.hide().find(":input").attr("disabled", true)
@@ -109,7 +109,7 @@ $().ready(function() {
 		}
 	});
 	
-	// 修改商品规格
+	// 修改充值卡规格
 	var specificationDatas = {};
 	var specificationCheckedDatas = {};
 	<#list (cards.specificationSet)! as specification>
@@ -266,10 +266,10 @@ $().ready(function() {
 		$("#productTable input.productListIsDefault").not($this).attr("checked", false);
 	});
 	
-	// 商品上架
+	// 充值卡上架
 	$cardsIsMarketable.click( function() {
 		if ($isSpecificationEnabled.attr("checked") && $("#cardsForm input.productListIsMarketable:checked").size() == 0) {
-			$.dialog({type: "warn", content: "货品已全部下架后,商品无法上架!", modal: true, autoCloseTime: 3000});
+			$.dialog({type: "warn", content: "货品已全部下架后,充值卡无法上架!", modal: true, autoCloseTime: 3000});
 			return false;
 		}
 	});
@@ -282,16 +282,16 @@ $().ready(function() {
 			return false;
 		}
 		if ($isSpecificationEnabled.attr("checked") && $("#cardsForm input.productListIsMarketable:checked").size() == 0) {
-			$.dialog({type: "warn", content: "货品已全部下架后,商品将自动下架!", modal: true, autoCloseTime: 3000});
+			$.dialog({type: "warn", content: "货品已全部下架后,充值卡将自动下架!", modal: true, autoCloseTime: 3000});
 			$cardsIsMarketable.attr("checked", false);
 		}
 	});
 	
-	// 修改商品类型
+	// 修改充值卡类型
 	var previousCardsTypeId = "${(cards.cardsType.id)!}";
 	$cardsTypeId.change( function() {
 		if (previousCardsTypeId != "") {
-			$.dialog({type: "warn", content: "修改商品类型后当前“属性参数”数据将会丢失,是否继续!", width: 450, ok: "确 定", cancel: "取 消", modal: true, okCallback: cardsTypeChange, cancelCallback: cardsTypeReset});
+			$.dialog({type: "warn", content: "修改充值卡类型后当前“属性参数”数据将会丢失,是否继续!", width: 450, ok: "确 定", cancel: "取 消", modal: true, okCallback: cardsTypeChange, cancelCallback: cardsTypeReset});
 		} else {
 			cardsTypeChange();
 		}
@@ -439,9 +439,9 @@ $().ready(function() {
 			"defaultProduct.store": "storeDigits"
 		},
 		messages: {
-			"cards.cardsCategory.id": "请选择商品分类",
-			"cards.name": "请填写商品名称",
-			"cards.cardsSn": "商品编号已存在",
+			"cards.cardsCategory.id": "请选择充值卡分类",
+			"cards.name": "请填写充值卡名称",
+			"cards.cardsSn": "充值卡编号已存在",
 			"defaultProduct.productSn": "货号已存在",
 			"cards.score": {
 				required: "请填写积分",
@@ -451,7 +451,7 @@ $().ready(function() {
 		submitHandler: function(form) {
 			if ($isSpecificationEnabled.attr("checked") == true) {
 				if ($("#specificationSelect input:checked").size() == 0) {
-					$.dialog({type: "warn", content: "请选择至少一种商品规格!", modal: true, autoCloseTime: 3000});
+					$.dialog({type: "warn", content: "请选择至少一种充值卡规格!", modal: true, autoCloseTime: 3000});
 					return false;
 				}
 				if ($("#productTable .productTr").size() == 0) {
@@ -528,9 +528,9 @@ $().ready(function() {
 	</#if>
 	
 	// 表单验证
-	$.validator.addMethod("cardsImageFileListRequired", $.validator.methods.required, "请选择上传商品图片");
-	$.validator.addMethod("cardsImageFileListImageFile", $.validator.methods.imageFile, "商品图片格式错误");
-	$.validator.addMethod("cardsImageOrderListDigits", $.validator.methods.digits, "商品图片排序必须为零或正整数");
+	$.validator.addMethod("cardsImageFileListRequired", $.validator.methods.required, "请选择上传充值卡图片");
+	$.validator.addMethod("cardsImageFileListImageFile", $.validator.methods.imageFile, "充值卡图片格式错误");
+	$.validator.addMethod("cardsImageOrderListDigits", $.validator.methods.digits, "充值卡图片排序必须为零或正整数");
 	$.validator.addMethod("priceRequired", $.validator.methods.required, "请填写销售价");
 	$.validator.addMethod("priceMin", $.validator.methods.min, "销售价必须为零或正数");
 	$.validator.addMethod("costMin", $.validator.methods.min, "成本价必须为零或正数");
@@ -574,7 +574,7 @@ $().ready(function() {
 </head>
 <body class="input cards">
 	<div class="bar">
-		<#if isAddAction>添加商品<#else>编辑商品</#if>
+		<#if isAddAction>添加充值卡<#else>编辑充值卡</#if>
 	</div>
 	<div id="validateErrorContainer" class="validateErrorContainer">
 		<div class="validateErrorTitle">以下信息填写有误,请重新填写</div>
@@ -591,13 +591,13 @@ $().ready(function() {
 					<input type="button" value="基本信息" hidefocus />
 				</li>
 				<li>
-					<input type="button" value="商品描述" hidefocus />
+					<input type="button" value="充值卡描述" hidefocus />
 				</li>
 				<li>
-					<input type="button" value="商品图片" hidefocus />
+					<input type="button" value="充值卡图片" hidefocus />
 				</li>
 				<li>
-					<input type="button" id="specificationTab" value="商品规格" hidefocus />
+					<input type="button" id="specificationTab" value="充值卡规格" hidefocus />
 				</li>
 				<li>
 					<input type="button" value="属性参数" hidefocus />
@@ -606,7 +606,7 @@ $().ready(function() {
 			<table id="infoTable" class="inputTable tabContent">
 				<tr>
 					<th>
-						商品分类: 
+						充值卡分类: 
 					</th>
 					<td>
 						<select name="cards.cardsCategory.id">
@@ -627,7 +627,7 @@ $().ready(function() {
 				</tr>
 				<tr>
 					<th>
-						商品名称: 
+						充值卡名称: 
 					</th>
 					<td>
 						<input type="text" name="cards.name" class="formText" value="${(cards.name)!}" />
@@ -636,7 +636,7 @@ $().ready(function() {
 				</tr>
 				<tr>
 					<th>
-						商品编号: 
+						充值卡编号: 
 					</th>
 					<td>
 						<input type="text" name="cards.cardsSn" class="formText" value="${(cards.cardsSn)!}" title="若留空则由系统自动生成" />
@@ -725,7 +725,7 @@ $().ready(function() {
 						货位: 
 					</th>
 					<td>
-						<input type="text" name="cards.storePlace" class="formText" value="${(cards.storePlace)!}" title="用于记录商品所在的具体仓库位置,便于检索" />				 						
+						<input type="text" name="cards.storePlace" class="formText" value="${(cards.storePlace)!}" title="用于记录充值卡所在的具体仓库位置,便于检索" />				 						
 					</td>
 				</tr>
 				<tr>
@@ -818,13 +818,13 @@ $().ready(function() {
 					<tr class="noneHover">
 						<td colspan="9">
 							<label class="red">
-								<@checkbox id="isSpecificationEnabled" name="cards.isSpecificationEnabled" value="${(cards.isSpecificationEnabled)!false}" />启用商品规格
+								<@checkbox id="isSpecificationEnabled" name="cards.isSpecificationEnabled" value="${(cards.isSpecificationEnabled)!false}" />启用充值卡规格
 							</label>
 						</td>
 					</tr>
 					<tr class="title">
 						<th colspan="9">
-							请选择商品规格<span id="specificationValueLoadingIcon" class="loadingIcon hidden">&nbsp;</span>
+							请选择充值卡规格<span id="specificationValueLoadingIcon" class="loadingIcon hidden">&nbsp;</span>
 						</th>
 					</tr>
 					<tr class="noneHover">
@@ -834,7 +834,7 @@ $().ready(function() {
 									<#assign specificationSet = (cards.specificationSet)! />
 									<#list allSpecificationList as specification>
 										<li>
-											<label title="商品规格值: <#list specification.specificationValueList as specificationValue>${specificationValue.name}&nbsp;</#list>">
+											<label title="充值卡规格值: <#list specification.specificationValueList as specificationValue>${specificationValue.name}&nbsp;</#list>">
 												<input type="checkbox" name="specificationIds" value="${specification.id}"<#if (specificationSet.contains(specification))!> checked</#if><#if (!cards.isSpecificationEnabled)!true> disabled</#if> />${specification.name}
 												<#if specification.memo??>
 													<span class="gray">[${specification.memo}]</span>
@@ -959,7 +959,7 @@ $().ready(function() {
 					<table class="inputTable">
 						<tr class="title">
 							<th>
-								请选择商品类型: 
+								请选择充值卡类型: 
 							</th>
 							<td>
 								<select id="cardsTypeId" name="cardsTypeId">
@@ -976,7 +976,7 @@ $().ready(function() {
 					<table id="cardsAttributeTable" class="inputTable<#if (isAddAction || cards.cardsType == null)!> hidden</#if>">
 						<tr class="title">
 							<th>
-								商品属性
+								充值卡属性
 							</th>
 							<td>
 								&nbsp;
@@ -1006,7 +1006,7 @@ $().ready(function() {
 					<table id="cardsParameterTable" class="inputTable<#if (isAddAction || cards.cardsType == null)!true> hidden</#if>">
 						<tr class="title">
 							<th>
-								商品参数
+								充值卡参数
 							</th>
 							<td>
 								&nbsp;

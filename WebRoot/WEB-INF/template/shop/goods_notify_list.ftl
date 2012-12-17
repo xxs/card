@@ -74,7 +74,7 @@ $().ready( function() {
 	                    </li>
 	                    <li class="category favorite">
 	                    	<ul>
-	                        	<li><a href="favorite!list.action">商品收藏</a></li>
+	                        	<li><a href="favorite!list.action">充值卡收藏</a></li>
 	                        	<li class="current"><a href="goods_notify!list.action">缺货登记</a></li>
 	                        </ul>
 	                    </li>
@@ -111,9 +111,9 @@ $().ready( function() {
 					<div class="blank"></div>
 					<table id="goodsNotifyTable" class="listTable">
 						<tr>
-							<th>商品图片</th>
-							<th>商品名称</th>
-							<th>商品价格</th>
+							<th>充值卡图片</th>
+							<th>充值卡名称</th>
+							<th>充值卡价格</th>
 							<th>操作</th>
 						</tr>
 						<#list (pager.result)! as goodsNotify>

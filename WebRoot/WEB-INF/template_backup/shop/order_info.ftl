@@ -43,7 +43,7 @@ $().ready( function() {
 	var $paymentFee = $("#paymentFee");
 	var $orderAmount = $("#orderAmount");
 	
-	var totalProductPrice = ${totalProductPrice};// 商品总价格
+	var totalProductPrice = ${totalProductPrice};// 充值卡总价格
 	var deliveryFee = 0;// 配送费用
 	var paymentFee = 0;// 支付费用
 	
@@ -324,13 +324,13 @@ $().ready( function() {
 				<div class="blank"></div>
 				<table class="cartItemTable">
 					<tr>
-						<th>商品图片</th>
-						<th>商品名称</th>
+						<th>充值卡图片</th>
+						<th>充值卡名称</th>
 						<th>销售价格</th>
 						<#if (loginMember.memberRank.preferentialScale != 100)!>
 							<th>优惠价格</th>
 						</#if>
-						<th>商品重量</th>
+						<th>充值卡重量</th>
 						<th>小计</th>
 						<th>数量</th>
 					</tr>
@@ -373,11 +373,11 @@ $().ready( function() {
 					</#list>
 					<tr>
 						<td class="info" colspan="<#if (loginMember.memberRank.preferentialScale != 100)!>7<#else>6</#if>">
-							商品共计: <span class="red">${totalProductQuantity}</span> 件&nbsp;&nbsp;
+							充值卡共计: <span class="red">${totalProductQuantity}</span> 件&nbsp;&nbsp;
 							<#if setting.scoreType != "disable">
 								积分: <span id="totalScore" class="red">${totalScore}</span>&nbsp;&nbsp;
 							</#if>
-							商品总金额: <span id="totalProductPrice" class="red">${totalProductPrice?string(currencyFormat)}</span>&nbsp;&nbsp;
+							充值卡总金额: <span id="totalProductPrice" class="red">${totalProductPrice?string(currencyFormat)}</span>&nbsp;&nbsp;
 							配送费用: <span id="deliveryFee" class="red">${0?string(currencyFormat)}</span>&nbsp;&nbsp;
 							支付手续费: <span id="paymentFee" class="red">${0?string(currencyFormat)}</span>&nbsp;&nbsp;
 							订单总金额: <span id="orderAmount" class="red">${(totalProductPrice)?string(currencyFormat)}</span>

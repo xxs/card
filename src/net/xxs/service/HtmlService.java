@@ -79,23 +79,23 @@ public interface HtmlService {
 	public void buildArticleContentHtml();
 	
 	/**
-	 * 根据ID生成商品内容HTML
+	 * 根据ID生成充值卡内容HTML
 	 * 
 	 * @param id
-	 *            商品ID
+	 *            充值卡ID
 	 */
 	public void buildCardsContentHtml(String id);
 	
 	/**
-	 * 根据商品生成商品内容HTML
+	 * 根据充值卡生成充值卡内容HTML
 	 * 
 	 * @param cards
-	 *            商品
+	 *            充值卡
 	 */
 	public void buildCardsContentHtml(Cards cards);
 	
 	/**
-	 * 生成所有商品内容HTML
+	 * 生成所有充值卡内容HTML
 	 * 
 	 */
 	public void buildCardsContentHtml();
@@ -137,7 +137,7 @@ public interface HtmlService {
 	public void deleteArticleContentHtml(String htmlPath, Integer pageCount);
 	
 	/**
-	 * 根据HTML路径删除商品内容HTML
+	 * 根据HTML路径删除充值卡内容HTML
 	 * 
 	 * @param htmlPath
 	 *            HTML路径

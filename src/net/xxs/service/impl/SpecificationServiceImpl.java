@@ -11,7 +11,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 /**
- * Service实现类 - 商品规格
+ * Service实现类 - 充值卡规格
  */
 
 @Service("specificationServiceImpl")

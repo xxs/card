@@ -27,7 +27,7 @@ import com.opensymphony.xwork2.validator.annotations.RequiredStringValidator;
 import com.opensymphony.xwork2.validator.annotations.Validations;
 
 /**
- * 前台Action类 - 商品
+ * 前台Action类 - 充值卡
  */
 
 @ParentPackage("shop")

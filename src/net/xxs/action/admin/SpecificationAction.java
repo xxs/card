@@ -26,7 +26,7 @@ import com.opensymphony.xwork2.validator.annotations.RequiredStringValidator;
 import com.opensymphony.xwork2.validator.annotations.Validations;
 
 /**
- * 后台Action类 - 商品规格
+ * 后台Action类 - 充值卡规格
  */
 
 @ParentPackage("admin")
@@ -84,7 +84,7 @@ public class SpecificationAction extends BaseAdminAction {
 	@InputConfig(resultName = "error")
 	public String save() throws Exception {
 		if (specificationValueList.size() == 0) {
-			addActionError("请至少添加一个商品规格值!");
+			addActionError("请至少添加一个充值卡规格值!");
 			return ERROR;
 		}
 		
@@ -94,7 +94,7 @@ public class SpecificationAction extends BaseAdminAction {
 				continue;
 			}
 			if (StringUtils.isEmpty(specificationValue.getName())) {
-				addActionError("商品规格值名称不允许为空!");
+				addActionError("充值卡规格值名称不允许为空!");
 				return ERROR;
 			}
 			if (specificationValueImageList != null && i < specificationValueImageList.size() && specification.getSpecificationType() == SpecificationType.picture) {
@@ -133,7 +133,7 @@ public class SpecificationAction extends BaseAdminAction {
 	@InputConfig(resultName = "error")
 	public String update() throws Exception {
 		if (specificationValueList.size() == 0) {
-			addActionError("请至少添加一个商品规格值!");
+			addActionError("请至少添加一个充值卡规格值!");
 			return ERROR;
 		}
 		
@@ -143,7 +143,7 @@ public class SpecificationAction extends BaseAdminAction {
 				continue;
 			}
 			if (StringUtils.isEmpty(specificationValue.getName())) {
-				addActionError("商品规格值名称不允许为空!");
+				addActionError("充值卡规格值名称不允许为空!");
 				return ERROR;
 			}
 			if (specificationValueImageList != null && i < specificationValueImageList.size() && specification.getSpecificationType() == SpecificationType.picture) {
@@ -173,7 +173,7 @@ public class SpecificationAction extends BaseAdminAction {
 		return SUCCESS;
 	}
 	
-	// 获取商品规格类型集合
+	// 获取充值卡规格类型集合
 	public List<SpecificationType> getSpecificationTypeList() {
 		return Arrays.asList(SpecificationType.values());
 	}

@@ -103,14 +103,6 @@
 				</tr>
 				<tr>
 					<td>
-						未处理缺货登记数: 
-					</td>
-					<td>
-						${unprocessedCardsNotifyCount} <a href="cards_notify!list.action">[到货通知]</a>
-					</td>
-				</tr>
-				<tr>
-					<td>
 						未处理提现申请数: 
 					</td>
 					<td>
@@ -224,7 +216,7 @@
 				</tr>
 				<tr>
 					<td width="110">
-						已上架商品: 
+						已上架充值卡: 
 					</td>
 					<td>
 						${marketableCardsCount}
@@ -232,7 +224,7 @@
 				</tr>
 				<tr>
 					<td>
-						已下架商品: 
+						已下架充值卡: 
 					</td>
 					<td>
 						${unMarketableCardsCount}

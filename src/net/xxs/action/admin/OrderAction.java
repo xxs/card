@@ -132,7 +132,7 @@ public class OrderAction extends BaseAdminAction {
 			@RequiredFieldValidator(fieldName = "deliveryType.id", message = "配送方式不允许为空!"),
 			@RequiredFieldValidator(fieldName = "order.deliveryFee", message = "配送费用不允许为空!"),
 			@RequiredFieldValidator(fieldName = "order.paymentFee", message = "支付费用不允许为空!"),
-			@RequiredFieldValidator(fieldName = "order.totalProductWeight", message = "商品重量不允许为空!")
+			@RequiredFieldValidator(fieldName = "order.totalProductWeight", message = "充值卡重量不允许为空!")
 		}
 	)
 	@InputConfig(resultName = "error")
@@ -151,26 +151,26 @@ public class OrderAction extends BaseAdminAction {
 			return ERROR;
 		}
 		if (orderItemList == null || orderItemList.size() == 0) {
-			addActionError("请保留至少一个商品!");
+			addActionError("请保留至少一个充值卡!");
 			return ERROR;
 		}
 		
 		Setting setting = getSetting();
 		for (OrderItem orderItem : orderItemList) {
 			if (orderItem.getProductQuantity() < 1) {
-				addActionError("商品数量错误!");
+				addActionError("充值卡数量错误!");
 				return ERROR;
 			}
 			if (orderItem.getProductPrice().compareTo(new BigDecimal(0)) < 0) {
-				addActionError("商品价格错误!");
+				addActionError("充值卡价格错误!");
 				return ERROR;
 			}
 			OrderItem persistentOrderItem = orderItemService.load(orderItem.getId());
 			Product product = persistentOrderItem.getProduct();
 		}
 		
-		Integer totalProductQuantity = 0;// 商品总数
-		BigDecimal totalProductPrice = new BigDecimal(0);// 商品总价格
+		Integer totalProductQuantity = 0;// 充值卡总数
+		BigDecimal totalProductPrice = new BigDecimal(0);// 充值卡总价格
 		BigDecimal totalAmount = new BigDecimal(0);// 订单总金额
 		for (OrderItem orderItem : orderItemList) {
 			OrderItem orderItemPersistent = orderItemService.load(orderItem.getId());
@@ -241,7 +241,7 @@ public class OrderAction extends BaseAdminAction {
 			addActionError("此订单状态无法支付!");
 			return ERROR;
 		}
-		if (order.getPaymentStatus() == net.xxs.entity.Order.PaymentStatus.paid || order.getPaymentStatus() == net.xxs.entity.Order.PaymentStatus.partRefund || order.getPaymentStatus() == net.xxs.entity.Order.PaymentStatus.refunded) {
+		if (order.getPaymentStatus() == net.xxs.entity.Order.PaymentStatus.paid) {
 			addActionError("此订单付款状态无法支付!");
 			return ERROR;
 		}

@@ -16,7 +16,7 @@ import org.apache.commons.lang.StringUtils;
 
 public class SerialNumberUtil {
 	
-	public static final String CARDS_SN_PREFIX = "SN_";// 商品编号前缀
+	public static final String CARDS_SN_PREFIX = "SN_";// 充值卡编号前缀
 	public static final String PRODUCT_SN_PREFIX = "SN_";// 货品编号前缀
 	
 	public static final String ORDER_SN_PREFIX = "DD";// 订单编号前缀
@@ -65,9 +65,9 @@ public class SerialNumberUtil {
 	}
 	
 	/**
-	 * 生成商品编号
+	 * 生成充值卡编号
 	 * 
-	 * @return 商品编号
+	 * @return 充值卡编号
 	 */
 	public static String buildCardsSn() {
 		CardsService cardsService = (CardsService) SpringUtil.getBean("cardsServiceImpl");
@@ -82,7 +82,7 @@ public class SerialNumberUtil {
 	/**
 	 * 生成货品编号
 	 * 
-	 * @return 商品编号
+	 * @return 充值卡编号
 	 */
 	public static String buildProductSn() {
 		ProductService productService = (ProductService) SpringUtil.getBean("productServiceImpl");

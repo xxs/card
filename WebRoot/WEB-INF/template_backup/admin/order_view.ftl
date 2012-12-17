@@ -35,7 +35,7 @@ $().ready( function() {
 				<input type="button" value="订单信息" hidefocus />
 			</li>
 			<li>
-				<input type="button" value="商品信息" hidefocus />
+				<input type="button" value="充值卡信息" hidefocus />
 			</li>
 			<li>
 				<input type="button" value="收款记录" hidefocus />
@@ -87,7 +87,7 @@ $().ready( function() {
 			</tr>
 			<tr>
 				<th>
-					商品总金额: 
+					充值卡总金额: 
 				</th>
 				<td>
 					<span class="red">${order.totalProductPrice?string(currencyFormat)}</span>
@@ -130,7 +130,7 @@ $().ready( function() {
 			</tr>
 			<tr>
 				<th>
-					商品总重量: 
+					充值卡总重量: 
 				</th>
 				<td>
 					${order.totalProductWeight} 克
@@ -255,7 +255,7 @@ $().ready( function() {
 		<table class="inputTable tabContent">
 			<tr class="title">
 				<th>货号</th>
-				<th>商品名称</th>
+				<th>充值卡名称</th>
 				<th>价格</th>
 				<th>购买数量</th>
 			</tr>

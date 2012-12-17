@@ -14,7 +14,7 @@ import javax.persistence.Transient;
 import org.hibernate.annotations.ForeignKey;
 
 /**
- * 实体类 - 商品分类
+ * 实体类 - 充值卡分类
  */
 
 @Entity
@@ -23,8 +23,8 @@ public class CardsCategory extends BaseEntity {
 	private static final long serialVersionUID = -5132652107151648662L;
 
 	public static final String PATH_SEPARATOR = ",";// 树路径分隔符
-	public static final String CARDS_LIST_URL_PREFIX = "/shop/cards_list/";// 商品列表URL前缀
-	public static final String CARDS_LIST_URL_SUFFIX = "htm";// 商品列表URL后缀
+	public static final String CARDS_LIST_URL_PREFIX = "/shop/cards_list/";// 充值卡列表URL前缀
+	public static final String CARDS_LIST_URL_SUFFIX = "htm";// 充值卡列表URL后缀
 
 	private String name;// 分类名称
 	private String sign;// 标识
@@ -35,10 +35,10 @@ public class CardsCategory extends BaseEntity {
 	private Integer orderList;// 排序
 	
 	private CardsCategory parent;// 上级分类
-	private CardsType cardsType;// 商品类型
+	private CardsType cardsType;// 充值卡类型
 	
 	private Set<CardsCategory> children = new HashSet<CardsCategory>();// 下级分类
-	private Set<Cards> cardsSet = new HashSet<Cards>();// 商品
+	private Set<Cards> cardsSet = new HashSet<Cards>();// 充值卡
 
 	@Column(nullable = false)
 	public String getName() {

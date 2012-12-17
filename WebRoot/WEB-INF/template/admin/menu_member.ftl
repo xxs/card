@@ -32,19 +32,6 @@
 				</dd>
 			</@sec.authorize>
 		</dl>
-		<@sec.authorize ifAnyGranted="ROLE_COMMENT">
-			<dl>
-				<dt>
-					<span>商品评论</span>
-				</dt>
-				<dd>
-					<a href="comment!list.action" target="mainFrame">评论列表</a>
-				</dd>
-				<dd>
-					<a href="comment!setting.action" target="mainFrame">评论设置</a>
-				</dd>
-			</dl>
-		</@sec.authorize>
 		<@sec.authorize ifAnyGranted="ROLE_LEAVE_MESSAGE">
 			<dl>
 				<dt>

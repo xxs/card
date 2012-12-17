@@ -96,14 +96,14 @@ $().ready( function() {
 				$("#firstResult").val(firstResult);
 				$("#inputForm").submit();
 			} else if (data.status == "articleFinish") {
-				$("#status").text("正在更新商品,请稍后...");
+				$("#status").text("正在更新充值卡,请稍后...");
 				$("#buildContent").val("goods");
 				$("#firstResult").val("0");
 				$("#inputForm").submit();
 			} else if (data.status == "goodsBuilding") {
 				var maxResults = Number($("#maxResults").val());
 				var firstResult = data.firstResult;
-				$("#status").text("正在更新商品[" + (firstResult + 1) + " - " + (firstResult + maxResults) + "],请稍后...");
+				$("#status").text("正在更新充值卡[" + (firstResult + 1) + " - " + (firstResult + maxResults) + "],请稍后...");
 				$("#buildContent").val("goods");
 				$("#firstResult").val(firstResult);
 				$("#inputForm").submit();

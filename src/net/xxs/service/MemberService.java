@@ -57,13 +57,13 @@ public interface MemberService extends BaseService<Member, String> {
 	public Date getPasswordRecoverKeyBuildDate(String passwordRecoverKey);
 	
 	/**
-	 * 根据会员、商品判断此会员是否购买过此商品（需要订单完成）
+	 * 根据会员、充值卡判断此会员是否购买过此充值卡（需要订单完成）
 	 * 
 	 * @param member
 	 *            会员
 	 *            
 	 * @param cards
-	 *            商品
+	 *            充值卡
 	 */
 	public boolean isPurchased(Member member, Cards cards);
 

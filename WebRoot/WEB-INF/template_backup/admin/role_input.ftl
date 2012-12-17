@@ -98,26 +98,26 @@ $().ready(function() {
 				</tr>
 				<tr class="authorityList">
 					<th>
-						<a href="#" class="allChecked" title="点击全选此类权限">商品管理: </a>
+						<a href="#" class="allChecked" title="点击全选此类权限">充值卡管理: </a>
 					</th>
 					<td>
 						<label>
-							<input type="checkbox" name="role.authorityList" class="roleAuthorityList" value="ROLE_GOODS"<#if (isAddAction || role.authorityList.contains("ROLE_GOODS"))!> checked</#if> />商品管理
+							<input type="checkbox" name="role.authorityList" class="roleAuthorityList" value="ROLE_GOODS"<#if (isAddAction || role.authorityList.contains("ROLE_GOODS"))!> checked</#if> />充值卡管理
 						</label>
 						<label>
 							<input type="checkbox" name="role.authorityList" class="roleAuthorityList" value="ROLE_GOODS_NOTIFY"<#if (isAddAction || role.authorityList.contains("ROLE_GOODS_NOTIFY"))!> checked</#if> />到货通知
 						</label>
 						<label>
-							<input type="checkbox" name="role.authorityList" class="roleAuthorityList" value="ROLE_GOODS_CATEGORY"<#if (isAddAction || role.authorityList.contains("ROLE_GOODS_CATEGORY"))!> checked</#if> />商品分类管理
+							<input type="checkbox" name="role.authorityList" class="roleAuthorityList" value="ROLE_GOODS_CATEGORY"<#if (isAddAction || role.authorityList.contains("ROLE_GOODS_CATEGORY"))!> checked</#if> />充值卡分类管理
 						</label>
 						<label>
-							<input type="checkbox" name="role.authorityList" class="roleAuthorityList" value="ROLE_GOODS_TYPE"<#if (isAddAction || role.authorityList.contains("ROLE_GOODS_TYPE"))!> checked</#if> />商品类型管理
+							<input type="checkbox" name="role.authorityList" class="roleAuthorityList" value="ROLE_GOODS_TYPE"<#if (isAddAction || role.authorityList.contains("ROLE_GOODS_TYPE"))!> checked</#if> />充值卡类型管理
 						</label>
 						<label>
-							<input type="checkbox" name="role.authorityList" class="roleAuthorityList" value="ROLE_SPECIFICATION"<#if (isAddAction || role.authorityList.contains("ROLE_SPECIFICATION"))!> checked</#if> />商品规格管理
+							<input type="checkbox" name="role.authorityList" class="roleAuthorityList" value="ROLE_SPECIFICATION"<#if (isAddAction || role.authorityList.contains("ROLE_SPECIFICATION"))!> checked</#if> />充值卡规格管理
 						</label>
 						<label>
-							<input type="checkbox" name="role.authorityList" class="roleAuthorityList" value="ROLE_BRAND"<#if (isAddAction || role.authorityList.contains("ROLE_BRAND"))!> checked</#if> />商品品牌管理
+							<input type="checkbox" name="role.authorityList" class="roleAuthorityList" value="ROLE_BRAND"<#if (isAddAction || role.authorityList.contains("ROLE_BRAND"))!> checked</#if> />充值卡品牌管理
 						</label>
 					</td>
 				</tr>
@@ -167,7 +167,7 @@ $().ready(function() {
 							<input type="checkbox" name="role.authorityList" class="roleAuthorityList" value="ROLE_MEMBER_ATTRIBUTE"<#if (isAddAction || role.authorityList.contains("ROLE_MEMBER_ATTRIBUTE"))!> checked</#if> />会员注册项管理
 						</label>
 						<label>
-							<input type="checkbox" name="role.authorityList" class="roleAuthorityList" value="ROLE_COMMENT"<#if (isAddAction || role.authorityList.contains("ROLE_COMMENT"))!> checked</#if> />商品评论管理
+							<input type="checkbox" name="role.authorityList" class="roleAuthorityList" value="ROLE_COMMENT"<#if (isAddAction || role.authorityList.contains("ROLE_COMMENT"))!> checked</#if> />充值卡评论管理
 						</label>
 						<label>
 							<input type="checkbox" name="role.authorityList" class="roleAuthorityList" value="ROLE_LEAVE_MESSAGE"<#if (isAddAction || role.authorityList.contains("ROLE_LEAVE_MESSAGE"))!> checked</#if> />在线留言管理

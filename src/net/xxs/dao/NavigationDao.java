@@ -20,7 +20,7 @@ public interface NavigationDao extends BaseDao<Navigation, String> {
 	 * @param maxResults
 	 *            最大结果数,null表示无限制
 	 * 
-	 * @return 顶级商品分类集合
+	 * @return 顶级充值卡分类集合
 	 * 
 	 */
 	public List<Navigation> getNavigationList(NavigationPosition navigationPosition, Integer maxResults);

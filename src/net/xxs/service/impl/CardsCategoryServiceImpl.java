@@ -18,7 +18,7 @@ import org.springmodules.cache.annotations.CacheFlush;
 import org.springmodules.cache.annotations.Cacheable;
 
 /**
- * Service实现类 - 商品分类
+ * Service实现类 - 充值卡分类
  */
 
 @Service("cardsCategoryServiceImpl")

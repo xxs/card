@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="content-type" content="text/html; charset=utf-8" />
-<title>添加/编辑商品分类 - XXS</title>
+<title>添加/编辑充值卡分类 - XXS</title>
 <meta name="Author" content="XXS-DW" />
 <meta name="Copyright" content="XXS" />
 <link rel="icon" href="favicon.ico" type="image/x-icon" />
@@ -85,7 +85,7 @@ $().ready( function() {
 </head>
 <body class="input">
 	<div class="bar">
-		<#if isAddAction>添加商品分类<#else>编辑商品分类</#if>
+		<#if isAddAction>添加充值卡分类<#else>编辑充值卡分类</#if>
 	</div>
 	<div id="validateErrorContainer" class="validateErrorContainer">
 		<div class="validateErrorTitle">以下信息填写有误,请重新填写</div>
@@ -130,11 +130,11 @@ $().ready( function() {
 				</tr>
 				<tr>
 					<th>
-						商品类型: 
+						充值卡类型: 
 					</th>
 					<td>
 						<select name="cardsCategory.cardsType.id">
-							<option value="">通用商品类型</option>
+							<option value="">通用充值卡类型</option>
 							<#list allCardsTypeList as cardsType>
 								<option value="${cardsType.id}"<#if (cardsType == cardsCategory.cardsType)!> selected</#if>>
 									${cardsType.name}

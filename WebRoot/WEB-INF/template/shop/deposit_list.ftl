@@ -46,7 +46,7 @@
 	                    </li>
 	                    <li class="category favorite">
 	                    	<ul>
-	                        	<li><a href="favorite!list.action">商品收藏</a></li>
+	                        	<li><a href="favorite!list.action">充值卡收藏</a></li>
 	                        	<li><a href="goods_notify!list.action">缺货登记</a></li>
 	                        </ul>
 	                    </li>

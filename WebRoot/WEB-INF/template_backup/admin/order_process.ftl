@@ -348,7 +348,7 @@ $().ready( function() {
 				<input type="button" value="基本信息" hidefocus />
 			</li>
 			<li>
-				<input type="button" value="商品信息" hidefocus />
+				<input type="button" value="充值卡信息" hidefocus />
 			</li>
 			<li>
 				<input type="button" id="paymentTabButton" value="订单支付"<#if order.orderStatus == "completed" || order.orderStatus == "invalid" || order.paymentStatus == "paid" || order.paymentStatus == "partRefund" || order.paymentStatus == "refunded"> disabled</#if> hidefocus />
@@ -413,7 +413,7 @@ $().ready( function() {
 				</tr>
 				<tr>
 					<th>
-						商品总金额: 
+						充值卡总金额: 
 					</th>
 					<td>
 						<span id="totalProductPrice" class="red">${order.totalProductPrice?string(currencyFormat)}</span>
@@ -456,7 +456,7 @@ $().ready( function() {
 				</tr>
 				<tr>
 					<th>
-						商品重量: 
+						充值卡重量: 
 					</th>
 					<td>
 						${order.totalProductWeight} 克
@@ -590,7 +590,7 @@ $().ready( function() {
 			<table class="inputTable">
 				<tr class="title">
 					<th>货号</th>
-					<th>商品名称</th>
+					<th>充值卡名称</th>
 					<th>价格</th>
 					<th>购买数量</th>
 				</tr>
@@ -868,7 +868,7 @@ $().ready( function() {
 					<table class="inputTable">
 						<tr class="title">
 							<th>货号</th>
-							<th>商品名称</th>
+							<th>充值卡名称</th>
 							<th>购买数量</th>
 							<th>当前库存</th>
 							<th>已发货数</th>
@@ -1156,7 +1156,7 @@ $().ready( function() {
 					<table class="inputTable">
 						<tr class="title">
 							<th>货号</th>
-							<th>商品名称</th>
+							<th>充值卡名称</th>
 							<th>购买数量</th>
 							<th>已发货数</th>
 							<th>本次退货数</th>

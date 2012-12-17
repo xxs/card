@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="content-type" content="text/html; charset=utf-8" />
-<title>${goodsCategory.name} 商品列表<#if setting.isShowPoweredInfo> - XXS</#if></title>
+<title>${goodsCategory.name} 充值卡列表<#if setting.isShowPoweredInfo> - XXS</#if></title>
 <meta name="Author" content="XXS-DW" />
 <meta name="Copyright" content="XXS" />
 <#if (goodsCategory.metaKeywords)! != ""><meta name="keywords" content="${goodsCategory.metaKeywords}" /></#if>
@@ -23,7 +23,7 @@
 	<div class="body">
 		<div class="bodyLeft">
 			<div class="goodsCategory">
-            	<div class="top">商品分类</div>
+            	<div class="top">充值卡分类</div>
             	<div class="middle">
             		<ul id="goodsCategoryMenu" class="menu">
             			<@goods_category_tree; goodsCategoryTree>
@@ -92,7 +92,7 @@
 								<a href="${base}${path.url}">${path.name}</a> &gt;
 							</#list>
 						</div>
-						<div class="total">共计: ${pager.totalCount} 款商品</div>
+						<div class="total">共计: ${pager.totalCount} 款充值卡</div>
 					</div>
 					<div class="right"></div>
 				</div>
@@ -102,7 +102,7 @@
 					<div id="filter" class="filter">
 						<#if (goodsCategory.children?? && goodsCategory.children?size > 0)>
 							<dl>
-								<dt>商品分类: </dt>
+								<dt>充值卡分类: </dt>
 								<dd>
 									<div>
 										<a href="${base}${goodsCategory.url}" class="current">全部</a>
@@ -118,7 +118,7 @@
 						<#if goodsType != null>
 							<#if (goodsType.brandSet?? && goodsType.brandSet?size > 0)>
 								<dl>
-									<dt>商品品牌: </dt>
+									<dt>充值卡品牌: </dt>
 									<dd>
 										<div>
 											<a href="#" class="brand all<#if !brand??> current</#if>">全部</a>
@@ -164,7 +164,7 @@
 								</#list>
 								<#if hasInputGoodsAttribute>
 									<div class="buttonArea">
-										<input type="submit" value="筛选商品" />
+										<input type="submit" value="筛选充值卡" />
 									</div>
 								</#if>
 							</#if>
@@ -231,7 +231,7 @@
 							</li>
 						</#list>
 						<#if (pager.result?size == 0)!>
-                			<li class="noRecord">非常抱歉,没有找到相关商品!</li>
+                			<li class="noRecord">非常抱歉,没有找到相关充值卡!</li>
                 		</#if>
 					</ul>
 					<div class="blank"></div>

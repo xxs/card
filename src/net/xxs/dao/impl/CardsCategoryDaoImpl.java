@@ -13,7 +13,7 @@ import org.hibernate.Query;
 import org.springframework.stereotype.Repository;
 
 /**
- * Dao实现类 - 商品分类
+ * Dao实现类 - 充值卡分类
  */
 
 @Repository("cardsCategoryDaoImpl")
@@ -43,7 +43,7 @@ public class CardsCategoryDaoImpl extends BaseDaoImpl<CardsCategory, String> imp
 		return cardsCategoryTreeList;
 	}
 	
-	// 递归实例化商品分类对象
+	// 递归实例化充值卡分类对象
 	private void initializeCardsCategoryList(List<CardsCategory> cardsCategoryList) {
 		for (CardsCategory cardsCategory : cardsCategoryList) {
 			Set<CardsCategory> children = cardsCategory.getChildren();
