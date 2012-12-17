@@ -21,12 +21,12 @@ $().ready(function() {
 	var $validateErrorContainer = $("#validateErrorContainer");
 	var $validateErrorLabelContainer = $("#validateErrorContainer ul");
 	var $tab = $("#tab");
-	var $goodsForm = $("#goodsForm");
+	var $cardsForm = $("#cardsForm");
 	var $specificationDisabledInfo = $("#infoTable .specificationDisabledInfo");
-	var $goodsIsMarketable = $("#goodsIsMarketable");
+	var $cardsIsMarketable = $("#cardsIsMarketable");
 	
-	var $goodsImageTable = $("#goodsImageTable");
-	var $addGoodsImageButton = $("#addGoodsImageButton");
+	var $cardsImageTable = $("#cardsImageTable");
+	var $addCardsImageButton = $("#addCardsImageButton");
 	
 	var $specificationTab = $("#specificationTab");
 	var $specificationTable = $("#specificationTable");
@@ -38,10 +38,10 @@ $().ready(function() {
 	var $productTitle = $("#productTitle");
 	var $specificationInsertTh = $("#specificationInsertTh");
 	
-	var $goodsTypeId = $("#goodsTypeId");
-	var $goodsTypeLoadingIcon = $("#goodsTypeLoadingIcon");
-	var $goodsAttributeTable = $("#goodsAttributeTable");
-	var $goodsParameterTable = $("#goodsParameterTable");
+	var $cardsTypeId = $("#cardsTypeId");
+	var $cardsTypeLoadingIcon = $("#cardsTypeLoadingIcon");
+	var $cardsAttributeTable = $("#cardsAttributeTable");
+	var $cardsParameterTable = $("#cardsParameterTable");
 
 	// Tab效果
 	$tab.tabs(".tabContent", {
@@ -49,36 +49,36 @@ $().ready(function() {
 	});
 	
 	// 增加商品图片
-	var goodsImageIndex = ${(goods.goodsImageList?size)!0};
-	$addGoodsImageButton.click( function() {
+	var cardsImageIndex = ${(cards.cardsImageList?size)!0};
+	$addCardsImageButton.click( function() {
 		
 		<@compress single_line = true>
-			var goodsImageTrHtml = 
-			'<tr class="goodsImageTr">
+			var cardsImageTrHtml = 
+			'<tr class="cardsImageTr">
 				<td>
-					<input type="file" name="goodsImageFileList[' + goodsImageIndex + ']" class="goodsImageFileList" />
+					<input type="file" name="cardsImageFileList[' + cardsImageIndex + ']" class="cardsImageFileList" />
 				</td>
 				<td>
-					<input type="text" name="goodsImageList[' + goodsImageIndex + '].description" class="formText" />
+					<input type="text" name="cardsImageList[' + cardsImageIndex + '].description" class="formText" />
 				</td>
 				<td>
-					<input type="text" name="goodsImageList[' + goodsImageIndex + '].orderList" class="formText goodsImageOrderList" style="width: 50px;" />
+					<input type="text" name="cardsImageList[' + cardsImageIndex + '].orderList" class="formText cardsImageOrderList" style="width: 50px;" />
 				</td>
 				<td>
-					<span class="deleteIcon deleteGoodsImage" title="删 除">&nbsp;</span>
+					<span class="deleteIcon deleteCardsImage" title="删 除">&nbsp;</span>
 				</td>
 			</tr>';
 		</@compress>
 		
-		$goodsImageTable.append(goodsImageTrHtml);
-		goodsImageIndex ++;
+		$cardsImageTable.append(cardsImageTrHtml);
+		cardsImageIndex ++;
 	});
 	
 	// 删除商品图片
-	$("#goodsImageTable .deleteGoodsImage").live("click", function() {
+	$("#cardsImageTable .deleteCardsImage").live("click", function() {
 		var $this = $(this);
-		$.dialog({type: "warn", content: "您确定要删除吗?", ok: "确 定", cancel: "取 消", modal: true, okCallback: deleteGoodsImage});
-		function deleteGoodsImage() {
+		$.dialog({type: "warn", content: "您确定要删除吗?", ok: "确 定", cancel: "取 消", modal: true, okCallback: deleteCardsImage});
+		function deleteCardsImage() {
 			$this.parent().parent().remove();
 		}
 	});
@@ -112,7 +112,7 @@ $().ready(function() {
 	// 修改商品规格
 	var specificationDatas = {};
 	var specificationCheckedDatas = {};
-	<#list (goods.specificationSet)! as specification>
+	<#list (cards.specificationSet)! as specification>
 		specificationCheckedDatas['${specification.id}'] = ${specification.json};
 	</#list>
 	$specificationIds.click( function() {
@@ -121,7 +121,7 @@ $().ready(function() {
 		var specificationData = specificationDatas[id];
 		if(typeof(specificationData) == "undefined") {
 			$.ajax({
-				url: "goods!ajaxSpecification.action",
+				url: "cards!ajaxSpecification.action",
 				data: {id: id},
 				type: "POST",
 				dataType: "json",
@@ -168,7 +168,7 @@ $().ready(function() {
 	});
 	
 	// 增加货品
-	var productIndex = ${(goods.productSet?size)!0};
+	var productIndex = ${(cards.productSet?size)!0};
 	$addProductButton.click( function() {
 		
 		<@compress single_line = true>
@@ -230,7 +230,7 @@ $().ready(function() {
 		var $productListProductSn = $("#productListProductSn" + productIndex);
 		$productListProductSn.rules("add", {
 			remote: {
-				url: "goods!checkProductSn.action",
+				url: "cards!checkProductSn.action",
 				type: "post",
 				cache: false,
 				dataType: "json",
@@ -267,58 +267,58 @@ $().ready(function() {
 	});
 	
 	// 商品上架
-	$goodsIsMarketable.click( function() {
-		if ($isSpecificationEnabled.attr("checked") && $("#goodsForm input.productListIsMarketable:checked").size() == 0) {
+	$cardsIsMarketable.click( function() {
+		if ($isSpecificationEnabled.attr("checked") && $("#cardsForm input.productListIsMarketable:checked").size() == 0) {
 			$.dialog({type: "warn", content: "货品已全部下架后,商品无法上架!", modal: true, autoCloseTime: 3000});
 			return false;
 		}
 	});
 	
 	// 货品全部下架
-	$("#goodsForm input.productListIsMarketable").live("click", function() {
+	$("#cardsForm input.productListIsMarketable").live("click", function() {
 		var $this = $(this);
 		if ($this.parent().prev().find("input.productListIsDefault").attr("checked")) {
 			$.dialog({type: "warn", content: "默认货品无法下架!", modal: true, autoCloseTime: 3000});
 			return false;
 		}
-		if ($isSpecificationEnabled.attr("checked") && $("#goodsForm input.productListIsMarketable:checked").size() == 0) {
+		if ($isSpecificationEnabled.attr("checked") && $("#cardsForm input.productListIsMarketable:checked").size() == 0) {
 			$.dialog({type: "warn", content: "货品已全部下架后,商品将自动下架!", modal: true, autoCloseTime: 3000});
-			$goodsIsMarketable.attr("checked", false);
+			$cardsIsMarketable.attr("checked", false);
 		}
 	});
 	
 	// 修改商品类型
-	var previousGoodsTypeId = "${(goods.goodsType.id)!}";
-	$goodsTypeId.change( function() {
-		if (previousGoodsTypeId != "") {
-			$.dialog({type: "warn", content: "修改商品类型后当前“属性参数”数据将会丢失,是否继续!", width: 450, ok: "确 定", cancel: "取 消", modal: true, okCallback: goodsTypeChange, cancelCallback: goodsTypeReset});
+	var previousCardsTypeId = "${(cards.cardsType.id)!}";
+	$cardsTypeId.change( function() {
+		if (previousCardsTypeId != "") {
+			$.dialog({type: "warn", content: "修改商品类型后当前“属性参数”数据将会丢失,是否继续!", width: 450, ok: "确 定", cancel: "取 消", modal: true, okCallback: cardsTypeChange, cancelCallback: cardsTypeReset});
 		} else {
-			goodsTypeChange();
+			cardsTypeChange();
 		}
 		
-		function goodsTypeChange() {
-			previousGoodsTypeId = $goodsTypeId.val();
+		function cardsTypeChange() {
+			previousCardsTypeId = $cardsTypeId.val();
 			
-			if ($goodsTypeId.val() == "") {
-				$goodsAttributeTable.hide();
-				$goodsParameterTable.hide();
+			if ($cardsTypeId.val() == "") {
+				$cardsAttributeTable.hide();
+				$cardsParameterTable.hide();
 				return;
 			}
 			
 			$.ajax({
-				url: "goods!ajaxGoodsAttribute.action",
-				data: {id: $goodsTypeId.val()},
+				url: "cards!ajaxCardsAttribute.action",
+				data: {id: $cardsTypeId.val()},
 				type: "POST",
 				dataType: "json",
 				async: false,
 				cache: false,
 				beforeSend: function() {
-					$goodsTypeLoadingIcon.show();
-					$("#goodsAttributeTable .goodsAttributeTr").remove();
+					$cardsTypeLoadingIcon.show();
+					$("#cardsAttributeTable .cardsAttributeTr").remove();
 				},
 				success: function(data) {
 					if (data != null) {
-						var goodsAttributeTrHtml = "";
+						var cardsAttributeTrHtml = "";
 						$.each(data, function(i) {
 							if (data[i].attributeType == "filter") {
 								var optionHtml = '<option value="">请选择...</option>';
@@ -331,11 +331,11 @@ $().ready(function() {
 									</@compress>
 								});
 								<@compress single_line = true>
-									goodsAttributeTrHtml += 
-									'<tr class="goodsAttributeTr">
+									cardsAttributeTrHtml += 
+									'<tr class="cardsAttributeTr">
 										<th>' + data[i].name + ': </th>
 										<td>
-											<select name="goodsAttributeValueMap[\'' + data[i].id + '\']">
+											<select name="cardsAttributeValueMap[\'' + data[i].id + '\']">
 												' + optionHtml + '
 											</select>
 										</td>
@@ -343,85 +343,85 @@ $().ready(function() {
 								</@compress>
 							} else {
 								<@compress single_line = true>
-									goodsAttributeTrHtml += 
-									'<tr class="goodsAttributeTr">
+									cardsAttributeTrHtml += 
+									'<tr class="cardsAttributeTr">
 										<th>' + data[i].name + ': </th>
 										<td>
-											<input type="text" name="goodsAttributeValueMap[\'' + data[i].id + '\']" class="formText" />
+											<input type="text" name="cardsAttributeValueMap[\'' + data[i].id + '\']" class="formText" />
 										</td>
 									</tr>';
 								</@compress>
 							}
 						});
-						$goodsAttributeTable.append(goodsAttributeTrHtml);
-						$goodsAttributeTable.show();
+						$cardsAttributeTable.append(cardsAttributeTrHtml);
+						$cardsAttributeTable.show();
 					} else {
-						$goodsAttributeTable.hide();
+						$cardsAttributeTable.hide();
 					}
 				},
 				complete: function() {
-					$goodsTypeLoadingIcon.hide();
+					$cardsTypeLoadingIcon.hide();
 				}
 			});
 			
 			$.ajax({
-				url: "goods!ajaxGoodsParameter.action",
-				data: {id: $goodsTypeId.val()},
+				url: "cards!ajaxCardsParameter.action",
+				data: {id: $cardsTypeId.val()},
 				type: "POST",
 				dataType: "json",
 				cache: false,
 				beforeSend: function() {
-					$goodsTypeLoadingIcon.show();
-					$("#goodsParameterTable .goodsParameterTr").remove();
+					$cardsTypeLoadingIcon.show();
+					$("#cardsParameterTable .cardsParameterTr").remove();
 				},
 				success: function(data) {
 					if (data != null) {
-						var goodsParameterTrHtml = "";
+						var cardsParameterTrHtml = "";
 						$.each(data, function(i) {
 							<@compress single_line = true>
-								goodsParameterTrHtml += 
-								'<tr class="goodsParameterTr">
+								cardsParameterTrHtml += 
+								'<tr class="cardsParameterTr">
 									<th>' + data[i].name + ': </th>
 									<td>
-										<input type="text" name="goodsParameterValueMap[\'' + data[i].id + '\']" class="formText" />
+										<input type="text" name="cardsParameterValueMap[\'' + data[i].id + '\']" class="formText" />
 									</td>
 								</tr>';
 							</@compress>
 						});
-						$goodsParameterTable.append(goodsParameterTrHtml);
-						$goodsParameterTable.show();
+						$cardsParameterTable.append(cardsParameterTrHtml);
+						$cardsParameterTable.show();
 					} else {
-						$goodsParameterTable.hide();
+						$cardsParameterTable.hide();
 					}
 				},
 				complete: function() {
-					$goodsTypeLoadingIcon.hide();
+					$cardsTypeLoadingIcon.hide();
 				}
 			});
 		}
 		
-		function goodsTypeReset() {
-			$goodsTypeId.val(previousGoodsTypeId);
+		function cardsTypeReset() {
+			$cardsTypeId.val(previousCardsTypeId);
 		}
 	});
 	
 	// 表单验证
-	$goodsForm.validate({
+	$cardsForm.validate({
 		errorContainer: $validateErrorContainer,
 		errorLabelContainer: $validateErrorLabelContainer,
 		wrapper: "li",
 		errorClass: "validateError",
 		ignoreTitle: true,
 		rules: {
-			"goods.goodsCategory.id": "required",
-			"goods.name": "required",
-			"goods.goodsSn": {
-				remote: "goods!checkGoodsSn.action<#if (goods.goodsSn)??>?oldValue=${goods.goodsSn?url}</#if>"
+			"cards.cardsCategory.id": "required",
+			"cards.name": "required",
+			"cards.cardsSn": {
+				remote: "cards!checkCardsSn.action<#if (cards.cardsSn)??>?oldValue=${cards.cardsSn?url}</#if>"
 			},
 			"defaultProduct.productSn": {
-				remote: "goods!checkProductSn.action<#if (defaultProduct.productSn)??>?oldValue=${defaultProduct.productSn?url}</#if>"
+				remote: "cards!checkProductSn.action<#if (defaultProduct.productSn)??>?oldValue=${defaultProduct.productSn?url}</#if>"
 			},
-			"goods.score": {
+			"cards.score": {
 				required: true,
 				digits: true
 			},
@@ -439,11 +439,11 @@ $().ready(function() {
 			"defaultProduct.store": "storeDigits"
 		},
 		messages: {
-			"goods.goodsCategory.id": "请选择商品分类",
-			"goods.name": "请填写商品名称",
-			"goods.goodsSn": "商品编号已存在",
+			"cards.cardsCategory.id": "请选择商品分类",
+			"cards.name": "请填写商品名称",
+			"cards.cardsSn": "商品编号已存在",
 			"defaultProduct.productSn": "货号已存在",
-			"goods.score": {
+			"cards.score": {
 				required: "请填写积分",
 				digits: "积分必须为零或正整数"
 			}
@@ -505,12 +505,12 @@ $().ready(function() {
 		}
 	});
 	
-	<#if (goods.isSpecificationEnabled)!>
-		<#list goods.productSet as product>
+	<#if (cards.isSpecificationEnabled)!>
+		<#list cards.productSet as product>
 			var $productListProductSn${product_index} = $("#productListProductSn${product_index}");
 			$productListProductSn${product_index}.rules("add", {
 				remote: {
-					url: "goods!checkProductSn.action?oldValue=${product.productSn?url}",
+					url: "cards!checkProductSn.action?oldValue=${product.productSn?url}",
 					type: "post",
 					cache: false,
 					dataType: "json",
@@ -528,9 +528,9 @@ $().ready(function() {
 	</#if>
 	
 	// 表单验证
-	$.validator.addMethod("goodsImageFileListRequired", $.validator.methods.required, "请选择上传商品图片");
-	$.validator.addMethod("goodsImageFileListImageFile", $.validator.methods.imageFile, "商品图片格式错误");
-	$.validator.addMethod("goodsImageOrderListDigits", $.validator.methods.digits, "商品图片排序必须为零或正整数");
+	$.validator.addMethod("cardsImageFileListRequired", $.validator.methods.required, "请选择上传商品图片");
+	$.validator.addMethod("cardsImageFileListImageFile", $.validator.methods.imageFile, "商品图片格式错误");
+	$.validator.addMethod("cardsImageOrderListDigits", $.validator.methods.digits, "商品图片排序必须为零或正整数");
 	$.validator.addMethod("priceRequired", $.validator.methods.required, "请填写销售价");
 	$.validator.addMethod("priceMin", $.validator.methods.min, "销售价必须为零或正数");
 	$.validator.addMethod("costMin", $.validator.methods.min, "成本价必须为零或正数");
@@ -538,12 +538,12 @@ $().ready(function() {
 	$.validator.addMethod("weightDigits", $.validator.methods.digits, "重量必须为零或正整数");
 	$.validator.addMethod("storeDigits", $.validator.methods.digits, "库存必须为零或正整数");
 	
-	$.validator.addClassRules("goodsImageFileList", {
-		goodsImageFileListRequired: true,
-		goodsImageFileListImageFile: true
+	$.validator.addClassRules("cardsImageFileList", {
+		cardsImageFileListRequired: true,
+		cardsImageFileListImageFile: true
 	});
-	$.validator.addClassRules("goodsImageOrderList", {
-		goodsImageOrderListDigits: true
+	$.validator.addClassRules("cardsImageOrderList", {
+		cardsImageOrderListDigits: true
 	});
 	$.validator.addClassRules("productListPrice", {
 		priceRequired: true,
@@ -564,7 +564,7 @@ $().ready(function() {
 	
 })
 </script>
-<#if (goods.isSpecificationEnabled)!>
+<#if (cards.isSpecificationEnabled)!>
 	<style type="text/css">
 		.specificationDisabledInfo {
 			display: none;
@@ -572,7 +572,7 @@ $().ready(function() {
 	</style>
 </#if>
 </head>
-<body class="input goods">
+<body class="input cards">
 	<div class="bar">
 		<#if isAddAction>添加商品<#else>编辑商品</#if>
 	</div>
@@ -581,9 +581,9 @@ $().ready(function() {
 		<ul></ul>
 	</div>
 	<div class="body">
-		<form id="goodsForm" action="<#if isAddAction>goods!save.action<#else>goods!update.action</#if>" method="post" enctype="multipart/form-data">
+		<form id="cardsForm" action="<#if isAddAction>cards!save.action<#else>cards!update.action</#if>" method="post" enctype="multipart/form-data">
 			<input type="hidden" name="id" value="${id}" />
-			<#if (!goods.isSpecificationEnabled)!>
+			<#if (!cards.isSpecificationEnabled)!>
 				<input type="hidden" name="defaultProduct.id" value="${(defaultProduct.id)!}" />
 			</#if>
 			<ul id="tab" class="tab">
@@ -609,16 +609,16 @@ $().ready(function() {
 						商品分类: 
 					</th>
 					<td>
-						<select name="goods.goodsCategory.id">
+						<select name="cards.cardsCategory.id">
 							<option value="">请选择...</option>
-							<#list goodsCategoryTreeList as goodsCategoryTree>
-								<option value="${goodsCategoryTree.id}"<#if (goodsCategoryTree == goods.goodsCategory)!> selected</#if>>
-									<#if goodsCategoryTree.grade != 0>
-										<#list 1..goodsCategoryTree.grade as i>
+							<#list cardsCategoryTreeList as cardsCategoryTree>
+								<option value="${cardsCategoryTree.id}"<#if (cardsCategoryTree == cards.cardsCategory)!> selected</#if>>
+									<#if cardsCategoryTree.grade != 0>
+										<#list 1..cardsCategoryTree.grade as i>
 											&nbsp;&nbsp;
 										</#list>
 									</#if>
-									${goodsCategoryTree.name}
+									${cardsCategoryTree.name}
 								</option>
 							</#list>
 						</select>
@@ -630,7 +630,7 @@ $().ready(function() {
 						商品名称: 
 					</th>
 					<td>
-						<input type="text" name="goods.name" class="formText" value="${(goods.name)!}" />
+						<input type="text" name="cards.name" class="formText" value="${(cards.name)!}" />
 						<label class="requireField">*</label>
 					</td>
 				</tr>
@@ -639,7 +639,7 @@ $().ready(function() {
 						商品编号: 
 					</th>
 					<td>
-						<input type="text" name="goods.goodsSn" class="formText" value="${(goods.goodsSn)!}" title="若留空则由系统自动生成" />
+						<input type="text" name="cards.cardsSn" class="formText" value="${(cards.cardsSn)!}" title="若留空则由系统自动生成" />
 					</td>
 				</tr>
 				<tr class="specificationDisabledInfo">
@@ -647,7 +647,7 @@ $().ready(function() {
 						货号: 
 					</th>
 					<td>
-						<#if (!goods.isSpecificationEnabled)!>
+						<#if (!cards.isSpecificationEnabled)!>
 							<input type="text" name="defaultProduct.productSn" class="formText" value="${(defaultProduct.productSn)!}" title="若留空则由系统自动生成" />
 						<#else>
 							<input type="text" name="defaultProduct.productSn" class="formText" title="若留空则由系统自动生成" />
@@ -662,20 +662,20 @@ $().ready(function() {
 						<select name="brandId">
 							<option value="">请选择...</option>
 							<#list allBrandList as brand>
-								<option value="${brand.id}"<#if (brand == goods.brand)!> selected</#if>>
+								<option value="${brand.id}"<#if (brand == cards.brand)!> selected</#if>>
 									${brand.name}
 								</option>
 							</#list>
 						</select>
 					</td>
 				</tr>
-				<#if setting.scoreType == "goodsSet">
+				<#if setting.scoreType == "cardsSet">
 					<tr>
 						<th>
 							积分: 
 						</th>
 						<td>
-							<input type="text" name="goods.score" class="formText" value="${(goods.score)!"0"}" />
+							<input type="text" name="cards.score" class="formText" value="${(cards.score)!"0"}" />
 						</td>
 					</tr>
 				</#if>
@@ -717,7 +717,7 @@ $().ready(function() {
 						库存: 
 					</th>
 					<td>
-						<input type="text" name="defaultProduct.store" class="formText" value="${(goods.store)!}" title="只允许输入零或正整数,为空表示不计库存" />
+						<input type="text" name="defaultProduct.store" class="formText" value="${(cards.store)!}" title="只允许输入零或正整数,为空表示不计库存" />
 					</td>
 				</tr>
 				<tr class="specificationDisabledInfo">
@@ -725,7 +725,7 @@ $().ready(function() {
 						货位: 
 					</th>
 					<td>
-						<input type="text" name="goods.storePlace" class="formText" value="${(goods.storePlace)!}" title="用于记录商品所在的具体仓库位置,便于检索" />				 						
+						<input type="text" name="cards.storePlace" class="formText" value="${(cards.storePlace)!}" title="用于记录商品所在的具体仓库位置,便于检索" />				 						
 					</td>
 				</tr>
 				<tr>
@@ -734,16 +734,16 @@ $().ready(function() {
 					</th>
 					<td>
 						<label>
-							<@checkbox id="goodsIsMarketable" name="goods.isMarketable" value="${(goods.isMarketable)!true}" />上架
+							<@checkbox id="cardsIsMarketable" name="cards.isMarketable" value="${(cards.isMarketable)!true}" />上架
 						</label>
 						<label>
-							<@checkbox name="goods.isBest" value="${(goods.isBest)!false}" />精品
+							<@checkbox name="cards.isBest" value="${(cards.isBest)!false}" />精品
 						</label>
 						<label>
-							<@checkbox name="goods.isNew" value="${(goods.isNew)!false}" />新品
+							<@checkbox name="cards.isNew" value="${(cards.isNew)!false}" />新品
 						</label>
 						<label>
-							<@checkbox name="goods.isHot" value="${(goods.isHot)!false}" />热销
+							<@checkbox name="cards.isHot" value="${(cards.isHot)!false}" />热销
 						</label>
 					</td>
 				</tr>
@@ -752,7 +752,7 @@ $().ready(function() {
 						页面关键词: 
 					</th>
 					<td>
-						<input type="text" name="goods.metaKeywords" class="formText" value="${(goods.metaKeywords)!}" />
+						<input type="text" name="cards.metaKeywords" class="formText" value="${(cards.metaKeywords)!}" />
 					</td>
 				</tr>
 				<tr>
@@ -760,21 +760,21 @@ $().ready(function() {
 						页面描述: 
 					</th>
 					<td>
-						<textarea name="goods.metaDescription" class="formTextarea">${(goods.metaDescription)!}</textarea>
+						<textarea name="cards.metaDescription" class="formTextarea">${(cards.metaDescription)!}</textarea>
 					</td>
 				</tr>
 			</table>
 			<table class="inputTable tabContent">
 				<tr>
 					<td>
-						<textarea id="editor" name="goods.introduction" class="editor" style="width: 100%;">${(goods.introduction)!}</textarea>
+						<textarea id="editor" name="cards.introduction" class="editor" style="width: 100%;">${(cards.introduction)!}</textarea>
 					</td>
 				</tr>
 			</table>
-			<table id="goodsImageTable" class="inputTable tabContent">
+			<table id="cardsImageTable" class="inputTable tabContent">
 				<tr class="noneHover">
 					<td colspan="5">
-						<input type="button" id="addGoodsImageButton" class="formButton" value="增加图片" hidefocus />
+						<input type="button" id="addCardsImageButton" class="formButton" value="增加图片" hidefocus />
 					</td>
 				</tr>
 				<tr class="title">
@@ -791,24 +791,24 @@ $().ready(function() {
 						删除
 					</th>
 				</tr>
-				<#list (goods.goodsImageList)! as goodsImage>
-					<tr class="goodsImageTr">
+				<#list (cards.cardsImageList)! as cardsImage>
+					<tr class="cardsImageTr">
 						<td>
-							<input type="hidden" name="goodsImageList[${goodsImage_index}].id" value="${goodsImage.id}" />
-							<input type="hidden" name="goodsImageList[${goodsImage_index}].path" value="${goodsImage.path}" />
-							<input type="hidden" name="goodsImageList[${goodsImage_index}].sourceImageFormatName" value="${goodsImage.sourceImageFormatName}" />
-							<a href="${base}${goodsImage.thumbnailImagePath}" title="点击查看" target="_blank">
-								<img src="${base}${goodsImage.thumbnailImagePath}" style="width: 50px; height: 50px;" />
+							<input type="hidden" name="cardsImageList[${cardsImage_index}].id" value="${cardsImage.id}" />
+							<input type="hidden" name="cardsImageList[${cardsImage_index}].path" value="${cardsImage.path}" />
+							<input type="hidden" name="cardsImageList[${cardsImage_index}].sourceImageFormatName" value="${cardsImage.sourceImageFormatName}" />
+							<a href="${base}${cardsImage.thumbnailImagePath}" title="点击查看" target="_blank">
+								<img src="${base}${cardsImage.thumbnailImagePath}" style="width: 50px; height: 50px;" />
 							</a>
 						</td>
 						<td>
-							<input type="text" name="goodsImageList[${goodsImage_index}].description" class="formText" value="${goodsImage.description}" />
+							<input type="text" name="cardsImageList[${cardsImage_index}].description" class="formText" value="${cardsImage.description}" />
 						</td>
 						<td>
-							<input type="text" name="goodsImageList[${goodsImage_index}].orderList" class="formText goodsImageOrderList" value="${goodsImage.orderList}" style="width: 50px;" />
+							<input type="text" name="cardsImageList[${cardsImage_index}].orderList" class="formText cardsImageOrderList" value="${cardsImage.orderList}" style="width: 50px;" />
 						</td>
 						<td>
-							<span class="deleteIcon deleteGoodsImage" title="删 除">&nbsp;</span>
+							<span class="deleteIcon deleteCardsImage" title="删 除">&nbsp;</span>
 						</td>
 					</tr>
 				</#list>
@@ -818,7 +818,7 @@ $().ready(function() {
 					<tr class="noneHover">
 						<td colspan="9">
 							<label class="red">
-								<@checkbox id="isSpecificationEnabled" name="goods.isSpecificationEnabled" value="${(goods.isSpecificationEnabled)!false}" />启用商品规格
+								<@checkbox id="isSpecificationEnabled" name="cards.isSpecificationEnabled" value="${(cards.isSpecificationEnabled)!false}" />启用商品规格
 							</label>
 						</td>
 					</tr>
@@ -831,11 +831,11 @@ $().ready(function() {
 						<td colspan="9">
 							<div id="specificationSelect" class="specificationSelect">
 								<ul>
-									<#assign specificationSet = (goods.specificationSet)! />
+									<#assign specificationSet = (cards.specificationSet)! />
 									<#list allSpecificationList as specification>
 										<li>
 											<label title="商品规格值: <#list specification.specificationValueList as specificationValue>${specificationValue.name}&nbsp;</#list>">
-												<input type="checkbox" name="specificationIds" value="${specification.id}"<#if (specificationSet.contains(specification))!> checked</#if><#if (!goods.isSpecificationEnabled)!true> disabled</#if> />${specification.name}
+												<input type="checkbox" name="specificationIds" value="${specification.id}"<#if (specificationSet.contains(specification))!> checked</#if><#if (!cards.isSpecificationEnabled)!true> disabled</#if> />${specification.name}
 												<#if specification.memo??>
 													<span class="gray">[${specification.memo}]</span>
 												</#if>
@@ -848,7 +848,7 @@ $().ready(function() {
 					</tr>
 					<tr class="noneHover">
 						<td colspan="9">
-							<input type="button" id="addProductButton" class="formButton" value="增加货品"<#if (!goods.isSpecificationEnabled)!true> disabled</#if> hidefocus />
+							<input type="button" id="addProductButton" class="formButton" value="增加货品"<#if (!cards.isSpecificationEnabled)!true> disabled</#if> hidefocus />
 						</td>
 					</tr>
 				</table>
@@ -857,7 +857,7 @@ $().ready(function() {
 						<th>
 							货号
 						</th>
-						<#list (goods.specificationSet)! as specification>
+						<#list (cards.specificationSet)! as specification>
 							<th class="${specification.id}">
 								${specification.name}
 							</th>
@@ -890,14 +890,14 @@ $().ready(function() {
 							删除
 						</th>
 					</tr>
-					<#if (goods.isSpecificationEnabled)!>
-						<#list (goods.productSet)! as product>
+					<#if (cards.isSpecificationEnabled)!>
+						<#list (cards.productSet)! as product>
 							<tr class="productTr" productIndex="${product_index}">
 								<td>
 									<input type="hidden" name="productList[${product_index}].id" class="formText" value="${product.id}" />
 									<input type="text" id="productListProductSn${product_index}" name="productList[${product_index}].productSn" class="formText productListProductSn" value="${product.productSn}" style="width: 50px;" title="留空则由系统自动生成" />
 								</td>
-								<#list (goods.specificationSet)! as specification>
+								<#list (cards.specificationSet)! as specification>
 									<td class="${specification.id}">
 										<select name="specificationValueIdsList[${product_index}]">
 											<#list specification.specificationValueList as specificationValue>
@@ -962,18 +962,18 @@ $().ready(function() {
 								请选择商品类型: 
 							</th>
 							<td>
-								<select id="goodsTypeId" name="goodsTypeId">
+								<select id="cardsTypeId" name="cardsTypeId">
 									<option value="">请选择...</option>
-									<#list allGoodsTypeList as goodsType>
-										<option value="${goodsType.id}"<#if (goodsType == goods.goodsType)!> selected</#if>>${goodsType.name}</option>
+									<#list allCardsTypeList as cardsType>
+										<option value="${cardsType.id}"<#if (cardsType == cards.cardsType)!> selected</#if>>${cardsType.name}</option>
 									</#list>
 								</select>
-								<span id="goodsTypeLoadingIcon" class="loadingIcon hidden">&nbsp;</span>
+								<span id="cardsTypeLoadingIcon" class="loadingIcon hidden">&nbsp;</span>
 							</td>
 						</tr>
 					</table>
 					<div class="blank"></div>
-					<table id="goodsAttributeTable" class="inputTable<#if (isAddAction || goods.goodsType == null)!> hidden</#if>">
+					<table id="cardsAttributeTable" class="inputTable<#if (isAddAction || cards.cardsType == null)!> hidden</#if>">
 						<tr class="title">
 							<th>
 								商品属性
@@ -982,28 +982,28 @@ $().ready(function() {
 								&nbsp;
 							</td>
 						</tr>
-						<#list (goods.goodsType.goodsAttributeSet)! as goodsAttribute>
-							<tr class="goodsAttributeTr">
-								<th>${goodsAttribute.name}: </th>
+						<#list (cards.cardsType.cardsAttributeSet)! as cardsAttribute>
+							<tr class="cardsAttributeTr">
+								<th>${cardsAttribute.name}: </th>
 								<td>
-									<#if goodsAttribute.attributeType == "filter">
-										<select name="goodsAttributeValueMap['${goodsAttribute.id}']">
+									<#if cardsAttribute.attributeType == "filter">
+										<select name="cardsAttributeValueMap['${cardsAttribute.id}']">
 											<option value="">请选择...</option>
-											<#list goodsAttribute.optionList as option>
-												<option value="${option}"<#if option == goods.getGoodsAttributeValue(goodsAttribute)> selected</#if>>
+											<#list cardsAttribute.optionList as option>
+												<option value="${option}"<#if option == cards.getCardsAttributeValue(cardsAttribute)> selected</#if>>
 													${option}
 												</option>
 											</#list>
 										</select>
 									<#else>
-										<input type="text" name="goodsAttributeValueMap['${goodsAttribute.id}']" class="formText" value="${(goods.getGoodsAttributeValue(goodsAttribute))!}" />
+										<input type="text" name="cardsAttributeValueMap['${cardsAttribute.id}']" class="formText" value="${(cards.getCardsAttributeValue(cardsAttribute))!}" />
 									</#if>
 								</td>
 							</tr>
 						</#list>
 					</table>
 					<div class="blank"></div>
-					<table id="goodsParameterTable" class="inputTable<#if (isAddAction || goods.goodsType == null)!true> hidden</#if>">
+					<table id="cardsParameterTable" class="inputTable<#if (isAddAction || cards.cardsType == null)!true> hidden</#if>">
 						<tr class="title">
 							<th>
 								商品参数
@@ -1012,12 +1012,12 @@ $().ready(function() {
 								&nbsp;
 							</td>
 						</tr>
-						<#assign goodsParameterValueMap = (goods.goodsParameterValueMap)! />
-						<#list (goods.goodsType.goodsParameterList)! as goodsParameter>
-							<tr class="goodsParameterTr">
-								<th>${goodsParameter.name}: </th>
+						<#assign cardsParameterValueMap = (cards.cardsParameterValueMap)! />
+						<#list (cards.cardsType.cardsParameterList)! as cardsParameter>
+							<tr class="cardsParameterTr">
+								<th>${cardsParameter.name}: </th>
 								<td>
-									<input type="text" name="goodsParameterValueMap['${goodsParameter.id}']" class="formText" value="${(goodsParameterValueMap.get(goodsParameter.id))!}" />
+									<input type="text" name="cardsParameterValueMap['${cardsParameter.id}']" class="formText" value="${(cardsParameterValueMap.get(cardsParameter.id))!}" />
 								</td>
 							</tr>
 						</#list>

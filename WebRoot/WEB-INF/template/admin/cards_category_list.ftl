@@ -15,18 +15,18 @@
 <script type="text/javascript">
 $().ready(function() {
 
-	var $deleteGoodsCategory = $("#listTable .deleteGoodsCategory");
-	var $goodsCategoryName = $("#listTable .goodsCategoryName");
+	var $deleteCardsCategory = $("#listTable .deleteCardsCategory");
+	var $cardsCategoryName = $("#listTable .cardsCategoryName");
 	
 	// 删除商品分类
-	$deleteGoodsCategory.click( function() {
+	$deleteCardsCategory.click( function() {
 		if (confirm("您确定要删除此商品分类吗?") == false) {
 			return false;
 		}
 	});
 	
 	// 树折叠
-	$goodsCategoryName.click( function() {
+	$cardsCategoryName.click( function() {
 		var grade = $(this).parent().attr("grade");
 		var isHide;
 		$(this).parent().nextAll("tr").each(function(){
@@ -52,14 +52,14 @@ $().ready(function() {
 })
 </script>
 </head>
-<body class="list goodsCategory">
+<body class="list cardsCategory">
 	<div class="bar">
-		商品分类列表&nbsp;<span class="pageInfo">总记录数: ${goodsCategoryTreeList?size}
+		商品分类列表&nbsp;<span class="pageInfo">总记录数: ${cardsCategoryTreeList?size}
 	</div>
 	<div class="body">
-		<form id="listForm" action="goods_category!list.action" method="post">
+		<form id="listForm" action="cards_category!list.action" method="post">
 			<div class="listBar">
-				<input type="button" class="formButton" onclick="location.href='goods_category!add.action'" value="添加分类" hidefocus />
+				<input type="button" class="formButton" onclick="location.href='cards_category!add.action'" value="添加分类" hidefocus />
 			</div>
 			<table id="listTable" class="listTable">
 				<tr>
@@ -73,35 +73,35 @@ $().ready(function() {
 						<span>操作</span>
 					</th>
 				</tr>
-				<#list goodsCategoryTreeList as goodsCategory>
-					<tr grade="${goodsCategory.grade}">
-						<td class="goodsCategoryName">
-							<#if goodsCategory.grade == 0>
-								<span class="pointer firstCategory" style="margin-left: ${goodsCategory.grade * 20}px;">
-									${goodsCategory.name}
+				<#list cardsCategoryTreeList as cardsCategory>
+					<tr grade="${cardsCategory.grade}">
+						<td class="cardsCategoryName">
+							<#if cardsCategory.grade == 0>
+								<span class="pointer firstCategory" style="margin-left: ${cardsCategory.grade * 20}px;">
+									${cardsCategory.name}
 								</span>
 							<#else>
-								<span class="pointer category" style="margin-left: ${goodsCategory.grade * 20}px;">
-									${goodsCategory.name}
+								<span class="pointer category" style="margin-left: ${cardsCategory.grade * 20}px;">
+									${cardsCategory.name}
 								</span>
 							</#if>
 						</td>
 						<td>
-							${goodsCategory.orderList}
+							${cardsCategory.orderList}
 						</td>
 						<td>
-							<a href="${base}${goodsCategory.url}" target="_blank" title="查看">[查看]</a>
-							<#if (goodsCategory.children?size > 0)>
+							<a href="${base}${cardsCategory.url}" target="_blank" title="查看">[查看]</a>
+							<#if (cardsCategory.children?size > 0)>
 								<span title="无法删除">[删除]</span>
 							<#else>
-								<a href="goods_category!delete.action?id=${goodsCategory.id}" class="deleteGoodsCategory" title="删除">[删除]</a>
+								<a href="cards_category!delete.action?id=${cardsCategory.id}" class="deleteCardsCategory" title="删除">[删除]</a>
 							</#if>
-							<a href="goods_category!edit.action?id=${goodsCategory.id}" title="编辑">[编辑]</a>
+							<a href="cards_category!edit.action?id=${cardsCategory.id}" title="编辑">[编辑]</a>
 						</td>
 					</tr>
 				</#list>
 			</table>
-			<#if goodsCategoryTreeList?size == 0>
+			<#if cardsCategoryTreeList?size == 0>
 				<div class="noRecord">没有找到任何记录!</div>
 			</#if>
 		</form>

@@ -185,7 +185,7 @@ $().ready(function() {
 						<input type="text" name="specification.orderList" class="formText" value="${(specification.orderList)!}" />
 					</td>
 				</tr>
-				<#if (specification.goodsSet?? && specification.goodsSet?size > 0)!>
+				<#if (specification.cardsSet?? && specification.cardsSet?size > 0)!>
 					<th>&nbsp;</th>
 					<td colspan="4">
 						<span class="warnInfo">此商品规格被引用,不允许修改规格值名称或删除规格值</span>
@@ -233,7 +233,7 @@ $().ready(function() {
 						</td>
 					</tr>
 				</#if>
-				<#if (specification.goodsSet?? && specification.goodsSet?size > 0)!>
+				<#if (specification.cardsSet?? && specification.cardsSet?size > 0)!>
 					<#list (specification.specificationValueList)! as specificationValue>
 						<tr class="specificationValueTr">
 							<td>

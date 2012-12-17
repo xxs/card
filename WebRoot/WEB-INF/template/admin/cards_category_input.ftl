@@ -21,25 +21,25 @@ $().ready( function() {
 	var $validateErrorLabelContainer = $("#validateErrorContainer ul");
 	
 	var $validateForm = $("#validateForm");
-	var $goodsCategoryName = $("#goodsCategoryName");
-	var $goodsCategorySign = $("#goodsCategorySign");
-	var $goodsCategorySignLoadingIcon = $("#goodsCategorySignLoadingIcon");
+	var $cardsCategoryName = $("#cardsCategoryName");
+	var $cardsCategorySign = $("#cardsCategorySign");
+	var $cardsCategorySignLoadingIcon = $("#cardsCategorySignLoadingIcon");
 
-	$goodsCategoryName.change( function() {
+	$cardsCategoryName.change( function() {
 		var $this = $(this);
 		$this.translate("zh", "en", {
 			data: true,
 			replace: false,
 			start: function() {
-				$goodsCategorySignLoadingIcon.show();
+				$cardsCategorySignLoadingIcon.show();
 			},
 			complete: function() {
-				var goodsCategorySignValue = $.trim($this.data("translation").en.value.toLowerCase()).replace(/\s+/g, "_").replace(/[^\w]+/g, "");
-				$goodsCategorySign.val(goodsCategorySignValue);
-				$goodsCategorySignLoadingIcon.hide();
+				var cardsCategorySignValue = $.trim($this.data("translation").en.value.toLowerCase()).replace(/\s+/g, "_").replace(/[^\w]+/g, "");
+				$cardsCategorySign.val(cardsCategorySignValue);
+				$cardsCategorySignLoadingIcon.hide();
 			},
 			error: function() {
-				$goodsCategorySignLoadingIcon.hide();
+				$cardsCategorySignLoadingIcon.hide();
 			}
 		});
 
@@ -53,26 +53,26 @@ $().ready( function() {
 		errorClass: "validateError",
 		ignoreTitle: true,
 		rules: {
-			"goodsCategory.name": "required",
-			"goodsCategory.sign": {
+			"cardsCategory.name": "required",
+			"cardsCategory.sign": {
 				required: true,
 				alphanumeric: true,
 				<#if isAddAction>
-					remote: "goods_category!checkSign.action"
+					remote: "cards_category!checkSign.action"
 				<#else>
-					remote: "goods_category!checkSign.action?oldValue=${goodsCategory.sign?url}"
+					remote: "cards_category!checkSign.action?oldValue=${cardsCategory.sign?url}"
 				</#if>
 			},
-			"goodsCategory.orderList": "digits"
+			"cardsCategory.orderList": "digits"
 		},
 		messages: {
-			"goodsCategory.name": "请填写分类名称",
-			"goodsCategory.sign": {
+			"cardsCategory.name": "请填写分类名称",
+			"cardsCategory.sign": {
 				required: "请填写标识",
 				alphanumeric: "标识只允许包含英文、数字和下划线",
 				remote: "标识已存在"
 			},
-			"goodsCategory.orderList": "排序必须为零或正整数"
+			"cardsCategory.orderList": "排序必须为零或正整数"
 		},
 		submitHandler: function(form) {
 			$(form).find(":submit").attr("disabled", true);
@@ -92,7 +92,7 @@ $().ready( function() {
 		<ul></ul>
 	</div>
 	<div class="body">
-		<form id="validateForm" action="<#if isAddAction>goods_category!save.action<#else>goods_category!update.action</#if>" method="post">
+		<form id="validateForm" action="<#if isAddAction>cards_category!save.action<#else>cards_category!update.action</#if>" method="post">
 			<input type="hidden" name="id" value="${id}" />
 			<table class="inputTable">
 				<tr>
@@ -100,7 +100,7 @@ $().ready( function() {
 						分类名称: 
 					</th>
 					<td>
-						<input type="text" id="goodsCategoryName" name="goodsCategory.name" class="formText" value="${(goodsCategory.name)!}" />
+						<input type="text" id="cardsCategoryName" name="cardsCategory.name" class="formText" value="${(cardsCategory.name)!}" />
 						<label class="requireField">*</label>
 					</td>
 				</tr>
@@ -112,19 +112,19 @@ $().ready( function() {
 						<#if isAddAction>
 							<select name="parentId">
 								<option value="">顶级分类</option>
-								<#list goodsCategoryTreeList as goodsCategoryTree>
-									<option value="${goodsCategoryTree.id}">
-										<#if goodsCategoryTree.grade != 0>
-											<#list 1..goodsCategoryTree.grade as i>
+								<#list cardsCategoryTreeList as cardsCategoryTree>
+									<option value="${cardsCategoryTree.id}">
+										<#if cardsCategoryTree.grade != 0>
+											<#list 1..cardsCategoryTree.grade as i>
 												&nbsp;&nbsp;
 											</#list>
 										</#if>
-										${goodsCategoryTree.name}
+										${cardsCategoryTree.name}
 									</option>
 								</#list>
 							</select>
 						<#else>
-							${(goodsCategory.parent.name)!'顶级分类'}
+							${(cardsCategory.parent.name)!'顶级分类'}
 						</#if>
 					</td>
 				</tr>
@@ -133,11 +133,11 @@ $().ready( function() {
 						商品类型: 
 					</th>
 					<td>
-						<select name="goodsCategory.goodsType.id">
+						<select name="cardsCategory.cardsType.id">
 							<option value="">通用商品类型</option>
-							<#list allGoodsTypeList as goodsType>
-								<option value="${goodsType.id}"<#if (goodsType == goodsCategory.goodsType)!> selected</#if>>
-									${goodsType.name}
+							<#list allCardsTypeList as cardsType>
+								<option value="${cardsType.id}"<#if (cardsType == cardsCategory.cardsType)!> selected</#if>>
+									${cardsType.name}
 								</option>
 							</#list>
 						</select>
@@ -148,9 +148,9 @@ $().ready( function() {
 						标识: 
 					</th>
 					<td>
-						<input type="text" id="goodsCategorySign" name="goodsCategory.sign" class="formText" value="${(goodsCategory.sign)!}" title="该分类的唯一标识,用于分类路径和模板标识" />
+						<input type="text" id="cardsCategorySign" name="cardsCategory.sign" class="formText" value="${(cardsCategory.sign)!}" title="该分类的唯一标识,用于分类路径和模板标识" />
 						<label class="requireField">*</label>
-						<span id="goodsCategorySignLoadingIcon" class="loadingIcon hidden">&nbsp;</span>
+						<span id="cardsCategorySignLoadingIcon" class="loadingIcon hidden">&nbsp;</span>
 					</td>
 				</tr>
 				<tr>
@@ -158,7 +158,7 @@ $().ready( function() {
 						排序: 
 					</th>
 					<td>
-						<input type="text" name="goodsCategory.orderList" class="formText" value="${(goodsCategory.orderList)!}" title="只允许输入零或正整数" />
+						<input type="text" name="cardsCategory.orderList" class="formText" value="${(cardsCategory.orderList)!}" title="只允许输入零或正整数" />
 					</td>
 				</tr>
 				<tr>
@@ -166,7 +166,7 @@ $().ready( function() {
 						页面关键词: 
 					</th>
 					<td>
-						<input type="text" name="goodsCategory.metaKeywords" class="formText" value="${(goodsCategory.metaKeywords)!}" />
+						<input type="text" name="cardsCategory.metaKeywords" class="formText" value="${(cardsCategory.metaKeywords)!}" />
 					</td>
 				</tr>
 				<tr>
@@ -174,7 +174,7 @@ $().ready( function() {
 						页面描述: 
 					</th>
 					<td>
-						<textarea name="goodsCategory.metaDescription" class="formTextarea">${(goodsCategory.metaDescription)!}</textarea>
+						<textarea name="cardsCategory.metaDescription" class="formTextarea">${(cardsCategory.metaDescription)!}</textarea>
 					</td>
 				</tr>
 				<tr>

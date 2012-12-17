@@ -83,7 +83,7 @@ $().ready(function() {
 		商品更新
 	</div>
 	<div class="body">
-		<form id="inputForm" action="build_html!goods.action" method="post">
+		<form id="inputForm" action="build_html!cards.action" method="post">
 			<input type="hidden" id="id" name="id" value="" />
 			<input type="hidden" id="maxResults" name="maxResults" value="" />
 			<input type="hidden" id="firstResult" name="firstResult" value="0" />
@@ -95,14 +95,14 @@ $().ready(function() {
 					<td>
 						<select id="idSelect" name="">
 							<option value="">更新所有分类</option>
-							<#list goodsCategoryTreeList as goodsCategoryTree>
-								<option value="${goodsCategoryTree.id}">
-									<#if goodsCategoryTree.grade != 0>
-										<#list 1..goodsCategoryTree.grade as i>
+							<#list cardsCategoryTreeList as cardsCategoryTree>
+								<option value="${cardsCategoryTree.id}">
+									<#if cardsCategoryTree.grade != 0>
+										<#list 1..cardsCategoryTree.grade as i>
 											&nbsp;&nbsp;
 										</#list>
 									</#if>
-									${goodsCategoryTree.name}
+									${cardsCategoryTree.name}
 								</option>
 							</#list>
 						</select>

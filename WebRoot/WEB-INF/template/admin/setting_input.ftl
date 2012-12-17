@@ -143,33 +143,33 @@ $().ready(function() {
 			"setting.shopUrl": "required",
 			"shopLogo": "imageFile",
 			"setting.email": "email",
-			"setting.bigGoodsImageWidth": {
+			"setting.bigCardsImageWidth": {
 				required: true,
 				positiveInteger: true
 			},
-			"setting.bigGoodsImageHeight": {
+			"setting.bigCardsImageHeight": {
 				required: true,
 				positiveInteger: true
 			},
-			"setting.smallGoodsImageWidth": {
+			"setting.smallCardsImageWidth": {
 				required: true,
 				positiveInteger: true
 			},
-			"setting.smallGoodsImageHeight": {
+			"setting.smallCardsImageHeight": {
 				required: true,
 				positiveInteger: true
 			},
-			"setting.thumbnailGoodsImageWidth": {
+			"setting.thumbnailCardsImageWidth": {
 				required: true,
 				positiveInteger: true
 			},
-			"setting.thumbnailGoodsImageHeight": {
+			"setting.thumbnailCardsImageHeight": {
 				required: true,
 				positiveInteger: true
 			},
-			"defaultBigGoodsImage": "imageFile",
-			"defaultSmallGoodsImage": "imageFile",
-			"defaultThumbnailGoodsImage": "imageFile",
+			"defaultBigCardsImage": "imageFile",
+			"defaultSmallCardsImage": "imageFile",
+			"defaultThumbnailCardsImage": "imageFile",
 			"watermarkImage": "imageFile",
 			"setting.watermarkAlpha": {
 				required: true,
@@ -218,33 +218,33 @@ $().ready(function() {
 			"setting.shopUrl": "请填写网店网址",
 			"shopLogo": "网店LOGO格式错误",
 			"setting.email": "E-mail格式不正确",
-			"setting.bigGoodsImageWidth": {
+			"setting.bigCardsImageWidth": {
 				required: "请填写商品图片(大)的宽度",
 				positiveInteger: "商品图片(大)的宽度必须为正整数"
 			},
-			"setting.bigGoodsImageHeight": {
+			"setting.bigCardsImageHeight": {
 				required: "请填写商品图片(大)的高度",
 				positiveInteger: "商品图片(大)的高度必须为正整数"
 			},
-			"setting.smallGoodsImageWidth": {
+			"setting.smallCardsImageWidth": {
 				required: "请填写商品图片(小)的宽度",
 				positiveInteger: "商品图片(小)的宽度必须为正整数"
 			},
-			"setting.smallGoodsImageHeight": {
+			"setting.smallCardsImageHeight": {
 				required: "请填写商品图片(小)的高度",
 				positiveInteger: "商品图片(小)的高度必须为正整数"
 			},
-			"setting.thumbnailGoodsImageWidth": {
+			"setting.thumbnailCardsImageWidth": {
 				required: "请填写商品缩略图的宽度",
 				positiveInteger: "商品缩略图的宽度必须为正整数"
 			},
-			"setting.thumbnailGoodsImageHeight": {
+			"setting.thumbnailCardsImageHeight": {
 				required: "请填写商品缩略图的高度",
 				positiveInteger: "商品缩略图的高度必须为正整数"
 			},
-			"defaultBigGoodsImage": "默认商品图片(大)格式错误",
-			"defaultSmallGoodsImage": "默认商品图片(小)格式错误",
-			"defaultThumbnailGoodsImage": "默认缩略图格式错误",
+			"defaultBigCardsImage": "默认商品图片(大)格式错误",
+			"defaultSmallCardsImage": "默认商品图片(小)格式错误",
+			"defaultThumbnailCardsImage": "默认缩略图格式错误",
 			"watermarkImage": "水印图片格式错误",
 			"setting.watermarkAlpha": {
 				required: "请填写水印透明度",
@@ -424,10 +424,10 @@ $().ready(function() {
 					</th>
 					<td>
 						<span class="fieldTitle">宽度: </span>
-						<input type="text" name="setting.bigGoodsImageWidth" class="formText" value="${setting.bigGoodsImageWidth}" style="width: 50px;" title="单位: 像素, 只允许输入正整数" />
+						<input type="text" name="setting.bigCardsImageWidth" class="formText" value="${setting.bigCardsImageWidth}" style="width: 50px;" title="单位: 像素, 只允许输入正整数" />
 						<label class="requireField">*</label>
 						<span class="fieldTitle">高度: </span>
-						<input type="text" name="setting.bigGoodsImageHeight" class="formText" value="${setting.bigGoodsImageHeight}" style="width: 50px;" title="单位: 像素, 只允许输入正整数" />
+						<input type="text" name="setting.bigCardsImageHeight" class="formText" value="${setting.bigCardsImageHeight}" style="width: 50px;" title="单位: 像素, 只允许输入正整数" />
 						<label class="requireField">*</label>
 					</td>
 				</tr>
@@ -437,10 +437,10 @@ $().ready(function() {
 					</th>
 					<td>
 						<span class="fieldTitle">宽度: </span>
-						<input type="text" name="setting.smallGoodsImageWidth" class="formText" value="${setting.smallGoodsImageWidth}" style="width: 50px;" title="单位: 像素, 只允许输入正整数" />
+						<input type="text" name="setting.smallCardsImageWidth" class="formText" value="${setting.smallCardsImageWidth}" style="width: 50px;" title="单位: 像素, 只允许输入正整数" />
 						<label class="requireField">*</label>
 						<span class="fieldTitle">高度: </span>
-						<input type="text" name="setting.smallGoodsImageHeight" class="formText" value="${setting.smallGoodsImageHeight}" style="width: 50px;" title="单位: 像素, 只允许输入正整数" />
+						<input type="text" name="setting.smallCardsImageHeight" class="formText" value="${setting.smallCardsImageHeight}" style="width: 50px;" title="单位: 像素, 只允许输入正整数" />
 						<label class="requireField">*</label>
 					</td>
 				</tr>
@@ -450,10 +450,10 @@ $().ready(function() {
 					</th>
 					<td>
 						<span class="fieldTitle">宽度: </span>
-						<input type="text" name="setting.thumbnailGoodsImageWidth" class="formText" value="${setting.thumbnailGoodsImageWidth}" style="width: 50px;" title="单位: 像素, 只允许输入正整数" />
+						<input type="text" name="setting.thumbnailCardsImageWidth" class="formText" value="${setting.thumbnailCardsImageWidth}" style="width: 50px;" title="单位: 像素, 只允许输入正整数" />
 						<label class="requireField">*</label>
 						<span class="fieldTitle">高度: </span>
-						<input type="text" name="setting.thumbnailGoodsImageHeight" class="formText" value="${setting.thumbnailGoodsImageHeight}" style="width: 50px;" title="单位: 像素, 只允许输入正整数" />
+						<input type="text" name="setting.thumbnailCardsImageHeight" class="formText" value="${setting.thumbnailCardsImageHeight}" style="width: 50px;" title="单位: 像素, 只允许输入正整数" />
 						<label class="requireField">*</label>
 					</td>
 				</tr>
@@ -462,8 +462,8 @@ $().ready(function() {
 						默认商品图片(大): 
 					</th>
 					<td>
-						<input type="file" name="defaultBigGoodsImage" />
-						<a href="${base}${setting.defaultBigGoodsImagePath}?random=${random}" target="_blank">查看</a>
+						<input type="file" name="defaultBigCardsImage" />
+						<a href="${base}${setting.defaultBigCardsImagePath}?random=${random}" target="_blank">查看</a>
 					</td>
 				</tr>
 				<tr>
@@ -471,8 +471,8 @@ $().ready(function() {
 						默认商品图片(小): 
 					</th>
 					<td>
-						<input type="file" name="defaultSmallGoodsImage" />
-						<a href="${base}${setting.defaultSmallGoodsImagePath}?random=${random}" target="_blank">查看</a>
+						<input type="file" name="defaultSmallCardsImage" />
+						<a href="${base}${setting.defaultSmallCardsImagePath}?random=${random}" target="_blank">查看</a>
 					</td>
 				</tr>
 				<tr>
@@ -480,8 +480,8 @@ $().ready(function() {
 						默认缩略图: 
 					</th>
 					<td>
-						<input type="file" name="defaultThumbnailGoodsImage" />
-						<a href="${base}${setting.defaultThumbnailGoodsImagePath}?random=${random}" target="_blank">查看</a>
+						<input type="file" name="defaultThumbnailCardsImage" />
+						<a href="${base}${setting.defaultThumbnailCardsImagePath}?random=${random}" target="_blank">查看</a>
 					</td>
 				</tr>
 				<tr>

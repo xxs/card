@@ -12,50 +12,50 @@
 </head>
 <body class="menu">
 	<div class="body">
-		<@sec.authorize ifAnyGranted="ROLE_GOODS,ROLE_GOODS_NOTIFY">
+		<@sec.authorize ifAnyGranted="ROLE_CARDS,ROLE_CARDS_NOTIFY">
 			<dl>
 				<dt>
 					<span>商品管理&nbsp;</span>
 				</dt>
-				<@sec.authorize ifAnyGranted="ROLE_GOODS">
+				<@sec.authorize ifAnyGranted="ROLE_CARDS">
 					<dd>
-						<a href="goods!list.action" target="mainFrame">商品列表</a>
+						<a href="cards!list.action" target="mainFrame">商品列表</a>
 					</dd>
 					<dd>
-						<a href="goods!add.action" target="mainFrame">添加商品</a>
+						<a href="cards!add.action" target="mainFrame">添加商品</a>
 					</dd>
 				</@sec.authorize>
-				<@sec.authorize ifAnyGranted="ROLE_GOODS_NOTIFY">
+				<@sec.authorize ifAnyGranted="ROLE_CARDS_NOTIFY">
 					<dd>
-						<a href="goods_notify!list.action" target="mainFrame">到货通知</a>
+						<a href="cards_notify!list.action" target="mainFrame">到货通知</a>
 					</dd>
 				</@sec.authorize>
 			</dl>
 		</@sec.authorize>
-		<@sec.authorize ifAnyGranted="ROLE_GOODS_CATEGORY">
+		<@sec.authorize ifAnyGranted="ROLE_CARDS_CATEGORY">
 			<dl>
 				<dt>
 					<span>商品分类管理&nbsp;</span>
 				</dt>
 				<dd>
-					<a href="goods_category!list.action" target="mainFrame">分类列表</a>
+					<a href="cards_category!list.action" target="mainFrame">分类列表</a>
 				</dd>
 				<dd>
-					<a href="goods_category!add.action" target="mainFrame">添加分类</a>
+					<a href="cards_category!add.action" target="mainFrame">添加分类</a>
 				</dd>
 			</dl>
 		</@sec.authorize>
-		<@sec.authorize ifAnyGranted="ROLE_GOODS_TYPE,ROLE_GOODS_ATTRIBUTE">
+		<@sec.authorize ifAnyGranted="ROLE_CARDS_TYPE,ROLE_CARDS_ATTRIBUTE">
 			<dl>
 				<dt>
 					<span>商品类型管理&nbsp;</span>
 				</dt>
-				<@sec.authorize ifAnyGranted="ROLE_GOODS_TYPE">
+				<@sec.authorize ifAnyGranted="ROLE_CARDS_TYPE">
 					<dd>
-						<a href="goods_type!list.action" target="mainFrame">类型列表</a>
+						<a href="cards_type!list.action" target="mainFrame">类型列表</a>
 					</dd>
 					<dd>
-						<a href="goods_type!add.action" target="mainFrame">添加类型</a>
+						<a href="cards_type!add.action" target="mainFrame">添加类型</a>
 					</dd>
 				</@sec.authorize>
 			</dl>

@@ -106,7 +106,7 @@
 						未处理缺货登记数: 
 					</td>
 					<td>
-						${unprocessedGoodsNotifyCount} <a href="goods_notify!list.action">[到货通知]</a>
+						${unprocessedCardsNotifyCount} <a href="cards_notify!list.action">[到货通知]</a>
 					</td>
 				</tr>
 				<tr>
@@ -227,7 +227,7 @@
 						已上架商品: 
 					</td>
 					<td>
-						${marketableGoodsCount}
+						${marketableCardsCount}
 					</td>
 				</tr>
 				<tr>
@@ -235,7 +235,7 @@
 						已下架商品: 
 					</td>
 					<td>
-						${unMarketableGoodsCount}
+						${unMarketableCardsCount}
 					</td>
 				</tr>
 				<tr>

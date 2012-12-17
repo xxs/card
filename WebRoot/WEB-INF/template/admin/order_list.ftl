@@ -143,7 +143,7 @@ $().ready(function() {
 								<option value="order!orderPrint.action?id=${order.id}">
 									订&nbsp;&nbsp;&nbsp;单
 								</option>
-								<option value="order!goodsPrint.action?id=${order.id}">
+								<option value="order!cardsPrint.action?id=${order.id}">
 									购物单
 								</option>
 								<option value="order!shippingPrint.action?id=${order.id}">

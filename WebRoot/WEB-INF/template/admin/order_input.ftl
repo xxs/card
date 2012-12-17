@@ -471,12 +471,12 @@ $().ready( function() {
 					<tr>
 						<td>
 							<input type="hidden" name="orderItemList[${orderItem_index}].id" value="${orderItem.id}" />
-							<a href="${base}${orderItem.goodsHtmlPath}" target="_blank">
+							<a href="${base}${orderItem.cardsHtmlPath}" target="_blank">
 								${orderItem.productSn}
 							</a>
 						</td>
 						<td>
-							<a href="${base}${orderItem.goodsHtmlPath}" target="_blank">
+							<a href="${base}${orderItem.cardsHtmlPath}" target="_blank">
 								${orderItem.productName}
 							</a>
 						</td>

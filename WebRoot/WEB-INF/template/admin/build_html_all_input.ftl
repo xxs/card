@@ -97,17 +97,17 @@ $().ready( function() {
 				$("#inputForm").submit();
 			} else if (data.status == "articleFinish") {
 				$("#status").text("正在更新商品,请稍后...");
-				$("#buildContent").val("goods");
+				$("#buildContent").val("cards");
 				$("#firstResult").val("0");
 				$("#inputForm").submit();
-			} else if (data.status == "goodsBuilding") {
+			} else if (data.status == "cardsBuilding") {
 				var maxResults = Number($("#maxResults").val());
 				var firstResult = data.firstResult;
 				$("#status").text("正在更新商品[" + (firstResult + 1) + " - " + (firstResult + maxResults) + "],请稍后...");
-				$("#buildContent").val("goods");
+				$("#buildContent").val("cards");
 				$("#firstResult").val(firstResult);
 				$("#inputForm").submit();
-			} else if (data.status == "goodsFinish") {
+			} else if (data.status == "cardsFinish") {
 				$("#buildContent").val("");
 				$("#firstResult").val("0");
 				$("#statusTr").hide();

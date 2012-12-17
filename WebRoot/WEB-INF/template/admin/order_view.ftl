@@ -262,12 +262,12 @@ $().ready( function() {
 			<#list order.orderItemSet as orderItem>
 				<tr>
 					<td>
-						<a href="${base}${orderItem.goodsHtmlPath}" target="_blank">
+						<a href="${base}${orderItem.cardsHtmlPath}" target="_blank">
 							${orderItem.productSn}
 						</a>
 					</td>
 					<td>
-						<a href="${base}${orderItem.goodsHtmlPath}" target="_blank">
+						<a href="${base}${orderItem.cardsHtmlPath}" target="_blank">
 							${orderItem.productName}
 						</a>
 					</td>

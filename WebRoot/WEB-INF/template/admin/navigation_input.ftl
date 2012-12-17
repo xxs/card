@@ -99,14 +99,14 @@ $().ready( function() {
 									${articleCategoryTree.name}
 								</option>
 							</#list>
-							<#list goodsCategoryTreeList as goodsCategoryTree>
-								<option value="<#noparse>${base}</#noparse>${goodsCategoryTree.url}"<#if (("$" + "{base}" + goodsCategoryTree.url) == navigation.url)!> selected</#if>>
-									<#if goodsCategoryTree.grade != 0>
-										<#list 1..goodsCategoryTree.grade as i>
+							<#list cardsCategoryTreeList as cardsCategoryTree>
+								<option value="<#noparse>${base}</#noparse>${cardsCategoryTree.url}"<#if (("$" + "{base}" + cardsCategoryTree.url) == navigation.url)!> selected</#if>>
+									<#if cardsCategoryTree.grade != 0>
+										<#list 1..cardsCategoryTree.grade as i>
 											&nbsp;&nbsp;
 										</#list>
 									</#if>
-									${goodsCategoryTree.name}
+									${cardsCategoryTree.name}
 								</option>
 							</#list>
 						</select>

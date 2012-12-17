@@ -597,12 +597,12 @@ $().ready( function() {
 				<#list order.orderItemSet as orderItem>
 					<tr>
 						<td>
-							<a href="${base}${orderItem.goodsHtmlPath}" target="_blank">
+							<a href="${base}${orderItem.cardsHtmlPath}" target="_blank">
 								${orderItem.productSn}
 							</a>
 						</td>
 						<td>
-							<a href="${base}${orderItem.goodsHtmlPath}" target="_blank">
+							<a href="${base}${orderItem.cardsHtmlPath}" target="_blank">
 								${orderItem.productName}
 							</a>
 						</td>
@@ -878,12 +878,12 @@ $().ready( function() {
 							<tr>
 								<td>
 									<input type="hidden" name="deliveryItemList[${orderItem_index}].product.id" value="${orderItem.product.id}" />
-									<a href="${base}${orderItem.goodsHtmlPath}" target="_blank">
+									<a href="${base}${orderItem.cardsHtmlPath}" target="_blank">
 										${orderItem.productSn}
 									</a>
 								</td>
 								<td>
-									<a href="${base}${orderItem.goodsHtmlPath}" target="_blank">
+									<a href="${base}${orderItem.cardsHtmlPath}" target="_blank">
 										${orderItem.productName}
 									</a>
 								</td>
@@ -1165,12 +1165,12 @@ $().ready( function() {
 							<tr>
 								<td>
 									<input type="hidden" name="deliveryItemList[${orderItem_index}].product.id" value="${orderItem.product.id}" />
-									<a href="${base}${orderItem.goodsHtmlPath}" target="_blank">
+									<a href="${base}${orderItem.cardsHtmlPath}" target="_blank">
 										${orderItem.productSn}
 									</a>
 								</td>
 								<td>
-									<a href="${base}${orderItem.goodsHtmlPath}" target="_blank">
+									<a href="${base}${orderItem.cardsHtmlPath}" target="_blank">
 										${orderItem.productName}
 									</a>
 								</td>

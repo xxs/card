@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="content-type" content="text/html; charset=utf-8" />
-<title>退货单列表 - XXS</title>
+<title>商品列表 - XXS</title>
 <meta name="Author" content="XXS-DW" />
 <meta name="Copyright" content="XXS" />
 <link rel="icon" href="favicon.ico" type="image/x-icon" />
@@ -15,24 +15,20 @@
 </head>
 <body class="list">
 	<div class="bar">
-		退货单列表&nbsp;总记录数: ${pager.totalCount} (共${pager.pageCount}页)
+		商品列表&nbsp;总记录数: ${pager.totalCount} (共${pager.pageCount}页)
 	</div>
 	<div class="body">
-		<form id="listForm" action="reship!list.action" method="post">
+		<form id="listForm" action="cards!list.action" method="post">
 			<div class="listBar">
+				<input type="button" class="formButton" onclick="location.href='cards!add.action'" value="添加商品" hidefocus />
+				&nbsp;&nbsp;
 				<label>查找: </label>
 				<select name="pager.searchBy">
-					<option value="reshipSn"<#if pager.searchBy == "reshipSn"> selected</#if>>
-						退货编号
+					<option value="name"<#if pager.searchBy == "name"> selected</#if>>
+						商品名称
 					</option>
-					<option value="deliverySn"<#if pager.searchBy == "deliverySn"> selected</#if>>
-						物流单号
-					</option>
-					<option value="reshipName"<#if pager.searchBy == "reshipName"> selected</#if>>
-						退货人姓名
-					</option>
-					<option value="reshipAreaStore"<#if pager.searchBy == "reshipAreaStore"> selected</#if>>
-						退货地区
+					<option value="cardsSn"<#if pager.searchBy == "cardsSn"> selected</#if>>
+						商品编号
 					</option>
 				</select>
 				<input type="text" name="pager.keyword" value="${pager.keyword!}" />
@@ -60,64 +56,77 @@
 						<input type="checkbox" class="allCheck" />
 					</th>
 					<th>
-						<a href="#" class="sort" name="reshipSn" hidefocus>退货编号</a>
+						<a href="#" class="sort" name="name" hidefocus>商品名称</a>
 					</th>
 					<th>
-						<a href="#" class="sort" name="deliveryTypeName" hidefocus>配送方式名称</a>
+						<a href="#" class="sort" name="cardsSn" hidefocus>商品编号</a>
 					</th>
 					<th>
-						<a href="#" class="sort" name="deliveryCorpName" hidefocus>物流公司名称</a>
+						<a href="#" class="sort" name="cardsCategory" hidefocus>分类</a>
 					</th>
 					<th>
-						<a href="#" class="sort" name="deliverySn" hidefocus>物流单号</a>
+						<a href="#" class="sort" name="price" hidefocus>销售价</span>
 					</th>
 					<th>
-						<a href="#" class="sort" name="deliveryFee" hidefocus>物流费用</a>
+						<a href="#" class="sort" name="isMarketable" hidefocus>上架</a>
 					</th>
 					<th>
-						<a href="#" class="sort" name="reshipName" hidefocus>退货人姓名</a>
+						<a href="#" class="sort" name="isBest" hidefocus>精品</a>
 					</th>
 					<th>
-						<a href="#" class="sort" name="reshipAreaStore" hidefocus>退货地区</a>
+						<a href="#" class="sort" name="isNew" hidefocus>新品</a>
 					</th>
 					<th>
-						<a href="#" class="sort" name="createDate" hidefocus>退货时间</a>
+						<a href="#" class="sort" name="isHot" hidefocus>热销</a>
+					</th>
+					<th>
+						<a href="#" class="sort" name="store">库存</a>
 					</th>
 					<th>
 						<span>操作</span>
 					</th>
 				</tr>
-				<#list pager.result as reship>
+				<#list pager.result as cards>
 					<tr>
 						<td>
-							<input type="checkbox" name="ids" value="${reship.id}" />
+							<input type="checkbox" name="ids" value="${cards.id}" />
 						</td>
 						<td>
-							${reship.reshipSn}
+							<span title="${cards.name}">
+								${substring(cards.name, 30, "...")}
+							</span>
 						</td>
 						<td>
-							${reship.deliveryTypeName}
+							${cards.cardsSn}
 						</td>
 						<td>
-							${reship.deliveryCorpName}
+							${cards.cardsCategory.name}
 						</td>
 						<td>
-							${reship.deliverySn}
+							${cards.price?string(currencyFormat)}
 						</td>
 						<td>
-							${reship.deliveryFee?string(currencyFormat)}
+							<span class="${cards.isMarketable?string('true','false')}Icon">&nbsp;</span>
 						</td>
 						<td>
-							${reship.reshipName}
+							<span class="${cards.isBest?string('true','false')}Icon">&nbsp;</span>
 						</td>
 						<td>
-							${reship.reshipArea.displayName}
+							<span class="${cards.isNew?string('true','false')}Icon">&nbsp;</span>
 						</td>
 						<td>
-							<span title="${reship.createDate?string("yyyy-MM-dd HH:mm:ss")}">${reship.createDate}</span>
+							<span class="${cards.isHot?string('true','false')}Icon">&nbsp;</span>
 						</td>
 						<td>
-							<a href="reship!view.action?id=${reship.id}" title="查看">[查看]</a>
+							${(cards.store)!"-"}
+						</td>
+						<td>
+							<a href="cards!edit.action?id=${cards.id}" title="编辑">[编辑]</a>
+							<#if cards.isMarketable>
+								<a href="${base}${cards.htmlPath}" target="_blank" title="浏览">[浏览]</a>
+							<#else>
+								<span title="未上架">[未上架]</span>
+							</#if>
 						</td>
 					</tr>
 				</#list>
@@ -125,12 +134,12 @@
 			<#if (pager.result?size > 0)>
 				<div class="pagerBar">
 					<div class="delete">
-						<input type="button" id="deleteButton" class="formButton" url="reship!delete.action" value="删 除" disabled hidefocus />
+						<input type="button" id="deleteButton" class="formButton" url="cards!delete.action" value="删 除" disabled hidefocus />
 					</div>
 					<div class="pager">
 						<#include "/WEB-INF/template/admin/pager.ftl" />
 					</div>
-				<div>
+				</div>
 			<#else>
 				<div class="noRecord">没有找到任何记录!</div>
 			</#if>

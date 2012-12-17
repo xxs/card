@@ -42,7 +42,7 @@ $().ready(function() {
 	
 	// 发送通知
 	$sendButton.click( function() {
-		var url = "goods_notify!send.action";
+		var url = "cards_notify!send.action";
 		var $idsCheckedCheck = $("#listTable input[name='ids']:checked");
 		if (confirm("您确定要发送到货通知吗?") == true) {
 			$.ajax({
@@ -72,7 +72,7 @@ $().ready(function() {
 		到货通知列表&nbsp;总记录数: ${pager.totalCount} (共${pager.pageCount}页)
 	</div>
 	<div class="body">
-		<form id="listForm" action="goods_notify!list.action" method="post">
+		<form id="listForm" action="cards_notify!list.action" method="post">
 			<div class="listBar">
 				<input type="button" id="sendButton" class="formButton" value="发送通知" disabled />
 				&nbsp;&nbsp;
@@ -119,37 +119,37 @@ $().ready(function() {
 						<span>缺货状态</span>
 					</th>
 				</tr>
-				<#list pager.result as goodsNotify>
-					<#assign product = goodsNotify.product />
+				<#list pager.result as cardsNotify>
+					<#assign product = cardsNotify.product />
 					<tr>
 						<td>
-							<input type="checkbox" name="ids" value="${goodsNotify.id}" />
+							<input type="checkbox" name="ids" value="${cardsNotify.id}" />
 						</td>
 						<td>
-							<a href="${base}${product.goods.htmlPath}" target="_blank">
+							<a href="${base}${product.cards.htmlPath}" target="_blank">
 								${product.name}
 							</a>
 						</td>
 						<td>
-							${(goodsNotify.member.username)!"-"}
+							${(cardsNotify.member.username)!"-"}
 						</td>
 						<td>
-							${goodsNotify.email}
+							${cardsNotify.email}
 						</td>
 						<td>
-							<#if goodsNotify.sendDate??>
-								<span title="${goodsNotify.sendDate?string("yyyy-MM-dd HH:mm:ss")}">${goodsNotify.sendDate}</span>
+							<#if cardsNotify.sendDate??>
+								<span title="${cardsNotify.sendDate?string("yyyy-MM-dd HH:mm:ss")}">${cardsNotify.sendDate}</span>
 							<#else>
 								-
 							</#if>
 						</td>
 						<td>
-							<span title="${goodsNotify.createDate?string("yyyy-MM-dd HH:mm:ss")}">
-								${goodsNotify.createDate}
+							<span title="${cardsNotify.createDate?string("yyyy-MM-dd HH:mm:ss")}">
+								${cardsNotify.createDate}
 							</span>
 						</td>
 						<td>
-							<span class="${goodsNotify.isSent?string('true','false')}Icon">&nbsp;</span>
+							<span class="${cardsNotify.isSent?string('true','false')}Icon">&nbsp;</span>
 						</td>
 						<td>
 							<#if product.isOutOfStock>
@@ -164,7 +164,7 @@ $().ready(function() {
 			<#if (pager.result?size > 0)>
 				<div class="pagerBar">
 					<div class="delete">
-						<input type="button" id="deleteButton" class="formButton" url="goods_notify!delete.action" value="删 除" disabled hidefocus />
+						<input type="button" id="deleteButton" class="formButton" url="cards_notify!delete.action" value="删 除" disabled hidefocus />
 					</div>
 					<div class="pager">
 						<#include "/WEB-INF/template/admin/pager.ftl" />

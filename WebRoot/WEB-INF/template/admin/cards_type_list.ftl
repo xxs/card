@@ -18,9 +18,9 @@
 		商品类型列表&nbsp;总记录数: ${pager.totalCount} (共${pager.pageCount}页)
 	</div>
 	<div class="body">
-		<form id="listForm" action="goods_type!list.action" method="post">
+		<form id="listForm" action="cards_type!list.action" method="post">
 			<div class="listBar">
-				<input type="button" class="formButton" onclick="location.href='goods_type!add.action'" value="添加类型" hidefocus />
+				<input type="button" class="formButton" onclick="location.href='cards_type!add.action'" value="添加类型" hidefocus />
 				&nbsp;&nbsp;
 				<label>查找: </label>
 				<select name="pager.searchBy">
@@ -65,27 +65,27 @@
 						<span>操作</span>
 					</th>
 				</tr>
-				<#list pager.result as goodsType>
+				<#list pager.result as cardsType>
 					<tr>
 						<td>
-							<input type="checkbox" name="ids" value="${goodsType.id}" />
+							<input type="checkbox" name="ids" value="${cardsType.id}" />
 						</td>
 						<td>
-							${goodsType.name}
+							${cardsType.name}
 						</td>
 						<td>
-							<#list goodsType.goodsAttributeSet as goodsAttribute>
-								${goodsAttribute.name}&nbsp;
-								<#if goodsAttribute_index == 5>
+							<#list cardsType.cardsAttributeSet as cardsAttribute>
+								${cardsAttribute.name}&nbsp;
+								<#if cardsAttribute_index == 5>
 									<#break />
 								</#if>
 							</#list>
 						</td>
 						<td>
-							<span title="${goodsType.createDate?string("yyyy-MM-dd HH:mm:ss")}">${goodsType.createDate}</span>
+							<span title="${cardsType.createDate?string("yyyy-MM-dd HH:mm:ss")}">${cardsType.createDate}</span>
 						</td>
 						<td>
-							<a href="goods_type!edit.action?id=${goodsType.id}" title="编辑">[编辑]</a>
+							<a href="cards_type!edit.action?id=${cardsType.id}" title="编辑">[编辑]</a>
 						</td>
 					</tr>
 				</#list>
@@ -93,7 +93,7 @@
 			<#if (pager.result?size > 0)>
 				<div class="pagerBar">
 					<div class="delete">
-						<input type="button" id="deleteButton" class="formButton" url="goods_type!delete.action" value="删 除" disabled hidefocus />
+						<input type="button" id="deleteButton" class="formButton" url="cards_type!delete.action" value="删 除" disabled hidefocus />
 					</div>
 					<div class="pager">
 						<#include "/WEB-INF/template/admin/pager.ftl" />
