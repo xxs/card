@@ -38,14 +38,9 @@ public class Order extends BaseEntity {
 		unprocessed, processed, completed, invalid
 	};
 
-	// 付款状态（未支付、部分支付、已支付）
+	// 付款状态（未支付、支付中、已支付）
 	public enum PaymentStatus {
-		unpaid, partPayment, paid
-	};
-
-	// 配送状态（未发货、部分发货、已发货、部分退货、已退货）
-	public enum ShippingStatus {
-		unshipped, partShipped, shipped, partReshiped, reshiped
+		unpaid, paymenting, paid
 	};
 
 	private String orderSn;// 订单编号

@@ -20,34 +20,6 @@
 	<div class="body">
 		<div class="blank"></div>
 		<table id="listTable" class="listTable">
-			<tr>
-				<td>
-					<img src="${base}/template/admin/images/payment/deposit_icon.gif" />
-				</td>
-				<td>
-					<strong>预付款支付</strong>
-				</td>
-				<td>
-					预存款是客户在您网站上的虚拟资金帐户
-				</td>
-				<td>
-					<a href="payment_config!add.action?paymentConfig.paymentConfigType=deposit" class="formButton">添 加</a>
-				</td>
-			</tr>
-			<tr>
-				<td>
-					<img src="${base}/template/admin/images/payment/offline_icon.gif" />
-				</td>
-				<td>
-					<strong>线下支付</strong>
-				</td>
-				<td>
-					您可以通过现金付款或银行转帐的方式进行收款
-				</td>
-				<td>
-					<a href="payment_config!add.action?paymentConfig.paymentConfigType=offline" class="formButton">添 加</a>
-				</td>
-			</tr>
 			<#list paymentProductList as paymentProduct>
 				<tr>
 					<td>

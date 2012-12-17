@@ -291,7 +291,7 @@ public class OrderAction extends BaseAdminAction {
 		
 		order.setOrderStatus(OrderStatus.processed);
 		if (payment.getTotalAmount().compareTo(order.getTotalAmount().subtract(order.getPaidAmount())) < 0) {
-			order.setPaymentStatus(net.xxs.entity.Order.PaymentStatus.partPayment);
+			order.setPaymentStatus(net.xxs.entity.Order.PaymentStatus.paymenting);
 		} else {
 			order.setPaymentStatus(net.xxs.entity.Order.PaymentStatus.paid);
 		}

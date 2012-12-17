@@ -37,11 +37,4 @@ public interface OrderService extends BaseService<Order, String> {
 	 */
 	public Long getUnprocessedOrderCount();
 	
-	/**
-	 * 获取已支付未发货订单数（不包含已完成或已作废订单）
-	 *            
-	 * @return 已支付未发货订单数
-	 */
-	public Long getPaidUnshippedOrderCount();
-
 }

@@ -8,10 +8,9 @@ import net.xxs.bean.Pager;
 import net.xxs.dao.OrderDao;
 import net.xxs.entity.Member;
 import net.xxs.entity.Order;
-import net.xxs.entity.OrderItem;
 import net.xxs.entity.Order.OrderStatus;
 import net.xxs.entity.Order.PaymentStatus;
-import net.xxs.entity.Order.ShippingStatus;
+import net.xxs.entity.OrderItem;
 
 import org.hibernate.criterion.Restrictions;
 import org.springframework.stereotype.Repository;
@@ -49,11 +48,6 @@ public class OrderDaoImpl extends BaseDaoImpl<Order, String> implements OrderDao
 		return (Long) getSession().createQuery(hql).setParameter("orderStatus", OrderStatus.unprocessed).uniqueResult();
 	}
 	
-	public Long getPaidUnshippedOrderCount() {
-		String hql = "select count(*) from Order as order where order.paymentStatus = :paymentStatus and order.shippingStatus = :shippingStatus and order.orderStatus != :orderStatusCompleted and order.orderStatus != :orderStatusInvalid";
-		return (Long) getSession().createQuery(hql).setParameter("paymentStatus", PaymentStatus.paid).setParameter("shippingStatus", ShippingStatus.unshipped).setParameter("orderStatusCompleted", OrderStatus.completed).setParameter("orderStatusInvalid", OrderStatus.invalid).uniqueResult();
-	}
-
 	// 保存对象时,自动更新充值卡ID集合
 	@Override
 	public String save(Order order) {

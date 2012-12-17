@@ -109,71 +109,7 @@ public class PaymentAction extends BaseShopAction {
 		
 		BigDecimal paymentFee = null;// 支付手续费
 		BigDecimal amountPayable = null;// 应付金额（含支付手续费）
-		if (paymentType == PaymentType.recharge) {
-			if (paymentConfigType != PaymentConfigType.online) {
-				addActionError("支付方式错误!");
-				return ERROR;
-			}
-			if (rechargeAmount == null) {
-				addActionError("请输入充值金额!");
-				return ERROR;
-			}
-			if (rechargeAmount.compareTo(new BigDecimal(0)) <= 0) {
-				addActionError("充值金额必须大于0!");
-				return ERROR;
-			}
-			if (rechargeAmount.scale() > getSetting().getPriceScale()) {
-				addActionError("充值金额小数位超出限制!");
-				return ERROR;
-			}
-			paymentFee = paymentConfig.getPaymentFee(rechargeAmount);
-			amountPayable = rechargeAmount.add(paymentFee);
-		} else if (paymentType == PaymentType.deposit) {
-			if (paymentConfigType != PaymentConfigType.deposit) {
-				addActionError("支付方式错误!");
-				return ERROR;
-			}
-			if (order == null || StringUtils.isEmpty(order.getId())) {
-				addActionError("订单信息错误!");
-				return ERROR;
-			}
-			order = orderService.load(order.getId());
-			if (order.getOrderStatus() == OrderStatus.completed || order.getOrderStatus() == OrderStatus.invalid) {
-				addActionError("订单状态错误!");
-				return ERROR;
-			}
-			if (order.getPaymentStatus() == net.xxs.entity.Order.PaymentStatus.paid) {
-				addActionError("订单付款状态错误!");
-				return ERROR;
-			}
-			if (getLoginMember().getDeposit().compareTo(order.getTotalAmount().subtract(order.getPaidAmount())) < 0) {
-				addActionError("您的预存款余额不足,请及时充值!");
-				redirectUrl = "deposit!recharge.action";
-				return ERROR;
-			}
-			paymentFee = order.getPaymentFee();
-			amountPayable = order.getTotalAmount().subtract(order.getPaidAmount());
-		} else if (paymentType == PaymentType.offline) {
-			if (paymentConfigType != PaymentConfigType.offline) {
-				addActionError("支付方式错误!");
-				return ERROR;
-			}
-			if (order == null || StringUtils.isEmpty(order.getId())) {
-				addActionError("订单信息错误!");
-				return ERROR;
-			}
-			order = orderService.load(order.getId());
-			if (order.getOrderStatus() == OrderStatus.completed || order.getOrderStatus() == OrderStatus.invalid) {
-				addActionError("订单状态错误!");
-				return ERROR;
-			}
-			if (order.getPaymentStatus() == net.xxs.entity.Order.PaymentStatus.paid) {
-				addActionError("订单付款状态错误!");
-				return ERROR;
-			}
-			paymentFee = order.getPaymentFee();
-			amountPayable = order.getTotalAmount().subtract(order.getPaidAmount());
-		} else if (paymentType == PaymentType.online) {
+
 			if (paymentConfigType != PaymentConfigType.online) {
 				addActionError("支付方式错误!");
 				return ERROR;
@@ -193,106 +129,33 @@ public class PaymentAction extends BaseShopAction {
 			}
 			paymentFee = order.getPaymentFee();
 			amountPayable = order.getTotalAmount().subtract(order.getPaidAmount());
-		}
 		
-		Member loginMember = getLoginMember();
-		if (paymentConfigType == PaymentConfigType.deposit) {
-			order.setPaymentStatus(net.xxs.entity.Order.PaymentStatus.paid);
-			order.setPaidAmount(order.getPaidAmount().add(amountPayable));
-			orderService.update(order);
-			
-			loginMember.setDeposit(loginMember.getDeposit().subtract(amountPayable));
-			memberService.update(loginMember);
-			
-			Deposit deposit = new Deposit();
-			deposit.setDepositType(DepositType.memberPayment);
-			deposit.setCredit(new BigDecimal(0));
-			deposit.setDebit(amountPayable);
-			deposit.setBalance(loginMember.getDeposit());
-			deposit.setLossrate(new BigDecimal(0));
-			deposit.setMember(loginMember);
-			depositService.save(deposit);
-			
-			payment = new Payment();
-			payment.setPaymentType(paymentType);
-			payment.setPaymentConfigName(paymentConfig.getName());
-			payment.setBankName(null);
-			payment.setBankAccount(null);
-			payment.setTotalAmount(amountPayable);
-			payment.setPaymentFee(paymentFee);
-			payment.setPayer(getLoginMember().getUsername());
-			payment.setOperator(null);
-			payment.setMemo(null);
-			payment.setPaymentStatus(PaymentStatus.success);
-			payment.setMember(loginMember);
-			payment.setPaymentConfig(paymentConfig);
-			payment.setDeposit(deposit);
-			payment.setOrder(order);
-			paymentService.save(payment);
-			
-			// 订单日志
-			String logInfo = "支付总金额: " + SettingUtil.currencyFormat(payment.getTotalAmount());
-			if (paymentFee.compareTo(new BigDecimal(0)) > 0) {
-				logInfo += "(含支付手续费: " + SettingUtil.currencyFormat(paymentFee) + ")";
-			}
-			OrderLog orderLog = new OrderLog();
-			orderLog.setOrderLogType(OrderLogType.payment);
-			orderLog.setOrderSn(order.getOrderSn());
-			orderLog.setOperator(null);
-			orderLog.setInfo(logInfo);
-			orderLog.setOrder(order);
-			orderLogService.save(orderLog);
-			
-			return "result";
-		} else if (paymentConfigType == PaymentConfigType.offline) {
-			payment = new Payment();
-			payment.setPaymentType(paymentType);
-			payment.setPaymentConfigName(paymentConfig.getName());
-			payment.setBankName(null);
-			payment.setBankAccount(null);
-			payment.setTotalAmount(amountPayable);
-			payment.setPaymentFee(paymentFee);
-			payment.setPayer(getLoginMember().getUsername());
-			payment.setOperator(null);
-			payment.setMemo(null);
-			payment.setPaymentStatus(PaymentStatus.success);
-			payment.setMember(loginMember);
-			payment.setPaymentConfig(paymentConfig);
-			payment.setDeposit(null);
-			payment.setOrder(order);
-			
-			return "result";
-		} else if (paymentConfigType == PaymentConfigType.online) {
+			Member loginMember = getLoginMember();
+		
 			BasePaymentProduct paymentProduct = PaymentProductUtil.getPaymentProduct(paymentConfig.getPaymentProductId());
 			paymentUrl = paymentProduct.getPaymentUrl();
 			
 			String bankName = paymentProduct.getName();
 			String bankAccount = paymentConfig.getBargainorId();
 			
-			Payment payment = new Payment();
-			payment.setPaymentType(paymentType);
-			payment.setPaymentConfigName(paymentConfig.getName());
-			payment.setBankName(bankName);
-			payment.setBankAccount(bankAccount);
-			payment.setTotalAmount(amountPayable);
-			payment.setPaymentFee(paymentFee);
-			payment.setPayer(getLoginMember().getUsername());
-			payment.setOperator(null);
-			payment.setMemo(null);
-			payment.setPaymentStatus(PaymentStatus.ready);
-			payment.setMember(loginMember);
-			payment.setPaymentConfig(paymentConfig);
-			payment.setDeposit(null);
-			if (paymentType == PaymentType.recharge) {
-				payment.setOrder(null);
-			} else {
-				payment.setOrder(order);
-			}
-			paymentService.save(payment);
+			Payment payment1 = new Payment();
+			payment1.setPaymentType(paymentType);
+			payment1.setPaymentConfigName(paymentConfig.getName());
+			payment1.setBankName(bankName);
+			payment1.setBankAccount(bankAccount);
+			payment1.setTotalAmount(amountPayable);
+			payment1.setPaymentFee(paymentFee);
+			payment1.setPayer(getLoginMember().getUsername());
+			payment1.setOperator(null);
+			payment1.setMemo(null);
+			payment1.setPaymentStatus(PaymentStatus.ready);
+			payment1.setMember(loginMember);
+			payment1.setPaymentConfig(paymentConfig);
+			payment1.setDeposit(null);
+			payment1.setOrder(order);
+			paymentService.save(payment1);
 			parameterMap = paymentProduct.getParameterMap(paymentConfig, payment.getPaymentSn(), amountPayable, getRequest());
 			return "submit";
-		}
-		return NONE;
 	}
 	//查询支付订单结果
 	public String query(){
@@ -349,21 +212,6 @@ public class PaymentAction extends BaseShopAction {
 		paymentService.update(payment);
 		
 		BigDecimal paymentFee = payment.getPaymentFee();
-		if (payment.getPaymentType() == PaymentType.recharge) {
-			Member member = payment.getMember();
-			member.setDeposit(member.getDeposit().add(totalAmount.subtract(paymentFee)));
-			memberService.update(member);
-			System.out.println("执行了充值价款");
-			Deposit deposit = new Deposit();
-			deposit.setDepositType(DepositType.memberRecharge);
-			deposit.setCredit(totalAmount.subtract(payment.getPaymentFee()));
-			deposit.setDebit(new BigDecimal(0));
-			deposit.setBalance(member.getDeposit());
-			deposit.setLossrate(new BigDecimal(0));
-			deposit.setMember(member);
-			deposit.setPayment(payment);
-			depositService.save(deposit);
-		} else if (payment.getPaymentType() == PaymentType.online) {
 			System.out.println();
 			order = payment.getOrder();
 			order.setPaymentStatus(net.xxs.entity.Order.PaymentStatus.paid);
@@ -445,7 +293,6 @@ public class PaymentAction extends BaseShopAction {
 			orderLog.setInfo(logInfo);
 			orderLog.setOrder(order);
 			orderLogService.save(orderLog);
-		}
 		return "payreturn";
 	}
 	
@@ -513,21 +360,6 @@ public class PaymentAction extends BaseShopAction {
 		}
 
 		BigDecimal paymentFee = payment.getPaymentFee();
-		if (payment.getPaymentType() == PaymentType.recharge) {
-			Member member = payment.getMember();
-			member.setDeposit(member.getDeposit().add(totalAmount.subtract(paymentFee)));
-			memberService.update(member);
-			
-			Deposit deposit = new Deposit();
-			deposit.setDepositType(DepositType.memberRecharge);
-			deposit.setCredit(totalAmount.subtract(payment.getPaymentFee()));
-			deposit.setDebit(new BigDecimal(0));
-			deposit.setBalance(member.getDeposit());
-			deposit.setLossrate(new BigDecimal(0));
-			deposit.setMember(member);
-			deposit.setPayment(payment);
-			depositService.save(deposit);
-		} else if (payment.getPaymentType() == PaymentType.online) {
 			order = payment.getOrder();
 			order.setPaymentStatus(net.xxs.entity.Order.PaymentStatus.paid);
 			order.setPaidAmount(order.getPaidAmount().add(totalAmount));
@@ -545,7 +377,6 @@ public class PaymentAction extends BaseShopAction {
 			orderLog.setInfo(logInfo);
 			orderLog.setOrder(order);
 			orderLogService.save(orderLog);
-		}
 		payment.setPaymentStatus(PaymentStatus.success);
 		paymentService.update(payment);
 		return "paynotify";

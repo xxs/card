@@ -64,11 +64,6 @@ public class PageAction extends BaseAdminAction {
 		return orderService.getUnprocessedOrderCount();
 	}
 	
-	// 获取已支付未发货订单数
-	public Long getPaidUnshippedOrderCount() {
-		return orderService.getPaidUnshippedOrderCount();
-	}
-	
 	// 获取未读消息数
 	public Long getUnreadMessageCount() {
 		return messageService.getUnreadMessageCount();

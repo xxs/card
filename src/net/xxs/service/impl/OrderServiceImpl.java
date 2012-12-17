@@ -41,9 +41,4 @@ public class OrderServiceImpl extends BaseServiceImpl<Order, String> implements 
 		return orderDao.getUnprocessedOrderCount();
 	}
 	
-	@Transactional(readOnly = true)
-	public Long getPaidUnshippedOrderCount() {
-		return orderDao.getPaidUnshippedOrderCount();
-	}
-
 }
