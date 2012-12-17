@@ -38,15 +38,15 @@
 		<watermarkImagePath>/images/watermark.jpg</watermarkImagePath>  
 		<watermarkPosition>bottomRight</watermarkPosition>  
 		<watermarkAlpha>50</watermarkAlpha>  
-		<bigGoodsImageWidth>500</bigGoodsImageWidth>  
-		<bigGoodsImageHeight>500</bigGoodsImageHeight>  
-		<smallGoodsImageWidth>300</smallGoodsImageWidth>  
-		<smallGoodsImageHeight>300</smallGoodsImageHeight>  
-		<thumbnailGoodsImageWidth>140</thumbnailGoodsImageWidth>  
-		<thumbnailGoodsImageHeight>140</thumbnailGoodsImageHeight>  
-		<defaultBigGoodsImagePath>/images/default_big_goods_image.jpg</defaultBigGoodsImagePath>  
-		<defaultSmallGoodsImagePath>/images/default_small_goods_image.jpg</defaultSmallGoodsImagePath>  
-		<defaultThumbnailGoodsImagePath>/images/default_thumbnail_goods_image.jpg</defaultThumbnailGoodsImagePath>  
+		<bigCardsImageWidth>500</bigCardsImageWidth>  
+		<bigCardsImageHeight>500</bigCardsImageHeight>  
+		<smallCardsImageWidth>300</smallCardsImageWidth>  
+		<smallCardsImageHeight>300</smallCardsImageHeight>  
+		<thumbnailCardsImageWidth>140</thumbnailCardsImageWidth>  
+		<thumbnailCardsImageHeight>140</thumbnailCardsImageHeight>  
+		<defaultBigCardsImagePath>/images/default_big_cards_image.jpg</defaultBigCardsImagePath>  
+		<defaultSmallCardsImagePath>/images/default_small_cards_image.jpg</defaultSmallCardsImagePath>  
+		<defaultThumbnailCardsImagePath>/images/default_thumbnail_cards_image.jpg</defaultThumbnailCardsImagePath>  
 		<isShowMarketPrice>true</isShowMarketPrice>  
 		<defaultMarketPriceOperator>multiply</defaultMarketPriceOperator>  
 		<defaultMarketPriceNumber>1.2</defaultMarketPriceNumber>  
@@ -71,42 +71,6 @@
 		<commentDisplayType>direct</commentDisplayType> 
 	</setting>  
 	<paymentProduct> 
-		<tenpayDirect> 
-			<name>财付通（即时交易）</name>  
-			<description> <![CDATA[中国领先的在线支付平台，致力于为互联网用户和企业提供安全、便捷、专业的在线支付服务。 <a href="http://union.tenpay.com/mch/mch_register.shtml?sp_suggestuser=admin@xxs.net" class="red" target="_blank"><span class="red">立即申请</span></a>]]> </description>  
-			<bargainorIdName>商户号</bargainorIdName>  
-			<bargainorKeyName>密钥</bargainorKeyName>  
-			<currencyTypes>CNY</currencyTypes>  
-			<logoPath>/template/admin/images/payment/tenpay_direct_icon.gif</logoPath>  
-			<className>net.xxs.payment.TenpayDirect</className> 
-		</tenpayDirect>  
-		<tenpayPartner> 
-			<name>财付通（担保交易）</name>  
-			<description>中国领先的在线支付平台，致力于为互联网用户和企业提供安全、便捷、专业的在线支付服务。</description>  
-			<bargainorIdName>商户号</bargainorIdName>  
-			<bargainorKeyName>密钥</bargainorKeyName>  
-			<currencyTypes>CNY</currencyTypes>  
-			<logoPath>/template/admin/images/payment/tenpay_partner_icon.gif</logoPath>  
-			<className>net.xxs.payment.TenpayPartner</className> 
-		</tenpayPartner>  
-		<alipayDirect> 
-			<name>支付宝（即时交易）</name>  
-			<description> <![CDATA[支付宝即时交易，付款后立即到账，无预付/年费，单笔费率阶梯最低0.7%，无流量限制。 <a href="https://www.alipay.com/himalayas/practicality_customer.htm?customer_external_id=C4393933195131654818&market_type=from_agent_contract&pro_codes=61F99645EC0DC4380ADE569DD132AD7A" target="_blank"><span class="red">立即申请</span></a>]]> </description>  
-			<bargainorIdName>合作身份者ID</bargainorIdName>  
-			<bargainorKeyName>安全校验码</bargainorKeyName>  
-			<currencyTypes>CNY</currencyTypes>  
-			<logoPath>/template/admin/images/payment/alipay_direct_icon.gif</logoPath>  
-			<className>net.xxs.payment.AlipayDirect</className> 
-		</alipayDirect>  
-		<alipayPartner> 
-			<name>支付宝（担保交易）</name>  
-			<description>支付宝担保交易，买家先付款到支付宝，支付宝收到买家付款后即时通知卖家发货，买家收到货物满意后通知支付宝付款给卖家。</description>  
-			<bargainorIdName>合作身份者ID</bargainorIdName>  
-			<bargainorKeyName>安全校验码</bargainorKeyName>  
-			<currencyTypes>CNY</currencyTypes>  
-			<logoPath>/template/admin/images/payment/alipay_partner_icon.gif</logoPath>  
-			<className>net.xxs.payment.AlipayPartner</className> 
-		</alipayPartner>  
 		<yeepay> 
 			<name>易宝支付</name>  
 			<description>中国领先的独立第三方支付平台，致力于为广大商家和消费者提供“安全、简单、快乐”的专业电子支付解决方案和服务。</description>  
@@ -134,15 +98,6 @@
 			<logoPath>/template/admin/images/payment/ofpay_icon.gif</logoPath>  
 			<className>net.xxs.payment.OfPay</className> 
 		</ofpay>  
-		<pay99bill> 
-			<name>快钱</name>  
-			<description>快钱是国内领先的独立第三方支付企业，旨在为各类企业及个人 提供安全、便捷和保密的综合电子支付服务。</description>  
-			<bargainorIdName>账户号</bargainorIdName>  
-			<bargainorKeyName>密钥</bargainorKeyName>  
-			<currencyTypes>CNY</currencyTypes>  
-			<logoPath>/template/admin/images/payment/pay99bill_icon.gif</logoPath>  
-			<className>net.xxs.payment.Pay99bill</className> 
-		</pay99bill> 
 	</paymentProduct>  
 	<logConfig> 
 		<item operation="系统设置" actionClass="net.xxs.action.admin.SettingAction" actionMethod="update"/>  
@@ -152,12 +107,12 @@
 		<item operation="添加会员" actionClass="net.xxs.action.admin.MemberAction" actionMethod="save"/>  
 		<item operation="删除会员" actionClass="net.xxs.action.admin.MemberAction" actionMethod="delete"/>  
 		<item operation="编辑会员" actionClass="net.xxs.action.admin.MemberAction" actionMethod="update"/>  
-		<item operation="添加商品分类" actionClass="net.xxs.action.admin.GoodsCategoryAction" actionMethod="save"/>  
-		<item operation="删除商品分类" actionClass="net.xxs.action.admin.GoodsCategoryAction" actionMethod="delete"/>  
-		<item operation="编辑商品分类" actionClass="net.xxs.action.admin.GoodsCategoryAction" actionMethod="update"/>  
-		<item operation="添加商品" actionClass="net.xxs.action.admin.GoodsAction" actionMethod="save"/>  
-		<item operation="删除商品" actionClass="net.xxs.action.admin.GoodsAction" actionMethod="delete"/>  
-		<item operation="编辑商品" actionClass="net.xxs.action.admin.GoodsAction" actionMethod="update"/>  
+		<item operation="添加商品分类" actionClass="net.xxs.action.admin.CardsCategoryAction" actionMethod="save"/>  
+		<item operation="删除商品分类" actionClass="net.xxs.action.admin.CardsCategoryAction" actionMethod="delete"/>  
+		<item operation="编辑商品分类" actionClass="net.xxs.action.admin.CardsCategoryAction" actionMethod="update"/>  
+		<item operation="添加商品" actionClass="net.xxs.action.admin.CardsAction" actionMethod="save"/>  
+		<item operation="删除商品" actionClass="net.xxs.action.admin.CardsAction" actionMethod="delete"/>  
+		<item operation="编辑商品" actionClass="net.xxs.action.admin.CardsAction" actionMethod="update"/>  
 		<item operation="添加文章分类" actionClass="net.xxs.action.admin.ArticleCategoryAction" actionMethod="save"/>  
 		<item operation="删除文章分类" actionClass="net.xxs.action.admin.ArticleCategoryAction" actionMethod="delete"/>  
 		<item operation="编辑文章分类" actionClass="net.xxs.action.admin.ArticleCategoryAction" actionMethod="update"/>  
@@ -167,9 +122,6 @@
 		<item operation="删除订单" actionClass="net.xxs.action.admin.OrderAction" actionMethod="delete"/>  
 		<item operation="编辑订单" actionClass="net.xxs.action.admin.OrderAction" actionMethod="update"/>  
 		<item operation="订单支付" actionClass="net.xxs.action.admin.OrderAction" actionMethod="payment"/>  
-		<item operation="订单发货" actionClass="net.xxs.action.admin.OrderAction" actionMethod="shipping"/>  
-		<item operation="订单退款" actionClass="net.xxs.action.admin.OrderAction" actionMethod="refund"/>  
-		<item operation="订单退货" actionClass="net.xxs.action.admin.OrderAction" actionMethod="reship"/>  
 		<item operation="订单完成" actionClass="net.xxs.action.admin.OrderAction" actionMethod="completed"/>  
 		<item operation="订单作废" actionClass="net.xxs.action.admin.OrderAction" actionMethod="invalid"/> 
 	</logConfig> 

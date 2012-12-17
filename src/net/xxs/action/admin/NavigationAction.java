@@ -5,10 +5,10 @@ import java.util.List;
 import javax.annotation.Resource;
 
 import net.xxs.entity.ArticleCategory;
-import net.xxs.entity.GoodsCategory;
+import net.xxs.entity.CardsCategory;
 import net.xxs.entity.Navigation;
 import net.xxs.service.ArticleCategoryService;
-import net.xxs.service.GoodsCategoryService;
+import net.xxs.service.CardsCategoryService;
 import net.xxs.service.NavigationService;
 
 import org.apache.struts2.convention.annotation.ParentPackage;
@@ -30,14 +30,14 @@ public class NavigationAction extends BaseAdminAction {
 
 	private Navigation navigation;
 	private List<ArticleCategory> articleCategoryTreeList;
-	private List<GoodsCategory> goodsCategoryTreeList;
+	private List<CardsCategory> cardsCategoryTreeList;
 
 	@Resource(name = "navigationServiceImpl")
 	private NavigationService navigationService;
 	@Resource(name = "articleCategoryServiceImpl")
 	private ArticleCategoryService articleCategoryService;
-	@Resource(name = "goodsCategoryServiceImpl")
-	private GoodsCategoryService goodsCategoryService;
+	@Resource(name = "cardsCategoryServiceImpl")
+	private CardsCategoryService cardsCategoryService;
 
 	// 添加
 	public String add() {
@@ -116,13 +116,13 @@ public class NavigationAction extends BaseAdminAction {
 		this.articleCategoryTreeList = articleCategoryTreeList;
 	}
 
-	public List<GoodsCategory> getGoodsCategoryTreeList() {
-		goodsCategoryTreeList = goodsCategoryService.getGoodsCategoryTreeList();
-		return goodsCategoryTreeList;
+	public List<CardsCategory> getCardsCategoryTreeList() {
+		cardsCategoryTreeList = cardsCategoryService.getCardsCategoryTreeList();
+		return cardsCategoryTreeList;
 	}
 
-	public void setGoodsCategoryTree(List<GoodsCategory> goodsCategoryTreeList) {
-		this.goodsCategoryTreeList = goodsCategoryTreeList;
+	public void setCardsCategoryTree(List<CardsCategory> cardsCategoryTreeList) {
+		this.cardsCategoryTreeList = cardsCategoryTreeList;
 	}
 
 }

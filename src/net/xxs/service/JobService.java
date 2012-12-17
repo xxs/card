@@ -57,13 +57,13 @@ public interface JobService {
 	 * @param id
 	 *            商品ID
 	 */
-	public void buildGoodsContentHtml(String id);
+	public void buildCardsContentHtml(String id);
 	
 	/**
 	 * 生成商品内容HTML
 	 * 
 	 */
-	public void buildGoodsContentHtml();
+	public void buildCardsContentHtml();
 	
 	/**
 	 * 生成错误页HTML
@@ -88,6 +88,6 @@ public interface JobService {
 	 * @param htmlPath
 	 *            HTML路径
 	 */
-	public void deleteGoodsContentHtml(String htmlPath);
+	public void deleteCardsContentHtml(String htmlPath);
 
 }

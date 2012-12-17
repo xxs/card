@@ -9,7 +9,6 @@ import java.util.regex.Pattern;
 
 import javax.annotation.Resource;
 
-import net.xxs.entity.Area;
 import net.xxs.entity.Deposit;
 import net.xxs.entity.Deposit.DepositType;
 import net.xxs.entity.Member;
@@ -55,8 +54,6 @@ public class MemberAction extends BaseAdminAction {
 	private MemberRankService memberRankService;
 	@Resource(name = "memberAttributeServiceImpl")
 	private MemberAttributeService memberAttributeService;
-	@Resource(name = "areaServiceImpl")
-	private net.xxs.service.AreaService areaService;
 	@Resource(name = "depositServiceImpl")
 	private DepositService depositService;
 
@@ -161,16 +158,7 @@ public class MemberAction extends BaseAdminAction {
 			
 			if (systemAttributeType != null) {
 				if (StringUtils.isNotEmpty(memberAttributeValue)) {
-					if (systemAttributeType == SystemAttributeType.area) {
-						Area area = areaService.get(memberAttributeValue);
-						if (area == null) {
-							addActionError("请选择" + memberAttribute.getName() + "!");
-							return ERROR;
-						}
-						member.setMemberAttributeValue(memberAttribute, area);
-					} else {
 						member.setMemberAttributeValue(memberAttribute, memberAttributeValue);
-					}
 				}
 			} else if (attributeType != null) {
 				if (attributeType == AttributeType.checkbox) {
@@ -211,7 +199,6 @@ public class MemberAction extends BaseAdminAction {
 		member.setLoginIp(null);
 		member.setLoginDate(new Date());
 		member.setPasswordRecoverKey(null);
-		member.setFavoriteGoodsSet(null);
 		memberService.save(member);
 		logInfo = "添加会员: " + member.getUsername();
 		
@@ -284,16 +271,7 @@ public class MemberAction extends BaseAdminAction {
 			}
 			if (systemAttributeType != null) {
 				if (StringUtils.isNotEmpty(memberAttributeValue)) {
-					if (systemAttributeType == SystemAttributeType.area) {
-						Area area = areaService.get(memberAttributeValue);
-						if (area == null) {
-							addActionError("请选择" + memberAttribute.getName() + "!");
-							return ERROR;
-						}
-						member.setMemberAttributeValue(memberAttribute, area);
-					} else {
 						member.setMemberAttributeValue(memberAttribute, memberAttributeValue);
-					}
 				}
 			} else if (attributeType != null) {
 				if (attributeType == AttributeType.checkbox) {
@@ -331,7 +309,7 @@ public class MemberAction extends BaseAdminAction {
 		} else {
 			member.setPassword(StringUtil.md5(member.getPassword()));
 		}
-		BeanUtils.copyProperties(member, persistent, new String[] {"id", "createDate", "modifyDate", "username", "safeQuestion", "safeAnswer", "isAccountLocked", "loginFailureCount", "lockedDate", "registerIp", "loginIp", "loginDate", "passwordRecoverKey", "receiverSet", "favoriteGoodsSet", "inboxMessageSet", "outboxMessageSet", "orderSet", "depositSet", "goodsNotifySet" });
+		BeanUtils.copyProperties(member, persistent, new String[] {"id", "createDate", "modifyDate", "username", "safeQuestion", "safeAnswer", "isAccountLocked", "loginFailureCount", "lockedDate", "registerIp", "loginIp", "loginDate", "passwordRecoverKey", "receiverSet", "favoriteCardsSet", "inboxMessageSet", "outboxMessageSet", "orderSet", "depositSet", "cardsNotifySet" });
 		memberService.update(persistent);
 		logInfo = "编辑会员: " + persistent.getUsername();
 		

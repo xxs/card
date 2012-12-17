@@ -21,13 +21,11 @@
 		<!-- 后台登录 -->
 		<sec:intercept-url pattern="/admin/index.jsp" filters="none" />
 		<!-- 商品管理 -->
-		<sec:intercept-url pattern="/admin/goods!**" access="ROLE_GOODS" />
-		<!-- 到货通知 -->
-		<sec:intercept-url pattern="/admin/goods_notify!**" access="ROLE_GOODS_NOTIFY" />
+		<sec:intercept-url pattern="/admin/cards!**" access="ROLE_CARDS" />
 		<!-- 商品分类管理 -->
-		<sec:intercept-url pattern="/admin/goods_category!**" access="ROLE_GOODS_CATEGORY" />
+		<sec:intercept-url pattern="/admin/cards_category!**" access="ROLE_CARDS_CATEGORY" />
 		<!-- 商品类型管理 -->
-		<sec:intercept-url pattern="/admin/goods_type!**" access="ROLE_GOODS_TYPE" />
+		<sec:intercept-url pattern="/admin/cards_type!**" access="ROLE_CARDS_TYPE" />
 		<!-- 商品规格管理 -->
 		<sec:intercept-url pattern="/admin/specification!**" access="ROLE_SPECIFICATION" />
 		<!-- 商品品牌管理 -->
@@ -38,20 +36,12 @@
 		<sec:intercept-url pattern="/admin/withdraw!**" access="ROLE_WITHDRAW" />
 		<!-- 收款管理 -->
 		<sec:intercept-url pattern="/admin/payment!**" access="ROLE_PAYMENT" />
-		<!-- 退款管理 -->
-		<sec:intercept-url pattern="/admin/refund!**" access="ROLE_REFUND" />
-		<!-- 发货管理 -->
-		<sec:intercept-url pattern="/admin/shipping!**" access="ROLE_SHIPPING" />
-		<!-- 退货管理 -->
-		<sec:intercept-url pattern="/admin/reship!**" access="ROLE_RESHIP" />
 		<!-- 会员管理 -->
 		<sec:intercept-url pattern="/admin/member!**" access="ROLE_MEMBER" />
 		<!-- 会员等级管理 -->
 		<sec:intercept-url pattern="/admin/member_rank!**" access="ROLE_MEMBER_RANK" />
 		<!-- 会员注册项管理 -->
 		<sec:intercept-url pattern="/admin/member_attribute!**" access="ROLE_MEMBER_ATTRIBUTE" />
-		<!-- 商品评论管理 -->
-		<sec:intercept-url pattern="/admin/comment!**" access="ROLE_COMMENT" />
 		<!-- 在线留言管理 -->
 		<sec:intercept-url pattern="/admin/leave_message!**" access="ROLE_LEAVE_MESSAGE" />
 		<!-- 导航管理 -->
@@ -66,8 +56,6 @@
 		<sec:intercept-url pattern="/admin/page_template!**" access="ROLE_PAGE_TEMPLATE" />
 		<!-- 邮件模板管理 -->
 		<sec:intercept-url pattern="/admin/mail_template!**" access="ROLE_MAIL_TEMPLATE" />
-		<!-- 打印模板管理 -->
-		<sec:intercept-url pattern="/admin/print_template!**" access="ROLE_PRINT_TEMPLATE" />
 		<!-- 缓存管理 -->
 		<sec:intercept-url pattern="/admin/cache!**" access="ROLE_CACHE" />
 		<!-- 生成静态管理 -->
@@ -86,16 +74,6 @@
 		<sec:intercept-url pattern="/admin/instant_messaging!**" access="ROLE_INSTANT_MESSAGING" />
 		<!-- 支付方式管理 -->
 		<sec:intercept-url pattern="/admin/payment_config!**" access="ROLE_PAYMENT_CONFIG" />
-		<!-- 配送方式管理 -->
-		<sec:intercept-url pattern="/admin/delivery_type!**" access="ROLE_DELIVERY_TYPE" />
-		<!-- 地区管理 -->
-		<sec:intercept-url pattern="/admin/area!**" access="ROLE_AREA" />
-		<!-- 物流公司管理 -->
-		<sec:intercept-url pattern="/admin/delivery_corp!**" access="ROLE_DELIVERY_CORP" />
-		<!-- 发货点管理 -->
-		<sec:intercept-url pattern="/admin/delivery_center!**" access="ROLE_DELIVERY_CENTER" />
-		<!-- 快递单模板管理 -->
-		<sec:intercept-url pattern="/admin/delivery_template!**" access="ROLE_DELIVERY_TEMPLATE" />
 		<!-- 基础管理权限 -->
 		<sec:intercept-url pattern="/admin/**.action" access="ROLE_BASE" />
 	</sec:http>

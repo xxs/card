@@ -7,9 +7,9 @@ import javax.servlet.ServletContext;
 
 import magick.Magick;
 import net.xxs.entity.Article;
-import net.xxs.entity.Goods;
+import net.xxs.entity.Cards;
 import net.xxs.service.ArticleService;
-import net.xxs.service.GoodsService;
+import net.xxs.service.CardsService;
 import net.xxs.service.HtmlService;
 
 import org.springframework.context.ApplicationEvent;
@@ -33,8 +33,8 @@ public class InitializableApplicationListener implements ApplicationListener, Se
 	private HtmlService htmlService;
 	@Resource(name = "articleServiceImpl")
 	private ArticleService articleService;
-	@Resource(name = "goodsServiceImpl")
-	private GoodsService goodsService;
+	@Resource(name = "cardsServiceImpl")
+	private CardsService cardsService;
 	
 	public void setServletContext(ServletContext servletContext) {
 		this.servletContext = servletContext;
@@ -72,11 +72,11 @@ public class InitializableApplicationListener implements ApplicationListener, Se
 					}
 				}
 				
-				List<Goods> goodsList = goodsService.getAllList();
-				if (goodsList != null) {
-					for (int i = 0; i < goodsList.size(); i ++) {
-						Goods goods = goodsList.get(i);
-						htmlService.buildGoodsContentHtml(goods);
+				List<Cards> cardsList = cardsService.getAllList();
+				if (cardsList != null) {
+					for (int i = 0; i < cardsList.size(); i ++) {
+						Cards cards = cardsList.get(i);
+						htmlService.buildCardsContentHtml(cards);
 						if (i % 10 == 0) {
 							System.out.print("..");
 						}

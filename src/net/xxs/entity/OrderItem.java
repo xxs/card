@@ -31,7 +31,7 @@ public class OrderItem extends BaseEntity {
 	private BigDecimal productPrice;// 商品价格（面额）
 	private Integer productQuantity;// 商品数量
 	private Integer deliveryQuantity;// 发货数量
-	private String goodsHtmlPath;// 商品HTML静态文件路径
+	private String cardsHtmlPath;// 商品HTML静态文件路径
 	private String cardNum;//卡号
 	private String cardPwd;//密码
 	
@@ -66,12 +66,12 @@ public class OrderItem extends BaseEntity {
 	}
 	
 	@Column(nullable = false, updatable = false)
-	public String getGoodsHtmlPath() {
-		return goodsHtmlPath;
+	public String getCardsHtmlPath() {
+		return cardsHtmlPath;
 	}
 
-	public void setGoodsHtmlPath(String goodsHtmlPath) {
-		this.goodsHtmlPath = goodsHtmlPath;
+	public void setCardsHtmlPath(String cardsHtmlPath) {
+		this.cardsHtmlPath = cardsHtmlPath;
 	}
 
 	@Column(nullable = false)

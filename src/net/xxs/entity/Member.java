@@ -12,7 +12,6 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.JoinColumn;
-import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.OrderBy;
@@ -93,15 +92,11 @@ public class Member extends BaseEntity {
 	private MemberRank memberRank;// 会员等级
 	
 	private Set<Withdraw> withdrawSet = new HashSet<Withdraw>();// 提现申请
-	private Set<Receiver> receiverSet = new HashSet<Receiver>();// 收货地址
-	private Set<Goods> favoriteGoodsSet = new HashSet<Goods>();// 收藏夹商品
-	private Set<CartItem> cartItemSet = new HashSet<CartItem>();// 购物车项
 	private Set<Message> inboxMessageSet = new HashSet<Message>();// 收件箱消息
 	private Set<Message> outboxMessageSet = new HashSet<Message>();// 发件箱消息
 	private Set<Order> orderSet = new HashSet<Order>();// 订单
 	private Set<Payment> paymentSet = new HashSet<Payment>();// 支付
 	private Set<Deposit> depositSet = new HashSet<Deposit>();// 预存款
-	private Set<GoodsNotify> goodsNotifySet = new HashSet<GoodsNotify>();// 到货通知
 
 	@Column(nullable = false, updatable = false, unique = true)
 	public String getUsername() {
@@ -475,37 +470,6 @@ public class Member extends BaseEntity {
 		this.memberRank = memberRank;
 	}
 
-	@OneToMany(mappedBy = "member", fetch = FetchType.LAZY, cascade = {CascadeType.REMOVE})
-	@OrderBy("createDate asc")
-	public Set<Receiver> getReceiverSet() {
-		return receiverSet;
-	}
-
-	public void setReceiverSet(Set<Receiver> receiverSet) {
-		this.receiverSet = receiverSet;
-	}
-	
-	@ManyToMany(fetch = FetchType.LAZY)
-	@OrderBy("name desc")
-	@ForeignKey(name = "fk_member_favorite_goods_set")
-	public Set<Goods> getFavoriteGoodsSet() {
-		return favoriteGoodsSet;
-	}
-
-	public void setFavoriteGoodsSet(Set<Goods> favoriteGoodsSet) {
-		this.favoriteGoodsSet = favoriteGoodsSet;
-	}
-
-	@OneToMany(mappedBy = "member", fetch = FetchType.LAZY, cascade = {CascadeType.REMOVE})
-	@OrderBy("createDate desc")
-	public Set<CartItem> getCartItemSet() {
-		return cartItemSet;
-	}
-
-	public void setCartItemSet(Set<CartItem> cartItemSet) {
-		this.cartItemSet = cartItemSet;
-	}
-
 	@OneToMany(mappedBy = "toMember", fetch = FetchType.LAZY, cascade = {CascadeType.REMOVE})
 	@OrderBy("createDate asc")
 	public Set<Message> getInboxMessageSet() {
@@ -566,35 +530,6 @@ public class Member extends BaseEntity {
 		this.depositSet = depositSet;
 	}
 	
-	@OneToMany(mappedBy = "member", fetch = FetchType.LAZY, cascade = {CascadeType.REMOVE})
-	@OrderBy("createDate asc")
-	public Set<GoodsNotify> getGoodsNotifySet() {
-		return goodsNotifySet;
-	}
-
-	public void setGoodsNotifySet(Set<GoodsNotify> goodsNotifySet) {
-		this.goodsNotifySet = goodsNotifySet;
-	}
-	
-	// 获取地区
-	@Transient
-	public Area getArea() {
-		if (StringUtils.isEmpty(areaStore)) {
-			return null;
-		}
-		return JsonUtil.toObject(areaStore, Area.class);
-	}
-	
-	// 设置地区
-	@Transient
-	public void setArea(Area area) {
-		if (area == null) {
-			areaStore = null;
-			return;
-		}
-		areaStore = JsonUtil.toJson(area);
-	}
-	
 	// 获取会员注册项值
 	@Transient
 	public Object getMemberAttributeValue(MemberAttribute memberAttribute) {
@@ -612,9 +547,6 @@ public class Member extends BaseEntity {
 			}
 			if (systemAttributeType == SystemAttributeType.birth) {
 				return birth;
-			}
-			if (systemAttributeType == SystemAttributeType.area) {
-				return getArea();
 			}
 			if (systemAttributeType == SystemAttributeType.address) {
 				return address;
@@ -665,13 +597,7 @@ public class Member extends BaseEntity {
 				} catch (ParseException e) {
 					throw new IllegalArgumentException("memberAttributeValue type error");
 				}
-			} else if (systemAttributeType == SystemAttributeType.area) {
-				if (memberAttributeValue instanceof Area) {
-					setArea((Area) memberAttributeValue);
-				} else {
-					throw new IllegalArgumentException("memberAttributeValue type error");
-				}
-			} else if (systemAttributeType == SystemAttributeType.address) {
+			}  else if (systemAttributeType == SystemAttributeType.address) {
 				address = memberAttributeValue.toString();
 			} else if (systemAttributeType == SystemAttributeType.zipCode) {
 				zipCode = memberAttributeValue.toString();

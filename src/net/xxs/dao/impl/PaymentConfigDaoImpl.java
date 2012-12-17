@@ -7,7 +7,6 @@ import net.xxs.dao.PaymentConfigDao;
 import net.xxs.entity.Order;
 import net.xxs.entity.Payment;
 import net.xxs.entity.PaymentConfig;
-import net.xxs.entity.Refund;
 import net.xxs.entity.PaymentConfig.PaymentConfigType;
 
 import org.springframework.stereotype.Repository;
@@ -45,13 +44,6 @@ public class PaymentConfigDaoImpl extends BaseDaoImpl<PaymentConfig, String> imp
 		if (paymentSet != null) {
 			for (Payment payment : paymentSet) {
 				payment.setPaymentConfig(null);
-			}
-		}
-		
-		Set<Refund> refundSet = paymentConfig.getRefundSet();
-		if (refundSet != null) {
-			for (Refund refund : refundSet) {
-				refund.setPaymentConfig(null);
 			}
 		}
 		

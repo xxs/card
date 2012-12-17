@@ -38,7 +38,6 @@ public class Deposit extends BaseEntity {
 	
 	private Member member;// 会员
 	private Payment payment;// 收款
-	private Refund refund;// 退款
 	
 	@Enumerated
 	@Column(nullable = false, updatable = false)
@@ -120,16 +119,6 @@ public class Deposit extends BaseEntity {
 
 	public void setPayment(Payment payment) {
 		this.payment = payment;
-	}
-
-	@OneToOne(mappedBy = "deposit", fetch = FetchType.LAZY, cascade = {CascadeType.REMOVE})
-	@ForeignKey(name = "fk_deposit_refund")
-	public Refund getRefund() {
-		return refund;
-	}
-
-	public void setRefund(Refund refund) {
-		this.refund = refund;
 	}
 
 }

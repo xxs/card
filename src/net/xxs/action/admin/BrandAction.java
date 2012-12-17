@@ -55,7 +55,7 @@ public class BrandAction extends BaseAdminAction {
 	public String delete() {
 		brandService.delete(ids);
 		
-		cacheService.flushGoodsListPageCache(getRequest());
+		cacheService.flushCardsListPageCache(getRequest());
 		return ajax(Status.success, "删除成功!");
 	}
 
@@ -97,11 +97,11 @@ public class BrandAction extends BaseAdminAction {
 			String logoPath = ImageUtil.copyImageFile(getServletContext(), logo);
 			persistent.setLogoPath(logoPath);
 		}
-		BeanUtils.copyProperties(brand, persistent, new String[]{"id", "createDate", "modifyDate", "logoPath", "goodsSet", "goodsTypeSet"});
+		BeanUtils.copyProperties(brand, persistent, new String[]{"id", "createDate", "modifyDate", "logoPath", "cardsSet", "cardsTypeSet"});
 		brandService.update(persistent);
 		
 		redirectUrl = "brand!list.action";
-		cacheService.flushGoodsListPageCache(getRequest());
+		cacheService.flushCardsListPageCache(getRequest());
 		return SUCCESS;
 	}
 

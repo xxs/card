@@ -4,10 +4,8 @@ import java.util.List;
 import java.util.Set;
 
 import net.xxs.dao.ProductDao;
-import net.xxs.entity.DeliveryItem;
 import net.xxs.entity.OrderItem;
 import net.xxs.entity.Product;
-import net.xxs.util.SettingUtil;
 
 import org.springframework.stereotype.Repository;
 
@@ -31,15 +29,10 @@ public class ProductDaoImpl extends BaseDaoImpl<Product, String> implements Prod
 	@SuppressWarnings("unchecked")
 	public List<Product> getSiblingsProductList(String productId) {
 		Product product = super.load(productId);
-		String hql = "from Product as product where product.goods = :goods";
-		return getSession().createQuery(hql).setParameter("goods", product.getGoods()).list();
+		String hql = "from Product as product where product.cards = :cards";
+		return getSession().createQuery(hql).setParameter("cards", product.getCards()).list();
 	}
 	
-	public Long getStoreAlertCount() {
-		String hql = "select count(*) from Product as product where product.isMarketable = :isMarketable and product.store is not null and product.store - product.freezeStore <= :freezeStore";
-		return (Long) getSession().createQuery(hql).setParameter("isMarketable", true).setParameter("freezeStore", SettingUtil.getSetting().getStoreAlertCount()).uniqueResult();
-	}
-
 	// 关联处理
 	@Override
 	public void delete(Product product) {
@@ -47,13 +40,6 @@ public class ProductDaoImpl extends BaseDaoImpl<Product, String> implements Prod
 		if (orderItemSet != null) {
 			for (OrderItem orderItem : orderItemSet) {
 				orderItem.setProduct(null);
-			}
-		}
-		
-		Set<DeliveryItem> deliveryItemSet = product.getDeliveryItemSet();
-		if (deliveryItemSet != null) {
-			for (DeliveryItem deliveryItem : deliveryItemSet) {
-				deliveryItem.setProduct(null);
 			}
 		}
 		

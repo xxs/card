@@ -2,7 +2,7 @@ package net.xxs.service;
 
 import java.util.Date;
 
-import net.xxs.entity.Goods;
+import net.xxs.entity.Cards;
 import net.xxs.entity.Member;
 
 /**
@@ -62,9 +62,9 @@ public interface MemberService extends BaseService<Member, String> {
 	 * @param member
 	 *            会员
 	 *            
-	 * @param goods
+	 * @param cards
 	 *            商品
 	 */
-	public boolean isPurchased(Member member, Goods goods);
+	public boolean isPurchased(Member member, Cards cards);
 
 }

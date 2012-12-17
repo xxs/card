@@ -25,7 +25,7 @@ import org.hibernate.annotations.ForeignKey;
  */
 
 @Entity
-@JsonIgnoreProperties(value = {"hibernateLazyInitializer", "handler", "createDate", "modifyDate", "specificationValueStore", "goodsSet", "json"})
+@JsonIgnoreProperties(value = {"hibernateLazyInitializer", "handler", "createDate", "modifyDate", "specificationValueStore", "cardsSet", "json"})
 public class Specification extends BaseEntity {
 
 	private static final long serialVersionUID = -6346775052811140926L;
@@ -41,7 +41,7 @@ public class Specification extends BaseEntity {
 	private String specificationValueStore;// 商品规格值存储
 	private Integer orderList;// 排序
 	
-	private Set<Goods> goodsSet = new HashSet<Goods>();// 商品
+	private Set<Cards> cardsSet = new HashSet<Cards>();// 商品
 	
 	@Column(nullable = false)
 	public String getName() {
@@ -88,13 +88,13 @@ public class Specification extends BaseEntity {
 	}
 
 	@ManyToMany(mappedBy = "specificationSet", fetch = FetchType.LAZY)
-	@ForeignKey(name = "fk_specification_goods_set")
-	public Set<Goods> getGoodsSet() {
-		return goodsSet;
+	@ForeignKey(name = "fk_specification_cards_set")
+	public Set<Cards> getCardsSet() {
+		return cardsSet;
 	}
 
-	public void setGoodsSet(Set<Goods> goodsSet) {
-		this.goodsSet = goodsSet;
+	public void setCardsSet(Set<Cards> cardsSet) {
+		this.cardsSet = cardsSet;
 	}
 	
 	// 获取商品规格值

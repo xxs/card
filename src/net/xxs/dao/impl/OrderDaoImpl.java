@@ -57,28 +57,28 @@ public class OrderDaoImpl extends BaseDaoImpl<Order, String> implements OrderDao
 	// 保存对象时,自动更新商品ID集合
 	@Override
 	public String save(Order order) {
-		List<String> goodsIdList = new ArrayList<String>();
+		List<String> cardsIdList = new ArrayList<String>();
 		Set<OrderItem> orderItemSet = order.getOrderItemSet();
 		if (orderItemSet != null) {
 			for (OrderItem orderItem : orderItemSet) {
-				goodsIdList.add(orderItem.getProduct().getGoods().getId());
+				cardsIdList.add(orderItem.getProduct().getCards().getId());
 			}
 		}
-		order.setGoodsIdList(goodsIdList);
+		order.setCardsIdList(cardsIdList);
 		return super.save(order);
 	}
 
 	// 更新对象时,自动更新商品ID集合
 	@Override
 	public void update(Order order) {
-		List<String> goodsIdList = new ArrayList<String>();
+		List<String> cardsIdList = new ArrayList<String>();
 		Set<OrderItem> orderItemSet = order.getOrderItemSet();
 		if (orderItemSet != null) {
 			for (OrderItem orderItem : orderItemSet) {
-				goodsIdList.add(orderItem.getProduct().getGoods().getId());
+				cardsIdList.add(orderItem.getProduct().getCards().getId());
 			}
 		}
-		order.setGoodsIdList(goodsIdList);
+		order.setCardsIdList(cardsIdList);
 		super.update(order);
 	}
 	

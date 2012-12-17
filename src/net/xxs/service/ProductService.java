@@ -20,11 +20,4 @@ public interface ProductService extends BaseService<Product, String> {
 	 */
 	public boolean isUniqueByProductSn(String oldProductSn, String newProductSn);
 	
-	/**
-	 * 获取货品库存报警数
-	 *            
-	 * @return 货品库存报警数
-	 */
-	public Long getStoreAlertCount();
-
 }

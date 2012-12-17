@@ -51,7 +51,6 @@ public class PaymentConfig extends BaseEntity {
 	private Set<PaymentDiscount> paymentDiscountSet = new HashSet<PaymentDiscount>();// 费率设置
 	private Set<Order> orderSet = new HashSet<Order>();// 订单
 	private Set<Payment> paymentSet = new HashSet<Payment>();// 支付
-	private Set<Refund> refundSet = new HashSet<Refund>();// 退款
 	
 	@Enumerated
 	@Column(nullable = false, updatable = false)
@@ -151,15 +150,6 @@ public class PaymentConfig extends BaseEntity {
 		this.paymentSet = paymentSet;
 	}
 
-	@OneToMany(mappedBy = "paymentConfig", fetch = FetchType.LAZY)
-	public Set<Refund> getRefundSet() {
-		return refundSet;
-	}
-
-	public void setRefundSet(Set<Refund> refundSet) {
-		this.refundSet = refundSet;
-	}
-	
 	// 保存处理
 	@Override
 	@Transient

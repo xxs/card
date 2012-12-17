@@ -13,7 +13,6 @@ import javax.servlet.ServletContext;
 
 import net.xxs.bean.MailTemplateConfig;
 import net.xxs.bean.Setting;
-import net.xxs.entity.GoodsNotify;
 import net.xxs.entity.Member;
 import net.xxs.service.MailService;
 import net.xxs.util.SettingUtil;
@@ -140,15 +139,6 @@ public class MailServiceImpl implements MailService, ServletContextAware {
 		String subject = mailTemplateConfig.getSubject();
 		String templatePath = mailTemplateConfig.getTemplatePath();
 		sendMail(subject, templatePath, data, member.getEmail());
-	}
-	
-	public void sendGoodsNotifyMail(GoodsNotify goodsNotify) {
-		Map<String, Object> data = getCommonData();
-		data.put("goodsNotify", goodsNotify);
-		MailTemplateConfig mailTemplateConfig = TemplateConfigUtil.getMailTemplateConfig(MailTemplateConfig.GOODS_NOTIFY);
-		String subject = mailTemplateConfig.getSubject();
-		String templatePath = mailTemplateConfig.getTemplatePath();
-		sendMail(subject, templatePath, data, goodsNotify.getEmail());
 	}
 	
 	/**

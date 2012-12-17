@@ -7,7 +7,7 @@ import javax.annotation.Resource;
 
 import net.xxs.dao.MemberDao;
 import net.xxs.dao.OrderDao;
-import net.xxs.entity.Goods;
+import net.xxs.entity.Cards;
 import net.xxs.entity.Member;
 import net.xxs.entity.Order;
 import net.xxs.entity.Order.OrderStatus;
@@ -68,13 +68,13 @@ public class MemberServiceImpl extends BaseServiceImpl<Member, String> implement
 	}
 	
 	@Transactional(readOnly = true)
-	public boolean isPurchased(Member member, Goods goods) {
+	public boolean isPurchased(Member member, Cards cards) {
 		List<Order> orderList = orderDao.getOrderList(member, OrderStatus.completed);
 		for (Order order : orderList) {
-			List<String> goodsIdList = order.getGoodsIdList();
-			if (goodsIdList != null) {
-				for (String goodsId : goodsIdList) {
-					if (StringUtils.equals(goods.getId(), goodsId)) {
+			List<String> cardsIdList = order.getCardsIdList();
+			if (cardsIdList != null) {
+				for (String cardsId : cardsIdList) {
+					if (StringUtils.equals(cards.getId(), cardsId)) {
 						return true;
 					}
 				}

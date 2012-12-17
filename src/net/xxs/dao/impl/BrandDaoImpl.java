@@ -4,8 +4,8 @@ import java.util.Set;
 
 import net.xxs.dao.BrandDao;
 import net.xxs.entity.Brand;
-import net.xxs.entity.Goods;
-import net.xxs.entity.GoodsType;
+import net.xxs.entity.Cards;
+import net.xxs.entity.CardsType;
 
 import org.springframework.stereotype.Repository;
 
@@ -19,17 +19,17 @@ public class BrandDaoImpl extends BaseDaoImpl<Brand, String> implements BrandDao
 	// 关联处理
 	@Override
 	public void delete(Brand brand) {
-		Set<Goods> goodsSet = brand.getGoodsSet();
-		if (goodsSet != null) {
-			for (Goods goods : goodsSet) {
-				goods.setBrand(null);
+		Set<Cards> cardsSet = brand.getCardsSet();
+		if (cardsSet != null) {
+			for (Cards cards : cardsSet) {
+				cards.setBrand(null);
 			}
 		}
 		
-		Set<GoodsType> goodsTypeSet = brand.getGoodsTypeSet();
-		if (goodsTypeSet != null) {
-			for (GoodsType goodsType : goodsTypeSet) {
-				goodsType.getBrandSet().remove(brand);
+		Set<CardsType> cardsTypeSet = brand.getCardsTypeSet();
+		if (cardsTypeSet != null) {
+			for (CardsType cardsType : cardsTypeSet) {
+				cardsType.getBrandSet().remove(brand);
 			}
 		}
 		

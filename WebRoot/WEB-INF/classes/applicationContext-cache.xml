@@ -16,9 +16,9 @@
 		<oscache:caching id="articleCaching" cronExpression="0 1 * * *" refreshPeriod="86400" groups="article" />
 		<oscache:caching id="deliveryTypeCaching" cronExpression="0 1 * * *" refreshPeriod="86400" groups="deliveryType" />
 		<oscache:caching id="friendLinkCaching" cronExpression="0 1 * * *" refreshPeriod="86400" groups="friendLink" />
-		<oscache:caching id="goodsAttributeCaching" cronExpression="0 1 * * *" refreshPeriod="86400" groups="goodsAttribute" />
-		<oscache:caching id="goodsCategoryCaching" cronExpression="0 1 * * *" refreshPeriod="86400" groups="goodsCategory" />
-		<oscache:caching id="goodsCaching" cronExpression="0 1 * * *" refreshPeriod="86400" groups="goods" />
+		<oscache:caching id="cardsAttributeCaching" cronExpression="0 1 * * *" refreshPeriod="86400" groups="cardsAttribute" />
+		<oscache:caching id="cardsCategoryCaching" cronExpression="0 1 * * *" refreshPeriod="86400" groups="cardsCategory" />
+		<oscache:caching id="cardsCaching" cronExpression="0 1 * * *" refreshPeriod="86400" groups="cards" />
 		<oscache:caching id="memberAttributeCaching" cronExpression="0 1 * * *" refreshPeriod="86400" groups="memberAttribute" />
 		<oscache:caching id="memberRankCaching" cronExpression="0 1 * * *" refreshPeriod="86400" groups="memberRank" />
 		<oscache:caching id="navigationCaching" cronExpression="0 1 * * *" refreshPeriod="86400" groups="navigation" />
@@ -29,9 +29,9 @@
 		<oscache:flushing id="articleFlushing" groups="article" />
 		<oscache:flushing id="deliveryTypeFlushing" groups="deliveryType" />
 		<oscache:flushing id="friendLinkFlushing" groups="friendLink" />
-		<oscache:flushing id="goodsAttributeFlushing" groups="goodsAttribute" />
-		<oscache:flushing id="goodsCategoryFlushing" groups="goodsCategory" />
-		<oscache:flushing id="goodsFlushing" groups="goods" />
+		<oscache:flushing id="cardsAttributeFlushing" groups="cardsAttribute" />
+		<oscache:flushing id="cardsCategoryFlushing" groups="cardsCategory" />
+		<oscache:flushing id="cardsFlushing" groups="cards" />
 		<oscache:flushing id="memberAttributeFlushing" groups="memberAttribute" />
 		<oscache:flushing id="memberRankFlushing" groups="memberRank" />
 		<oscache:flushing id="navigationFlushing" groups="navigation" />

@@ -10,8 +10,8 @@
 	
 	<rule>
 		<note>商品分类</note>
-		<from>^/shop/goods_list/(\w+).htm$</from>
-		<to type="forward">/shop/goods!list.action?sign=$1</to>
+		<from>^/shop/cards_list/(\w+).htm$</from>
+		<to type="forward">/shop/cards!list.action?sign=$1</to>
 	</rule>
 	
 	<rule>

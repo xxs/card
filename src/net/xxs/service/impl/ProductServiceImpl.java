@@ -5,9 +5,9 @@ import java.util.List;
 import javax.annotation.Resource;
 
 import net.xxs.bean.SpecificationValue;
-import net.xxs.dao.GoodsDao;
+import net.xxs.dao.CardsDao;
 import net.xxs.dao.ProductDao;
-import net.xxs.entity.Goods;
+import net.xxs.entity.Cards;
 import net.xxs.entity.Product;
 import net.xxs.service.ProductService;
 
@@ -24,8 +24,8 @@ public class ProductServiceImpl extends BaseServiceImpl<Product, String> impleme
 	
 	@Resource(name = "productDaoImpl")
 	private ProductDao productDao;
-	@Resource(name = "goodsDaoImpl")
-	private GoodsDao goodsDao;
+	@Resource(name = "cardsDaoImpl")
+	private CardsDao cardsDao;
 
 	@Resource(name = "productDaoImpl")
 	public void setBaseDao(ProductDao productDao) {
@@ -50,17 +50,12 @@ public class ProductServiceImpl extends BaseServiceImpl<Product, String> impleme
 		}
 	}
 	
-	@Transactional(readOnly = true)
-	public Long getStoreAlertCount() {
-		return productDao.getStoreAlertCount();
-	}
-	
 	// 处理货品名称、货品默认、商品销售价、商品市场价、商品重量、商品库存、商品被占用库存数
 	@Override
 	public String save(Product product) {
-		Goods goods = product.getGoods();
-		if (goods.getIsSpecificationEnabled()) {
-			StringBuffer productName = new StringBuffer(goods.getName());
+		Cards cards = product.getCards();
+		if (cards.getIsSpecificationEnabled()) {
+			StringBuffer productName = new StringBuffer(cards.getName());
 			List<SpecificationValue> specificationValueList = product.getSpecificationValueList();
 			if (specificationValueList != null) {
 				productName.append(" [");
@@ -71,54 +66,21 @@ public class ProductServiceImpl extends BaseServiceImpl<Product, String> impleme
 				productName.append("]");
 			}
 			product.setName(productName.toString());
-			product.setFreezeStore(0);
 		} else {
-			product.setName(goods.getName());
+			product.setName(cards.getName());
 			product.setIsDefault(true);
-			product.setIsMarketable(goods.getIsMarketable());
-			product.setFreezeStore(0);
+			product.setIsMarketable(cards.getIsMarketable());
 		}
 		String id = productDao.save(product);
 		
-		if (goods.getIsSpecificationEnabled()) {
+		if (cards.getIsSpecificationEnabled()) {
 			if (product.getIsDefault()) {
-				goods.setPrice(product.getPrice());
-				goods.setCost(product.getCost());
-				goods.setMarketPrice(product.getMarketPrice());
-				goods.setWeight(product.getWeight());
-			}
-			
-			Integer goodsStore = 0;
-			Integer goodsFreezeStore = 0;
-			Boolean hasProductMarketable = false;
-			List<Product> productList = productDao.getSiblingsProductList(id);
-			for (Product p : productList) {
-				if (goodsStore != null) {
-					if (p.getStore() != null) {
-						goodsStore += p.getStore();
-					} else {
-						goodsStore = null;
-					}
-				}
-				goodsFreezeStore += p.getFreezeStore();
-				if (p.getIsMarketable()) {
-					hasProductMarketable = true;
-				}
-			}
-			goods.setStore(goodsStore);
-			goods.setFreezeStore(goodsFreezeStore);
-			if (!hasProductMarketable) {
-				goods.setIsMarketable(false);
+				cards.setPrice(product.getPrice());
 			}
 		} else {
-			goods.setPrice(product.getPrice());
-			goods.setCost(product.getCost());
-			goods.setMarketPrice(product.getMarketPrice());
-			goods.setWeight(product.getWeight());
-			goods.setStore(product.getStore());
-			goods.setFreezeStore(product.getFreezeStore());
+			cards.setPrice(product.getPrice());
 		}
-		goodsDao.update(goods);
+		cardsDao.update(cards);
 		
 		return id;
 	}
@@ -126,9 +88,9 @@ public class ProductServiceImpl extends BaseServiceImpl<Product, String> impleme
 	// 处理货品名称、货品默认、商品销售价、商品市场价、商品重量、商品库存、商品被占用库存数
 	@Override
 	public void update(Product product) {
-		Goods goods = product.getGoods();
-		if (goods.getIsSpecificationEnabled()) {
-			StringBuffer productName = new StringBuffer(goods.getName());
+		Cards cards = product.getCards();
+		if (cards.getIsSpecificationEnabled()) {
+			StringBuffer productName = new StringBuffer(cards.getName());
 			List<SpecificationValue> specificationValueList = product.getSpecificationValueList();
 			if (specificationValueList != null) {
 				productName.append(" [");
@@ -139,58 +101,21 @@ public class ProductServiceImpl extends BaseServiceImpl<Product, String> impleme
 				productName.append("]");
 			}
 			product.setName(productName.toString());
-			if (product.getStore() == null) {
-				product.setFreezeStore(0);
-			}
 		} else {
-			product.setName(goods.getName());
+			product.setName(cards.getName());
 			product.setIsDefault(true);
-			product.setIsMarketable(goods.getIsMarketable());
-			if (product.getStore() == null) {
-				product.setFreezeStore(0);
-			}
+			product.setIsMarketable(cards.getIsMarketable());
 		}
 		productDao.update(product);
 		
-		if (goods.getIsSpecificationEnabled()) {
+		if (cards.getIsSpecificationEnabled()) {
 			if (product.getIsDefault()) {
-				goods.setPrice(product.getPrice());
-				goods.setCost(product.getCost());
-				goods.setMarketPrice(product.getMarketPrice());
-				goods.setWeight(product.getWeight());
-			}
-			
-			Integer goodsStore = 0;
-			Integer goodsFreezeStore = 0;
-			Boolean hasProductMarketable = false;
-			List<Product> productList = productDao.getSiblingsProductList(product.getId());
-			for (Product p : productList) {
-				if (goodsStore != null) {
-					if (p.getStore() != null) {
-						goodsStore += p.getStore();
-					} else {
-						goodsStore = null;
-					}
-				}
-				goodsFreezeStore += p.getFreezeStore();
-				if (p.getIsMarketable()) {
-					hasProductMarketable = true;
-				}
-			}
-			goods.setStore(goodsStore);
-			goods.setFreezeStore(goodsFreezeStore);
-			if (!hasProductMarketable) {
-				goods.setIsMarketable(false);
+				cards.setPrice(product.getPrice());
 			}
 		} else {
-			goods.setPrice(product.getPrice());
-			goods.setCost(product.getCost());
-			goods.setMarketPrice(product.getMarketPrice());
-			goods.setWeight(product.getWeight());
-			goods.setStore(product.getStore());
-			goods.setFreezeStore(product.getFreezeStore());
+			cards.setPrice(product.getPrice());
 		}
-		goodsDao.update(goods);
+		cardsDao.update(cards);
 	}
 
 }

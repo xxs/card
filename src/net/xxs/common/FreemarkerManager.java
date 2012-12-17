@@ -5,12 +5,11 @@ import javax.servlet.ServletContext;
 import net.xxs.directive.ArticleCategoryListDirective;
 import net.xxs.directive.ArticleCategoryTreeDirective;
 import net.xxs.directive.ArticleListDirective;
+import net.xxs.directive.CardsCategoryListDirective;
+import net.xxs.directive.CardsCategoryTreeDirective;
+import net.xxs.directive.CardsListDirective;
 import net.xxs.directive.CheckboxDirective;
-import net.xxs.directive.CommentListDirective;
 import net.xxs.directive.FriendLinkListDirective;
-import net.xxs.directive.GoodsCategoryListDirective;
-import net.xxs.directive.GoodsCategoryTreeDirective;
-import net.xxs.directive.GoodsListDirective;
 import net.xxs.directive.InstantMessagingListDirective;
 import net.xxs.directive.NavigationListDirective;
 import net.xxs.directive.PaginationDirective;
@@ -32,7 +31,6 @@ public class FreemarkerManager extends org.apache.struts2.views.freemarker.Freem
 			PaymentResultMethod paymentResultMethod = (PaymentResultMethod) SpringUtil.getBean("paymentResultMethod");
 			CheckboxDirective checkboxDirective = (CheckboxDirective) SpringUtil.getBean("checkboxDirective");
 			PaginationDirective paginationDirective = (PaginationDirective) SpringUtil.getBean("paginationDirective");
-			CommentListDirective commentListDirective = (CommentListDirective) SpringUtil.getBean("commentListDirective");
 			NavigationListDirective navigationListDirective = (NavigationListDirective) SpringUtil.getBean("navigationListDirective");
 			PaymentDiscountListDirective paymentDiscountListDirective = (PaymentDiscountListDirective) SpringUtil.getBean("paymentDiscountListDirective");
 			FriendLinkListDirective friendLinkListDirective = (FriendLinkListDirective) SpringUtil.getBean("friendLinkListDirective");
@@ -40,15 +38,14 @@ public class FreemarkerManager extends org.apache.struts2.views.freemarker.Freem
 			ArticleCategoryListDirective articleCategoryListDirective = (ArticleCategoryListDirective) SpringUtil.getBean("articleCategoryListDirective");
 			ArticleCategoryTreeDirective articleCategoryTreeDirective = (ArticleCategoryTreeDirective) SpringUtil.getBean("articleCategoryTreeDirective");
 			ArticleListDirective articleListDirective = (ArticleListDirective) SpringUtil.getBean("articleListDirective");
-			GoodsCategoryListDirective goodsCategoryListDirective = (GoodsCategoryListDirective) SpringUtil.getBean("goodsCategoryListDirective");
-			GoodsCategoryTreeDirective goodsCategoryTreeDirective = (GoodsCategoryTreeDirective) SpringUtil.getBean("goodsCategoryTreeDirective");
-			GoodsListDirective goodsListDirective = (GoodsListDirective) SpringUtil.getBean("goodsListDirective");
+			CardsCategoryListDirective cardsCategoryListDirective = (CardsCategoryListDirective) SpringUtil.getBean("cardsCategoryListDirective");
+			CardsCategoryTreeDirective cardsCategoryTreeDirective = (CardsCategoryTreeDirective) SpringUtil.getBean("cardsCategoryTreeDirective");
+			CardsListDirective cardsListDirective = (CardsListDirective) SpringUtil.getBean("cardsListDirective");
 			
 			config.setSharedVariable(PaymentResultMethod.TAG_NAME, paymentResultMethod);
 			config.setSharedVariable(SubstringMethod.TAG_NAME, substringMethod);
 			config.setSharedVariable(CheckboxDirective.TAG_NAME, checkboxDirective);
 			config.setSharedVariable(PaginationDirective.TAG_NAME, paginationDirective);
-			config.setSharedVariable(CommentListDirective.TAG_NAME, commentListDirective);
 			config.setSharedVariable(NavigationListDirective.TAG_NAME, navigationListDirective);
 			config.setSharedVariable(PaymentDiscountListDirective.TAG_NAME, paymentDiscountListDirective);
 			config.setSharedVariable(FriendLinkListDirective.TAG_NAME, friendLinkListDirective);
@@ -56,9 +53,9 @@ public class FreemarkerManager extends org.apache.struts2.views.freemarker.Freem
 			config.setSharedVariable(ArticleCategoryListDirective.TAG_NAME, articleCategoryListDirective);
 			config.setSharedVariable(ArticleCategoryTreeDirective.TAG_NAME, articleCategoryTreeDirective);
 			config.setSharedVariable(ArticleListDirective.TAG_NAME, articleListDirective);
-			config.setSharedVariable(GoodsCategoryListDirective.TAG_NAME, goodsCategoryListDirective);
-			config.setSharedVariable(GoodsCategoryTreeDirective.TAG_NAME, goodsCategoryTreeDirective);
-			config.setSharedVariable(GoodsListDirective.TAG_NAME, goodsListDirective);
+			config.setSharedVariable(CardsCategoryListDirective.TAG_NAME, cardsCategoryListDirective);
+			config.setSharedVariable(CardsCategoryTreeDirective.TAG_NAME, cardsCategoryTreeDirective);
+			config.setSharedVariable(CardsListDirective.TAG_NAME, cardsListDirective);
 			
 			servletContext.setAttribute(CONFIG_SERVLET_CONTEXT_KEY, config);
 		}

@@ -3,7 +3,7 @@ package net.xxs.service;
 import java.util.Map;
 
 import net.xxs.entity.Article;
-import net.xxs.entity.Goods;
+import net.xxs.entity.Cards;
 
 /**
  * Service接口 - 生成静态
@@ -84,29 +84,21 @@ public interface HtmlService {
 	 * @param id
 	 *            商品ID
 	 */
-	public void buildGoodsContentHtml(String id);
+	public void buildCardsContentHtml(String id);
 	
 	/**
 	 * 根据商品生成商品内容HTML
 	 * 
-	 * @param goods
+	 * @param cards
 	 *            商品
 	 */
-	public void buildGoodsContentHtml(Goods goods);
+	public void buildCardsContentHtml(Cards cards);
 	
 	/**
 	 * 生成所有商品内容HTML
 	 * 
 	 */
-	public void buildGoodsContentHtml();
-	
-	/**
-	 * 根据商品评论ID生成商品内容HTML
-	 * 
-	 * @param id
-	 *            商品评论ID
-	 */
-	public void buildCommentGoodsContentHtml(String id);
+	public void buildCardsContentHtml();
 	
 	/**
 	 * 生成错误页HTML
@@ -150,6 +142,6 @@ public interface HtmlService {
 	 * @param htmlPath
 	 *            HTML路径
 	 */
-	public void deleteGoodsContentHtml(String htmlPath);
+	public void deleteCardsContentHtml(String htmlPath);
 	
 }

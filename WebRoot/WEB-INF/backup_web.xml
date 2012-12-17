@@ -63,15 +63,15 @@
 	</filter>
 	
 	<filter>
-		<filter-name>goodsListPageCacheFilter</filter-name>
+		<filter-name>cardsListPageCacheFilter</filter-name>
 		<filter-class>net.xxs.filter.PageCacheFilter</filter-class>
 		<init-param>
 			<param-name>groups</param-name>
-			<param-value>goodsList</param-value>
+			<param-value>cardsList</param-value>
 		</init-param>
 		<init-param>
 			<param-name>parameterKeys</param-name>
-			<param-value>sign,brand.id,regex:goodsAttributeIdMap\[\'\w+\'\],viewType,orderType,pager.pageSize,pager.pageNumber</param-value>
+			<param-value>sign,brand.id,regex:cardsAttributeIdMap\[\'\w+\'\],viewType,orderType,pager.pageSize,pager.pageNumber</param-value>
 		</init-param>
 		<init-param>
 			<param-name>time</param-name>
@@ -211,8 +211,8 @@
 	</filter-mapping>
 	
 	<filter-mapping>
-		<filter-name>goodsListPageCacheFilter</filter-name>
-		<url-pattern>/shop/goods_list/*</url-pattern>
+		<filter-name>cardsListPageCacheFilter</filter-name>
+		<url-pattern>/shop/cards_list/*</url-pattern>
 	</filter-mapping>
 	
 	<filter-mapping>

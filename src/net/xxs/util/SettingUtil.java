@@ -17,7 +17,6 @@ import net.xxs.bean.Setting.LeaveMessageDisplayType;
 import net.xxs.bean.Setting.Operator;
 import net.xxs.bean.Setting.RoundType;
 import net.xxs.bean.Setting.ScoreType;
-import net.xxs.bean.Setting.StoreFreezeTime;
 import net.xxs.bean.Setting.WatermarkPosition;
 
 import org.dom4j.Document;
@@ -91,15 +90,15 @@ public class SettingUtil {
 		Node watermarkImagePathNode = document.selectSingleNode("/xxs/setting/watermarkImagePath");
 		Node watermarkPositionNode = document.selectSingleNode("/xxs/setting/watermarkPosition");
 		Node watermarkAlphaNode = document.selectSingleNode("/xxs/setting/watermarkAlpha");
-		Node bigGoodsImageWidthNode = document.selectSingleNode("/xxs/setting/bigGoodsImageWidth");
-		Node bigGoodsImageHeightNode = document.selectSingleNode("/xxs/setting/bigGoodsImageHeight");
-		Node smallGoodsImageWidthNode = document.selectSingleNode("/xxs/setting/smallGoodsImageWidth");
-		Node smallGoodsImageHeightNode = document.selectSingleNode("/xxs/setting/smallGoodsImageHeight");
-		Node thumbnailGoodsImageWidthNode = document.selectSingleNode("/xxs/setting/thumbnailGoodsImageWidth");
-		Node thumbnailGoodsImageHeightNode = document.selectSingleNode("/xxs/setting/thumbnailGoodsImageHeight");
-		Node defaultBigGoodsImagePathNode = document.selectSingleNode("/xxs/setting/defaultBigGoodsImagePath");
-		Node defaultSmallGoodsImagePathNode = document.selectSingleNode("/xxs/setting/defaultSmallGoodsImagePath");
-		Node defaultThumbnailGoodsImagePathNode = document.selectSingleNode("/xxs/setting/defaultThumbnailGoodsImagePath");
+		Node bigCardsImageWidthNode = document.selectSingleNode("/xxs/setting/bigCardsImageWidth");
+		Node bigCardsImageHeightNode = document.selectSingleNode("/xxs/setting/bigCardsImageHeight");
+		Node smallCardsImageWidthNode = document.selectSingleNode("/xxs/setting/smallCardsImageWidth");
+		Node smallCardsImageHeightNode = document.selectSingleNode("/xxs/setting/smallCardsImageHeight");
+		Node thumbnailCardsImageWidthNode = document.selectSingleNode("/xxs/setting/thumbnailCardsImageWidth");
+		Node thumbnailCardsImageHeightNode = document.selectSingleNode("/xxs/setting/thumbnailCardsImageHeight");
+		Node defaultBigCardsImagePathNode = document.selectSingleNode("/xxs/setting/defaultBigCardsImagePath");
+		Node defaultSmallCardsImagePathNode = document.selectSingleNode("/xxs/setting/defaultSmallCardsImagePath");
+		Node defaultThumbnailCardsImagePathNode = document.selectSingleNode("/xxs/setting/defaultThumbnailCardsImagePath");
 		Node isShowMarketPriceNode = document.selectSingleNode("/xxs/setting/isShowMarketPrice");
 		Node defaultMarketPriceOperatorNode = document.selectSingleNode("/xxs/setting/defaultMarketPriceOperator");
 		Node defaultMarketPriceNumberNode = document.selectSingleNode("/xxs/setting/defaultMarketPriceNumber");
@@ -149,8 +148,6 @@ public class SettingUtil {
 		setting.setCurrencyUnit(currencyUnitNode.getText());
 		setting.setPriceScale(Integer.valueOf(priceScaleNode.getText()));
 		setting.setPriceRoundType(RoundType.valueOf(priceRoundTypeNode.getText()));
-		setting.setStoreAlertCount(Integer.valueOf(storeAlertCountNode.getText()));
-		setting.setStoreFreezeTime(StoreFreezeTime.valueOf(storeFreezeTimeNode.getText()));
 		setting.setIsLoginFailureLock(Boolean.valueOf(isLoginFailureLockNode.getText()));
 		setting.setLoginFailureLockCount(Integer.valueOf(loginFailureLockCountNode.getText()));
 		setting.setLoginFailureLockTime(Integer.valueOf(loginFailureLockTimeNode.getText()));
@@ -158,18 +155,15 @@ public class SettingUtil {
 		setting.setWatermarkImagePath(watermarkImagePathNode.getText());
 		setting.setWatermarkPosition(WatermarkPosition.valueOf(watermarkPositionNode.getText()));
 		setting.setWatermarkAlpha(Integer.valueOf(watermarkAlphaNode.getText()));
-		setting.setBigGoodsImageWidth(Integer.valueOf(bigGoodsImageWidthNode.getText()));
-		setting.setBigGoodsImageHeight(Integer.valueOf(bigGoodsImageHeightNode.getText()));
-		setting.setSmallGoodsImageWidth(Integer.valueOf(smallGoodsImageWidthNode.getText()));
-		setting.setSmallGoodsImageHeight(Integer.valueOf(smallGoodsImageHeightNode.getText()));
-		setting.setThumbnailGoodsImageWidth(Integer.valueOf(thumbnailGoodsImageWidthNode.getText()));
-		setting.setThumbnailGoodsImageHeight(Integer.valueOf(thumbnailGoodsImageHeightNode.getText()));
-		setting.setDefaultBigGoodsImagePath(defaultBigGoodsImagePathNode.getText());
-		setting.setDefaultSmallGoodsImagePath(defaultSmallGoodsImagePathNode.getText());
-		setting.setDefaultThumbnailGoodsImagePath(defaultThumbnailGoodsImagePathNode.getText());
-		setting.setIsShowMarketPrice(Boolean.valueOf(isShowMarketPriceNode.getText()));
-		setting.setDefaultMarketPriceOperator(Operator.valueOf(defaultMarketPriceOperatorNode.getText()));
-		setting.setDefaultMarketPriceNumber(BigDecimal.valueOf(Double.valueOf(defaultMarketPriceNumberNode.getText())));
+		setting.setBigCardsImageWidth(Integer.valueOf(bigCardsImageWidthNode.getText()));
+		setting.setBigCardsImageHeight(Integer.valueOf(bigCardsImageHeightNode.getText()));
+		setting.setSmallCardsImageWidth(Integer.valueOf(smallCardsImageWidthNode.getText()));
+		setting.setSmallCardsImageHeight(Integer.valueOf(smallCardsImageHeightNode.getText()));
+		setting.setThumbnailCardsImageWidth(Integer.valueOf(thumbnailCardsImageWidthNode.getText()));
+		setting.setThumbnailCardsImageHeight(Integer.valueOf(thumbnailCardsImageHeightNode.getText()));
+		setting.setDefaultBigCardsImagePath(defaultBigCardsImagePathNode.getText());
+		setting.setDefaultSmallCardsImagePath(defaultSmallCardsImagePathNode.getText());
+		setting.setDefaultThumbnailCardsImagePath(defaultThumbnailCardsImagePathNode.getText());
 		setting.setSmtpFromMail(smtpFromMailNode.getText());
 		setting.setSmtpHost(smtpHostNode.getText());
 		setting.setSmtpPort(Integer.valueOf(smtpPortNode.getText()));
@@ -185,10 +179,6 @@ public class SettingUtil {
 		setting.setIsLeaveMessageEnabled(Boolean.valueOf(isLeaveMessageEnabledNode.getText()));
 		setting.setIsLeaveMessageCaptchaEnabled(Boolean.valueOf(isLeaveMessageCaptchaEnabledNode.getText()));
 		setting.setLeaveMessageDisplayType(LeaveMessageDisplayType.valueOf(leaveMessageDisplayTypeNode.getText()));
-		setting.setIsCommentEnabled(Boolean.valueOf(isCommentEnabledNode.getText()));
-		setting.setIsCommentCaptchaEnabled(Boolean.valueOf(isCommentCaptchaEnabledNode.getText()));
-		setting.setCommentAuthority(CommentAuthority.valueOf(commentAuthorityNode.getText()));
-		setting.setCommentDisplayType(CommentDisplayType.valueOf(commentDisplayTypeNode.getText()));
 		
 		return setting;
 	}
@@ -260,12 +250,12 @@ public class SettingUtil {
 		Node isRegisterEnabledNode = document.selectSingleNode("/xxs/setting/isRegisterEnabled");
 		Node watermarkPositionNode = document.selectSingleNode("/xxs/setting/watermarkPosition");
 		Node watermarkAlphaNode = document.selectSingleNode("/xxs/setting/watermarkAlpha");
-		Node bigGoodsImageWidthNode = document.selectSingleNode("/xxs/setting/bigGoodsImageWidth");
-		Node bigGoodsImageHeightNode = document.selectSingleNode("/xxs/setting/bigGoodsImageHeight");
-		Node smallGoodsImageWidthNode = document.selectSingleNode("/xxs/setting/smallGoodsImageWidth");
-		Node smallGoodsImageHeightNode = document.selectSingleNode("/xxs/setting/smallGoodsImageHeight");
-		Node thumbnailGoodsImageWidthNode = document.selectSingleNode("/xxs/setting/thumbnailGoodsImageWidth");
-		Node thumbnailGoodsImageHeightNode = document.selectSingleNode("/xxs/setting/thumbnailGoodsImageHeight");
+		Node bigCardsImageWidthNode = document.selectSingleNode("/xxs/setting/bigCardsImageWidth");
+		Node bigCardsImageHeightNode = document.selectSingleNode("/xxs/setting/bigCardsImageHeight");
+		Node smallCardsImageWidthNode = document.selectSingleNode("/xxs/setting/smallCardsImageWidth");
+		Node smallCardsImageHeightNode = document.selectSingleNode("/xxs/setting/smallCardsImageHeight");
+		Node thumbnailCardsImageWidthNode = document.selectSingleNode("/xxs/setting/thumbnailCardsImageWidth");
+		Node thumbnailCardsImageHeightNode = document.selectSingleNode("/xxs/setting/thumbnailCardsImageHeight");
 		Node isShowMarketPriceNode = document.selectSingleNode("/xxs/setting/isShowMarketPrice");
 		Node defaultMarketPriceOperatorNode = document.selectSingleNode("/xxs/setting/defaultMarketPriceOperator");
 		Node defaultMarketPriceNumberNode = document.selectSingleNode("/xxs/setting/defaultMarketPriceNumber");
@@ -358,23 +348,23 @@ public class SettingUtil {
 		if(watermarkAlphaNode == null){
 			watermarkAlphaNode = settingElement.addElement("watermarkAlpha");
 		}
-		if(bigGoodsImageWidthNode == null){
-			bigGoodsImageWidthNode = settingElement.addElement("bigGoodsImageWidth");
+		if(bigCardsImageWidthNode == null){
+			bigCardsImageWidthNode = settingElement.addElement("bigCardsImageWidth");
 		}
-		if(bigGoodsImageHeightNode == null){
-			bigGoodsImageHeightNode = settingElement.addElement("bigGoodsImageHeight");
+		if(bigCardsImageHeightNode == null){
+			bigCardsImageHeightNode = settingElement.addElement("bigCardsImageHeight");
 		}
-		if(smallGoodsImageWidthNode == null){
-			smallGoodsImageWidthNode = settingElement.addElement("smallGoodsImageWidth");
+		if(smallCardsImageWidthNode == null){
+			smallCardsImageWidthNode = settingElement.addElement("smallCardsImageWidth");
 		}
-		if(smallGoodsImageHeightNode == null){
-			smallGoodsImageHeightNode = settingElement.addElement("smallGoodsImageHeight");
+		if(smallCardsImageHeightNode == null){
+			smallCardsImageHeightNode = settingElement.addElement("smallCardsImageHeight");
 		}
-		if(thumbnailGoodsImageWidthNode == null){
-			thumbnailGoodsImageWidthNode = settingElement.addElement("thumbnailGoodsImageWidth");
+		if(thumbnailCardsImageWidthNode == null){
+			thumbnailCardsImageWidthNode = settingElement.addElement("thumbnailCardsImageWidth");
 		}
-		if(thumbnailGoodsImageHeightNode == null){
-			thumbnailGoodsImageHeightNode = settingElement.addElement("thumbnailGoodsImageHeight");
+		if(thumbnailCardsImageHeightNode == null){
+			thumbnailCardsImageHeightNode = settingElement.addElement("thumbnailCardsImageHeight");
 		}
 		if(isShowMarketPriceNode == null){
 			isShowMarketPriceNode = settingElement.addElement("isShowMarketPrice");
@@ -458,23 +448,18 @@ public class SettingUtil {
 		currencyUnitNode.setText(setting.getCurrencyUnit());
 		priceScaleNode.setText(String.valueOf(setting.getPriceScale()));
 		priceRoundTypeNode.setText(String.valueOf(setting.getPriceRoundType()));
-		storeAlertCountNode.setText(String.valueOf(setting.getStoreAlertCount()));
-		storeFreezeTimeNode.setText(String.valueOf(setting.getStoreFreezeTime()));
 		isLoginFailureLockNode.setText(String.valueOf(setting.getIsLoginFailureLock()));
 		loginFailureLockCountNode.setText(String.valueOf(setting.getLoginFailureLockCount()));
 		loginFailureLockTimeNode.setText(String.valueOf(setting.getLoginFailureLockTime()));
 		isRegisterEnabledNode.setText(String.valueOf(setting.getIsRegisterEnabled()));
 		watermarkPositionNode.setText(String.valueOf(setting.getWatermarkPosition()));
 		watermarkAlphaNode.setText(String.valueOf(setting.getWatermarkAlpha()));
-		bigGoodsImageWidthNode.setText(String.valueOf(setting.getBigGoodsImageWidth()));
-		bigGoodsImageHeightNode.setText(String.valueOf(setting.getBigGoodsImageHeight()));
-		smallGoodsImageWidthNode.setText(String.valueOf(setting.getSmallGoodsImageWidth()));
-		smallGoodsImageHeightNode.setText(String.valueOf(setting.getSmallGoodsImageHeight()));
-		thumbnailGoodsImageWidthNode.setText(String.valueOf(setting.getThumbnailGoodsImageWidth()));
-		thumbnailGoodsImageHeightNode.setText(String.valueOf(setting.getThumbnailGoodsImageHeight()));
-		isShowMarketPriceNode.setText(String.valueOf(setting.getIsShowMarketPrice()));
-		defaultMarketPriceOperatorNode.setText(String.valueOf(setting.getDefaultMarketPriceOperator()));
-		defaultMarketPriceNumberNode.setText(String.valueOf(setting.getDefaultMarketPriceNumber()));
+		bigCardsImageWidthNode.setText(String.valueOf(setting.getBigCardsImageWidth()));
+		bigCardsImageHeightNode.setText(String.valueOf(setting.getBigCardsImageHeight()));
+		smallCardsImageWidthNode.setText(String.valueOf(setting.getSmallCardsImageWidth()));
+		smallCardsImageHeightNode.setText(String.valueOf(setting.getSmallCardsImageHeight()));
+		thumbnailCardsImageWidthNode.setText(String.valueOf(setting.getThumbnailCardsImageWidth()));
+		thumbnailCardsImageHeightNode.setText(String.valueOf(setting.getThumbnailCardsImageHeight()));
 		smtpFromMailNode.setText(setting.getSmtpFromMail());
 		smtpHostNode.setText(setting.getSmtpHost());
 		smtpPortNode.setText(String.valueOf(setting.getSmtpPort()));
@@ -490,10 +475,6 @@ public class SettingUtil {
 		isLeaveMessageEnabledNode.setText(setting.getIsLeaveMessageEnabled().toString());
 		isLeaveMessageCaptchaEnabledNode.setText(setting.getIsLeaveMessageCaptchaEnabled().toString());
 		leaveMessageDisplayTypeNode.setText(setting.getLeaveMessageDisplayType().toString());
-		isCommentEnabledNode.setText(setting.getIsCommentEnabled().toString());
-		isCommentCaptchaEnabledNode.setText(setting.getIsCommentCaptchaEnabled().toString());
-		commentAuthorityNode.setText(setting.getCommentAuthority().toString());
-		commentDisplayTypeNode.setText(setting.getCommentDisplayType().toString());
 		
 		try {
 			OutputFormat outputFormat = OutputFormat.createPrettyPrint();// 设置XML文档输出格式
@@ -580,25 +561,4 @@ public class SettingUtil {
 		NumberFormat numberFormat = new DecimalFormat(currencyFormat);
 		return numberFormat.format(price);
 	}
-	
-	/**
-	 * 根据销售价获取默认市场价
-	 * 
-	 */
-	public static BigDecimal getDefaultMarketPrice(BigDecimal price) {
-		Setting setting = getSetting();
-		Operator defaultMarketPriceOperator = setting.getDefaultMarketPriceOperator();
-		BigDecimal defaultMarketPriceNumber = setting.getDefaultMarketPriceNumber();
-		if (defaultMarketPriceOperator == Operator.add) {
-			return price.add(defaultMarketPriceNumber);
-		} else if (defaultMarketPriceOperator == Operator.subtract) {
-			return price.subtract(defaultMarketPriceNumber);
-		} else if (defaultMarketPriceOperator == Operator.multiply) {
-			return price.multiply(defaultMarketPriceNumber);
-		} else if (defaultMarketPriceOperator == Operator.divide) {
-			return price.divide(defaultMarketPriceNumber, 5, BigDecimal.ROUND_HALF_UP);
-		}
-		return null;
-	}
-
 }

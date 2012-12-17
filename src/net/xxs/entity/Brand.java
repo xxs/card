@@ -1,6 +1,5 @@
 package net.xxs.entity;
 
-import java.math.BigDecimal;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -32,8 +31,8 @@ public class Brand extends BaseEntity {
 	private Integer orderList;// 排序
 	
 	private Set<PaymentDiscount> paymentDiscountSet = new HashSet<PaymentDiscount>();// 费率设置
-	private Set<Goods> goodsSet = new HashSet<Goods>();// 商品
-	private Set<GoodsType> goodsTypeSet = new HashSet<GoodsType>();// 商品类型
+	private Set<Cards> cardsSet = new HashSet<Cards>();// 商品
+	private Set<CardsType> cardsTypeSet = new HashSet<CardsType>();// 商品类型
 
 	@Column(nullable = false)
 	public String getName() {
@@ -78,22 +77,22 @@ public class Brand extends BaseEntity {
 	}
 
 	@OneToMany(mappedBy = "brand", fetch = FetchType.LAZY)
-	public Set<Goods> getGoodsSet() {
-		return goodsSet;
+	public Set<Cards> getCardsSet() {
+		return cardsSet;
 	}
 
-	public void setGoodsSet(Set<Goods> goodsSet) {
-		this.goodsSet = goodsSet;
+	public void setCardsSet(Set<Cards> cardsSet) {
+		this.cardsSet = cardsSet;
 	}
 
 	@ManyToMany(mappedBy = "brandSet", fetch = FetchType.LAZY)
-	@ForeignKey(name = "fk_brand_goods_type_set")
-	public Set<GoodsType> getGoodsTypeSet() {
-		return goodsTypeSet;
+	@ForeignKey(name = "fk_brand_cards_type_set")
+	public Set<CardsType> getCardsTypeSet() {
+		return cardsTypeSet;
 	}
 
-	public void setGoodsTypeSet(Set<GoodsType> goodsTypeSet) {
-		this.goodsTypeSet = goodsTypeSet;
+	public void setCardsTypeSet(Set<CardsType> cardsTypeSet) {
+		this.cardsTypeSet = cardsTypeSet;
 	}
 	
 	// 保存处理

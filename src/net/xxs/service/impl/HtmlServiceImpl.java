@@ -16,13 +16,11 @@ import javax.servlet.ServletContext;
 import net.xxs.bean.PageTemplateConfig;
 import net.xxs.common.FreemarkerManager;
 import net.xxs.dao.ArticleDao;
-import net.xxs.dao.CommentDao;
-import net.xxs.dao.GoodsDao;
+import net.xxs.dao.CardsDao;
 import net.xxs.entity.Article;
-import net.xxs.entity.Comment;
-import net.xxs.entity.Goods;
+import net.xxs.entity.Cards;
 import net.xxs.service.ArticleCategoryService;
-import net.xxs.service.GoodsCategoryService;
+import net.xxs.service.CardsCategoryService;
 import net.xxs.service.HtmlService;
 import net.xxs.util.SettingUtil;
 import net.xxs.util.TemplateConfigUtil;
@@ -51,12 +49,10 @@ public class HtmlServiceImpl implements HtmlService, ServletContextAware {
 	private ArticleDao articleDao;
 	@Resource(name = "articleCategoryServiceImpl")
 	private ArticleCategoryService articleCategoryService;
-	@Resource(name = "goodsDaoImpl")
-	private GoodsDao goodsDao;
-	@Resource(name = "commentDaoImpl")
-	private CommentDao commentDao;
-	@Resource(name = "goodsCategoryServiceImpl")
-	private GoodsCategoryService goodsCategoryService;
+	@Resource(name = "cardsDaoImpl")
+	private CardsDao cardsDao;
+	@Resource(name = "cardsCategoryServiceImpl")
+	private CardsCategoryService cardsCategoryService;
 	
 	public void setServletContext(ServletContext servletContext) {
 		this.servletContext = servletContext;
@@ -185,25 +181,25 @@ public class HtmlServiceImpl implements HtmlService, ServletContextAware {
 	}
 	
 	@Transactional(readOnly = true)
-	public void buildGoodsContentHtml(String id) {
-		Goods goods = goodsDao.get(id);
-		buildGoodsContentHtml(goods);
+	public void buildCardsContentHtml(String id) {
+		Cards cards = cardsDao.get(id);
+		buildCardsContentHtml(cards);
 	}
 	
-	public void buildGoodsContentHtml(Goods goods) {
-		if (goods == null) {
+	public void buildCardsContentHtml(Cards cards) {
+		if (cards == null) {
 			return;
 		}
-		PageTemplateConfig pageTemplateConfig = TemplateConfigUtil.getPageTemplateConfig(PageTemplateConfig.GOODS_CONTENT);
-		String htmlPath = goods.getHtmlPath();
-		if (goods.getIsMarketable()) {
+		PageTemplateConfig pageTemplateConfig = TemplateConfigUtil.getPageTemplateConfig(PageTemplateConfig.CARDS_CONTENT);
+		String htmlPath = cards.getHtmlPath();
+		if (cards.getIsMarketable()) {
 			Map<String, Object> data = getCommonData();
-			data.put("goods", goods);
-			data.put("pathList", goodsCategoryService.getGoodsCategoryPathList(goods.getGoodsCategory()));
+			data.put("cards", cards);
+			data.put("pathList", cardsCategoryService.getCardsCategoryPathList(cards.getCardsCategory()));
 			String templatePath = pageTemplateConfig.getTemplatePath();
 			buildHtml(templatePath, htmlPath, data);
 		} else {
-			File htmlFile = new File(servletContext.getRealPath(goods.getHtmlPath()));
+			File htmlFile = new File(servletContext.getRealPath(cards.getHtmlPath()));
 			if (htmlFile.exists()) {
 				htmlFile.delete();
 			}
@@ -211,26 +207,13 @@ public class HtmlServiceImpl implements HtmlService, ServletContextAware {
 	}
 	
 	@Transactional(readOnly = true)
-	public void buildGoodsContentHtml() {
-		long goodsTotalCount = goodsDao.getTotalCount();
-		for (int i = 0; i < goodsTotalCount; i += 30) {
-			List<Goods> goodsList = goodsDao.getGoodsList(null, null, null, i, 30);
-			for (Goods goods : goodsList) {
-				buildGoodsContentHtml(goods);
+	public void buildCardsContentHtml() {
+		long cardsTotalCount = cardsDao.getTotalCount();
+		for (int i = 0; i < cardsTotalCount; i += 30) {
+			List<Cards> cardsList = cardsDao.getCardsList(null, null, null, i, 30);
+			for (Cards cards : cardsList) {
+				buildCardsContentHtml(cards);
 			}
-		}
-	}
-	
-	@Transactional(readOnly = true)
-	public void buildCommentGoodsContentHtml(String id) {
-		Comment comment = commentDao.get(id);
-		if (comment == null) {
-			return;
-		}
-		if (comment.getForComment() != null) {
-			buildGoodsContentHtml(comment.getForComment().getGoods());
-		} else {
-			buildGoodsContentHtml(comment.getGoods());
 		}
 	}
 	
@@ -298,7 +281,7 @@ public class HtmlServiceImpl implements HtmlService, ServletContextAware {
 		}
 	}
 	
-	public void deleteGoodsContentHtml(String htmlPath) {
+	public void deleteCardsContentHtml(String htmlPath) {
 		if (htmlPath != null) {
 			File htmlFile = new File(servletContext.getRealPath(htmlPath));
 			if (htmlFile.exists()) {

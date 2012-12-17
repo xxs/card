@@ -3,8 +3,7 @@ package net.xxs.action.admin;
 import javax.annotation.Resource;
 
 import net.xxs.service.ArticleService;
-import net.xxs.service.GoodsNotifyService;
-import net.xxs.service.GoodsService;
+import net.xxs.service.CardsService;
 import net.xxs.service.MemberService;
 import net.xxs.service.MessageService;
 import net.xxs.service.OrderService;
@@ -26,10 +25,8 @@ public class PageAction extends BaseAdminAction {
 	private OrderService orderService;
 	@Resource(name = "messageServiceImpl")
 	private MessageService messageService;
-	@Resource(name = "goodsServiceImpl")
-	private GoodsService goodsService;
-	@Resource(name = "goodsNotifyServiceImpl")
-	private GoodsNotifyService goodsNotifyService;
+	@Resource(name = "cardsServiceImpl")
+	private CardsService cardsService;
 	@Resource(name = "memberServiceImpl")
 	private MemberService memberService;
 	@Resource(name = "articleServiceImpl")
@@ -77,23 +74,19 @@ public class PageAction extends BaseAdminAction {
 		return messageService.getUnreadMessageCount();
 	}
 	
-	// 获取未处理缺货登记数
-	public Long getUnprocessedGoodsNotifyCount() {
-		return goodsNotifyService.getUnprocessedGoodsNotifyCount();
-	}
 	// 获取未处理提现申请数
 	public Long getUnprocessedWithdrawCount() {
 		return withdrawService.getUnprocessedWithdrawCount();
 	}
 	
 	// 获取已上架商品数
-	public Long getMarketableGoodsCount() {
-		return goodsService.getMarketableGoodsCount();
+	public Long getMarketableCardsCount() {
+		return cardsService.getMarketableCardsCount();
 	}
 	
 	// 获取已下架商品数
-	public Long getUnMarketableGoodsCount() {
-		return goodsService.getUnMarketableGoodsCount();
+	public Long getUnMarketableCardsCount() {
+		return cardsService.getUnMarketableCardsCount();
 	}
 	
 	// 获取会员总数

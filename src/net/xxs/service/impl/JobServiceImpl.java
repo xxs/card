@@ -6,14 +6,14 @@ import javax.annotation.Resource;
 
 import net.xxs.job.BuildAdminJsJob;
 import net.xxs.job.BuildArticleContentHtmlJob;
+import net.xxs.job.BuildCardsContentHtmlJob;
 import net.xxs.job.BuildErrorHtmlJob;
-import net.xxs.job.BuildGoodsContentHtmlJob;
 import net.xxs.job.BuildIndexHtmlJob;
 import net.xxs.job.BuildLoginHtmlJob;
 import net.xxs.job.BuildRegisterAgreementHtmlJob;
 import net.xxs.job.BuildShopJsJob;
 import net.xxs.job.DeleteArticleContentHtmlJob;
-import net.xxs.job.DeleteGoodsContentHtmlJob;
+import net.xxs.job.DeleteCardsContentHtmlJob;
 import net.xxs.service.JobService;
 import net.xxs.util.SettingUtil;
 
@@ -247,11 +247,11 @@ public class JobServiceImpl implements JobService {
 		}
 	}
 	
-	public void buildGoodsContentHtml(String id) {
+	public void buildCardsContentHtml(String id) {
 		try {
-			String jobName = BuildGoodsContentHtmlJob.JOB_NAME + id;
-			String triggerName = BuildGoodsContentHtmlJob.TRIGGER_NAME + id;
-			String groupName = BuildGoodsContentHtmlJob.GROUP_NAME;
+			String jobName = BuildCardsContentHtmlJob.JOB_NAME + id;
+			String triggerName = BuildCardsContentHtmlJob.TRIGGER_NAME + id;
+			String groupName = BuildCardsContentHtmlJob.GROUP_NAME;
 			
 			SimpleTrigger simpleTrigger = new SimpleTrigger();
 			simpleTrigger.setName(triggerName);
@@ -267,7 +267,7 @@ public class JobServiceImpl implements JobService {
 				scheduler.rescheduleJob(triggerName, groupName, simpleTrigger);
 				jobDetail.getJobDataMap().put("id", id);
 			} else {
-				jobDetail = new JobDetail(jobName, groupName, BuildGoodsContentHtmlJob.class);
+				jobDetail = new JobDetail(jobName, groupName, BuildCardsContentHtmlJob.class);
 				jobDetail.getJobDataMap().put("id", id);
 				scheduler.scheduleJob(jobDetail, simpleTrigger);
 			}
@@ -280,11 +280,11 @@ public class JobServiceImpl implements JobService {
 		}
 	}
 	
-	public void buildGoodsContentHtml() {
+	public void buildCardsContentHtml() {
 		try {
-			String jobName = BuildGoodsContentHtmlJob.JOB_NAME;
-			String triggerName = BuildGoodsContentHtmlJob.TRIGGER_NAME;
-			String groupName = BuildGoodsContentHtmlJob.GROUP_NAME;
+			String jobName = BuildCardsContentHtmlJob.JOB_NAME;
+			String triggerName = BuildCardsContentHtmlJob.TRIGGER_NAME;
+			String groupName = BuildCardsContentHtmlJob.GROUP_NAME;
 			
 			SimpleTrigger simpleTrigger = new SimpleTrigger();
 			simpleTrigger.setName(triggerName);
@@ -313,7 +313,7 @@ public class JobServiceImpl implements JobService {
 			if (jobDetail != null) {
 				scheduler.rescheduleJob(triggerName, groupName, simpleTrigger);
 			} else {
-				jobDetail = new JobDetail(jobName, groupName, BuildGoodsContentHtmlJob.class);
+				jobDetail = new JobDetail(jobName, groupName, BuildCardsContentHtmlJob.class);
 				scheduler.scheduleJob(jobDetail, simpleTrigger);
 			}
 			
@@ -373,7 +373,7 @@ public class JobServiceImpl implements JobService {
 				jobDetail.getJobDataMap().put("htmlPath", htmlPath);
 				jobDetail.getJobDataMap().put("pageCount", pageCount);
 			} else {
-				jobDetail = new JobDetail(jobName, groupName, DeleteGoodsContentHtmlJob.class);
+				jobDetail = new JobDetail(jobName, groupName, DeleteCardsContentHtmlJob.class);
 				jobDetail.getJobDataMap().put("htmlPath", htmlPath);
 				jobDetail.getJobDataMap().put("pageCount", pageCount);
 				scheduler.scheduleJob(jobDetail, simpleTrigger);
@@ -387,11 +387,11 @@ public class JobServiceImpl implements JobService {
 		}
 	}
 	
-	public void deleteGoodsContentHtml(String htmlPath) {
+	public void deleteCardsContentHtml(String htmlPath) {
 		try {
-			String jobName = DeleteGoodsContentHtmlJob.JOB_NAME + htmlPath;
-			String triggerName = DeleteGoodsContentHtmlJob.TRIGGER_NAME + htmlPath;
-			String groupName = DeleteGoodsContentHtmlJob.GROUP_NAME;
+			String jobName = DeleteCardsContentHtmlJob.JOB_NAME + htmlPath;
+			String triggerName = DeleteCardsContentHtmlJob.TRIGGER_NAME + htmlPath;
+			String groupName = DeleteCardsContentHtmlJob.GROUP_NAME;
 			
 			SimpleTrigger simpleTrigger = new SimpleTrigger();
 			simpleTrigger.setName(triggerName);
@@ -407,7 +407,7 @@ public class JobServiceImpl implements JobService {
 				scheduler.rescheduleJob(triggerName, groupName, simpleTrigger);
 				jobDetail.getJobDataMap().put("htmlPath", htmlPath);
 			} else {
-				jobDetail = new JobDetail(jobName, groupName, DeleteGoodsContentHtmlJob.class);
+				jobDetail = new JobDetail(jobName, groupName, DeleteCardsContentHtmlJob.class);
 				jobDetail.getJobDataMap().put("htmlPath", htmlPath);
 				scheduler.scheduleJob(jobDetail, simpleTrigger);
 			}

@@ -18,22 +18,22 @@
 			<description>在线留言</description>
 			<templatePath>WEB-INF/template/shop/leave_message_list.ftl</templatePath>
 		</leaveMessageList>
-		<goodsPictureList>
+		<cardsPictureList>
 			<description>商品列表[图片]</description>
-			<templatePath>WEB-INF/template/shop/goods_picture_list.ftl</templatePath>
-		</goodsPictureList>
-		<goodsPictureSearch>
+			<templatePath>WEB-INF/template/shop/cards_picture_list.ftl</templatePath>
+		</cardsPictureList>
+		<cardsPictureSearch>
 			<description>商品搜索[图片]</description>
-			<templatePath>WEB-INF/template/shop/goods_picture_search.ftl</templatePath>
-		</goodsPictureSearch>
-		<goodsTableList>
+			<templatePath>WEB-INF/template/shop/cards_picture_search.ftl</templatePath>
+		</cardsPictureSearch>
+		<cardsTableList>
 			<description>商品列表[表格]</description>
-			<templatePath>WEB-INF/template/shop/goods_table_list.ftl</templatePath>
-		</goodsTableList>
-		<goodsTableSearch>
+			<templatePath>WEB-INF/template/shop/cards_table_list.ftl</templatePath>
+		</cardsTableList>
+		<cardsTableSearch>
 			<description>商品搜索[表格]</description>
-			<templatePath>WEB-INF/template/shop/goods_table_search.ftl</templatePath>
-		</goodsTableSearch>
+			<templatePath>WEB-INF/template/shop/cards_table_search.ftl</templatePath>
+		</cardsTableSearch>
 		<articleList>
 			<description>文章列表</description>
 			<templatePath>WEB-INF/template/shop/article_list.ftl</templatePath>
@@ -46,10 +46,10 @@
 			<description>商品评论列表</description>
 			<templatePath>WEB-INF/template/shop/comment_list.ftl</templatePath>
 		</commentList>
-		<goodsNotifyAdd>
+		<cardsNotifyAdd>
 			<description>添加到货通知</description>
-			<templatePath>WEB-INF/template/shop/goods_notify_add.ftl</templatePath>
-		</goodsNotifyAdd>
+			<templatePath>WEB-INF/template/shop/cards_notify_add.ftl</templatePath>
+		</cardsNotifyAdd>
 		<cartItemList>
 			<description>查看购物车</description>
 			<templatePath>WEB-INF/template/shop/cart_item_list.ftl</templatePath>
@@ -82,10 +82,10 @@
 			<description>会员中心 - 商品收藏</description>
 			<templatePath>WEB-INF/template/shop/favorite_list.ftl</templatePath>
 		</favoriteList>
-		<goodsNotifyList>
+		<cardsNotifyList>
 			<description>会员中心 - 缺货登记</description>
-			<templatePath>WEB-INF/template/shop/goods_notify_list.ftl</templatePath>
-		</goodsNotifyList>
+			<templatePath>WEB-INF/template/shop/cards_notify_list.ftl</templatePath>
+		</cardsNotifyList>
 		<messageSend>
 			<description>会员中心 - 消息发送</description>
 			<templatePath>WEB-INF/template/shop/message_send.ftl</templatePath>
@@ -184,11 +184,11 @@
 			<templatePath>WEB-INF/template/shop/article_content.ftl</templatePath>
 			<htmlPath>/html/{date(yyyyMM)}/{uuid}.html</htmlPath>
 		</articleContent>
-		<goodsContent>
+		<cardsContent>
 			<description>商品内容</description>
-			<templatePath>WEB-INF/template/shop/goods_content.ftl</templatePath>
+			<templatePath>WEB-INF/template/shop/cards_content.ftl</templatePath>
 			<htmlPath>/html/{date(yyyyMM)}/{uuid}.html</htmlPath>
-		</goodsContent>
+		</cardsContent>
 		<errorPage>
 			<description>错误页</description>
 			<templatePath>WEB-INF/template/shop/error_page.ftl</templatePath>
@@ -226,21 +226,21 @@
 			<subject>密码找回</subject>
 			<templatePath>WEB-INF/template/shop/mail_password_recover.ftl</templatePath>
 		</passwordRecover>
-		<goodsNotify>
+		<cardsNotify>
 			<description>到货通知</description>
 			<subject>到货通知</subject>
-			<templatePath>WEB-INF/template/shop/mail_goods_notify.ftl</templatePath>
-		</goodsNotify>
+			<templatePath>WEB-INF/template/shop/mail_cards_notify.ftl</templatePath>
+		</cardsNotify>
 	</mail>
 	<print>
 		<order>
 			<description>订单</description>
 			<templatePath>WEB-INF/template/admin/order_order_print.ftl</templatePath>
 		</order>
-		<goods>
+		<cards>
 			<description>购物单</description>
-			<templatePath>WEB-INF/template/admin/order_goods_print.ftl</templatePath>
-		</goods>
+			<templatePath>WEB-INF/template/admin/order_cards_print.ftl</templatePath>
+		</cards>
 		<delivery>
 			<description>配送单</description>
 			<templatePath>WEB-INF/template/admin/order_shipping_print.ftl</templatePath>

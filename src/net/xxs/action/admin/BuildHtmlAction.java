@@ -9,13 +9,13 @@ import javax.annotation.Resource;
 
 import net.xxs.entity.Article;
 import net.xxs.entity.ArticleCategory;
-import net.xxs.entity.Goods;
-import net.xxs.entity.GoodsCategory;
+import net.xxs.entity.Cards;
+import net.xxs.entity.CardsCategory;
 import net.xxs.service.ArticleCategoryService;
 import net.xxs.service.ArticleService;
 import net.xxs.service.CacheService;
-import net.xxs.service.GoodsCategoryService;
-import net.xxs.service.GoodsService;
+import net.xxs.service.CardsCategoryService;
+import net.xxs.service.CardsService;
 import net.xxs.service.HtmlService;
 
 import org.apache.commons.lang.StringUtils;
@@ -37,10 +37,10 @@ public class BuildHtmlAction extends BaseAdminAction {
 	private ArticleService articleService;
 	@Resource(name = "articleCategoryServiceImpl")
 	private ArticleCategoryService articleCategoryService;
-	@Resource(name = "goodsServiceImpl")
-	private GoodsService goodsService;
-	@Resource(name = "goodsCategoryServiceImpl")
-	private GoodsCategoryService goodsCategoryService;
+	@Resource(name = "cardsServiceImpl")
+	private CardsService cardsService;
+	@Resource(name = "cardsCategoryServiceImpl")
+	private CardsCategoryService cardsCategoryService;
 	@Resource(name = "htmlServiceImpl")
 	private HtmlService htmlService;
 	@Resource(name = "cacheServiceImpl")
@@ -157,10 +157,10 @@ public class BuildHtmlAction extends BaseAdminAction {
 				jsonMap.put("buildTime", System.currentTimeMillis() - beginTimeMillis);
 				return ajax(jsonMap);
 			}
-		} else if (buildContent.equalsIgnoreCase("goods")) {
-			List<Goods> goodsList = null;
+		} else if (buildContent.equalsIgnoreCase("cards")) {
+			List<Cards> cardsList = null;
 			if (buildType.equalsIgnoreCase("all")) {
-				goodsList = goodsService.getGoodsList(null, null, null, firstResult, maxResults);
+				cardsList = cardsService.getCardsList(null, null, null, firstResult, maxResults);
 			} else if(buildType.equalsIgnoreCase("date")) {
 				if (beginDate != null) {
 					beginDate.setHours(0);
@@ -172,24 +172,24 @@ public class BuildHtmlAction extends BaseAdminAction {
 					endDate.setMinutes(59);
 					endDate.setSeconds(59);
 				}
-				goodsList = goodsService.getGoodsList(null, beginDate, endDate, firstResult, maxResults);
+				cardsList = cardsService.getCardsList(null, beginDate, endDate, firstResult, maxResults);
 			}
-			if (goodsList != null && goodsList.size() > 0) {
-				for (Goods goods : goodsList) {
-					htmlService.buildGoodsContentHtml(goods);
+			if (cardsList != null && cardsList.size() > 0) {
+				for (Cards cards : cardsList) {
+					htmlService.buildCardsContentHtml(cards);
 				}
 			}
-			if (goodsList != null && goodsList.size() == maxResults) {
+			if (cardsList != null && cardsList.size() == maxResults) {
 				Map<String, Object> jsonMap = new HashMap<String, Object>();
-				jsonMap.put(STATUS_PARAMETER_NAME, "goodsBuilding");
-				jsonMap.put("firstResult", firstResult + goodsList.size());
+				jsonMap.put(STATUS_PARAMETER_NAME, "cardsBuilding");
+				jsonMap.put("firstResult", firstResult + cardsList.size());
 				jsonMap.put("buildCount", maxResults);
 				jsonMap.put("buildTime", System.currentTimeMillis() - beginTimeMillis);
 				return ajax(jsonMap);
 			} else {
 				Map<String, Object> jsonMap = new HashMap<String, Object>();
-				jsonMap.put(STATUS_PARAMETER_NAME, "goodsFinish");
-				jsonMap.put("buildCount", goodsList.size());
+				jsonMap.put(STATUS_PARAMETER_NAME, "cardsFinish");
+				jsonMap.put("buildCount", cardsList.size());
 				jsonMap.put("buildTime", System.currentTimeMillis() - beginTimeMillis);
 				cacheService.flushAllPageCache(getRequest());
 				return ajax(jsonMap);
@@ -241,13 +241,13 @@ public class BuildHtmlAction extends BaseAdminAction {
 		}
 	}
 	
-	public String goodsInput() {
-		return "goods_input";
+	public String cardsInput() {
+		return "cards_input";
 	}
 	
 	// 更新商品
 	@InputConfig(resultName = "ajaxError")
-	public String goods() {
+	public String cards() {
 		long beginTimeMillis = System.currentTimeMillis();
 		if (maxResults == null || maxResults <= 0) {
 			maxResults = 50;
@@ -256,30 +256,30 @@ public class BuildHtmlAction extends BaseAdminAction {
 			firstResult = 0;
 		}
 		
-		GoodsCategory goodsCategory = null;
+		CardsCategory cardsCategory = null;
 		if (StringUtils.isNotEmpty(id)) {
-			goodsCategory = goodsCategoryService.load(id);
+			cardsCategory = cardsCategoryService.load(id);
 		}
-		List<Goods> goodsList = goodsService.getGoodsList(goodsCategory, null, null, firstResult, maxResults);
+		List<Cards> cardsList = cardsService.getCardsList(cardsCategory, null, null, firstResult, maxResults);
 		
-		if (goodsList != null && goodsList.size() > 0) {
-			for (Goods goods : goodsList) {
-				htmlService.buildGoodsContentHtml(goods);
+		if (cardsList != null && cardsList.size() > 0) {
+			for (Cards cards : cardsList) {
+				htmlService.buildCardsContentHtml(cards);
 			}
 		}
-		if (goodsList != null && goodsList.size() == maxResults) {
+		if (cardsList != null && cardsList.size() == maxResults) {
 			Map<String, Object> jsonMap = new HashMap<String, Object>();
 			jsonMap.put(STATUS_PARAMETER_NAME, "PRODUCT_BUILDING");
-			jsonMap.put("firstResult", firstResult + goodsList.size());
+			jsonMap.put("firstResult", firstResult + cardsList.size());
 			jsonMap.put("buildCount", maxResults);
 			jsonMap.put("buildTime", System.currentTimeMillis() - beginTimeMillis);
 			return ajax(jsonMap);
 		} else {
 			Map<String, Object> jsonMap = new HashMap<String, Object>();
 			jsonMap.put(STATUS_PARAMETER_NAME, "PRODUCT_FINISH");
-			jsonMap.put("buildCount", goodsList.size());
+			jsonMap.put("buildCount", cardsList.size());
 			jsonMap.put("buildTime", System.currentTimeMillis() - beginTimeMillis);
-			cacheService.flushGoodsListPageCache(getRequest());
+			cacheService.flushCardsListPageCache(getRequest());
 			return ajax(jsonMap);
 		}
 	}
@@ -290,8 +290,8 @@ public class BuildHtmlAction extends BaseAdminAction {
 	}
 	
 	// 获取商品分类树
-	public List<GoodsCategory> getGoodsCategoryTreeList() {
-		return goodsCategoryService.getGoodsCategoryTreeList();
+	public List<CardsCategory> getCardsCategoryTreeList() {
+		return cardsCategoryService.getCardsCategoryTreeList();
 	}
 	
 	// 获取默认开始日期

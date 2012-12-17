@@ -22,8 +22,8 @@ public class MenuAction extends BaseAdminAction {
 	}
 	
 	// 商品
-	public String goods() {
-		return "goods";
+	public String cards() {
+		return "cards";
 	}
 	
 	// 页面管理

@@ -9,7 +9,6 @@ public class MailTemplateConfig {
 	
 	public static final String SMTP_TEST = "smtpTest";// SMTP邮箱配置测试
 	public static final String PASSWORD_RECOVER = "passwordRecover";// 密码找回
-	public static final String GOODS_NOTIFY = "goodsNotify";// 到货通知
 	
 	private String name;// 配置名称
 	private String description;// 描述

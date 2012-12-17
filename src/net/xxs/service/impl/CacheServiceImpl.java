@@ -22,7 +22,7 @@ import com.opensymphony.oscache.web.ServletCacheAdministrator;
 public class CacheServiceImpl implements CacheService, ServletContextAware {
 	
 	public static final String ARTICLE_LIST_PAGE_CACHE_GROUP = "articleList";// 文章列表页面缓存Group
-	public static final String GOODS_LIST_PAGE_CACHE_GROUP = "goodsList";// 文章列表页面缓存Group
+	public static final String CARDS_LIST_PAGE_CACHE_GROUP = "cardsList";// 文章列表页面缓存Group
 	public static final String COMMENT_LIST_PAGE_CACHE_GROUP = "commentList";// 商品评论列表页面缓存Group
 	public static final String LEAVE_MESSAGE_LIST_PAGE_CACHE_GROUP = "leaveMessageList";// 在线留言列表页面缓存Group
 	
@@ -37,9 +37,9 @@ public class CacheServiceImpl implements CacheService, ServletContextAware {
 		cache.flushGroup(ARTICLE_LIST_PAGE_CACHE_GROUP);
 	}
 	
-	public void flushGoodsListPageCache(HttpServletRequest request) {
+	public void flushCardsListPageCache(HttpServletRequest request) {
 		Cache cache = ServletCacheAdministrator.getInstance(servletContext).getCache(request, PageContext.APPLICATION_SCOPE); 
-		cache.flushGroup(GOODS_LIST_PAGE_CACHE_GROUP);
+		cache.flushGroup(CARDS_LIST_PAGE_CACHE_GROUP);
 	}
 	
 	public void flushCommentListPageCache(HttpServletRequest request) {

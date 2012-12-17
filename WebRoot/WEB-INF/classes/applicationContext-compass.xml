@@ -21,7 +21,7 @@
 		<property name="classMappings">
 			<list>
 				<value>net.xxs.entity.Article</value>
-				<value>net.xxs.entity.Goods</value>
+				<value>net.xxs.entity.Cards</value>
 			</list>
 		</property>
 		

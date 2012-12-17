@@ -8,7 +8,6 @@ import java.util.List;
 
 import net.xxs.bean.MailTemplateConfig;
 import net.xxs.bean.PageTemplateConfig;
-import net.xxs.bean.PrintTemplateConfig;
 
 import org.apache.commons.io.FileUtils;
 import org.dom4j.Document;
@@ -241,92 +240,6 @@ public class TemplateConfigUtil {
 	 */
 	public static String writeTemplateFileContent(MailTemplateConfig mailTemplateConfig, String templateFileContent) {
 		File templateFile = new File(CommonUtil.getWebRootPath() + mailTemplateConfig.getTemplatePath());
-		try {
-			FileUtils.writeStringToFile(templateFile, templateFileContent, "UTF-8");
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-		return templateFileContent;
-	}
-	
-	/**
-	 * 获取所有打印模板配置集合
-	 * 
-	 * @return PrintTemplateConfig集合
-	 */
-	@SuppressWarnings("unchecked")
-	public static List<PrintTemplateConfig> getAllPrintTemplateConfigList() {
-		File templateXmlFile = null;
-		Document document = null;
-		try {
-			templateXmlFile = new File(CommonUtil.getWebRootPath() + TEMPLATE_XML_FILE_PATH);
-			SAXReader saxReader = new SAXReader();
-			document = saxReader.read(templateXmlFile);
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		Element htmlConfigElement = (Element)document.selectSingleNode("//print");
-		Iterator<Element> iterator = htmlConfigElement.elementIterator();
-		List<PrintTemplateConfig> allPrintTemplateConfigList = new ArrayList<PrintTemplateConfig>();
-	    while(iterator.hasNext()) {
-	    	Element element = (Element)iterator.next();
-	    	String description = element.element("description").getTextTrim();
-	    	String templatePath = element.element("templatePath").getTextTrim();
-	    	PrintTemplateConfig printTemplateConfig = new PrintTemplateConfig();
-	    	printTemplateConfig.setName(element.getName());
-	    	printTemplateConfig.setDescription(description);
-	    	printTemplateConfig.setTemplatePath(templatePath);
-	    	allPrintTemplateConfigList.add(printTemplateConfig);
-	    }
-		return allPrintTemplateConfigList;
-	}
-	
-	/**
-	 * 根据名称获取PrintTemplateConfig对象
-	 * 
-	 * @return PrintTemplateConfig对象
-	 */
-	public static PrintTemplateConfig getPrintTemplateConfig(String name) {
-		Document document = null;
-		try {
-			File templateXmlFile = new File(CommonUtil.getWebRootPath() + TEMPLATE_XML_FILE_PATH);
-			SAXReader saxReader = new SAXReader();
-			document = saxReader.read(templateXmlFile);
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		Element element = (Element)document.selectSingleNode("//print/" + name);
-		String description = element.element("description").getTextTrim();
-		String templatePath = element.element("templatePath").getTextTrim();
-		PrintTemplateConfig printTemplateConfig = new PrintTemplateConfig();
-		printTemplateConfig.setName(element.getName());
-		printTemplateConfig.setDescription(description);
-		printTemplateConfig.setTemplatePath(templatePath);
-		return printTemplateConfig;
-	}
-	
-	/**
-	 * 根据PrintTemplateConfig对象读取模板文件内容
-	 * 
-	 * @return 模板文件内容
-	 */
-	public static String readTemplateFileContent(PrintTemplateConfig printTemplateConfig) {
-		File templateFile = new File(CommonUtil.getWebRootPath() + printTemplateConfig.getTemplatePath());
-		String templateFileContent = null;
-		try {
-			templateFileContent = FileUtils.readFileToString(templateFile, "UTF-8");
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-		return templateFileContent;
-	}
-	
-	/**
-	 * 写入模板文件内容
-	 * 
-	 */
-	public static String writeTemplateFileContent(PrintTemplateConfig printTemplateConfig, String templateFileContent) {
-		File templateFile = new File(CommonUtil.getWebRootPath() + printTemplateConfig.getTemplatePath());
 		try {
 			FileUtils.writeStringToFile(templateFile, templateFileContent, "UTF-8");
 		} catch (IOException e) {

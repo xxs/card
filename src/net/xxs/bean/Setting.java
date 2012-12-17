@@ -1,6 +1,5 @@
 package net.xxs.bean;
 
-import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -25,11 +24,6 @@ public class Setting {
 		roundHalfUp, roundUp, roundDown
 	}
 	
-	// 库存预占时间点(下订单、订单付款、订单发货)
-	public enum StoreFreezeTime {
-		order, payment, ship
-	}
-	
 	// 水印位置(无、左上、右上、居中、左下、右下)
 	public enum WatermarkPosition {
 		no, topLeft, topRight, center, bottomLeft, bottomRight
@@ -37,7 +31,7 @@ public class Setting {
 	
 	// 积分获取方式(禁用积分获取、按订单总额计算、为商品单独设置)
 	public enum ScoreType {
-		disable, orderAmount, goodsSet
+		disable, orderAmount, cardsSet
 	}
 	
 	// 在线客服位置(左、右)
@@ -92,8 +86,6 @@ public class Setting {
 	private String currencyUnit;// 货币单位
 	private Integer priceScale;// 价格精确位数
 	private RoundType priceRoundType;// 价格精确方式
-	private Integer storeAlertCount;// 库存报警数量
-	private StoreFreezeTime storeFreezeTime;// 库存预占时间点
 	private Boolean isLoginFailureLock; // 是否开启登录失败锁定账号功能
 	private Integer loginFailureLockCount;// 同一账号允许连续登录失败的最大次数,超出次数后将锁定其账号
 	private Integer loginFailureLockTime;// 账号锁定时间(单位: 分钟,0表示永久锁定)
@@ -101,18 +93,15 @@ public class Setting {
 	private String watermarkImagePath; // 水印图片路径
 	private WatermarkPosition watermarkPosition; // 水印位置
 	private Integer watermarkAlpha;// 水印透明度
-	private Integer bigGoodsImageWidth;// 商品图片(大)宽度
-	private Integer bigGoodsImageHeight;// 商品图片(大)高度
-	private Integer smallGoodsImageWidth;// 商品图片(小)宽度
-	private Integer smallGoodsImageHeight;// 商品图片(小)高度
-	private Integer thumbnailGoodsImageWidth;// 商品缩略图宽度
-	private Integer thumbnailGoodsImageHeight;// 商品缩略图高度
-	private String defaultBigGoodsImagePath;// 默认商品图片(大)
-	private String defaultSmallGoodsImagePath;// 默认商品图片(小)
-	private String defaultThumbnailGoodsImagePath;// 默认缩略图
-	private Boolean isShowMarketPrice;// 前台是否显示市场价
-	private Operator defaultMarketPriceOperator;// 默认市场价运算符
-	private BigDecimal defaultMarketPriceNumber;// 默认市场价运算基数
+	private Integer bigCardsImageWidth;// 商品图片(大)宽度
+	private Integer bigCardsImageHeight;// 商品图片(大)高度
+	private Integer smallCardsImageWidth;// 商品图片(小)宽度
+	private Integer smallCardsImageHeight;// 商品图片(小)高度
+	private Integer thumbnailCardsImageWidth;// 商品缩略图宽度
+	private Integer thumbnailCardsImageHeight;// 商品缩略图高度
+	private String defaultBigCardsImagePath;// 默认商品图片(大)
+	private String defaultSmallCardsImagePath;// 默认商品图片(小)
+	private String defaultThumbnailCardsImagePath;// 默认缩略图
 	private String smtpFromMail;// 发件人邮箱
 	private String smtpHost;// SMTP服务器地址
 	private Integer smtpPort;// SMTP服务器端口
@@ -128,10 +117,6 @@ public class Setting {
 	private Boolean isLeaveMessageEnabled;// 是否开启在线留言功能
 	private Boolean isLeaveMessageCaptchaEnabled;// 是否开启在线留言验证码功能
 	private LeaveMessageDisplayType leaveMessageDisplayType;// 在线留言显示方式
-	private Boolean isCommentEnabled;// 是否开启评论功能
-	private Boolean isCommentCaptchaEnabled;// 是否开启评论验证码功能
-	private CommentAuthority commentAuthority;// 评论发表权限
-	private CommentDisplayType commentDisplayType;// 评论显示方式
 	
 	public String getSystemName() {
 		return systemName;
@@ -333,22 +318,6 @@ public class Setting {
 		this.priceRoundType = priceRoundType;
 	}
 
-	public Integer getStoreAlertCount() {
-		return storeAlertCount;
-	}
-
-	public void setStoreAlertCount(Integer storeAlertCount) {
-		this.storeAlertCount = storeAlertCount;
-	}
-
-	public StoreFreezeTime getStoreFreezeTime() {
-		return storeFreezeTime;
-	}
-
-	public void setStoreFreezeTime(StoreFreezeTime storeFreezeTime) {
-		this.storeFreezeTime = storeFreezeTime;
-	}
-
 	public Boolean getIsLoginFailureLock() {
 		return isLoginFailureLock;
 	}
@@ -405,100 +374,76 @@ public class Setting {
 		this.watermarkAlpha = watermarkAlpha;
 	}
 
-	public Integer getBigGoodsImageWidth() {
-		return bigGoodsImageWidth;
+	public Integer getBigCardsImageWidth() {
+		return bigCardsImageWidth;
 	}
 
-	public void setBigGoodsImageWidth(Integer bigGoodsImageWidth) {
-		this.bigGoodsImageWidth = bigGoodsImageWidth;
+	public void setBigCardsImageWidth(Integer bigCardsImageWidth) {
+		this.bigCardsImageWidth = bigCardsImageWidth;
 	}
 
-	public Integer getBigGoodsImageHeight() {
-		return bigGoodsImageHeight;
+	public Integer getBigCardsImageHeight() {
+		return bigCardsImageHeight;
 	}
 
-	public void setBigGoodsImageHeight(Integer bigGoodsImageHeight) {
-		this.bigGoodsImageHeight = bigGoodsImageHeight;
+	public void setBigCardsImageHeight(Integer bigCardsImageHeight) {
+		this.bigCardsImageHeight = bigCardsImageHeight;
 	}
 
-	public Integer getSmallGoodsImageWidth() {
-		return smallGoodsImageWidth;
+	public Integer getSmallCardsImageWidth() {
+		return smallCardsImageWidth;
 	}
 
-	public void setSmallGoodsImageWidth(Integer smallGoodsImageWidth) {
-		this.smallGoodsImageWidth = smallGoodsImageWidth;
+	public void setSmallCardsImageWidth(Integer smallCardsImageWidth) {
+		this.smallCardsImageWidth = smallCardsImageWidth;
 	}
 
-	public Integer getSmallGoodsImageHeight() {
-		return smallGoodsImageHeight;
+	public Integer getSmallCardsImageHeight() {
+		return smallCardsImageHeight;
 	}
 
-	public void setSmallGoodsImageHeight(Integer smallGoodsImageHeight) {
-		this.smallGoodsImageHeight = smallGoodsImageHeight;
+	public void setSmallCardsImageHeight(Integer smallCardsImageHeight) {
+		this.smallCardsImageHeight = smallCardsImageHeight;
 	}
 
-	public Integer getThumbnailGoodsImageWidth() {
-		return thumbnailGoodsImageWidth;
+	public Integer getThumbnailCardsImageWidth() {
+		return thumbnailCardsImageWidth;
 	}
 
-	public void setThumbnailGoodsImageWidth(Integer thumbnailGoodsImageWidth) {
-		this.thumbnailGoodsImageWidth = thumbnailGoodsImageWidth;
+	public void setThumbnailCardsImageWidth(Integer thumbnailCardsImageWidth) {
+		this.thumbnailCardsImageWidth = thumbnailCardsImageWidth;
 	}
 
-	public Integer getThumbnailGoodsImageHeight() {
-		return thumbnailGoodsImageHeight;
+	public Integer getThumbnailCardsImageHeight() {
+		return thumbnailCardsImageHeight;
 	}
 
-	public void setThumbnailGoodsImageHeight(Integer thumbnailGoodsImageHeight) {
-		this.thumbnailGoodsImageHeight = thumbnailGoodsImageHeight;
+	public void setThumbnailCardsImageHeight(Integer thumbnailCardsImageHeight) {
+		this.thumbnailCardsImageHeight = thumbnailCardsImageHeight;
 	}
 
-	public String getDefaultBigGoodsImagePath() {
-		return defaultBigGoodsImagePath;
+	public String getDefaultBigCardsImagePath() {
+		return defaultBigCardsImagePath;
 	}
 
-	public void setDefaultBigGoodsImagePath(String defaultBigGoodsImagePath) {
-		this.defaultBigGoodsImagePath = defaultBigGoodsImagePath;
+	public void setDefaultBigCardsImagePath(String defaultBigCardsImagePath) {
+		this.defaultBigCardsImagePath = defaultBigCardsImagePath;
 	}
 
-	public String getDefaultSmallGoodsImagePath() {
-		return defaultSmallGoodsImagePath;
+	public String getDefaultSmallCardsImagePath() {
+		return defaultSmallCardsImagePath;
 	}
 
-	public void setDefaultSmallGoodsImagePath(String defaultSmallGoodsImagePath) {
-		this.defaultSmallGoodsImagePath = defaultSmallGoodsImagePath;
+	public void setDefaultSmallCardsImagePath(String defaultSmallCardsImagePath) {
+		this.defaultSmallCardsImagePath = defaultSmallCardsImagePath;
 	}
 
-	public String getDefaultThumbnailGoodsImagePath() {
-		return defaultThumbnailGoodsImagePath;
+	public String getDefaultThumbnailCardsImagePath() {
+		return defaultThumbnailCardsImagePath;
 	}
 
-	public void setDefaultThumbnailGoodsImagePath(String defaultThumbnailGoodsImagePath) {
-		this.defaultThumbnailGoodsImagePath = defaultThumbnailGoodsImagePath;
-	}
-
-	public Boolean getIsShowMarketPrice() {
-		return isShowMarketPrice;
-	}
-
-	public void setIsShowMarketPrice(Boolean isShowMarketPrice) {
-		this.isShowMarketPrice = isShowMarketPrice;
-	}
-
-	public Operator getDefaultMarketPriceOperator() {
-		return defaultMarketPriceOperator;
-	}
-
-	public void setDefaultMarketPriceOperator(Operator defaultMarketPriceOperator) {
-		this.defaultMarketPriceOperator = defaultMarketPriceOperator;
-	}
-
-	public BigDecimal getDefaultMarketPriceNumber() {
-		return defaultMarketPriceNumber;
-	}
-
-	public void setDefaultMarketPriceNumber(BigDecimal defaultMarketPriceNumber) {
-		this.defaultMarketPriceNumber = defaultMarketPriceNumber;
+	public void setDefaultThumbnailCardsImagePath(String defaultThumbnailCardsImagePath) {
+		this.defaultThumbnailCardsImagePath = defaultThumbnailCardsImagePath;
 	}
 
 	public String getSmtpFromMail() {
@@ -621,38 +566,6 @@ public class Setting {
 		this.leaveMessageDisplayType = leaveMessageDisplayType;
 	}
 
-	public Boolean getIsCommentEnabled() {
-		return isCommentEnabled;
-	}
-
-	public void setIsCommentEnabled(Boolean isCommentEnabled) {
-		this.isCommentEnabled = isCommentEnabled;
-	}
-
-	public Boolean getIsCommentCaptchaEnabled() {
-		return isCommentCaptchaEnabled;
-	}
-
-	public void setIsCommentCaptchaEnabled(Boolean isCommentCaptchaEnabled) {
-		this.isCommentCaptchaEnabled = isCommentCaptchaEnabled;
-	}
-
-	public CommentAuthority getCommentAuthority() {
-		return commentAuthority;
-	}
-
-	public void setCommentAuthority(CommentAuthority commentAuthority) {
-		this.commentAuthority = commentAuthority;
-	}
-
-	public CommentDisplayType getCommentDisplayType() {
-		return commentDisplayType;
-	}
-
-	public void setCommentDisplayType(CommentDisplayType commentDisplayType) {
-		this.commentDisplayType = commentDisplayType;
-	}
-	
 	// 获取热门搜索关键词集合
 	public List<String> getHotSearchList() {
 		return StringUtils.isNotEmpty(hotSearch) ? Arrays.asList(hotSearch.split(HOT_SEARCH_SEPARATOR)) : new ArrayList<String>();

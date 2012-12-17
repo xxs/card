@@ -6,7 +6,6 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -36,22 +35,13 @@ public class Product extends BaseEntity {
 	private String productSn;// 货品编号
 	private String name;// 名称
 	private BigDecimal price;// 销售价
-	private BigDecimal cost;// 成本价
-	private BigDecimal marketPrice;// 市场价
-	private Integer weight;// 商品重量(单位: 克)
-	private Integer store;// 库存
-	private Integer freezeStore;// 被占用库存数
-	private String storePlace;// 货位
 	private Boolean isMarketable;// 是否上架
 	private Boolean isDefault;// 是否默认
 	private String specificationValueStore;// 商品规格值存储
 	
-	private Goods goods;// 商品
+	private Cards cards;// 商品
 	
-	private Set<CartItem> cartItemSet = new HashSet<CartItem>();// 购物车项
 	private Set<OrderItem> orderItemSet = new HashSet<OrderItem>();// 订单项
-	private Set<DeliveryItem> deliveryItemSet = new HashSet<DeliveryItem>();// 物流项
-	private Set<GoodsNotify> goodsNotifySet = new HashSet<GoodsNotify>();// 到货通知
 	
 	@Column(nullable = false, unique = true)
 	public String getProductSn() {
@@ -80,58 +70,6 @@ public class Product extends BaseEntity {
 		this.price = SettingUtil.setPriceScale(price);
 	}
 	
-	@Column(precision = 15, scale = 5)
-	public BigDecimal getCost() {
-		return cost;
-	}
-	
-	public void setCost(BigDecimal cost) {
-		this.cost = SettingUtil.setPriceScale(cost);
-	}
-	
-	@Column(nullable = false, precision = 15, scale = 5)
-	public BigDecimal getMarketPrice() {
-		return marketPrice;
-	}
-	
-	public void setMarketPrice(BigDecimal marketPrice) {
-		this.marketPrice = SettingUtil.setPriceScale(marketPrice);
-	}
-	
-	@Column(nullable = false)
-	public Integer getWeight() {
-		return weight;
-	}
-
-	public void setWeight(Integer weight) {
-		this.weight = weight;
-	}
-
-	public Integer getStore() {
-		return store;
-	}
-	
-	public void setStore(Integer store) {
-		this.store = store;
-	}
-	
-	@Column(nullable = false)
-	public Integer getFreezeStore() {
-		return freezeStore;
-	}
-	
-	public void setFreezeStore(Integer freezeStore) {
-		this.freezeStore = freezeStore;
-	}
-	
-	public String getStorePlace() {
-		return storePlace;
-	}
-
-	public void setStorePlace(String storePlace) {
-		this.storePlace = storePlace;
-	}
-
 	@Column(nullable = false)
 	public Boolean getIsMarketable() {
 		return isMarketable;
@@ -152,13 +90,13 @@ public class Product extends BaseEntity {
 
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(nullable = false)
-	@ForeignKey(name = "fk_product_goods")
-	public Goods getGoods() {
-		return goods;
+	@ForeignKey(name = "fk_product_cards")
+	public Cards getCards() {
+		return cards;
 	}
 	
-	public void setGoods(Goods goods) {
-		this.goods = goods;
+	public void setCards(Cards cards) {
+		this.cards = cards;
 	}
 	
 	@Column(length = 3000)
@@ -170,15 +108,6 @@ public class Product extends BaseEntity {
 		this.specificationValueStore = specificationValueStore;
 	}
 
-	@OneToMany(mappedBy = "product", fetch = FetchType.LAZY, cascade = {CascadeType.REMOVE})
-	public Set<CartItem> getCartItemSet() {
-		return cartItemSet;
-	}
-
-	public void setCartItemSet(Set<CartItem> cartItemSet) {
-		this.cartItemSet = cartItemSet;
-	}
-
 	@OneToMany(mappedBy = "product", fetch = FetchType.LAZY)
 	public Set<OrderItem> getOrderItemSet() {
 		return orderItemSet;
@@ -188,23 +117,6 @@ public class Product extends BaseEntity {
 		this.orderItemSet = orderItemSet;
 	}
 
-	@OneToMany(mappedBy = "product", fetch = FetchType.LAZY)
-	public Set<DeliveryItem> getDeliveryItemSet() {
-		return deliveryItemSet;
-	}
-
-	public void setDeliveryItemSet(Set<DeliveryItem> deliveryItemSet) {
-		this.deliveryItemSet = deliveryItemSet;
-	}
-	
-	@OneToMany(mappedBy = "product", fetch = FetchType.LAZY, cascade = {CascadeType.REMOVE})
-	public Set<GoodsNotify> getGoodsNotifySet() {
-		return goodsNotifySet;
-	}
-
-	public void setGoodsNotifySet(Set<GoodsNotify> goodsNotifySet) {
-		this.goodsNotifySet = goodsNotifySet;
-	}
 	
 	// 获取商品规格值
 	@Transient
@@ -236,21 +148,6 @@ public class Product extends BaseEntity {
 		if (price == null || price.compareTo(new BigDecimal(0)) < 0) {
 			price = new BigDecimal(0);
 		}
-		if (cost != null && cost.compareTo(new BigDecimal(0)) < 0) {
-			cost = new BigDecimal(0);
-		}
-		if (marketPrice == null || marketPrice.compareTo(new BigDecimal(0)) < 0) {
-			marketPrice = SettingUtil.getDefaultMarketPrice(price);
-		}
-		if (weight == null || weight < 0) {
-			weight = 0;
-		}
-		if (store != null && store < 0) {
-			store = 0;
-		}
-		if (freezeStore < 0) {
-			freezeStore = 0;
-		}
 		if (isMarketable == null) {
 			isMarketable = false;
 		}
@@ -260,7 +157,6 @@ public class Product extends BaseEntity {
 		if (StringUtils.isEmpty(productSn)) {
 			productSn = SerialNumberUtil.buildProductSn();
 		}
-		freezeStore = 0;
 	}
 	
 	// 更新处理
@@ -270,21 +166,6 @@ public class Product extends BaseEntity {
 		if (price == null || price.compareTo(new BigDecimal(0)) < 0) {
 			price = new BigDecimal(0);
 		}
-		if (cost != null && cost.compareTo(new BigDecimal(0)) < 0) {
-			cost = new BigDecimal(0);
-		}
-		if (marketPrice == null || marketPrice.compareTo(new BigDecimal(0)) < 0) {
-			marketPrice = SettingUtil.getDefaultMarketPrice(price);
-		}
-		if (weight == null || weight < 0) {
-			weight = 0;
-		}
-		if (store != null && store < 0) {
-			store = 0;
-		}
-		if (freezeStore < 0) {
-			freezeStore = 0;
-		}
 		if (isMarketable == null) {
 			isMarketable = false;
 		}
@@ -293,18 +174,6 @@ public class Product extends BaseEntity {
 		}
 		if (StringUtils.isEmpty(productSn)) {
 			productSn = SerialNumberUtil.buildProductSn();
-		}
-	}
-	
-	/**
-	 * 商品是否缺货
-	 */
-	@Transient
-	public Boolean getIsOutOfStock() {
-		if (store != null && freezeStore >= store) {
-			return true;
-		} else {
-			return false;
 		}
 	}
 	

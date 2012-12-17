@@ -14,7 +14,7 @@ public class PageTemplateConfig {
 	public static final String ADMIN_JS = "adminJs";// ADMIN.JS
 	public static final String SHOP_JS = "shopJs";// SHOP.JS
 	public static final String ARTICLE_CONTENT = "articleContent";// 文章内容
-	public static final String GOODS_CONTENT = "goodsContent";// 商品内容
+	public static final String CARDS_CONTENT = "cardsContent";// 商品内容
 	public static final String ERROR_PAGE = "errorPage";// 错误页
 	public static final String ERROR_PAGE_ACCESS_DENIED = "errorPageAccessDenied";// 权限错误页
 	public static final String ERROR_PAGE_500 = "errorPage500";// 错误页500

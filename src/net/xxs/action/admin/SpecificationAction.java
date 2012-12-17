@@ -10,7 +10,7 @@ import java.util.Set;
 import javax.annotation.Resource;
 
 import net.xxs.bean.SpecificationValue;
-import net.xxs.entity.Goods;
+import net.xxs.entity.Cards;
 import net.xxs.entity.Specification;
 import net.xxs.entity.Specification.SpecificationType;
 import net.xxs.service.SpecificationService;
@@ -62,8 +62,8 @@ public class SpecificationAction extends BaseAdminAction {
 	public String delete() {
 		for (String id : ids) {
 			Specification specification = specificationService.load(id);
-			Set<Goods> goodsSet = specification.getGoodsSet();
-			if (goodsSet != null && goodsSet.size() > 0) {
+			Set<Cards> cardsSet = specification.getCardsSet();
+			if (cardsSet != null && cardsSet.size() > 0) {
 				return ajax(Status.error, "规格[" + specification.getName() + "]已被引用,删除失败!");
 			}
 		}
@@ -166,7 +166,7 @@ public class SpecificationAction extends BaseAdminAction {
 		Specification persistent = specificationService.load(id);
 		specification.setSpecificationValueList(specificationValueList);
 
-		BeanUtils.copyProperties(specification, persistent, new String[] {"id", "createDate", "modifyDate", "goodsSet"});
+		BeanUtils.copyProperties(specification, persistent, new String[] {"id", "createDate", "modifyDate", "cardsSet"});
 		specificationService.update(persistent);
 		
 		redirectUrl = "specification!list.action";

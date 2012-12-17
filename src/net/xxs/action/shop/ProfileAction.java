@@ -7,12 +7,10 @@ import java.util.regex.Pattern;
 
 import javax.annotation.Resource;
 
-import net.xxs.entity.Area;
 import net.xxs.entity.Member;
 import net.xxs.entity.MemberAttribute;
 import net.xxs.entity.MemberAttribute.AttributeType;
 import net.xxs.entity.MemberAttribute.SystemAttributeType;
-import net.xxs.service.AreaService;
 import net.xxs.service.MemberAttributeService;
 import net.xxs.service.MemberService;
 import net.xxs.util.StringUtil;
@@ -50,8 +48,6 @@ public class ProfileAction extends BaseShopAction {
 	private MemberService memberService;
 	@Resource(name = "memberAttributeServiceImpl")
 	private MemberAttributeService memberAttributeService;
-	@Resource(name = "areaServiceImpl")
-	private AreaService areaService;
 	
 	// 编辑
 	public String edit() {
@@ -89,17 +85,7 @@ public class ProfileAction extends BaseShopAction {
 			}
 			if (systemAttributeType != null) {
 				if (StringUtils.isNotEmpty(memberAttributeValue)) {
-					if (systemAttributeType == SystemAttributeType.area) {
-						Area area = areaService.get(memberAttributeValue);
-						if (area == null) {
-							addActionError("请选择" + memberAttribute.getName() + "!");
-							return ERROR;
-						}
-						
-						member.setMemberAttributeValue(memberAttribute, area);
-					} else {
 						member.setMemberAttributeValue(memberAttribute, memberAttributeValue);
-					}
 				}
 			} else if (attributeType != null) {
 				if (attributeType == AttributeType.checkbox) {

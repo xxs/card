@@ -1,7 +1,6 @@
 package net.xxs.action.admin;
 
 import java.io.File;
-import java.math.BigDecimal;
 import java.util.Arrays;
 import java.util.List;
 
@@ -12,7 +11,6 @@ import net.xxs.bean.Setting.CurrencyType;
 import net.xxs.bean.Setting.Operator;
 import net.xxs.bean.Setting.RoundType;
 import net.xxs.bean.Setting.ScoreType;
-import net.xxs.bean.Setting.StoreFreezeTime;
 import net.xxs.bean.Setting.WatermarkPosition;
 import net.xxs.service.CacheService;
 import net.xxs.service.JobService;
@@ -45,9 +43,9 @@ public class SettingAction extends BaseAdminAction {
 	private Setting setting;
 	private String smtpToMail;
 	private File shopLogo;
-	private File defaultBigGoodsImage;
-	private File defaultSmallGoodsImage;
-	private File defaultThumbnailGoodsImage;
+	private File defaultBigCardsImage;
+	private File defaultSmallCardsImage;
+	private File defaultThumbnailCardsImage;
 	private File watermarkImage;
 	
 	@Resource(name = "mailServiceImpl")
@@ -119,12 +117,12 @@ public class SettingAction extends BaseAdminAction {
 			@RequiredFieldValidator(fieldName = "setting.isLoginFailureLock", message = "是否开启自动锁定账号功能不允许为空!"),
 			@RequiredFieldValidator(fieldName = "setting.loginFailureLockCount", message = "连续登录失败最大次数不允许为空!"),
 			@RequiredFieldValidator(fieldName = "setting.loginFailureLockTime", message = "自动解锁时间不允许为空!"),
-			@RequiredFieldValidator(fieldName = "setting.bigGoodsImageWidth", message = "商品图片（大）宽不允许为空!"),
-			@RequiredFieldValidator(fieldName = "setting.bigGoodsImageHeight", message = "商品图片（大）高不允许为空!"),
-			@RequiredFieldValidator(fieldName = "setting.smallGoodsImageWidth", message = "商品图片（小）宽不允许为空!"),
-			@RequiredFieldValidator(fieldName = "setting.smallGoodsImageHeight", message = "商品图片（小）高不允许为空!"),
-			@RequiredFieldValidator(fieldName = "setting.thumbnailGoodsImageWidth", message = "商品缩略图宽不允许为空!"),
-			@RequiredFieldValidator(fieldName = "setting.thumbnailGoodsImageHeight", message = "商品缩略图高不允许为空!"),
+			@RequiredFieldValidator(fieldName = "setting.bigCardsImageWidth", message = "商品图片（大）宽不允许为空!"),
+			@RequiredFieldValidator(fieldName = "setting.bigCardsImageHeight", message = "商品图片（大）高不允许为空!"),
+			@RequiredFieldValidator(fieldName = "setting.smallCardsImageWidth", message = "商品图片（小）宽不允许为空!"),
+			@RequiredFieldValidator(fieldName = "setting.smallCardsImageHeight", message = "商品图片（小）高不允许为空!"),
+			@RequiredFieldValidator(fieldName = "setting.thumbnailCardsImageWidth", message = "商品缩略图宽不允许为空!"),
+			@RequiredFieldValidator(fieldName = "setting.thumbnailCardsImageHeight", message = "商品缩略图高不允许为空!"),
 			@RequiredFieldValidator(fieldName = "setting.smtpPort", message = "SMTP服务器端口不允许为空!"),
 			@RequiredFieldValidator(fieldName = "setting.watermarkAlpha", message = "水印透明度不允许为空!"),
 			@RequiredFieldValidator(fieldName = "setting.isShowMarketPrice", message = "前台是否显示市场价不允许为空!"),
@@ -140,12 +138,12 @@ public class SettingAction extends BaseAdminAction {
 			@IntRangeFieldValidator(fieldName = "setting.priceScale", max = "4", message = "商品价格精确位数位不能大于4!"),
 			@IntRangeFieldValidator(fieldName = "setting.loginFailureLockCount", min = "1", message = "连续登录失败最大次数必须为正整数!"),
 			@IntRangeFieldValidator(fieldName = "setting.loginFailureLockTime", min = "0", message = "自动解锁时间必须为零或正整数!"),
-			@IntRangeFieldValidator(fieldName = "setting.bigGoodsImageWidth", min = "1", message = "商品图片（大）宽必须为正整数!"),
-			@IntRangeFieldValidator(fieldName = "setting.bigGoodsImageHeight", min = "1", message = "商品图片（大）高必须为正整数!"),
-			@IntRangeFieldValidator(fieldName = "setting.smallGoodsImageWidth", min = "1", message = "商品图片（小）宽必须为正整数!"),
-			@IntRangeFieldValidator(fieldName = "setting.smallGoodsImageHeight", min = "1", message = "商品图片（小）高必须为正整数!"),
-			@IntRangeFieldValidator(fieldName = "setting.thumbnailGoodsImageWidth", min = "1", message = "商品缩略图宽必须为正整数!"),
-			@IntRangeFieldValidator(fieldName = "setting.thumbnailGoodsImageHeight", min = "1", message = "商品缩略图高必须为正整数!"),
+			@IntRangeFieldValidator(fieldName = "setting.bigCardsImageWidth", min = "1", message = "商品图片（大）宽必须为正整数!"),
+			@IntRangeFieldValidator(fieldName = "setting.bigCardsImageHeight", min = "1", message = "商品图片（大）高必须为正整数!"),
+			@IntRangeFieldValidator(fieldName = "setting.smallCardsImageWidth", min = "1", message = "商品图片（小）宽必须为正整数!"),
+			@IntRangeFieldValidator(fieldName = "setting.smallCardsImageHeight", min = "1", message = "商品图片（小）高必须为正整数!"),
+			@IntRangeFieldValidator(fieldName = "setting.thumbnailCardsImageWidth", min = "1", message = "商品缩略图宽必须为正整数!"),
+			@IntRangeFieldValidator(fieldName = "setting.thumbnailCardsImageHeight", min = "1", message = "商品缩略图高必须为正整数!"),
 			@IntRangeFieldValidator(fieldName = "setting.smtpPort", min = "0", message = "SMTP端口必须为零或正整数!"),
 			@IntRangeFieldValidator(fieldName = "setting.watermarkAlpha", min = "0", max="100", message = "水印透明度取值范围在${min}-${max}之间!"),
 			@IntRangeFieldValidator(fieldName = "setting.buildHtmlDelayTime", min = "0", message = "HTML自动生成延时必须为零或正整数!")
@@ -161,11 +159,6 @@ public class SettingAction extends BaseAdminAction {
 			addActionError("积分换算比率不允许小于0!");
 			return ERROR;
 		}
-		if (setting.getDefaultMarketPriceOperator() == Operator.divide && setting.getDefaultMarketPriceNumber().compareTo(new BigDecimal(0)) == 0) {
-			addActionError("默认市场价运算基数错误!");
-			return ERROR;
-		}
-		
 		Setting persistent = SettingUtil.getSetting();
 		
 		if (StringUtils.isNotEmpty(setting.getSmtpPassword())) {
@@ -179,23 +172,23 @@ public class SettingAction extends BaseAdminAction {
 			File destShopLogo = new File(getRealPath(persistent.getShopLogoPath()));
 			ImageUtil.toJpegImageFile(shopLogo, destShopLogo);
 		}
-		if (defaultBigGoodsImage != null) {
-			File destDefaultBigGoodsImage = new File(getRealPath(persistent.getDefaultBigGoodsImagePath()));
-			ImageUtil.toJpegImageFile(defaultBigGoodsImage, destDefaultBigGoodsImage);
+		if (defaultBigCardsImage != null) {
+			File destDefaultBigCardsImage = new File(getRealPath(persistent.getDefaultBigCardsImagePath()));
+			ImageUtil.toJpegImageFile(defaultBigCardsImage, destDefaultBigCardsImage);
 		}
-		if (defaultSmallGoodsImage != null) {
-			File destDefaultSmallGoodsImage = new File(getRealPath(persistent.getDefaultSmallGoodsImagePath()));
-			ImageUtil.toJpegImageFile(defaultSmallGoodsImage, destDefaultSmallGoodsImage);
+		if (defaultSmallCardsImage != null) {
+			File destDefaultSmallCardsImage = new File(getRealPath(persistent.getDefaultSmallCardsImagePath()));
+			ImageUtil.toJpegImageFile(defaultSmallCardsImage, destDefaultSmallCardsImage);
 		}
-		if (defaultThumbnailGoodsImage != null) {
-			File destDefaultThumbnailGoodsImage = new File(getRealPath(persistent.getDefaultThumbnailGoodsImagePath()));
-			ImageUtil.toJpegImageFile(defaultThumbnailGoodsImage, destDefaultThumbnailGoodsImage);
+		if (defaultThumbnailCardsImage != null) {
+			File destDefaultThumbnailCardsImage = new File(getRealPath(persistent.getDefaultThumbnailCardsImagePath()));
+			ImageUtil.toJpegImageFile(defaultThumbnailCardsImage, destDefaultThumbnailCardsImage);
 		}
 		if (watermarkImage != null) {
 			File destWatermarkImage = new File(getRealPath(persistent.getWatermarkImagePath()));
 			ImageUtil.toJpegImageFile(watermarkImage, destWatermarkImage);
 		}
-		BeanUtils.copyProperties(setting, persistent, new String[] {"systemName", "systemVersion", "systemDescription", "contextPath", "imageUploadPath", "imageBrowsePath", "adminLoginUrl", "adminLoginProcessingUrl", "isShowPoweredInfo", "shopLogoPath", "defaultBigGoodsImagePath", "defaultSmallGoodsImagePath", "defaultThumbnailGoodsImagePath", "watermarkImagePath", "isInstantMessagingEnabled", "instantMessagingPosition", "instantMessagingTitle", "isLeaveMessageEnabled", "isLeaveMessageCaptchaEnabled", "leaveMessageDisplayType", "isCommentEnabled", "isCommentCaptchaEnabled", "commentAuthority", "commentDisplayType"});
+		BeanUtils.copyProperties(setting, persistent, new String[] {"systemName", "systemVersion", "systemDescription", "contextPath", "imageUploadPath", "imageBrowsePath", "adminLoginUrl", "adminLoginProcessingUrl", "isShowPoweredInfo", "shopLogoPath", "defaultBigCardsImagePath", "defaultSmallCardsImagePath", "defaultThumbnailCardsImagePath", "watermarkImagePath", "isInstantMessagingEnabled", "instantMessagingPosition", "instantMessagingTitle", "isLeaveMessageEnabled", "isLeaveMessageCaptchaEnabled", "leaveMessageDisplayType", "isCommentEnabled", "isCommentCaptchaEnabled", "commentAuthority", "commentDisplayType"});
 		SettingUtil.updateSetting(persistent);
 		
 		cacheService.flushAllPageCache(getRequest());
@@ -205,7 +198,7 @@ public class SettingAction extends BaseAdminAction {
 		jobService.buildAdminJs();
 		jobService.buildShopJs();
 		jobService.buildArticleContentHtml();
-		jobService.buildGoodsContentHtml();
+		jobService.buildCardsContentHtml();
 		
 		redirectUrl = "setting!edit.action";
 		return SUCCESS;
@@ -221,11 +214,6 @@ public class SettingAction extends BaseAdminAction {
 		return Arrays.asList(RoundType.values());
 	}
 	
-	// 获取库存预占时间点集合
-	public List<StoreFreezeTime> getStoreFreezeTimeList() {
-		return Arrays.asList(StoreFreezeTime.values());
-	}
-
 	// 获取水印位置集合
 	public List<WatermarkPosition> getWatermarkPositionList() {
 		return Arrays.asList(WatermarkPosition.values());
@@ -265,28 +253,28 @@ public class SettingAction extends BaseAdminAction {
 		this.shopLogo = shopLogo;
 	}
 
-	public File getDefaultBigGoodsImage() {
-		return defaultBigGoodsImage;
+	public File getDefaultBigCardsImage() {
+		return defaultBigCardsImage;
 	}
 
-	public void setDefaultBigGoodsImage(File defaultBigGoodsImage) {
-		this.defaultBigGoodsImage = defaultBigGoodsImage;
+	public void setDefaultBigCardsImage(File defaultBigCardsImage) {
+		this.defaultBigCardsImage = defaultBigCardsImage;
 	}
 
-	public File getDefaultSmallGoodsImage() {
-		return defaultSmallGoodsImage;
+	public File getDefaultSmallCardsImage() {
+		return defaultSmallCardsImage;
 	}
 
-	public void setDefaultSmallGoodsImage(File defaultSmallGoodsImage) {
-		this.defaultSmallGoodsImage = defaultSmallGoodsImage;
+	public void setDefaultSmallCardsImage(File defaultSmallCardsImage) {
+		this.defaultSmallCardsImage = defaultSmallCardsImage;
 	}
 
-	public File getDefaultThumbnailGoodsImage() {
-		return defaultThumbnailGoodsImage;
+	public File getDefaultThumbnailCardsImage() {
+		return defaultThumbnailCardsImage;
 	}
 
-	public void setDefaultThumbnailGoodsImage(File defaultThumbnailGoodsImage) {
-		this.defaultThumbnailGoodsImage = defaultThumbnailGoodsImage;
+	public void setDefaultThumbnailCardsImage(File defaultThumbnailCardsImage) {
+		this.defaultThumbnailCardsImage = defaultThumbnailCardsImage;
 	}
 
 	public File getWatermarkImage() {

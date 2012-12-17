@@ -230,20 +230,6 @@ public class PaymentAction extends BaseShopAction {
 			payment.setOrder(order);
 			paymentService.save(payment);
 			
-//			// 库存处理
-//			if (getSetting().getStoreFreezeTime() == StoreFreezeTime.payment) {
-//				for (OrderItem orderItem : order.getOrderItemSet()) {
-//					Product product = orderItem.getProduct();
-//					if (product.getStore() != null) {
-//						product.setFreezeStore(product.getFreezeStore() + orderItem.getProductQuantity());
-//						productService.update(product);
-//						if (product.getIsOutOfStock()) {
-//							cacheService.flushGoodsListPageCache(getRequest());
-//						}
-//					}
-//				}
-//			}
-			
 			// 订单日志
 			String logInfo = "支付总金额: " + SettingUtil.currencyFormat(payment.getTotalAmount());
 			if (paymentFee.compareTo(new BigDecimal(0)) > 0) {
@@ -384,19 +370,6 @@ public class PaymentAction extends BaseShopAction {
 			order.setPaidAmount(order.getPaidAmount().add(totalAmount));
 			orderService.update(order);
 			
-//			// 库存处理
-//			if (getSetting().getStoreFreezeTime() == StoreFreezeTime.payment) {
-//				for (OrderItem orderItem : order.getOrderItemSet()) {
-//					Product product = orderItem.getProduct();
-//					if (product.getStore() != null) {
-//						product.setFreezeStore(product.getFreezeStore() + orderItem.getProductQuantity());
-//						productService.update(product);
-//						if (product.getIsOutOfStock()) {
-//							cacheService.flushGoodsListPageCache(getRequest());
-//						}
-//					}
-//				}
-//			}
 			//---------支付成功后为用户添加上预存款，并计算提现率
 			System.out.println("支付金额为totalAmount："+totalAmount);
 			System.out.println("支付金额为paymentFee："+paymentFee);
@@ -559,20 +532,6 @@ public class PaymentAction extends BaseShopAction {
 			order.setPaymentStatus(net.xxs.entity.Order.PaymentStatus.paid);
 			order.setPaidAmount(order.getPaidAmount().add(totalAmount));
 			orderService.update(order);
-			
-//			// 库存处理
-//			if (getSetting().getStoreFreezeTime() == StoreFreezeTime.payment) {
-//				for (OrderItem orderItem : order.getOrderItemSet()) {
-//					Product product = orderItem.getProduct();
-//					if (product.getStore() != null) {
-//						product.setFreezeStore(product.getFreezeStore() + orderItem.getProductQuantity());
-//						productService.update(product);
-//						if (product.getIsOutOfStock()) {
-//							cacheService.flushGoodsListPageCache(getRequest());
-//						}
-//					}
-//				}
-//			}
 			
 			// 订单日志
 			String logInfo = "支付总金额: " + payment.getTotalAmount();

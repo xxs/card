@@ -2,7 +2,6 @@ package net.xxs.service;
 
 import java.util.Map;
 
-import net.xxs.entity.GoodsNotify;
 import net.xxs.entity.Member;
 
 /**
@@ -61,14 +60,5 @@ public interface MailService {
 	 * 
 	 */
 	public void sendPasswordRecoverMail(Member member);
-	
-	/**
-	 * 发送到货通知邮件
-	 * 
-	 * @param goodsNotify
-	 *            到货通知
-	 * 
-	 */
-	public void sendGoodsNotifyMail(GoodsNotify goodsNotify);
 	
 }

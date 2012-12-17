@@ -22,11 +22,4 @@ public interface ProductDao extends BaseDao<Product, String> {
 	 */
 	public List<Product> getSiblingsProductList(String productId);
 	
-	/**
-	 * 获取货品库存报警数
-	 *            
-	 * @return 货品库存报警数
-	 */
-	public Long getStoreAlertCount();
-	
 }

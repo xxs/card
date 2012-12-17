@@ -24,7 +24,7 @@ public interface CacheService {
 	 *            HttpServletRequest
 	 *            
 	 */
-	public void flushGoodsListPageCache(HttpServletRequest request);
+	public void flushCardsListPageCache(HttpServletRequest request);
 	
 	/**
 	 * 刷新商品评论列表页面缓存

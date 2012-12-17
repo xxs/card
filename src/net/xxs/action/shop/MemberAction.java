@@ -1,38 +1,27 @@
 package net.xxs.action.shop;
 
-import java.io.IOException;
 import java.math.BigDecimal;
 import java.net.URLEncoder;
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.Enumeration;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpSession;
 
-import net.xxs.bean.CartItemCookie;
 import net.xxs.bean.Setting;
-import net.xxs.entity.CartItem;
 import net.xxs.entity.Member;
-import net.xxs.entity.Product;
-import net.xxs.service.CartItemService;
 import net.xxs.service.MailService;
 import net.xxs.service.MemberRankService;
 import net.xxs.service.MemberService;
 import net.xxs.service.ProductService;
 import net.xxs.util.CaptchaUtil;
-import net.xxs.util.JsonUtil;
 import net.xxs.util.StringUtil;
 
 import org.apache.commons.lang.StringUtils;
 import org.apache.commons.lang.time.DateUtils;
 import org.apache.struts2.convention.annotation.ParentPackage;
-import org.codehaus.jackson.JsonParseException;
-import org.codehaus.jackson.map.JsonMappingException;
-import org.codehaus.jackson.type.TypeReference;
 
 import com.opensymphony.xwork2.interceptor.annotations.InputConfig;
 import com.opensymphony.xwork2.validator.annotations.EmailValidator;
@@ -63,8 +52,6 @@ public class MemberAction extends BaseShopAction {
 	private MailService mailService;
 	@Resource(name = "productServiceImpl")
 	private ProductService productService;
-	@Resource(name = "cartItemServiceImpl")
-	private CartItemService cartItemService;
 	
 	// 会员登录验证
 	@SuppressWarnings("unchecked")
@@ -163,32 +150,6 @@ public class MemberAction extends BaseShopAction {
 		
 		setCookie(Member.MEMBER_USERNAME_COOKIE_NAME, URLEncoder.encode(member.getUsername().toLowerCase(), "UTF-8"));
 		
-		// 合并购物车
-		String cartItemListCookie = getCookie(CartItemCookie.CART_ITEM_LIST_COOKIE_NAME);
-		if (StringUtils.isNotEmpty(cartItemListCookie)) {
-			try {
-				List<CartItemCookie> cartItemCookieList = JsonUtil.toObject(cartItemListCookie, new TypeReference<ArrayList<CartItemCookie>>() {});
-				for (CartItemCookie cartItemCookie : cartItemCookieList) {
-					Product product = productService.get(cartItemCookie.getI());
-					if (product != null) {
-						CartItem cartItem = new CartItem();
-						cartItem.setMember(loginMember);
-						cartItem.setProduct(product);
-						cartItem.setQuantity(cartItemCookie.getQ());
-						cartItemService.save(cartItem);
-					}
-				}
-			} catch (JsonParseException e) {
-				removeCookie(CartItemCookie.CART_ITEM_LIST_COOKIE_NAME);
-			} catch (JsonMappingException e) {
-				removeCookie(CartItemCookie.CART_ITEM_LIST_COOKIE_NAME);
-			} catch (IOException e) {
-				removeCookie(CartItemCookie.CART_ITEM_LIST_COOKIE_NAME);
-			}
-		}
-		
-		// 清空购物车Cookie
-		removeCookie(CartItemCookie.CART_ITEM_LIST_COOKIE_NAME);
 		
 		if (StringUtils.isNotEmpty(loginRedirectUrl)) {
 			redirectUrl = loginRedirectUrl;
@@ -300,33 +261,6 @@ public class MemberAction extends BaseShopAction {
 		// 写入会员登录Cookie
 		setCookie(Member.MEMBER_USERNAME_COOKIE_NAME, URLEncoder.encode(member.getUsername().toLowerCase(), "UTF-8"));
 		
-		// 合并购物车
-		String cartItemListCookie = getCookie(CartItemCookie.CART_ITEM_LIST_COOKIE_NAME);
-		if (StringUtils.isNotEmpty(cartItemListCookie)) {
-			try {
-				List<CartItemCookie> cartItemCookieList = JsonUtil.toObject(cartItemListCookie, new TypeReference<ArrayList<CartItemCookie>>() {});
-				for (CartItemCookie cartItemCookie : cartItemCookieList) {
-					Product product = productService.get(cartItemCookie.getI());
-					if (product != null) {
-						CartItem cartItem = new CartItem();
-						cartItem.setMember(loginMember);
-						cartItem.setProduct(product);
-						cartItem.setQuantity(cartItemCookie.getQ());
-						cartItemService.save(cartItem);
-					}
-				}
-			} catch (JsonParseException e) {
-				removeCookie(CartItemCookie.CART_ITEM_LIST_COOKIE_NAME);
-			} catch (JsonMappingException e) {
-				removeCookie(CartItemCookie.CART_ITEM_LIST_COOKIE_NAME);
-			} catch (IOException e) {
-				removeCookie(CartItemCookie.CART_ITEM_LIST_COOKIE_NAME);
-			}
-		}
-		
-		// 清空购物车Cookie
-		removeCookie(CartItemCookie.CART_ITEM_LIST_COOKIE_NAME);
-		
 		return ajax(Status.success, "会员登录成功!");
 	}
 	
@@ -412,7 +346,6 @@ public class MemberAction extends BaseShopAction {
 		member.setLoginDate(new Date());
 		member.setPasswordRecoverKey(null);
 		member.setMemberRank(memberRankService.getDefaultMemberRank());
-		member.setFavoriteGoodsSet(null);
 		member.setMemberAttributeValueToNull();
 		member.setReferrer(member.getReferrer().toLowerCase());//推荐人
 		memberService.save(member);
@@ -422,33 +355,6 @@ public class MemberAction extends BaseShopAction {
 		
 		// 写入会员登录Cookie
 		setCookie(Member.MEMBER_USERNAME_COOKIE_NAME, URLEncoder.encode(member.getUsername().toLowerCase(), "UTF-8"));
-		
-		// 合并购物车
-		String cartItemListCookie = getCookie(CartItemCookie.CART_ITEM_LIST_COOKIE_NAME);
-		if (StringUtils.isNotEmpty(cartItemListCookie)) {
-			try {
-				List<CartItemCookie> cartItemCookieList = JsonUtil.toObject(cartItemListCookie, new TypeReference<ArrayList<CartItemCookie>>() {});
-				for (CartItemCookie cartItemCookie : cartItemCookieList) {
-					Product product = productService.get(cartItemCookie.getI());
-					if (product != null) {
-						CartItem cartItem = new CartItem();
-						cartItem.setMember(member);
-						cartItem.setProduct(product);
-						cartItem.setQuantity(cartItemCookie.getQ());
-						cartItemService.save(cartItem);
-					}
-				}
-			} catch (JsonParseException e) {
-				removeCookie(CartItemCookie.CART_ITEM_LIST_COOKIE_NAME);
-			} catch (JsonMappingException e) {
-				removeCookie(CartItemCookie.CART_ITEM_LIST_COOKIE_NAME);
-			} catch (IOException e) {
-				removeCookie(CartItemCookie.CART_ITEM_LIST_COOKIE_NAME);
-			}
-		}
-		
-		// 清空购物车Cookie
-		removeCookie(CartItemCookie.CART_ITEM_LIST_COOKIE_NAME);
 		
 		return ajax(Status.success, "会员注册成功!");
 	}
