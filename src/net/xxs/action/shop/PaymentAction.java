@@ -1,5 +1,6 @@
 package net.xxs.action.shop;
 
+import java.io.IOException;
 import java.math.BigDecimal;
 import java.util.Map;
 
@@ -171,6 +172,12 @@ public class PaymentAction extends BaseShopAction {
 	)
 	@InputConfig(resultName = "error")
 	public String payreturn() {
+		try {
+			String xmlString = this.getRequest().getInputStream().toString();
+			System.out.println("相应的字符串为："+xmlString);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 		System.out.println("支付回调处理......");
 		payment = paymentService.getPaymentByPaymentSn(paymentsn);
 		if (payment == null) {

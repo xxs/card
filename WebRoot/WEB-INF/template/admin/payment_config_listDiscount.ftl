@@ -21,6 +21,7 @@
 		<form id="listForm" action="payment_config!listDiscount.action" method="post">
 			<div class="listBar">
 				<input type="button" class="formButton" onclick="location.href='payment_config!addDiscount.action?paymentConfig.id=${paymentConfig.id}'" value="新增" hidefocus />
+				<input type="button" class="formButton" onclick="window.history.back(); return false;" value="返  回" hidefocus />
 			</div>
 			<table id="listTable" class="listTable">
 				<tr>
