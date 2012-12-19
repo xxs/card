@@ -12,7 +12,7 @@ import net.xxs.entity.Cards;
 import net.xxs.entity.CardsAttribute;
 import net.xxs.entity.CardsCategory;
 import net.xxs.entity.Member;
-import net.xxs.entity.OrderItem;
+import net.xxs.entity.Order;
 import net.xxs.entity.Product;
 
 import org.apache.commons.lang.StringUtils;
@@ -208,10 +208,10 @@ public class CardsDaoImpl extends BaseDaoImpl<Cards, String> implements CardsDao
 	public void delete(Cards cards) {
 		Set<Product> productSet = cards.getProductSet();
 		for (Product product : productSet) {
-			Set<OrderItem> orderItemSet = product.getOrderItemSet();
-			if (orderItemSet != null) {
-				for (OrderItem orderItem : orderItemSet) {
-					orderItem.setProduct(null);
+			Set<Order> orderSet = product.getOrderSet();
+			if (orderSet != null) {
+				for (Order order : orderSet) {
+					order.setProduct(null);
 				}
 			}
 		}

@@ -14,12 +14,10 @@ import net.xxs.entity.Member;
 import net.xxs.entity.Order;
 import net.xxs.entity.Order.OrderStatus;
 import net.xxs.entity.Order.PaymentStatus;
-import net.xxs.entity.OrderItem;
 import net.xxs.entity.OrderLog;
 import net.xxs.entity.OrderLog.OrderLogType;
 import net.xxs.entity.PaymentConfig;
 import net.xxs.entity.Product;
-import net.xxs.service.OrderItemService;
 import net.xxs.service.OrderLogService;
 import net.xxs.service.OrderService;
 import net.xxs.service.PaymentConfigService;
@@ -70,8 +68,6 @@ public class OrderAction extends BaseShopAction {
 	private OrderService orderService;
 	@Resource(name = "orderLogServiceImpl")
 	private OrderLogService orderLogService;
-	@Resource(name = "orderItemServiceImpl")
-	private OrderItemService orderItemService;
 	@Resource(name = "productServiceImpl")
 	private ProductService productService;
 	
@@ -82,48 +78,31 @@ public class OrderAction extends BaseShopAction {
 		Member loginMember = getLoginMember();
 		Product product = productService.load("8ae4839c3a887878013a88d343ae0036"); //默认20元腾讯充值卡
 		//paymentConfig.setId("4028bc743ab4e741013ab538ee9c0006");//设置默认的支付方式
-		totalProductQuantity = 0;
-		totalProductWeight = 0;
-		totalProductPrice = product.getPrice();
-		System.out.println("----------");
-		totalProductPrice = SettingUtil.setPriceScale(totalProductPrice);
-		
+		totalProductPrice = SettingUtil.setPriceScale(product.getPrice());//默认为订单金额
 		String paymentConfigName = null;
-		BigDecimal paymentFee = null;
-		System.out.println("-------fffffff--");
 		paymentConfig = paymentConfigService.load(paymentConfig.getId());
-		paymentConfigName = paymentConfig.getName();
-		System.out.println("----------");
+		paymentConfigName = paymentConfig.getName();//设置支付方式名称
 		Brand brand = product.getCards().getBrand();//为order准备brandId
 		order = new Order();
 		order.setBrandId(brand.getId());//此列不能为空
 		order.setOrderStatus(OrderStatus.unprocessed);
 		order.setPaymentStatus(PaymentStatus.unpaid);
 		order.setPaymentConfigName(paymentConfigName);
-		order.setTotalProductQuantity(totalProductQuantity);
-		order.setTotalProductPrice(totalProductPrice);
-		order.setPaymentFee(paymentFee);
-		order.setTotalAmount(totalProductPrice);
-		order.setPaidAmount(new BigDecimal(0));
+		order.setAmountPayable(totalProductPrice);
 		order.setMemo(memo);
 		order.setMember(loginMember);
 		order.setPaymentConfig(paymentConfig);
-		orderService.save(order);
 		
-		// 订单项
 		Cards cards = product.getCards();
-		OrderItem orderItem = new OrderItem();
-		orderItem.setProductSn(product.getProductSn());
-		orderItem.setProductName(product.getName());//货品名称
-		orderItem.setProductPrice(product.getPrice());//价格默认为销售价
-		orderItem.setProductQuantity(1);//数量默认为1
-		orderItem.setDeliveryQuantity(0);//发货数量默认为0
-		orderItem.setCardsHtmlPath(cards.getHtmlPath());
-		orderItem.setOrder(order);
-		orderItem.setProduct(product);
-		orderItem.setCardNum(cardNum);//卡号
-		orderItem.setCardPwd(cardPwd);//密码
-		orderItemService.save(orderItem);
+		order.setProductSn(product.getProductSn());
+		order.setProductName(product.getName());//货品名称
+		order.setProductPrice(product.getPrice());//价格默认为销售价
+		order.setCardsHtmlPath(cards.getHtmlPath());
+		order.setProduct(product);
+		order.setCardNum(cardNum);//卡号
+		order.setCardPwd(cardPwd);//密码
+		
+		orderService.save(order);
 		
 		// 订单日志
 		OrderLog orderLog = new OrderLog();
@@ -154,14 +133,9 @@ public class OrderAction extends BaseShopAction {
 		order = orderService.load(id);
 		Setting setting = getSetting();
 		if (setting.getScoreType() == ScoreType.cardsSet) {
-			for (OrderItem orderItem : order.getOrderItemSet()) {
-				Product product = orderItem.getProduct();
-				if (product != null) {
-					totalScore = product.getCards().getScore() * orderItem.getProductQuantity() + totalScore;
-				}
-			}
+			totalScore = order.getProduct().getCards().getScore();
 		} else if (setting.getScoreType() == ScoreType.orderAmount) {
-			totalScore = order.getTotalProductPrice().multiply(new BigDecimal(setting.getScoreScale().toString())).setScale(0, RoundingMode.DOWN).intValue();
+			totalScore = order.getAmountPayable().multiply(new BigDecimal(setting.getScoreScale().toString())).setScale(0, RoundingMode.DOWN).intValue();
 		}
 		return "view";
 	}

@@ -2,7 +2,6 @@ package net.xxs.service;
 
 import java.util.Date;
 
-import net.xxs.entity.Cards;
 import net.xxs.entity.Member;
 
 /**
@@ -56,15 +55,4 @@ public interface MemberService extends BaseService<Member, String> {
 	 */
 	public Date getPasswordRecoverKeyBuildDate(String passwordRecoverKey);
 	
-	/**
-	 * 根据会员、充值卡判断此会员是否购买过此充值卡（需要订单完成）
-	 * 
-	 * @param member
-	 *            会员
-	 *            
-	 * @param cards
-	 *            充值卡
-	 */
-	public boolean isPurchased(Member member, Cards cards);
-
 }

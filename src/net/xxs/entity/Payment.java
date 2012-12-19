@@ -24,9 +24,9 @@ public class Payment extends BaseEntity {
 
 	private static final long serialVersionUID = 6404772131152718534L;
 	
-	// 支付类型（在线充值、预存款支付、在线支付、线下支付）
+	// 支付类型（在线支付）
 	public enum PaymentType {
-		recharge, deposit, online, offline
+		online
 	};
 	
 	// 支付状态（准备、超时、作废、成功、失败）
@@ -40,7 +40,6 @@ public class Payment extends BaseEntity {
 	private String bankName;// 收款银行名称
 	private String bankAccount;// 收款银行账号
 	private BigDecimal totalAmount;// 支付金额
-	private BigDecimal paymentFee;// 支付手续费
 	private String payer;// 付款人
 	private String operator;// 操作员
 	private String memo;// 备注
@@ -106,15 +105,6 @@ public class Payment extends BaseEntity {
 		this.totalAmount = SettingUtil.setPriceScale(totalAmount);
 	}
 	
-	@Column(nullable = false, updatable = false, precision = 15, scale = 5)
-	public BigDecimal getPaymentFee() {
-		return paymentFee;
-	}
-	
-	public void setPaymentFee(BigDecimal paymentFee) {
-		this.paymentFee = SettingUtil.setPriceScale(paymentFee);
-	}
-
 	@Enumerated
 	@Column(nullable = false)
 	public PaymentStatus getPaymentStatus() {

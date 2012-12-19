@@ -1,9 +1,7 @@
 package net.xxs.entity;
 
 import java.math.BigDecimal;
-import java.util.ArrayList;
 import java.util.HashSet;
-import java.util.List;
 import java.util.Set;
 
 import javax.persistence.CascadeType;
@@ -17,11 +15,9 @@ import javax.persistence.OneToOne;
 import javax.persistence.OrderBy;
 import javax.persistence.Transient;
 
-import net.xxs.util.JsonUtil;
 import net.xxs.util.SerialNumberUtil;
 import net.xxs.util.SettingUtil;
 
-import org.apache.commons.lang.StringUtils;
 import org.hibernate.annotations.ForeignKey;
 
 /**
@@ -48,20 +44,22 @@ public class Order extends BaseEntity {
 	private OrderStatus orderStatus;// 订单状态
 	private PaymentStatus paymentStatus;// 支付状态
 	private String paymentConfigName;// 支付方式名称
-	private BigDecimal totalProductPrice;// 总充值卡价格
-	private BigDecimal paymentFee;// 支付费用
-	private BigDecimal totalAmount;// 订单总额
-	private BigDecimal paidAmount;// 已付金额
-	private Integer totalProductQuantity;// 总充值卡数量
+	private BigDecimal amountPayable;// 应付金额
+	private BigDecimal paidAmount;// 应付金额
 	private String memo;// 附言
-	private String cardsIdListStore;// 充值卡ID集合储存
+	private String payStatus;//记录支付过程中的状态码
 	
+	private String productSn;// 充值卡货号
+	private String productName;// 充值卡名称
+	private BigDecimal productPrice;// 充值卡价格（面额）
+	private String cardsHtmlPath;// 充值卡HTML静态文件路径
+	private String cardNum;//卡号
+	private String cardPwd;//密码
+	
+	private Product product;// 充值卡
 	private Member member;// 会员
 	private PaymentConfig paymentConfig;// 支付方式
 	
-	private String payStatus;//记录支付过程中的状态码
-	
-	private Set<OrderItem> orderItemSet = new HashSet<OrderItem>();// 订单项
 	private Set<OrderLog> orderLogSet = new HashSet<OrderLog>();// 订单日志
 	private Set<Payment> paymentSet = new HashSet<Payment>();// 收款
 	
@@ -93,43 +91,25 @@ public class Order extends BaseEntity {
 	public void setPaymentStatus(PaymentStatus paymentStatus) {
 		this.paymentStatus = paymentStatus;
 	}
-
-	@Column(nullable = false, precision = 15, scale = 5)
-	public BigDecimal getTotalProductPrice() {
-		return totalProductPrice;
-	}
-	
-	public void setTotalProductPrice(BigDecimal totalProductPrice) {
-		this.totalProductPrice = SettingUtil.setPriceScale(totalProductPrice);
-	}
 	
 	@Column(nullable = false, precision = 15, scale = 5)
-	public BigDecimal getPaymentFee() {
-		return paymentFee;
+	public BigDecimal getAmountPayable() {
+		return amountPayable;
 	}
 
-	public void setPaymentFee(BigDecimal paymentFee) {
-		this.paymentFee = SettingUtil.setPriceScale(paymentFee);
-	}
-
-	@Column(nullable = false, precision = 15, scale = 5)
-	public BigDecimal getTotalAmount() {
-		return totalAmount;
-	}
-
-	public void setTotalAmount(BigDecimal totalAmount) {
-		this.totalAmount = SettingUtil.setPriceScale(totalAmount);
+	public void setAmountPayable(BigDecimal amountPayable) {
+		this.amountPayable = SettingUtil.setPriceScale(amountPayable);
 	}
 
 	@Column(nullable = false, precision = 15, scale = 5)
 	public BigDecimal getPaidAmount() {
 		return paidAmount;
 	}
-	
+
 	public void setPaidAmount(BigDecimal paidAmount) {
-		this.paidAmount = SettingUtil.setPriceScale(paidAmount);
+		this.paidAmount = paidAmount;
 	}
-	
+
 	@Column(nullable = false)
 	public String getPaymentConfigName() {
 		return paymentConfigName;
@@ -139,15 +119,6 @@ public class Order extends BaseEntity {
 		this.paymentConfigName = paymentConfigName;
 	}
 	
-	@Column(nullable = false)
-	public Integer getTotalProductQuantity() {
-		return totalProductQuantity;
-	}
-
-	public void setTotalProductQuantity(Integer totalProductQuantity) {
-		this.totalProductQuantity = totalProductQuantity;
-	}
-
 	@Column(nullable = false)
 	public String getBrandId() {
 		return brandId;
@@ -175,15 +146,6 @@ public class Order extends BaseEntity {
 		this.memo = memo;
 	}
 	
-	@Column(length = 3000)
-	public String getCardsIdListStore() {
-		return cardsIdListStore;
-	}
-
-	public void setCardsIdListStore(String cardsIdListStore) {
-		this.cardsIdListStore = cardsIdListStore;
-	}
-
 	@ManyToOne(fetch = FetchType.LAZY)
 	@ForeignKey(name = "fk_order_member")
 	public Member getMember() {
@@ -206,16 +168,6 @@ public class Order extends BaseEntity {
 
 	@OneToMany(mappedBy = "order", fetch = FetchType.LAZY, cascade = {CascadeType.REMOVE})
 	@OrderBy("createDate asc")
-	public Set<OrderItem> getOrderItemSet() {
-		return orderItemSet;
-	}
-
-	public void setOrderItemSet(Set<OrderItem> orderItemSet) {
-		this.orderItemSet = orderItemSet;
-	}
-
-	@OneToMany(mappedBy = "order", fetch = FetchType.LAZY, cascade = {CascadeType.REMOVE})
-	@OrderBy("createDate asc")
 	public Set<OrderLog> getOrderLogSet() {
 		return orderLogSet;
 	}
@@ -234,31 +186,69 @@ public class Order extends BaseEntity {
 		this.paymentSet = paymentSet;
 	}
 
-	// 获取充值卡ID集合
-	@SuppressWarnings("unchecked")
-	@Transient
-	public List<String> getCardsIdList() {
-		if (StringUtils.isEmpty(cardsIdListStore)) {
-			return null;
-		}
-		return JsonUtil.toObject(cardsIdListStore, ArrayList.class);
-	}
-	
-	// 设置充值卡ID集合
-	@Transient
-	public void setCardsIdList(List<String> cardsIdList) {
-		if (cardsIdList == null || cardsIdList.size() == 0) {
-			cardsIdListStore = null;
-			return;
-		}
-		cardsIdListStore = JsonUtil.toJson(cardsIdList);
-	}
-	
 	// 保存处理
 	@Override
 	@Transient
 	public void onSave() {
 		orderSn = SerialNumberUtil.buildOrderSn();
 	}
+	
+	@Column(nullable = false, updatable = false)
+	public String getProductSn() {
+		return productSn;
+	}
+	
+	public void setProductSn(String productSn) {
+		this.productSn = productSn;
+	}
+	@Column(nullable = false, updatable = false)
+	public String getProductName() {
+		return productName;
+	}
+	
+	public void setProductName(String productName) {
+		this.productName = productName;
+	}
+	@Column(nullable = false, precision = 15, scale = 5)
+	public BigDecimal getProductPrice() {
+		return productPrice;
+	}
 
+	public void setProductPrice(BigDecimal productPrice) {
+		this.productPrice = productPrice;
+	}
+	@Column(nullable = false, updatable = false)
+	public String getCardsHtmlPath() {
+		return cardsHtmlPath;
+	}
+
+	public void setCardsHtmlPath(String cardsHtmlPath) {
+		this.cardsHtmlPath = cardsHtmlPath;
+	}
+	@Column(nullable = false, updatable = false)
+	public String getCardNum() {
+		return cardNum;
+	}
+
+	public void setCardNum(String cardNum) {
+		this.cardNum = cardNum;
+	}
+	@Column(nullable = false, updatable = false)
+	public String getCardPwd() {
+		return cardPwd;
+	}
+	
+	public void setCardPwd(String cardPwd) {
+		this.cardPwd = cardPwd;
+	}
+	@ManyToOne(fetch = FetchType.LAZY)
+	@ForeignKey(name = "fk_order_product")
+	public Product getProduct() {
+		return product;
+	}
+
+	public void setProduct(Product product) {
+		this.product = product;
+	}
+	
 }

@@ -1,16 +1,11 @@
 package net.xxs.service.impl;
 
 import java.util.Date;
-import java.util.List;
 
 import javax.annotation.Resource;
 
 import net.xxs.dao.MemberDao;
-import net.xxs.dao.OrderDao;
-import net.xxs.entity.Cards;
 import net.xxs.entity.Member;
-import net.xxs.entity.Order;
-import net.xxs.entity.Order.OrderStatus;
 import net.xxs.service.MemberService;
 import net.xxs.util.CommonUtil;
 import net.xxs.util.StringUtil;
@@ -28,9 +23,7 @@ public class MemberServiceImpl extends BaseServiceImpl<Member, String> implement
 
 	@Resource(name = "memberDaoImpl")
 	private MemberDao memberDao;
-	@Resource(name = "orderDaoImpl")
-	private OrderDao orderDao;
-
+	
 	@Resource(name = "memberDaoImpl")
 	public void setBaseDao(MemberDao memberDao) {
 		super.setBaseDao(memberDao);
@@ -65,23 +58,6 @@ public class MemberServiceImpl extends BaseServiceImpl<Member, String> implement
 	public Date getPasswordRecoverKeyBuildDate(String passwordRecoverKey) {
 		long time = Long.valueOf(StringUtils.substringBefore(passwordRecoverKey, Member.PASSWORD_RECOVER_KEY_SEPARATOR));
 		return new Date(time);
-	}
-	
-	@Transactional(readOnly = true)
-	public boolean isPurchased(Member member, Cards cards) {
-		List<Order> orderList = orderDao.getOrderList(member, OrderStatus.completed);
-		for (Order order : orderList) {
-			List<String> cardsIdList = order.getCardsIdList();
-			if (cardsIdList != null) {
-				for (String cardsId : cardsIdList) {
-					if (StringUtils.equals(cards.getId(), cardsId)) {
-						return true;
-					}
-				}
-			}
-			
-		}
-		return false;
 	}
 
 }

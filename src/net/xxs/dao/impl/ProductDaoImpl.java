@@ -4,7 +4,7 @@ import java.util.List;
 import java.util.Set;
 
 import net.xxs.dao.ProductDao;
-import net.xxs.entity.OrderItem;
+import net.xxs.entity.Order;
 import net.xxs.entity.Product;
 
 import org.springframework.stereotype.Repository;
@@ -36,10 +36,10 @@ public class ProductDaoImpl extends BaseDaoImpl<Product, String> implements Prod
 	// 关联处理
 	@Override
 	public void delete(Product product) {
-		Set<OrderItem> orderItemSet = product.getOrderItemSet();
-		if (orderItemSet != null) {
-			for (OrderItem orderItem : orderItemSet) {
-				orderItem.setProduct(null);
+		Set<Order> orderSet = product.getOrderSet();
+		if (orderSet != null) {
+			for (Order order : orderSet) {
+				order.setProduct(null);
 			}
 		}
 		

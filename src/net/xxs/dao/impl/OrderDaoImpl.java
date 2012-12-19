@@ -1,16 +1,12 @@
 package net.xxs.dao.impl;
 
-import java.util.ArrayList;
 import java.util.List;
-import java.util.Set;
 
 import net.xxs.bean.Pager;
 import net.xxs.dao.OrderDao;
 import net.xxs.entity.Member;
 import net.xxs.entity.Order;
 import net.xxs.entity.Order.OrderStatus;
-import net.xxs.entity.Order.PaymentStatus;
-import net.xxs.entity.OrderItem;
 
 import org.hibernate.criterion.Restrictions;
 import org.springframework.stereotype.Repository;
@@ -51,28 +47,12 @@ public class OrderDaoImpl extends BaseDaoImpl<Order, String> implements OrderDao
 	// 保存对象时,自动更新充值卡ID集合
 	@Override
 	public String save(Order order) {
-		List<String> cardsIdList = new ArrayList<String>();
-		Set<OrderItem> orderItemSet = order.getOrderItemSet();
-		if (orderItemSet != null) {
-			for (OrderItem orderItem : orderItemSet) {
-				cardsIdList.add(orderItem.getProduct().getCards().getId());
-			}
-		}
-		order.setCardsIdList(cardsIdList);
 		return super.save(order);
 	}
 
 	// 更新对象时,自动更新充值卡ID集合
 	@Override
 	public void update(Order order) {
-		List<String> cardsIdList = new ArrayList<String>();
-		Set<OrderItem> orderItemSet = order.getOrderItemSet();
-		if (orderItemSet != null) {
-			for (OrderItem orderItem : orderItemSet) {
-				cardsIdList.add(orderItem.getProduct().getCards().getId());
-			}
-		}
-		order.setCardsIdList(cardsIdList);
 		super.update(order);
 	}
 	

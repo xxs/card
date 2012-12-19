@@ -18,10 +18,10 @@ import net.xxs.entity.Cards;
 import net.xxs.entity.CardsAttribute;
 import net.xxs.entity.CardsCategory;
 import net.xxs.entity.CardsType;
-import net.xxs.entity.OrderItem;
+import net.xxs.entity.Order;
+import net.xxs.entity.Order.OrderStatus;
 import net.xxs.entity.Product;
 import net.xxs.entity.Specification;
-import net.xxs.entity.Order.OrderStatus;
 import net.xxs.service.BrandService;
 import net.xxs.service.CacheService;
 import net.xxs.service.CardsCategoryService;
@@ -149,9 +149,9 @@ public class CardsAction extends BaseAdminAction {
 			Cards cards = cardsService.load(id);
 			Set<Product> productSet = cards.getProductSet();
 			for (Product product : productSet) {
-				Set<OrderItem> orderItemSet = product.getOrderItemSet();
-				for (OrderItem orderItem : orderItemSet) {
-					if (orderItem.getOrder().getOrderStatus() != OrderStatus.completed && orderItem.getOrder().getOrderStatus() != OrderStatus.invalid) {
+				Set<Order> orderSet = product.getOrderSet();
+				for (Order order : orderSet) {
+					if (order.getOrderStatus() != OrderStatus.completed && order.getOrderStatus() != OrderStatus.invalid) {
 						return ajax(Status.error, "充值卡[" + cards.getName() + "]订单处理未完成,删除失败!");
 					}
 				}
@@ -316,9 +316,9 @@ public class CardsAction extends BaseAdminAction {
 			if (persistent.getIsSpecificationEnabled()) {
 				for (Product product : persistent.getProductSet()) {
 					if(!productList.contains(product)) {
-						Set<OrderItem> orderItemSet = product.getOrderItemSet();
-						for (OrderItem orderItem : orderItemSet) {
-							if (orderItem.getOrder().getOrderStatus() != OrderStatus.completed && orderItem.getOrder().getOrderStatus() != OrderStatus.invalid) {
+						Set<Order> orderSet = product.getOrderSet();
+						for (Order order : orderSet) {
+							if (order.getOrderStatus() != OrderStatus.completed && order.getOrderStatus() != OrderStatus.invalid) {
 								addActionError("货品[" + product.getName() + "]订单处理未完成,删除失败!");
 								return ERROR;
 							}
@@ -327,9 +327,9 @@ public class CardsAction extends BaseAdminAction {
 				}
 			} else {
 				for (Product product : persistent.getProductSet()) {
-					Set<OrderItem> orderItemSet = product.getOrderItemSet();
-					for (OrderItem orderItem : orderItemSet) {
-						if (orderItem.getOrder().getOrderStatus() != OrderStatus.completed && orderItem.getOrder().getOrderStatus() != OrderStatus.invalid) {
+					Set<Order> orderSet = product.getOrderSet();
+					for (Order order : orderSet) {
+						if (order.getOrderStatus() != OrderStatus.completed && order.getOrderStatus() != OrderStatus.invalid) {
 							addActionError("货品[" + product.getName() + "]订单处理未完成,删除失败!");
 							return ERROR;
 						}
@@ -339,9 +339,9 @@ public class CardsAction extends BaseAdminAction {
 		} else {
 			if (persistent.getIsSpecificationEnabled()) {
 				for (Product product : persistent.getProductSet()) {
-					Set<OrderItem> orderItemSet = product.getOrderItemSet();
-					for (OrderItem orderItem : orderItemSet) {
-						if (orderItem.getOrder().getOrderStatus() != OrderStatus.completed && orderItem.getOrder().getOrderStatus() != OrderStatus.invalid) {
+					Set<Order> orderSet = product.getOrderSet();
+					for (Order order : orderSet) {
+						if (order.getOrderStatus() != OrderStatus.completed && order.getOrderStatus() != OrderStatus.invalid) {
 							addActionError("货品[" + product.getName() + "]订单处理未完成,删除失败!");
 							return ERROR;
 						}

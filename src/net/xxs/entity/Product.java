@@ -41,7 +41,7 @@ public class Product extends BaseEntity {
 	
 	private Cards cards;// 充值卡
 	
-	private Set<OrderItem> orderItemSet = new HashSet<OrderItem>();// 订单项
+	private Set<Order> orderSet = new HashSet<Order>();// 订单
 	
 	@Column(nullable = false, unique = true)
 	public String getProductSn() {
@@ -109,12 +109,12 @@ public class Product extends BaseEntity {
 	}
 
 	@OneToMany(mappedBy = "product", fetch = FetchType.LAZY)
-	public Set<OrderItem> getOrderItemSet() {
-		return orderItemSet;
+	public Set<Order> getOrderSet() {
+		return orderSet;
 	}
 
-	public void setOrderItemSet(Set<OrderItem> orderItemSet) {
-		this.orderItemSet = orderItemSet;
+	public void setOrderSet(Set<Order> orderSet) {
+		this.orderSet = orderSet;
 	}
 
 	
