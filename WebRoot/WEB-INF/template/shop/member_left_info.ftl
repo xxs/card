@@ -12,13 +12,13 @@
                         </ul>
                      </li>
                      <li><a href="order!list.action">我的订单</a></li>
-                     <@goods_list type="hot" count=10; goodsList>
-									<#if (goodsList?size > 0)>
-										<#list goodsList as goods>
-											<li><a href="${base}${goods.htmlPath}"><span>${substring(goods.name, 24, "...")}   &rarr;   点击卖卡</span></a></li>		
+                     <@cards_list type="hot" count=10; cardsList>
+									<#if (cardsList?size > 0)>
+										<#list cardsList as cards>
+											<li><a href="${base}${cards.htmlPath}"><span>${substring(cards.name, 24, "...")}   &rarr;   点击卖卡</span></a></li>		
 										</#list>
 									</#if>
-								</@goods_list>
+								</@cards_list>
                   </ul>
                </div>
                <!-- END subnav -->

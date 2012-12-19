@@ -6,7 +6,7 @@
 
 	<context-param>
 		<param-name>webAppRootKey</param-name>
-		<param-value>xxs.webAppRoot</param-value>
+		<param-value>card.webAppRoot</param-value>
 	</context-param>
 
 	<context-param>

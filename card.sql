@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50154
 File Encoding         : 65001
 
-Date: 2012-12-18 17:35:15
+Date: 2012-12-19 17:39:45
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -43,7 +43,7 @@ CREATE TABLE `xx_admin` (
 -- ----------------------------
 -- Records of xx_admin
 -- ----------------------------
-INSERT INTO `xx_admin` VALUES ('0731dcsoft2010031200000000000017', '2011-01-01 00:00:00', '2012-12-18 15:57:40', '技术部', 'xxs@163.com', '', '', '', '', '2012-12-17 14:28:34', '2012-12-18 15:57:40', '0', '127.0.0.1', 'ADMIN', '21232f297a57a5a743894a0e4a801fc3', 'admin');
+INSERT INTO `xx_admin` VALUES ('0731dcsoft2010031200000000000017', '2011-01-01 00:00:00', '2012-12-19 16:49:36', '技术部', 'xxs@163.com', '', '', '', '', '2012-12-17 14:28:34', '2012-12-19 16:49:36', '0', '127.0.0.1', 'ADMIN', '21232f297a57a5a743894a0e4a801fc3', 'admin');
 
 -- ----------------------------
 -- Table structure for `xx_admin_role`
@@ -265,20 +265,21 @@ CREATE TABLE `xx_cards_category` (
 -- ----------------------------
 -- Records of xx_cards_category
 -- ----------------------------
-INSERT INTO `xx_cards_category` VALUES ('8ae4839c3a887878013a88b9d9c10015', '2012-10-22 21:46:52', '2012-10-22 21:46:52', '0', null, null, '腾讯一卡通', '0', '8ae4839c3a887878013a88b9d9c10015', 'teng_xun', '8ae4839c3a887878013a88b39b6a0010', '');
-INSERT INTO `xx_cards_category` VALUES ('8ae4839c3a887878013a88ba80150017', '2012-10-22 21:47:34', '2012-10-22 21:47:46', '0', null, null, '盛大一卡通', '0', '8ae4839c3a887878013a88ba80150017', 'sheng_da', '8ae4839c3a887878013a88b39b6a0010', '');
-INSERT INTO `xx_cards_category` VALUES ('8ae4839c3a887878013a88bafe98001a', '2012-10-22 21:48:07', '2012-10-22 21:48:07', '0', null, null, '骏网一卡通', '0', '8ae4839c3a887878013a88bafe98001a', 'jun_wang', '8ae4839c3a887878013a88b39b6a0010', '');
-INSERT INTO `xx_cards_category` VALUES ('8ae4839c3a887878013a88bb547e001c', '2012-10-22 21:48:29', '2012-10-22 21:48:29', '0', null, null, '完美一卡通', '0', '8ae4839c3a887878013a88bb547e001c', 'wan_mei', '8ae4839c3a887878013a88b39b6a0010', '');
-INSERT INTO `xx_cards_category` VALUES ('8ae4839c3a887878013a88bba8b4001e', '2012-10-22 21:48:50', '2012-10-22 21:48:50', '0', null, null, '搜狐一卡通', '0', '8ae4839c3a887878013a88bba8b4001e', 'sou_hu', '8ae4839c3a887878013a88b39b6a0010', '');
-INSERT INTO `xx_cards_category` VALUES ('8ae4839c3a887878013a88bc0e8b0020', '2012-10-22 21:49:16', '2012-10-22 21:49:16', '0', null, null, '征途一卡通', '0', '8ae4839c3a887878013a88bc0e8b0020', 'zheng_tu', '8ae4839c3a887878013a88b39b6a0010', '');
-INSERT INTO `xx_cards_category` VALUES ('8ae4839c3a887878013a88bc6dea0022', '2012-10-22 21:49:41', '2012-10-22 21:49:41', '0', null, null, '久游一卡通', '0', '8ae4839c3a887878013a88bc6dea0022', 'jiu_you', '8ae4839c3a887878013a88b39b6a0010', '');
-INSERT INTO `xx_cards_category` VALUES ('8ae4839c3a887878013a88bccd590024', '2012-10-22 21:50:05', '2012-10-22 21:50:05', '0', null, null, '网易一卡通', '0', '8ae4839c3a887878013a88bccd590024', 'wang_yi', '8ae4839c3a887878013a88b39b6a0010', '');
-INSERT INTO `xx_cards_category` VALUES ('8ae4839c3a887878013a88bd517a0026', '2012-10-22 21:50:39', '2012-10-22 21:50:39', '0', null, null, '电信充值卡', '0', '8ae4839c3a887878013a88bd517a0026', 'dian_xin', '8ae4839c3a887878013a88b6960e0014', '');
-INSERT INTO `xx_cards_category` VALUES ('8ae4839c3a887878013a88bdaf250028', '2012-10-22 21:51:03', '2012-10-22 21:51:03', '0', null, null, '联通充值卡', '0', '8ae4839c3a887878013a88bdaf250028', 'lian_tong', '8ae4839c3a887878013a88b6960e0014', '');
-INSERT INTO `xx_cards_category` VALUES ('8ae4839c3a887878013a88be08aa002a', '2012-10-22 21:51:26', '2012-10-22 21:51:26', '0', null, null, '纵游一卡通', '0', '8ae4839c3a887878013a88be08aa002a', 'zong_you', '8ae4839c3a887878013a88b6960e0014', '');
-INSERT INTO `xx_cards_category` VALUES ('8ae4839c3a887878013a88be6075002c', '2012-10-22 21:51:48', '2012-10-22 21:51:48', '0', null, null, '天宏一卡通', '0', '8ae4839c3a887878013a88be6075002c', 'tian_hong', '8ae4839c3a887878013a88b39b6a0010', '');
-INSERT INTO `xx_cards_category` VALUES ('8ae4839c3a887878013a88beb496002e', '2012-10-22 21:52:10', '2012-10-22 21:52:10', '0', null, null, '天下通一卡通', '0', '8ae4839c3a887878013a88beb496002e', 'tianxia_tong', '8ae4839c3a887878013a88b39b6a0010', '');
-INSERT INTO `xx_cards_category` VALUES ('8ae4839c3a887878013a88bf094e0030', '2012-10-22 21:52:32', '2012-10-22 21:52:32', '0', null, null, '移动充值卡', '0', '8ae4839c3a887878013a88bf094e0030', 'yi_dong', '8ae4839c3a887878013a88b6960e0014', '');
+INSERT INTO `xx_cards_category` VALUES ('4028bc743bb257ca013bb264d3560000', '2012-12-19 17:00:50', '2012-12-19 17:00:50', '0', '2', '2', '222', '15', '4028bc743bb257ca013bb264d3560000', '22', '8ae4839c3a887878013a88b39b6a0010', '');
+INSERT INTO `xx_cards_category` VALUES ('8ae4839c3a887878013a88b9d9c10015', '2012-10-22 21:46:52', '2012-10-22 21:46:52', '0', null, null, '腾讯一卡通', '14', '8ae4839c3a887878013a88b9d9c10015', 'teng_xun', '8ae4839c3a887878013a88b39b6a0010', '');
+INSERT INTO `xx_cards_category` VALUES ('8ae4839c3a887878013a88ba80150017', '2012-10-22 21:47:34', '2012-10-22 21:47:46', '0', null, null, '盛大一卡通', '13', '8ae4839c3a887878013a88ba80150017', 'sheng_da', '8ae4839c3a887878013a88b39b6a0010', '');
+INSERT INTO `xx_cards_category` VALUES ('8ae4839c3a887878013a88bafe98001a', '2012-10-22 21:48:07', '2012-10-22 21:48:07', '0', null, null, '骏网一卡通', '12', '8ae4839c3a887878013a88bafe98001a', 'jun_wang', '8ae4839c3a887878013a88b39b6a0010', '');
+INSERT INTO `xx_cards_category` VALUES ('8ae4839c3a887878013a88bb547e001c', '2012-10-22 21:48:29', '2012-10-22 21:48:29', '0', null, null, '完美一卡通', '11', '8ae4839c3a887878013a88bb547e001c', 'wan_mei', '8ae4839c3a887878013a88b39b6a0010', '');
+INSERT INTO `xx_cards_category` VALUES ('8ae4839c3a887878013a88bba8b4001e', '2012-10-22 21:48:50', '2012-10-22 21:48:50', '0', null, null, '搜狐一卡通', '10', '8ae4839c3a887878013a88bba8b4001e', 'sou_hu', '8ae4839c3a887878013a88b39b6a0010', '');
+INSERT INTO `xx_cards_category` VALUES ('8ae4839c3a887878013a88bc0e8b0020', '2012-10-22 21:49:16', '2012-10-22 21:49:16', '0', null, null, '征途一卡通', '9', '8ae4839c3a887878013a88bc0e8b0020', 'zheng_tu', '8ae4839c3a887878013a88b39b6a0010', '');
+INSERT INTO `xx_cards_category` VALUES ('8ae4839c3a887878013a88bc6dea0022', '2012-10-22 21:49:41', '2012-10-22 21:49:41', '0', null, null, '久游一卡通', '8', '8ae4839c3a887878013a88bc6dea0022', 'jiu_you', '8ae4839c3a887878013a88b39b6a0010', '');
+INSERT INTO `xx_cards_category` VALUES ('8ae4839c3a887878013a88bccd590024', '2012-10-22 21:50:05', '2012-10-22 21:50:05', '0', null, null, '网易一卡通', '7', '8ae4839c3a887878013a88bccd590024', 'wang_yi', '8ae4839c3a887878013a88b39b6a0010', '');
+INSERT INTO `xx_cards_category` VALUES ('8ae4839c3a887878013a88bd517a0026', '2012-10-22 21:50:39', '2012-10-22 21:50:39', '0', null, null, '电信充值卡', '6', '8ae4839c3a887878013a88bd517a0026', 'dian_xin', '8ae4839c3a887878013a88b6960e0014', '');
+INSERT INTO `xx_cards_category` VALUES ('8ae4839c3a887878013a88bdaf250028', '2012-10-22 21:51:03', '2012-10-22 21:51:03', '0', null, null, '联通充值卡', '5', '8ae4839c3a887878013a88bdaf250028', 'lian_tong', '8ae4839c3a887878013a88b6960e0014', '');
+INSERT INTO `xx_cards_category` VALUES ('8ae4839c3a887878013a88be08aa002a', '2012-10-22 21:51:26', '2012-10-22 21:51:26', '0', null, null, '纵游一卡通', '4', '8ae4839c3a887878013a88be08aa002a', 'zong_you', '8ae4839c3a887878013a88b6960e0014', '');
+INSERT INTO `xx_cards_category` VALUES ('8ae4839c3a887878013a88be6075002c', '2012-10-22 21:51:48', '2012-10-22 21:51:48', '0', null, null, '天宏一卡通', '3', '8ae4839c3a887878013a88be6075002c', 'tian_hong', '8ae4839c3a887878013a88b39b6a0010', '');
+INSERT INTO `xx_cards_category` VALUES ('8ae4839c3a887878013a88beb496002e', '2012-10-22 21:52:10', '2012-10-22 21:52:10', '0', null, null, '天下通一卡通', '2', '8ae4839c3a887878013a88beb496002e', 'tianxia_tong', '8ae4839c3a887878013a88b39b6a0010', '');
+INSERT INTO `xx_cards_category` VALUES ('8ae4839c3a887878013a88bf094e0030', '2012-10-22 21:52:32', '2012-10-22 21:52:32', '0', null, null, '移动充值卡', '1', '8ae4839c3a887878013a88bf094e0030', 'yi_dong', '8ae4839c3a887878013a88b6960e0014', '');
 
 -- ----------------------------
 -- Table structure for `xx_cards_specification`
@@ -441,6 +442,7 @@ CREATE TABLE `xx_log` (
 -- ----------------------------
 -- Records of xx_log
 -- ----------------------------
+INSERT INTO `xx_log` VALUES ('4028bc743bb257ca013bb264d4be0001', '2012-12-19 17:00:50', '2012-12-19 17:00:50', 'net.xxs.action.admin.CardsCategoryAction', 'save', '添加充值卡分类: 222', '127.0.0.1', '添加充值卡分类', 'admin');
 INSERT INTO `xx_log` VALUES ('8a9182fc3ba86bc8013ba9782e800002', '2012-12-17 23:25:23', '2012-12-17 23:25:23', 'net.xxs.action.admin.MemberAction', 'save', '添加会员: 123123', '127.0.0.1', '添加会员', 'admin');
 INSERT INTO `xx_log` VALUES ('8a9182fc3ba86bc8013ba97939a00004', '2012-12-17 23:26:32', '2012-12-17 23:26:32', 'net.xxs.action.admin.MemberAction', 'update', '编辑会员: 123123', '127.0.0.1', '编辑会员', 'admin');
 
@@ -506,7 +508,7 @@ CREATE TABLE `xx_member` (
 -- ----------------------------
 -- Records of xx_member
 -- ----------------------------
-INSERT INTO `xx_member` VALUES ('8a9182fc3ba86bc8013ba9782de60001', '2012-12-17 23:25:23', '2012-12-17 23:30:29', null, null, null, '0.00000', '123@qq.com', null, '', '', null, '2012-12-17 23:30:29', '0', '127.0.0.1', null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, '4297f44b13955235245b2497399d7a93', null, null, '', '127.0.0.1', null, null, '0', '123123', null, '402881833054c381013054d08bed0001');
+INSERT INTO `xx_member` VALUES ('8a9182fc3ba86bc8013ba9782de60001', '2012-12-17 23:25:23', '2012-12-19 16:50:08', null, null, null, '0.00000', '123@qq.com', null, '', '', null, '2012-12-19 16:50:08', '0', '127.0.0.1', null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, '4297f44b13955235245b2497399d7a93', null, null, '', '127.0.0.1', null, null, '0', '123123', null, '402881833054c381013054d08bed0001');
 
 -- ----------------------------
 -- Table structure for `xx_member_attribute`
@@ -644,45 +646,26 @@ CREATE TABLE `xx_order` (
   `total_product_quantity` int(11) NOT NULL,
   `member_id` varchar(32) DEFAULT NULL,
   `payment_config_id` varchar(32) DEFAULT NULL,
+  `amount_payable` decimal(15,5) NOT NULL,
+  `card_num` varchar(255) NOT NULL,
+  `card_pwd` varchar(255) NOT NULL,
+  `cards_html_path` varchar(255) NOT NULL,
+  `product_name` varchar(255) NOT NULL,
+  `product_price` decimal(15,5) NOT NULL,
+  `product_sn` varchar(255) NOT NULL,
+  `product_id` varchar(32) DEFAULT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `order_sn` (`order_sn`),
   KEY `fk_order_member` (`member_id`),
   KEY `fk_order_payment_config` (`payment_config_id`),
-  CONSTRAINT `fk_order_payment_config` FOREIGN KEY (`payment_config_id`) REFERENCES `xx_payment_config` (`id`),
-  CONSTRAINT `fk_order_member` FOREIGN KEY (`member_id`) REFERENCES `xx_member` (`id`)
+  KEY `fk_order_product` (`product_id`),
+  CONSTRAINT `fk_order_product` FOREIGN KEY (`product_id`) REFERENCES `xx_product` (`id`),
+  CONSTRAINT `fk_order_member` FOREIGN KEY (`member_id`) REFERENCES `xx_member` (`id`),
+  CONSTRAINT `fk_order_payment_config` FOREIGN KEY (`payment_config_id`) REFERENCES `xx_payment_config` (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of xx_order
--- ----------------------------
-
--- ----------------------------
--- Table structure for `xx_order_item`
--- ----------------------------
-DROP TABLE IF EXISTS `xx_order_item`;
-CREATE TABLE `xx_order_item` (
-  `id` varchar(32) NOT NULL,
-  `create_date` datetime DEFAULT NULL,
-  `modify_date` datetime DEFAULT NULL,
-  `card_num` longtext NOT NULL,
-  `card_pwd` longtext NOT NULL,
-  `cards_html_path` varchar(255) NOT NULL,
-  `delivery_quantity` int(11) NOT NULL,
-  `product_name` varchar(255) NOT NULL,
-  `product_price` decimal(15,5) NOT NULL,
-  `product_quantity` int(11) NOT NULL,
-  `product_sn` varchar(255) NOT NULL,
-  `order_id` varchar(32) NOT NULL,
-  `product_id` varchar(32) DEFAULT NULL,
-  PRIMARY KEY (`id`),
-  KEY `fk_order_item_order` (`order_id`),
-  KEY `fk_order_item_product` (`product_id`),
-  CONSTRAINT `fk_order_item_product` FOREIGN KEY (`product_id`) REFERENCES `xx_product` (`id`),
-  CONSTRAINT `fk_order_item_order` FOREIGN KEY (`order_id`) REFERENCES `xx_order` (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
--- ----------------------------
--- Records of xx_order_item
 -- ----------------------------
 
 -- ----------------------------

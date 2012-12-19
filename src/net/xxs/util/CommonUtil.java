@@ -14,7 +14,7 @@ import org.apache.commons.lang.StringUtils;
 
 public class CommonUtil {
 	
-	public static final String WEB_APP_ROOT_KEY = "xxs.webAppRoot";// WebRoot路径KEY
+	public static final String WEB_APP_ROOT_KEY = "card.webAppRoot";// WebRoot路径KEY
 	public static final String PATH_PREPARED_STATEMENT_UUID = "\\{uuid\\}";// UUID路径占位符
 	public static final String PATH_PREPARED_STATEMENT_DATE = "\\{date(\\(\\w+\\))?\\}";// 日期路径占位符
 	

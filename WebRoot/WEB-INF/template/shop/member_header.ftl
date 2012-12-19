@@ -49,15 +49,15 @@
                <ul>
 						<li><a href="#">商户中心	</a></li>
 						<li><a href="#">开始卖卡	</a>
-							<@goods_list type="hot" count=10; goodsList>
-									<#if (goodsList?size > 0)>
+							<@cards_list type="hot" count=10; cardsList>
+									<#if (cardsList?size > 0)>
 									<ul class="sub-menu">
-										<#list goodsList as goods>
-											<li><a href="${base}${goods.htmlPath}">${substring(goods.name, 24, "...")}   &rarr;   点击卖卡</a></li>		
+										<#list cardsList as cards>
+											<li><a href="${base}${cards.htmlPath}">${substring(cards.name, 24, "...")}   &rarr;   点击卖卡</a></li>		
 										</#list>
 				                     </ul>
 									</#if>
-								</@goods_list>
+								</@cards_list>
 						</li>
 						<li><a href="#">订单管理</a></li>
 						<li><a href="#">收益查询</a></li>
