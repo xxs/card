@@ -14,10 +14,7 @@
 		<oscache:caching id="areaCaching" cronExpression="0 1 * * *" refreshPeriod="86400" groups="area" />
 		<oscache:caching id="articleCategoryCaching" cronExpression="0 1 * * *" refreshPeriod="86400" groups="articleCategory" />
 		<oscache:caching id="articleCaching" cronExpression="0 1 * * *" refreshPeriod="86400" groups="article" />
-		<oscache:caching id="deliveryTypeCaching" cronExpression="0 1 * * *" refreshPeriod="86400" groups="deliveryType" />
 		<oscache:caching id="friendLinkCaching" cronExpression="0 1 * * *" refreshPeriod="86400" groups="friendLink" />
-		<oscache:caching id="cardsAttributeCaching" cronExpression="0 1 * * *" refreshPeriod="86400" groups="cardsAttribute" />
-		<oscache:caching id="cardsCategoryCaching" cronExpression="0 1 * * *" refreshPeriod="86400" groups="cardsCategory" />
 		<oscache:caching id="cardsCaching" cronExpression="0 1 * * *" refreshPeriod="86400" groups="cards" />
 		<oscache:caching id="memberAttributeCaching" cronExpression="0 1 * * *" refreshPeriod="86400" groups="memberAttribute" />
 		<oscache:caching id="memberRankCaching" cronExpression="0 1 * * *" refreshPeriod="86400" groups="memberRank" />
@@ -27,10 +24,7 @@
 		<oscache:flushing id="areaFlushing" groups="area" />
 		<oscache:flushing id="articleCategoryFlushing" groups="articleCategory" />
 		<oscache:flushing id="articleFlushing" groups="article" />
-		<oscache:flushing id="deliveryTypeFlushing" groups="deliveryType" />
 		<oscache:flushing id="friendLinkFlushing" groups="friendLink" />
-		<oscache:flushing id="cardsAttributeFlushing" groups="cardsAttribute" />
-		<oscache:flushing id="cardsCategoryFlushing" groups="cardsCategory" />
 		<oscache:flushing id="cardsFlushing" groups="cards" />
 		<oscache:flushing id="memberAttributeFlushing" groups="memberAttribute" />
 		<oscache:flushing id="memberRankFlushing" groups="memberRank" />
