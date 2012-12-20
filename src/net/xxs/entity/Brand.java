@@ -7,13 +7,11 @@ import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
-import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import javax.persistence.OrderBy;
 import javax.persistence.Transient;
 
 import org.apache.commons.lang.StringUtils;
-import org.hibernate.annotations.ForeignKey;
 
 /**
  * 实体类 - 品牌
@@ -32,7 +30,6 @@ public class Brand extends BaseEntity {
 	
 	private Set<PaymentDiscount> paymentDiscountSet = new HashSet<PaymentDiscount>();// 费率设置
 	private Set<Cards> cardsSet = new HashSet<Cards>();// 充值卡
-	private Set<CardsType> cardsTypeSet = new HashSet<CardsType>();// 充值卡类型
 
 	@Column(nullable = false)
 	public String getName() {
@@ -85,16 +82,6 @@ public class Brand extends BaseEntity {
 		this.cardsSet = cardsSet;
 	}
 
-	@ManyToMany(mappedBy = "brandSet", fetch = FetchType.LAZY)
-	@ForeignKey(name = "fk_brand_cards_type_set")
-	public Set<CardsType> getCardsTypeSet() {
-		return cardsTypeSet;
-	}
-
-	public void setCardsTypeSet(Set<CardsType> cardsTypeSet) {
-		this.cardsTypeSet = cardsTypeSet;
-	}
-	
 	// 保存处理
 	@Override
 	@Transient

@@ -5,7 +5,6 @@ import java.util.Set;
 import net.xxs.dao.BrandDao;
 import net.xxs.entity.Brand;
 import net.xxs.entity.Cards;
-import net.xxs.entity.CardsType;
 
 import org.springframework.stereotype.Repository;
 
@@ -23,13 +22,6 @@ public class BrandDaoImpl extends BaseDaoImpl<Brand, String> implements BrandDao
 		if (cardsSet != null) {
 			for (Cards cards : cardsSet) {
 				cards.setBrand(null);
-			}
-		}
-		
-		Set<CardsType> cardsTypeSet = brand.getCardsTypeSet();
-		if (cardsTypeSet != null) {
-			for (CardsType cardsType : cardsTypeSet) {
-				cardsType.getBrandSet().remove(brand);
 			}
 		}
 		

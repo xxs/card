@@ -3,7 +3,6 @@ package net.xxs.service.impl;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
-import java.util.Map;
 
 import javax.annotation.Resource;
 
@@ -12,9 +11,6 @@ import net.xxs.bean.Pager.Order;
 import net.xxs.dao.CardsDao;
 import net.xxs.entity.Brand;
 import net.xxs.entity.Cards;
-import net.xxs.entity.CardsAttribute;
-import net.xxs.entity.CardsCategory;
-import net.xxs.entity.Member;
 import net.xxs.service.CardsService;
 
 import org.apache.commons.lang.StringUtils;
@@ -22,12 +18,12 @@ import org.apache.lucene.queryParser.QueryParser;
 import org.compass.core.Compass;
 import org.compass.core.CompassHits;
 import org.compass.core.CompassQuery;
-import org.compass.core.CompassQueryBuilder;
-import org.compass.core.CompassSession;
-import org.compass.core.CompassTemplate;
 import org.compass.core.CompassQuery.SortDirection;
 import org.compass.core.CompassQuery.SortPropertyType;
+import org.compass.core.CompassQueryBuilder;
 import org.compass.core.CompassQueryBuilder.CompassBooleanQueryBuilder;
+import org.compass.core.CompassSession;
+import org.compass.core.CompassTemplate;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springmodules.cache.annotations.CacheFlush;
@@ -70,28 +66,23 @@ public class CardsServiceImpl extends BaseServiceImpl<Cards, String> implements 
 	
 	@Cacheable(modelId = "cardsCaching")
 	@Transactional(readOnly = true)
-	public List<Cards> getCardsList(CardsCategory cardsCategory, String type, boolean isContainChildren, Integer maxResults) {
-		return cardsDao.getCardsList(cardsCategory, type, isContainChildren, maxResults);
+	public List<Cards> getCardsList(Integer maxResults) {
+		return cardsDao.getCardsList(maxResults);
 	}
 	
 	@Transactional(readOnly = true)
-	public List<Cards> getCardsList(CardsCategory cardsCategory, Date beginDate, Date endDate, Integer firstResult, Integer maxResults) {
-		return cardsDao.getCardsList(cardsCategory, beginDate, endDate, firstResult, maxResults);
+	public List<Cards> getCardsList(Date beginDate, Date endDate, Integer firstResult, Integer maxResults) {
+		return cardsDao.getCardsList(beginDate, endDate, firstResult, maxResults);
 	}
 	
 	@Transactional(readOnly = true)
-	public Pager getCardsPager(CardsCategory cardsCategory, Pager pager) {
-		return cardsDao.getCardsPager(cardsCategory, pager);
+	public Pager getCardsPager(Pager pager) {
+		return cardsDao.getCardsPager(pager);
 	}
 	
 	@Transactional(readOnly = true)
-	public Pager getCardsPager(CardsCategory cardsCategory, Brand brand, Map<CardsAttribute, String> cardsAttributeMap, Pager pager) {
-		return cardsDao.getCardsPager(cardsCategory, brand, cardsAttributeMap, pager);
-	}
-	
-	@Transactional(readOnly = true)
-	public Pager getFavoriteCardsPager(Member member, Pager pager) {
-		return cardsDao.getFavoriteCardsPager(member, pager);
+	public Pager getCardsPager(Brand brand,Pager pager) {
+		return cardsDao.getCardsPager(brand, pager);
 	}
 	
 	@Transactional(readOnly = true)

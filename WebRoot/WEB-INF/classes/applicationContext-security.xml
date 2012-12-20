@@ -22,10 +22,6 @@
 		<sec:intercept-url pattern="/admin/index.jsp" filters="none" />
 		<!-- 充值卡管理 -->
 		<sec:intercept-url pattern="/admin/cards!**" access="ROLE_CARDS" />
-		<!-- 充值卡分类管理 -->
-		<sec:intercept-url pattern="/admin/cards_category!**" access="ROLE_CARDS_CATEGORY" />
-		<!-- 充值卡类型管理 -->
-		<sec:intercept-url pattern="/admin/cards_type!**" access="ROLE_CARDS_TYPE" />
 		<!-- 充值卡规格管理 -->
 		<sec:intercept-url pattern="/admin/specification!**" access="ROLE_SPECIFICATION" />
 		<!-- 充值卡品牌管理 -->

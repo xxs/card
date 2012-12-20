@@ -20,7 +20,6 @@ import net.xxs.dao.CardsDao;
 import net.xxs.entity.Article;
 import net.xxs.entity.Cards;
 import net.xxs.service.ArticleCategoryService;
-import net.xxs.service.CardsCategoryService;
 import net.xxs.service.HtmlService;
 import net.xxs.util.SettingUtil;
 import net.xxs.util.TemplateConfigUtil;
@@ -51,8 +50,6 @@ public class HtmlServiceImpl implements HtmlService, ServletContextAware {
 	private ArticleCategoryService articleCategoryService;
 	@Resource(name = "cardsDaoImpl")
 	private CardsDao cardsDao;
-	@Resource(name = "cardsCategoryServiceImpl")
-	private CardsCategoryService cardsCategoryService;
 	
 	public void setServletContext(ServletContext servletContext) {
 		this.servletContext = servletContext;
@@ -195,7 +192,6 @@ public class HtmlServiceImpl implements HtmlService, ServletContextAware {
 		if (cards.getIsMarketable()) {
 			Map<String, Object> data = getCommonData();
 			data.put("cards", cards);
-			data.put("pathList", cardsCategoryService.getCardsCategoryPathList(cards.getCardsCategory()));
 			String templatePath = pageTemplateConfig.getTemplatePath();
 			buildHtml(templatePath, htmlPath, data);
 		} else {
@@ -210,7 +206,7 @@ public class HtmlServiceImpl implements HtmlService, ServletContextAware {
 	public void buildCardsContentHtml() {
 		long cardsTotalCount = cardsDao.getTotalCount();
 		for (int i = 0; i < cardsTotalCount; i += 30) {
-			List<Cards> cardsList = cardsDao.getCardsList(null, null, null, i, 30);
+			List<Cards> cardsList = cardsDao.getCardsList(30);
 			for (Cards cards : cardsList) {
 				buildCardsContentHtml(cards);
 			}

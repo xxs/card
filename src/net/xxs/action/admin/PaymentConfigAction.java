@@ -273,6 +273,7 @@ public class PaymentConfigAction extends BaseAdminAction {
 		System.out.println(paymentDiscount.getDiscount());
 		System.out.println(paymentDiscount.getCode());
 		System.out.println(paymentDiscount.getModifyDate());
+		System.out.println(paymentDiscount.getFace());
 		System.out.println("-------------");
 		System.out.println(persistent.getId());
 		System.out.println(persistent.getPaymentConfig().getId());
@@ -281,6 +282,7 @@ public class PaymentConfigAction extends BaseAdminAction {
 		System.out.println(persistent.getDiscount());
 		System.out.println(persistent.getCode());
 		System.out.println(persistent.getModifyDate());
+		System.out.println(persistent.getFace());
 		BeanUtils.copyProperties(paymentDiscount, persistent, new String[] {"id", "createDate"});
 		System.out.println("-------------");
 		System.out.println(persistent.getId());
@@ -290,6 +292,7 @@ public class PaymentConfigAction extends BaseAdminAction {
 		System.out.println(persistent.getDiscount());
 		System.out.println(persistent.getCode());
 		System.out.println(persistent.getModifyDate());
+		System.out.println(persistent.getFace());
 		paymentDiscountService.update(persistent);
 		redirectUrl = "payment_config!editDiscount.action?id="+paymentDiscount.getPaymentConfig().getId();
 		return SUCCESS;

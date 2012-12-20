@@ -90,26 +90,6 @@ $().ready(function() {
 			<table class="inputTable">
 				<tr>
 					<th>
-						充值卡分类: 
-					</th>
-					<td>
-						<select id="idSelect" name="">
-							<option value="">更新所有分类</option>
-							<#list cardsCategoryTreeList as cardsCategoryTree>
-								<option value="${cardsCategoryTree.id}">
-									<#if cardsCategoryTree.grade != 0>
-										<#list 1..cardsCategoryTree.grade as i>
-											&nbsp;&nbsp;
-										</#list>
-									</#if>
-									${cardsCategoryTree.name}
-								</option>
-							</#list>
-						</select>
-					</td>
-				</tr>
-				<tr>
-					<th>
 						每次更新数
 					</th>
 					<td>

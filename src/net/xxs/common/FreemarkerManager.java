@@ -5,8 +5,6 @@ import javax.servlet.ServletContext;
 import net.xxs.directive.ArticleCategoryListDirective;
 import net.xxs.directive.ArticleCategoryTreeDirective;
 import net.xxs.directive.ArticleListDirective;
-import net.xxs.directive.CardsCategoryListDirective;
-import net.xxs.directive.CardsCategoryTreeDirective;
 import net.xxs.directive.CardsListDirective;
 import net.xxs.directive.CheckboxDirective;
 import net.xxs.directive.FriendLinkListDirective;
@@ -38,8 +36,6 @@ public class FreemarkerManager extends org.apache.struts2.views.freemarker.Freem
 			ArticleCategoryListDirective articleCategoryListDirective = (ArticleCategoryListDirective) SpringUtil.getBean("articleCategoryListDirective");
 			ArticleCategoryTreeDirective articleCategoryTreeDirective = (ArticleCategoryTreeDirective) SpringUtil.getBean("articleCategoryTreeDirective");
 			ArticleListDirective articleListDirective = (ArticleListDirective) SpringUtil.getBean("articleListDirective");
-			CardsCategoryListDirective cardsCategoryListDirective = (CardsCategoryListDirective) SpringUtil.getBean("cardsCategoryListDirective");
-			CardsCategoryTreeDirective cardsCategoryTreeDirective = (CardsCategoryTreeDirective) SpringUtil.getBean("cardsCategoryTreeDirective");
 			CardsListDirective cardsListDirective = (CardsListDirective) SpringUtil.getBean("cardsListDirective");
 			
 			config.setSharedVariable(PaymentResultMethod.TAG_NAME, paymentResultMethod);
@@ -53,8 +49,6 @@ public class FreemarkerManager extends org.apache.struts2.views.freemarker.Freem
 			config.setSharedVariable(ArticleCategoryListDirective.TAG_NAME, articleCategoryListDirective);
 			config.setSharedVariable(ArticleCategoryTreeDirective.TAG_NAME, articleCategoryTreeDirective);
 			config.setSharedVariable(ArticleListDirective.TAG_NAME, articleListDirective);
-			config.setSharedVariable(CardsCategoryListDirective.TAG_NAME, cardsCategoryListDirective);
-			config.setSharedVariable(CardsCategoryTreeDirective.TAG_NAME, cardsCategoryTreeDirective);
 			config.setSharedVariable(CardsListDirective.TAG_NAME, cardsListDirective);
 			
 			servletContext.setAttribute(CONFIG_SERVLET_CONTEXT_KEY, config);

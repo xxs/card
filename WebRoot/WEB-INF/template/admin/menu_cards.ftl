@@ -27,34 +27,6 @@
 				</@sec.authorize>
 			</dl>
 		</@sec.authorize>
-		<@sec.authorize ifAnyGranted="ROLE_CARDS_CATEGORY">
-			<dl>
-				<dt>
-					<span>充值卡分类管理&nbsp;</span>
-				</dt>
-				<dd>
-					<a href="cards_category!list.action" target="mainFrame">分类列表</a>
-				</dd>
-				<dd>
-					<a href="cards_category!add.action" target="mainFrame">添加分类</a>
-				</dd>
-			</dl>
-		</@sec.authorize>
-		<@sec.authorize ifAnyGranted="ROLE_CARDS_TYPE,ROLE_CARDS_ATTRIBUTE">
-			<dl>
-				<dt>
-					<span>充值卡类型管理&nbsp;</span>
-				</dt>
-				<@sec.authorize ifAnyGranted="ROLE_CARDS_TYPE">
-					<dd>
-						<a href="cards_type!list.action" target="mainFrame">类型列表</a>
-					</dd>
-					<dd>
-						<a href="cards_type!add.action" target="mainFrame">添加类型</a>
-					</dd>
-				</@sec.authorize>
-			</dl>
-		</@sec.authorize>
 		<@sec.authorize ifAnyGranted="ROLE_SPECIFICATION">
 			<dl>
 				<dt>

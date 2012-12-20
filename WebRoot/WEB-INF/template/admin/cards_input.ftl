@@ -195,21 +195,6 @@ $().ready(function() {
 					<input type="text" name="productList[' + productIndex + '].price" class="formText productListPrice" value="0" style="width: 50px;" />
 				</td>
 				<td>
-					<input type="text" name="productList[' + productIndex + '].cost" class="formText productListCost" style="width: 50px;" title="前台不会显示,仅供后台使用" />
-				</td>
-				<td>
-					<input type="text" name="productList[' + productIndex + '].marketPrice" class="formText productListMarketPrice" style="width: 50px;" />
-				</td>
-				<td>
-					<input type="text" name="productList[' + productIndex + '].weight" class="formText productListWeight" style="width: 50px;" />
-				</td>
-				<td>
-					<input type="text" name="productList[' + productIndex + '].store" class="formText productListStore" style="width: 50px;" />
-				</td>
-				<td>
-					<input type="text" name="productList[' + productIndex + '].storePlace" class="formText" style="width: 50px;" />
-				</td>
-				<td>
 					<@checkbox name="productList[' + productIndex + '].isDefault" cssClass="productListIsDefault" value="false" />
 				</td>
 				<td>
@@ -599,32 +584,8 @@ $().ready(function() {
 				<li>
 					<input type="button" id="specificationTab" value="充值卡规格" hidefocus />
 				</li>
-				<li>
-					<input type="button" value="属性参数" hidefocus />
-				</li>
 			</ul>
 			<table id="infoTable" class="inputTable tabContent">
-				<tr>
-					<th>
-						充值卡分类: 
-					</th>
-					<td>
-						<select name="cards.cardsCategory.id">
-							<option value="">请选择...</option>
-							<#list cardsCategoryTreeList as cardsCategoryTree>
-								<option value="${cardsCategoryTree.id}"<#if (cardsCategoryTree == cards.cardsCategory)!> selected</#if>>
-									<#if cardsCategoryTree.grade != 0>
-										<#list 1..cardsCategoryTree.grade as i>
-											&nbsp;&nbsp;
-										</#list>
-									</#if>
-									${cardsCategoryTree.name}
-								</option>
-							</#list>
-						</select>
-						<label class="requireField">*</label>
-					</td>
-				</tr>
 				<tr>
 					<th>
 						充值卡名称: 
@@ -686,46 +647,6 @@ $().ready(function() {
 					<td>
 						<input type="text" name="defaultProduct.price" class="formText" value="${(defaultProduct.price)!"0"}" />
 						<label class="requireField">*</label>
-					</td>
-				</tr>
-				<tr class="specificationDisabledInfo">
-					<th>
-						成本价: 
-					</th>
-					<td>
-						<input type="text" name="defaultProduct.cost" class="formText" value="${(defaultProduct.cost)!}" title="前台不会显示,仅供后台使用" />
-					</td>
-				</tr>
-				<tr class="specificationDisabledInfo">
-					<th>
-						市场价: 
-					</th>
-					<td>
-						<input type="text" name="defaultProduct.marketPrice" class="formText" value="${(defaultProduct.marketPrice)!}" title="若为空则系统自动计算市场价" />
-					</td>
-				</tr>
-				<tr class="specificationDisabledInfo">
-					<th>
-						重量: 
-					</th>
-					<td>
-						<input type="text" name="defaultProduct.weight" class="formText" value="${(defaultProduct.weight)!}" title="单位: 克" />
-					</td>
-				</tr>
-				<tr class="specificationDisabledInfo">
-					<th>
-						库存: 
-					</th>
-					<td>
-						<input type="text" name="defaultProduct.store" class="formText" value="${(cards.store)!}" title="只允许输入零或正整数,为空表示不计库存" />
-					</td>
-				</tr>
-				<tr class="specificationDisabledInfo">
-					<th>
-						货位: 
-					</th>
-					<td>
-						<input type="text" name="cards.storePlace" class="formText" value="${(cards.storePlace)!}" title="用于记录充值卡所在的具体仓库位置,便于检索" />				 						
 					</td>
 				</tr>
 				<tr>
@@ -866,21 +787,6 @@ $().ready(function() {
 							销售价
 						</th>
 						<th>
-							成本价
-						</th>
-						<th>
-							市场价
-						</th>
-						<th>
-							重量
-						</th>
-						<th>
-							库存
-						</th>
-						<th>
-							货位
-						</th>
-						<th>
 							默认
 						</th>
 						<th>
@@ -912,21 +818,6 @@ $().ready(function() {
 									<input type="text" name="productList[${product_index}].price" class="formText productListPrice" value="${product.price}" style="width: 50px;" />
 								</td>
 								<td>
-									<input type="text" name="productList[${product_index}].cost" class="formText productListCost" value="${product.cost}" style="width: 50px;" title="前台不会显示.仅供后台使用" />
-								</td>
-								<td>
-									<input type="text" name="productList[${product_index}].marketPrice" class="formText productListMarketPrice" value="${product.marketPrice}" style="width: 50px;" title="若为空则系统自动计算市场价" />
-								</td>
-								<td>
-									<input type="text" name="productList[${product_index}].weight" class="formText productListWeight" value="${product.weight}" style="width: 50px;" title="单位: 克" />
-								</td>
-								<td>
-									<input type="text" name="productList[${product_index}].store" class="formText productListStore" value="${product.store}" style="width: 50px;" />
-								</td>
-								<td>
-									<input type="text" name="productList[${product_index}].storePlace" class="formText" value="${product.storePlace}" style="width: 50px;" />
-								</td>
-								<td>
 									<@checkbox name="productList[${product_index}].isDefault" cssClass="productListIsDefault" value="${(product.isDefault)!false}" />
 								</td>
 								<td>
@@ -934,10 +825,10 @@ $().ready(function() {
 								</td>
 								<td>
 									<#assign hasUnfinishedOrder = false />
-									<#assign orderItemSet = product.orderItemSet />
-									<#if (orderItemSet?? && orderItemSet?size > 0)>
-										<#list orderItemSet as orderItem>
-											<#if orderItem.orderStatus != "completed" && orderItem.orderStatus != "invalid">
+									<#assign orderSet = product.orderSet />
+									<#if (orderSet?? && orderSet?size > 0)>
+										<#list orderSet as order>
+											<#if order.OrderStatus != "completed" && order.orderStatus != "invalid">
 												<#assign hasUnfinishedOrder = true />
 												<#break />
 											</#if>
@@ -953,76 +844,6 @@ $().ready(function() {
 						</#list>
 					</#if>
 				</table>
-			</div>
-			<div class="tabContent">
-				<div class="tableItem">
-					<table class="inputTable">
-						<tr class="title">
-							<th>
-								请选择充值卡类型: 
-							</th>
-							<td>
-								<select id="cardsTypeId" name="cardsTypeId">
-									<option value="">请选择...</option>
-									<#list allCardsTypeList as cardsType>
-										<option value="${cardsType.id}"<#if (cardsType == cards.cardsType)!> selected</#if>>${cardsType.name}</option>
-									</#list>
-								</select>
-								<span id="cardsTypeLoadingIcon" class="loadingIcon hidden">&nbsp;</span>
-							</td>
-						</tr>
-					</table>
-					<div class="blank"></div>
-					<table id="cardsAttributeTable" class="inputTable<#if (isAddAction || cards.cardsType == null)!> hidden</#if>">
-						<tr class="title">
-							<th>
-								充值卡属性
-							</th>
-							<td>
-								&nbsp;
-							</td>
-						</tr>
-						<#list (cards.cardsType.cardsAttributeSet)! as cardsAttribute>
-							<tr class="cardsAttributeTr">
-								<th>${cardsAttribute.name}: </th>
-								<td>
-									<#if cardsAttribute.attributeType == "filter">
-										<select name="cardsAttributeValueMap['${cardsAttribute.id}']">
-											<option value="">请选择...</option>
-											<#list cardsAttribute.optionList as option>
-												<option value="${option}"<#if option == cards.getCardsAttributeValue(cardsAttribute)> selected</#if>>
-													${option}
-												</option>
-											</#list>
-										</select>
-									<#else>
-										<input type="text" name="cardsAttributeValueMap['${cardsAttribute.id}']" class="formText" value="${(cards.getCardsAttributeValue(cardsAttribute))!}" />
-									</#if>
-								</td>
-							</tr>
-						</#list>
-					</table>
-					<div class="blank"></div>
-					<table id="cardsParameterTable" class="inputTable<#if (isAddAction || cards.cardsType == null)!true> hidden</#if>">
-						<tr class="title">
-							<th>
-								充值卡参数
-							</th>
-							<td>
-								&nbsp;
-							</td>
-						</tr>
-						<#assign cardsParameterValueMap = (cards.cardsParameterValueMap)! />
-						<#list (cards.cardsType.cardsParameterList)! as cardsParameter>
-							<tr class="cardsParameterTr">
-								<th>${cardsParameter.name}: </th>
-								<td>
-									<input type="text" name="cardsParameterValueMap['${cardsParameter.id}']" class="formText" value="${(cardsParameterValueMap.get(cardsParameter.id))!}" />
-								</td>
-							</tr>
-						</#list>
-					</table>
-				</div>
 			</div>
 			<div class="buttonArea">
 				<input type="submit" class="formButton" value="确  定" hidefocus />&nbsp;&nbsp;

@@ -22,13 +22,14 @@ public class PaymentDiscount extends BaseEntity {
 
 	private String code;// 通道编码
 	private BigDecimal discount;// 折扣率
+	private String face;//支持面额范围  将来转换为数组
 	private String operator;// 操作员
 	private String memo;// 备注
 	
 	private PaymentConfig paymentConfig;// 支付方式
 	private Brand brand;// 品牌
 	
-	@Column(updatable = false)
+	@Column(updatable = true)
 	public String getOperator() {
 		return operator;
 	}
@@ -37,7 +38,7 @@ public class PaymentDiscount extends BaseEntity {
 		this.operator = operator;
 	}
 	
-	@Column(updatable = false, length = 3000)
+	@Column(updatable = true, length = 3000)
 	public String getMemo() {
 		return memo;
 	}
@@ -56,7 +57,7 @@ public class PaymentDiscount extends BaseEntity {
 	public void setPaymentConfig(PaymentConfig paymentConfig) {
 		this.paymentConfig = paymentConfig;
 	}
-	@Column(updatable = false)
+	@Column(updatable = true)
 	public String getCode() {
 		return code;
 	}
@@ -64,7 +65,17 @@ public class PaymentDiscount extends BaseEntity {
 	public void setCode(String code) {
 		this.code = code;
 	}
-	@Column(updatable = false)
+	
+	@Column(updatable = true, length = 1000)
+	public String getFace() {
+		return face;
+	}
+
+	public void setFace(String face) {
+		this.face = face;
+	}
+
+	@Column(updatable = true)
 	public BigDecimal getDiscount() {
 		return discount;
 	}

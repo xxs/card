@@ -41,7 +41,7 @@
 						<a href="#"  hidefocus>通道编码</a>
 					</th>
 					<th>
-						<a href="#"  hidefocus>备注</a>
+						<a href="#"  hidefocus>支持面额</a>
 					</th>
 					<th>
 						<span>操作</span>
@@ -65,7 +65,7 @@
 							${paymentDiscount.code}
 						</td>
 						<td>
-							${paymentDiscount.memo}
+							${paymentDiscount.face}
 						</td>
 						<td>
 							<a href="payment_config!editDiscountDetail.action?id=${paymentDiscount.id}" title="编辑">[编辑]</a>

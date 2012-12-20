@@ -2,7 +2,6 @@ package net.xxs.action.admin;
 
 import java.io.File;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
@@ -11,23 +10,17 @@ import java.util.Set;
 import javax.annotation.Resource;
 
 import net.xxs.bean.CardsImage;
-import net.xxs.bean.CardsParameter;
 import net.xxs.bean.SpecificationValue;
 import net.xxs.entity.Brand;
 import net.xxs.entity.Cards;
-import net.xxs.entity.CardsAttribute;
-import net.xxs.entity.CardsCategory;
-import net.xxs.entity.CardsType;
 import net.xxs.entity.Order;
 import net.xxs.entity.Order.OrderStatus;
 import net.xxs.entity.Product;
 import net.xxs.entity.Specification;
 import net.xxs.service.BrandService;
 import net.xxs.service.CacheService;
-import net.xxs.service.CardsCategoryService;
 import net.xxs.service.CardsImageService;
 import net.xxs.service.CardsService;
-import net.xxs.service.CardsTypeService;
 import net.xxs.service.ProductService;
 import net.xxs.service.SpecificationService;
 
@@ -64,12 +57,8 @@ public class CardsAction extends BaseAdminAction {
 
 	@Resource(name = "cardsServiceImpl")
 	private CardsService cardsService;
-	@Resource(name = "cardsCategoryServiceImpl")
-	private CardsCategoryService cardsCategoryService;
 	@Resource(name = "specificationServiceImpl")
 	private SpecificationService specificationService;
-	@Resource(name = "cardsTypeServiceImpl")
-	private CardsTypeService cardsTypeService;
 	@Resource(name = "brandServiceImpl")
 	private BrandService brandService;
 	@Resource(name = "cardsImageServiceImpl")
@@ -99,22 +88,6 @@ public class CardsAction extends BaseAdminAction {
 		} else {
 			return ajax("false");
 		}
-	}
-	
-	// AJAX获取充值卡属性
-	@InputConfig(resultName = "ajaxError")
-	public String ajaxCardsAttribute() {
-		CardsType cardsType = cardsTypeService.load(id);
-		Set<CardsAttribute> cardsAttributeSet = cardsType.getCardsAttributeSet();
-		return ajax(cardsAttributeSet);
-	}
-	
-	// AJAX获取充值卡参数
-	@InputConfig(resultName = "ajaxError")
-	public String ajaxCardsParameter() {
-		CardsType cardsType = cardsTypeService.load(id);
-		List<CardsParameter> cardsParameterList = cardsType.getCardsParameterList();
-		return ajax(cardsParameterList);
 	}
 	
 	// AJAX获取充值卡规格值
@@ -170,7 +143,6 @@ public class CardsAction extends BaseAdminAction {
 	@Validations(
 		requiredStrings = {
 			@RequiredStringValidator(fieldName = "cards.name", message = "充值卡名称不允许为空!"),
-			@RequiredStringValidator(fieldName = "cards.cardsCategory.id", message = "充值卡分类不允许为空!")
 		},
 		requiredFields = {
 			@RequiredFieldValidator(fieldName = "cards.isMarketable", message = "是否上架不允许为空!"),
@@ -188,7 +160,8 @@ public class CardsAction extends BaseAdminAction {
 			Brand brand = brandService.load(brandId);
 			cards.setBrand(brand);
 		} else {
-			cards.setBrand(null);
+			addActionError("充值卡品牌不能为空!");
+			return ERROR;
 		}
 		
 		if (cardsImageList != null) {
@@ -222,36 +195,6 @@ public class CardsAction extends BaseAdminAction {
 			}
 		} else {
 			cards.setSpecificationSet(null);
-		}
-		
-		if (StringUtils.isNotEmpty(cardsTypeId)) {
-			CardsType cardsType = cardsTypeService.load(cardsTypeId);
-			
-			Set<CardsAttribute> cardsAttributeSet = cardsType.getCardsAttributeSet();
-			if (cardsAttributeSet != null) {
-				for (CardsAttribute cardsAttribute : cardsAttributeSet) {
-					String cardsAttributeValue = cardsAttributeValueMap.get(cardsAttribute.getId());
-					if (StringUtils.isNotEmpty(cardsAttributeValue)) {
-						cards.setCardsAttributeValue(cardsAttribute, cardsAttributeValue);
-					}
-				}
-			}
-			
-			Map<String, String> destCardsParameterValueMap = new HashMap<String, String>();
-			List<CardsParameter> cardsParameterList = cardsType.getCardsParameterList();
-			if (cardsParameterList != null) {
-				for (CardsParameter cardsParameter : cardsParameterList) {
-					String cardsParameterValue = cardsParameterValueMap.get(cardsParameter.getId());
-					destCardsParameterValueMap.put(cardsParameter.getId(), cardsParameterValue);
-				}
-			}
-			
-			cards.setCardsType(cardsType);
-			cards.setCardsParameterValueMap(destCardsParameterValueMap);
-		} else {
-			cards.setCardsType(null);
-			cards.setCardsAttributeValueToNull();
-			cards.setCardsParameterValueMap(null);
 		}
 		
 		cardsService.save(cards);
@@ -392,36 +335,6 @@ public class CardsAction extends BaseAdminAction {
 			cards.setSpecificationSet(null);
 		}
 		
-		if (StringUtils.isNotEmpty(cardsTypeId)) {
-			CardsType cardsType = cardsTypeService.load(cardsTypeId);
-			
-			Set<CardsAttribute> cardsAttributeSet = cardsType.getCardsAttributeSet();
-			if (cardsAttributeSet != null) {
-				for (CardsAttribute cardsAttribute : cardsAttributeSet) {
-					String cardsAttributeValue = cardsAttributeValueMap.get(cardsAttribute.getId());
-					if (StringUtils.isNotEmpty(cardsAttributeValue)) {
-						cards.setCardsAttributeValue(cardsAttribute, cardsAttributeValue);
-					}
-				}
-			}
-			
-			Map<String, String> destCardsParameterValueMap = new HashMap<String, String>();
-			List<CardsParameter> cardsParameterList = cardsType.getCardsParameterList();
-			if (cardsParameterList != null) {
-				for (CardsParameter cardsParameter : cardsParameterList) {
-					String cardsParameterValue = cardsParameterValueMap.get(cardsParameter.getId());
-					destCardsParameterValueMap.put(cardsParameter.getId(), cardsParameterValue);
-				}
-			}
-			
-			cards.setCardsType(cardsType);
-			cards.setCardsParameterValueMap(destCardsParameterValueMap);
-		} else {
-			cards.setCardsType(null);
-			cards.setCardsAttributeValueToNull();
-			cards.setCardsParameterValueMap(null);
-		}
-		
 		if (cards.getIsSpecificationEnabled()) {
 			if (persistent.getIsSpecificationEnabled()) {
 				for (Product product : persistent.getProductSet()) {
@@ -493,16 +406,6 @@ public class CardsAction extends BaseAdminAction {
 		
 		redirectUrl = "cards!list.action";
 		return SUCCESS;
-	}
-	
-	// 获取充值卡分类树
-	public List<CardsCategory> getCardsCategoryTreeList() {
-		return cardsCategoryService.getCardsCategoryTreeList();
-	}
-	
-	// 获取所有充值卡类型
-	public List<CardsType> getAllCardsTypeList() {
-		return cardsTypeService.getAllList();
 	}
 	
 	// 获取所有品牌

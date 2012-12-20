@@ -71,6 +71,14 @@
 				</tr>
 				<tr>
 					<th>
+						支持面额: 
+					</th>
+					<td>
+						<input name="paymentDiscount.face" class="formText"  value="${(paymentDiscount.face)!}" />
+					</td>
+				</tr>
+				<tr>
+					<th>
 						备注: 
 					</th>
 					<td>

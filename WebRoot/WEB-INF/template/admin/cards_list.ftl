@@ -62,9 +62,6 @@
 						<a href="#" class="sort" name="cardsSn" hidefocus>充值卡编号</a>
 					</th>
 					<th>
-						<a href="#" class="sort" name="cardsCategory" hidefocus>分类</a>
-					</th>
-					<th>
 						<a href="#" class="sort" name="price" hidefocus>销售价</span>
 					</th>
 					<th>
@@ -78,9 +75,6 @@
 					</th>
 					<th>
 						<a href="#" class="sort" name="isHot" hidefocus>热销</a>
-					</th>
-					<th>
-						<a href="#" class="sort" name="store">库存</a>
 					</th>
 					<th>
 						<span>操作</span>
@@ -100,9 +94,6 @@
 							${cards.cardsSn}
 						</td>
 						<td>
-							${cards.cardsCategory.name}
-						</td>
-						<td>
 							${cards.price?string(currencyFormat)}
 						</td>
 						<td>
@@ -116,9 +107,6 @@
 						</td>
 						<td>
 							<span class="${cards.isHot?string('true','false')}Icon">&nbsp;</span>
-						</td>
-						<td>
-							${(cards.store)!"-"}
 						</td>
 						<td>
 							<a href="cards!edit.action?id=${cards.id}" title="编辑">[编辑]</a>

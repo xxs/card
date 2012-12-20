@@ -1,6 +1,5 @@
 package net.xxs.action.shop;
 
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -8,12 +7,8 @@ import javax.annotation.Resource;
 
 import net.xxs.bean.Pager.Order;
 import net.xxs.entity.Brand;
-import net.xxs.entity.CardsAttribute;
-import net.xxs.entity.CardsCategory;
 import net.xxs.entity.PaymentConfig;
 import net.xxs.service.BrandService;
-import net.xxs.service.CardsAttributeService;
-import net.xxs.service.CardsCategoryService;
 import net.xxs.service.CardsService;
 import net.xxs.service.PaymentConfigService;
 
@@ -42,20 +37,13 @@ public class CardsAction extends BaseShopAction {
 	private String sign;
 	private Map<String, String> cardsAttributeIdMap;
 	private String orderType;
-	private String viewType;
 	
-	private CardsCategory cardsCategory;
 	private Brand brand;
-	private List<CardsCategory> pathList;
 	
 	@Resource(name = "cardsServiceImpl")
 	private CardsService cardsService;
-	@Resource(name = "cardsCategoryServiceImpl")
-	private CardsCategoryService cardsCategoryService;
 	@Resource(name = "brandServiceImpl")
 	private BrandService brandService;
-	@Resource(name = "cardsAttributeServiceImpl")
-	private CardsAttributeService cardsAttributeService;
 	@Resource(name = "paymentConfigServiceImpl")
 	private PaymentConfigService paymentConfigService;
 	@Validations(
@@ -65,11 +53,6 @@ public class CardsAction extends BaseShopAction {
 	)
 	@InputConfig(resultName = "error")
 	public String list() {
-		if (StringUtils.equalsIgnoreCase(viewType, "tableType")) {
-			viewType = "tableType";
-		} else {
-			viewType = "pictureType";
-		}
 		
 		if (StringUtils.equalsIgnoreCase(orderType, "priceAsc")) {
 			pager.setOrderBy("price");
@@ -88,36 +71,13 @@ public class CardsAction extends BaseShopAction {
 		pager.setSearchBy(null);
 		pager.setKeyword(null);
 		
-		cardsCategory = cardsCategoryService.getCardsCategoryBySign(sign);
-		if (cardsCategory == null) {
-			addActionError("参数错误!");
-			return ERROR;
-		}
-		
 		if (brand != null && StringUtils.isNotEmpty(brand.getId())) {
 			brand = brandService.load(brand.getId());
 		} else {
 			brand = null;
 		}
 		
-		if (cardsAttributeIdMap == null || cardsAttributeIdMap.size() == 0) {
-			pager = cardsService.getCardsPager(cardsCategory, brand, null, pager);
-		} else {
-			Map<CardsAttribute, String> cardsAttributeMap = new HashMap<CardsAttribute, String>();
-			for (String cardsAttributeId : cardsAttributeIdMap.keySet()) {
-				CardsAttribute cardsAttribute = cardsAttributeService.load(cardsAttributeId);
-				String cardsAttributeOption = cardsAttributeIdMap.get(cardsAttributeId);
-				cardsAttributeMap.put(cardsAttribute, cardsAttributeOption);
-			}
-			pager = cardsService.getCardsPager(cardsCategory, brand, cardsAttributeMap, pager);
-		}
-		pathList = cardsCategoryService.getCardsCategoryPathList(cardsCategory);
-		
-		if (StringUtils.equalsIgnoreCase(viewType, "tableType")) {
-			return "table_list";
-		} else {
-			return "picture_list";
-		}
+		return "picture_list";
 	}
 	
 	@Validations(
@@ -143,11 +103,7 @@ public class CardsAction extends BaseShopAction {
 		
 		pager = cardsService.search(pager);
 		
-		if (StringUtils.equalsIgnoreCase(viewType, "tableType")) {
-			return "table_search";
-		} else {
-			return "picture_search";
-		}
+		return "picture_search";
 	}
 
 	public String getSign() {
@@ -174,22 +130,6 @@ public class CardsAction extends BaseShopAction {
 		this.orderType = orderType;
 	}
 
-	public String getViewType() {
-		return viewType;
-	}
-
-	public void setViewType(String viewType) {
-		this.viewType = viewType;
-	}
-
-	public CardsCategory getCardsCategory() {
-		return cardsCategory;
-	}
-
-	public void setCardsCategory(CardsCategory cardsCategory) {
-		this.cardsCategory = cardsCategory;
-	}
-
 	public Brand getBrand() {
 		return brand;
 	}
@@ -198,13 +138,6 @@ public class CardsAction extends BaseShopAction {
 		this.brand = brand;
 	}
 
-	public List<CardsCategory> getPathList() {
-		return pathList;
-	}
-
-	public void setPathList(List<CardsCategory> pathList) {
-		this.pathList = pathList;
-	}
 	// 获取所有支付方式集合
 	public List<PaymentConfig> getAllPaymentConfigList() {
 		return paymentConfigService.getAllList();

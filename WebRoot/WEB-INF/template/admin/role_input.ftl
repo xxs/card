@@ -105,12 +105,6 @@ $().ready(function() {
 							<input type="checkbox" name="role.authorityList" class="roleAuthorityList" value="ROLE_CARDS"<#if (isAddAction || role.authorityList.contains("ROLE_CARDS"))!> checked</#if> />充值卡管理
 						</label>
 						<label>
-							<input type="checkbox" name="role.authorityList" class="roleAuthorityList" value="ROLE_CARDS_CATEGORY"<#if (isAddAction || role.authorityList.contains("ROLE_CARDS_CATEGORY"))!> checked</#if> />充值卡分类管理
-						</label>
-						<label>
-							<input type="checkbox" name="role.authorityList" class="roleAuthorityList" value="ROLE_CARDS_TYPE"<#if (isAddAction || role.authorityList.contains("ROLE_CARDS_TYPE"))!> checked</#if> />充值卡类型管理
-						</label>
-						<label>
 							<input type="checkbox" name="role.authorityList" class="roleAuthorityList" value="ROLE_SPECIFICATION"<#if (isAddAction || role.authorityList.contains("ROLE_SPECIFICATION"))!> checked</#if> />充值卡规格管理
 						</label>
 						<label>

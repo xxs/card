@@ -44,12 +44,6 @@ $().ready(function() {
 					<option value="member.username"<#if pager.searchBy == "member.username"> selected</#if>>
 						用户名
 					</option>
-					<option value="shipName"<#if pager.searchBy == "shipName"> selected</#if>>
-						收货人
-					</option>
-					<option value="shipAddress"<#if pager.searchBy == "shipAddress"> selected</#if>>
-						收货地址
-					</option>
 				</select>
 				<input type="text" name="pager.keyword" value="${pager.keyword!}" />
 				<input type="button" id="searchButton" class="formButton" value="搜 索" hidefocus />
@@ -88,19 +82,10 @@ $().ready(function() {
 						<a href="#" class="sort" name="paymentStatus" hidefocus>付款状态</a>
 					</th>
 					<th>
-						<a href="#" class="sort" name="shippingStatus" hidefocus>配送状态</a>
-					</th>
-					<th>
 						<a href="#" class="sort" name="paymentConfigName" hidefocus>支付方式</a>
 					</th>
 					<th>
-						<a href="#" class="sort" name="deliveryTypeName" hidefocus>配送方式</a>
-					</th>
-					<th>
 						<a href="#" class="sort" name="createDate" hidefocus>下单时间</a>
-					</th>
-					<th>
-						<span>打印</span>
 					</th>
 					<th>
 						<span>操作</span>
@@ -124,35 +109,10 @@ $().ready(function() {
 							${action.getText("PaymentStatus." + order.paymentStatus)}
 						</td>
 						<td>
-							${action.getText("ShippingStatus." + order.shippingStatus)}
-						</td>
-						<td>
 							${order.paymentConfigName}
 						</td>
 						<td>
-							${order.deliveryTypeName}
-						</td>
-						<td>
 							<span title="${order.createDate?string("yyyy-MM-dd HH:mm:ss")}">${order.createDate}</span>
-						</td>
-						<td>
-							<select class="print">
-								<option value="">
-									请选择
-								</option>
-								<option value="order!orderPrint.action?id=${order.id}">
-									订&nbsp;&nbsp;&nbsp;单
-								</option>
-								<option value="order!cardsPrint.action?id=${order.id}">
-									购物单
-								</option>
-								<option value="order!shippingPrint.action?id=${order.id}">
-									配送单
-								</option>
-								<option value="order!deliveryPrint.action?id=${order.id}">
-									快递单
-								</option>
-							</select>
 						</td>
 						<td>
 							<a href="order!view.action?id=${order.id}" title="查看">[查看]</a>

@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50154
 File Encoding         : 65001
 
-Date: 2012-12-19 17:39:45
+Date: 2012-12-20 17:01:29
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -43,7 +43,7 @@ CREATE TABLE `xx_admin` (
 -- ----------------------------
 -- Records of xx_admin
 -- ----------------------------
-INSERT INTO `xx_admin` VALUES ('0731dcsoft2010031200000000000017', '2011-01-01 00:00:00', '2012-12-19 16:49:36', '技术部', 'xxs@163.com', '', '', '', '', '2012-12-17 14:28:34', '2012-12-19 16:49:36', '0', '127.0.0.1', 'ADMIN', '21232f297a57a5a743894a0e4a801fc3', 'admin');
+INSERT INTO `xx_admin` VALUES ('0731dcsoft2010031200000000000017', '2011-01-01 00:00:00', '2012-12-20 16:46:05', '技术部', 'xxs@163.com', '', '', '', '', '2012-12-17 14:28:34', '2012-12-20 16:46:05', '0', '127.0.0.1', 'ADMIN', '21232f297a57a5a743894a0e4a801fc3', 'admin');
 
 -- ----------------------------
 -- Table structure for `xx_admin_role`
@@ -163,28 +163,7 @@ CREATE TABLE `xx_cards` (
   `id` varchar(32) NOT NULL,
   `create_date` datetime DEFAULT NULL,
   `modify_date` datetime DEFAULT NULL,
-  `cards_attribute_value0` varchar(255) DEFAULT NULL,
-  `cards_attribute_value1` varchar(255) DEFAULT NULL,
-  `cards_attribute_value10` varchar(255) DEFAULT NULL,
-  `cards_attribute_value11` varchar(255) DEFAULT NULL,
-  `cards_attribute_value12` varchar(255) DEFAULT NULL,
-  `cards_attribute_value13` varchar(255) DEFAULT NULL,
-  `cards_attribute_value14` varchar(255) DEFAULT NULL,
-  `cards_attribute_value15` varchar(255) DEFAULT NULL,
-  `cards_attribute_value16` varchar(255) DEFAULT NULL,
-  `cards_attribute_value17` varchar(255) DEFAULT NULL,
-  `cards_attribute_value18` varchar(255) DEFAULT NULL,
-  `cards_attribute_value19` varchar(255) DEFAULT NULL,
-  `cards_attribute_value2` varchar(255) DEFAULT NULL,
-  `cards_attribute_value3` varchar(255) DEFAULT NULL,
-  `cards_attribute_value4` varchar(255) DEFAULT NULL,
-  `cards_attribute_value5` varchar(255) DEFAULT NULL,
-  `cards_attribute_value6` varchar(255) DEFAULT NULL,
-  `cards_attribute_value7` varchar(255) DEFAULT NULL,
-  `cards_attribute_value8` varchar(255) DEFAULT NULL,
-  `cards_attribute_value9` varchar(255) DEFAULT NULL,
   `cards_image_store` longtext,
-  `cards_parameter_value_store` longtext,
   `cards_sn` varchar(255) NOT NULL,
   `html_path` varchar(255) NOT NULL,
   `introduction` longtext,
@@ -199,87 +178,16 @@ CREATE TABLE `xx_cards` (
   `price` decimal(15,5) NOT NULL,
   `score` int(11) NOT NULL,
   `brand_id` varchar(32) DEFAULT NULL,
-  `cards_category_id` varchar(32) NOT NULL,
-  `cards_type_id` varchar(32) DEFAULT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `cards_sn` (`cards_sn`),
-  KEY `fk_cards_cards_type` (`cards_type_id`),
-  KEY `fk_cards_cards_category` (`cards_category_id`),
   KEY `fk_cards_brand` (`brand_id`),
-  CONSTRAINT `fk_cards_brand` FOREIGN KEY (`brand_id`) REFERENCES `xx_brand` (`id`),
-  CONSTRAINT `fk_cards_cards_category` FOREIGN KEY (`cards_category_id`) REFERENCES `xx_cards_category` (`id`),
-  CONSTRAINT `fk_cards_cards_type` FOREIGN KEY (`cards_type_id`) REFERENCES `xx_cards_type` (`id`)
+  CONSTRAINT `fk_cards_brand` FOREIGN KEY (`brand_id`) REFERENCES `xx_brand` (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of xx_cards
 -- ----------------------------
-
--- ----------------------------
--- Table structure for `xx_cards_attribute`
--- ----------------------------
-DROP TABLE IF EXISTS `xx_cards_attribute`;
-CREATE TABLE `xx_cards_attribute` (
-  `id` varchar(32) NOT NULL,
-  `create_date` datetime DEFAULT NULL,
-  `modify_date` datetime DEFAULT NULL,
-  `attribute_type` int(11) NOT NULL,
-  `name` varchar(255) NOT NULL,
-  `option_store` varchar(255) DEFAULT NULL,
-  `order_list` int(11) DEFAULT NULL,
-  `property_index` int(11) NOT NULL,
-  `cards_type_id` varchar(32) NOT NULL,
-  PRIMARY KEY (`id`),
-  KEY `fk_cards_attribute_cards_type` (`cards_type_id`),
-  CONSTRAINT `fk_cards_attribute_cards_type` FOREIGN KEY (`cards_type_id`) REFERENCES `xx_cards_type` (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
--- ----------------------------
--- Records of xx_cards_attribute
--- ----------------------------
-
--- ----------------------------
--- Table structure for `xx_cards_category`
--- ----------------------------
-DROP TABLE IF EXISTS `xx_cards_category`;
-CREATE TABLE `xx_cards_category` (
-  `id` varchar(32) NOT NULL,
-  `create_date` datetime DEFAULT NULL,
-  `modify_date` datetime DEFAULT NULL,
-  `grade` int(11) NOT NULL,
-  `meta_description` longtext,
-  `meta_keywords` longtext,
-  `name` varchar(255) NOT NULL,
-  `order_list` int(11) DEFAULT NULL,
-  `path` longtext NOT NULL,
-  `sign` varchar(255) NOT NULL,
-  `cards_type_id` varchar(32) DEFAULT NULL,
-  `parent_id` varchar(32) DEFAULT NULL,
-  PRIMARY KEY (`id`),
-  UNIQUE KEY `sign` (`sign`),
-  KEY `fk_cards_category_cards_type` (`cards_type_id`),
-  KEY `fk_cards_category_parent` (`parent_id`),
-  CONSTRAINT `fk_cards_category_cards_type` FOREIGN KEY (`cards_type_id`) REFERENCES `xx_cards_type` (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
--- ----------------------------
--- Records of xx_cards_category
--- ----------------------------
-INSERT INTO `xx_cards_category` VALUES ('4028bc743bb257ca013bb264d3560000', '2012-12-19 17:00:50', '2012-12-19 17:00:50', '0', '2', '2', '222', '15', '4028bc743bb257ca013bb264d3560000', '22', '8ae4839c3a887878013a88b39b6a0010', '');
-INSERT INTO `xx_cards_category` VALUES ('8ae4839c3a887878013a88b9d9c10015', '2012-10-22 21:46:52', '2012-10-22 21:46:52', '0', null, null, '腾讯一卡通', '14', '8ae4839c3a887878013a88b9d9c10015', 'teng_xun', '8ae4839c3a887878013a88b39b6a0010', '');
-INSERT INTO `xx_cards_category` VALUES ('8ae4839c3a887878013a88ba80150017', '2012-10-22 21:47:34', '2012-10-22 21:47:46', '0', null, null, '盛大一卡通', '13', '8ae4839c3a887878013a88ba80150017', 'sheng_da', '8ae4839c3a887878013a88b39b6a0010', '');
-INSERT INTO `xx_cards_category` VALUES ('8ae4839c3a887878013a88bafe98001a', '2012-10-22 21:48:07', '2012-10-22 21:48:07', '0', null, null, '骏网一卡通', '12', '8ae4839c3a887878013a88bafe98001a', 'jun_wang', '8ae4839c3a887878013a88b39b6a0010', '');
-INSERT INTO `xx_cards_category` VALUES ('8ae4839c3a887878013a88bb547e001c', '2012-10-22 21:48:29', '2012-10-22 21:48:29', '0', null, null, '完美一卡通', '11', '8ae4839c3a887878013a88bb547e001c', 'wan_mei', '8ae4839c3a887878013a88b39b6a0010', '');
-INSERT INTO `xx_cards_category` VALUES ('8ae4839c3a887878013a88bba8b4001e', '2012-10-22 21:48:50', '2012-10-22 21:48:50', '0', null, null, '搜狐一卡通', '10', '8ae4839c3a887878013a88bba8b4001e', 'sou_hu', '8ae4839c3a887878013a88b39b6a0010', '');
-INSERT INTO `xx_cards_category` VALUES ('8ae4839c3a887878013a88bc0e8b0020', '2012-10-22 21:49:16', '2012-10-22 21:49:16', '0', null, null, '征途一卡通', '9', '8ae4839c3a887878013a88bc0e8b0020', 'zheng_tu', '8ae4839c3a887878013a88b39b6a0010', '');
-INSERT INTO `xx_cards_category` VALUES ('8ae4839c3a887878013a88bc6dea0022', '2012-10-22 21:49:41', '2012-10-22 21:49:41', '0', null, null, '久游一卡通', '8', '8ae4839c3a887878013a88bc6dea0022', 'jiu_you', '8ae4839c3a887878013a88b39b6a0010', '');
-INSERT INTO `xx_cards_category` VALUES ('8ae4839c3a887878013a88bccd590024', '2012-10-22 21:50:05', '2012-10-22 21:50:05', '0', null, null, '网易一卡通', '7', '8ae4839c3a887878013a88bccd590024', 'wang_yi', '8ae4839c3a887878013a88b39b6a0010', '');
-INSERT INTO `xx_cards_category` VALUES ('8ae4839c3a887878013a88bd517a0026', '2012-10-22 21:50:39', '2012-10-22 21:50:39', '0', null, null, '电信充值卡', '6', '8ae4839c3a887878013a88bd517a0026', 'dian_xin', '8ae4839c3a887878013a88b6960e0014', '');
-INSERT INTO `xx_cards_category` VALUES ('8ae4839c3a887878013a88bdaf250028', '2012-10-22 21:51:03', '2012-10-22 21:51:03', '0', null, null, '联通充值卡', '5', '8ae4839c3a887878013a88bdaf250028', 'lian_tong', '8ae4839c3a887878013a88b6960e0014', '');
-INSERT INTO `xx_cards_category` VALUES ('8ae4839c3a887878013a88be08aa002a', '2012-10-22 21:51:26', '2012-10-22 21:51:26', '0', null, null, '纵游一卡通', '4', '8ae4839c3a887878013a88be08aa002a', 'zong_you', '8ae4839c3a887878013a88b6960e0014', '');
-INSERT INTO `xx_cards_category` VALUES ('8ae4839c3a887878013a88be6075002c', '2012-10-22 21:51:48', '2012-10-22 21:51:48', '0', null, null, '天宏一卡通', '3', '8ae4839c3a887878013a88be6075002c', 'tian_hong', '8ae4839c3a887878013a88b39b6a0010', '');
-INSERT INTO `xx_cards_category` VALUES ('8ae4839c3a887878013a88beb496002e', '2012-10-22 21:52:10', '2012-10-22 21:52:10', '0', null, null, '天下通一卡通', '2', '8ae4839c3a887878013a88beb496002e', 'tianxia_tong', '8ae4839c3a887878013a88b39b6a0010', '');
-INSERT INTO `xx_cards_category` VALUES ('8ae4839c3a887878013a88bf094e0030', '2012-10-22 21:52:32', '2012-10-22 21:52:32', '0', null, null, '移动充值卡', '1', '8ae4839c3a887878013a88bf094e0030', 'yi_dong', '8ae4839c3a887878013a88b6960e0014', '');
+INSERT INTO `xx_cards` VALUES ('4028bc743bb6fee6013bb755fd4b0001', '2012-12-20 16:02:44', '2012-12-20 16:02:44', null, 'SN_B4A01EABE4F9', '/html/201212/28ee1eadf73640598a42c42a46c484ef.html', 'Q币卡', '', '', '', '', '', 'Q币卡', 'Q币卡', 'Q币卡', '10.00000', '0', '8ae4839c3a887878013a88acef930005');
 
 -- ----------------------------
 -- Table structure for `xx_cards_specification`
@@ -291,50 +199,14 @@ CREATE TABLE `xx_cards_specification` (
   PRIMARY KEY (`cards_set_id`,`specification_set_id`),
   KEY `fk_specification_cards_set` (`specification_set_id`),
   KEY `fk_specification_set` (`cards_set_id`),
-  CONSTRAINT `fk_specification_set` FOREIGN KEY (`cards_set_id`) REFERENCES `xx_cards` (`id`),
-  CONSTRAINT `fk_specification_cards_set` FOREIGN KEY (`specification_set_id`) REFERENCES `xx_specification` (`id`)
+  CONSTRAINT `fk_specification_cards_set` FOREIGN KEY (`specification_set_id`) REFERENCES `xx_specification` (`id`),
+  CONSTRAINT `fk_specification_set` FOREIGN KEY (`cards_set_id`) REFERENCES `xx_cards` (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of xx_cards_specification
 -- ----------------------------
-
--- ----------------------------
--- Table structure for `xx_cards_type`
--- ----------------------------
-DROP TABLE IF EXISTS `xx_cards_type`;
-CREATE TABLE `xx_cards_type` (
-  `id` varchar(32) NOT NULL,
-  `create_date` datetime DEFAULT NULL,
-  `modify_date` datetime DEFAULT NULL,
-  `cards_parameter_store` longtext,
-  `name` varchar(255) NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
--- ----------------------------
--- Records of xx_cards_type
--- ----------------------------
-INSERT INTO `xx_cards_type` VALUES ('8ae4839c3a887878013a88b39b6a0010', '2012-10-22 21:40:03', '2012-10-22 21:42:41', null, '游戏点卡');
-INSERT INTO `xx_cards_type` VALUES ('8ae4839c3a887878013a88b6960e0014', '2012-10-22 21:43:18', '2012-10-22 21:43:18', null, '手机充值卡');
-
--- ----------------------------
--- Table structure for `xx_cards_type_brand`
--- ----------------------------
-DROP TABLE IF EXISTS `xx_cards_type_brand`;
-CREATE TABLE `xx_cards_type_brand` (
-  `cards_type_set_id` varchar(32) NOT NULL,
-  `brand_set_id` varchar(32) NOT NULL,
-  PRIMARY KEY (`cards_type_set_id`,`brand_set_id`),
-  KEY `fk_cards_type_brand_set` (`cards_type_set_id`),
-  KEY `fk_brand_cards_type_set` (`brand_set_id`),
-  CONSTRAINT `fk_brand_cards_type_set` FOREIGN KEY (`brand_set_id`) REFERENCES `xx_brand` (`id`),
-  CONSTRAINT `fk_cards_type_brand_set` FOREIGN KEY (`cards_type_set_id`) REFERENCES `xx_cards_type` (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
--- ----------------------------
--- Records of xx_cards_type_brand
--- ----------------------------
+INSERT INTO `xx_cards_specification` VALUES ('4028bc743bb6fee6013bb755fd4b0001', '8ae4839c3a887878013a889ad43a0000');
 
 -- ----------------------------
 -- Table structure for `xx_deposit`
@@ -443,6 +315,7 @@ CREATE TABLE `xx_log` (
 -- Records of xx_log
 -- ----------------------------
 INSERT INTO `xx_log` VALUES ('4028bc743bb257ca013bb264d4be0001', '2012-12-19 17:00:50', '2012-12-19 17:00:50', 'net.xxs.action.admin.CardsCategoryAction', 'save', '添加充值卡分类: 222', '127.0.0.1', '添加充值卡分类', 'admin');
+INSERT INTO `xx_log` VALUES ('4028bc743bb6fee6013bb75600b60004', '2012-12-20 16:02:45', '2012-12-20 16:02:45', 'net.xxs.action.admin.CardsAction', 'save', '添加充值卡: Q币卡', '127.0.0.1', '添加充值卡', 'admin');
 INSERT INTO `xx_log` VALUES ('8a9182fc3ba86bc8013ba9782e800002', '2012-12-17 23:25:23', '2012-12-17 23:25:23', 'net.xxs.action.admin.MemberAction', 'save', '添加会员: 123123', '127.0.0.1', '添加会员', 'admin');
 INSERT INTO `xx_log` VALUES ('8a9182fc3ba86bc8013ba97939a00004', '2012-12-17 23:26:32', '2012-12-17 23:26:32', 'net.xxs.action.admin.MemberAction', 'update', '编辑会员: 123123', '127.0.0.1', '编辑会员', 'admin');
 
@@ -569,10 +442,10 @@ CREATE TABLE `xx_member_rank` (
 -- ----------------------------
 -- Records of xx_member_rank
 -- ----------------------------
-INSERT INTO `xx_member_rank` VALUES ('0731dcsoft2010031200000000000010', '2012-12-19 10:52:48', '2012-12-18 10:54:14', '0.01', '', '0.96', '普通会员', '100', '0');
+INSERT INTO `xx_member_rank` VALUES ('0731dcsoft2010031200000000000010', '2012-12-19 10:52:48', '2012-12-20 16:49:57', '0.01', '', '0.96', '普通会员', '100', '0');
 INSERT INTO `xx_member_rank` VALUES ('402881833054c381013054d08bed0001', '2011-01-01 00:00:00', '2012-11-05 09:12:49', '0.01', '', '0.97', '一级会员', '100', '2000');
-INSERT INTO `xx_member_rank` VALUES ('402881833054c381013054d0bf800002', '2011-01-01 00:00:00', '2012-12-18 10:54:14', '0.01', '', '0.98', '二级会员', '100', '5000');
-INSERT INTO `xx_member_rank` VALUES ('402881833054c381013054d103ec0003', '2011-01-01 00:00:00', '2011-01-01 00:00:00', '0.01', '', '0.99', '三级会员', '100', '10000');
+INSERT INTO `xx_member_rank` VALUES ('402881833054c381013054d0bf800002', '2011-01-01 00:00:00', '2012-12-20 16:48:23', '0.01', '', '0.98', '二级会员', '100', '5000');
+INSERT INTO `xx_member_rank` VALUES ('402881833054c381013054d103ec0003', '2011-01-01 00:00:00', '2012-12-20 16:49:57', '0.01', '', '0.99', '三级会员', '100', '10000');
 
 -- ----------------------------
 -- Table structure for `xx_message`
@@ -592,8 +465,8 @@ CREATE TABLE `xx_message` (
   PRIMARY KEY (`id`),
   KEY `fk_message_from_member` (`from_member_id`),
   KEY `fk_message_to_member` (`to_member_id`),
-  CONSTRAINT `fk_message_to_member` FOREIGN KEY (`to_member_id`) REFERENCES `xx_member` (`id`),
-  CONSTRAINT `fk_message_from_member` FOREIGN KEY (`from_member_id`) REFERENCES `xx_member` (`id`)
+  CONSTRAINT `fk_message_from_member` FOREIGN KEY (`from_member_id`) REFERENCES `xx_member` (`id`),
+  CONSTRAINT `fk_message_to_member` FOREIGN KEY (`to_member_id`) REFERENCES `xx_member` (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- ----------------------------
@@ -659,9 +532,9 @@ CREATE TABLE `xx_order` (
   KEY `fk_order_member` (`member_id`),
   KEY `fk_order_payment_config` (`payment_config_id`),
   KEY `fk_order_product` (`product_id`),
-  CONSTRAINT `fk_order_product` FOREIGN KEY (`product_id`) REFERENCES `xx_product` (`id`),
   CONSTRAINT `fk_order_member` FOREIGN KEY (`member_id`) REFERENCES `xx_member` (`id`),
-  CONSTRAINT `fk_order_payment_config` FOREIGN KEY (`payment_config_id`) REFERENCES `xx_payment_config` (`id`)
+  CONSTRAINT `fk_order_payment_config` FOREIGN KEY (`payment_config_id`) REFERENCES `xx_payment_config` (`id`),
+  CONSTRAINT `fk_order_product` FOREIGN KEY (`product_id`) REFERENCES `xx_product` (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- ----------------------------
@@ -719,9 +592,9 @@ CREATE TABLE `xx_payment` (
   KEY `fk_payment_deposit` (`deposit_id`),
   KEY `fk_payment_payment_config` (`payment_config_id`),
   KEY `fk_payment_order` (`order_id`),
-  CONSTRAINT `fk_payment_order` FOREIGN KEY (`order_id`) REFERENCES `xx_order` (`id`),
   CONSTRAINT `fk_payment_deposit` FOREIGN KEY (`deposit_id`) REFERENCES `xx_deposit` (`id`),
   CONSTRAINT `fk_payment_member` FOREIGN KEY (`member_id`) REFERENCES `xx_member` (`id`),
+  CONSTRAINT `fk_payment_order` FOREIGN KEY (`order_id`) REFERENCES `xx_order` (`id`),
   CONSTRAINT `fk_payment_payment_config` FOREIGN KEY (`payment_config_id`) REFERENCES `xx_payment_config` (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
@@ -772,6 +645,7 @@ CREATE TABLE `xx_payment_discount` (
   `operator` varchar(255) DEFAULT NULL,
   `brand_id` varchar(32) DEFAULT NULL,
   `payment_config_id` varchar(32) DEFAULT NULL,
+  `face` longtext,
   PRIMARY KEY (`id`),
   KEY `FK512B8EB9115DF6A7` (`payment_config_id`),
   KEY `fk_payment_discount_payment_config` (`payment_config_id`),
@@ -783,31 +657,31 @@ CREATE TABLE `xx_payment_discount` (
 -- ----------------------------
 -- Records of xx_payment_discount
 -- ----------------------------
-INSERT INTO `xx_payment_discount` VALUES ('4028bc743bac0d54013bacaced380003', '2012-12-18 14:21:52', '2012-12-18 14:30:42', '000101', '0.9700', null, 'admin', '8ae4839c3a887878013a88aca0800003', '4028bc743bac0d54013baca8e1350001');
-INSERT INTO `xx_payment_discount` VALUES ('4028bc743bac0d54013bacad51510004', '2012-12-18 14:22:17', '2012-12-18 14:31:35', '000201', '0.9600', null, 'admin', '8ae4839c3a887878013a88ad18e10006', '4028bc743bac0d54013baca8e1350001');
-INSERT INTO `xx_payment_discount` VALUES ('4028bc743bac0d54013bacb048980005', '2012-12-18 14:25:32', '2012-12-18 14:25:32', '000501', '0.8550', null, 'admin', '8ae4839c3a887878013a88a15b0f0001', '4028bc743bac0d54013baca8e1350001');
-INSERT INTO `xx_payment_discount` VALUES ('4028bc743bac0d54013bacb11b0b0006', '2012-12-18 14:26:26', '2012-12-18 14:26:26', '000601', '0.8700', null, 'admin', '8ae4839c3a887878013a88ac6eb10002', '4028bc743bac0d54013baca8e1350001');
-INSERT INTO `xx_payment_discount` VALUES ('4028bc743bac0d54013bacb174950007', '2012-12-18 14:26:49', '2012-12-18 14:26:49', '000701', '0.8150', null, 'admin', '8ae4839c3a887878013a88acef930005', '4028bc743bac0d54013baca8e1350001');
-INSERT INTO `xx_payment_discount` VALUES ('4028bc743bac0d54013bacb1f9550008', '2012-12-18 14:27:23', '2012-12-18 14:27:23', '000801', '0.8500', null, 'admin', '8ae4839c3a887878013a88ada7f6000a', '4028bc743bac0d54013baca8e1350001');
-INSERT INTO `xx_payment_discount` VALUES ('4028bc743bac0d54013bacb2b5140009', '2012-12-18 14:28:11', '2012-12-18 14:28:11', '000901', '0.8500', null, 'admin', '8ae4839c3a887878013a88acc1ef0004', '4028bc743bac0d54013baca8e1350001');
-INSERT INTO `xx_payment_discount` VALUES ('4028bc743bac0d54013bacb31b9e000a', '2012-12-18 14:28:37', '2012-12-18 14:28:37', '001001', '0.8500', null, 'admin', '8ae4839c3a887878013a88ad845a0009', '4028bc743bac0d54013baca8e1350001');
-INSERT INTO `xx_payment_discount` VALUES ('4028bc743bac0d54013bacb3a792000b', '2012-12-18 14:29:13', '2012-12-18 14:29:13', '001101', '0.8550', null, 'admin', '8ae4839c3a887878013a88add167000b', '4028bc743bac0d54013baca8e1350001');
-INSERT INTO `xx_payment_discount` VALUES ('4028bc743bac0d54013bacb4087e000c', '2012-12-18 14:29:38', '2012-12-18 14:29:38', '001201', '0.8200', null, 'admin', '8ae4839c3a887878013a88ad3c100007', '4028bc743bac0d54013baca8e1350001');
-INSERT INTO `xx_payment_discount` VALUES ('4028bc743bac0d54013bacc6897e000f', '2012-12-18 14:49:50', '2012-12-18 14:49:50', 'szx-net', '0.9600', null, 'admin', '8ae4839c3a887878013a88ad18e10006', '4028bc743bac0d54013baca8729d0000');
-INSERT INTO `xx_payment_discount` VALUES ('4028bc743bac0d54013bacc6e4410010', '2012-12-18 14:50:13', '2012-12-18 14:50:13', 'unicom-net', '0.9600', null, 'admin', '8ae4839c3a887878013a88ad18e10006', '4028bc743bac0d54013baca8729d0000');
-INSERT INTO `xx_payment_discount` VALUES ('4028bc743bac0d54013bacc74c510011', '2012-12-18 14:50:40', '2012-12-18 14:50:40', 'telecom-net', '0.9600', null, 'admin', '8ae4839c3a887878013a88ae0511000c', '4028bc743bac0d54013baca8729d0000');
-INSERT INTO `xx_payment_discount` VALUES ('4028bc743bac0d54013bacc7e1db0012', '2012-12-18 14:51:18', '2012-12-18 14:51:18', 'junnet-net', '0.8500', null, 'admin', '8ae4839c3a887878013a88a15b0f0001', '4028bc743bac0d54013baca8729d0000');
-INSERT INTO `xx_payment_discount` VALUES ('4028bc743bac0d54013bacc821640013', '2012-12-18 14:51:35', '2012-12-18 14:51:35', 'sndacard-net', '0.8500', null, 'admin', '8ae4839c3a887878013a88ac6eb10002', '4028bc743bac0d54013baca8729d0000');
-INSERT INTO `xx_payment_discount` VALUES ('4028bc743bac0d54013bacc87f340014', '2012-12-18 14:51:59', '2012-12-18 14:51:59', 'zhengtu-net', '0.8500', null, 'admin', '8ae4839c3a887878013a88acc1ef0004', '4028bc743bac0d54013baca8729d0000');
-INSERT INTO `xx_payment_discount` VALUES ('4028bc743bac0d54013bacc8d9d70015', '2012-12-18 14:52:22', '2012-12-18 14:52:22', 'ypcard-net', '0.8900', null, 'admin', '8ae4839c3a887878013a88ad61df0008', '4028bc743bac0d54013baca8729d0000');
-INSERT INTO `xx_payment_discount` VALUES ('4028bc743bac0d54013bacc9340d0016', '2012-12-18 14:52:45', '2012-12-18 14:52:45', 'wanmei-net', '0.8500', null, 'admin', '8ae4839c3a887878013a88ada7f6000a', '4028bc743bac0d54013baca8729d0000');
-INSERT INTO `xx_payment_discount` VALUES ('4028bc743bac0d54013bacc991500017', '2012-12-18 14:53:09', '2012-12-18 14:53:09', 'sohu-net', '0.8400', null, 'admin', '8ae4839c3a887878013a88add167000b', '4028bc743bac0d54013baca8729d0000');
-INSERT INTO `xx_payment_discount` VALUES ('4028bc743bac0d54013bacc9e5a90018', '2012-12-18 14:53:30', '2012-12-18 14:53:30', 'tianxia-net', '0.8400', null, 'admin', '8ae4839c3a887878013a88ae4be5000e', '4028bc743bac0d54013baca8729d0000');
-INSERT INTO `xx_payment_discount` VALUES ('4028bc743bac0d54013bacca1b400019', '2012-12-18 14:53:44', '2012-12-18 14:53:44', 'zongyou-net', '0.8400', null, 'admin', '8ae4839c3a887878013a88ae29c8000d', '4028bc743bac0d54013baca8729d0000');
-INSERT INTO `xx_payment_discount` VALUES ('4028bc743bac0d54013bacca6885001a', '2012-12-18 14:54:04', '2012-12-18 14:54:04', 'tianhong-net', '0.8400', null, 'admin', '8ae4839c3a887878013a88ae757d000f', '4028bc743bac0d54013baca8729d0000');
-INSERT INTO `xx_payment_discount` VALUES ('4028bc743bac0d54013bacca9ec8001b', '2012-12-18 14:54:18', '2012-12-18 14:54:18', 'qqcard-net', '0.8200', null, 'admin', '8ae4839c3a887878013a88acef930005', '4028bc743bac0d54013baca8729d0000');
-INSERT INTO `xx_payment_discount` VALUES ('4028bc743bac0d54013baccae16f001c', '2012-12-18 14:54:35', '2012-12-18 14:54:35', 'jiuyou-net', '0.8100', null, 'admin', '8ae4839c3a887878013a88ad3c100007', '4028bc743bac0d54013baca8729d0000');
-INSERT INTO `xx_payment_discount` VALUES ('4028bc743bac0d54013baccb17d0001d', '2012-12-18 14:54:49', '2012-12-18 14:54:49', 'netease-net', '0.8400', null, 'admin', '8ae4839c3a887878013a88ad845a0009', '4028bc743bac0d54013baca8729d0000');
+INSERT INTO `xx_payment_discount` VALUES ('4028bc743bac0d54013bacaced380003', '2012-12-18 14:21:52', '2012-12-20 16:46:21', '000101', '0.9700', null, 'admin', '8ae4839c3a887878013a88aca0800003', '4028bc743bac0d54013baca8e1350001', '10,20,30,40');
+INSERT INTO `xx_payment_discount` VALUES ('4028bc743bac0d54013bacad51510004', '2012-12-18 14:22:17', '2012-12-18 14:31:35', '000201', '0.9600', null, 'admin', '8ae4839c3a887878013a88ad18e10006', '4028bc743bac0d54013baca8e1350001', null);
+INSERT INTO `xx_payment_discount` VALUES ('4028bc743bac0d54013bacb048980005', '2012-12-18 14:25:32', '2012-12-18 14:25:32', '000501', '0.8550', null, 'admin', '8ae4839c3a887878013a88a15b0f0001', '4028bc743bac0d54013baca8e1350001', null);
+INSERT INTO `xx_payment_discount` VALUES ('4028bc743bac0d54013bacb11b0b0006', '2012-12-18 14:26:26', '2012-12-18 14:26:26', '000601', '0.8700', null, 'admin', '8ae4839c3a887878013a88ac6eb10002', '4028bc743bac0d54013baca8e1350001', null);
+INSERT INTO `xx_payment_discount` VALUES ('4028bc743bac0d54013bacb174950007', '2012-12-18 14:26:49', '2012-12-18 14:26:49', '000701', '0.8150', null, 'admin', '8ae4839c3a887878013a88acef930005', '4028bc743bac0d54013baca8e1350001', null);
+INSERT INTO `xx_payment_discount` VALUES ('4028bc743bac0d54013bacb1f9550008', '2012-12-18 14:27:23', '2012-12-18 14:27:23', '000801', '0.8500', null, 'admin', '8ae4839c3a887878013a88ada7f6000a', '4028bc743bac0d54013baca8e1350001', null);
+INSERT INTO `xx_payment_discount` VALUES ('4028bc743bac0d54013bacb2b5140009', '2012-12-18 14:28:11', '2012-12-18 14:28:11', '000901', '0.8500', null, 'admin', '8ae4839c3a887878013a88acc1ef0004', '4028bc743bac0d54013baca8e1350001', null);
+INSERT INTO `xx_payment_discount` VALUES ('4028bc743bac0d54013bacb31b9e000a', '2012-12-18 14:28:37', '2012-12-18 14:28:37', '001001', '0.8500', null, 'admin', '8ae4839c3a887878013a88ad845a0009', '4028bc743bac0d54013baca8e1350001', null);
+INSERT INTO `xx_payment_discount` VALUES ('4028bc743bac0d54013bacb3a792000b', '2012-12-18 14:29:13', '2012-12-18 14:29:13', '001101', '0.8550', null, 'admin', '8ae4839c3a887878013a88add167000b', '4028bc743bac0d54013baca8e1350001', null);
+INSERT INTO `xx_payment_discount` VALUES ('4028bc743bac0d54013bacb4087e000c', '2012-12-18 14:29:38', '2012-12-18 14:29:38', '001201', '0.8200', null, 'admin', '8ae4839c3a887878013a88ad3c100007', '4028bc743bac0d54013baca8e1350001', null);
+INSERT INTO `xx_payment_discount` VALUES ('4028bc743bac0d54013bacc6897e000f', '2012-12-18 14:49:50', '2012-12-18 14:49:50', 'szx-net', '0.9600', null, 'admin', '8ae4839c3a887878013a88ad18e10006', '4028bc743bac0d54013baca8729d0000', null);
+INSERT INTO `xx_payment_discount` VALUES ('4028bc743bac0d54013bacc6e4410010', '2012-12-18 14:50:13', '2012-12-18 14:50:13', 'unicom-net', '0.9600', null, 'admin', '8ae4839c3a887878013a88ad18e10006', '4028bc743bac0d54013baca8729d0000', null);
+INSERT INTO `xx_payment_discount` VALUES ('4028bc743bac0d54013bacc74c510011', '2012-12-18 14:50:40', '2012-12-18 14:50:40', 'telecom-net', '0.9600', null, 'admin', '8ae4839c3a887878013a88ae0511000c', '4028bc743bac0d54013baca8729d0000', null);
+INSERT INTO `xx_payment_discount` VALUES ('4028bc743bac0d54013bacc7e1db0012', '2012-12-18 14:51:18', '2012-12-18 14:51:18', 'junnet-net', '0.8500', null, 'admin', '8ae4839c3a887878013a88a15b0f0001', '4028bc743bac0d54013baca8729d0000', null);
+INSERT INTO `xx_payment_discount` VALUES ('4028bc743bac0d54013bacc821640013', '2012-12-18 14:51:35', '2012-12-18 14:51:35', 'sndacard-net', '0.8500', null, 'admin', '8ae4839c3a887878013a88ac6eb10002', '4028bc743bac0d54013baca8729d0000', null);
+INSERT INTO `xx_payment_discount` VALUES ('4028bc743bac0d54013bacc87f340014', '2012-12-18 14:51:59', '2012-12-18 14:51:59', 'zhengtu-net', '0.8500', null, 'admin', '8ae4839c3a887878013a88acc1ef0004', '4028bc743bac0d54013baca8729d0000', null);
+INSERT INTO `xx_payment_discount` VALUES ('4028bc743bac0d54013bacc8d9d70015', '2012-12-18 14:52:22', '2012-12-18 14:52:22', 'ypcard-net', '0.8900', null, 'admin', '8ae4839c3a887878013a88ad61df0008', '4028bc743bac0d54013baca8729d0000', null);
+INSERT INTO `xx_payment_discount` VALUES ('4028bc743bac0d54013bacc9340d0016', '2012-12-18 14:52:45', '2012-12-18 14:52:45', 'wanmei-net', '0.8500', null, 'admin', '8ae4839c3a887878013a88ada7f6000a', '4028bc743bac0d54013baca8729d0000', null);
+INSERT INTO `xx_payment_discount` VALUES ('4028bc743bac0d54013bacc991500017', '2012-12-18 14:53:09', '2012-12-18 14:53:09', 'sohu-net', '0.8400', null, 'admin', '8ae4839c3a887878013a88add167000b', '4028bc743bac0d54013baca8729d0000', null);
+INSERT INTO `xx_payment_discount` VALUES ('4028bc743bac0d54013bacc9e5a90018', '2012-12-18 14:53:30', '2012-12-18 14:53:30', 'tianxia-net', '0.8400', null, 'admin', '8ae4839c3a887878013a88ae4be5000e', '4028bc743bac0d54013baca8729d0000', null);
+INSERT INTO `xx_payment_discount` VALUES ('4028bc743bac0d54013bacca1b400019', '2012-12-18 14:53:44', '2012-12-18 14:53:44', 'zongyou-net', '0.8400', null, 'admin', '8ae4839c3a887878013a88ae29c8000d', '4028bc743bac0d54013baca8729d0000', null);
+INSERT INTO `xx_payment_discount` VALUES ('4028bc743bac0d54013bacca6885001a', '2012-12-18 14:54:04', '2012-12-18 14:54:04', 'tianhong-net', '0.8400', null, 'admin', '8ae4839c3a887878013a88ae757d000f', '4028bc743bac0d54013baca8729d0000', null);
+INSERT INTO `xx_payment_discount` VALUES ('4028bc743bac0d54013bacca9ec8001b', '2012-12-18 14:54:18', '2012-12-18 14:54:18', 'qqcard-net', '0.8200', null, 'admin', '8ae4839c3a887878013a88acef930005', '4028bc743bac0d54013baca8729d0000', null);
+INSERT INTO `xx_payment_discount` VALUES ('4028bc743bac0d54013baccae16f001c', '2012-12-18 14:54:35', '2012-12-18 14:54:35', 'jiuyou-net', '0.8100', null, 'admin', '8ae4839c3a887878013a88ad3c100007', '4028bc743bac0d54013baca8729d0000', null);
+INSERT INTO `xx_payment_discount` VALUES ('4028bc743bac0d54013baccb17d0001d', '2012-12-18 14:54:49', '2012-12-18 14:54:49', 'netease-net', '0.8400', null, 'admin', '8ae4839c3a887878013a88ad845a0009', '4028bc743bac0d54013baca8729d0000', null);
 
 -- ----------------------------
 -- Table structure for `xx_product`
@@ -833,6 +707,8 @@ CREATE TABLE `xx_product` (
 -- ----------------------------
 -- Records of xx_product
 -- ----------------------------
+INSERT INTO `xx_product` VALUES ('4028bc743bb6fee6013bb755fed20002', '2012-12-20 16:02:44', '2012-12-20 16:02:44', '', '', 'Q币卡 [10元]', '10.00000', 'SN_A18F88A39EA3', '[{\"name\":\"10元\",\"id\":\"d65d88104fab4dbd89171f75d5ef652b\",\"orderList\":6,\"imagePath\":null}]', '4028bc743bb6fee6013bb755fd4b0001');
+INSERT INTO `xx_product` VALUES ('4028bc743bb6fee6013bb75600880003', '2012-12-20 16:02:45', '2012-12-20 16:02:45', '', '', 'Q币卡 [50元]', '50.00000', 'SN_EA47F87C7C44', '[{\"name\":\"50元\",\"id\":\"3e60baa4c70841e19be58af765bf63dc\",\"orderList\":15,\"imagePath\":null}]', '4028bc743bb6fee6013bb755fd4b0001');
 
 -- ----------------------------
 -- Table structure for `xx_role`
@@ -853,7 +729,7 @@ CREATE TABLE `xx_role` (
 -- Records of xx_role
 -- ----------------------------
 INSERT INTO `xx_role` VALUES ('0731dcsoft2010031200000000000016', '2011-01-01 00:00:00', '2011-01-01 00:00:00', '[\"ROLE_CARDS\",\"ROLE_CARDS_NOTIFY\",\"ROLE_CARDS_CATEGORY\",\"ROLE_CARDS_TYPE\",\"ROLE_SPECIFICATION\",\"ROLE_BRAND\",\"ROLE_ORDER\",\"ROLE_PAYMENT\",\"ROLE_REFUND\",\"ROLE_SHIPPING\",\"ROLE_RESHIP\",\"ROLE_MEMBER\",\"ROLE_MEMBER_RANK\",\"ROLE_MEMBER_ATTRIBUTE\",\"ROLE_COMMENT\",\"ROLE_LEAVE_MESSAGE\",\"ROLE_NAVIGATION\",\"ROLE_ARTICLEE\",\"ROLE_ARTICLE_CATEGORY\",\"ROLE_FRIEND_LINK\",\"ROLE_PAGE_TEMPLATE\",\"ROLE_MAIL_TEMPLATE\",\"ROLE_PRINT_TEMPLATE\",\"ROLE_CACHE\",\"ROLE_BUILD_HTML\",\"ROLE_ADMIN\",\"ROLE_ROLE\",\"ROLE_MESSAGE\",\"ROLE_LOG\",\"ROLE_SETTING\",\"ROLE_INSTANT_MESSAGING\",\"ROLE_PAYMENT_CONFIG\",\"ROLE_DELIVERY_TYPE\",\"ROLE_AREA\",\"ROLE_DELIVERY_CORP\",\"ROLE_DELIVERY_CENTER\",\"ROLE_DELIVERY_TEMPLATE\",\"ROLE_BASE\"]', '拥有后台管理最高权限', '', '超级管理员');
-INSERT INTO `xx_role` VALUES ('4028bc743ac000ea013ac00bc68c0000', '2012-11-02 15:35:28', '2012-11-02 15:35:28', '[\"ROLE_CARDS\",\"ROLE_CARDS_NOTIFY\",\"ROLE_CARDS_CATEGORY\",\"ROLE_CARDS_TYPE\",\"ROLE_SPECIFICATION\",\"ROLE_BRAND\",\"ROLE_ORDER\",\"ROLE_WITHDRAW\",\"ROLE_PAYMENT\",\"ROLE_REFUND\",\"ROLE_SHIPPING\",\"ROLE_RESHIP\",\"ROLE_DELIVERY_CENTER\",\"ROLE_DELIVERY_TEMPLATE\",\"ROLE_MEMBER\",\"ROLE_MEMBER_RANK\",\"ROLE_MEMBER_ATTRIBUTE\",\"ROLE_COMMENT\",\"ROLE_LEAVE_MESSAGE\",\"ROLE_NAVIGATION\",\"ROLE_ARTICLEE\",\"ROLE_ARTICLE_CATEGORY\",\"ROLE_FRIEND_LINK\",\"ROLE_PAGE_TEMPLATE\",\"ROLE_MAIL_TEMPLATE\",\"ROLE_PRINT_TEMPLATE\",\"ROLE_CACHE\",\"ROLE_BUILD_HTML\",\"ROLE_ADMIN\",\"ROLE_ROLE\",\"ROLE_MESSAGE\",\"ROLE_LOG\",\"ROLE_SETTING\",\"ROLE_INSTANT_MESSAGING\",\"ROLE_PAYMENT_CONFIG\",\"ROLE_DELIVERY_TYPE\",\"ROLE_AREA\",\"ROLE_DELIVERY_CORP\",\"ROLE_BASE\"]', null, '', '管理员');
+INSERT INTO `xx_role` VALUES ('4028bc743ac000ea013ac00bc68c0000', '2012-11-02 15:35:28', '2012-12-20 15:51:04', '[\"ROLE_CARDS\",\"ROLE_SPECIFICATION\",\"ROLE_BRAND\",\"ROLE_ORDER\",\"ROLE_WITHDRAW\",\"ROLE_PAYMENT\",\"ROLE_MEMBER\",\"ROLE_MEMBER_RANK\",\"ROLE_MEMBER_ATTRIBUTE\",\"ROLE_LEAVE_MESSAGE\",\"ROLE_NAVIGATION\",\"ROLE_ARTICLEE\",\"ROLE_ARTICLE_CATEGORY\",\"ROLE_FRIEND_LINK\",\"ROLE_PAGE_TEMPLATE\",\"ROLE_MAIL_TEMPLATE\",\"ROLE_CACHE\",\"ROLE_BUILD_HTML\",\"ROLE_ADMIN\",\"ROLE_ROLE\",\"ROLE_MESSAGE\",\"ROLE_LOG\",\"ROLE_SETTING\",\"ROLE_INSTANT_MESSAGING\",\"ROLE_PAYMENT_CONFIG\",\"ROLE_BASE\"]', '', '', '管理员');
 
 -- ----------------------------
 -- Table structure for `xx_specification`
