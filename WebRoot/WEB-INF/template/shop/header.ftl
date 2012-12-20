@@ -54,16 +54,16 @@
 							<a href="<@navigation.url?interpret />"
 								<#if navigation.isBlankTarget> target="_blank"</#if>>${navigation.name}
 							</a>
-							<#if navigation.name == '快捷通道'>
-							<@goods_list type="hot" count=10; goodsList>
-									<#if (goodsList?size > 0)>
+							<#if navigation.name == '首页'>
+							<@cards_list type="hot" count=10; cardsList>
+									<#if (cardsList?size > 0)>
 									<ul class="sub-menu">
-										<#list goodsList as goods>
-											<li><a href="${base}${goods.htmlPath}">${substring(goods.name, 24, "...")}   &rarr;   点击卖卡</a></li>		
+										<#list cardsList as cards>
+											<li><a href="${base}${cards.htmlPath}">${substring(cards.name, 24, "...")}   &rarr;   点击卖卡</a></li>		
 										</#list>
 				                     </ul>
 									</#if>
-								</@goods_list>
+								</@cards_list>
 							</#if>
 						</li>
 					</#list>
