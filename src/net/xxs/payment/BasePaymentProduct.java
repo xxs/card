@@ -16,7 +16,7 @@ import net.xxs.entity.PaymentConfig;
 
 public abstract class BasePaymentProduct {
 	
-	protected static final String RESULT_URL = "/shop/payment!result.action";// 支付结果显示URL
+	protected static final String RESULT_URL = "/card/payment!result.action";// 支付结果显示URL
 	
 	protected String id;// 支付产品标识
 	protected String name;// 支付产品名称

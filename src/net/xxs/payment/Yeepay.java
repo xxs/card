@@ -24,8 +24,8 @@ public class Yeepay extends BasePaymentProduct {
 	
 	//public static final String PAYMENT_URL = "https://www.yeepay.com/app-merchant-proxy/node";// 支付请求URL
 	public static final String PAYMENT_URL = "http://tech.yeepay.com:8080/robot/debug.action";// 支付请求URL
-	public static final String RETURN_URL = ":8080/shop/payment!payreturn.action";// 回调处理URL
-	public static final String NOTIFY_URL = ":8080/shop/payment!paynotify.action";// 消息通知URL
+	public static final String RETURN_URL = ":8080/card/payment!payreturn.action";// 回调处理URL
+	public static final String NOTIFY_URL = ":8080/card/payment!paynotify.action";// 消息通知URL
 	public static final String SHOW_URL = "/";// 充值卡显示URL
 	
 	// 支持货币种类
@@ -82,9 +82,9 @@ public class Yeepay extends BasePaymentProduct {
 		String p5_Pid = paymentSn;// 充值卡名称
 		String p6_Pcat = "";// 充值卡种类
 		String p7_Pdesc = paymentSn;// 充值卡描述
-		String p8_Url = SettingUtil.getSetting().getShopUrl() + RETURN_URL + "?paymentsn=" + paymentSn;// 回调处理URL
+		String p8_Url = SettingUtil.getSetting().getCardUrl() + RETURN_URL + "?paymentsn=" + paymentSn;// 回调处理URL
 		String p9_SAF = "0";// 是否需要填写送货地址（1：是、0：否）
-		String pa_MP = "shop" + "xx";// 商户数据
+		String pa_MP = "card" + "xx";// 商户数据
 		String pd_FrpId = "";// 支付通道编码
 		String pr_NeedResponse = "1";// 是否需要应答机制（1：是、0：否）
 		String key = paymentConfig.getBargainorKey();// 密钥
@@ -164,7 +164,7 @@ public class Yeepay extends BasePaymentProduct {
 	
 	@Override
 	public String getPayreturnMessage(String paymentSn) {
-		return "SUCCESS<html><head><meta http-equiv=\"content-type\" content=\"text/html; charset=utf-8\" /><title>页面跳转中..</title></head><body onload=\"javascript: document.forms[0].submit();\"><form action=\"" + SettingUtil.getSetting().getShopUrl() + RESULT_URL + "\"><input type=\"hidden\" name=\"paymentsn\" value=\"" + paymentSn + "\" /></form></body></html>";
+		return "SUCCESS<html><head><meta http-equiv=\"content-type\" content=\"text/html; charset=utf-8\" /><title>页面跳转中..</title></head><body onload=\"javascript: document.forms[0].submit();\"><form action=\"" + SettingUtil.getSetting().getCardUrl() + RESULT_URL + "\"><input type=\"hidden\" name=\"paymentsn\" value=\"" + paymentSn + "\" /></form></body></html>";
 	}
 	
 	// HMAC加密算法

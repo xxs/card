@@ -48,7 +48,7 @@ $().ready( function() {
 	
 	// 地区选择菜单
 	$areaSelect.lSelect({
-		url: "${base}/shop/area!ajaxArea.action"// AJAX数据获取url
+		url: "${base}/card/area!ajaxArea.action"// AJAX数据获取url
 	});
 
 	var tabs = $("ul.tab").tabs();

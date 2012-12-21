@@ -253,7 +253,7 @@ $().ready(function() {
 								<#if specificationValue.imagePath??>
 									&nbsp;&nbsp;<img src="${base}${specificationValue.imagePath}" style="width: 20px; height: 20px; padding: 1px; vertical-align: middle; border: 1px solid #b2d3f4;" />
 								<#else>
-									&nbsp;&nbsp;<img src="${base}/template/shop/images/default_specification.gif" style="width: 20px; height: 20px; padding: 1px; vertical-align: middle; border: 1px solid #b2d3f4;" title="无规格图片" />
+									&nbsp;&nbsp;<img src="${base}/template/card/images/default_specification.gif" style="width: 20px; height: 20px; padding: 1px; vertical-align: middle; border: 1px solid #b2d3f4;" title="无规格图片" />
 								</#if>
 							</td>
 							<td>
@@ -283,7 +283,7 @@ $().ready(function() {
 								<#if specificationValue.imagePath??>
 									&nbsp;&nbsp;<img src="${base}${specificationValue.imagePath}" style="width: 20px; height: 20px; padding: 1px; vertical-align: middle; border: 1px solid #b2d3f4;" />
 								<#else>
-									&nbsp;&nbsp;<img src="${base}/template/shop/images/default_specification.gif" style="width: 20px; height: 20px; padding: 1px; vertical-align: middle; border: 1px solid #b2d3f4;" title="无规格图片" />
+									&nbsp;&nbsp;<img src="${base}/template/card/images/default_specification.gif" style="width: 20px; height: 20px; padding: 1px; vertical-align: middle; border: 1px solid #b2d3f4;" title="无规格图片" />
 								</#if>
 							</td>
 							<td>

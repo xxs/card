@@ -4,9 +4,9 @@
 			<div class="headerLoginInfo">
 				您好<span id="headerLoginMemberUsername"></span>, 欢迎来到${(setting.shopName)!}!
 				<a href="javascript: void(0);" id="headerShowLoginWindow">登录</a>
-				<a href="${base}/shop/member_center!index.action" id="headerMemberCenter">会员中心</a>
+				<a href="${base}/card/member_center!index.action" id="headerMemberCenter">会员中心</a>
 				<a href="javascript: void(0);" id="headerShowRegisterWindow">注册</a>
-				<a href="${base}/shop/member!logout.action" id="headerLogout">[退出]</a>
+				<a href="${base}/card/member!logout.action" id="headerLogout">[退出]</a>
 			</div>
 			<div class="headerTopNav">
 				<@navigation_list position="top"; navigationList>
@@ -30,7 +30,7 @@
 			<a href="${base}/"><img class="belatedPNG" src="${base}${(setting.shopLogoPath)!}" alt="${(setting.shopName)!}" /></a>
 		</div>
 		<div class="headerSearch belatedPNG">
-			<form id="goodsSearchForm" action="${base}/shop/goods!search.action" method="post">
+			<form id="goodsSearchForm" action="${base}/card/goods!search.action" method="post">
 				<div class="headerSearchText">
 					<input type="text" id="goodsSearchKeyword" name="pager.keyword" value="<#if (pager.keyword)??>${pager.keyword}<#else>请输入关键词...</#if>" />
 				</div>
@@ -38,15 +38,15 @@
 				<div class="hotKeyword">
 					热门关键词: 
 					<#list setting.hotSearchList as hotSearch>
-						<a href="${base}/shop/goods!search.action?pager.keyword=${hotSearch?url}">${hotSearch}</a>
+						<a href="${base}/card/goods!search.action?pager.keyword=${hotSearch?url}">${hotSearch}</a>
 					</#list>
 				</div>
 			</form>
 		</div>
 	</div>
 	<div class="headerBottom">
-		<input type="button" class="cartItemListButton" value="" onclick="window.open('${base}/shop/cart_item!list.action')" />
-		<input type="button" class="orderButton" value="" onclick="window.open('${base}/shop/cart_item!list.action')" />
+		<input type="button" class="cartItemListButton" value="" onclick="window.open('${base}/card/cart_item!list.action')" />
+		<input type="button" class="orderButton" value="" onclick="window.open('${base}/card/cart_item!list.action')" />
 		<div class="headerMiddleNav">
 			<div class="headerMiddleNavLeft belatedPNG"></div>
 			<ul class="headerMiddleNavContent belatedPNG">

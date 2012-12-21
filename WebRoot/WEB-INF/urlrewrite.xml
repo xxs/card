@@ -4,20 +4,20 @@
 
 	<rule>
 		<note>文章分类</note>
-		<from>^/shop/article_list/(\w+).htm$</from>
-		<to type="forward">/shop/article!list.action?sign=$1</to>
+		<from>^/card/article_list/(\w+).htm$</from>
+		<to type="forward">/card/article!list.action?sign=$1</to>
 	</rule>
 	
 	<rule>
 		<note>充值卡分类</note>
-		<from>^/shop/cards_list/(\w+).htm$</from>
-		<to type="forward">/shop/cards!list.action?sign=$1</to>
+		<from>^/card/cards_list/(\w+).htm$</from>
+		<to type="forward">/card/cards!list.action?sign=$1</to>
 	</rule>
 	
 	<rule>
 		<note>在线留言</note>
-		<from>^/shop/leave_message.htm$</from>
-		<to type="forward">/shop/leave_message!list.action</to>
+		<from>^/card/leave_message.htm$</from>
+		<to type="forward">/card/leave_message!list.action</to>
 	</rule>
 
 </urlrewrite>

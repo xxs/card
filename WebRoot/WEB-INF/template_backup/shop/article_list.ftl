@@ -8,8 +8,8 @@
 <#if (articleCategory.metaKeywords)! != ""><meta name="keywords" content="${articleCategory.metaKeywords}" /></#if>
 <#if (articleCategory.metaDescription)! != ""><meta name="description" content="${articleCategory.metaDescription}" /></#if>
 <link rel="icon" href="favicon.ico" type="image/x-icon" />
-<link href="${base}/template/shop/css/base.css" rel="stylesheet" type="text/css" />
-<link href="${base}/template/shop/css/shop.css" rel="stylesheet" type="text/css" />
+<link href="${base}/template/card/css/base.css" rel="stylesheet" type="text/css" />
+<link href="${base}/template/card/css/card.css" rel="stylesheet" type="text/css" />
 <!--[if lte IE 6]>
 	<script type="text/javascript" src="${base}/template/common/js/belatedPNG.js"></script>
 	<script type="text/javascript">
@@ -19,7 +19,7 @@
 <![endif]-->
 </head>
 <body class="articleList">
-	<#include "/WEB-INF/template/shop/header.ftl">
+	<#include "/WEB-INF/template/card/header.ftl">
 	<div class="body">
 		<div class="bodyLeft">
 			<div class="recommendArticle">
@@ -67,7 +67,7 @@
 						</#list>
 					</div>
 					<div id="articleSearch" class="articleSearch">
-						<form id="articleSearchForm" action="${base}/shop/article!search.action" method="post">
+						<form id="articleSearchForm" action="${base}/card/article!search.action" method="post">
 							<input type="text" name="pager.keyword" id="articleSearchKeyword" class="keyword" value="请输入关键词..." />
 							<input type="submit" class="searchButton" value="" />
 						</form>
@@ -100,20 +100,20 @@
 					</ul>
 					<div class="blank"></div>
 					<@pagination pager=pager baseUrl=articleCategory.url>
-         				<#include "/WEB-INF/template/shop/pager.ftl">
+         				<#include "/WEB-INF/template/card/pager.ftl">
          			</@pagination>
 				</div>
 				<div class="articleListBottom"></div>
 			</div>
 		</div>
 		<div class="blank"></div>
-		<#include "/WEB-INF/template/shop/friend_link.ftl">
+		<#include "/WEB-INF/template/card/friend_link.ftl">
 	</div>
 	<div class="blank"></div>
-	<#include "/WEB-INF/template/shop/footer.ftl">
+	<#include "/WEB-INF/template/card/footer.ftl">
 	<script type="text/javascript" src="${base}/template/common/js/jquery.js"></script>
 	<script type="text/javascript" src="${base}/template/common/js/jquery.tools.js"></script>
-	<script type="text/javascript" src="${base}/template/shop/js/base.js"></script>
-	<script type="text/javascript" src="${base}/template/shop/js/shop.js"></script>
+	<script type="text/javascript" src="${base}/template/card/js/base.js"></script>
+	<script type="text/javascript" src="${base}/template/card/js/card.js"></script>
 </body>
 </html>

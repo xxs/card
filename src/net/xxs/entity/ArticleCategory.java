@@ -23,7 +23,7 @@ public class ArticleCategory extends BaseEntity {
 	private static final long serialVersionUID = -5132652107151648662L;
 
 	public static final String PATH_SEPARATOR = ",";// 树路径分隔符
-	public static final String ARTICLE_LIST_URL_PREFIX = "/shop/article_list/";// 文章列表URL前缀
+	public static final String ARTICLE_LIST_URL_PREFIX = "/card/article_list/";// 文章列表URL前缀
 	public static final String ARTICLE_LIST_URL_SUFFIX = "htm";// 文章列表URL后缀
 
 	private String name;// 名称

@@ -77,10 +77,10 @@ $().ready( function() {
 				$("#buildContent").val("adminJs");
 				$("#inputForm").submit();
 			} else if (data.status == "adminJsFinish") {
-				$("#status").text("正在更新SHOP.JS,请稍后...");
-				$("#buildContent").val("shopJs");
+				$("#status").text("正在更新CARD.JS,请稍后...");
+				$("#buildContent").val("cardJs");
 				$("#inputForm").submit();
-			} else if (data.status == "shopJsFinish") {
+			} else if (data.status == "cardJsFinish") {
 				$("#status").text("正在自定义错误页,请稍后...");
 				$("#buildContent").val("errorPage");
 				$("#inputForm").submit();

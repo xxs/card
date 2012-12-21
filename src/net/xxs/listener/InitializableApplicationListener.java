@@ -52,7 +52,7 @@ public class InitializableApplicationListener implements ApplicationListener, Se
 				htmlService.buildLoginHtml();
 				htmlService.buildRegisterAgreementHtml();
 				htmlService.buildAdminJs();
-				htmlService.buildShopJs();
+				htmlService.buildCardJs();
 				htmlService.buildErrorPageHtml();
 				htmlService.buildErrorPageAccessDeniedHtml();
 				htmlService.buildErrorPage500Html();

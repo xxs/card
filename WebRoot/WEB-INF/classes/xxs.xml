@@ -12,9 +12,9 @@
 		<adminLoginUrl>/admin/index.jsp</adminLoginUrl>  
 		<adminLoginProcessingUrl>/admin/login/check</adminLoginProcessingUrl>  
 		<isShowPoweredInfo>true</isShowPoweredInfo>  
-		<shopName>收卡平台</shopName>  
-		<shopUrl>http://localhost</shopUrl>  
-		<shopLogoPath>/images/logo.jpg</shopLogoPath>  
+		<cardName>收卡平台</cardName>  
+		<cardUrl>http://localhost</cardUrl>  
+		<cardLogoPath>/images/logo.jpg</cardLogoPath>  
 		<hotSearch>名臣福利,收购手机充值卡,手机充值卡回收,手机充值卡回购,手机充值卡变现,手机充值卡提现,一卡通回收,Q币卡点卡回收</hotSearch>  
 		<metaKeywords>名臣福利收卡平台</metaKeywords>  
 		<metaDescription></metaDescription>  

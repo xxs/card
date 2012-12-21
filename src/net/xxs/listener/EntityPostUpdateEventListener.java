@@ -59,7 +59,7 @@ public class EntityPostUpdateEventListener implements PostUpdateEventListener {
 			Product product = (Product) event.getEntity();
 			jobService.buildCardsContentHtml(product.getCards().getId());
 		} else if (entityName.equals(INSTANT_MESSAGING_ENTITY_NAME)) {
-			jobService.buildShopJs();
+			jobService.buildCardJs();
 		}
 	}
 

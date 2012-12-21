@@ -9,8 +9,8 @@
 <#if (goods.metaDescription)! != ""><meta name="description" content="${goods.metaDescription}" /></#if>
 <link rel="icon" href="favicon.ico" type="image/x-icon" />
 <link href="${base}/template/common/css/jquery.zoomimage.css" rel="stylesheet" type="text/css" />
-<link href="${base}/template/shop/css/base.css" rel="stylesheet" type="text/css" />
-<link href="${base}/template/shop/css/shop.css" rel="stylesheet" type="text/css" />
+<link href="${base}/template/card/css/base.css" rel="stylesheet" type="text/css" />
+<link href="${base}/template/card/css/card.css" rel="stylesheet" type="text/css" />
 <!--[if lte IE 6]>
 	<script type="text/javascript" src="${base}/template/common/js/belatedPNG.js"></script>
 	<script type="text/javascript">
@@ -20,7 +20,7 @@
 <![endif]-->
 </head>
 <body id="goodsContent" class="goodsContent">
-	<#include "/WEB-INF/template/shop/header.ftl">
+	<#include "/WEB-INF/template/card/header.ftl">
 	<div class="body">
 		<div class="bodyLeft">
 			<div class="goodsCategory">
@@ -198,7 +198,7 @@
 															<#if specificationValue.imagePath??>
 																<img src="${base}${specificationValue.imagePath}" alt="${specificationValue.name}" />
 															<#else>
-																<img src="${base}/template/shop/images/default_specification.gif" />
+																<img src="${base}/template/card/images/default_specification.gif" />
 															</#if>
 															<span title="点击取消选择"></span>
 														</li>
@@ -332,7 +332,7 @@
 							</#list>
 							<#if (commentList?size > 0)>
 								<div class="info">
-									<a href="${base}/shop/comment_list/${goods.id}.htm">查看所有评论&gt;&gt;</a>
+									<a href="${base}/card/comment_list/${goods.id}.htm">查看所有评论&gt;&gt;</a>
 								</div>
 							</#if>
 						</@comment_list>
@@ -390,15 +390,15 @@
 			</div>
 		</div>
 		<div class="blank"></div>
-		<#include "/WEB-INF/template/shop/friend_link.ftl">
+		<#include "/WEB-INF/template/card/friend_link.ftl">
 	</div>
 	<div class="blank"></div>
-	<#include "/WEB-INF/template/shop/footer.ftl">
+	<#include "/WEB-INF/template/card/footer.ftl">
 	<script type="text/javascript" src="${base}/template/common/js/jquery.js"></script>
 	<script type="text/javascript" src="${base}/template/common/js/jquery.tools.js"></script>
 	<script type="text/javascript" src="${base}/template/common/js/jquery.zoomimage.js"></script>
-	<script type="text/javascript" src="${base}/template/shop/js/base.js"></script>
-	<script type="text/javascript" src="${base}/template/shop/js/shop.js"></script>
+	<script type="text/javascript" src="${base}/template/card/js/base.js"></script>
+	<script type="text/javascript" src="${base}/template/card/js/card.js"></script>
 	<script type="text/javascript">
 	$().ready( function() {
 	
@@ -505,7 +505,7 @@
 					if ($this.hasClass("addCartItemButton")) {
 						$.addCartItem(selectedProductId, $quantity.val());
 					} else {
-						location.href = '${base}/shop/goods_notify!add.action?product.id=' + selectedProductId;
+						location.href = '${base}/card/goods_notify!add.action?product.id=' + selectedProductId;
 					}
 				} else {
 					$buyInfo.addClass("highlight");
@@ -561,7 +561,7 @@
 				if ($this.hasClass("addCartItemButton")) {
 					$.addCartItem(selectedProductId, $quantity.val());
 				} else {
-					location.href='${base}/shop/goods_notify!add.action?product.id=' + selectedProductId;
+					location.href='${base}/card/goods_notify!add.action?product.id=' + selectedProductId;
 				}
 			});
 		</#if>

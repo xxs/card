@@ -51,10 +51,10 @@ public interface HtmlService {
 	public void buildAdminJs();
 	
 	/**
-	 * 生成SHOP.JS
+	 * 生成CARD.JS
 	 * 
 	 */
-	public void buildShopJs();
+	public void buildCardJs();
 	
 	/**
 	 * 根据ID生成文章内容HTML

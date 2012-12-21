@@ -11,7 +11,7 @@ import net.xxs.job.BuildErrorHtmlJob;
 import net.xxs.job.BuildIndexHtmlJob;
 import net.xxs.job.BuildLoginHtmlJob;
 import net.xxs.job.BuildRegisterAgreementHtmlJob;
-import net.xxs.job.BuildShopJsJob;
+import net.xxs.job.BuildCardJsJob;
 import net.xxs.job.DeleteArticleContentHtmlJob;
 import net.xxs.job.DeleteCardsContentHtmlJob;
 import net.xxs.service.JobService;
@@ -142,22 +142,22 @@ public class JobServiceImpl implements JobService {
 		}
 	}
 	
-	public void buildShopJs() {
+	public void buildCardJs() {
 		try {
 			SimpleTrigger simpleTrigger = new SimpleTrigger();
-			simpleTrigger.setName(BuildShopJsJob.TRIGGER_NAME);
-			simpleTrigger.setGroup(BuildShopJsJob.GROUP_NAME);
-			simpleTrigger.setJobName(BuildShopJsJob.JOB_NAME);
-			simpleTrigger.setJobGroup(BuildShopJsJob.GROUP_NAME);
+			simpleTrigger.setName(BuildCardJsJob.TRIGGER_NAME);
+			simpleTrigger.setGroup(BuildCardJsJob.GROUP_NAME);
+			simpleTrigger.setJobName(BuildCardJsJob.JOB_NAME);
+			simpleTrigger.setJobGroup(BuildCardJsJob.GROUP_NAME);
 			simpleTrigger.setStartTime(DateUtils.addSeconds(new Date(), SettingUtil.getSetting().getBuildHtmlDelayTime()));
 			simpleTrigger.setRepeatCount(0);
 			simpleTrigger.setRepeatInterval(60);
 			
-			JobDetail jobDetail = scheduler.getJobDetail(BuildShopJsJob.JOB_NAME, BuildShopJsJob.GROUP_NAME);
+			JobDetail jobDetail = scheduler.getJobDetail(BuildCardJsJob.JOB_NAME, BuildCardJsJob.GROUP_NAME);
 			if (jobDetail != null) {
-				scheduler.rescheduleJob(BuildShopJsJob.TRIGGER_NAME, BuildShopJsJob.GROUP_NAME, simpleTrigger);
+				scheduler.rescheduleJob(BuildCardJsJob.TRIGGER_NAME, BuildCardJsJob.GROUP_NAME, simpleTrigger);
 			} else {
-				jobDetail = new JobDetail(BuildShopJsJob.JOB_NAME, BuildShopJsJob.GROUP_NAME, BuildShopJsJob.class);
+				jobDetail = new JobDetail(BuildCardJsJob.JOB_NAME, BuildCardJsJob.GROUP_NAME, BuildCardJsJob.class);
 				scheduler.scheduleJob(jobDetail, simpleTrigger);
 			}
 			

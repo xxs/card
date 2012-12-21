@@ -62,9 +62,9 @@ public class SettingUtil {
 		Node adminLoginUrlNode = document.selectSingleNode("/xxs/setting/adminLoginUrl");
 		Node adminLoginProcessingUrlNode = document.selectSingleNode("/xxs/setting/adminLoginProcessingUrl");
 		Node isShowPoweredInfoNode = document.selectSingleNode("/xxs/setting/isShowPoweredInfo");
-		Node shopNameNode = document.selectSingleNode("/xxs/setting/shopName");
-		Node shopUrlNode = document.selectSingleNode("/xxs/setting/shopUrl");
-		Node shopLogoPathNode = document.selectSingleNode("/xxs/setting/shopLogoPath");
+		Node cardNameNode = document.selectSingleNode("/xxs/setting/cardName");
+		Node cardUrlNode = document.selectSingleNode("/xxs/setting/cardUrl");
+		Node cardLogoPathNode = document.selectSingleNode("/xxs/setting/cardLogoPath");
 		Node hotSearchNode = document.selectSingleNode("/xxs/setting/hotSearch");
 		Node metaKeywordsNode = document.selectSingleNode("/xxs/setting/metaKeywords");
 		Node metaDescriptionNode = document.selectSingleNode("/xxs/setting/metaDescription");
@@ -129,9 +129,9 @@ public class SettingUtil {
 		setting.setAdminLoginUrl(adminLoginUrlNode.getText());
 		setting.setAdminLoginProcessingUrl(adminLoginProcessingUrlNode.getText());
 		setting.setIsShowPoweredInfo(Boolean.valueOf(isShowPoweredInfoNode.getText()));
-		setting.setShopName(shopNameNode.getText());
-		setting.setShopUrl(shopUrlNode.getText());
-		setting.setShopLogoPath(shopLogoPathNode.getText());
+		setting.setCardName(cardNameNode.getText());
+		setting.setCardUrl(cardUrlNode.getText());
+		setting.setCardLogoPath(cardLogoPathNode.getText());
 		setting.setHotSearch(hotSearchNode.getText());
 		setting.setMetaKeywords(metaKeywordsNode.getText());
 		setting.setMetaDescription(metaDescriptionNode.getText());
@@ -224,8 +224,8 @@ public class SettingUtil {
 		}
 		Element rootElement = document.getRootElement();
 		Element settingElement = rootElement.element("setting");
-		Node shopNameNode = document.selectSingleNode("/xxs/setting/shopName");
-		Node shopUrlNode = document.selectSingleNode("/xxs/setting/shopUrl");
+		Node cardNameNode = document.selectSingleNode("/xxs/setting/cardName");
+		Node cardUrlNode = document.selectSingleNode("/xxs/setting/cardUrl");
 		Node hotSearchNode = document.selectSingleNode("/xxs/setting/hotSearch");
 		Node metaKeywordsNode = document.selectSingleNode("/xxs/setting/metaKeywords");
 		Node metaDescriptionNode = document.selectSingleNode("/xxs/setting/metaDescription");
@@ -276,11 +276,11 @@ public class SettingUtil {
 		Node commentAuthorityNode = document.selectSingleNode("/xxs/setting/commentAuthority");
 		Node commentDisplayTypeNode = document.selectSingleNode("/xxs/setting/commentDisplayType");
 		
-		if(shopNameNode == null){
-			shopNameNode = settingElement.addElement("shopName");
+		if(cardNameNode == null){
+			cardNameNode = settingElement.addElement("cardName");
 		}
-		if(shopUrlNode == null){
-			shopUrlNode = settingElement.addElement("shopUrl");
+		if(cardUrlNode == null){
+			cardUrlNode = settingElement.addElement("cardUrl");
 		}
 		if(hotSearchNode == null){
 			hotSearchNode = settingElement.addElement("hotSearch");
@@ -430,8 +430,8 @@ public class SettingUtil {
 			commentDisplayTypeNode = settingElement.addElement("commentDisplayType");
 		}
 		
-		shopNameNode.setText(setting.getShopName());
-		shopUrlNode.setText(setting.getShopUrl());
+		cardNameNode.setText(setting.getCardName());
+		cardUrlNode.setText(setting.getCardUrl());
 		hotSearchNode.setText(setting.getHotSearch());
 		metaKeywordsNode.setText(setting.getMetaKeywords());
 		metaDescriptionNode.setText(setting.getMetaDescription());

@@ -42,7 +42,7 @@ public class SettingAction extends BaseAdminAction {
 
 	private Setting setting;
 	private String smtpToMail;
-	private File shopLogo;
+	private File cardLogo;
 	private File defaultBigCardsImage;
 	private File defaultSmallCardsImage;
 	private File defaultThumbnailCardsImage;
@@ -99,8 +99,8 @@ public class SettingAction extends BaseAdminAction {
 	// 更新
 	@Validations(
 		requiredStrings = { 
-			@RequiredStringValidator(fieldName = "setting.shopName", message = "网店名称不允许为空!"),
-			@RequiredStringValidator(fieldName = "setting.shopUrl", message = "网店网址不允许为空!"),
+			@RequiredStringValidator(fieldName = "setting.cardName", message = "网店名称不允许为空!"),
+			@RequiredStringValidator(fieldName = "setting.cardUrl", message = "网店网址不允许为空!"),
 			@RequiredStringValidator(fieldName = "setting.smtpFromMail", message = "发件人邮箱不允许为空!"),
 			@RequiredStringValidator(fieldName = "setting.smtpHost", message = "SMTP服务器地址不允许为空!"),
 			@RequiredStringValidator(fieldName = "setting.smtpUsername", message = "SMTP用户名不允许为空!"),
@@ -168,9 +168,9 @@ public class SettingAction extends BaseAdminAction {
 			persistent.setLoginFailureLockCount(3);
 			persistent.setLoginFailureLockTime(10);
 		}
-		if (shopLogo != null) {
-			File destShopLogo = new File(getRealPath(persistent.getShopLogoPath()));
-			ImageUtil.toJpegImageFile(shopLogo, destShopLogo);
+		if (cardLogo != null) {
+			File destCardLogo = new File(getRealPath(persistent.getCardLogoPath()));
+			ImageUtil.toJpegImageFile(cardLogo, destCardLogo);
 		}
 		if (defaultBigCardsImage != null) {
 			File destDefaultBigCardsImage = new File(getRealPath(persistent.getDefaultBigCardsImagePath()));
@@ -188,7 +188,7 @@ public class SettingAction extends BaseAdminAction {
 			File destWatermarkImage = new File(getRealPath(persistent.getWatermarkImagePath()));
 			ImageUtil.toJpegImageFile(watermarkImage, destWatermarkImage);
 		}
-		BeanUtils.copyProperties(setting, persistent, new String[] {"systemName", "systemVersion", "systemDescription", "contextPath", "imageUploadPath", "imageBrowsePath", "adminLoginUrl", "adminLoginProcessingUrl", "isShowPoweredInfo", "shopLogoPath", "defaultBigCardsImagePath", "defaultSmallCardsImagePath", "defaultThumbnailCardsImagePath", "watermarkImagePath", "isInstantMessagingEnabled", "instantMessagingPosition", "instantMessagingTitle", "isLeaveMessageEnabled", "isLeaveMessageCaptchaEnabled", "leaveMessageDisplayType", "isCommentEnabled", "isCommentCaptchaEnabled", "commentAuthority", "commentDisplayType"});
+		BeanUtils.copyProperties(setting, persistent, new String[] {"systemName", "systemVersion", "systemDescription", "contextPath", "imageUploadPath", "imageBrowsePath", "adminLoginUrl", "adminLoginProcessingUrl", "isShowPoweredInfo", "cardLogoPath", "defaultBigCardsImagePath", "defaultSmallCardsImagePath", "defaultThumbnailCardsImagePath", "watermarkImagePath", "isInstantMessagingEnabled", "instantMessagingPosition", "instantMessagingTitle", "isLeaveMessageEnabled", "isLeaveMessageCaptchaEnabled", "leaveMessageDisplayType", "isCommentEnabled", "isCommentCaptchaEnabled", "commentAuthority", "commentDisplayType"});
 		SettingUtil.updateSetting(persistent);
 		
 		cacheService.flushAllPageCache(getRequest());
@@ -196,7 +196,7 @@ public class SettingAction extends BaseAdminAction {
 		jobService.buildLoginHtml();
 		jobService.buildRegisterAgreementHtml();
 		jobService.buildAdminJs();
-		jobService.buildShopJs();
+		jobService.buildCardJs();
 		jobService.buildArticleContentHtml();
 		jobService.buildCardsContentHtml();
 		
@@ -245,12 +245,12 @@ public class SettingAction extends BaseAdminAction {
 		this.smtpToMail = smtpToMail;
 	}
 
-	public File getShopLogo() {
-		return shopLogo;
+	public File getCardLogo() {
+		return cardLogo;
 	}
 
-	public void setShopLogo(File shopLogo) {
-		this.shopLogo = shopLogo;
+	public void setCardLogo(File cardLogo) {
+		this.cardLogo = cardLogo;
 	}
 
 	public File getDefaultBigCardsImage() {

@@ -118,8 +118,8 @@ public class HtmlServiceImpl implements HtmlService, ServletContextAware {
 		buildHtml(templatePath, htmlPath, data);
 	}
 	
-	public void buildShopJs() {
-		PageTemplateConfig pageTemplateConfig = TemplateConfigUtil.getPageTemplateConfig(PageTemplateConfig.SHOP_JS);
+	public void buildCardJs() {
+		PageTemplateConfig pageTemplateConfig = TemplateConfigUtil.getPageTemplateConfig(PageTemplateConfig.CARD_JS);
 		Map<String, Object> data = getCommonData();
 		String htmlPath = pageTemplateConfig.getHtmlPath();
 		String templatePath = pageTemplateConfig.getTemplatePath();

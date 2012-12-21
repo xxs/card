@@ -80,7 +80,7 @@ public class MailServiceImpl implements MailService, ServletContextAware {
 			Template template = configuration.getTemplate(templatePath);
 			String text = FreeMarkerTemplateUtils.processTemplateIntoString(template, data);
 			MimeMessageHelper mimeMessageHelper = new MimeMessageHelper(mimeMessage, false, "utf-8");
-			mimeMessageHelper.setFrom(MimeUtility.encodeWord(setting.getShopName()) + " <" + setting.getSmtpFromMail() + ">");
+			mimeMessageHelper.setFrom(MimeUtility.encodeWord(setting.getCardName()) + " <" + setting.getSmtpFromMail() + ">");
 			mimeMessageHelper.setTo(toMail);
 			mimeMessageHelper.setSubject(subject);
 			mimeMessageHelper.setText(text, true);
@@ -118,7 +118,7 @@ public class MailServiceImpl implements MailService, ServletContextAware {
 			Template template = configuration.getTemplate(templatePath);
 			String text = FreeMarkerTemplateUtils.processTemplateIntoString(template, data);
 			MimeMessageHelper mimeMessageHelper = new MimeMessageHelper(mimeMessage, false, "utf-8");
-			mimeMessageHelper.setFrom(MimeUtility.encodeWord(setting.getShopName()) + " <" + smtpFromMail + ">");
+			mimeMessageHelper.setFrom(MimeUtility.encodeWord(setting.getCardName()) + " <" + smtpFromMail + ">");
 			mimeMessageHelper.setTo(toMail);
 			mimeMessageHelper.setSubject(subject);
 			mimeMessageHelper.setText(text, true);

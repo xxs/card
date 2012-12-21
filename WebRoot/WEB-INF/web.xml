@@ -207,22 +207,22 @@
 
 	<filter-mapping>
 		<filter-name>articleListPageCacheFilter</filter-name>
-		<url-pattern>/shop/article_list/*</url-pattern>
+		<url-pattern>/card/article_list/*</url-pattern>
 	</filter-mapping>
 
 	<filter-mapping>
 		<filter-name>cardsListPageCacheFilter</filter-name>
-		<url-pattern>/shop/cards_list/*</url-pattern>
+		<url-pattern>/card/cards_list/*</url-pattern>
 	</filter-mapping>
 
 	<filter-mapping>
 		<filter-name>commentListPageCacheFilter</filter-name>
-		<url-pattern>/shop/comment_list/*</url-pattern>
+		<url-pattern>/card/comment_list/*</url-pattern>
 	</filter-mapping>
 
 	<filter-mapping>
 		<filter-name>leaveMessageListPageCacheFilter</filter-name>
-		<url-pattern>/shop/leave_message.htm</url-pattern>
+		<url-pattern>/card/leave_message.htm</url-pattern>
 	</filter-mapping>
 
 	<filter-mapping>
@@ -237,32 +237,32 @@
 
 	<filter-mapping>
 		<filter-name>cacheControlFilter</filter-name>
-		<url-pattern>/shop/cart_item!list.action</url-pattern>
+		<url-pattern>/card/cart_item!list.action</url-pattern>
 	</filter-mapping>
 
 	<filter-mapping>
 		<filter-name>cacheControlFilter</filter-name>
-		<url-pattern>/shop/order!info.action</url-pattern>
+		<url-pattern>/card/order!info.action</url-pattern>
 	</filter-mapping>
 
 	<filter-mapping>
 		<filter-name>cacheControlFilter</filter-name>
-		<url-pattern>/shop/order!save.action</url-pattern>
+		<url-pattern>/card/order!save.action</url-pattern>
 	</filter-mapping>
 
 	<filter-mapping>
 		<filter-name>cacheControlFilter</filter-name>
-		<url-pattern>/shop/payment!submit.action</url-pattern>
+		<url-pattern>/card/payment!submit.action</url-pattern>
 	</filter-mapping>
 
 	<filter-mapping>
 		<filter-name>cacheControlFilter</filter-name>
-		<url-pattern>/shop/payment!payreturn.action</url-pattern>
+		<url-pattern>/card/payment!payreturn.action</url-pattern>
 	</filter-mapping>
 
 	<filter-mapping>
 		<filter-name>cacheControlFilter</filter-name>
-		<url-pattern>/shop/payment!paynotify.action</url-pattern>
+		<url-pattern>/card/payment!paynotify.action</url-pattern>
 	</filter-mapping>
 
 	<filter-mapping>

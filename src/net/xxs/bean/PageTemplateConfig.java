@@ -12,7 +12,7 @@ public class PageTemplateConfig {
 	public static final String LOGIN = "login";// 登录
 	public static final String REGISTER_AGREEMENT = "registerAgreement";// 注册协议
 	public static final String ADMIN_JS = "adminJs";// ADMIN.JS
-	public static final String SHOP_JS = "shopJs";// SHOP.JS
+	public static final String CARD_JS = "cardJs";// CARD.JS
 	public static final String ARTICLE_CONTENT = "articleContent";// 文章内容
 	public static final String CARDS_CONTENT = "cardsContent";// 充值卡内容
 	public static final String ERROR_PAGE = "errorPage";// 错误页

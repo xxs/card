@@ -103,10 +103,10 @@ public class BuildHtmlAction extends BaseAdminAction {
 			jsonMap.put("buildTime", System.currentTimeMillis()
 					- beginTimeMillis);
 			return ajax(jsonMap);
-		} else if (buildContent.equalsIgnoreCase("shopJs")) {
-			htmlService.buildShopJs();
+		} else if (buildContent.equalsIgnoreCase("cardJs")) {
+			htmlService.buildCardJs();
 			Map<String, Object> jsonMap = new HashMap<String, Object>();
-			jsonMap.put(STATUS_PARAMETER_NAME, "shopJsFinish");
+			jsonMap.put(STATUS_PARAMETER_NAME, "cardJsFinish");
 			jsonMap.put("buildCount", 1);
 			jsonMap.put("buildTime", System.currentTimeMillis()
 					- beginTimeMillis);

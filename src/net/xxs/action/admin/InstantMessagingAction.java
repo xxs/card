@@ -73,7 +73,7 @@ public class InstantMessagingAction extends BaseAdminAction {
 		setting.setIsInstantMessagingEnabled(isInstantMessagingEnabled);
 		SettingUtil.updateSetting(setting);
 		
-		jobService.buildShopJs();
+		jobService.buildCardJs();
 		
 		redirectUrl = "instant_messaging!edit.action";
 		return SUCCESS;

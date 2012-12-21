@@ -88,7 +88,7 @@ $().ready( function() {
 						<select id="systemUrl">
 							<option value="">------------</option>
 							<option value="<#noparse>${base}/</#noparse>"<#if ("$" + "{base}/" == navigation.url)!> selected</#if>>网站首页</option>
-							<option value="<#noparse>${base}</#noparse>/shop/leave_message.htm"<#if ("$" + "{base}/shop/leave_message.htm" == navigation.url)!> selected</#if>>在线留言</option>
+							<option value="<#noparse>${base}</#noparse>/card/leave_message.htm"<#if ("$" + "{base}/card/leave_message.htm" == navigation.url)!> selected</#if>>在线留言</option>
 							<#list articleCategoryTreeList as articleCategoryTree>
 								<option value="<#noparse>${base}</#noparse>${articleCategoryTree.url}"<#if (("$" + "{base}" + articleCategoryTree.url) == navigation.url)!> selected</#if>>
 									<#if articleCategoryTree.grade != 0>

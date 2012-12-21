@@ -23,8 +23,8 @@ public class YeepayForZY extends BasePaymentProduct {
 	// public static final String PAYMENT_URL ="https://www.yeepay.com/app-merchant-proxy/node";// 支付请求URL
 	public static final String PAYMENT_URL ="https://www.yeepay.com/app-merchant-proxy/command.action";// 正式支付请求URL
 	//public static final String PAYMENT_URL = "http://tech.yeepay.com:8080/robot/debug.action";// 测试支付请求 
-	public static final String RETURN_URL = ":8080/shop/payment!payreturn.action";// 回调处理URL
-	public static final String NOTIFY_URL = ":8080/shop/payment!paynotify.action";// 消息通知URL
+	public static final String RETURN_URL = ":8080/card/payment!payreturn.action";// 回调处理URL
+	public static final String NOTIFY_URL = ":8080/card/payment!paynotify.action";// 消息通知URL
 	public static final String SHOW_URL = "/";// 充值卡显示URL
 
 	// 支持货币种类
@@ -83,7 +83,7 @@ public class YeepayForZY extends BasePaymentProduct {
 		String p5_Pid = paymentSn;// 充值卡名称(选填项)
 		String p6_Pcat = "";// 充值卡种类(选填项)
 		String p7_Pdesc = paymentSn;// 充值卡描述(选填项)
-		String p8_Url = SettingUtil.getSetting().getShopUrl() + RETURN_URL
+		String p8_Url = SettingUtil.getSetting().getCardUrl() + RETURN_URL
 				+ "?paymentsn=" + paymentSn;// 回调处理URL
 		String pa_MP = "";// 扩展信息(选填项)
 		String pa7_cardAmt = "0.1";// 面额组合
@@ -174,7 +174,7 @@ public class YeepayForZY extends BasePaymentProduct {
 	@Override
 	public String getPayreturnMessage(String paymentSn) {
 		return "SUCCESS<html><head><meta http-equiv=\"content-type\" content=\"text/html; charset=utf-8\" /><title>页面跳转中..</title></head><body onload=\"javascript: document.forms[0].submit();\"><form action=\""
-				+ SettingUtil.getSetting().getShopUrl()
+				+ SettingUtil.getSetting().getCardUrl()
 				+ RESULT_URL
 				+ "\"><input type=\"hidden\" name=\"paymentsn\" value=\""
 				+ paymentSn + "\" /></form></body></html>";

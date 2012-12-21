@@ -60,9 +60,9 @@ public class Setting {
 	private String adminLoginUrl;// 后台登录URL
 	private String adminLoginProcessingUrl;// 后台登录处理URL
 	private Boolean isShowPoweredInfo;// 是否显示Powered信息
-	private String shopName;// 网店名称
-	private String shopUrl;// 网店网址
-	private String shopLogoPath;// 网店LOGO路径
+	private String cardName;// 网店名称
+	private String cardUrl;// 网店网址
+	private String cardLogoPath;// 网店LOGO路径
 	private String hotSearch;// 热门搜索关键词
 	private String metaKeywords;// 首页页面关键词
 	private String metaDescription;// 首页页面描述
@@ -180,28 +180,28 @@ public class Setting {
 		this.isShowPoweredInfo = isShowPoweredInfo;
 	}
 
-	public String getShopName() {
-		return shopName;
+	public String getCardName() {
+		return cardName;
 	}
 
-	public void setShopName(String shopName) {
-		this.shopName = shopName;
+	public void setCardName(String cardName) {
+		this.cardName = cardName;
 	}
 
-	public String getShopUrl() {
-		return shopUrl;
+	public String getCardUrl() {
+		return cardUrl;
 	}
 
-	public void setShopUrl(String shopUrl) {
-		this.shopUrl = StringUtils.removeEnd(shopUrl, "/");
+	public void setCardUrl(String cardUrl) {
+		this.cardUrl = StringUtils.removeEnd(cardUrl, "/");
 	}
 
-	public String getShopLogoPath() {
-		return shopLogoPath;
+	public String getCardLogoPath() {
+		return cardLogoPath;
 	}
 
-	public void setShopLogoPath(String shopLogoPath) {
-		this.shopLogoPath = shopLogoPath;
+	public void setCardLogoPath(String cardLogoPath) {
+		this.cardLogoPath = cardLogoPath;
 	}
 
 	public String getHotSearch() {
