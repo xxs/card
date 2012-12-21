@@ -1,5 +1,6 @@
 package net.xxs.payment;
 
+import java.io.IOException;
 import java.math.BigDecimal;
 import java.util.HashMap;
 import java.util.Map;
@@ -8,10 +9,18 @@ import javax.servlet.http.HttpServletRequest;
 
 import net.xxs.bean.Setting.CurrencyType;
 import net.xxs.entity.PaymentConfig;
+import net.xxs.util.EncodeUtils;
 import net.xxs.util.SettingUtil;
+import net.xxs.util.XmlStringParse;
 
+import org.apache.commons.httpclient.HttpClient;
+import org.apache.commons.httpclient.HttpException;
+import org.apache.commons.httpclient.NameValuePair;
+import org.apache.commons.httpclient.methods.PostMethod;
+import org.apache.commons.httpclient.params.HttpConnectionManagerParams;
 import org.apache.commons.lang.StringUtils;
 
+import com.ofpay.rcvcard.util.RSA;
 import com.yeepay.DigestUtil;
 
 /**
@@ -74,53 +83,107 @@ public class OfPay extends BasePaymentProduct {
 	public Map<String, String> getParameterMap(PaymentConfig paymentConfig,
 			String paymentSn, BigDecimal paymentAmount,
 			HttpServletRequest httpServletRequest) {
-		String p0_Cmd = "ChargeCardDirect"; // 业务类型（非银行卡专业版支付请求固定值“ChargeCardDirect”）
-		String p1_MerId = paymentConfig.getBargainorId(); // 商户编号
-		String p2_Order = paymentSn;// 商户订单号
-		String p3_Amt = "0.1";// 支付金额（单位：元）
-		String p4_verifyAmt = "true";// 是否校验金额 （值：true校验金额; false不校验金额）
-		String p5_Pid = paymentSn;// 充值卡名称(选填项)
-		String p6_Pcat = "";// 充值卡种类(选填项)
-		String p7_Pdesc = paymentSn;// 充值卡描述(选填项)
-		String p8_Url = SettingUtil.getSetting().getCardUrl() + RETURN_URL
-				+ "?paymentsn=" + paymentSn;// 回调处理URL
-		String pa_MP = "";// 扩展信息(选填项)
-		String pa7_cardAmt = "0.1";// 面额组合
-		String pa8_cardNo = "FE5005100168";// 卡号组合
-		String pa9_cardPwd = "227386847613318";// 秘钥组合
-		String pd_FrpId = "TIANHONG";// 通道编码
-		String pr_NeedResponse = "1";// 应答机制
-		String pz_userId = "";// 会员ID（payment中的member可以查询到）
-		String pz1_userRegTime = "";// 会员注册时间（payment中的member可以查询到）
-		String keyValue = paymentConfig.getBargainorKey();// 密钥
+		System.out.println("开始组织参数");
+		String usercode = paymentConfig.getBargainorId(); // 合作伙伴在欧飞的用户ID
+		String md5key = paymentConfig.getBargainorKey();//签名密钥，是在申请为欧飞第四方支付用户的时候由系统分配的
+		String mode = "r"; // 商户编号
+		String version = "1.0";// 固定填"1.0"
+		String orderno = paymentSn;// 合作伙伴方定单号，要求系统唯一
+		String cardcode = "true";// 卡类代码
+		String cardno = paymentSn;// 充值卡的卡号
+		String cardpass = "";// 充值卡密码(该参数可以使用RSA加密发送)。
+		String retaction = SettingUtil.getSetting().getCardUrl() + RETURN_URL
+				+ "?paymentsn=" + paymentSn;// 合作伙伴的回调地址，不能包含 & ? 等特别字符,必须拥有回调地址。
+		String datetime = "20110808131313";// 日期时间，格式：YYYYMMDDHHMMSS，如 20110515080808
+		String format = "xml";// 固定“xml”
 
-		// 生成hmac，保证交易信息不被篡改,关于hmac详见《易宝支付非银行卡支付专业版接口文档 v3.0》
-		String hmac = "";
-		hmac = DigestUtil.getHmac(new String[] { p0_Cmd, p1_MerId, p2_Order,
-				p3_Amt, p4_verifyAmt, p5_Pid, p6_Pcat, p7_Pdesc, p8_Url, pa_MP,
-				pa7_cardAmt, pa8_cardNo, pa9_cardPwd, pd_FrpId,
-				pr_NeedResponse, pz_userId, pz1_userRegTime }, keyValue);
+		// 生成md5src，保证交易信息不被篡改,关于md5src详见
+		String md5src = usercode + mode + version + orderno + cardcode
+				+ cardno + cardpass + retaction + datetime + format+ md5key;
+		//签名（参见Sign计算方法）
+		String sign = EncodeUtils.testDigest(md5src);
+		
+		try {
+			usercode = RSA.encrypt(usercode, "gbk");
+			cardpass = RSA.encrypt(cardpass, "gbk");
+		} catch (Exception e1) {
+			e1.printStackTrace();
+		}
 
+		HttpClient hClient = new HttpClient();
+		HttpConnectionManagerParams managerParams = hClient
+				.getHttpConnectionManager().getParams();
+		// 设置连接超时时间(单位毫秒)
+		managerParams.setConnectionTimeout(1110000);
+		// 设置读数据超时时间(单位毫秒)
+		managerParams.setSoTimeout(3011000);
+		PostMethod post = null;
+		post = new PostMethod("http://localhost:8188/rcvcard.do");
+		NameValuePair[] nvp = { new NameValuePair("mode", mode),
+				new NameValuePair("version", version),
+				new NameValuePair("usercode", usercode),
+				new NameValuePair("orderno", orderno),
+				new NameValuePair("cardcode", cardcode),
+				new NameValuePair("cardno", cardno),
+				new NameValuePair("cardpass", cardpass),
+				new NameValuePair("retaction", retaction),
+				new NameValuePair("format", format),
+				new NameValuePair("datetime", datetime),
+				new NameValuePair("sign", sign) };
+		post.setRequestBody(nvp);
+		post.setRequestHeader("Connection", "close");
+		String returnStr = "";
+		try {
+			hClient.executeMethod(post);
+		} catch (HttpException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		try {
+			returnStr = post.getResponseBodyAsString();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		System.out.println("提交收卡支付返回:" + returnStr);
+		XmlStringParse xml = new XmlStringParse(returnStr);
+		String retusercode = xml.getParameter("usercode");
+		String retmode = xml.getParameter("mode");
+		String retversion = xml.getParameter("version");
+		String retorderno = xml.getParameter("orderno");
+		String retbillid = xml.getParameter("billid");
+		String retcardcode = xml.getParameter("cardcode");
+		String retcardno = xml.getParameter("cardno");
+		String retretaction = xml.getParameter("retaction");
+		String retresult = xml.getParameter("result");
+		String retinfo = xml.getParameter("info");
+		String retdatetime = xml.getParameter("datetime");
+		String retsign = xml.getParameter("sign");
+		
+		md5src = retusercode + retmode + retversion + retorderno
+				+ retbillid + retcardcode + retcardno + retretaction
+				+ retresult + retinfo + retdatetime;
+		// MD5check
+		if (!retsign.equals(EncodeUtils.testDigest(md5src + md5key))) {
+		System.out.println("加密验证失败");
+		}
+		post.releaseConnection();
+		post = null;
+		hClient = null;
+		
 		// 参数处理
 		Map<String, String> parameterMap = new HashMap<String, String>();
-		parameterMap.put("p0_Cmd", p0_Cmd);
-		parameterMap.put("p1_MerId", p1_MerId);
-		parameterMap.put("p2_Order", p2_Order);
-		parameterMap.put("p3_Amt", p3_Amt);
-		parameterMap.put("p4_verifyAmt", p4_verifyAmt);
-		parameterMap.put("p5_Pid", p5_Pid);
-		parameterMap.put("p6_Pcat", p6_Pcat);
-		parameterMap.put("p7_Pdesc", p7_Pdesc);
-		parameterMap.put("p8_Url", p8_Url);
-		parameterMap.put("pa_MP", pa_MP);
-		parameterMap.put("pa7_cardAmt", pa7_cardAmt);
-		parameterMap.put("pa8_cardNo", pa8_cardNo);
-		parameterMap.put("pa9_cardPwd", pa9_cardPwd);
-		parameterMap.put("pd_FrpId", pd_FrpId);
-		parameterMap.put("pr_NeedResponse", pr_NeedResponse);
-		parameterMap.put("pz_userId", pz_userId);
-		parameterMap.put("pz1_userRegTime", pz1_userRegTime);
-		parameterMap.put("hmac", hmac);
+		parameterMap.put("usercode", usercode);
+		parameterMap.put("mode", mode);
+		parameterMap.put("version", version);
+		parameterMap.put("orderno", orderno);
+		parameterMap.put("cardcode", cardcode);
+		parameterMap.put("cardno", cardno);
+		parameterMap.put("cardpass", cardpass);
+		parameterMap.put("retaction", retaction);
+		parameterMap.put("datetime", datetime);
+		parameterMap.put("format", format);
+		parameterMap.put("sign", sign);
 		return parameterMap;
 	}
 

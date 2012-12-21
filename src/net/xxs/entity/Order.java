@@ -45,7 +45,7 @@ public class Order extends BaseEntity {
 	private PaymentStatus paymentStatus;// 支付状态
 	private String paymentConfigName;// 支付方式名称
 	private BigDecimal amountPayable;// 应付金额
-	private BigDecimal paidAmount;// 应付金额
+	private BigDecimal paidAmount;// 实付金额
 	private String memo;// 附言
 	private String payStatus;//记录支付过程中的状态码
 	
@@ -191,6 +191,9 @@ public class Order extends BaseEntity {
 	@Transient
 	public void onSave() {
 		orderSn = SerialNumberUtil.buildOrderSn();
+		if (paidAmount == null || paidAmount.compareTo(new BigDecimal(0)) < 0) {
+			paidAmount = new BigDecimal(0);
+		}
 	}
 	
 	@Column(nullable = false, updatable = false)

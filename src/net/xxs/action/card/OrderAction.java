@@ -66,7 +66,7 @@ public class OrderAction extends BaseCardAction {
 	public String save() {
 		System.out.println("excute saveCard............");
 		Member loginMember = getLoginMember();
-		Product product = productService.load("8ae4839c3a887878013a88d343ae0036"); //默认20元腾讯充值卡
+		Product product = productService.load(productId); //默认20元腾讯充值卡
 		//paymentConfig.setId("4028bc743ab4e741013ab538ee9c0006");//设置默认的支付方式
 		String paymentConfigName = null;
 		paymentConfig = paymentConfigService.load(paymentConfig.getId());

@@ -56,7 +56,7 @@
 									<span title="${order.createDate?string("yyyy-MM-dd HH:mm:ss")}">${order.createDate}</span>
 								</td>
 								<td>
-									${order.totalAmount?string(currencyFormat)}
+									${order.amountPayable?string(currencyFormat)}
 								</td>
 								<td>
 									<#if order.orderStatus != "completed" && order.orderStatus != "invalid">
@@ -165,7 +165,7 @@
 									<span title="${order.createDate?string("yyyy-MM-dd HH:mm:ss")}">${order.createDate}</span>
 								</td>
 								<td>
-									${order.totalAmount?string(currencyFormat)}
+									${order.amountPayable?string(currencyFormat)}
 								</td>
 								<td>
 									<#if order.orderStatus != "completed" && order.orderStatus != "invalid">

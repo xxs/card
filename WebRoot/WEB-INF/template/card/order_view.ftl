@@ -101,7 +101,7 @@
 										<#else>
 											<input type="hidden" name="paymentType" value="online" />
 										</#if>
-										<input type="hidden" name="order.id" value="${order.id}" />
+										<input type="text" name="order.id" value="${order.id}" />
 										<p class="red">您尚未完成订单支付</p>
 										<input type="submit" class="formButton" value="立即支付" />
 									</form>
@@ -133,24 +133,6 @@
 							<th colspan="4">收货信息</th>
 						</tr>
 						<tr>
-							<td class="title">收货人: </td>
-							<td>${order.shipName}</td>
-							<td class="title">收货地区: </td>
-							<td>${order.shipArea.displayName}</td>
-						</tr>
-						<tr>
-							<td class="title">收货地址: </td>
-							<td>${order.shipAddress}</td>
-							<td class="title">邮编: </td>
-							<td>${order.shipZipCode}</td>
-						</tr>
-						<tr>
-							<td class="title">电话: </td>
-							<td>${order.shipPhone}</td>
-							<td class="title">手机: </td>
-							<td>${order.shipMobile}</td>
-						</tr>
-						<tr>
 							<td class="title">附言: </td>
 							<td colspan="3">${order.memo}</td>
 						</tr>
@@ -160,17 +142,8 @@
 						<tr>
 							<th colspan="4">支付信息</th>
 						</tr>
-						<tr>
-							<td class="title">配送方式: </td>
-							<td>${order.deliveryTypeName}</td>
 							<td class="title">支付方式: </td>
 							<td>${order.paymentConfigName}</td>
-						</tr>
-						<tr>
-							<td class="title">充值卡重量: </td>
-							<td>${order.totalProductWeight} 克</td>
-							<td class="title">配送费用: </td>
-							<td><span class="red">${order.deliveryFee?string(currencyFormat)}</span></td>
 						</tr>
 					</table>
 					<div class="blank"></div>
@@ -202,10 +175,7 @@
 						</#list>
 						<tr>
 							<td class="info" colspan="4">
-								充值卡总金额: <span class="red">${order.totalProductPrice?string(currencyFormat)}</span>&nbsp;&nbsp;
-								配送费用: <span class="red">${order.deliveryFee?string(currencyFormat)!}</span>&nbsp;&nbsp;
-								支付手续费: <span class="red">${order.paymentFee?string(currencyFormat)!}</span>&nbsp;&nbsp;
-								订单总金额: <span class="red">${order.totalAmount?string(currencyFormat)}</span>
+								充值卡总金额: <span class="red">${order.amountPayable?string(currencyFormat)}</span>&nbsp;&nbsp;
 							</td>
 						</tr>
 					</table>

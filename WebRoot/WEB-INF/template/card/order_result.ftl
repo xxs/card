@@ -41,7 +41,7 @@
 				</tr>
 				<tr>
 					<td class="title">订单总金额</td>
-					<td><span class="red">${order.totalAmount?string(currencyFormat)}</span></td>
+					<td><span class="red">${order.amountPayable?string(currencyFormat)}</span></td>
 				</tr>
 			</table>
 			<div class="blank"></div>

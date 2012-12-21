@@ -104,12 +104,12 @@ public class PaymentAction extends BaseCardAction {
 		} else {
 			paymentConfig = paymentConfigService.load(paymentConfig.getId());
 		}
+		System.out.println("112221");
 		if (paymentConfig == null) {
 			addActionError("支付方式不允许为空!");
 			return ERROR;
 		}
 		PaymentConfigType paymentConfigType = paymentConfig.getPaymentConfigType();
-
 		BigDecimal amountPayable = null;// 应付金额
 
 		if (paymentConfigType != PaymentConfigType.online) {
@@ -130,17 +130,18 @@ public class PaymentAction extends BaseCardAction {
 			addActionError("订单付款状态错误!");
 			return ERROR;
 		}
+		System.out.println("开始订单信息........"+order.getOrderSn());
 		amountPayable = order.getAmountPayable();
-
+		System.out.println("开始订单信息..1111......"+order.getOrderSn());
 		Member loginMember = getLoginMember();
-
+		System.out.println("开始订单信息..2222......"+order.getOrderSn());
 		BasePaymentProduct paymentProduct = PaymentProductUtil
 				.getPaymentProduct(paymentConfig.getPaymentProductId());
 		paymentUrl = paymentProduct.getPaymentUrl();
 
 		String bankName = paymentProduct.getName();
 		String bankAccount = paymentConfig.getBargainorId();
-
+		System.out.println("开始订单信息..2222...ssss..."+order.getOrderSn());
 		Payment payment1 = new Payment();
 		payment1.setPaymentType(PaymentType.online);
 		payment1.setPaymentConfigName(paymentConfig.getName());
@@ -156,8 +157,13 @@ public class PaymentAction extends BaseCardAction {
 		payment1.setDeposit(null);
 		payment1.setOrder(order);
 		paymentService.save(payment1);
+		System.out.println("开始订单信息..wwww......"+order.getOrderSn());
+		System.out.println(payment1.getPaymentSn());
+		System.out.println(paymentConfig.getId());
+		System.out.println(amountPayable);
+		System.out.println(getRequest());
 		parameterMap = paymentProduct.getParameterMap(paymentConfig,
-				payment.getPaymentSn(), amountPayable, getRequest());
+				payment1.getPaymentSn(), amountPayable, getRequest());
 		return "submit";
 	}
 

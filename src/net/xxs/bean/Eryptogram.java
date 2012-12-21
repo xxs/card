@@ -6,7 +6,9 @@ import java.security. *;
 
 import javax.crypto. *;
 /**
-*���ܽ�����
+*加密解密类
+*@authorWangHu
+*@version1.002004年03月18日
 */
 
 public class Eryptogram
@@ -14,35 +16,35 @@ public class Eryptogram
 
     private/* static*/ String Algorithm ="DES";
     private /*static*/ String ciAlgorithm = "DES/ECB/NoPadding";
-    //��������㷨,����DES,DESede,Blowfish
+    //定义加密算法,可用DES,DESede,Blowfish
     /*static*/ boolean debug =false ;
     /*static*/ SecretKey deskey;
     public void setDeskey(byte[] key) {
     	  deskey =  new javax.crypto.spec.SecretKeySpec (key ,Algorithm );   
 	}
 	/**
-    *������ע��.
+    *构造子注解.
     */
     public Eryptogram ()
     {
     }
     /**
-    *�����Կ
-    *@returnbyte[]������ɵ���Կ
-    *@throwsexception�ӳ��쳣.
+    *生成密钥
+    *@returnbyte[]返回生成的密钥
+    *@throwsexception扔出异常.
     */
     public/* static*/ byte []getSecretKey ()throws Exception 
     {
         KeyGenerator keygen =KeyGenerator.getInstance (Algorithm );
         SecretKey deskey =keygen.generateKey ();
-        if (debug )System.out.println ("�����Կ:"+byte2hex (deskey.getEncoded ()));
+        if (debug )System.out.println ("生成密钥:"+byte2hex (deskey.getEncoded ()));
         return deskey.getEncoded ();
     }
     
     /**
-    *���
-    *@paraminput��Ҫ�������
-    *@returnbyte[]������ɵ����
+    *异或
+    *@paraminput需要异或的数据
+    *@returnbyte[]返回生成的数据
     */
  
     public/* static*/ byte[] do_xor(byte[] desByte,byte[] srByte)
@@ -75,31 +77,31 @@ public class Eryptogram
     	return res;
     }
     /**
-    *��ָ������ݸ���ṩ����Կ���м���
-    *@paraminput��Ҫ���ܵ����
-    *@paramkey��Կ
-    *@returnbyte[]���ܺ�����
+    *将指定的数据根据提供的密钥进行加密
+    *@paraminput需要加密的数据
+    *@paramkey密钥
+    *@returnbyte[]加密后的数据
     *@throwsException
     */
     public/* static*/ byte []encryptData (byte []input  )throws Exception 
     {
         if (debug )
         {
-            System.out.println ("����ǰ�Ķ���:"+byte2hex (input ));
-            System.out.println ("����ǰ���ַ�:"+new String (input ));
+            System.out.println ("加密前的二进串:"+byte2hex (input ));
+            System.out.println ("加密前的字符串:"+new String (input ));
         }
         Cipher c1 =Cipher.getInstance (ciAlgorithm);
         c1.init (Cipher.ENCRYPT_MODE ,deskey );
         byte []cipherByte =c1.doFinal (input );
-        if (debug )System.out.println ("���ܺ�Ķ���:"+byte2hex (cipherByte ));
+        if (debug )System.out.println ("加密后的二进串:"+byte2hex (cipherByte ));
         return cipherByte ;
     }
     
     /**
-     *���������ݽ��м���
-     *@paraminput��Ҫ���ܵ����
-     *@paramkey��Կ
-     *@returnbyte[]���ܺ�����
+     *对任意的数据进行加密
+     *@paraminput需要加密的数据
+     *@paramkey密钥
+     *@returnbyte[]加密后的数据
      *@throwsException
      */
      public/* static*/ byte []DesEncryptData (byte []input  )throws Exception 
@@ -126,33 +128,33 @@ public class Eryptogram
      }
     
     /**
-    *������Ѽ��ܵ����ͨ��ָ������Կ���н���
-    *@paraminput����ܵ����
-    *@paramkey��Կ
-    *@returnbyte[]���ܺ�����
+    *将给定的已加密的数据通过指定的密钥进行解密
+    *@paraminput待解密的数据
+    *@paramkey密钥
+    *@returnbyte[]解密后的数据
     *@throwsException
     */
     public /*static*/ byte []decryptData (byte []input)throws Exception 
     {
         //=new javax.crypto.spec.SecretKeySpec (key ,Algorithm );
-        if (debug )System.out.println ("����ǰ����Ϣ:"+byte2hex (input ));
+        if (debug )System.out.println ("解密前的信息:"+byte2hex (input ));
         Cipher c1 =Cipher.getInstance (ciAlgorithm );
         c1.init (Cipher.DECRYPT_MODE ,deskey );
         byte []clearByte =c1.doFinal (input );
         if (debug )
         {
-            System.out.println ("���ܺ�Ķ���:"+byte2hex (clearByte ));
-            System.out.println ("���ܺ���ַ�:"+(new String (clearByte )));
+            System.out.println ("解密后的二进串:"+byte2hex (clearByte ));
+            System.out.println ("解密后的字符串:"+(new String (clearByte )));
         }
         return clearByte ;
     }
     
     
     /**
-     *�������Ѽ��ܵ���ݽ��н���
-     *@paraminput����ܵ����
-     *@paramkey��Կ
-     *@returnbyte[]���ܺ�����
+     *对任意已加密的数据进行解密
+     *@paraminput待解密的数据
+     *@paramkey密钥
+     *@returnbyte[]解密后的数据
      *@throwsException
      */
      public /*static*/ byte []DesDecryptData (byte []input)throws Exception 
@@ -179,10 +181,10 @@ public class Eryptogram
      }
      
      /**
-      *����MAC
-      *@paraminput MAC��
-      *@paramkey��Կ
-      *@return byte[]MACֵ
+      *计算MAC
+      *@paraminput MAC串
+      *@paramkey密钥
+      *@return byte[]MAC值
       *@throwsException
       */
      
@@ -207,9 +209,9 @@ public class Eryptogram
  
     
     /**
-    *�ֽ���ת����16�����ַ�
-    *@parambyte[]b����Ҫת�����ֽ���
-    *@returnString����ת�����16�����ַ�
+    *字节码转换成16进制字符串
+    *@parambyte[]b输入要转换的字节码
+    *@returnString返回转换后的16进制字符串
     */
     public/* static*/ String byte2hex (byte []b )
     {
@@ -227,9 +229,9 @@ public class Eryptogram
     
     
     /**
-    *16�����ַ�ת�����ֽ���
-    *@paramString����ת�����16�����ַ�
-    *@return byte[]ba����Ҫת�����ֽ���
+    *16进制字符串转换成字节码
+    *@paramString返回转换后的16进制字符串
+    *@return byte[]ba输入要转换的字节码
     */
     public /*static */byte[] hextobyte (String hs )
     {
@@ -255,12 +257,12 @@ public class Eryptogram
     }
     
     /**
-	 * ʹ�� MD5 ���м��ܼ���
+	 * 使用 MD5 进行加密计算
 	 * 
 	 * @param plainText
-	 *            ��ͨδ���ܵ��ַ�
+	 *            普通未加密的字符串
 	 * 
-	 * @return MD5 ���ܺ���ַ�
+	 * @return MD5 加密后的字符串
 	 */
 	public/* static*/ String md5(String plainText) {
 		try {

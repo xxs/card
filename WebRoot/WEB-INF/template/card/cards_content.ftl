@@ -60,7 +60,7 @@
                <!-- END subnav -->
             </aside>
             <div class="page_content_right sub-content">
-               <h4>${substring(cards.name, 50, "...")} <a href="/card/order!list.action">点击列表</a> </h4>
+               <h4>${substring(cards.name, 50, "...")} <a href="/card/card/order!list.action">点击列表</a> </h4>
                <p>充值卡编号: ${cards.cardsSn}</p>
                <p>product编号: <span id="productSn">${cards.defaultProduct.id}</span></p>
                <div class="hr hr-dotted-double">&nbsp;</div>
@@ -69,7 +69,7 @@
 		         <dl class="tabs_type_2">
 		            <dt class="current">单张支付</dt>
 		            <dd class="current">
-		            <form method="post" action="/card/order!save.action">
+		            <form method="post" action="/card/card/order!save.action">
 		            	<input type="text" name="productId" value="${cards.defaultProduct.id}" />
 		               <p>
 		               <#if cards.isSpecificationEnabled>
