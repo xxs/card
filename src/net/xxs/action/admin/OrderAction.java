@@ -1,6 +1,5 @@
 package net.xxs.action.admin;
 
-import java.math.BigDecimal;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
@@ -18,16 +17,9 @@ import net.xxs.service.OrderLogService;
 import net.xxs.service.OrderService;
 import net.xxs.service.PaymentConfigService;
 
-import org.apache.commons.lang.StringUtils;
 import org.apache.struts2.convention.annotation.ParentPackage;
 import org.apache.struts2.convention.annotation.Result;
 import org.apache.struts2.convention.annotation.Results;
-import org.springframework.beans.BeanUtils;
-
-import com.opensymphony.xwork2.interceptor.annotations.InputConfig;
-import com.opensymphony.xwork2.validator.annotations.RequiredFieldValidator;
-import com.opensymphony.xwork2.validator.annotations.RequiredStringValidator;
-import com.opensymphony.xwork2.validator.annotations.Validations;
 
 /**
  * 后台Action类 - 订单
@@ -39,9 +31,6 @@ import com.opensymphony.xwork2.validator.annotations.Validations;
 public class OrderAction extends BaseAdminAction {
 
 	private static final long serialVersionUID = -2080980180511054311L;
-
-	private String shipAreaId;
-	private String reshipAreaId;
 
 	private Order order;
 	private Payment payment;
@@ -87,69 +76,6 @@ public class OrderAction extends BaseAdminAction {
 		return INPUT;
 	}
 
-	// 订单更新
-	@Validations(requiredStrings = {
-			@RequiredStringValidator(fieldName = "shipAreaId", message = "收货人地区不允许为空!"),
-			@RequiredStringValidator(fieldName = "order.shipName", message = "收货人姓名不允许为空!"),
-			@RequiredStringValidator(fieldName = "order.shipAddress", message = "收货人地址不允许为空!"),
-			@RequiredStringValidator(fieldName = "order.shipZipCode", message = "邮编不允许为空!") }, requiredFields = {
-			@RequiredFieldValidator(fieldName = "deliveryType.id", message = "配送方式不允许为空!"),
-			@RequiredFieldValidator(fieldName = "order.deliveryFee", message = "配送费用不允许为空!"),
-			@RequiredFieldValidator(fieldName = "order.paymentFee", message = "支付费用不允许为空!"),
-			@RequiredFieldValidator(fieldName = "order.totalProductWeight", message = "充值卡重量不允许为空!") })
-	@InputConfig(resultName = "error")
-	public String update() {
-		Order persistent = orderService.load(id);
-		if (persistent.getOrderStatus() == OrderStatus.completed
-				|| persistent.getOrderStatus() == OrderStatus.invalid) {
-			addActionError("此订单状态无法编辑!");
-			return ERROR;
-		}
-		if (persistent.getPaymentStatus() != net.xxs.entity.Order.PaymentStatus.unpaid) {
-			addActionError("此订单付款状态无法编辑!");
-			return ERROR;
-		}
-		if (order.getProductPrice().compareTo(new BigDecimal(0)) < 0) {
-			addActionError("充值卡价格错误!");
-			return ERROR;
-		}
-		//Product product = persistent.getProduct();
-		BigDecimal totalAmount = new BigDecimal(0);// 订单总金额
-
-		String paymentConfigName = null;
-		if (paymentConfig != null
-				&& StringUtils.isNotEmpty(paymentConfig.getId())) {
-			paymentConfig = paymentConfigService.load(paymentConfig.getId());
-			paymentConfigName = paymentConfig.getName();
-		} else {
-			paymentConfig = null;
-			paymentConfigName = "货到付款";
-		}
-
-		totalAmount = persistent.getAmountPayable();
-		order.setAmountPayable(totalAmount);
-		order.setOrderStatus(OrderStatus.processed);
-		order.setPaymentConfigName(paymentConfigName);
-		order.setPaymentConfig(paymentConfig);
-		BeanUtils.copyProperties(order, persistent, new String[] { "id",
-				"createDate", "modifyDate", "orderSn", "orderStatus",
-				"paymentStatus", "shippingStatus", "paidAmount", "memo",
-				"member" });
-		orderService.update(persistent);
-		logInfo = "订单编号: " + persistent.getOrderSn();
-
-		// 订单日志
-		OrderLog orderLog = new OrderLog();
-		orderLog.setOrderLogType(OrderLogType.modify);
-		orderLog.setOrderSn(persistent.getOrderSn());
-		orderLog.setOperator(adminService.getLoginAdmin().getUsername());
-		orderLog.setInfo(null);
-		orderLog.setOrder(persistent);
-		orderLogService.save(orderLog);
-
-		redirectUrl = "order!list.action";
-		return SUCCESS;
-	}
 
 	// 订单处理
 	public String process() {
@@ -213,7 +139,6 @@ public class OrderAction extends BaseAdminAction {
 			orderLog.setInfo(null);
 			orderLog.setOrder(order);
 			orderLogService.save(orderLog);
-
 			return ajax(Status.success, "您的操作已成功!");
 		}
 	}
@@ -250,22 +175,6 @@ public class OrderAction extends BaseAdminAction {
 	public int getCurrentDay() {
 		Calendar calendar = Calendar.getInstance();
 		return calendar.get(Calendar.DAY_OF_MONTH) + 1;
-	}
-
-	public String getShipAreaId() {
-		return shipAreaId;
-	}
-
-	public void setShipAreaId(String shipAreaId) {
-		this.shipAreaId = shipAreaId;
-	}
-
-	public String getReshipAreaId() {
-		return reshipAreaId;
-	}
-
-	public void setReshipAreaId(String reshipAreaId) {
-		this.reshipAreaId = reshipAreaId;
 	}
 
 	public Order getOrder() {

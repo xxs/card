@@ -139,9 +139,9 @@ $().ready(function() {
 		ignoreTitle: true,
 		ignore: ".ignoreValidate",
 		rules: {
-			"setting.shopName": "required",
-			"setting.shopUrl": "required",
-			"shopLogo": "imageFile",
+			"setting.cardName": "required",
+			"setting.cardUrl": "required",
+			"cardLogo": "imageFile",
 			"setting.email": "email",
 			"setting.bigCardsImageWidth": {
 				required: true,
@@ -214,9 +214,9 @@ $().ready(function() {
 			}
 		},
 		messages: {
-			"setting.shopName": "请填写网店名称",
-			"setting.shopUrl": "请填写网店网址",
-			"shopLogo": "网店LOGO格式错误",
+			"setting.cardName": "请填写网店名称",
+			"setting.cardUrl": "请填写网店网址",
+			"cardLogo": "网店LOGO格式错误",
 			"setting.email": "E-mail格式不正确",
 			"setting.bigCardsImageWidth": {
 				required: "请填写充值卡图片(大)的宽度",
@@ -330,7 +330,7 @@ $().ready(function() {
 						网店名称: 
 					</th>
 					<td>
-						<input type="text" name="setting.shopName" class="formText" value="${setting.shopName}" />
+						<input type="text" name="setting.cardName" class="formText" value="${setting.cardName}" />
 						<label class="requireField">*</label>
 					</td>
 				</tr>
@@ -339,7 +339,7 @@ $().ready(function() {
 						网店网址: 
 					</th>
 					<td>
-						<input type="text" name="setting.shopUrl" class="formText" value="${setting.shopUrl}" />
+						<input type="text" name="setting.cardUrl" class="formText" value="${setting.cardUrl}" />
 						<label class="requireField">*</label>
 					</td>
 				</tr>
@@ -348,8 +348,8 @@ $().ready(function() {
 						网店LOGO: 
 					</th>
 					<td>
-						<input type="file" name="shopLogo" />
-						<a href="${base}${setting.shopLogoPath}?random=${random}" target="_blank">查看</a>
+						<input type="file" name="cardLogo" />
+						<a href="${base}${setting.cardLogoPath}?random=${random}" target="_blank">查看</a>
 					</td>
 				</tr>
 				<tr>

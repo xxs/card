@@ -1,13 +1,9 @@
 package net.xxs.action.card;
 
-import java.math.BigDecimal;
-import java.math.RoundingMode;
 import java.util.List;
 
 import javax.annotation.Resource;
 
-import net.xxs.bean.Setting;
-import net.xxs.bean.Setting.ScoreType;
 import net.xxs.entity.Brand;
 import net.xxs.entity.Cards;
 import net.xxs.entity.Member;
@@ -39,26 +35,21 @@ import com.opensymphony.xwork2.validator.annotations.Validations;
 @ParentPackage("card")
 @InterceptorRefs({
 	@InterceptorRef(value = "memberVerifyInterceptor"),
-	@InterceptorRef(value = "token", params = {"excludeMethods", "info,list,view,saveCard"}),
+	@InterceptorRef(value = "token", params = {"excludeMethods", "info,list,view,save"}),
 	@InterceptorRef(value = "cardStack")
 })
 public class OrderAction extends BaseCardAction {
 	
 	private static final long serialVersionUID = 2553137844831167917L;
 	
-	private String areaId;// 收货地区ID
-	private Boolean isSaveReceiver;// 是否保存收货地址
-	private Integer totalProductQuantity;// 总充值卡数
-	private Integer totalProductWeight;// 总充值卡重量(单位: 克)
-	private BigDecimal totalProductPrice;// 总充值卡价格
-	private Integer totalScore;// 总积分
-	private String memo;// 附言
+	
 	
 	private String productId;//充值卡编码
 	private String cardNum;//卡号
 	private String cardPwd;//密码
 	private String cardString;//卡密组的字符串
 	
+	private String memo;// 附言
 	private PaymentConfig paymentConfig;// 支付方式
 	private Order order;// 订单
 
@@ -72,13 +63,11 @@ public class OrderAction extends BaseCardAction {
 	private ProductService productService;
 	
 	//保存提交的充值卡订单
-	@InputConfig(resultName = "error")
-	public String saveCard() {
+	public String save() {
 		System.out.println("excute saveCard............");
 		Member loginMember = getLoginMember();
 		Product product = productService.load("8ae4839c3a887878013a88d343ae0036"); //默认20元腾讯充值卡
 		//paymentConfig.setId("4028bc743ab4e741013ab538ee9c0006");//设置默认的支付方式
-		totalProductPrice = SettingUtil.setPriceScale(product.getPrice());//默认为订单金额
 		String paymentConfigName = null;
 		paymentConfig = paymentConfigService.load(paymentConfig.getId());
 		paymentConfigName = paymentConfig.getName();//设置支付方式名称
@@ -88,7 +77,7 @@ public class OrderAction extends BaseCardAction {
 		order.setOrderStatus(OrderStatus.unprocessed);
 		order.setPaymentStatus(PaymentStatus.unpaid);
 		order.setPaymentConfigName(paymentConfigName);
-		order.setAmountPayable(totalProductPrice);
+		order.setAmountPayable(SettingUtil.setPriceScale(product.getPrice()));//默认充值卡面额为订单金额
 		order.setMemo(memo);
 		order.setMember(loginMember);
 		order.setPaymentConfig(paymentConfig);
@@ -129,68 +118,13 @@ public class OrderAction extends BaseCardAction {
 	)
 	@InputConfig(resultName = "error")
 	public String view() {
-		totalScore = 0;
 		order = orderService.load(id);
-		Setting setting = getSetting();
-		if (setting.getScoreType() == ScoreType.cardsSet) {
-			totalScore = order.getProduct().getCards().getScore();
-		} else if (setting.getScoreType() == ScoreType.orderAmount) {
-			totalScore = order.getAmountPayable().multiply(new BigDecimal(setting.getScoreScale().toString())).setScale(0, RoundingMode.DOWN).intValue();
-		}
 		return "view";
 	}
 	
 	// 获取所有支付方式集合
 	public List<PaymentConfig> getAllPaymentConfigList() {
 		return paymentConfigService.getAllList();
-	}
-
-	public String getAreaId() {
-		return areaId;
-	}
-
-	public void setAreaId(String areaId) {
-		this.areaId = areaId;
-	}
-
-	public Boolean getIsSaveReceiver() {
-		return isSaveReceiver;
-	}
-
-	public void setIsSaveReceiver(Boolean isSaveReceiver) {
-		this.isSaveReceiver = isSaveReceiver;
-	}
-
-	public Integer getTotalProductQuantity() {
-		return totalProductQuantity;
-	}
-
-	public void setTotalProductQuantity(Integer totalProductQuantity) {
-		this.totalProductQuantity = totalProductQuantity;
-	}
-
-	public Integer getTotalProductWeight() {
-		return totalProductWeight;
-	}
-
-	public void setTotalProductWeight(Integer totalProductWeight) {
-		this.totalProductWeight = totalProductWeight;
-	}
-
-	public BigDecimal getTotalProductPrice() {
-		return totalProductPrice;
-	}
-
-	public void setTotalProductPrice(BigDecimal totalProductPrice) {
-		this.totalProductPrice = totalProductPrice;
-	}
-
-	public Integer getTotalScore() {
-		return totalScore;
-	}
-
-	public void setTotalScore(Integer totalScore) {
-		this.totalScore = totalScore;
 	}
 
 	public String getMemo() {

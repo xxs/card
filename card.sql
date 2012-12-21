@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50154
 File Encoding         : 65001
 
-Date: 2012-12-20 17:01:29
+Date: 2012-12-21 17:23:20
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -43,7 +43,7 @@ CREATE TABLE `xx_admin` (
 -- ----------------------------
 -- Records of xx_admin
 -- ----------------------------
-INSERT INTO `xx_admin` VALUES ('0731dcsoft2010031200000000000017', '2011-01-01 00:00:00', '2012-12-20 16:46:05', '技术部', 'xxs@163.com', '', '', '', '', '2012-12-17 14:28:34', '2012-12-20 16:46:05', '0', '127.0.0.1', 'ADMIN', '21232f297a57a5a743894a0e4a801fc3', 'admin');
+INSERT INTO `xx_admin` VALUES ('0731dcsoft2010031200000000000017', '2011-01-01 00:00:00', '2012-12-21 13:31:20', '技术部', 'xxs@163.com', '', '', '', '', '2012-12-17 14:28:34', '2012-12-21 13:31:20', '0', '127.0.0.1', 'ADMIN', '21232f297a57a5a743894a0e4a801fc3', 'admin');
 
 -- ----------------------------
 -- Table structure for `xx_admin_role`
@@ -93,6 +93,7 @@ CREATE TABLE `xx_article` (
 -- ----------------------------
 -- Records of xx_article
 -- ----------------------------
+INSERT INTO `xx_article` VALUES ('4028bc743bbb05c2013bbb2611650002', '2012-12-21 09:48:52', '2012-12-21 09:48:52', 'xxs', '新手上路', '0', '/html/201212/62ec638c2cc94115a783d57dc3e995f8.html', '', '', '', '新手上路', '新手上路', '1', '新手上路', '4028bc743bbb05c2013bbb25d49a0000');
 
 -- ----------------------------
 -- Table structure for `xx_article_category`
@@ -119,6 +120,7 @@ CREATE TABLE `xx_article_category` (
 -- ----------------------------
 -- Records of xx_article_category
 -- ----------------------------
+INSERT INTO `xx_article_category` VALUES ('4028bc743bbb05c2013bbb25d49a0000', '2012-12-21 09:48:36', '2012-12-21 09:48:36', '0', '新手上路', '新手上路', '新手上路', '1', '4028bc743bbb05c2013bbb25d49a0000', 'xs', null);
 
 -- ----------------------------
 -- Table structure for `xx_brand`
@@ -316,6 +318,8 @@ CREATE TABLE `xx_log` (
 -- ----------------------------
 INSERT INTO `xx_log` VALUES ('4028bc743bb257ca013bb264d4be0001', '2012-12-19 17:00:50', '2012-12-19 17:00:50', 'net.xxs.action.admin.CardsCategoryAction', 'save', '添加充值卡分类: 222', '127.0.0.1', '添加充值卡分类', 'admin');
 INSERT INTO `xx_log` VALUES ('4028bc743bb6fee6013bb75600b60004', '2012-12-20 16:02:45', '2012-12-20 16:02:45', 'net.xxs.action.admin.CardsAction', 'save', '添加充值卡: Q币卡', '127.0.0.1', '添加充值卡', 'admin');
+INSERT INTO `xx_log` VALUES ('4028bc743bbb05c2013bbb25d5e20001', '2012-12-21 09:48:37', '2012-12-21 09:48:37', 'net.xxs.action.admin.ArticleCategoryAction', 'save', '添加文章分类: 新手上路', '127.0.0.1', '添加文章分类', 'admin');
+INSERT INTO `xx_log` VALUES ('4028bc743bbb05c2013bbb2613390003', '2012-12-21 09:48:52', '2012-12-21 09:48:52', 'net.xxs.action.admin.ArticleAction', 'save', '添加文章: 新手上路', '127.0.0.1', '添加文章', 'admin');
 INSERT INTO `xx_log` VALUES ('8a9182fc3ba86bc8013ba9782e800002', '2012-12-17 23:25:23', '2012-12-17 23:25:23', 'net.xxs.action.admin.MemberAction', 'save', '添加会员: 123123', '127.0.0.1', '添加会员', 'admin');
 INSERT INTO `xx_log` VALUES ('8a9182fc3ba86bc8013ba97939a00004', '2012-12-17 23:26:32', '2012-12-17 23:26:32', 'net.xxs.action.admin.MemberAction', 'update', '编辑会员: 123123', '127.0.0.1', '编辑会员', 'admin');
 
@@ -381,7 +385,7 @@ CREATE TABLE `xx_member` (
 -- ----------------------------
 -- Records of xx_member
 -- ----------------------------
-INSERT INTO `xx_member` VALUES ('8a9182fc3ba86bc8013ba9782de60001', '2012-12-17 23:25:23', '2012-12-19 16:50:08', null, null, null, '0.00000', '123@qq.com', null, '', '', null, '2012-12-19 16:50:08', '0', '127.0.0.1', null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, '4297f44b13955235245b2497399d7a93', null, null, '', '127.0.0.1', null, null, '0', '123123', null, '402881833054c381013054d08bed0001');
+INSERT INTO `xx_member` VALUES ('8a9182fc3ba86bc8013ba9782de60001', '2012-12-17 23:25:23', '2012-12-21 13:31:40', null, null, null, '0.00000', '123@qq.com', null, '', '', null, '2012-12-21 13:31:40', '0', '127.0.0.1', null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, '4297f44b13955235245b2497399d7a93', null, null, '', '127.0.0.1', null, null, '0', '123123', null, '402881833054c381013054d08bed0001');
 
 -- ----------------------------
 -- Table structure for `xx_member_attribute`
@@ -494,7 +498,7 @@ CREATE TABLE `xx_navigation` (
 -- Records of xx_navigation
 -- ----------------------------
 INSERT INTO `xx_navigation` VALUES ('4028bc743bac0d54013bacbb0f14000d', '2012-12-18 14:37:18', '2012-12-18 14:37:18', '', '', '首页', '1', '1', '${base}/');
-INSERT INTO `xx_navigation` VALUES ('4028bc743bac0d54013bacbb688e000e', '2012-12-18 14:37:41', '2012-12-18 14:37:41', '', '', '新手导航', '0', '1', '${base}/');
+INSERT INTO `xx_navigation` VALUES ('4028bc743bac0d54013bacbb688e000e', '2012-12-18 14:37:41', '2012-12-21 09:49:06', '', '', '新手导航', '0', '1', '${base}/shop/article_list/xs.htm');
 
 -- ----------------------------
 -- Table structure for `xx_order`
