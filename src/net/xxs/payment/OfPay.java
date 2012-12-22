@@ -118,7 +118,7 @@ public class OfPay extends BasePaymentProduct {
 		// 设置读数据超时时间(单位毫秒)
 		managerParams.setSoTimeout(3011000);
 		PostMethod post = null;
-		post = new PostMethod("http://localhost:8188/rcvcard.do");
+		post = new PostMethod(PAYMENT_URL);
 		NameValuePair[] nvp = { new NameValuePair("mode", mode),
 				new NameValuePair("version", version),
 				new NameValuePair("usercode", usercode),
