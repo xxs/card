@@ -217,15 +217,10 @@
 									<span title="${order.createDate?string("yyyy-MM-dd HH:mm:ss")}">${order.createDate}</span>
 								</td>
 								<td>
-									${order.totalAmount?string(currencyFormat)}
+									${order.amountPayable?string(currencyFormat)}
 								</td>
 								<td>
-									<#if order.orderStatus != "completed" && order.orderStatus != "invalid">
-										[${action.getText("PaymentStatus." + order.paymentStatus)}]
-										[${action.getText("ShippingStatus." + order.shippingStatus)}]
-									<#else>
 										[${action.getText("OrderStatus." + order.orderStatus)}]
-									</#if>
 								</td>
 							</tr>
 							<#if (order_index + 1 > 10)>

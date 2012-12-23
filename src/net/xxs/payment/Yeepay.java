@@ -225,4 +225,10 @@ public class Yeepay extends BasePaymentProduct {
 		return null;
 	}
 
+	@Override
+	public PaymentResult cardPay(PaymentConfig paymentConfig, String paymentSn,
+			BigDecimal paymentAmount, HttpServletRequest httpServletRequest) {
+		return null;
+	}
+
 }

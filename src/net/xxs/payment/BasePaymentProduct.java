@@ -5,10 +5,10 @@ import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 
-import org.apache.commons.lang.StringUtils;
-
 import net.xxs.bean.Setting.CurrencyType;
 import net.xxs.entity.PaymentConfig;
+
+import org.apache.commons.lang.StringUtils;
 
 /**
  * 基类 - 支付产品
@@ -85,6 +85,22 @@ public abstract class BasePaymentProduct {
 	 * @return 在线支付参数
 	 */
 	public abstract Map<String, String> getParameterMap(PaymentConfig paymentConfig, String paymentSn, BigDecimal paymentAmount, HttpServletRequest httpServletRequest);
+	
+	/**
+	 *  点卡信息支付
+	 * 
+	 * @param paymentSn
+	 *            支付编号
+	 *            
+	 * @param paymentAmount
+	 *            支付金额
+	 * 
+	 * @param httpServletRequest
+	 *            httpServletRequest
+	 * 
+	 * @return 结果PayMentResult
+	 */
+	public abstract PaymentResult cardPay(PaymentConfig paymentConfig, String paymentSn, BigDecimal paymentAmount, HttpServletRequest httpServletRequest);
 
 	/**
 	 * 验证签名

@@ -55,7 +55,7 @@
 				</tr>
 			</table>
 			<#if order.paymentConfig??>
-				<form action="${base}/card/payment!submit.action" method="post">
+				<form action="${base}/card/payment!send.action" method="post">
 					<@s.token />
 					<#if paymentConfig.paymentConfigType == "deposit">
 						<input type="hidden" name="paymentType" value="deposit" />

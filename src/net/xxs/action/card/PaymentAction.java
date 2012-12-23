@@ -21,6 +21,7 @@ import net.xxs.entity.PaymentConfig;
 import net.xxs.entity.PaymentConfig.PaymentConfigType;
 import net.xxs.entity.PaymentDiscount;
 import net.xxs.payment.BasePaymentProduct;
+import net.xxs.payment.PaymentResult;
 import net.xxs.service.BrandService;
 import net.xxs.service.CacheService;
 import net.xxs.service.DepositService;
@@ -39,6 +40,7 @@ import org.apache.struts2.convention.annotation.InterceptorRef;
 import org.apache.struts2.convention.annotation.InterceptorRefs;
 import org.apache.struts2.convention.annotation.ParentPackage;
 
+import com.alibaba.common.lang.StringUtil;
 import com.opensymphony.xwork2.interceptor.annotations.InputConfig;
 import com.opensymphony.xwork2.validator.annotations.RequiredStringValidator;
 import com.opensymphony.xwork2.validator.annotations.Validations;
@@ -67,6 +69,7 @@ public class PaymentAction extends BaseCardAction {
 	private PaymentConfig paymentConfig;// 支付方式
 	private Order order;// 订单
 	private Map<String, String> parameterMap;// 支付参数
+	private PaymentResult paymentResult;// 支付参数
 
 	@Resource(name = "paymentConfigServiceImpl")
 	private PaymentConfigService paymentConfigService;
@@ -239,8 +242,31 @@ public class PaymentAction extends BaseCardAction {
 		System.out.println(paymentConfig.getId());
 		System.out.println(amountPayable);
 		System.out.println(getRequest());
-		parameterMap = paymentProduct.getParameterMap(paymentConfig,
+		paymentResult = paymentProduct.cardPay(paymentConfig,
 				payment1.getPaymentSn(), amountPayable, getRequest());
+		System.out.println("支付处理结果订单号："+paymentResult.getOrderSn());
+		System.out.println("支付处理结果："+paymentResult.getReturnMsg()+"code："+paymentResult.getCode());
+		if ((paymentResult == null || StringUtils.isEmpty(paymentResult.getOrderSn()))){
+			addActionError("缺失支付单号!");
+			return ERROR;
+		}
+		payment = paymentService.getPaymentByPaymentSn(paymentResult.getOrderSn());
+		System.out.println("payment result:"+payment.getId());
+		order = payment.getOrder();
+		if(null!=order){
+			System.err.println("kkkkkk");
+			System.out.println(order.getOrderSn());
+		}else{
+			System.out.println("yyyyy");
+		}
+		if(StringUtil.isEmpty(order.getRetCode())||!order.getRetCode().equals(paymentResult.getCode())){
+			order.setRetCode(paymentResult.getCode());
+			order.setRetMsg(paymentResult.getReturnMsg());
+			System.out.println("订单状态已变更");
+			orderService.update(order);
+		}else{
+			System.out.println("订单状态未变化");
+		}
 		return "submit";
 	}
 	// 查询支付订单结果
@@ -548,6 +574,12 @@ public class PaymentAction extends BaseCardAction {
 
 	public void setPaynotifyMessage(String paynotifyMessage) {
 		this.paynotifyMessage = paynotifyMessage;
+	}
+	public PaymentResult getPaymentResult() {
+		return paymentResult;
+	}
+	public void setPaymentResult(PaymentResult paymentResult) {
+		this.paymentResult = paymentResult;
 	}
 
 }

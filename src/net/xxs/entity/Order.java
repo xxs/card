@@ -47,7 +47,8 @@ public class Order extends BaseEntity {
 	private BigDecimal amountPayable;// 应付金额
 	private BigDecimal paidAmount;// 实付金额
 	private String memo;// 附言
-	private String payStatus;//记录支付过程中的状态码
+	private String retCode;//记录支付过程中的状态码
+	private String retMsg;//状态吗对应的消息
 	
 	private String productSn;// 充值卡货号
 	private String productName;// 充值卡名称
@@ -129,12 +130,20 @@ public class Order extends BaseEntity {
 	}
 	
 	@Column(length = 100)
-	public String getPayStatus() {
-		return payStatus;
+	public String getRetCode() {
+		return retCode;
 	}
 
-	public void setPayStatus(String payStatus) {
-		this.payStatus = payStatus;
+	public void setRetCode(String retCode) {
+		this.retCode = retCode;
+	}
+	@Column(length = 100)
+	public String getRetMsg() {
+		return retMsg;
+	}
+
+	public void setRetMsg(String retMsg) {
+		this.retMsg = retMsg;
 	}
 
 	@Column(length = 3000)
