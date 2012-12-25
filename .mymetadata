@@ -3,7 +3,7 @@
   type="WEB"
   name="card"
   id="myeclipse.1355705996687"
-  context-root="/card"
+  context-root="/ROOT"
   j2ee-spec="5.0"
   archive="card.war">
   <attributes>

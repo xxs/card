@@ -39,7 +39,7 @@ public class Payment extends BaseEntity {
 	private String paymentConfigName;// 支付配置名称
 	private String bankName;// 收款银行名称
 	private String bankAccount;// 收款银行账号
-	private BigDecimal totalAmount;// 支付金额
+	private BigDecimal amount;// 支付金额
 	private String payer;// 付款人
 	private String operator;// 操作员
 	private String memo;// 备注
@@ -97,12 +97,12 @@ public class Payment extends BaseEntity {
 	}
 	
 	@Column(nullable = false, updatable = false, precision = 15, scale = 5)
-	public BigDecimal getTotalAmount() {
-		return totalAmount;
+	public BigDecimal getAmount() {
+		return amount;
 	}
-	
-	public void setTotalAmount(BigDecimal totalAmount) {
-		this.totalAmount = SettingUtil.setPriceScale(totalAmount);
+
+	public void setAmount(BigDecimal amount) {
+		this.amount = amount;
 	}
 	
 	@Enumerated

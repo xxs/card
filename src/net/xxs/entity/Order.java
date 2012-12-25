@@ -44,7 +44,7 @@ public class Order extends BaseEntity {
 	private OrderStatus orderStatus;// 订单状态
 	private PaymentStatus paymentStatus;// 支付状态
 	private String paymentConfigName;// 支付方式名称
-	private BigDecimal amountPayable;// 应付金额
+	private BigDecimal amount;// 应付金额
 	private BigDecimal paidAmount;// 实付金额
 	private String memo;// 附言
 	private String retCode;//记录支付过程中的状态码
@@ -94,12 +94,12 @@ public class Order extends BaseEntity {
 	}
 	
 	@Column(nullable = false, precision = 15, scale = 5)
-	public BigDecimal getAmountPayable() {
-		return amountPayable;
+	public BigDecimal getAmount() {
+		return amount;
 	}
 
-	public void setAmountPayable(BigDecimal amountPayable) {
-		this.amountPayable = SettingUtil.setPriceScale(amountPayable);
+	public void setAmount(BigDecimal amount) {
+		this.amount = amount;
 	}
 
 	@Column(nullable = false, precision = 15, scale = 5)

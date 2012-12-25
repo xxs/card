@@ -7,89 +7,130 @@
 <meta name="Copyright" content="XXS" />
 <#include "/WEB-INF/template/card/head.ftl">
 </head>
-<body class="index">
+<body>
 	<#include "/WEB-INF/template/card/header.ftl">
 	<#include "/WEB-INF/template/card/index_slider.ftl">
-      <!-- START Content Container -->
-      <section id="content-container" class="clearfix">
-         <div id="main-wrap" class="main-wrap-slider clearfix">
-            
-            
-            <div class="one_third">
-               <div class="img-frame full-third-short"><a href="content-responsive-design.html" target="_self"><img src="content-images/spa-still-life-280x124.jpg" alt="HTML5 Responsive Website Template by TrueThemes" width="280" height="124" /></a></div>
-               <h5>Responsive Design</h5>
-               <p>Sterling is premium website template built with a fully responsive design. This ensures that your website will look absolutely flawless on every mobile device.</p>
-            </div>
-            <!-- END one_third -->
-            
-            <div class="one_third">
-               <div class="img-frame full-third-short"><a href="content-shortcodes.html" target="_self"><img src="content-images/happy-woman-working-on-laptop-280x124.jpg" alt="HTML5 Responsive Website Template by TrueThemes" width="280" height="124" /></a></div>
-               <h5>100+ Powerful Shortcodes</h5>
-               <p>Sterling comes packed with over 100 powerful shortcodes. This gives you the ability to add advanced features to your website without having to learn advanced coding technologies.</p>
-            </div>
-            <!-- END one_third -->
-            
-            <div class="one_third">
-               <div class="img-frame full-third-short"><a href="content-customer-support.html" target="_self"><img src="content-images/online-shopping-280x124.jpg" alt="HTML5 Responsive Website Template by TrueThemes" width="280" height="124" /></a></div>
-               <h5>Amazing Customer Support</h5>
-               <p>Purchase this template with confidence knowing that we have an entire team dedicated to answering your questions in a professional and timely manner.</p>
-            </div>
-            <!-- END one_third -->
-            
-            
-            <div class="hr hr-dotted">&nbsp;</div>
-            
-            
-            <section id="home-marketing-blogposts">
-               <span class="section_title">Latest from the blog</span>
-               <div class="article_preview">
-                  <strong><a href="page-template-blog-post.html">TrueThemes &#8211; CSS3 Responsive Web Template</a></strong>
-                  <p>Cras justo odio, dapibus ac facilisis in, egestas eget quam. Praesent commodo cursus magna, vel scelerisque nisl consect...</p>
-               </div>
-               <div class="article_preview">
-                  <strong><a href="page-template-blog-post.html">HTML5 Responsive Website Template</a></strong>
-                  <p>Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Donec...</p>
-               </div>
-            </section>
-            <aside id="home-marketing-testimonials">
-               <span class="section_title">Our Clients Say it Best</span>
-               <div class="testimonials">
-                  <div class="testimonial">
-                     <blockquote>I can not tell how helpful, respectful and proactive this team is. I am a complete novice and was met with a level of service and support I have never encountered to date...</blockquote>
-                     <strong class="client_identity">ThemeForest Customer 1</strong>
-                  </div>
-                  <div class="testimonial">
-                     <blockquote>I have downloaded 8 themes from themeforest. This has been the easiest to customize out of them all. I've never turned a website around so fast!</blockquote>
-                     <strong class="client_identity">ThemeForest Customer 2</strong>
-                  </div>
-                  <div class="testimonial">
-                     <blockquote>Thanks so much for fixing my issue so quickly, I would just like to say that your company has provided such amazing customer service/ support to date it has really blown me away (it is very rare in business today)</blockquote>
-                     <strong class="client_identity">ThemeForest Customer 3</strong>
-                  </div>
-               </div>
-            </aside>
-         </div>
-         <!-- END main-wrap -->
-      </section>
-      <!-- END Content Container -->
-            <!-- START Footer Callout -->
-      <div class="footer-callout clearfix">
-         <div class="center-wrap tt-relative">
-            <div class="footer-callout-content">
-               <p class="callout-heading">Site-wide callout section</p>
-               <p class="callout-text">Engage your customers and promote a rewarding call-to-action. Easily toggle this on or off.</p>
-            </div>
-            <!-- END footer-callout-content -->
-            <div class="footer-callout-button">
-               <a href="content-responsive-design.html" class="large green button">马上卖卡 &rarr;</a>
-            </div>
-            <!-- END footer-callout-button -->
-         </div>
-         <!-- END center-wrap --> 
-      </div>
-      <!-- END Footer Callout -->
-      
-	<div class="blank"></div>
+    <!--------------------------栏目------------------------------->
+		<div id="column">
+		<div class="column">
+		<ul>
+		<li><a href="#"><img src="images/column1.jpg" border="0" /></a>
+		  <p>手机充值</p></li>
+		<li><a href="#"><img src="images/column2.jpg" border="0" /></a>
+		  <p>信用卡还贷</p></li>
+		<li><a href="#"><img src="images/column3.jpg" border="0" /></a>
+		  <p>聚惠</p></li>
+		<li><a href="#"><img src="images/column4.jpg" border="0" /></a>
+		  <p>彩票卖场</p></li>
+		<li><a href="#"><img src="images/column5.jpg" border="0" /></a>
+		  <p>水电煤缴费</p></li>
+		<li><a href="#"><img src="images/column6.jpg" border="0" /></a>
+		  <p>邮政汇款</p></li>
+		<li><a href="#"><img src="images/column7.jpg" border="0" /></a>
+		  <p>机票订购</p></li>
+		<li><a href="#"><img src="images/column8.jpg" border="0" /></a>
+		  <p>保险超市</p></li>
+		<li><a href="#"><img src="images/column9.jpg" border="0" /></a>
+		  <p>付到银行卡</p></li>
+		<li><a href="#"><img src="images/column10.jpg" border="0" /></a>
+		  <p>还房贷</p></li>
+		<li style="padding:0;"><a href="#"><img src="images/column11.jpg" border="0" /></a>
+		  <p>更多应用</p></li>
+		</ul>
+		</div>
+		</div>
+	<!--------------------------内容区------------------------------->
+<div id="content">
+<div class="content">
+<div class="con_left">
+<span><a href="#"><img src="images/content_img1.jpg" border="0" /></a></span>
+<span><a href="#"><img src="images/content_img2.jpg" border="0" /></a></span>
+<span><a href="#"><img src="images/content_img3.jpg" border="0" /></a></span>
+<span><a href="#"><img src="images/content_img4.jpg" border="0" /></a></span>
+
+</div>
+
+<div class="con_right">
+<dl>
+<dt></dt>
+<dd>
+<span><img src="images/content_img6.jpg" /></span>
+<span>充话费|购彩票|买Q币|还信用卡</span>
+<span><a href="#"><img src="images/content_btn1.jpg" width="137" height="29" border="0" /></a></span></dd>
+</dl>
+<span class="line00"></span>
+<div class="con_right_span">
+<b>活动</b>
+<p><a href="#">音乐跨年礼，听歌100%赚话费</a></p>
+<p><a href="#">名臣福利联手中国银行，话费Q币大放送</a></p>
+</div>
+<span class="line00"></span>
+<div class="con_right_span" >
+<b>活动</b>
+<p><a href="#">12月14日农业银行维护通知</a></p>
+<p><a href="#">12月13日农业银行维护通知</a></p>
+</div>
+
+</div>
+
+</div>
+
+</div>
+<!--------------------------友情链接------------------------------->
+<div id="friendlink">
+<div class="friendlink">
+<span><p>合作银行</p>
+<div class="link">
+<b><img src="images/friend1.jpg" /></b>
+<b><img src="images/friend2.jpg" /></b>
+<b><img src="images/friend3.jpg" /></b>
+<b><img src="images/friend4.jpg" /></b>
+<b><img src="images/friend5.jpg" /></b>
+<b><img src="images/friend6.jpg" /></b>
+<b><img src="images/friend7.jpg" /></b>
+<b><img src="images/friend8.jpg" /></b>
+<b><img src="images/friend9.jpg" /></b>
+<b><img src="images/friend10.jpg" /></b>
+<b><img src="images/friend11.jpg" /></b>
+<b><img src="images/friend12.jpg" /></b>
+
+<b><img src="images/friend13.jpg" /></b>
+<b><img src="images/friend14.jpg" /></b>
+<b><img src="images/friend15.jpg" /></b>
+<b><img src="images/friend16.jpg" /></b>
+<b><img src="images/friend17.jpg" /></b>
+
+</div>
+</span>
+
+<span><p>合作商户</p>
+<div class="link">
+<p><img src="images/friend01.jpg" /></p>
+<p><img src="images/friend02.jpg" /></p>
+<p><img src="images/friend03.jpg" /></p>
+<p><img src="images/friend04.jpg" /></p>
+<p><img src="images/friend05.jpg" /></p>
+<p><img src="images/friend06.jpg" /></p>
+<p><img src="images/friend07.jpg" /></p>
+<p><img src="images/friend008.jpg" /></p>
+
+</div>
+</span>
+
+<span>
+<p>权威认证</p>
+<div class="link">
+<h2><img src="images/friend001.jpg" /></h2>
+<h2><img src="images/friend002.jpg" /></h2>
+<h2><img src="images/friend003.jpg" /></h2>
+<h2><img src="images/friend004.jpg" /></h2>
+<h2><img src="images/friend005.jpg" /></h2>
+</div>
+</span>
+
+</div>
+<!--------------------------友情链接------------------------------->
+     
 	<#include "/WEB-INF/template/card/footer.ftl">
 <!--	<script type="text/javascript" src="${base}/template/common/js/jquery.js"></script>
 	<script type="text/javascript" src="${base}/template/common/js/jquery.tools.js"></script>

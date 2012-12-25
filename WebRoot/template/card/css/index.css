@@ -1,0 +1,77 @@
+/* CSS Document */
+
+/*全局样式*/
+body{ margin:0; padding:0; background:#fff; font-size:12px; color:#666; font:Arial, Helvetica, sans-serif;}
+*{ margin:0; padding:0; border:0;}
+ul,li{ list-style-type:none;}
+
+/*基本样式*/
+
+/*顶部黑色条部分*/
+#submenu{ width:100%; height:30px; background:#2d2d2d;}
+.submenu{width:995px; margin:auto;line-height:30px; }
+.submenu ul{ float:left; }
+.submenu ul li{ float:left; width:80px; color:#a9a9a9; text-align:center; background:url(../images/submenu_line.jpg) right no-repeat;}
+.submenu ul li .weibo{background:none; width:100px; background:url(../images/weibo.jpg) left no-repeat;}
+.submenu ul li a{ color:#a9a9a9; text-decoration:none;}
+.submenu span{ float:right; }
+.submenu span p{ float:right; width:110px; background:#e10911; text-align:center;}
+.submenu span p a{ color:#fff; text-decoration:none;}
+/*头部*/
+#top{ width:100%; height:76px; background:url(../images/top_bj.jpg) repeat-x;}
+.top{ width:995px; margin:auto; padding-top:13px; }
+.top h1{ float:left;}
+/*导航*/
+.menu{ float:right;}
+.menu ul{}
+.menu ul li{ float:left; padding:30px 0 0 58px; display:inline;}
+
+/*banner以及登录框*/
+#banner{ width:995px; background:url(../images/benner.jpg) left no-repeat; margin:auto; height:415px; position:relative; overflow:hidden;}
+.login{ width:318px; height:278px; border:solid 5px #a7a7a7; position:absolute; right:50px; top:60px; }
+.denglu1 a{ float:left; width:159px; height:32px; color:#000; font-size:16px; text-align:center; line-height:32px; font-weight:bold; display:block; text-decoration:none; }
+.denglu2 a{ float:left; width:159px; height:32px; background:#ddd; color:#666; font-size:16px; font-weight:bold; text-align:center; line-height:32px; display:block; margin-bottom:26px; text-decoration:none;}
+.id{  height:26px; padding:0 0 20px 28px; display:block;}
+.id p{ float:left; padding-right:10px; line-height:26px; }
+.span{ float:left; border: solid 1px #ddd; height:26px; line-height:26px; padding-left:5px; width:180px;}
+.mm{ width:250px; height:26px; }
+
+.btn{ width:220px; margin-left:70px; line-height:30px;}
+.btn span a{ color:#666; text-decoration:none; }
+.btn p{ float:left; padding-left:10px;}
+/*栏目*/
+#column{ width:100%; background:#eee; height:95px; padding-top:15px; }
+.column{ width:995px; margin:auto; height:95px; background:url(../images/fengexian.jpg) bottom no-repeat;}
+.column ul{}
+.column ul li{ float:left; padding-right:43px;}
+.column ul li p{ line-height:24px; text-align:center; padding-bottom:15px; }
+/*内容区*/
+#content{ width:100%; height:313px; background:#eee; padding:15px 0 30px 0;}
+.content{ width:995px; margin:auto; height:313px; }
+.con_left{ float:left; width:666px; height:309px;}
+.con_left span a{ float:left; border: solid 1px #d5d5d5; width:327px; height:151px; margin:0 4px 4px 0;}
+.con_left span a:hover{ border: solid 1px #aaa;}
+
+.con_right{ float:left; width:327px; height:309px; background:#fff; border:solid 1px #d5d5d5; overflow:hidden; }
+.con_right dl{ width:327px; height:140px; display:block;}
+.con_right dl dt{ float:left; background:url(../images/content_img5.jpg) no-repeat; width:120px; height:140px; display:block;}
+.con_right dl dd{ float:right;}
+.con_right dl dd span{ display:block; padding-top:17px; text-align:right; padding-right:20px;}
+.line00{ overflow:hidden; width:278px; height:1px; background:#ddd; margin:auto; display:block;}
+.con_right_span{ padding:10px 0 10px 30px; line-height:22px;}
+.con_right_span b{ font-size:14px; color:#000; font-weight:bold; }
+.con_right_span p a{ color:#8e292d; text-decoration:none;}
+/*友情链接*/
+#friendlink{ width:100%; height:246px; background:#dbdbdb; }
+.friendlink{ width:995px; margin:auto; height:143px; border-bottom: solid 1px #c0c0c0;}
+.friendlink span{ float:left; display:block; width:330px; height:143px; display:block; }
+.friendlink span p{ display:block; line-height:60px;}
+.link{}
+.link b{ float:left; height:35px; width:35px;}
+.link p{ float:left; height:35px; width:80px;}
+.link h2{ float:left; padding-right:15px;}
+
+.bottom{ width:995px; height:88px; padding-top:15px; margin:auto;}
+.bottom span{ display:block; text-align:center; line-height:20px; color:#999;}
+
+

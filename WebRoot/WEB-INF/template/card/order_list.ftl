@@ -21,11 +21,73 @@
 <![endif]-->
 <#include "/WEB-INF/template/card/member_head.ftl">
 </head>
-<body class="memberCenter">
+<body>
 	<#include "/WEB-INF/template/card/member_header.ftl">
-		<section id="content-container" class="clearfix">
-         <div id="main-wrap" class="clearfix">
+	
+	
             <#include "/WEB-INF/template/card/member_left_order.ftl">
+            <!-------------------------------订单------------------------------------->
+<div class="box2">
+<div class="title2">最近8条订单</div>
+<div class="box00">
+<div class="line"></div>
+<span>提示：订单如果还在处理中可以点击刷新按钮查看最新订单状态<b><input name="" type="image" src="images/2_btn3.jpg" /></b></span>
+<div class="span">
+<ul>
+<li>充值卡名称</li>
+<li>订单编号</li>
+<li>下单时间</li>
+<li>订单金额</li>
+<li>订单状态</li>
+<li style="border-right: solid 1px #ddd;">操作</li>
+</ul>
+
+
+
+<#list pager.result as order>
+						<ul >
+							<li class="ul222">
+									<a href="order!view.action?id=${order.id}">
+										<#list order.orderItemSet as productItem>
+											<#if productItem_index != 0>、</#if>
+											${productItem.productName}
+											<#if productItem_index == 3 && productItem_has_next>
+												...
+												<#break />
+											</#if>
+										</#list>
+									</a>
+								</li>
+								<li class="ul222">
+									<a href="order!view.action?id=${order.id}">${order.orderSn}</a>
+								</li>
+								<li class="ul222">
+									
+								</li>
+								<li class="ul222">
+									${order.amount?string(currencyFormat)}
+								</li>
+								<li class="ul222">
+									<#if order.orderStatus != "completed" && order.orderStatus != "invalid">
+										[${action.getText("OrderStatus." + order.orderStatus)}]
+									<#else>
+										[${action.getText("OrderStatus." + order.orderStatus)}]
+									</#if>
+								</li>
+							<li class="ul222" style="border-right: solid 1px #ddd;">查看</li>
+				</ul>
+</#list>
+<span>－_－^..暂无订单记录</span>
+
+</div>
+
+
+</div>
+
+</div>
+
+</div>
+</div>
             <div class="page_content_right sub-content">
             	<table id="wp-calendar">
 						<tr>
@@ -53,15 +115,14 @@
 									<a href="order!view.action?id=${order.id}">${order.orderSn}</a>
 								</td>
 								<td>
-									<span title="${order.createDate?string("yyyy-MM-dd HH:mm:ss")}">${order.createDate}</span>
+									
 								</td>
 								<td>
-									${order.amountPayable?string(currencyFormat)}
+									${order.amount?string(currencyFormat)}
 								</td>
 								<td>
 									<#if order.orderStatus != "completed" && order.orderStatus != "invalid">
-										[${action.getText("PaymentStatus." + order.paymentStatus)}]
-										[${action.getText("ShippingStatus." + order.shippingStatus)}]
+										[${action.getText("OrderStatus." + order.orderStatus)}]
 									<#else>
 										[${action.getText("OrderStatus." + order.orderStatus)}]
 									</#if>

@@ -5,13 +5,12 @@
 <title>会员注册<#if setting.isShowPoweredInfo> - XXS</#if></title>
 <meta name="Author" content="XXS-DW" />
 <meta name="Copyright" content="XXS" />
-<#if (article.metaKeywords)! != ""><meta name="keywords" content="${article.metaKeywords}" /></#if>
-<#if (article.metaDescription)! != ""><meta name="description" content="${article.metaDescription}" /></#if>
-<link rel="icon" href="favicon.ico" type="image/x-icon" />
 <link href="${base}/template/card/css/style.css" type="text/css" rel="stylesheet" />
 <script type="text/javascript" src="${base}/template/card/js/jquery.js"></script>
+<#include "/WEB-INF/template/card/head.ftl">
 </head>
 <body>
+<#include "/WEB-INF/template/card/header.ftl">
 <br><p align="center">名臣福利注册页面</p>
 <div id="formbox">
 	<form id="formpersonal" method="post" onsubmit="return false;">
@@ -144,6 +143,7 @@
 		
 	</div>
 	</form>
+	<#include "/WEB-INF/template/card/footer.ftl">
 </div><!--formbox end-->
 <script type="text/javascript" src="${base}/template/card/js/Validate.js"></script>
 <script type="text/javascript" src="${base}/template/card/js/Validate.form.js"></script>

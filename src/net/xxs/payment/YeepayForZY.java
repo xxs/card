@@ -339,4 +339,11 @@ public class YeepayForZY extends BasePaymentProduct {
 		return (paymentResult);
 	}
 
+	@Override
+	public PaymentResult cardQuery(PaymentConfig paymentConfig,
+			String paymentSn, BigDecimal paymentAmount,
+			HttpServletRequest httpServletRequest) {
+		return null;
+	}
+
 }

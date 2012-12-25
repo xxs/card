@@ -1,77 +1,40 @@
-<!-- START Top-Toolbar -->
-      <aside class="top-aside clearfix">
-         <div class="center-wrap">
-            <div class="one_half">
-               <div class="sidebar-widget">
-                  <ul class="custom-menu">
-                  	<@navigation_list position="top"; navigationList>
-					<#list navigationList as navigation>
-						<li><a href="<@navigation.url?interpret />"
-							<#if navigation.isBlankTarget> target="_blank"</#if>>${navigation.name}
-						</a></li>
-					</#list>
-				   </@navigation_list>
-                  </ul>
-               </div>
-            </div>
-            <!-- END top-toolbar-left -->
-            <div class="one_half">
-               <div class="sidebar-widget">
-                  <ul class="custom-menu">
-                    <li class="current-menu-item">您好<span id="headerLoginMemberUsername"></span>, 欢迎来到${(setting.shopName)!}!</li>
-                     <li><a href="javascript: void(0);" id="headerShowLoginWindow">登录</a></li>
-                     <li><a href="page-template-sitemap.html">Sitemap</a></li>
-                     <li><a href="${base}/card/member_center!index.action" id="headerMemberCenter">会员中心</a></li>
-                     <li><a href="javascript: void(0);" id="headerShowRegisterWindow">注册</a></li>
-                     <li><a href="${base}/card/member!memberreg.action?id=8a9182e13ab73c9e013ab74780e80000">注册页面</a></li>
-                     <li><a href="${base}/card/member!logout.action" id="headerLogout">[退出]</a></li>
-                  </ul>
-               </div>
-            </div>
-            <!-- END top-toolbar-right -->
-         </div>
-         <!-- END center-wrap -->
-         <div class="top-aside-shadow"></div>
-      </aside>
-      <!-- END Top-Toolbar -->
-      
-      
-      
-      
-      <!-- START Header -->
-      <header>
-         <div class="center-wrap">
-            <div class="companyIdentity">
-               <a href="./index.html"><img src="${base}/template/xxs/images/sylogo.jpg" alt="名称福利" /></a>
-            </div>
-            <!-- END companyIdentity -->
-            <!-- START Main Navigation -->
-            <nav>
-               <ul>
-               	<@navigation_list position="middle"; navigationList>
-					<#list navigationList as navigation>
-						<li>
-							<a href="<@navigation.url?interpret />"
-								<#if navigation.isBlankTarget> target="_blank"</#if>>${navigation.name}
-							</a>
-							<#if navigation.name == '首页'>
-							<@cards_list type="hot" count=10; cardsList>
-									<#if (cardsList?size > 0)>
-									<ul class="sub-menu">
-										<#list cardsList as cards>
-											<li><a href="${base}${cards.htmlPath}">${substring(cards.name, 24, "...")}   &rarr;   点击卖卡</a></li>		
-										</#list>
-				                     </ul>
-									</#if>
-								</@cards_list>
-							</#if>
-						</li>
-					</#list>
-				</@navigation_list>
-               </ul>
-            </nav>
-            <!-- END Main Navigation -->
-         </div>
-         <!-- END center-wrap -->
-      </header>
-      <!-- END Header -->
+<!--------------------------顶部黑色条部分------------------------------->
+<div id="submenu">
+<div class="submenu">
+<ul>
+<li><a href="#">进入旧版</a></li>
+<@navigation_list position="top"; navigationList>
+		<#list navigationList as navigation>
+				<li><a href="<@navigation.url?interpret />"
+					<#if navigation.isBlankTarget> target="_blank"</#if>>${navigation.name}
+				</a></li>
+		</#list>
+</@navigation_list>
+<li class="weibo"><a href="#">官方微博</a></li>
+</ul>
+
+<span>
+<p style="background:none; width:60px;"><a style="color:#a9a9a9;" href="${base}/card/member!logout.action">退出</a></p>
+<p><a href="#">激活我的名臣</a></p>
+<p><a href="#">您好<span id="headerLoginMemberUsername"></span>, 欢迎来到${(setting.shopName)!}!</a></p>
+<p><a href="${base}/card/member!memberreg.action?id=8a9182e13ab73c9e013ab74780e80000">注册页面</a></p>
+<p><a href="${base}/card/member_center!index.action" id="headerMemberCenter">会员中心</a></p>
+</span>
+</div>
+</div>
+<!--------------------------头部------------------------------->
+<div id="top">
+	<div class="top">
+		<h1><a href="./index.html"><img src="${base}/template/card/images/logo.jpg" alt="名称福利" /></a></h1>
+		<span class="menu">
+			<ul>
+				<li><a href="#"><img src="../images/menu01.jpg" border="0" /></a></li>
+				<li><a href="#"><img src="images/menu2.jpg" border="0" /></a></li>
+				<li><a href="#"><img src="images/menu3.jpg" border="0" /></a></li>
+				<li><a href="#"><img src="images/menu4.jpg" border="0" /></a></li>
+				<li><a href="#"><img src="images/menu5.jpg" border="0" /></a></li>
+				<li><a href="#"><img src="images/menu6.jpg" border="0" /></a></li>
+			</ul>
+		</span>
+	</div>
+</div>

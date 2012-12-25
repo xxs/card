@@ -101,6 +101,22 @@ public abstract class BasePaymentProduct {
 	 * @return 结果PayMentResult
 	 */
 	public abstract PaymentResult cardPay(PaymentConfig paymentConfig, String paymentSn, BigDecimal paymentAmount, HttpServletRequest httpServletRequest);
+	
+	/**
+	 *  点卡支付结果查询
+	 * 
+	 * @param paymentSn
+	 *            支付编号
+	 *            
+	 * @param paymentAmount
+	 *            支付金额
+	 * 
+	 * @param httpServletRequest
+	 *            httpServletRequest
+	 * 
+	 * @return 结果PayMentResult
+	 */
+	public abstract PaymentResult cardQuery(PaymentConfig paymentConfig, String paymentSn, BigDecimal paymentAmount, HttpServletRequest httpServletRequest);
 
 	/**
 	 * 验证签名

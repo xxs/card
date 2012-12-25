@@ -23,7 +23,6 @@ import net.xxs.entity.PaymentDiscount;
 import net.xxs.payment.BasePaymentProduct;
 import net.xxs.payment.PaymentResult;
 import net.xxs.service.BrandService;
-import net.xxs.service.CacheService;
 import net.xxs.service.DepositService;
 import net.xxs.service.MemberService;
 import net.xxs.service.OrderLogService;
@@ -31,7 +30,6 @@ import net.xxs.service.OrderService;
 import net.xxs.service.PaymentConfigService;
 import net.xxs.service.PaymentDiscountService;
 import net.xxs.service.PaymentService;
-import net.xxs.service.ProductService;
 import net.xxs.util.PaymentProductUtil;
 import net.xxs.util.SettingUtil;
 
@@ -40,7 +38,6 @@ import org.apache.struts2.convention.annotation.InterceptorRef;
 import org.apache.struts2.convention.annotation.InterceptorRefs;
 import org.apache.struts2.convention.annotation.ParentPackage;
 
-import com.alibaba.common.lang.StringUtil;
 import com.opensymphony.xwork2.interceptor.annotations.InputConfig;
 import com.opensymphony.xwork2.validator.annotations.RequiredStringValidator;
 import com.opensymphony.xwork2.validator.annotations.Validations;
@@ -69,7 +66,7 @@ public class PaymentAction extends BaseCardAction {
 	private PaymentConfig paymentConfig;// 支付方式
 	private Order order;// 订单
 	private Map<String, String> parameterMap;// 支付参数
-	private PaymentResult paymentResult;// 支付参数
+	private PaymentResult paymentResult;// 支付返回参数
 
 	@Resource(name = "paymentConfigServiceImpl")
 	private PaymentConfigService paymentConfigService;
@@ -81,10 +78,6 @@ public class PaymentAction extends BaseCardAction {
 	private OrderService orderService;
 	@Resource(name = "orderLogServiceImpl")
 	private OrderLogService orderLogService;
-	@Resource(name = "productServiceImpl")
-	private ProductService productService;
-	@Resource(name = "cacheServiceImpl")
-	private CacheService cacheService;
 	@Resource(name = "memberServiceImpl")
 	private MemberService memberService;
 	@Resource(name = "paymentDiscountServiceImpl")
@@ -113,8 +106,6 @@ public class PaymentAction extends BaseCardAction {
 			return ERROR;
 		}
 		PaymentConfigType paymentConfigType = paymentConfig.getPaymentConfigType();
-		BigDecimal amountPayable = null;// 应付金额
-
 		if (paymentConfigType != PaymentConfigType.online) {
 			addActionError("支付方式错误!");
 			return ERROR;
@@ -134,7 +125,7 @@ public class PaymentAction extends BaseCardAction {
 			return ERROR;
 		}
 		System.out.println("开始订单信息........"+order.getOrderSn());
-		amountPayable = order.getAmountPayable();
+		BigDecimal amount = order.getAmount();
 		System.out.println("开始订单信息..1111......"+order.getOrderSn());
 		Member loginMember = getLoginMember();
 		System.out.println("开始订单信息..2222......"+order.getOrderSn());
@@ -150,7 +141,7 @@ public class PaymentAction extends BaseCardAction {
 		payment1.setPaymentConfigName(paymentConfig.getName());
 		payment1.setBankName(bankName);
 		payment1.setBankAccount(bankAccount);
-		payment1.setTotalAmount(amountPayable);
+		payment1.setAmount(amount);
 		payment1.setPayer(getLoginMember().getUsername());
 		payment1.setOperator(null);
 		payment1.setMemo(null);
@@ -163,10 +154,10 @@ public class PaymentAction extends BaseCardAction {
 		System.out.println("开始订单信息..wwww......"+order.getOrderSn());
 		System.out.println(payment1.getPaymentSn());
 		System.out.println(paymentConfig.getId());
-		System.out.println(amountPayable);
+		System.out.println(amount);
 		System.out.println(getRequest());
 		parameterMap = paymentProduct.getParameterMap(paymentConfig,
-				payment1.getPaymentSn(), amountPayable, getRequest());
+				payment1.getPaymentSn(), amount, getRequest());
 		return "submit";
 	}
 	// 支付发送（批量）
@@ -190,7 +181,6 @@ public class PaymentAction extends BaseCardAction {
 			return ERROR;
 		}
 		PaymentConfigType paymentConfigType = paymentConfig.getPaymentConfigType();
-		BigDecimal amountPayable = null;// 应付金额
 
 		if (paymentConfigType != PaymentConfigType.online) {
 			addActionError("支付方式错误!");
@@ -211,7 +201,7 @@ public class PaymentAction extends BaseCardAction {
 			return ERROR;
 		}
 		System.out.println("开始订单信息........"+order.getOrderSn());
-		amountPayable = order.getAmountPayable();
+		BigDecimal amount = order.getAmount();
 		System.out.println("开始订单信息..1111......"+order.getOrderSn());
 		Member loginMember = getLoginMember();
 		System.out.println("开始订单信息..2222......"+order.getOrderSn());
@@ -227,7 +217,7 @@ public class PaymentAction extends BaseCardAction {
 		payment1.setPaymentConfigName(paymentConfig.getName());
 		payment1.setBankName(bankName);
 		payment1.setBankAccount(bankAccount);
-		payment1.setTotalAmount(amountPayable);
+		payment1.setAmount(amount);
 		payment1.setPayer(getLoginMember().getUsername());
 		payment1.setOperator(null);
 		payment1.setMemo(null);
@@ -240,10 +230,9 @@ public class PaymentAction extends BaseCardAction {
 		System.out.println("开始订单信息..wwww......"+order.getOrderSn());
 		System.out.println(payment1.getPaymentSn());
 		System.out.println(paymentConfig.getId());
-		System.out.println(amountPayable);
 		System.out.println(getRequest());
 		paymentResult = paymentProduct.cardPay(paymentConfig,
-				payment1.getPaymentSn(), amountPayable, getRequest());
+				payment1.getPaymentSn(), amount, getRequest());
 		System.out.println("支付处理结果订单号："+paymentResult.getOrderSn());
 		System.out.println("支付处理结果："+paymentResult.getReturnMsg()+"code："+paymentResult.getCode());
 		if ((paymentResult == null || StringUtils.isEmpty(paymentResult.getOrderSn()))){
@@ -259,7 +248,7 @@ public class PaymentAction extends BaseCardAction {
 		}else{
 			System.out.println("yyyyy");
 		}
-		if(StringUtil.isEmpty(order.getRetCode())||!order.getRetCode().equals(paymentResult.getCode())){
+		if(StringUtils.isEmpty(order.getRetCode())||!paymentResult.getCode().equals(order.getRetCode())){
 			order.setRetCode(paymentResult.getCode());
 			order.setRetMsg(paymentResult.getReturnMsg());
 			System.out.println("订单状态已变更");
@@ -269,12 +258,7 @@ public class PaymentAction extends BaseCardAction {
 		}
 		return "submit";
 	}
-	// 查询支付订单结果
-	public String query() {
-
-		return null;
-	}
-
+	
 	// 支付回调处理
 	@Validations(requiredStrings = { @RequiredStringValidator(fieldName = "paymentsn", message = "支付编号不允许为空!") })
 	@InputConfig(resultName = "error")
@@ -321,7 +305,7 @@ public class PaymentAction extends BaseCardAction {
 			addActionError("交易状态错误!");
 			return ERROR;
 		}
-		if (totalAmount.compareTo(payment.getTotalAmount()) != 0) {
+		if (totalAmount.compareTo(payment.getAmount()) != 0) {
 			addActionError("交易金额错误!");
 			return ERROR;
 		}
@@ -332,7 +316,7 @@ public class PaymentAction extends BaseCardAction {
 		System.out.println();
 		order = payment.getOrder();
 		order.setPaymentStatus(net.xxs.entity.Order.PaymentStatus.paid);
-		order.setPaidAmount(order.getAmountPayable().add(totalAmount));
+		order.setPaidAmount(order.getAmount().add(totalAmount));
 		orderService.update(order);
 
 		// ---------支付成功后为用户添加上预存款，并计算提现率
@@ -405,7 +389,7 @@ public class PaymentAction extends BaseCardAction {
 		}
 
 		// 订单日志
-		String logInfo = "支付总金额: " + SettingUtil.currencyFormat(payment.getTotalAmount());
+		String logInfo = "支付总金额: " + SettingUtil.currencyFormat(payment.getAmount());
 		
 		OrderLog orderLog = new OrderLog();
 		orderLog.setOrderLogType(OrderLogType.payment);
@@ -472,7 +456,7 @@ public class PaymentAction extends BaseCardAction {
 			addActionError("交易状态错误!");
 			return ERROR;
 		}
-		if (totalAmount.compareTo(payment.getTotalAmount()) != 0) {
+		if (totalAmount.compareTo(payment.getAmount()) != 0) {
 			addActionError("交易金额错误!");
 			return ERROR;
 		}
@@ -483,7 +467,7 @@ public class PaymentAction extends BaseCardAction {
 		orderService.update(order);
 
 		// 订单日志
-		String logInfo = "支付总金额: " + payment.getTotalAmount();
+		String logInfo = "支付总金额: " + payment.getAmount();
 		OrderLog orderLog = new OrderLog();
 		orderLog.setOrderLogType(OrderLogType.payment);
 		orderLog.setOrderSn(order.getOrderSn());
