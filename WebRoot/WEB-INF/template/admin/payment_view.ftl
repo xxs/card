@@ -65,13 +65,7 @@
 					支付金额: 
 				</th>
 				<td>
-					${payment.totalAmount?string(currencyFormat)}
-				</td>
-				<th>
-					支付手续费: 
-				</th>
-				<td>
-					${payment.paymentFee?string(currencyFormat)}
+					${payment.amount?string(currencyFormat)}
 				</td>
 			</tr>
 			<tr>

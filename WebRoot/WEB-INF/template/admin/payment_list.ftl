@@ -69,10 +69,7 @@
 						<a href="#" class="sort" name="paymentConfigName" hidefocus>支付方式</a>
 					</th>
 					<th>
-						<a href="#" class="sort" name="totalAmount" hidefocus>支付金额</a>
-					</th>
-					<th>
-						<a href="#" class="sort" name="paymentFee" hidefocus>支付手续费</a>
+						<a href="#" class="sort" name="amount" hidefocus>支付金额</a>
 					</th>
 					<th>
 						<a href="#" class="sort" name="payer" hidefocus>付款人</a>
@@ -102,10 +99,7 @@
 							${payment.paymentConfigName}
 						</td>
 						<td>
-							${payment.totalAmount?string(currencyFormat)}
-						</td>
-						<td>
-							${payment.paymentFee?string(currencyFormat)}
+							${payment.amount?string(currencyFormat)}
 						</td>
 						<td>
 							${payment.payer}

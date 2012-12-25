@@ -156,14 +156,14 @@ $().ready( function() {
 			"payment.totalAmount": {
 				required: true,
 				positive: true,
-				max: ${order.totalAmount - order.paidAmount}
+				max: ${order.amount - order.paidAmount}
 			}
 		},
 		messages: {
 			"payment.totalAmount": {
 				required: "请输入付款金额",
 				positive: "付款金额必须为正数",
-				max: "付款金额必须小于等于${order.totalAmount - order.paidAmount}"
+				max: "付款金额必须小于等于${order.amount - order.paidAmount}"
 			}
 		},
 		submitHandler: function(form) {
@@ -356,12 +356,6 @@ $().ready( function() {
 			<li>
 				<input type="button" id="shippingTabButton" value="订单发货"<#if order.orderStatus == "completed" || order.orderStatus == "invalid" || order.shippingStatus == "shipped"> disabled</#if> hidefocus />
 			</li>
-			<li>
-				<input type="button" id="refundTabButton" value="退款"<#if order.orderStatus == "completed" || order.orderStatus == "invalid" || order.paymentStatus == "unpaid" || order.paymentStatus == "refunded"> disabled</#if> hidefocus />
-			</li>
-			<li>
-				<input type="button" id="reshipTabButton" value="退货"<#if order.orderStatus == "completed" || order.orderStatus == "invalid" || order.shippingStatus == "unshipped" || order.shippingStatus == "reshiped"> disabled</#if> hidefocus />
-			</li>
 		</ul>
 		<div class="tabContent">
 			<table class="inputTable">
@@ -416,50 +410,22 @@ $().ready( function() {
 						充值卡总金额: 
 					</th>
 					<td>
-						<span id="totalProductPrice" class="red">${order.totalProductPrice?string(currencyFormat)}</span>
+						<span id="amount" class="red">${order.amount?string(currencyFormat)}</span>
 					</td>
 					<th>
 						订单总金额: 
 					</th>
 					<td>
-						<span id="totalAmount" class="red">${order.totalAmount?string(currencyFormat)}</span>&nbsp;&nbsp;
+						<span id="amount" class="red">${order.amount?string(currencyFormat)}</span>&nbsp;&nbsp;
 						<strong class="red">[已付金额: ${order.paidAmount?string(currencyFormat)}]</strong>
 					</td>
 				</tr>
 				<tr>
 					<th>
-						配送方式: 
-					</th>
-					<td>
-						${order.deliveryTypeName}
-					</td>
-					<th>
 						支付方式: 
 					</th>
 					<td>
 						${order.paymentConfigName}
-					</td>
-				</tr>
-				<tr>
-					<th>
-						配送费用: 
-					</th>
-					<td>
-						${order.deliveryFee?string(currencyFormat)}
-					</td>
-					<th>
-						支付手续费: 
-					</th>
-					<td>
-						${order.paymentFee?string(currencyFormat)}
-					</td>
-				</tr>
-				<tr>
-					<th>
-						充值卡重量: 
-					</th>
-					<td>
-						${order.totalProductWeight} 克
 					</td>
 					<th>
 						附言: 
@@ -471,48 +437,6 @@ $().ready( function() {
 				<tr>
 					<td colspan="4">
 						&nbsp;
-					</td>
-				</tr>
-				<tr>
-					<th>
-						收货人姓名: 
-					</th>
-					<td>
-						${order.shipName}
-					</td>
-					<th>
-						收货地区: 
-					</th>
-					<td>
-						${order.shipArea.displayName}
-					</td>
-				</tr>
-				<tr>
-					<th>
-						收货地址: 
-					</th>
-					<td>
-						${order.shipAddress}
-					</td>
-					<th>
-						邮编: 
-					</th>
-					<td>
-						${order.shipZipCode}
-					</td>
-				</tr>
-				<tr>
-					<th>
-						电话: 
-					</th>
-					<td>
-						${order.shipPhone}
-					</td>
-					<th>
-						手机: 
-					</th>
-					<td>
-						${order.shipMobile}
 					</td>
 				</tr>
 				<tr>
@@ -647,7 +571,7 @@ $().ready( function() {
 								订单总金额: 
 							</th>
 							<td>
-								<span class="red">${order.totalAmount?string(currencyFormat)}</span>
+								<span class="red">${order.amount?string(currencyFormat)}</span>
 							</td>
 							<th>
 								已付金额: 
@@ -701,7 +625,7 @@ $().ready( function() {
 								付款金额: 
 							</th>
 							<td>
-								<input type="text" name="payment.totalAmount" class="formText" value="${order.totalAmount - order.paidAmount}" />
+								<input type="text" name="payment.amount" class="formText" value="${order.amount - order.paidAmount}" />
 							</td>
 							<th>
 								付款人: 
@@ -747,108 +671,6 @@ $().ready( function() {
 							</th>
 							<td>
 								${order.createDate?string("yyyy-MM-dd HH:mm:ss")}
-							</td>
-						</tr>
-						<tr>
-							<th>
-								配送方式: 
-							</th>
-							<td>
-								<select name="deliveryType.id">
-									<#list allDeliveryTypeList as deliveryType>
-										<option value="${deliveryType.id}"<#if (deliveryType == order.deliveryType)!> selected</#if>>
-											${deliveryType.name}
-										</option>
-									</#list>
-								</select>
-							</td>
-							<th>
-								配送费用: 
-							</th>
-							<td>
-								<span class="red">${order.deliveryFee?string(currencyFormat)}</span>
-							</td>
-						</tr>
-						<tr>
-							<th>
-								物流公司: 
-							</th>
-							<td>
-								<select name="deliveryCorp.id">
-									<#list allDeliveryCorpList as deliveryCorp>
-										<option value="${deliveryCorp.id}"<#if (deliveryCorp == order.deliveryType.defaultDeliveryCorp)!> selected</#if>>
-											${deliveryCorp.name}
-										</option>
-									</#list>
-								</select>
-							</td>
-							<th>
-								物流单号: 
-							</th>
-							<td>
-								<input type="text" name="shipping.deliverySn" class="formText" />
-							</td>
-						</tr>
-						<tr>
-							<th>
-								物流费用: 
-							</th>
-							<td colspan="3">
-								<input type="text" name="shipping.deliveryFee" class="formText" value="${order.deliveryFee}" />
-								<label class="requireField">*</label>
-							</td>
-						</tr>
-						<tr>
-							<td colspan="4">
-								&nbsp;
-							</td>
-						</tr>
-						<tr>
-							<th>
-								收货人姓名: 
-							</th>
-							<td>
-								<input type="text" name="shipping.shipName" class="formText" value="${order.shipName}" />
-								<label class="requireField">*</label>
-							</td>
-							<th>
-								收货地区: 
-							</th>
-							<td>
-								<input type="text" name="shipAreaId" class="areaSelect" value="${order.shipArea.id}" defaultSelectedPath="${order.shipArea.path}" />
-								<label class="requireField">*</label>
-							</td>
-						</tr>
-						<tr>
-							<th>
-								收货地址: 
-							</th>
-							<td>
-								<input type="text" name="shipping.shipAddress" class="formText" value="${order.shipAddress}" />
-								<label class="requireField">*</label>
-							</td>
-							<th>
-								邮编: 
-							</th>
-							<td>
-								<input type="text" name="shipping.shipZipCode" class="formText" value="${order.shipZipCode}" />
-								<label class="requireField">*</label>
-							</td>
-						</tr>
-						<tr>
-							<th>
-								电话: 
-							</th>
-							<td>
-								<input type="text" id="shipPhone" name="shipping.shipPhone" class="formText" value="${order.shipPhone}" />
-								<label class="requireField">*</label>
-							</td>
-							<th>
-								手机: 
-							</th>
-							<td>
-								<input type="text" name="shipping.shipMobile" class="formText" value="${order.shipMobile}" />
-								<label class="requireField">*</label>
 							</td>
 						</tr>
 						<tr>
@@ -903,285 +725,6 @@ $().ready( function() {
 								</td>
 								<td>
 									<input type="text" name="deliveryItemList[${orderItem_index}].deliveryQuantity" class="formText shippingDeliveryQuantity" value="${orderItem.productQuantity - orderItem.deliveryQuantity}" maxDeliveryQuantity="${orderItem.productQuantity - orderItem.deliveryQuantity}" style="width: 50px;" />
-								</td>
-							</tr>
-						</#list>
-						<tr>
-							<td colspan="6">
-								<div class="buttonArea">
-									<input type="submit" class="formButton" value="确  定" hidefocus />&nbsp;&nbsp;
-									<input type="button" class="formButton" onclick="window.history.back(); return false;" value="返  回" hidefocus />
-								</div>
-							</td>
-						</tr>
-					</table>
-				</form>
-			</#if>
-		</div>
-		<div class="tabContent">
-			<#if order.orderStatus != "completed" && order.orderStatus != "invalid" && order.paymentStatus != "unpaid" && order.paymentStatus != "refunded">
-				<form id="refundForm" action="order!refund.action" method="post">
-					<input type="hidden" name="id" value="${order.id}" />
-					<table class="inputTable">
-						<tr>
-							<th>
-								订单编号: 
-							</th>
-							<td>
-								${order.orderSn}
-							</td>
-							<th>
-								下单时间: 
-							</th>
-							<td>
-								${order.createDate?string("yyyy-MM-dd HH:mm:ss")}
-							</td>
-						</tr>
-						<tr>
-							<th>
-								订单总金额: 
-							</th>
-							<td>
-								<span class="red">${order.totalAmount?string(currencyFormat)}</span>
-							</td>
-							<th>
-								已付金额: 
-							</th>
-							<td>
-								<span class="red">${order.paidAmount?string(currencyFormat)}</span>
-							</td>
-						</tr>
-						<tr>
-							<th>
-								退款银行: 
-							</th>
-							<td>
-								<input type="text" name="refund.bankName" class="formText" />
-							</td>
-							<th>
-								退款账号: 
-							</th>
-							<td>
-								<input type="text" name="refund.bankAccount" class="formText" />
-							</td>
-						</tr>
-						<tr>
-							<th>
-								退款类型: 
-							</th>
-							<td>
-								<select name="refund.refundType">
-									<#list refundTypeList as refundType>
-										<option value="${refundType}">
-											${action.getText("RefundType." + refundType)}
-										</option>
-									</#list>
-								</select>
-							</td>
-							<th>
-								退款方式: 
-							</th>
-							<td>
-								<select name="paymentConfig.id">
-									<#list allPaymentConfigList as paymentConfig>
-										<option value="${paymentConfig.id}"<#if (paymentConfig == order.paymentConfig)!> selected</#if>>
-											${paymentConfig.name}
-										</option>
-									</#list>
-								</select>
-							</td>
-						</tr>
-						<tr>
-							<th>
-								退款金额: 
-							</th>
-							<td>
-								<input type="text" name="refund.totalAmount" class="formText" value="${order.paidAmount}" />
-								<label class="requireField">*</label>
-							</td>
-							<th>
-								收款人: 
-							</th>
-							<td>
-								<input type="text" name="refund.payee" class="formText" />
-							</td>
-						</tr>
-						<tr>
-							<th>
-								退款备注: 
-							</th>
-							<td colspan="3">
-								<input type="text" name="refund.memo" class="formText" />
-							</td>
-						</tr>
-						<tr>
-							<td colspan="4">
-								<div class="buttonArea">
-									<input type="submit" class="formButton" value="确  定" hidefocus />&nbsp;&nbsp;
-									<input type="button" class="formButton" onclick="window.history.back(); return false;" value="返  回" hidefocus />
-								</div>
-							</td>
-						</tr>
-					</table>
-				</form>
-			</#if>
-		</div>
-		<div class="tabContent">
-			<#if order.orderStatus != "completed" && order.orderStatus != "invalid" && order.shippingStatus != "unshipped" && order.shippingStatus != "reshiped">
-				<form id="reshipForm" action="order!reship.action" method="post">
-					<input type="hidden" name="id" value="${order.id}" />
-					<table class="inputTable">
-						<tr>
-							<th>
-								订单编号: 
-							</th>
-							<td>
-								${order.orderSn}
-							</td>
-							<th>
-								下单时间: 
-							</th>
-							<td>
-								${order.createDate?string("yyyy-MM-dd HH:mm:ss")}
-							</td>
-						</tr>
-						<tr>
-							<th>
-								配送方式: 
-							</th>
-							<td>
-								<select name="deliveryType.id">
-									<#list allDeliveryTypeList as deliveryType>
-										<option value="${deliveryType.id}"<#if (deliveryType == order.deliveryType)!> selected</#if>>
-											${deliveryType.name}
-										</option>
-									</#list>
-								</select>
-							</td>
-							<th>
-								物流公司: 
-							</th>
-							<td>
-								<select name="deliveryCorp.id">
-									<#list allDeliveryCorpList as deliveryCorp>
-										<option value="${deliveryCorp.id}">
-											${deliveryCorp.name}
-										</option>
-									</#list>
-								</select>
-							</td>
-						</tr>
-						<tr>
-							<th>
-								物流费用: 
-							</th>
-							<td>
-								<input type="text" name="reship.deliveryFee" class="formText" value="${order.deliveryFee}" />
-								<label class="requireField">*</label>
-							</td>
-							<th>
-								物流单号: 
-							</th>
-							<td>
-								<input type="text" name="reship.deliverySn" class="formText" />
-							</td>
-						</tr>
-						<tr>
-							<td colspan="4">
-								&nbsp;
-							</td>
-						</tr>
-						<tr>
-							<th>
-								退货人姓名: 
-							</th>
-							<td>
-								<input type="text" name="reship.reshipName" class="formText" value="${order.shipName}" />
-								<label class="requireField">*</label>
-							</td>
-							<th>
-								退货地区: 
-							</th>
-							<td>
-								<input type="text" name="reshipAreaId" class="areaSelect" value="${order.shipArea.id}" defaultSelectedPath="${order.shipArea.path}" />
-								<label class="requireField">*</label>
-							</td>
-						</tr>
-						<tr>
-							<th>
-								退货地址: 
-							</th>
-							<td>
-								<input type="text" name="reship.reshipAddress" class="formText" value="${order.shipAddress}" />
-								<label class="requireField">*</label>
-							</td>
-							<th>
-								邮编: 
-							</th>
-							<td>
-								<input type="text" name="reship.reshipZipCode" class="formText" value="${order.shipZipCode}" />
-								<label class="requireField">*</label>
-							</td>
-						</tr>
-						<tr>
-							<th>
-								电话: 
-							</th>
-							<td>
-								<input type="text" id="reshipPhone" name="reship.reshipPhone" class="formText" value="${order.shipPhone}" />
-								<label class="requireField">*</label>
-							</td>
-							<th>
-								手机: 
-							</th>
-							<td>
-								<input type="text" name="reship.reshipMobile" class="formText" value="${order.shipMobile}" />
-								<label class="requireField">*</label>
-							</td>
-						</tr>
-						<tr>
-							<th>
-								退货备注: 
-							</th>
-							<td colspan="3">
-								<input type="text" name="reship.memo" class="formText" />
-							</td>
-						</tr>
-						<tr>
-							<td colspan="4">
-								&nbsp;
-							</td>
-						</tr>
-					</table>
-					<table class="inputTable">
-						<tr class="title">
-							<th>货号</th>
-							<th>充值卡名称</th>
-							<th>购买数量</th>
-							<th>已发货数</th>
-							<th>本次退货数</th>
-						</tr>
-						<#list order.orderItemSet as orderItem>
-							<tr>
-								<td>
-									<input type="hidden" name="deliveryItemList[${orderItem_index}].product.id" value="${orderItem.product.id}" />
-									<a href="${base}${orderItem.cardsHtmlPath}" target="_blank">
-										${orderItem.productSn}
-									</a>
-								</td>
-								<td>
-									<a href="${base}${orderItem.cardsHtmlPath}" target="_blank">
-										${orderItem.productName}
-									</a>
-								</td>
-								<td>
-									${orderItem.productQuantity}
-								</td>
-								<td>
-									${orderItem.deliveryQuantity}
-								</td>
-								<td>
-									<input type="text" name="deliveryItemList[${orderItem_index}].deliveryQuantity" class="formText reshipDeliveryQuantity" value="${orderItem.deliveryQuantity}" maxDeliveryQuantity="${orderItem.deliveryQuantity}" style="width: 50px;" />
 								</td>
 							</tr>
 						</#list>

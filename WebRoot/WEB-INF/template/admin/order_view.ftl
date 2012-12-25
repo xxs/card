@@ -81,13 +81,13 @@ $().ready( function() {
 					充值卡总金额: 
 				</th>
 				<td>
-					<span class="red">${order.totalProductPrice?string(currencyFormat)}</span>
+					<span class="red">${order.amount?string(currencyFormat)}</span>
 				</td>
 				<th>
 					订单总金额: 
 				</th>
 				<td>
-					<span class="red">${order.totalAmount?string(currencyFormat)}</span>&nbsp;&nbsp;
+					<span class="red">${order.amount?string(currencyFormat)}</span>&nbsp;&nbsp;
 					<strong class="red">[已付金额: ${order.paidAmount?string(currencyFormat)}]</strong>
 				</td>
 			</tr>
@@ -178,28 +178,22 @@ $().ready( function() {
 				<th>货号</th>
 				<th>充值卡名称</th>
 				<th>价格</th>
-				<th>购买数量</th>
 			</tr>
-			<#list order.orderItemSet as orderItem>
 				<tr>
 					<td>
-						<a href="${base}${orderItem.cardsHtmlPath}" target="_blank">
-							${orderItem.productSn}
+						<a href="${base}${order.cardsHtmlPath}" target="_blank">
+							${order.productSn}
 						</a>
 					</td>
 					<td>
-						<a href="${base}${orderItem.cardsHtmlPath}" target="_blank">
-							${orderItem.productName}
+						<a href="${base}${order.cardsHtmlPath}" target="_blank">
+							${order.productName}
 						</a>
 					</td>
 					<td>
-						${orderItem.productPrice?string(currencyFormat)}
-					</td>
-					<td>
-						${orderItem.productQuantity}
+						${order.amount?string(currencyFormat)}
 					</td>
 				</tr>
-			</#list>
 		</table>
 		<table class="inputTable tabContent">
 			<tr class="title">
@@ -208,7 +202,6 @@ $().ready( function() {
 				<th>支付类型</th>
 				<th>支付方式</th>
 				<th>支付金额</th>
-				<th>支付手续费</th>
 				<th>付款人</th>
 				<th>支付状态</th>
 				<th>支付时间</th>
@@ -228,10 +221,7 @@ $().ready( function() {
 						${payment.paymentConfigName}
 					</td>
 					<td>
-						${payment.totalAmount?string(currencyFormat)}
-					</td>
-					<td>
-						${payment.paymentFee?string(currencyFormat)}
+						${payment.amount?string(currencyFormat)}
 					</td>
 					<td>
 						${payment.payer}

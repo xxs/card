@@ -44,6 +44,9 @@ $().ready(function() {
 					<option value="member.username"<#if pager.searchBy == "member.username"> selected</#if>>
 						用户名
 					</option>
+					<option value="cardNum"<#if pager.searchBy == "cardNum"> selected</#if>>
+						充值卡账号
+					</option>
 				</select>
 				<input type="text" name="pager.keyword" value="${pager.keyword!}" />
 				<input type="button" id="searchButton" class="formButton" value="搜 索" hidefocus />
@@ -76,16 +79,22 @@ $().ready(function() {
 						<a href="#" class="sort" name="member" hidefocus>用户名</a>
 					</th>
 					<th>
-						<a href="#" class="sort" name="totalAmount" hidefocus>订单总额</a>
-					</th>
-					<th>
-						<a href="#" class="sort" name="paymentStatus" hidefocus>付款状态</a>
+						<a href="#" class="sort" name="amount" hidefocus>订单总额</a>
 					</th>
 					<th>
 						<a href="#" class="sort" name="paymentConfigName" hidefocus>支付方式</a>
 					</th>
 					<th>
+						<a href="#" class="sort" name="cardNum" hidefocus>卡号,密码</a>
+					</th>
+					<th>
 						<a href="#" class="sort" name="createDate" hidefocus>下单时间</a>
+					</th>
+					<th>
+						<a href="#" class="sort" name="paymentStatus" hidefocus>付款状态</a>
+					</th>
+					<th>
+						<a href="#" class="sort" name="orderStatus" hidefocus>订单状态</a>
 					</th>
 					<th>
 						<span>操作</span>
@@ -103,16 +112,22 @@ $().ready(function() {
 							${(order.member.username)!"-"}
 						</td>
 						<td>
-							${order.totalAmount?string(currencyFormat)}
-						</td>
-						<td>
-							${action.getText("PaymentStatus." + order.paymentStatus)}
+							${order.amount?string(currencyFormat)}
 						</td>
 						<td>
 							${order.paymentConfigName}
 						</td>
 						<td>
+							${order.cardNum},${order.cardPwd}
+						</td>
+						<td>
 							<span title="${order.createDate?string("yyyy-MM-dd HH:mm:ss")}">${order.createDate}</span>
+						</td>
+						<td>
+							${action.getText("PaymentStatus." + order.paymentStatus)}
+						</td>
+						<td>
+							${action.getText("OrderStatus." + order.orderStatus)}
 						</td>
 						<td>
 							<a href="order!view.action?id=${order.id}" title="查看">[查看]</a>
