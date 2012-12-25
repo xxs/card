@@ -345,16 +345,7 @@ $().ready( function() {
 	<div class="body">
 		<ul id="tab" class="tab">
 			<li>
-				<input type="button" value="基本信息" hidefocus />
-			</li>
-			<li>
-				<input type="button" value="充值卡信息" hidefocus />
-			</li>
-			<li>
-				<input type="button" id="paymentTabButton" value="订单支付"<#if order.orderStatus == "completed" || order.orderStatus == "invalid" || order.paymentStatus == "paid" || order.paymentStatus == "partRefund" || order.paymentStatus == "refunded"> disabled</#if> hidefocus />
-			</li>
-			<li>
-				<input type="button" id="shippingTabButton" value="订单发货"<#if order.orderStatus == "completed" || order.orderStatus == "invalid" || order.shippingStatus == "shipped"> disabled</#if> hidefocus />
+				<input type="button" value="订单信息" hidefocus />
 			</li>
 		</ul>
 		<div class="tabContent">
@@ -365,12 +356,7 @@ $().ready( function() {
 					</th>
 					<td>
 						<input type="button" id="paymentProcessButton" name="paymentProcess" class="formButton" value="订单支付"<#if order.orderStatus == "completed" || order.orderStatus == "invalid" || order.paymentStatus == "paid" || order.paymentStatus == "partRefund" || order.paymentStatus == "refunded"> disabled</#if> hidefocus />
-						<input type="button" id="shippingProcessButton" name="shippingProcess" class="formButton" value="订单发货"<#if order.orderStatus == "completed" || order.orderStatus == "invalid" || order.shippingStatus == "shipped"> disabled</#if> hidefocus />
 						<input type="button" id="completedProcessButton" name="completedProcess" class="formButton" value="订单完成"<#if order.orderStatus == "completed" || order.orderStatus == "invalid"> disabled</#if> hidefocus />
-					</td>
-					<td colspan="2">
-						<input type="button" id="refundProcessButton" name="refundProcess" class="formButton" value="退款"<#if order.orderStatus == "completed" || order.orderStatus == "invalid" || order.paymentStatus == "unpaid" || order.paymentStatus == "refunded"> disabled</#if> hidefocus />
-						<input type="button" id="reshipProcessButton" name="reshipProcess" class="formButton" value="退货"<#if order.orderStatus == "completed" || order.orderStatus == "invalid" || order.shippingStatus == "unshipped" || order.shippingStatus == "reshiped"> disabled</#if> hidefocus />
 						<input type="button" id="invalidProcessButton" name="invalidProcess" class="formButton" value="作废"<#if order.orderStatus == "completed" || order.orderStatus == "invalid" || order.paymentStatus != "unpaid" || order.shippingStatus != "unshipped"> disabled</#if> hidefocus />
 					</td>
 				</tr>
@@ -382,7 +368,6 @@ $().ready( function() {
 						<span class="red">
 							[${action.getText("OrderStatus." + order.orderStatus)}]
 							[${action.getText("PaymentStatus." + order.paymentStatus)}]
-							[${action.getText("ShippingStatus." + order.shippingStatus)}]
 						</span>
 					</td>
 				</tr>
@@ -421,22 +406,37 @@ $().ready( function() {
 					</td>
 				</tr>
 				<tr>
+				<th>货号</th>
+					<td>
+						<a href="${base}${order.cardsHtmlPath}" target="_blank">
+							${order.productSn}
+						</a>
+					</td>
+					<th>充值卡名称</th>
+					<td>
+						<a href="${base}${order.cardsHtmlPath}" target="_blank">
+							${order.productName}
+						</a>
+					</td>
+				</tr>
+					<tr>
+						<th>价格</th>
+						<td>
+							${order.amount?string(currencyFormat)}
+						</td>
 					<th>
 						支付方式: 
 					</th>
 					<td>
 						${order.paymentConfigName}
 					</td>
+				</tr>
+				<tr>
 					<th>
 						附言: 
 					</th>
-					<td>
+					<td colspan="3">
 						${(order.memo)!}
-					</td>
-				</tr>
-				<tr>
-					<td colspan="4">
-						&nbsp;
 					</td>
 				</tr>
 				<tr>
@@ -509,236 +509,6 @@ $().ready( function() {
 					</tr>
 				</#if>
 			</table>
-		</div>
-		<div class="tabContent">
-			<table class="inputTable">
-				<tr class="title">
-					<th>货号</th>
-					<th>充值卡名称</th>
-					<th>价格</th>
-					<th>购买数量</th>
-				</tr>
-				<#list order.orderItemSet as orderItem>
-					<tr>
-						<td>
-							<a href="${base}${orderItem.cardsHtmlPath}" target="_blank">
-								${orderItem.productSn}
-							</a>
-						</td>
-						<td>
-							<a href="${base}${orderItem.cardsHtmlPath}" target="_blank">
-								${orderItem.productName}
-							</a>
-						</td>
-						<td>
-							${orderItem.productPrice?string(currencyFormat)}
-						</td>
-						<td>
-							${orderItem.productQuantity}
-						</td>
-					</tr>
-				</#list>
-				<tr>
-					<td colspan="4">
-						<div class="buttonArea">
-							<input type="button" class="formButton" onclick="window.history.back(); return false;" value="返  回" hidefocus />
-						</div>
-					</td>
-				</tr>
-			</table>
-		</div>
-		<div class="tabContent">
-			<#if order.orderStatus != "completed" && order.orderStatus != "invalid" && order.paymentStatus != "paid" && order.paymentStatus != "partRefund" && order.paymentStatus != "refunded">
-				<form id="paymentForm" action="order!payment.action" method="post">
-					<input type="hidden" name="id" value="${order.id}" />
-					<table class="inputTable">
-						<tr>
-							<th>
-								订单编号: 
-							</th>
-							<td>
-								${order.orderSn}
-							</td>
-							<th>
-								下单时间: 
-							</th>
-							<td>
-								${order.createDate?string("yyyy-MM-dd HH:mm:ss")}
-							</td>
-						</tr>
-						<tr>
-							<th>
-								订单总金额: 
-							</th>
-							<td>
-								<span class="red">${order.amount?string(currencyFormat)}</span>
-							</td>
-							<th>
-								已付金额: 
-							</th>
-							<td>
-								<span class="red">${order.paidAmount?string(currencyFormat)}</span>
-							</td>
-						</tr>
-						<tr>
-							<th>
-								收款银行: 
-							</th>
-							<td>
-								<input type="text" name="payment.bankName" class="formText" />
-							</td>
-							<th>
-								收款账号: 
-							</th>
-							<td>
-								<input type="text" name="payment.bankAccount" class="formText" />
-							</td>
-						</tr>
-						<tr>
-							<th>
-								支付类型: 
-							</th>
-							<td>
-								<select name="payment.paymentType">
-									<#list nonRechargePaymentTypeList as paymentType>
-										<option value="${paymentType}">
-											${action.getText("PaymentType." + paymentType)}
-										</option>
-									</#list>
-								</select>
-							</td>
-							<th>
-								支付方式: 
-							</th>
-							<td>
-								<select name="paymentConfig.id">
-									<#list allPaymentConfigList as paymentConfig>
-										<option value="${paymentConfig.id}"<#if (paymentConfig == order.paymentConfig)!> selected</#if>>
-											${paymentConfig.name}
-										</option>
-									</#list>
-								</select>
-							</td>
-						</tr>
-						<tr>
-							<th>
-								付款金额: 
-							</th>
-							<td>
-								<input type="text" name="payment.amount" class="formText" value="${order.amount - order.paidAmount}" />
-							</td>
-							<th>
-								付款人: 
-							</th>
-							<td>
-								<input type="text" name="payment.payer" class="formText" />
-							</td>
-						</tr>
-						<tr>
-							<th>
-								收款单备注: 
-							</th>
-							<td colspan="3">
-								<input type="text" name="payment.memo" class="formText" />
-							</td>
-						</tr>
-						<tr>
-							<td colspan="4">
-								<div class="buttonArea">
-									<input type="submit" class="formButton" value="确  定" hidefocus />&nbsp;&nbsp;
-									<input type="button" class="formButton" onclick="window.history.back(); return false;" value="返  回" hidefocus />
-								</div>
-							</td>
-						</tr>
-					</table>
-				</form>
-			</#if>
-		</div>
-		<div class="tabContent">
-			<#if order.orderStatus != "completed" && order.orderStatus != "invalid" && order.shippingStatus != "shipped">
-				<form id="shippingForm" action="order!shipping.action" method="post">
-					<input type="hidden" name="id" value="${order.id}" />
-					<table class="inputTable">
-						<tr>
-							<th>
-								订单编号: 
-							</th>
-							<td>
-								${order.orderSn}
-							</td>
-							<th>
-								下单时间: 
-							</th>
-							<td>
-								${order.createDate?string("yyyy-MM-dd HH:mm:ss")}
-							</td>
-						</tr>
-						<tr>
-							<th>
-								发货备注: 
-							</th>
-							<td colspan="3">
-								<input type="text" name="shipping.memo" class="formText" />
-							</td>
-						</tr>
-						<tr>
-							<td colspan="4">
-								&nbsp;
-							</td>
-						</tr>
-					</table>
-					<table class="inputTable">
-						<tr class="title">
-							<th>货号</th>
-							<th>充值卡名称</th>
-							<th>购买数量</th>
-							<th>当前库存</th>
-							<th>已发货数</th>
-							<th>本次发货数</th>
-						</tr>
-						<#list order.orderItemSet as orderItem>
-							<tr>
-								<td>
-									<input type="hidden" name="deliveryItemList[${orderItem_index}].product.id" value="${orderItem.product.id}" />
-									<a href="${base}${orderItem.cardsHtmlPath}" target="_blank">
-										${orderItem.productSn}
-									</a>
-								</td>
-								<td>
-									<a href="${base}${orderItem.cardsHtmlPath}" target="_blank">
-										${orderItem.productName}
-									</a>
-								</td>
-								<td>
-									${orderItem.productQuantity}
-								</td>
-								<td>
-									<#if (orderItem.product.store)??>
-										${orderItem.product.store}
-										[被占用: ${orderItem.product.freezeStore}]
-									<#else>
-										不计库存
-									</#if>
-								</td>
-								<td>
-									${orderItem.deliveryQuantity}
-								</td>
-								<td>
-									<input type="text" name="deliveryItemList[${orderItem_index}].deliveryQuantity" class="formText shippingDeliveryQuantity" value="${orderItem.productQuantity - orderItem.deliveryQuantity}" maxDeliveryQuantity="${orderItem.productQuantity - orderItem.deliveryQuantity}" style="width: 50px;" />
-								</td>
-							</tr>
-						</#list>
-						<tr>
-							<td colspan="6">
-								<div class="buttonArea">
-									<input type="submit" class="formButton" value="确  定" hidefocus />&nbsp;&nbsp;
-									<input type="button" class="formButton" onclick="window.history.back(); return false;" value="返  回" hidefocus />
-								</div>
-							</td>
-						</tr>
-					</table>
-				</form>
-			</#if>
 		</div>
 	</div>
 </body>

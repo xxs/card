@@ -62,7 +62,6 @@ public class Member extends BaseEntity {
 	private String name;// 姓名
 	private Gender gender;// 性别
 	private Date birth;// 出生日期
-	private String areaStore;// 地区存储
 	private String address;// 地址
 	private String zipCode;// 邮编
 	private String phone;// 电话
@@ -249,14 +248,6 @@ public class Member extends BaseEntity {
 
 	public void setBirth(Date birth) {
 		this.birth = birth;
-	}
-
-	public String getAreaStore() {
-		return areaStore;
-	}
-
-	public void setAreaStore(String areaStore) {
-		this.areaStore = areaStore;
 	}
 
 	public String getAddress() {

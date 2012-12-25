@@ -35,9 +35,6 @@ $().ready( function() {
 				<input type="button" value="订单信息" hidefocus />
 			</li>
 			<li>
-				<input type="button" value="充值卡信息" hidefocus />
-			</li>
-			<li>
 				<input type="button" value="收款记录" hidefocus />
 			</li>
 			<li>
@@ -53,7 +50,6 @@ $().ready( function() {
 					<span class="red">
 						[${action.getText("OrderStatus." + order.orderStatus)}]
 						[${action.getText("PaymentStatus." + order.paymentStatus)}]
-						[${action.getText("ShippingStatus." + order.shippingStatus)}]
 					</span>
 				</td>
 			</tr>
@@ -92,22 +88,37 @@ $().ready( function() {
 				</td>
 			</tr>
 			<tr>
+				<th>货号</th>
+				<td>
+					<a href="${base}${order.cardsHtmlPath}" target="_blank">
+						${order.productSn}
+					</a>
+				</td>
+				<th>充值卡名称</th>
+				<td>
+					<a href="${base}${order.cardsHtmlPath}" target="_blank">
+						${order.productName}
+					</a>
+				</td>
+			</tr>
+			<tr>
+				<th>价格</th>
+				<td>
+					${order.amount?string(currencyFormat)}
+				</td>
 				<th>
 					支付方式: 
 				</th>
 				<td>
 					${order.paymentConfigName}
 				</td>
+			</tr>
+			<tr>
 				<th>
 					附言: 
 				</th>
-				<td>
+				<td colspan="3">
 					${(order.memo)!}
-				</td>
-			</tr>
-			<tr>
-				<td colspan="4">
-					&nbsp;
 				</td>
 			</tr>
 			<tr>
@@ -172,28 +183,6 @@ $().ready( function() {
 					</td>
 				</tr>
 			</#if>
-		</table>
-		<table class="inputTable tabContent">
-			<tr class="title">
-				<th>货号</th>
-				<th>充值卡名称</th>
-				<th>价格</th>
-			</tr>
-				<tr>
-					<td>
-						<a href="${base}${order.cardsHtmlPath}" target="_blank">
-							${order.productSn}
-						</a>
-					</td>
-					<td>
-						<a href="${base}${order.cardsHtmlPath}" target="_blank">
-							${order.productName}
-						</a>
-					</td>
-					<td>
-						${order.amount?string(currencyFormat)}
-					</td>
-				</tr>
 		</table>
 		<table class="inputTable tabContent">
 			<tr class="title">

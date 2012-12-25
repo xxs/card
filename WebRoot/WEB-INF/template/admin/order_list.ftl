@@ -131,11 +131,6 @@ $().ready(function() {
 						</td>
 						<td>
 							<a href="order!view.action?id=${order.id}" title="查看">[查看]</a>
-							<#if order.orderStatus != "completed" && order.orderStatus != "invalid" && order.paymentStatus == "unpaid" && order.shippingStatus == "unshipped">
-								<a href="order!edit.action?id=${order.id}" title="编辑">[编辑]</a>
-							<#else>
-								<span title="订单状态无法编辑">[编辑]</span>
-							</#if>
 							<a href="order!process.action?id=${order.id}" title="处理">[处理]</a>
 						</td>
 					</tr>

@@ -21,9 +21,9 @@ public class MemberAttribute extends BaseEntity {
 
 	private static final long serialVersionUID = 4513705276569738136L;
 	
-	// 系统默认注册项类型（姓名、性别、出生日期、地区、地址、邮编、电话、手机、推荐人）
+	// 系统默认注册项类型（姓名、性别、出生日期、地址、邮编、电话、手机、推荐人）
 	public enum SystemAttributeType {
-		name, gender, birth, area, address, zipCode, phone, mobile,referrer
+		name, gender, birth, address, zipCode, phone, mobile,referrer
 	}
 	
 	// 自定义注册项类型（文本、数字、字母、单选项、多选项）

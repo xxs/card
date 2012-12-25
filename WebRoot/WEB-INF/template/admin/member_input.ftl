@@ -24,11 +24,6 @@ $().ready( function() {
 
 	var $areaSelect = $("#areaSelect");
 
-	// 地区选择菜单
-	$areaSelect.lSelect({
-		url: "${base}/card/area!ajaxArea.action"// AJAX数据获取url
-	});
-	
 	// 表单验证
 	$validateForm.validate({
 		errorContainer: $validateErrorContainer,
@@ -248,6 +243,14 @@ $().ready( function() {
 				</tr>
 				<tr>
 					<th>
+						推荐人
+					</th>
+					<td>
+						<input type="text" name="member.referrer" class="formText" value="${(member.referrer)!""}" title="只允许输入存在的会员" />
+					</td>
+					</tr>
+				<tr>
+					<th>
 						设置: 
 					</th>
 					<td>
@@ -279,14 +282,6 @@ $().ready( function() {
 						</th>
 						<td>
 							${(member.registerIp)!}
-						</td>
-					</tr>
-					<tr>
-						<th>
-							推荐人
-						</th>
-						<td>
-							<input type="text" name="member.referrer" class="formText" />
 						</td>
 					</tr>
 				</#if>
