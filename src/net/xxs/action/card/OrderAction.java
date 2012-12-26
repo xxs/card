@@ -55,6 +55,7 @@ public class OrderAction extends BaseCardAction {
 	private String productId;//充值卡编码
 	private String cardNum;//卡号
 	private String cardPwd;//密码
+	private String str;
 	private String cardString;//卡密组的字符串
 	private String paymentUrl;// 支付请求URL
 	
@@ -75,11 +76,17 @@ public class OrderAction extends BaseCardAction {
 	@Resource(name = "productServiceImpl")
 	private ProductService productService;
 	
+	public String strString(){
+		System.out.println("str:"+str);
+		
+		return null;
+	}
+	
 	//保存提交的充值卡订单
 	public String save() {
 		System.out.println("excute saveCard............");
 		Member loginMember = getLoginMember();
-		Product product = productService.load(productId); //默认20元腾讯充值卡
+		Product product = productService.load("4028bc743bb6fee6013bb755fed20002"); //默认20元腾讯充值卡
 		paymentConfig = paymentConfigService.load(paymentConfig.getId());
 		String paymentConfigName = paymentConfig.getName();//设置支付方式名称
 		Brand brand = product.getCards().getBrand();//为order准备brandId
@@ -287,6 +294,14 @@ public class OrderAction extends BaseCardAction {
 	}
 	public void setPayment(Payment payment) {
 		this.payment = payment;
+	}
+
+	public String getStr() {
+		return str;
+	}
+
+	public void setStr(String str) {
+		this.str = str;
 	}
 
 }

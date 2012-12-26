@@ -39,7 +39,7 @@
 <div class="box0">
 <span class="line"></span>
 <div class="box0_left">
-<form method="post" action="/card/card/order!save.action">
+<form method="post" action="/card/order!save.action">
 <#if cards.isSpecificationEnabled>
 						<#assign specificationValueSet = cards.specificationValueSet>
 			               <#list cards.specificationSet as specification>
@@ -78,7 +78,7 @@
 </div>
 <div class="search">
 <div class="search_l">卡密</div>
-<div class="search_r"><input name="ID" type="cardPwd" class="ID" />
+<div class="search_r"><input type="cardPwd" name="cardPwd" class="ID" />
 </div>
 <span class="yhm">密码不能为空</span>
 </div>

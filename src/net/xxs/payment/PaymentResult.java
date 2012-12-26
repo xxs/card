@@ -9,6 +9,7 @@ public class PaymentResult {
 	private String code;			// 消费请求结果(该结果代表请求是否成功，不代表实际扣款结果)
 	private String orderSn;			// 商户订单号
 	private String returnMsg;		// 错误信息
+	private Boolean isSuccess;			// 是否成功标识
 	private String hmac;			// 签名数据
 	
 	
@@ -43,6 +44,11 @@ public class PaymentResult {
 	public void setHmac(String hmac) {
 		this.hmac = hmac;
 	}
-	
+	public Boolean getIsSuccess() {
+		return isSuccess;
+	}
+	public void setIsSuccess(Boolean isSuccess) {
+		this.isSuccess = isSuccess;
+	}
 	
 }

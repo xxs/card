@@ -336,6 +336,11 @@ public class YeepayForZY extends BasePaymentProduct {
 			System.out.println("交易签名被篡改");
 			throw new RuntimeException("交易签名被篡改");
 		}
+//		if("2000".equals(retresult)||"2011".equals(retresult)){
+//			paymentResult.setIsSuccess(true);
+//		}else{
+//			paymentResult.setIsSuccess(false);
+//		}
 		return (paymentResult);
 	}
 

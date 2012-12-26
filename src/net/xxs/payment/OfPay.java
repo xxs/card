@@ -288,6 +288,11 @@ public class OfPay extends BasePaymentProduct {
 			paymentResult.setReturnMsg(retinfo);
 			paymentResult.setOrderSn(retorderno);
 			paymentResult.setHmac(EncodeUtils.testDigest(md5src + md5key));
+			if("2000".equals(retresult)||"2011".equals(retresult)){
+				paymentResult.setIsSuccess(true);
+			}else{
+				paymentResult.setIsSuccess(false);
+			}
 			return paymentResult;
 		} catch (Exception e) {
 			e.printStackTrace();

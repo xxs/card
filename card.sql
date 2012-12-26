@@ -1,7 +1,7 @@
 /*
 Navicat MySQL Data Transfer
 
-Source Server         : xxs
+Source Server         : JTM
 Source Server Version : 50154
 Source Host           : localhost:3306
 Source Database       : card
@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50154
 File Encoding         : 65001
 
-Date: 2012-12-25 20:54:22
+Date: 2012-12-26 17:34:48
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -43,7 +43,7 @@ CREATE TABLE `xx_admin` (
 -- ----------------------------
 -- Records of xx_admin
 -- ----------------------------
-INSERT INTO `xx_admin` VALUES ('0731dcsoft2010031200000000000017', '2011-01-01 00:00:00', '2012-12-25 20:43:01', '技术部', 'xxs@163.com', '', '', '', '', '2012-12-17 14:28:34', '2012-12-25 20:43:01', '0', '127.0.0.1', 'ADMIN', '21232f297a57a5a743894a0e4a801fc3', 'admin');
+INSERT INTO `xx_admin` VALUES ('0731dcsoft2010031200000000000017', '2011-01-01 00:00:00', '2012-12-26 13:19:09', '技术部', 'xxs@163.com', '', '', '', '', '2012-12-17 14:28:34', '2012-12-26 13:19:09', '0', '127.0.0.1', 'ADMIN', '21232f297a57a5a743894a0e4a801fc3', 'admin');
 
 -- ----------------------------
 -- Table structure for `xx_admin_role`
@@ -390,7 +390,7 @@ CREATE TABLE `xx_member` (
 -- Records of xx_member
 -- ----------------------------
 INSERT INTO `xx_member` VALUES ('297e62b93bd214af013bd21a73550000', '2012-12-25 20:47:27', '2012-12-25 20:47:27', '123', '2012-12-27 00:00:00', '0.00000', '123456@qq.com', '0', '', '', null, '2012-12-25 20:47:27', '0', null, '123123', '北京市', null, null, null, null, null, null, null, null, null, null, '111111', '建设银行', '123123123', null, null, null, null, null, '123123', '123123', '4297f44b13955235245b2497399d7a93', null, '123123', '123123', '127.0.0.1', null, null, '0', '112233', '123123', '402881833054c381013054d08bed0001');
-INSERT INTO `xx_member` VALUES ('8a9182fc3ba86bc8013ba9782de60001', '2012-12-17 23:25:23', '2012-12-25 20:52:34', null, '2012-12-20 00:00:00', '3000.00000', '123@qq.com', '0', '', '', null, '2012-12-25 20:52:34', '0', '127.0.0.1', '123123', '北京市', null, null, null, null, null, null, null, null, null, null, '12312', '建设银行', '123', null, null, null, null, null, null, '123', '4297f44b13955235245b2497399d7a93', null, null, '112233', '127.0.0.1', null, null, '0', '123123', null, '402881833054c381013054d08bed0001');
+INSERT INTO `xx_member` VALUES ('8a9182fc3ba86bc8013ba9782de60001', '2012-12-17 23:25:23', '2012-12-26 11:13:14', null, '2012-12-20 00:00:00', '3000.00000', '123@qq.com', '0', '', '', null, '2012-12-26 11:13:14', '0', '127.0.0.1', '123123', '北京市', null, null, null, null, null, null, null, null, null, null, '12312', '建设银行', '123', null, null, null, null, null, null, '123', '4297f44b13955235245b2497399d7a93', null, null, '112233', '127.0.0.1', null, null, '0', '123123', null, '402881833054c381013054d08bed0001');
 
 -- ----------------------------
 -- Table structure for `xx_member_attribute`
@@ -553,6 +553,10 @@ INSERT INTO `xx_order` VALUES ('4028bc743bcab079013bcabe649c000c', '2012-12-24 1
 INSERT INTO `xx_order` VALUES ('4028bc743bcab079013bcabec0c6000f', '2012-12-24 10:29:57', '2012-12-24 10:29:57', '8ae4839c3a887878013a88acef930005', null, 'DD100035', '0', '0.00000', '殴飞消耗点卡接口', '0', '8a9182fc3ba86bc8013ba9782de60001', '4028bc743bac0d54013baca8e1350001', '10.00000', '55555', '55555', '/html/201212/28ee1eadf73640598a42c42a46c484ef.html', 'Q币卡 [10元]', '10.00000', 'SN_A18F88A39EA3', '4028bc743bb6fee6013bb755fed20002', '2002', '不支持该类卡或该面值');
 INSERT INTO `xx_order` VALUES ('4028bc743bcab079013bcabef8600012', '2012-12-24 10:30:11', '2012-12-24 10:30:11', '8ae4839c3a887878013a88acef930005', null, 'DD100036', '0', '0.00000', '殴飞消耗点卡接口', '0', '8a9182fc3ba86bc8013ba9782de60001', '4028bc743bac0d54013baca8e1350001', '10.00000', '55555', '55555', '/html/201212/28ee1eadf73640598a42c42a46c484ef.html', 'Q币卡 [10元]', '10.00000', 'SN_A18F88A39EA3', '4028bc743bb6fee6013bb755fed20002', '2002', '不支持该类卡或该面值');
 INSERT INTO `xx_order` VALUES ('4028bc743bcab079013bcad62b670015', '2012-12-24 10:55:31', '2012-12-25 20:24:17', '8ae4839c3a887878013a88acef930005', null, 'DD100037', '2', '0.00000', '殴飞消耗点卡接口', '0', '8a9182fc3ba86bc8013ba9782de60001', '4028bc743bac0d54013baca8e1350001', '10.00000', '55555', '55555', '/html/201212/28ee1eadf73640598a42c42a46c484ef.html', 'Q币卡 [10元]', '10.00000', 'SN_A18F88A39EA3', '4028bc743bb6fee6013bb755fed20002', '2002', '不支持该类卡或该面值');
+INSERT INTO `xx_order` VALUES ('4028bc743bd4d1f6013bd4fec8a70002', '2012-12-26 10:16:05', '2012-12-26 10:16:05', '8ae4839c3a887878013a88acef930005', null, 'DD100040', '0', '0.00000', '通道2', '0', '8a9182fc3ba86bc8013ba9782de60001', '4028bc743bac0d54013baca8729d0000', '10.00000', '45645', '45645', '/html/201212/28ee1eadf73640598a42c42a46c484ef.html', 'Q币卡 [10元]', '10.00000', 'SN_A18F88A39EA3', '4028bc743bb6fee6013bb755fed20002', null, null);
+INSERT INTO `xx_order` VALUES ('4028bc743bd4d1f6013bd502b3b50005', '2012-12-26 10:20:22', '2012-12-26 10:20:22', '8ae4839c3a887878013a88acef930005', null, 'DD100041', '0', '0.00000', '通道2', '0', '8a9182fc3ba86bc8013ba9782de60001', '4028bc743bac0d54013baca8729d0000', '10.00000', '45645', '45645', '/html/201212/28ee1eadf73640598a42c42a46c484ef.html', 'Q币卡 [10元]', '10.00000', 'SN_A18F88A39EA3', '4028bc743bb6fee6013bb755fed20002', null, null);
+INSERT INTO `xx_order` VALUES ('4028bc743bd4d1f6013bd5336c8c0008', '2012-12-26 11:13:35', '2012-12-26 11:13:35', '8ae4839c3a887878013a88acef930005', null, 'DD100042', '0', '0.00000', '通道2', '0', '8a9182fc3ba86bc8013ba9782de60001', '4028bc743bac0d54013baca8729d0000', '10.00000', '3453456', '34534534', '/html/201212/28ee1eadf73640598a42c42a46c484ef.html', 'Q币卡 [10元]', '10.00000', 'SN_A18F88A39EA3', '4028bc743bb6fee6013bb755fed20002', null, null);
+INSERT INTO `xx_order` VALUES ('4028bc743bd4d1f6013bd538b593000b', '2012-12-26 11:19:21', '2012-12-26 11:19:21', '8ae4839c3a887878013a88acef930005', null, 'DD100043', '0', '0.00000', '通道2', '0', '8a9182fc3ba86bc8013ba9782de60001', '4028bc743bac0d54013baca8729d0000', '10.00000', '6666', '4456456', '/html/201212/28ee1eadf73640598a42c42a46c484ef.html', 'Q币卡 [10元]', '10.00000', 'SN_A18F88A39EA3', '4028bc743bb6fee6013bb755fed20002', null, null);
 INSERT INTO `xx_order` VALUES ('8a9183cb3bbd9ec5013bbda34a1c0003', '2012-12-21 21:24:53', '2012-12-21 21:24:53', '8ae4839c3a887878013a88acef930005', null, 'DD100004', '0', '0.00000', '殴飞消耗点卡接口', '0', '8a9182fc3ba86bc8013ba9782de60001', '4028bc743bac0d54013baca8e1350001', '10.00000', '23234', '232342', '/html/201212/28ee1eadf73640598a42c42a46c484ef.html', 'Q币卡 [10元]', '10.00000', 'SN_A18F88A39EA3', '4028bc743bb6fee6013bb755fed20002', null, null);
 INSERT INTO `xx_order` VALUES ('8a9183cb3bbd9ec5013bbdab82150005', '2012-12-21 21:33:52', '2012-12-21 21:33:52', '8ae4839c3a887878013a88acef930005', null, 'DD100005', '0', '0.00000', '殴飞消耗点卡接口', '0', '8a9182fc3ba86bc8013ba9782de60001', '4028bc743bac0d54013baca8e1350001', '10.00000', '23234', '232342', '/html/201212/28ee1eadf73640598a42c42a46c484ef.html', 'Q币卡 [10元]', '10.00000', 'SN_A18F88A39EA3', '4028bc743bb6fee6013bb755fed20002', null, null);
 INSERT INTO `xx_order` VALUES ('8a9183cb3bbd9ec5013bbdba7b340007', '2012-12-21 21:50:13', '2012-12-21 21:50:13', '8ae4839c3a887878013a88acef930005', null, 'DD100006', '0', '0.00000', '殴飞消耗点卡接口', '0', '8a9182fc3ba86bc8013ba9782de60001', '4028bc743bac0d54013baca8e1350001', '10.00000', '23234', '232342', '/html/201212/28ee1eadf73640598a42c42a46c484ef.html', 'Q币卡 [10元]', '10.00000', 'SN_A18F88A39EA3', '4028bc743bb6fee6013bb755fed20002', null, null);
@@ -609,6 +613,10 @@ INSERT INTO `xx_order_log` VALUES ('4028bc743bcab079013bcabe64bc000d', '2012-12-
 INSERT INTO `xx_order_log` VALUES ('4028bc743bcab079013bcabec0e50010', '2012-12-24 10:29:57', '2012-12-24 10:29:57', null, null, '0', 'DD100035', '4028bc743bcab079013bcabec0c6000f');
 INSERT INTO `xx_order_log` VALUES ('4028bc743bcab079013bcabef8800013', '2012-12-24 10:30:11', '2012-12-24 10:30:11', null, null, '0', 'DD100036', '4028bc743bcab079013bcabef8600012');
 INSERT INTO `xx_order_log` VALUES ('4028bc743bcab079013bcad62b960016', '2012-12-24 10:55:31', '2012-12-24 10:55:31', null, null, '0', 'DD100037', '4028bc743bcab079013bcad62b670015');
+INSERT INTO `xx_order_log` VALUES ('4028bc743bd4d1f6013bd4fec9150003', '2012-12-26 10:16:05', '2012-12-26 10:16:05', null, null, '0', 'DD100040', '4028bc743bd4d1f6013bd4fec8a70002');
+INSERT INTO `xx_order_log` VALUES ('4028bc743bd4d1f6013bd502b3f30006', '2012-12-26 10:20:22', '2012-12-26 10:20:22', null, null, '0', 'DD100041', '4028bc743bd4d1f6013bd502b3b50005');
+INSERT INTO `xx_order_log` VALUES ('4028bc743bd4d1f6013bd5336d470009', '2012-12-26 11:13:35', '2012-12-26 11:13:35', null, null, '0', 'DD100042', '4028bc743bd4d1f6013bd5336c8c0008');
+INSERT INTO `xx_order_log` VALUES ('4028bc743bd4d1f6013bd538b5b2000c', '2012-12-26 11:19:21', '2012-12-26 11:19:21', null, null, '0', 'DD100043', '4028bc743bd4d1f6013bd538b593000b');
 INSERT INTO `xx_order_log` VALUES ('8a9183cb3bbd9ec5013bbda34a6e0004', '2012-12-21 21:24:53', '2012-12-21 21:24:53', null, null, '0', 'DD100004', '8a9183cb3bbd9ec5013bbda34a1c0003');
 INSERT INTO `xx_order_log` VALUES ('8a9183cb3bbd9ec5013bbdab82410006', '2012-12-21 21:33:52', '2012-12-21 21:33:52', null, null, '0', 'DD100005', '8a9183cb3bbd9ec5013bbdab82150005');
 INSERT INTO `xx_order_log` VALUES ('8a9183cb3bbd9ec5013bbdba7b8d0008', '2012-12-21 21:50:13', '2012-12-21 21:50:13', null, null, '0', 'DD100006', '8a9183cb3bbd9ec5013bbdba7b340007');
@@ -682,6 +690,10 @@ INSERT INTO `xx_payment` VALUES ('4028bc743bcab079013bcabec1050011', '2012-12-24
 INSERT INTO `xx_payment` VALUES ('4028bc743bcab079013bcabef89f0014', '2012-12-24 10:30:11', '2012-12-24 10:30:11', 'A819109', '殴飞消耗点卡接口', null, null, '123123', '殴飞消耗点卡接口', 'ZF100038', '0', '0', '10.00000', null, '8a9182fc3ba86bc8013ba9782de60001', '4028bc743bcab079013bcabef8600012', '4028bc743bac0d54013baca8e1350001');
 INSERT INTO `xx_payment` VALUES ('4028bc743bcab079013bcad62ba60017', '2012-12-24 10:55:31', '2012-12-24 10:55:31', 'A819109', '殴飞消耗点卡接口', null, null, '123123', '殴飞消耗点卡接口', 'ZF100039', '0', '0', '10.00000', null, '8a9182fc3ba86bc8013ba9782de60001', '4028bc743bcab079013bcad62b670015', '4028bc743bac0d54013baca8e1350001');
 INSERT INTO `xx_payment` VALUES ('4028bc743bcab079013bcaf83eda0018', '2012-12-24 11:32:44', '2012-12-24 11:32:44', 'A819109', '殴飞消耗点卡接口', null, null, '123123', '殴飞消耗点卡接口', 'ZF100040', '0', '0', '10.00000', null, '8a9182fc3ba86bc8013ba9782de60001', '4028bc743bcab079013bcabd7d690009', '4028bc743bac0d54013baca8e1350001');
+INSERT INTO `xx_payment` VALUES ('4028bc743bd4d1f6013bd4fec9340004', '2012-12-26 10:16:05', '2012-12-26 10:16:05', '1', '易宝非银行卡支付(专业版)', null, null, '123123', '通道2', 'ZF100041', '0', '0', '10.00000', null, '8a9182fc3ba86bc8013ba9782de60001', '4028bc743bd4d1f6013bd4fec8a70002', '4028bc743bac0d54013baca8729d0000');
+INSERT INTO `xx_payment` VALUES ('4028bc743bd4d1f6013bd502b4120007', '2012-12-26 10:20:22', '2012-12-26 10:20:22', '10011842896', '易宝非银行卡支付(专业版)', null, null, '123123', '通道2', 'ZF100042', '0', '0', '10.00000', null, '8a9182fc3ba86bc8013ba9782de60001', '4028bc743bd4d1f6013bd502b3b50005', '4028bc743bac0d54013baca8729d0000');
+INSERT INTO `xx_payment` VALUES ('4028bc743bd4d1f6013bd5336db4000a', '2012-12-26 11:13:35', '2012-12-26 11:13:35', '10011842896', '易宝非银行卡支付(专业版)', null, null, '123123', '通道2', 'ZF100043', '0', '0', '10.00000', null, '8a9182fc3ba86bc8013ba9782de60001', '4028bc743bd4d1f6013bd5336c8c0008', '4028bc743bac0d54013baca8729d0000');
+INSERT INTO `xx_payment` VALUES ('4028bc743bd4d1f6013bd538b600000d', '2012-12-26 11:19:21', '2012-12-26 11:19:21', '10011842896', '易宝非银行卡支付(专业版)', null, null, '123123', '通道2', 'ZF100044', '0', '0', '10.00000', null, '8a9182fc3ba86bc8013ba9782de60001', '4028bc743bd4d1f6013bd538b593000b', '4028bc743bac0d54013baca8729d0000');
 INSERT INTO `xx_payment` VALUES ('8a9183cb3bbd9ec5013bbdbf83ae000c', '2012-12-21 21:55:43', '2012-12-21 21:55:43', '333', '殴飞消耗点卡接口', null, null, '123123', '殴飞消耗点卡接口', 'ZF100002', '0', '0', '10.00000', null, '8a9182fc3ba86bc8013ba9782de60001', '8a9183cb3bbd9ec5013bbdbc5fc30009', '4028bc743bac0d54013baca8e1350001');
 INSERT INTO `xx_payment` VALUES ('8a9183cb3bbd9ec5013bbdbfbcd8000f', '2012-12-21 21:55:57', '2012-12-21 21:55:57', '333', '殴飞消耗点卡接口', null, null, '123123', '殴飞消耗点卡接口', 'ZF100003', '0', '0', '10.00000', null, '8a9182fc3ba86bc8013ba9782de60001', '8a9183cb3bbd9ec5013bbdbfb2e4000d', '4028bc743bac0d54013baca8e1350001');
 INSERT INTO `xx_payment` VALUES ('8a9183cb3bbd9ec5013bbdc37b180010', '2012-12-21 22:00:03', '2012-12-21 22:00:03', '333', '殴飞消耗点卡接口', null, null, '123123', '殴飞消耗点卡接口', 'ZF100004', '0', '0', '10.00000', null, '8a9182fc3ba86bc8013ba9782de60001', '8a9183cb3bbd9ec5013bbdbfb2e4000d', '4028bc743bac0d54013baca8e1350001');
@@ -738,9 +750,8 @@ CREATE TABLE `xx_payment_config` (
 -- ----------------------------
 -- Records of xx_payment_config
 -- ----------------------------
-INSERT INTO `xx_payment_config` VALUES ('4028bc743bac0d54013baca8729d0000', '2012-12-18 14:16:58', '2012-12-18 14:17:37', '1', '2', '<span style=\"color:#666666;font-family:tahoma, Arial, 宋体, Verdana, sans-serif;line-height:25px;background-color:#f6fafd;\">易宝非银行卡支付(专业版)</span>', '', '', '易宝非银行卡支付(专业版)', '2', '2', '0.00000', '0', 'yeepayforzy');
-INSERT INTO `xx_payment_config` VALUES ('4028bc743bac0d54013baca8e1350001', '2012-12-18 14:17:27', '2012-12-23 23:39:52', 'A819109', '8B157oSJTv3cmlwXDejSokqbM8b5svsF', '<span style=\"color:#666666;font-family:tahoma, Arial, 宋体, Verdana, sans-serif;line-height:25px;background-color:#f6fafd;\">殴飞消耗点卡接口</span>', '', '', '殴飞消耗点卡接口', '1', '2', '0.00000', '0', 'ofpay');
-INSERT INTO `xx_payment_config` VALUES ('8a9182fc3ba86bc8013ba97620b30000', '2012-12-17 23:23:09', '2012-12-17 23:23:09', 'a', 'b', '<span style=\"color:#666666;font-family:tahoma, Arial, 宋体, Verdana, sans-serif;line-height:25px;background-color:#f6fafd;\">易宝支付</span>', '', '', '易宝支付', '3', '2', '0.00000', '0', 'yeepay');
+INSERT INTO `xx_payment_config` VALUES ('4028bc743bac0d54013baca8729d0000', '2012-12-18 14:16:58', '2012-12-26 10:20:14', '10011842896', '09ocl8ku8todssltsgyicyai6p1c0d488kvnh1rt88q0s7sjwq0hb0n3mgi8', '<span style=\"color:#666666;font-family:\'tahoma, Arial, 宋体, Verdana, sans-serif\';\"><span style=\"line-height:25px;\">通道2</span></span>', '', '', '通道2', '2', '2', '0.00000', '0', 'yeepayforzy');
+INSERT INTO `xx_payment_config` VALUES ('4028bc743bac0d54013baca8e1350001', '2012-12-18 14:17:27', '2012-12-26 09:29:05', 'A819109', '8B157oSJTv3cmlwXDejSokqbM8b5svsF', '<span style=\"color:#666666;font-family:\'tahoma, Arial, 宋体, Verdana, sans-serif\';\"><span style=\"line-height:25px;\">通道1</span></span>', '', '', '通道1', '1', '2', '0.00000', '0', 'ofpay');
 
 -- ----------------------------
 -- Table structure for `xx_payment_discount`
