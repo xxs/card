@@ -11,7 +11,6 @@ import javax.persistence.OneToOne;
 import javax.persistence.Transient;
 
 import net.xxs.util.SerialNumberUtil;
-import net.xxs.util.SettingUtil;
 
 import org.hibernate.annotations.ForeignKey;
 
@@ -172,7 +171,8 @@ public class Payment extends BaseEntity {
 		this.deposit = deposit;
 	}
 
-	@ManyToOne(fetch = FetchType.LAZY)
+	
+	@OneToOne(mappedBy = "payment", fetch = FetchType.LAZY)
 	@ForeignKey(name = "fk_payment_order")
 	public Order getOrder() {
 		return order;

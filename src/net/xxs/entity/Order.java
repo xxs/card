@@ -16,7 +16,6 @@ import javax.persistence.OrderBy;
 import javax.persistence.Transient;
 
 import net.xxs.util.SerialNumberUtil;
-import net.xxs.util.SettingUtil;
 
 import org.hibernate.annotations.ForeignKey;
 
@@ -60,9 +59,9 @@ public class Order extends BaseEntity {
 	private Product product;// 充值卡
 	private Member member;// 会员
 	private PaymentConfig paymentConfig;// 支付方式
+	private Payment payment;// 收款
 	
 	private Set<OrderLog> orderLogSet = new HashSet<OrderLog>();// 订单日志
-	private Set<Payment> paymentSet = new HashSet<Payment>();// 收款
 	
 	@Column(nullable = false, updatable = false, unique = true)
 	public String getOrderSn() {
@@ -185,15 +184,17 @@ public class Order extends BaseEntity {
 		this.orderLogSet = orderLogSet;
 	}
 
-	@OneToMany(mappedBy = "order", fetch = FetchType.LAZY, cascade = {CascadeType.REMOVE})
-	@OrderBy("createDate desc")
-	public Set<Payment> getPaymentSet() {
-		return paymentSet;
+	@OneToOne(fetch = FetchType.LAZY)
+	@ForeignKey(name = "fk_order_payment")
+	public Payment getPayment() {
+		return payment;
 	}
 
-	public void setPaymentSet(Set<Payment> paymentSet) {
-		this.paymentSet = paymentSet;
+	public void setPayment(Payment payment) {
+		this.payment = payment;
 	}
+
+	
 
 	// 保存处理
 	@Override

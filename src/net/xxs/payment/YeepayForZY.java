@@ -348,6 +348,7 @@ public class YeepayForZY extends BasePaymentProduct {
 	public PaymentResult cardQuery(PaymentConfig paymentConfig,
 			String paymentSn, BigDecimal paymentAmount,
 			HttpServletRequest httpServletRequest) {
+		System.out.println("query2");
 		return null;
 	}
 

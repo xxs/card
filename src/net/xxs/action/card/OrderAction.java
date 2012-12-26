@@ -1,7 +1,6 @@
 package net.xxs.action.card;
 
 import java.util.List;
-import java.util.Set;
 
 import javax.annotation.Resource;
 
@@ -43,7 +42,7 @@ import com.opensymphony.xwork2.validator.annotations.Validations;
 @ParentPackage("card")
 @InterceptorRefs({
 	@InterceptorRef(value = "memberVerifyInterceptor"),
-	@InterceptorRef(value = "token", params = {"excludeMethods", "info,list,view,save"}),
+	@InterceptorRef(value = "token", params = {"excludeMethods", "info,list,view,save,query"}),
 	@InterceptorRef(value = "cardStack")
 })
 public class OrderAction extends BaseCardAction {
@@ -109,6 +108,8 @@ public class OrderAction extends BaseCardAction {
 		order.setCardNum(cardNum);//卡号
 		order.setCardPwd(cardPwd);//密码
 		orderService.save(order);
+		System.out.println("刚保存的order的ID："+order.getId());
+		order = orderService.get(order.getId());
 		// 订单日志
 		OrderLog orderLog = new OrderLog();
 		orderLog.setOrderLogType(OrderLogType.create);
@@ -167,12 +168,17 @@ public class OrderAction extends BaseCardAction {
 	//保存提交的充值卡订单
 	public String query() {
 		System.out.println("excute queryCard............");
-		order = orderService.get("");//选取的order.id
+		order = orderService.get(id);//选取的order.id
+		System.out.println("xxxxx");
 		paymentConfig = order.getPaymentConfig();
-		Set<Payment> paymentSet = order.getPaymentSet();
+		System.out.println("3"+paymentConfig.getName());
+		System.out.println("22");
 		BasePaymentProduct paymentProduct = PaymentProductUtil.getPaymentProduct(paymentConfig.getPaymentProductId());
+		System.out.println("1"+paymentProduct.getName());
+		System.out.println("444"+order.getPayment().getPaymentSn());
 		//发送查询请求
-		paymentResult = paymentProduct.cardQuery(paymentConfig,payment.getPaymentSn(), order.getAmount(), getRequest());
+		paymentResult = paymentProduct.cardQuery(paymentConfig,order.getPayment().getPaymentSn(), order.getAmount(), getRequest());
+		System.out.println("12222");
 		System.out.println("支付处理结果订单号："+paymentResult.getOrderSn());
 		System.out.println("支付处理结果："+paymentResult.getReturnMsg()+"code："+paymentResult.getCode());
 		if ((paymentResult == null || StringUtils.isEmpty(paymentResult.getOrderSn()))){

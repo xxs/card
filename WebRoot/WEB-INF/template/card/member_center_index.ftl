@@ -194,6 +194,8 @@
 							<th>下单时间</th>
 							<th>订单金额</th>
 							<th>订单状态</th>
+							<th>支付通道</th>
+							<th>刷新</th>
 						</tr>
 						<#list loginMember.orderSet as order>
 							<tr>
@@ -217,10 +219,16 @@
 									<span title="${order.createDate?string("yyyy-MM-dd HH:mm:ss")}">${order.createDate}</span>
 								</td>
 								<td>
-									${order.amountPayable?string(currencyFormat)}
+									${order.amount?string(currencyFormat)}
 								</td>
 								<td>
 										[${action.getText("OrderStatus." + order.orderStatus)}]
+								</td>
+								<td>
+									${order.paymentConfig.name}
+								</td>
+								<td>
+									<a href="/card/order!query.action?id=${order.id}">刷新<a/>
 								</td>
 							</tr>
 							<#if (order_index + 1 > 10)>

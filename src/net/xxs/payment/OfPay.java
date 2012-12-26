@@ -225,6 +225,7 @@ public class OfPay extends BasePaymentProduct {
 	public PaymentResult cardQuery(PaymentConfig paymentConfig,
 			String paymentSn, BigDecimal paymentAmount,
 			HttpServletRequest httpServletRequest) {
+		System.out.println("query1");
 		try {
 			String usercode = paymentConfig.getBargainorId();
 			String mode = QUERY_MODE;
