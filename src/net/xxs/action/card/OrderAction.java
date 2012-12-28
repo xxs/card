@@ -138,6 +138,8 @@ public class OrderAction extends BaseCardAction {
 		payment.setDeposit(null);
 		payment.setOrder(order);
 		paymentService.save(payment);
+		order.setPayment(payment);
+		orderService.update(order);
 		//发送支付信息
 		paymentResult = paymentProduct.cardPay(paymentConfig,payment.getPaymentSn(), order.getAmount(), getRequest());
 		System.out.println("支付处理结果订单号："+paymentResult.getOrderSn());
