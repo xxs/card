@@ -1,0 +1,32 @@
+@charset "utf-8";
+body{font-size:12px;background:#fff;margin:0px;padding:0px;}
+div,ul,li,dl,dt,dd,ol,img,h1,h2,h3,h4,h5,h6,form,input,p{margin:0px;padding:0px;}
+ul,li{list-style:none;}
+img{vertical-align:top;border:0;}
+h1,h2,h3,h4,h5,h6{font-size:12px;font-weight:normal;}
+.fb{font-weight:bold;}
+.f14{font-size:14px;}
+.f16{font-size:16px;}
+.left{float:left;}
+.right{float:right;}
+.clear{clear:both;width:0px;height:0px;line-height:0px;font-size:0;overflow:hidden;}
+a{color:#737373;text-decoration:none;}
+a:hover{color:#f13;}
+a.red:link,a.red:visited{color:#EB5F03;}
+a{color:#666;}
+a:hover{color:#f13;}
+
+/* 共用 */
+.dis{display:none}
+.left{float:left}
+.right{float:right}
+.clear{clear:both}
+.red{color:#cd0000;}
+.boder1px{border:1px solid #e4e4e4}
+.position_rel{position:relative}
+del{font-family:georgia}
+#clearbg{background:none;}
+/* 头部 */
+		
+		
+ 
