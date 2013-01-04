@@ -8,11 +8,12 @@
 <#if (article.metaKeywords)! != ""><meta name="keywords" content="${article.metaKeywords}" /></#if>
 <#if (article.metaDescription)! != ""><meta name="description" content="${article.metaDescription}" /></#if>
 <link rel="icon" href="favicon.ico" type="image/x-icon" />
+<link href="${base}/template/card/css/base.css" rel="stylesheet" type="text/css" />
+<link href="${base}/template/card/css/card.css" rel="stylesheet" type="text/css" />
 <script type="text/javascript" src="${base}/template/common/js/jquery.js"></script>
 <script type="text/javascript" src="${base}/template/common/js/jquery.tools.js"></script>
 <script type="text/javascript" src="${base}/template/card/js/base.js"></script>
 <script type="text/javascript" src="${base}/template/card/js/card.js"></script>
-<#include "/WEB-INF/template/card/head.ftl">
 <!--[if lte IE 6]>
 	<script type="text/javascript" src="${base}/template/common/js/belatedPNG.js"></script>
 	<script type="text/javascript">
@@ -68,7 +69,7 @@
 	})
 </script>
 </head>
-<body >
+<body class="login">
 	<#include "/WEB-INF/template/card/header.ftl">
 	<div class="blank"></div>
 	<div class="body">

@@ -41,7 +41,7 @@
 				</tr>
 				<tr>
 					<td class="title">订单总金额</td>
-					<td><span class="red">${order.amountPayable?string(currencyFormat)}</span></td>
+					<td><span class="red">${order.totalAmount?string(currencyFormat)}</span></td>
 				</tr>
 			</table>
 			<div class="blank"></div>
@@ -55,7 +55,7 @@
 				</tr>
 			</table>
 			<#if order.paymentConfig??>
-				<form action="${base}/card/payment!send.action" method="post">
+				<form action="${base}/card/payment!submit.action" method="post">
 					<@s.token />
 					<#if paymentConfig.paymentConfigType == "deposit">
 						<input type="hidden" name="paymentType" value="deposit" />

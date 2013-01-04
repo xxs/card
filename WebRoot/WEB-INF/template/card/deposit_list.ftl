@@ -88,8 +88,6 @@
 							<th>支出金额</th>
 							<th>当前余额</th>
 							<th>日期</th>
-							<th>来源会员</th>
-							<th>来源单据</th>
 						</tr>
 						<#list pager.result as deposit>
 							<tr>
@@ -121,20 +119,6 @@
 								</td>
 								<td>
 									<span title="${deposit.createDate?string("yyyy-MM-dd HH:mm:ss")}">${deposit.createDate}</span>
-								</td>
-								<td>
-									<#if deposit.referrer != null>
-										${deposit.referrer}
-									<#else>
-										-
-									</#if>
-								</td>
-								<td>
-									<#if deposit.orderSn != null>
-										${deposit.orderSn}
-									<#else>
-										-
-									</#if>
 								</td>
 							</tr>
 						</#list>

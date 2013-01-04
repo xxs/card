@@ -17,58 +17,103 @@
 		DD_belatedPNG.fix(".belatedPNG");
 	</script>
 <![endif]-->
-<#include "/WEB-INF/template/card/head.ftl">
 </head>
 <body class="articleList">
 	<#include "/WEB-INF/template/card/header.ftl">
-		<!-- START small_banner -->
-      <section class="small_banner">
-         <div class="center-wrap">
-            <p class="page-banner-heading">会员中心首页</p>
-            <p class="page-banner-description">This area is super easy to customize. It can include a search bar, custom text or absolutely nothing at all.</p>
-            
-            <div class="breadcrumbs">
-            
-            <a href="${base}/" class="shop"><span class="icon">&nbsp;</span>首页</a> &gt;
+	<div class="body">
+		<div class="bodyLeft">
+			<div class="recommendArticle">
+				<div class="top">推荐文章</div>
+				<div class="middle">
+					<ul>
+						<@article_list article_category_id=articleCategory.id type="recommend" count=10; articleList>
+							<#list articleList as article>
+								<li>
+									<span class="icon">&nbsp;</span>
+									<a href="${base}${article.htmlPath}" title="${article.title}">${substring(article.title, 24, "...")}</a>
+								</li>
+							</#list>
+						</@article_list>
+					</ul>
+				</div>
+				<div class="bottom"></div>
+			</div>
+			<div class="blank"></div>
+			<div class="hotArticle">
+				<div class="top">热点文章</div>
+				<div class="middle">
+					<ul>
+						<@article_list article_category_id=articleCategory.id type="hot" count=10; articleList>
+							<#list articleList as article>
+								<li class="number${article_index + 1}">
+									<span class="icon">&nbsp;</span>
+									<a href="${base}${article.htmlPath}" title="${article.title}">${substring(article.title, 24, "...")}</a>
+								</li>
+							</#list>
+						</@article_list>
+					</ul>
+				</div>
+				<div class="bottom"></div>
+			</div>
+		</div>
+		<div class="bodyRight">
+			<div class="listBar">
+				<div class="left"></div>
+				<div class="middle">
+					<div class="path">
+						<a href="${base}/" class="home"><span class="icon">&nbsp;</span>首页</a> &gt;
 						<#list pathList as path>
 							<a href="${base}${path.url}">${path.name}</a> &gt;
 						</#list>
-            </div>
-            <!-- END breadcrumbs -->
-         </div>
-         <!-- END center-wrap -->
-         
-         <div class="shadow top"></div>
-         <div class="shadow bottom"></div>
-         <div class="tt-overlay"></div>
-      </section>
-<section id="content-container" class="clearfix">
-   <div id="main-wrap" class="clearfix">
-   
-	  <!-- START tabs_type_1 -->  
-      <dl class="tabs_type_1">
-      
+					</div>
+					<div id="articleSearch" class="articleSearch">
+						<form id="articleSearchForm" action="${base}/card/article!search.action" method="post">
+							<input type="text" name="pager.keyword" id="articleSearchKeyword" class="keyword" value="请输入关键词..." />
+							<input type="submit" class="searchButton" value="" />
+						</form>
+					</div>
+				</div>
+				<div class="right"></div>
+			</div>
+			<div class="blank"></div>
+			<div class="articleList">
+				<div class="articleListTop"></div>
+				<div class="articleListMiddle">
+					<ul class="articleListDetail">
 						<#list pager.result as article>
-							<dt <#if article.title == '联系我们'>class="current" </#if> >${substring(article.title, 40, "...")}</dt>
-							<dd <#if article.title == '联系我们'>class="current" </#if> >
-					            <p>${article.contentText}</p>
-					            <p>作者: <#if article.author == "">未知<#else>${article.author}</#if> 发布日期：${article.createDate}</p>
-					        </dd>
+                			<li>
+                            	<a href="${base}${article.htmlPath}" class="title">
+									${substring(article.title, 40, "...")}
+								</a>
+                                <span class="author">
+                                	作者: <#if article.author == "">未知<#else>${article.author}</#if>
+                                </span>
+                                <span class="createDate">
+                                	${article.createDate}
+                                </span>
+                                <div class="contentText">
+									${substring(article.contentText, 200, "...")}
+									<a href="${base}${article.htmlPath}">[阅读全文]</a>
+								</div>
+      		        		</li>
                 		</#list>
-      </dl>
-      <!-- END tabs_type_1 --> 
-   </div>
-   <!-- END main-wrap -->   
-</section>
-<!-- END content-container -->
+					</ul>
+					<div class="blank"></div>
+					<@pagination pager=pager baseUrl=articleCategory.url>
+         				<#include "/WEB-INF/template/card/pager.ftl">
+         			</@pagination>
+				</div>
+				<div class="articleListBottom"></div>
+			</div>
+		</div>
+		<div class="blank"></div>
+		<#include "/WEB-INF/template/card/friend_link.ftl">
+	</div>
+	<div class="blank"></div>
 	<#include "/WEB-INF/template/card/footer.ftl">
 	<script type="text/javascript" src="${base}/template/common/js/jquery.js"></script>
 	<script type="text/javascript" src="${base}/template/common/js/jquery.tools.js"></script>
 	<script type="text/javascript" src="${base}/template/card/js/base.js"></script>
 	<script type="text/javascript" src="${base}/template/card/js/card.js"></script>
-	<script type="text/javascript" src="${base}/template/xxs/js/custom-main.js"></script>
-    <script type="text/javascript" src="${base}/template/xxs/js/jquery.prettyPhoto.js"></script>
-    <script type="text/javascript" src="${base}/template/xxs/js/jquery.cycle.all.min.js"></script>
-    <script type="text/javascript" src="${base}/template/xxs/js/jquery.easing.1.3.js"></script>
 </body>
 </html>

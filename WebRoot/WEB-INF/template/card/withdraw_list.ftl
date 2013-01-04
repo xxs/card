@@ -118,9 +118,6 @@ $().ready( function() {
 		<div class="bodyRight">
 			<div class="memberCenterDetail">
 				<div class="top">预存款提现 <span class="red">[预存款余额: ${loginMember.deposit?string(currencyFormat)}]</span></div>
-				<#list withdrawList as withdraw>
-					${withdraw.withdrawSn}...
-				</#list>
 				<div class="middle">
 					<div id="validateErrorContainer" class="validateErrorContainer">
 						<div class="validateErrorTitle">以下信息填写有误,请重新填写</div>

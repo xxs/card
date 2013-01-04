@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="content-type" content="text/html; charset=utf-8" />
-<title>会员中心<#if setting.isShowPoweredInfo> - XXS</#if></title>
+<title>缺货登记<#if setting.isShowPoweredInfo> - XXS</#if></title>
 <meta name="Author" content="XXS-DW" />
 <meta name="Copyright" content="XXS" />
 <link rel="icon" href="favicon.ico" type="image/x-icon" />
@@ -19,10 +19,38 @@
 		DD_belatedPNG.fix(".belatedPNG");
 	</script>
 <![endif]-->
+<script type="text/javascript">
+$().ready( function() {
+	
+	var $deleteGoodsNotify = $("#goodsNotifyTable .deleteGoodsNotify");
+	
+	// 到货通知删除
+	$deleteGoodsNotify.click( function() {
+		var $this = $(this);
+		var goodsNotifyId = $this.attr("goodsNotifyId");
+		$.dialog({type: "warn", content: "您确定要删除吗?", ok: "确 定", cancel: "取 消", modal: true, okCallback: deleteGoodsNotify});
+		function deleteGoodsNotify() {
+			$.ajax({
+				url: "goods_notify!ajaxDelete.action",
+				data: {id: goodsNotifyId},
+				type: "POST",
+				dataType: "json",
+				cache: false,
+				success: function(data) {
+					$.message({type: data.status, content: data.message});
+					$this.parent().parent().remove();
+				}
+			});
+		}
+		return false;
+	});
+	
+});
+</script>
 </head>
 <body class="memberCenter">
 	<#include "/WEB-INF/template/card/header.ftl">
-	<div class="body memberCenterIndex">
+	<div class="body goodsNotifyList">
 		<div class="bodyLeft">
 			<div class="memberInfo">
 				<div class="top"></div>
@@ -47,7 +75,7 @@
 	                    <li class="category favorite">
 	                    	<ul>
 	                        	<li><a href="favorite!list.action">充值卡收藏</a></li>
-	                        	<li><a href="goods_notify!list.action">缺货登记</a></li>
+	                        	<li class="current"><a href="goods_notify!list.action">缺货登记</a></li>
 	                        </ul>
 	                    </li>
 	                  	<li class="message">
@@ -69,7 +97,6 @@
 	                    	<ul>
 	                    		<li><a href="deposit!list.action">我的预存款</a></li>
 	                        	<li><a href="deposit!recharge.action">预存款充值</a></li>
-	                        	<li><a href="withdraw!list.action">预存款提现</a></li>
 	                        </ul>
 	                    </li>
 	                </ul>
@@ -79,96 +106,43 @@
 		</div>
 		<div class="bodyRight">
 			<div class="memberCenterDetail">
-				<div class="top">会员中心首页</div>
+				<div class="top">缺货登记</div>
 				<div class="middle">
 					<div class="blank"></div>
-					<table class="listTable">
+					<table id="goodsNotifyTable" class="listTable">
 						<tr>
-							<td colspan="4">
-								您目前是[${loginMember.memberRank.name}]
-								<#if loginMember.memberRank.preferentialScale != 100>
-									<span class="red">[优惠百分比: ${loginMember.memberRank.preferentialScale}%]</span>
-								</#if>
-							</td>
-						</tr>
-						<tr>
-							<th>帐户总积分</th>
-							<td>${loginMember.score}</td>
-							<th>订单总数量</th>
-							<td>
-								${loginMember.orderSet?size}&nbsp;&nbsp;
-								<a href="order!list.action">[查看订单列表]</a>
-							</td>
-						</tr>
-						<tr>
-							<th>预存款余额</th>
-							<td>${loginMember.deposit?string(currencyFormat)}</td>
-							<th>未读消息数</th>
-							<td>
-								${unreadMessageCount}&nbsp;&nbsp;
-								<a href="message!inbox.action">[查看收件箱]</a>
-							</td>
-						</tr>
-						<tr>
-							<th>注册日期</th>
-							<td>${loginMember.createDate?string("yyyy-MM-dd HH:mm:ss")}</td>
-							<th>最后登录IP</th>
-							<td>${loginMember.loginIp}</td>
-						</tr>
-					</table>
-					<div class="blank"></div>
-					<table class="listTable">
-						<tr>
+							<th>充值卡图片</th>
 							<th>充值卡名称</th>
-							<th>订单编号</th>
-							<th>下单时间</th>
-							<th>订单金额</th>
-							<th>订单状态</th>
+							<th>充值卡价格</th>
+							<th>操作</th>
 						</tr>
-						<#list loginMember.orderSet as order>
+						<#list (pager.result)! as goodsNotify>
+							<#assign product = goodsNotify.product />
+							<#assign goods = goodsNotify.product.goods />
 							<tr>
-								<td width="350">
-									<a href="order!view.action?id=${order.id}">
-										<span title="<#list order.productItemSet as productItem><#if productItem_index != 0>、</#if>${productItem.name}</#list>">
-											<#list order.orderItemSet as orderItem>
-												<#if orderItem_index != 0>、</#if>
-												${orderItem.productName}
-												<#if orderItem_index == 3 && orderItem_has_next>
-													...<#break />
-												</#if>
-											</#list>
-										</span>
+								<td>
+									<a href="${base}${goods.htmlPath}" class="goodsImage" target="_blank">
+										<img src="${base}${goods.defaultThumbnailGoodsImagePath}" />
 									</a>
 								</td>
 								<td>
-									<a href="order!view.action?id=${order.id}">${order.orderSn}</a>
+									<a href="${base}${goods.htmlPath}" target="_blank">
+										${product.name}
+									</a>
 								</td>
 								<td>
-									<span title="${order.createDate?string("yyyy-MM-dd HH:mm:ss")}">${order.createDate}</span>
+									${product.price?string(currencyFormat)}
 								</td>
 								<td>
-									${order.totalAmount?string(currencyFormat)}
-								</td>
-								<td>
-									<#if order.orderStatus != "completed" && order.orderStatus != "invalid">
-										[${action.getText("PaymentStatus." + order.paymentStatus)}]
-										[${action.getText("ShippingStatus." + order.shippingStatus)}]
-									<#else>
-										[${action.getText("OrderStatus." + order.orderStatus)}]
-									</#if>
+									<a href="#" class="deleteGoodsNotify" goodsNotifyId="${goodsNotify.id}">删除</a>
 								</td>
 							</tr>
-							<#if (order_index + 1 > 10)>
-								<#break />
-							</#if>
 						</#list>
-						<tr>
-							<td colspan="5">
-								<a href="order!list.action">更多订单>></a>
-							</td>
-						</tr>
 					</table>
 					<div class="blank"></div>
+					<@pagination pager=pager baseUrl="/card/goods_notify!list.action">
+         				<#include "/WEB-INF/template/card/pager.ftl">
+         			</@pagination>
 				</div>
 				<div class="bottom"></div>
 			</div>
