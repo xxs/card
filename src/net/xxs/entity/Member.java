@@ -96,6 +96,10 @@ public class Member extends BaseEntity {
 	private Set<Order> orderSet = new HashSet<Order>();// 订单
 	private Set<Payment> paymentSet = new HashSet<Payment>();// 支付
 	private Set<Deposit> depositSet = new HashSet<Deposit>();// 预存款
+	//新添加选项
+	private Set<MemberBank> memberBankSet = new HashSet<MemberBank>();//银行卡信息
+	private Set<MemberBusiness> memberBusinessesSet = new HashSet<MemberBusiness>(); //商户信息
+	
 
 	@Column(nullable = false, updatable = false, unique = true)
 	public String getUsername() {
@@ -521,6 +525,26 @@ public class Member extends BaseEntity {
 		this.depositSet = depositSet;
 	}
 	
+	@OneToMany(mappedBy = "member", fetch = FetchType.LAZY, cascade = {CascadeType.REMOVE})
+	@OrderBy("createDate asc")
+	public Set<MemberBank> getMemberBankSet() {
+		return memberBankSet;
+	}
+
+	public void setMemberBankSet(Set<MemberBank> memberBankSet) {
+		this.memberBankSet = memberBankSet;
+	}
+	
+	@OneToMany(mappedBy = "member", fetch = FetchType.LAZY, cascade = {CascadeType.REMOVE})
+	@OrderBy("createDate asc")
+	public Set<MemberBusiness> getMemberBusinessesSet() {
+		return memberBusinessesSet;
+	}
+
+	public void setMemberBusinessesSet(Set<MemberBusiness> memberBusinessesSet) {
+		this.memberBusinessesSet = memberBusinessesSet;
+	}
+
 	// 获取会员注册项值
 	@Transient
 	public Object getMemberAttributeValue(MemberAttribute memberAttribute) {

@@ -4,6 +4,7 @@ import javax.annotation.Resource;
 
 import net.xxs.service.ArticleService;
 import net.xxs.service.CardsService;
+import net.xxs.service.MemberBusinessService;
 import net.xxs.service.MemberService;
 import net.xxs.service.MessageService;
 import net.xxs.service.OrderService;
@@ -33,6 +34,8 @@ public class PageAction extends BaseAdminAction {
 	private ArticleService articleService;
 	@Resource(name = "withdrawServiceImpl")
 	private WithdrawService withdrawService;
+	@Resource(name = "memberBusinessServiceImpl")
+	private MemberBusinessService memberBusinessService;
 	
 	// 后台主页面
 	public String main() {
@@ -72,6 +75,16 @@ public class PageAction extends BaseAdminAction {
 	// 获取未处理提现申请数
 	public Long getUnprocessedWithdrawCount() {
 		return withdrawService.getUnprocessedWithdrawCount();
+	}
+	
+	// 获取未处理商户申请数
+	public Long getUnprocessedMemberBusinessApplyCount() {
+		return memberBusinessService.getUnprocessedMemberBusinessApplyCount();
+	}
+	
+	// 获取商户总数
+	public Long getUnprocessedMemberBusinessCount() {
+		return memberBusinessService.getUnprocessedMemberBusinessCount();
 	}
 	
 	// 获取已上架充值卡数

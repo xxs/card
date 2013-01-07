@@ -135,6 +135,22 @@
 				</tr>
 				<tr>
 					<td>
+						未处理商户申请数: 
+					</td>
+					<td>
+						${unprocessedMemberBusinessApplyCount} <a href="withdraw!list.action">[商户申请]</a>
+					</td>
+				</tr>
+				<tr>
+					<td>
+						商户总数: 
+					</td>
+					<td>
+						${unprocessedMemberBusinessCount} <a href="withdraw!list.action">[商户总数]</a>
+					</td>
+				</tr>
+				<tr>
+					<td>
 						会员总数: 
 					</td>
 					<td>

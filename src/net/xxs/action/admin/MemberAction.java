@@ -20,6 +20,7 @@ import net.xxs.service.DepositService;
 import net.xxs.service.MemberAttributeService;
 import net.xxs.service.MemberRankService;
 import net.xxs.service.MemberService;
+import net.xxs.util.CheckUtil;
 import net.xxs.util.StringUtil;
 
 import org.apache.commons.lang.ArrayUtils;
@@ -142,8 +143,8 @@ public class MemberAction extends BaseAdminAction {
 			return ERROR;
 		}
 		List<MemberAttribute> memberAttributeList = memberAttributeService.getMemberAttributeList();
-		Pattern numberPattern = Pattern.compile("^-?(?:\\d+|\\d{1,3}(?:,\\d{3})+)(?:\\.\\d+)?");
-		Pattern alphaintPattern = Pattern.compile("[a-zA-Z]+");
+//		Pattern numberPattern = Pattern.compile("^-?(?:\\d+|\\d{1,3}(?:,\\d{3})+)(?:\\.\\d+)?");
+//		Pattern alphaintPattern = Pattern.compile("[a-zA-Z]+");
 		for (MemberAttribute memberAttribute : memberAttributeList) {
 			SystemAttributeType systemAttributeType = memberAttribute.getSystemAttributeType();
 			AttributeType attributeType = memberAttribute.getAttributeType();
@@ -168,14 +169,14 @@ public class MemberAction extends BaseAdminAction {
 				} else {
 					if (StringUtils.isNotEmpty(memberAttributeValue)) {
 						if (attributeType == AttributeType.number) {
-							Matcher matcher = numberPattern.matcher(memberAttributeValue);
-							if (!matcher.matches()) {
+//							Matcher matcher = CheckUtil.numberPattern().matcher(memberAttributeValue);
+							if (!CheckUtil.numberCheck(memberAttributeValue)) {
 								addActionError(memberAttribute.getName() + "只允许输入数字!");
 								return ERROR;
 							}
 						} else if (attributeType == AttributeType.alphaint) {
-							Matcher matcher = alphaintPattern.matcher(memberAttributeValue);
-							if (!matcher.matches()) {
+//							Matcher matcher = CheckUtil.alphaintPattern().matcher(memberAttributeValue);
+							if (!CheckUtil.alphaintCheck(memberAttributeValue)) {
 								addActionError(memberAttribute.getName() + "只允许输入字母!");
 								return ERROR;
 							}

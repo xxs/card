@@ -8,7 +8,6 @@ import net.xxs.bean.Pager;
 import net.xxs.dao.WithdrawDao;
 import net.xxs.entity.Member;
 import net.xxs.entity.Withdraw;
-import net.xxs.entity.Withdraw.WithdrawStatus;
 import net.xxs.service.WithdrawService;
 
 import org.springframework.stereotype.Service;

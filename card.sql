@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50154
 File Encoding         : 65001
 
-Date: 2012-12-28 11:42:06
+Date: 2013-01-07 17:42:34
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -43,7 +43,7 @@ CREATE TABLE `xx_admin` (
 -- ----------------------------
 -- Records of xx_admin
 -- ----------------------------
-INSERT INTO `xx_admin` VALUES ('0731dcsoft2010031200000000000017', '2011-01-01 00:00:00', '2012-12-28 11:31:31', '技术部', 'xxs@163.com', '', '', '', '', '2012-12-17 14:28:34', '2012-12-28 11:31:31', '0', '127.0.0.1', 'ADMIN', '21232f297a57a5a743894a0e4a801fc3', 'admin');
+INSERT INTO `xx_admin` VALUES ('0731dcsoft2010031200000000000017', '2011-01-01 00:00:00', '2013-01-07 17:42:02', '技术部', 'xxs@163.com', '', '', '', '', '2012-12-17 14:28:34', '2013-01-07 17:42:02', '0', '127.0.0.1', 'ADMIN', '21232f297a57a5a743894a0e4a801fc3', 'admin');
 
 -- ----------------------------
 -- Table structure for `xx_admin_role`
@@ -324,6 +324,7 @@ INSERT INTO `xx_log` VALUES ('4028bc743bb257ca013bb264d4be0001', '2012-12-19 17:
 INSERT INTO `xx_log` VALUES ('4028bc743bb6fee6013bb75600b60004', '2012-12-20 16:02:45', '2012-12-20 16:02:45', 'net.xxs.action.admin.CardsAction', 'save', '添加充值卡: Q币卡', '127.0.0.1', '添加充值卡', 'admin');
 INSERT INTO `xx_log` VALUES ('4028bc743bbb05c2013bbb25d5e20001', '2012-12-21 09:48:37', '2012-12-21 09:48:37', 'net.xxs.action.admin.ArticleCategoryAction', 'save', '添加文章分类: 新手上路', '127.0.0.1', '添加文章分类', 'admin');
 INSERT INTO `xx_log` VALUES ('4028bc743bbb05c2013bbb2613390003', '2012-12-21 09:48:52', '2012-12-21 09:48:52', 'net.xxs.action.admin.ArticleAction', 'save', '添加文章: 新手上路', '127.0.0.1', '添加文章', 'admin');
+INSERT INTO `xx_log` VALUES ('4028bc743c142aaf013c14324c2c0000', '2013-01-07 16:48:26', '2013-01-07 16:48:26', 'net.xxs.action.admin.MemberAction', 'update', '编辑会员: 112233', '127.0.0.1', '编辑会员', 'admin');
 INSERT INTO `xx_log` VALUES ('8a9182fc3ba86bc8013ba9782e800002', '2012-12-17 23:25:23', '2012-12-17 23:25:23', 'net.xxs.action.admin.MemberAction', 'save', '添加会员: 123123', '127.0.0.1', '添加会员', 'admin');
 INSERT INTO `xx_log` VALUES ('8a9182fc3ba86bc8013ba97939a00004', '2012-12-17 23:26:32', '2012-12-17 23:26:32', 'net.xxs.action.admin.MemberAction', 'update', '编辑会员: 123123', '127.0.0.1', '编辑会员', 'admin');
 INSERT INTO `xx_log` VALUES ('8ae484093bd1e9bd013bd2053e570001', '2012-12-25 20:24:17', '2012-12-25 20:24:17', 'net.xxs.action.admin.OrderAction', 'completed', '订单编号: DD100037', '127.0.0.1', '订单完成', 'admin');
@@ -389,8 +390,8 @@ CREATE TABLE `xx_member` (
 -- ----------------------------
 -- Records of xx_member
 -- ----------------------------
-INSERT INTO `xx_member` VALUES ('297e62b93bd214af013bd21a73550000', '2012-12-25 20:47:27', '2012-12-25 20:47:27', '123', '2012-12-27 00:00:00', '0.00000', '123456@qq.com', '0', '', '', null, '2012-12-25 20:47:27', '0', null, '123123', '北京市', null, null, null, null, null, null, null, null, null, null, '111111', '建设银行', '123123123', null, null, null, null, null, '123123', '123123', '4297f44b13955235245b2497399d7a93', null, '123123', '123123', '127.0.0.1', null, null, '0', '112233', '123123', '402881833054c381013054d08bed0001');
-INSERT INTO `xx_member` VALUES ('8a9182fc3ba86bc8013ba9782de60001', '2012-12-17 23:25:23', '2012-12-28 11:31:51', null, '2012-12-20 00:00:00', '3000.00000', '123@qq.com', '0', '', '', null, '2012-12-28 11:31:51', '0', '127.0.0.1', '123123', '北京市', null, null, null, null, null, null, null, null, null, null, '12312', '建设银行', '123', null, null, null, null, null, null, '123', '4297f44b13955235245b2497399d7a93', null, null, '112233', '127.0.0.1', null, null, '0', '123123', null, '402881833054c381013054d08bed0001');
+INSERT INTO `xx_member` VALUES ('297e62b93bd214af013bd21a73550000', '2012-12-25 20:47:27', '2013-01-07 16:48:26', '123', '2012-12-27 00:00:00', '0.00000', '123456@qq.com', '0', '', '', null, '2012-12-25 20:47:27', '0', null, '123123', '北京市', null, null, null, null, null, null, null, null, null, null, '111111', '农业银行', '123123123', null, null, null, null, null, '123123', '123123', '4297f44b13955235245b2497399d7a93', null, '123123', '123123', '127.0.0.1', null, null, '0', '112233', '123123', '402881833054c381013054d08bed0001');
+INSERT INTO `xx_member` VALUES ('8a9182fc3ba86bc8013ba9782de60001', '2012-12-17 23:25:23', '2013-01-04 09:42:50', null, '2012-12-20 00:00:00', '3000.00000', '123@qq.com', '0', '', '', null, '2013-01-04 09:42:50', '0', '127.0.0.1', '123123', '北京市', null, null, null, null, null, null, null, null, null, null, '12312', '建设银行', '123', null, null, null, null, null, null, '123', '4297f44b13955235245b2497399d7a93', null, null, '112233', '127.0.0.1', null, null, '0', '123123', null, '402881833054c381013054d08bed0001');
 
 -- ----------------------------
 -- Table structure for `xx_member_attribute`
@@ -417,16 +418,72 @@ CREATE TABLE `xx_member_attribute` (
 INSERT INTO `xx_member_attribute` VALUES ('0731dcsoft2010031200000000000001', '2011-01-01 00:00:00', '2011-01-01 00:00:00', '0', '', '', '姓名', '', '1', '0', '0');
 INSERT INTO `xx_member_attribute` VALUES ('0731dcsoft2010031200000000000002', '2011-01-01 00:00:00', '2011-01-01 00:00:00', '0', '', '', '性别', '', '2', '1', '1');
 INSERT INTO `xx_member_attribute` VALUES ('0731dcsoft2010031200000000000003', '2011-01-01 00:00:00', '2011-01-01 00:00:00', '0', '', '', '出生日期', '', '3', '2', '2');
-INSERT INTO `xx_member_attribute` VALUES ('0731dcsoft2010031200000000000005', '2011-01-01 00:00:00', '2011-01-01 00:00:00', '0', '', '', '地址', '', '5', '3', '3');
-INSERT INTO `xx_member_attribute` VALUES ('0731dcsoft2010031200000000000006', '2011-01-01 00:00:00', '2011-01-01 00:00:00', '0', '', '', '邮编', '', '6', '4', '4');
-INSERT INTO `xx_member_attribute` VALUES ('0731dcsoft2010031200000000000007', '2011-01-01 00:00:00', '2011-01-01 00:00:00', '0', '', '', '电话', '', '7', '5', '5');
-INSERT INTO `xx_member_attribute` VALUES ('0731dcsoft2010031200000000000008', '2011-01-01 00:00:00', '2011-01-01 00:00:00', '0', '', '', '手机', '', '8', '6', '6');
-INSERT INTO `xx_member_attribute` VALUES ('0731dcsoft2010031200000000000009', '2011-01-01 00:00:00', '2012-12-08 13:01:19', '0', '', '', '推荐人', '', '9', '7', '7');
-INSERT INTO `xx_member_attribute` VALUES ('4028bc743a9c37c6013a9c4d24c80000', '2012-10-26 17:00:32', '2012-11-10 12:44:56', '0', '', '', '收款卡号', '', '11', '0', null);
-INSERT INTO `xx_member_attribute` VALUES ('4028bc743ab48628013ab4bdae9c0001', '2012-10-31 10:54:20', '2012-11-10 12:44:38', '3', '', '', '账号类型', '[\"建设银行\",\"农业银行\",\"光大银行\",\"中信银行\"]', '10', '3', null);
-INSERT INTO `xx_member_attribute` VALUES ('8a8f81133ae86694013ae8a020320000', '2012-11-10 12:42:19', '2012-11-10 12:42:35', '3', '', '', '开户银行所在地', '[\"北京市\",\"河南省\"]', '13', '1', null);
-INSERT INTO `xx_member_attribute` VALUES ('8a8f81133ae86694013ae8a1ced50001', '2012-11-10 12:44:09', '2012-11-10 12:44:09', '0', '', '', '开户姓名', '', '12', '2', null);
-INSERT INTO `xx_member_attribute` VALUES ('8a8f81133ae86694013ae8a30b0d0002', '2012-11-10 12:45:30', '2012-11-10 12:45:30', '0', '', '', '支行名称', '', '14', '4', null);
+INSERT INTO `xx_member_attribute` VALUES ('0731dcsoft2010031200000000000005', '2011-01-01 00:00:00', '2011-01-01 00:00:00', '0', '', '', '地址', '', '4', '3', '3');
+INSERT INTO `xx_member_attribute` VALUES ('0731dcsoft2010031200000000000006', '2011-01-01 00:00:00', '2011-01-01 00:00:00', '0', '', '', '邮编', '', '5', '4', '4');
+INSERT INTO `xx_member_attribute` VALUES ('0731dcsoft2010031200000000000007', '2011-01-01 00:00:00', '2011-01-01 00:00:00', '0', '', '', '电话', '', '6', '5', '5');
+INSERT INTO `xx_member_attribute` VALUES ('0731dcsoft2010031200000000000008', '2011-01-01 00:00:00', '2011-01-01 00:00:00', '0', '', '', '手机', '', '7', '6', '6');
+INSERT INTO `xx_member_attribute` VALUES ('0731dcsoft2010031200000000000009', '2011-01-01 00:00:00', '2012-12-08 13:01:19', '0', '', '', '推荐人', '', '8', '7', '7');
+
+-- ----------------------------
+-- Table structure for `xx_member_bank`
+-- ----------------------------
+DROP TABLE IF EXISTS `xx_member_bank`;
+CREATE TABLE `xx_member_bank` (
+  `id` varchar(32) NOT NULL,
+  `create_date` datetime DEFAULT NULL,
+  `modify_date` datetime DEFAULT NULL,
+  `bankcity` varchar(255) NOT NULL,
+  `bankdetail` varchar(255) NOT NULL,
+  `bankname` varchar(255) NOT NULL,
+  `banknum` varchar(255) NOT NULL,
+  `is_default` bit(1) NOT NULL,
+  `memo` longtext,
+  `openname` varchar(255) NOT NULL,
+  `member_id` varchar(32) DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `banknum` (`banknum`),
+  KEY `fk_member_bank_member` (`member_id`),
+  CONSTRAINT `fk_member_bank_member` FOREIGN KEY (`member_id`) REFERENCES `xx_member` (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- ----------------------------
+-- Records of xx_member_bank
+-- ----------------------------
+
+-- ----------------------------
+-- Table structure for `xx_member_business`
+-- ----------------------------
+DROP TABLE IF EXISTS `xx_member_business`;
+CREATE TABLE `xx_member_business` (
+  `id` varchar(32) NOT NULL,
+  `create_date` datetime DEFAULT NULL,
+  `modify_date` datetime DEFAULT NULL,
+  `qq` varchar(255) DEFAULT NULL,
+  `address` varchar(255) NOT NULL,
+  `business_name` varchar(255) NOT NULL,
+  `business_number` varchar(255) NOT NULL,
+  `business_type` int(11) NOT NULL,
+  `city` varchar(255) NOT NULL,
+  `icp` varchar(255) NOT NULL,
+  `link_man` varchar(255) NOT NULL,
+  `phone` varchar(255) NOT NULL,
+  `real_name` varchar(255) NOT NULL,
+  `scope` varchar(255) NOT NULL,
+  `server_tel` varchar(255) NOT NULL,
+  `server_time` varchar(255) DEFAULT NULL,
+  `tel` varchar(255) NOT NULL,
+  `url` varchar(255) NOT NULL,
+  `zipcode` varchar(255) NOT NULL,
+  `member_id` varchar(32) DEFAULT NULL,
+  `result_type` int(11) NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `fk_member_business_member` (`member_id`),
+  CONSTRAINT `fk_member_business_member` FOREIGN KEY (`member_id`) REFERENCES `xx_member` (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- ----------------------------
+-- Records of xx_member_business
+-- ----------------------------
 
 -- ----------------------------
 -- Table structure for `xx_member_rank`
@@ -538,8 +595,8 @@ CREATE TABLE `xx_order` (
   KEY `fk_order_payment_config` (`payment_config_id`),
   KEY `fk_order_product` (`product_id`),
   KEY `fk_order_payment` (`payment_id`),
-  CONSTRAINT `fk_order_payment` FOREIGN KEY (`payment_id`) REFERENCES `xx_payment` (`id`),
   CONSTRAINT `fk_order_member` FOREIGN KEY (`member_id`) REFERENCES `xx_member` (`id`),
+  CONSTRAINT `fk_order_payment` FOREIGN KEY (`payment_id`) REFERENCES `xx_payment` (`id`),
   CONSTRAINT `fk_order_payment_config` FOREIGN KEY (`payment_config_id`) REFERENCES `xx_payment_config` (`id`),
   CONSTRAINT `fk_order_product` FOREIGN KEY (`product_id`) REFERENCES `xx_product` (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
@@ -769,7 +826,7 @@ CREATE TABLE `xx_payment_config` (
 -- Records of xx_payment_config
 -- ----------------------------
 INSERT INTO `xx_payment_config` VALUES ('4028bc743bac0d54013baca8729d0000', '2012-12-18 14:16:58', '2012-12-26 10:20:14', '10011842896', '09ocl8ku8todssltsgyicyai6p1c0d488kvnh1rt88q0s7sjwq0hb0n3mgi8', '<span style=\"color:#666666;font-family:\'tahoma, Arial, 宋体, Verdana, sans-serif\';\"><span style=\"line-height:25px;\">通道2</span></span>', '', '', '通道2', '2', '2', '0.00000', '0', 'yeepayforzy');
-INSERT INTO `xx_payment_config` VALUES ('4028bc743bac0d54013baca8e1350001', '2012-12-18 14:17:27', '2012-12-26 09:29:05', 'A819109', '8B157oSJTv3cmlwXDejSokqbM8b5svsF', '<span style=\"color:#666666;font-family:\'tahoma, Arial, 宋体, Verdana, sans-serif\';\"><span style=\"line-height:25px;\">通道1</span></span>', '', '', '通道1', '1', '2', '0.00000', '0', 'ofpay');
+INSERT INTO `xx_payment_config` VALUES ('4028bc743bac0d54013baca8e1350001', '2012-12-18 14:17:27', '2013-01-04 09:57:03', 'A819109', '8B157oSJTv3cmlwXDejSokqbM8b5svsF', '<span style=\"color:#666666;font-family:\'tahoma, Arial, 宋体, Verdana, sans-serif\';\"><span style=\"line-height:25px;\">通道1</span></span>', '', '', '通道1', '1', '2', '0.00000', '0', 'ofpay');
 
 -- ----------------------------
 -- Table structure for `xx_payment_discount`
@@ -918,4 +975,4 @@ CREATE TABLE `xx_withdraw` (
 -- ----------------------------
 -- Records of xx_withdraw
 -- ----------------------------
-INSERT INTO `xx_withdraw` VALUES ('297e62b93bd214af013bd21f47430005', '2012-12-25 20:52:43', '2012-12-25 20:52:43', '0.97', '222', '会员自主提现', '20.00', null, '19.40', 'TX100001', '0', '8a9182fc3ba86bc8013ba9782de60001');
+INSERT INTO `xx_withdraw` VALUES ('297e62b93bd214af013bd21f47430005', '2012-12-25 20:52:43', '2013-01-04 10:07:59', '0.97', '222', '会员自主提现', '20.00', null, '19.40', 'TX100001', '2', '8a9182fc3ba86bc8013ba9782de60001');
