@@ -78,12 +78,14 @@ public class SettingUtil {
 		Node currencyUnitNode = document.selectSingleNode("/xxs/setting/currencyUnit");
 		Node priceScaleNode = document.selectSingleNode("/xxs/setting/priceScale");
 		Node priceRoundTypeNode = document.selectSingleNode("/xxs/setting/priceRoundType");
-		Node storeAlertCountNode = document.selectSingleNode("/xxs/setting/storeAlertCount");
-		Node storeFreezeTimeNode = document.selectSingleNode("/xxs/setting/storeFreezeTime");
 		Node isLoginFailureLockNode = document.selectSingleNode("/xxs/setting/isLoginFailureLock");
 		Node loginFailureLockCountNode = document.selectSingleNode("/xxs/setting/loginFailureLockCount");
 		Node loginFailureLockTimeNode = document.selectSingleNode("/xxs/setting/loginFailureLockTime");
 		Node isRegisterEnabledNode = document.selectSingleNode("/xxs/setting/isRegisterEnabled");
+		Node withdrawEveryDayCountNode = document.selectSingleNode("/xxs/setting/withdrawEveryDayCount");
+		Node withdrawEveryDayMoneyNode = document.selectSingleNode("/xxs/setting/withdrawEveryDayMoney");
+		Node withdrawMaxMoneyNode = document.selectSingleNode("/xxs/setting/withdrawMaxMoney");
+		Node withdrawMinMoneyNode = document.selectSingleNode("/xxs/setting/withdrawMinMoney");
 		Node watermarkImagePathNode = document.selectSingleNode("/xxs/setting/watermarkImagePath");
 		Node watermarkPositionNode = document.selectSingleNode("/xxs/setting/watermarkPosition");
 		Node watermarkAlphaNode = document.selectSingleNode("/xxs/setting/watermarkAlpha");
@@ -96,9 +98,6 @@ public class SettingUtil {
 		Node defaultBigCardsImagePathNode = document.selectSingleNode("/xxs/setting/defaultBigCardsImagePath");
 		Node defaultSmallCardsImagePathNode = document.selectSingleNode("/xxs/setting/defaultSmallCardsImagePath");
 		Node defaultThumbnailCardsImagePathNode = document.selectSingleNode("/xxs/setting/defaultThumbnailCardsImagePath");
-		Node isShowMarketPriceNode = document.selectSingleNode("/xxs/setting/isShowMarketPrice");
-		Node defaultMarketPriceOperatorNode = document.selectSingleNode("/xxs/setting/defaultMarketPriceOperator");
-		Node defaultMarketPriceNumberNode = document.selectSingleNode("/xxs/setting/defaultMarketPriceNumber");
 		Node smtpFromMailNode = document.selectSingleNode("/xxs/setting/smtpFromMail");
 		Node smtpHostNode = document.selectSingleNode("/xxs/setting/smtpHost");
 		Node smtpPortNode = document.selectSingleNode("/xxs/setting/smtpPort");
@@ -114,10 +113,6 @@ public class SettingUtil {
 		Node isLeaveMessageEnabledNode = document.selectSingleNode("/xxs/setting/isLeaveMessageEnabled");
 		Node isLeaveMessageCaptchaEnabledNode = document.selectSingleNode("/xxs/setting/isLeaveMessageCaptchaEnabled");
 		Node leaveMessageDisplayTypeNode = document.selectSingleNode("/xxs/setting/leaveMessageDisplayType");
-		Node isCommentEnabledNode = document.selectSingleNode("/xxs/setting/isCommentEnabled");
-		Node isCommentCaptchaEnabledNode = document.selectSingleNode("/xxs/setting/isCommentCaptchaEnabled");
-		Node commentAuthorityNode = document.selectSingleNode("/xxs/setting/commentAuthority");
-		Node commentDisplayTypeNode = document.selectSingleNode("/xxs/setting/commentDisplayType");
 		
 		Setting setting = new Setting();
 		setting.setSystemName(systemNameNode.getText());
@@ -135,6 +130,10 @@ public class SettingUtil {
 		setting.setHotSearch(hotSearchNode.getText());
 		setting.setMetaKeywords(metaKeywordsNode.getText());
 		setting.setMetaDescription(metaDescriptionNode.getText());
+		setting.setWithdrawEveryDayCount(Integer.valueOf(withdrawEveryDayCountNode.getText()));
+		setting.setWithdrawEveryDayMoney(Integer.valueOf(withdrawEveryDayMoneyNode.getText()));
+		setting.setWithdrawMaxMoney(Integer.valueOf(withdrawMaxMoneyNode.getText()));
+		setting.setWithdrawMinMoney(Integer.valueOf(withdrawMinMoneyNode.getText()));
 		setting.setAddress(addressNode.getText());
 		setting.setPhone(phoneNode.getText());
 		setting.setZipCode(zipCodeNode.getText());
@@ -245,6 +244,10 @@ public class SettingUtil {
 		Node loginFailureLockCountNode = document.selectSingleNode("/xxs/setting/loginFailureLockCount");
 		Node loginFailureLockTimeNode = document.selectSingleNode("/xxs/setting/loginFailureLockTime");
 		Node isRegisterEnabledNode = document.selectSingleNode("/xxs/setting/isRegisterEnabled");
+		Node withdrawEveryDayCountNode = document.selectSingleNode("/xxs/setting/withdrawEveryDayCount");
+		Node withdrawEveryDayMoneyNode = document.selectSingleNode("/xxs/setting/withdrawEveryDayMoney");
+		Node withdrawMaxMoneyNode = document.selectSingleNode("/xxs/setting/withdrawMaxMoney");
+		Node withdrawMinMoneyNode = document.selectSingleNode("/xxs/setting/withdrawMinMoney");
 		Node watermarkPositionNode = document.selectSingleNode("/xxs/setting/watermarkPosition");
 		Node watermarkAlphaNode = document.selectSingleNode("/xxs/setting/watermarkAlpha");
 		Node bigCardsImageWidthNode = document.selectSingleNode("/xxs/setting/bigCardsImageWidth");
@@ -333,6 +336,18 @@ public class SettingUtil {
 		if(loginFailureLockCountNode == null){
 			loginFailureLockCountNode = settingElement.addElement("loginFailureLockCount");
 		}
+		if(withdrawEveryDayCountNode == null){
+			withdrawEveryDayCountNode = settingElement.addElement("withdrawEveryDayCount");
+		}
+		if(withdrawEveryDayMoneyNode == null){
+				withdrawEveryDayMoneyNode = settingElement.addElement("withdrawEveryDayMoney");
+			}
+		if(withdrawMaxMoneyNode == null){
+				withdrawMaxMoneyNode = settingElement.addElement("withdrawMaxMoney");
+			}
+	    if(withdrawMinMoneyNode == null){
+				withdrawMinMoneyNode = settingElement.addElement("withdrawMinMoney");
+		}	
 		if(loginFailureLockTimeNode == null){
 			loginFailureLockTimeNode = settingElement.addElement("loginFailureLockTime");
 		}
@@ -449,6 +464,12 @@ public class SettingUtil {
 		loginFailureLockCountNode.setText(String.valueOf(setting.getLoginFailureLockCount()));
 		loginFailureLockTimeNode.setText(String.valueOf(setting.getLoginFailureLockTime()));
 		isRegisterEnabledNode.setText(String.valueOf(setting.getIsRegisterEnabled()));
+		
+		withdrawEveryDayCountNode.setText(String.valueOf(setting.getWithdrawEveryDayCount()));
+		withdrawEveryDayMoneyNode.setText(String.valueOf(setting.getWithdrawEveryDayMoney()));
+		withdrawMaxMoneyNode.setText(String.valueOf(setting.getWithdrawMaxMoney()));
+		withdrawMinMoneyNode.setText(String.valueOf(setting.getWithdrawMinMoney()));
+		
 		watermarkPositionNode.setText(String.valueOf(setting.getWatermarkPosition()));
 		watermarkAlphaNode.setText(String.valueOf(setting.getWatermarkAlpha()));
 		bigCardsImageWidthNode.setText(String.valueOf(setting.getBigCardsImageWidth()));

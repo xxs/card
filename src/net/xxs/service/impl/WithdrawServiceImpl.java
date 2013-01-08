@@ -8,6 +8,7 @@ import net.xxs.bean.Pager;
 import net.xxs.dao.WithdrawDao;
 import net.xxs.entity.Member;
 import net.xxs.entity.Withdraw;
+import net.xxs.entity.Withdraw.WithdrawStatus;
 import net.xxs.service.WithdrawService;
 
 import org.springframework.stereotype.Service;
@@ -42,9 +43,13 @@ public class WithdrawServiceImpl extends BaseServiceImpl<Withdraw, String> imple
 	public Long getUnprocessedWithdrawCount() {
 		return withdrawDao.getUnprocessedWithdrawCount();
 	}
-
+	@Transactional(readOnly = true)
 	public List<Withdraw> getApplyWithdrawList(Member member) {
 		return withdrawDao.getApplyWithdrawList(member);
+	}
+	@Transactional(readOnly = true)
+	public Pager getWithdrawPager(WithdrawStatus withdrawStatus, Pager pager) {
+		return withdrawDao.getWithdrawPager(withdrawStatus, pager);
 	}
 
 }

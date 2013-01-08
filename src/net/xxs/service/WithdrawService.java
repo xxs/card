@@ -46,4 +46,5 @@ public interface WithdrawService extends BaseService<Withdraw, String> {
 	 */
 	public List<Withdraw> getApplyWithdrawList(Member member);
 
+	public Pager getWithdrawPager(WithdrawStatus withdrawStatus,Pager pager);
 }

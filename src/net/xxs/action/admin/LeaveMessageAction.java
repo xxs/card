@@ -32,7 +32,8 @@ public class LeaveMessageAction extends BaseAdminAction {
 	private Boolean isLeaveMessageEnabled;
 	private Boolean isLeaveMessageCaptchaEnabled;
 	private LeaveMessageDisplayType leaveMessageDisplayType;
-
+	private Setting setting;
+	
 	@Resource(name = "leaveMessageServiceImpl")
 	private LeaveMessageService leaveMessageService;
 	@Resource(name = "cacheServiceImpl")
@@ -87,6 +88,7 @@ public class LeaveMessageAction extends BaseAdminAction {
 	
 	// 设置
 	public String setting() {
+		setting = SettingUtil.getSetting();
 		return "setting";
 	}
 	
@@ -143,6 +145,14 @@ public class LeaveMessageAction extends BaseAdminAction {
 
 	public void setLeaveMessageDisplayType(LeaveMessageDisplayType leaveMessageDisplayType) {
 		this.leaveMessageDisplayType = leaveMessageDisplayType;
+	}
+
+	public Setting getSetting() {
+		return setting;
+	}
+
+	public void setSetting(Setting setting) {
+		this.setting = setting;
 	}
 
 }

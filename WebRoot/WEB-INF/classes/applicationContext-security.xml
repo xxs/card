@@ -38,6 +38,10 @@
 		<sec:intercept-url pattern="/admin/member_rank!**" access="ROLE_MEMBER_RANK" />
 		<!-- 会员注册项管理 -->
 		<sec:intercept-url pattern="/admin/member_attribute!**" access="ROLE_MEMBER_ATTRIBUTE" />
+		<!-- 银行卡管理 -->
+		<sec:intercept-url pattern="/admin/member_bank!**" access="ROLE_MEMBER_BANK" />
+		<!-- 商户管理 -->
+		<sec:intercept-url pattern="/admin/member_business!**" access="ROLE_MEMBER_BUSINESS" />
 		<!-- 在线留言管理 -->
 		<sec:intercept-url pattern="/admin/leave_message!**" access="ROLE_LEAVE_MESSAGE" />
 		<!-- 导航管理 -->

@@ -12,7 +12,7 @@
 </head>
 <body class="menu">
 	<div class="body">
-		<@sec.authorize ifAnyGranted="ROLE_ORDER,ROLE_PAYMENT,ROLE_REFUND,ROLE_SHIPPING,ROLE_RESHIP">
+		<@sec.authorize ifAnyGranted="ROLE_ORDER,ROLE_PAYMENT,ROLE_REFUND">
 			<dl>
 				<dt>
 					<span>订单管理</span>
@@ -34,11 +34,15 @@
 				<dt>
 					<span>提现管理</span>
 				</dt>
-				<@sec.authorize ifAnyGranted="ROLE_WITHDRAW">
-					<dd>
-						<a href="withdraw!list.action" target="mainFrame">提现单列表</a>
-					</dd>
-				</@sec.authorize>
+				<dd>
+					<a href="withdraw!list.action" target="mainFrame">提现单列表</a>
+				</dd>
+				<dd>
+					<a href="withdraw!applying.action" target="mainFrame">新提现申请</a>
+				</dd>
+				<dd>
+					<a href="withdraw!setting.action" target="mainFrame">提现设置</a>
+				</dd>
 			</dl>
 		</@sec.authorize>
 	</div>

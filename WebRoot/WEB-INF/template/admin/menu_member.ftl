@@ -32,6 +32,29 @@
 				</dd>
 			</@sec.authorize>
 		</dl>
+		<@sec.authorize ifAnyGranted="ROLE_MEMBER_BANK">
+			<dl>
+				<dt>
+					<span>银行卡管理</span>
+				</dt>
+				<dd>
+					<a href="member_bank!list.action" target="mainFrame">全部银行卡</a>
+				</dd>
+			</dl>
+		</@sec.authorize>
+		<@sec.authorize ifAnyGranted="ROLE_MEMBER_BUSINESS">
+			<dl>
+				<dt>
+					<span>商户申请管理</span>
+				</dt>
+				<dd>
+					<a href="member_business!list.action" target="mainFrame">商户列表</a>
+				</dd>
+				<dd>
+					<a href="member_business!applying.action" target="mainFrame">新商户申请</a>
+				</dd>
+			</dl>
+		</@sec.authorize>
 		<@sec.authorize ifAnyGranted="ROLE_LEAVE_MESSAGE">
 			<dl>
 				<dt>

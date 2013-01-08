@@ -34,7 +34,11 @@
 		<isLoginFailureLock>true</isLoginFailureLock>  
 		<loginFailureLockCount>5</loginFailureLockCount>  
 		<loginFailureLockTime>5</loginFailureLockTime>  
-		<isRegisterEnabled>true</isRegisterEnabled>  
+		<isRegisterEnabled>true</isRegisterEnabled>
+		<withdrawEveryDayCount>0</withdrawEveryDayCount>
+		<withdrawEveryDayMoney>0</withdrawEveryDayMoney>
+		<withdrawMaxMoney>0</withdrawMaxMoney>
+		<withdrawMinMoney>0</withdrawMinMoney>  
 		<watermarkImagePath>/images/watermark.jpg</watermarkImagePath>  
 		<watermarkPosition>bottomRight</watermarkPosition>  
 		<watermarkAlpha>50</watermarkAlpha>  

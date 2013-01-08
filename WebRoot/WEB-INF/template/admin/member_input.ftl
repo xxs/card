@@ -9,6 +9,7 @@
 <link href="${base}/template/admin/css/base.css" rel="stylesheet" type="text/css" />
 <link href="${base}/template/admin/css/admin.css" rel="stylesheet" type="text/css" />
 <script type="text/javascript" src="${base}/template/common/js/jquery.js"></script>
+<script type="text/javascript" src="${base}/template/common/js/jquery.tools.js"></script>
 <script type="text/javascript" src="${base}/template/common/js/jquery.lSelect.js"></script>
 <script type="text/javascript" src="${base}/template/common/js/jquery.validate.js"></script>
 <script type="text/javascript" src="${base}/template/common/js/jquery.validate.methods.js"></script>
@@ -23,6 +24,11 @@ $().ready( function() {
 	var $validateForm = $("#validateForm");
 
 	var $areaSelect = $("#areaSelect");
+	var $tab = $("#tab");
+	// Tab效果
+	$tab.tabs(".tabContent", {
+		tabs: "input"
+	});
 
 	// 表单验证
 	$validateForm.validate({
@@ -169,7 +175,18 @@ $().ready( function() {
 	<div class="body">
 		<form id="validateForm" action="<#if isAddAction>member!save.action<#else>member!update.action</#if>" method="post">
 			<input type="hidden" name="id" value="${id}" />
-			<table class="inputTable">
+			<ul id="tab" class="tab">
+				<li>
+					<input type="button" value="基本信息" hidefocus />
+				</li>
+				<li>
+					<input type="button" value="银行卡信息" hidefocus />
+				</li>
+				<li>
+					<input type="button" value="商户信息" hidefocus />
+				</li>
+			</ul>
+			<table id="infoTable" class="inputTable tabContent">
 				<tr>
 					<th>
 						用户名: 
@@ -360,6 +377,158 @@ $().ready( function() {
 						</td>
 					</tr>
 				</#if>
+			</table>
+			<table id="memberBankTable" class="inputTable tabContent">
+				<tr class="title">
+					<th>
+						银行卡号
+					</th>
+					<th>
+						开户姓名
+					</th>
+					<th>
+						银行名称
+					</th>
+					<th>
+						支行名称
+					</th>
+					<th>
+						银行所在地
+					</th>
+					<th>
+						是否默认
+					</th>
+					<th>
+						操作
+					</th>
+				</tr>
+				<#list (member.memberBankSet)! as memberBank>
+					<tr >
+						<td>
+							${memberBank.banknum}
+						</td>
+						<td>
+							${memberBank.openname}
+						</td>
+						<td>
+							${memberBank.bankname}
+						</td>
+						<td>
+							${memberBank.bankcity}
+						</td>
+						<td>
+							${memberBank.bankdetail}
+						</td>
+						<td>
+							${memberBank.isDefault}
+						</td>
+						<td>
+							<span class="deleteIcon" title="删 除">&nbsp;</span>
+						</td>
+					</tr>
+				</#list>
+			</table>
+			<table id="memberBusinessTable" class="inputTable tabContent">
+				<#list (member.memberBusinessesSet)! as MemberBusiness>
+				<tr>
+					<th>
+						商户类型
+					</th>
+					<td>
+						${memberBusiness.businessType}
+					</td>
+					<th>
+						真实姓名 
+					</th>
+					<td>
+						${memberBusiness.realName}
+					</td>
+				</tr>
+				<tr>
+					<th>
+						商户类型
+					</th>
+					<td>
+						${memberBusiness.businessType}
+					</td>
+					<th>
+						真实姓名 
+					</th>
+					<td>
+						${memberBusiness.realName}
+					</td>
+				</tr>
+				<tr>
+					<th>
+						商户类型
+					</th>
+					<td>
+						${memberBusiness.businessType}
+					</td>
+					<th>
+						真实姓名 
+					</th>
+					<td>
+						${memberBusiness.realName}
+					</td>
+				</tr>
+				<tr>
+					<th>
+						商户类型
+					</th>
+					<td>
+						${memberBusiness.businessType}
+					</td>
+					<th>
+						真实姓名 
+					</th>
+					<td>
+						${memberBusiness.realName}
+					</td>
+				</tr>
+				<tr>
+					<th>
+						商户类型
+					</th>
+					<td>
+						${memberBusiness.businessType}
+					</td>
+					<th>
+						真实姓名 
+					</th>
+					<td>
+						${memberBusiness.realName}
+					</td>
+				</tr>
+				<tr>
+					<th>
+						商户类型
+					</th>
+					<td>
+						${memberBusiness.businessType}
+					</td>
+					<th>
+						真实姓名 
+					</th>
+					<td>
+						${memberBusiness.realName}
+					</td>
+				</tr>
+				<tr>
+					<th>
+						商户类型
+					</th>
+					<td>
+						${memberBusiness.businessType}
+					</td>
+					<th>
+						真实姓名 
+					</th>
+					<td>
+						${memberBusiness.realName}
+					</td>
+				</tr>
+				</#list>
 			</table>
 			<div class="buttonArea">
 				<input type="submit" class="formButton" value="确  定" hidefocus />&nbsp;&nbsp;

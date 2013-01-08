@@ -4,16 +4,23 @@ import java.math.BigDecimal;
 
 import javax.annotation.Resource;
 
+import net.xxs.bean.Setting;
 import net.xxs.entity.Deposit;
 import net.xxs.entity.Deposit.DepositType;
 import net.xxs.entity.Member;
 import net.xxs.entity.Withdraw;
 import net.xxs.entity.Withdraw.WithdrawStatus;
+import net.xxs.service.CacheService;
 import net.xxs.service.DepositService;
 import net.xxs.service.MemberService;
 import net.xxs.service.WithdrawService;
+import net.xxs.util.SettingUtil;
 
 import org.apache.struts2.convention.annotation.ParentPackage;
+
+import com.opensymphony.xwork2.interceptor.annotations.InputConfig;
+import com.opensymphony.xwork2.validator.annotations.RequiredFieldValidator;
+import com.opensymphony.xwork2.validator.annotations.Validations;
 
 /**
  * 后台Action类 - 会员提现
@@ -24,19 +31,32 @@ public class WithdrawAction extends BaseAdminAction {
 
 	private static final long serialVersionUID = 1426838593832738550L;
 
-	private Withdraw withdraw;
-	
+
 	@Resource(name = "withdrawServiceImpl")
 	private WithdrawService withdrawService;
 	@Resource(name = "memberServiceImpl")
 	private MemberService memberService;
 	@Resource(name = "depositServiceImpl")
 	private DepositService depositService;
+	@Resource(name = "cacheServiceImpl")
+	private CacheService cacheService;
+	
+	private Withdraw withdraw;
+	private Setting setting;
+	
+	private Integer withdrawEveryDayCount;// 每天允许提现的最大次数,超出次数后不能提现(单位: 次,0表示不限制)
+	private Integer withdrawEveryDayMoney;// 每天允许提现的最大金额,超出金额后不能提现(单位: 元,0表示不限制)
+	private Integer withdrawMaxMoney;// 每次提现最大金额(单位: 元,0表示不限制)
+	private Integer withdrawMinMoney;// 每次提现最小金额(单位: 元,0表示不限制)
 	
 	//  提现单列表
 	public String list() {
-		System.out.println("zou admin list......");
 		pager = withdrawService.findPager(pager);
+		return LIST;
+	}
+	//  提现申请中的列表
+	public String applying() {
+		pager = withdrawService.getWithdrawPager(WithdrawStatus.apply, pager);
 		return LIST;
 	}
 	// 提现单处理
@@ -88,12 +108,69 @@ public class WithdrawAction extends BaseAdminAction {
 			return ajax(Status.success, "您的操作已成功!");
 		}
 	}
+	// 设置
+	public String setting() {
+		setting = SettingUtil.getSetting();
+		return "setting";
+	}
+	
+	// 设置更新
+	@Validations(
+		requiredFields = {
+			@RequiredFieldValidator(fieldName = "withdrawMinMoney", message = "单次最大提现金额不能为空!为0表示不限制！"),
+			@RequiredFieldValidator(fieldName = "withdrawMaxMoney", message = "单次最大提现金额不能为空!为0表示不限制！"),
+			@RequiredFieldValidator(fieldName = "withdrawEveryDayMoney", message = "单日最大提现金额不能为空!为0表示不限制！"),
+			@RequiredFieldValidator(fieldName = "withdrawEveryDayCount", message = " 单日最大提现次数不能为空!为0表示不限制！")
+		}
+	)
+	@InputConfig(resultName = "error")
+	public String settingUpdate() {
+		Setting setting = SettingUtil.getSetting();
+		setting.setWithdrawMinMoney(withdrawMinMoney);
+		setting.setWithdrawMaxMoney(withdrawMaxMoney);
+		setting.setWithdrawEveryDayMoney(withdrawEveryDayMoney);
+		setting.setWithdrawEveryDayCount(withdrawEveryDayCount);
+		SettingUtil.updateSetting(setting);
+		cacheService.flushLeaveMessagePageCache(getRequest());
+		redirectUrl = "withdraw!setting.action";
+		return SUCCESS;
+	}
 	public Withdraw getWithdraw() {
 		return withdraw;
 	}
 
 	public void setWithdraw(Withdraw withdraw) {
 		this.withdraw = withdraw;
+	}
+	public Integer getWithdrawEveryDayCount() {
+		return withdrawEveryDayCount;
+	}
+	public void setWithdrawEveryDayCount(Integer withdrawEveryDayCount) {
+		this.withdrawEveryDayCount = withdrawEveryDayCount;
+	}
+	public Integer getWithdrawEveryDayMoney() {
+		return withdrawEveryDayMoney;
+	}
+	public void setWithdrawEveryDayMoney(Integer withdrawEveryDayMoney) {
+		this.withdrawEveryDayMoney = withdrawEveryDayMoney;
+	}
+	public Integer getWithdrawMaxMoney() {
+		return withdrawMaxMoney;
+	}
+	public void setWithdrawMaxMoney(Integer withdrawMaxMoney) {
+		this.withdrawMaxMoney = withdrawMaxMoney;
+	}
+	public Integer getWithdrawMinMoney() {
+		return withdrawMinMoney;
+	}
+	public void setWithdrawMinMoney(Integer withdrawMinMoney) {
+		this.withdrawMinMoney = withdrawMinMoney;
+	}
+	public Setting getSetting() {
+		return setting;
+	}
+	public void setSetting(Setting setting) {
+		this.setting = setting;
 	}
 	
 }

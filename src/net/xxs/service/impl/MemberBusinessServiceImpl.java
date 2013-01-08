@@ -2,8 +2,10 @@ package net.xxs.service.impl;
 
 import javax.annotation.Resource;
 
+import net.xxs.bean.Pager;
 import net.xxs.dao.MemberBusinessDao;
 import net.xxs.entity.MemberBusiness;
+import net.xxs.entity.MemberBusiness.ResultType;
 import net.xxs.service.MemberBusinessService;
 
 import org.springframework.stereotype.Service;
@@ -32,5 +34,9 @@ public class MemberBusinessServiceImpl extends BaseServiceImpl<MemberBusiness, S
 	@Transactional(readOnly = true)
 	public Long getUnprocessedMemberBusinessCount() {
 		return memberBusinessDao.getUnprocessedMemberBusinessCount();
+	}
+
+	public Pager getMemberBusinessPager(ResultType resultType, Pager pager) {
+		return memberBusinessDao.getMemberBusinessPager(resultType, pager);
 	}
 }
