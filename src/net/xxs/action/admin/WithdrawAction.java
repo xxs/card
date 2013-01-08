@@ -46,8 +46,10 @@ public class WithdrawAction extends BaseAdminAction {
 	
 	private Integer withdrawEveryDayCount;// 每天允许提现的最大次数,超出次数后不能提现(单位: 次,0表示不限制)
 	private Integer withdrawEveryDayMoney;// 每天允许提现的最大金额,超出金额后不能提现(单位: 元,0表示不限制)
-	private Integer withdrawMaxMoney;// 每次提现最大金额(单位: 元,0表示不限制)
-	private Integer withdrawMinMoney;// 每次提现最小金额(单位: 元,0表示不限制)
+	private Integer withdrawEveryMaxMoney;// 每次提现最大金额(单位: 元,0表示不限制)
+	private Integer withdrawEveryMinMoney;// 每次提现最小金额(单位: 元,0表示不限制)
+	private Integer withdrawMaxMoney;// 提现中的最大总金额(单位: 元,0表示不限制)
+	private Integer withdrawMaxCount;// 申请中的最大总记录(单位: 次,0表示不限制)
 	
 	//  提现单列表
 	public String list() {
@@ -117,8 +119,10 @@ public class WithdrawAction extends BaseAdminAction {
 	// 设置更新
 	@Validations(
 		requiredFields = {
-			@RequiredFieldValidator(fieldName = "withdrawMinMoney", message = "单次最大提现金额不能为空!为0表示不限制！"),
-			@RequiredFieldValidator(fieldName = "withdrawMaxMoney", message = "单次最大提现金额不能为空!为0表示不限制！"),
+			@RequiredFieldValidator(fieldName = "withdrawMaxCount", message = "提现中的最大记录数不能为空!为0表示不限制！"),
+			@RequiredFieldValidator(fieldName = "withdrawMaxMoney", message = "提现中的最大总金额不能为空!为0表示不限制！"),
+			@RequiredFieldValidator(fieldName = "withdrawEveryMinMoney", message = "单次最大提现金额不能为空!为0表示不限制！"),
+			@RequiredFieldValidator(fieldName = "withdrawEveryMaxMoney", message = "单次最大提现金额不能为空!为0表示不限制！"),
 			@RequiredFieldValidator(fieldName = "withdrawEveryDayMoney", message = "单日最大提现金额不能为空!为0表示不限制！"),
 			@RequiredFieldValidator(fieldName = "withdrawEveryDayCount", message = " 单日最大提现次数不能为空!为0表示不限制！")
 		}
@@ -126,8 +130,10 @@ public class WithdrawAction extends BaseAdminAction {
 	@InputConfig(resultName = "error")
 	public String settingUpdate() {
 		Setting setting = SettingUtil.getSetting();
-		setting.setWithdrawMinMoney(withdrawMinMoney);
+		setting.setWithdrawMaxCount(withdrawMaxCount);
 		setting.setWithdrawMaxMoney(withdrawMaxMoney);
+		setting.setWithdrawEveryMinMoney(withdrawEveryMinMoney);
+		setting.setWithdrawEveryMaxMoney(withdrawEveryMaxMoney);
 		setting.setWithdrawEveryDayMoney(withdrawEveryDayMoney);
 		setting.setWithdrawEveryDayCount(withdrawEveryDayCount);
 		SettingUtil.updateSetting(setting);
@@ -160,17 +166,29 @@ public class WithdrawAction extends BaseAdminAction {
 	public void setWithdrawMaxMoney(Integer withdrawMaxMoney) {
 		this.withdrawMaxMoney = withdrawMaxMoney;
 	}
-	public Integer getWithdrawMinMoney() {
-		return withdrawMinMoney;
-	}
-	public void setWithdrawMinMoney(Integer withdrawMinMoney) {
-		this.withdrawMinMoney = withdrawMinMoney;
-	}
 	public Setting getSetting() {
 		return setting;
 	}
 	public void setSetting(Setting setting) {
 		this.setting = setting;
+	}
+	public Integer getWithdrawEveryMaxMoney() {
+		return withdrawEveryMaxMoney;
+	}
+	public void setWithdrawEveryMaxMoney(Integer withdrawEveryMaxMoney) {
+		this.withdrawEveryMaxMoney = withdrawEveryMaxMoney;
+	}
+	public Integer getWithdrawEveryMinMoney() {
+		return withdrawEveryMinMoney;
+	}
+	public void setWithdrawEveryMinMoney(Integer withdrawEveryMinMoney) {
+		this.withdrawEveryMinMoney = withdrawEveryMinMoney;
+	}
+	public Integer getWithdrawMaxCount() {
+		return withdrawMaxCount;
+	}
+	public void setWithdrawMaxCount(Integer withdrawMaxCount) {
+		this.withdrawMaxCount = withdrawMaxCount;
 	}
 	
 }

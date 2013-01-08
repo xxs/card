@@ -5,10 +5,12 @@ import java.util.List;
 
 import javax.annotation.Resource;
 
+import net.xxs.bean.Setting;
 import net.xxs.entity.Withdraw;
 import net.xxs.entity.Withdraw.WithdrawStatus;
 import net.xxs.service.WithdrawService;
 import net.xxs.util.SerialNumberUtil;
+import net.xxs.util.SettingUtil;
 
 import org.apache.struts2.convention.annotation.InterceptorRef;
 import org.apache.struts2.convention.annotation.InterceptorRefs;
@@ -46,26 +48,43 @@ public class WithdrawAction extends BaseCardAction {
 	// 保存
 	@InputConfig(resultName = "error")
 	public String save() {
-		withdrawList = withdrawService.getApplyWithdrawList(getLoginMember());
-		if(null != withdrawList&&withdrawList.size()>0){
-			addActionError("已有提现单在申请中！请等待管理员审核后再增加新提现！");
-			return ERROR;
+		Setting setting = SettingUtil.getSetting();
+		if(0 != setting.getWithdrawEveryMinMoney()&&null != setting.getWithdrawEveryMinMoney()){
+			if(null != withdraw.getMoney()&& Integer.parseInt(withdraw.getMoney().toString()) > setting.getWithdrawEveryMinMoney()){
+				addActionError("对不起，目前系统设置的提现下限为"+setting.getWithdrawEveryMinMoney()+"元，请填写大于此数值的金额");
+				return ERROR;
+			}
 		}
-//		if (StringUtils.isEmpty(withdraw.getPhone()) && StringUtils.isEmpty(receiver.getMobile())) {
-//			addActionError("联系电话、联系手机必须填写其中一项!");
-//			return ERROR;
-//		}
-//		Member loginMember = getLoginMember();
-//		Set<Receiver> receiverSet = loginMember.getReceiverSet();
-//		if (receiverSet != null && Receiver.MAX_RECEIVER_COUNT != null && receiverSet.size() >= Receiver.MAX_RECEIVER_COUNT) {
-//			addActionError("只允许添加最多" + Receiver.MAX_RECEIVER_COUNT + "项收货地址!");
-//			return ERROR;
-//		}
-//		Area area = areaService.get(areaId);
-//		if (area == null) {
-//			addActionError("请选择收货地址!");
-//			return ERROR;
-//		}
+		if(0 != setting.getWithdrawEveryMaxMoney()&&null != setting.getWithdrawEveryMaxMoney()){
+			if(null != withdraw.getMoney()&& Integer.parseInt(withdraw.getMoney().toString()) > setting.getWithdrawEveryMaxMoney()){
+				addActionError("对不起，目前系统设置的提现上限为"+setting.getWithdrawEveryMaxMoney()+"元，请填写小于此数值的金额");
+				return ERROR;
+			}
+		}
+		withdrawList = withdrawService.getApplyWithdrawList(getLoginMember());
+		if(0 != setting.getWithdrawMaxCount()&&null != setting.getWithdrawMaxCount()){
+			if(null != withdrawList&&withdrawList.size() >= setting.getWithdrawMaxCount()){
+				addActionError("目前已有"+withdrawList.size()+"条提现申请正在处理中！请等待管理员审核后再增加新提现！");
+				return ERROR;
+			}
+		}
+		BigDecimal allMoney = null;
+		if(null != withdrawList&&withdrawList.size() > 0){
+			Withdraw wi = new Withdraw();
+			for (int i = 0; i < withdrawList.size(); i++) {
+				wi = withdrawList.get(i);
+				allMoney = allMoney.add(wi.getMoney());
+			}
+		}
+		if(0 != setting.getWithdrawMaxMoney()&&null != setting.getWithdrawMaxMoney()){
+			if(null != allMoney&&Integer.parseInt((allMoney.add(withdraw.getMoney()).toString())) >= setting.getWithdrawMaxMoney()){
+				addActionError("目前已有"+allMoney+"元提现申请正在处理中,由于系统设置了申请总额不能超过"+setting.getWithdrawMaxMoney()+"元！您目前可申请的配额为"+(Integer.parseInt((allMoney.add(withdraw.getMoney()).toString()))-setting.getWithdrawMaxMoney())+"元");
+				return ERROR;
+			}
+		}
+		
+		//判断提现金额是否满足提现设置中的setting范围
+		
 		withdraw.setWithdrawSn(SerialNumberUtil.buildWithdrawSn());
 		withdraw.setMoney(withdraw.getMoney());
 		withdraw.setTotalMoney(withdraw.getMoney().multiply(BigDecimal.valueOf(getLoginMember().getMemberRank().getLossrate())));

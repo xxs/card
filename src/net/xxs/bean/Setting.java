@@ -82,8 +82,10 @@ public class Setting {
 	private Boolean isRegisterEnabled;// 是否开放注册
 	private Integer withdrawEveryDayCount;// 每天允许提现的最大次数,超出次数后不能提现(单位: 次,0表示不限制)
 	private Integer withdrawEveryDayMoney;// 每天允许提现的最大金额,超出金额后不能提现(单位: 元,0表示不限制)
-	private Integer withdrawMaxMoney;// 每次提现最大金额(单位: 元,0表示不限制)
-	private Integer withdrawMinMoney;// 每次提现最小金额(单位: 元,0表示不限制)
+	private Integer withdrawEveryMaxMoney;// 每次提现最大金额(单位: 元,0表示不限制)
+	private Integer withdrawEveryMinMoney;// 每次提现最小金额(单位: 元,0表示不限制)
+	private Integer withdrawMaxCount;// 提现中的提现最大次数(单位: 次,0表示不限制)
+	private Integer withdrawMaxMoney;// 提现中的提现最大金额(单位: 元,0表示不限制)
 	private String watermarkImagePath; // 水印图片路径
 	private WatermarkPosition watermarkPosition; // 水印位置
 	private Integer watermarkAlpha;// 水印透明度
@@ -576,20 +578,36 @@ public class Setting {
 		this.withdrawEveryDayMoney = withdrawEveryDayMoney;
 	}
 
+	public Integer getWithdrawEveryMaxMoney() {
+		return withdrawEveryMaxMoney;
+	}
+
+	public void setWithdrawEveryMaxMoney(Integer withdrawEveryMaxMoney) {
+		this.withdrawEveryMaxMoney = withdrawEveryMaxMoney;
+	}
+
+	public Integer getWithdrawEveryMinMoney() {
+		return withdrawEveryMinMoney;
+	}
+
+	public void setWithdrawEveryMinMoney(Integer withdrawEveryMinMoney) {
+		this.withdrawEveryMinMoney = withdrawEveryMinMoney;
+	}
+
+	public Integer getWithdrawMaxCount() {
+		return withdrawMaxCount;
+	}
+
+	public void setWithdrawMaxCount(Integer withdrawMaxCount) {
+		this.withdrawMaxCount = withdrawMaxCount;
+	}
+
 	public Integer getWithdrawMaxMoney() {
 		return withdrawMaxMoney;
 	}
 
 	public void setWithdrawMaxMoney(Integer withdrawMaxMoney) {
 		this.withdrawMaxMoney = withdrawMaxMoney;
-	}
-
-	public Integer getWithdrawMinMoney() {
-		return withdrawMinMoney;
-	}
-
-	public void setWithdrawMinMoney(Integer withdrawMinMoney) {
-		this.withdrawMinMoney = withdrawMinMoney;
 	}
 
 	// 获取热门搜索关键词集合

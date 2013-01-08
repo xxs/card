@@ -26,8 +26,8 @@
 						单次最小体现额:
 					</th>
 					<td>
-						<input type="text" name="withdrawMinMoney" class="formText" value="${(setting.withdrawMinMoney)!}" />
-						<label class="requireField">*</label>
+						<input type="text" name="withdrawEveryMinMoney" class="formText" value="${(setting.withdrawEveryMinMoney)!}" title="只允许输入零或正整数,每次提现的最小金额，单位: 元,0表示无限制"/>
+						<label class="requireField">*(只允许输入零或正整数,每次提现的最小金额，单位: 元,0表示无限制)</label>
 					</td>
 				</tr>
 				<tr>
@@ -35,8 +35,8 @@
 						单次最大体现额: 
 					</th>
 					<td>
-						<input type="text" name="withdrawMaxMoney" class="formText" value="${(setting.withdrawMaxMoney)!}" />
-						<label class="requireField">*</label>
+						<input type="text" name="withdrawEveryMaxMoney" class="formText" value="${(setting.withdrawEveryMaxMoney)!}" title="只允许输入零或正整数,每次提现的最大金额，单位: 元,0表示无限制"/>
+						<label class="requireField">*(只允许输入零或正整数,每次提现的最大金额，单位: 元,0表示无限制)</label>
 					</td>
 				</tr>
 				<tr>
@@ -44,8 +44,8 @@
 						单日最大提现次数: 
 					</th>
 					<td>
-						<input type="text" name="withdrawEveryDayCount" class="formText" value="${(setting.withdrawEveryDayCount)!}" />
-						<label class="requireField">*</label>
+						<input type="text" name="withdrawEveryDayCount" class="formText" value="${(setting.withdrawEveryDayCount)!}" title="只允许输入零或正整数,每次提现的最大次数，单位: 次,0表示无限制" />
+						<label class="requireField">*(只允许输入零或正整数,每次提现的最大次数，单位: 次,0表示无限制)</label>
 					</td>
 				</tr>
 				<tr>
@@ -53,8 +53,26 @@
 						单日最大提现金额: 
 					</th>
 					<td>
-						<input type="text" name="withdrawEveryDayMoney" class="formText" value="${(setting.withdrawEveryDayMoney)!}" />
-						<label class="requireField">*</label>
+						<input type="text" name="withdrawEveryDayMoney" class="formText" value="${(setting.withdrawEveryDayMoney)!}" title="只允许输入零或正整数,每天提现的最大总金额，单位: 元,0表示无限制" />
+						<label class="requireField">*(只允许输入零或正整数,每天提现的最大总金额，单位: 元,0表示无限制)</label>
+					</td>
+				</tr>
+				<tr>
+					<th>
+						申请中的最大总记录数: 
+					</th>
+					<td>
+						<input type="text" name="withdrawMaxCount" class="formText" value="${(setting.withdrawMaxCount)!}" title="只允许输入零或正整数,状态为申请中的最大总记录数，单位: 次,0表示无限制" />
+						<label class="requireField">*(只允许输入零或正整数,状态为申请中的最大总记录数，单位: 次,0表示无限制)</label>
+					</td>
+				</tr>
+				<tr>
+					<th>
+						申请中的最大总金额：
+					</th>
+					<td>
+						<input type="text" name="withdrawMaxMoney" class="formText" value="${(setting.withdrawMaxMoney)!}" title="只允许输入零或正整数,状态为申请中的最大总金额，单位: 元,0表示无限制" />
+						<label class="requireField">*(只允许输入零或正整数,状态为申请中的最大总金额，单位: 元,0表示无限制)</label>
 					</td>
 				</tr>
 			</table>

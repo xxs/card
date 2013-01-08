@@ -37,8 +37,10 @@
 		<isRegisterEnabled>true</isRegisterEnabled>
 		<withdrawEveryDayCount>0</withdrawEveryDayCount>
 		<withdrawEveryDayMoney>0</withdrawEveryDayMoney>
+		<withdrawEveryMaxMoney>0</withdrawEveryMaxMoney>
+		<withdrawEveryMinMoney>0</withdrawEveryMinMoney>  
 		<withdrawMaxMoney>0</withdrawMaxMoney>
-		<withdrawMinMoney>0</withdrawMinMoney>  
+		<withdrawMaxCount>0</withdrawMaxCount>  
 		<watermarkImagePath>/images/watermark.jpg</watermarkImagePath>  
 		<watermarkPosition>bottomRight</watermarkPosition>  
 		<watermarkAlpha>50</watermarkAlpha>  

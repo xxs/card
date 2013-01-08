@@ -8,7 +8,7 @@ import net.xxs.service.MemberBankService;
 import org.apache.struts2.convention.annotation.ParentPackage;
 
 /**
- * 后台Action类 - 会员等级
+ * 后台Action类 - 银行卡
  */
 
 @ParentPackage("admin")

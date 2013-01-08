@@ -84,8 +84,10 @@ public class SettingUtil {
 		Node isRegisterEnabledNode = document.selectSingleNode("/xxs/setting/isRegisterEnabled");
 		Node withdrawEveryDayCountNode = document.selectSingleNode("/xxs/setting/withdrawEveryDayCount");
 		Node withdrawEveryDayMoneyNode = document.selectSingleNode("/xxs/setting/withdrawEveryDayMoney");
+		Node withdrawEveryMaxMoneyNode = document.selectSingleNode("/xxs/setting/withdrawEveryMaxMoney");
+		Node withdrawEveryMinMoneyNode = document.selectSingleNode("/xxs/setting/withdrawEveryMinMoney");
 		Node withdrawMaxMoneyNode = document.selectSingleNode("/xxs/setting/withdrawMaxMoney");
-		Node withdrawMinMoneyNode = document.selectSingleNode("/xxs/setting/withdrawMinMoney");
+		Node withdrawMaxCountNode = document.selectSingleNode("/xxs/setting/withdrawMaxCount");
 		Node watermarkImagePathNode = document.selectSingleNode("/xxs/setting/watermarkImagePath");
 		Node watermarkPositionNode = document.selectSingleNode("/xxs/setting/watermarkPosition");
 		Node watermarkAlphaNode = document.selectSingleNode("/xxs/setting/watermarkAlpha");
@@ -132,8 +134,10 @@ public class SettingUtil {
 		setting.setMetaDescription(metaDescriptionNode.getText());
 		setting.setWithdrawEveryDayCount(Integer.valueOf(withdrawEveryDayCountNode.getText()));
 		setting.setWithdrawEveryDayMoney(Integer.valueOf(withdrawEveryDayMoneyNode.getText()));
+		setting.setWithdrawEveryMaxMoney(Integer.valueOf(withdrawEveryMaxMoneyNode.getText()));
+		setting.setWithdrawEveryMinMoney(Integer.valueOf(withdrawEveryMinMoneyNode.getText()));
 		setting.setWithdrawMaxMoney(Integer.valueOf(withdrawMaxMoneyNode.getText()));
-		setting.setWithdrawMinMoney(Integer.valueOf(withdrawMinMoneyNode.getText()));
+		setting.setWithdrawMaxCount(Integer.valueOf(withdrawMaxCountNode.getText()));
 		setting.setAddress(addressNode.getText());
 		setting.setPhone(phoneNode.getText());
 		setting.setZipCode(zipCodeNode.getText());
@@ -246,8 +250,10 @@ public class SettingUtil {
 		Node isRegisterEnabledNode = document.selectSingleNode("/xxs/setting/isRegisterEnabled");
 		Node withdrawEveryDayCountNode = document.selectSingleNode("/xxs/setting/withdrawEveryDayCount");
 		Node withdrawEveryDayMoneyNode = document.selectSingleNode("/xxs/setting/withdrawEveryDayMoney");
+		Node withdrawEveryMaxMoneyNode = document.selectSingleNode("/xxs/setting/withdrawEveryMaxMoney");
+		Node withdrawEveryMinMoneyNode = document.selectSingleNode("/xxs/setting/withdrawEveryMinMoney");
 		Node withdrawMaxMoneyNode = document.selectSingleNode("/xxs/setting/withdrawMaxMoney");
-		Node withdrawMinMoneyNode = document.selectSingleNode("/xxs/setting/withdrawMinMoney");
+		Node withdrawMaxCountNode = document.selectSingleNode("/xxs/setting/withdrawMaxCount");
 		Node watermarkPositionNode = document.selectSingleNode("/xxs/setting/watermarkPosition");
 		Node watermarkAlphaNode = document.selectSingleNode("/xxs/setting/watermarkAlpha");
 		Node bigCardsImageWidthNode = document.selectSingleNode("/xxs/setting/bigCardsImageWidth");
@@ -342,12 +348,18 @@ public class SettingUtil {
 		if(withdrawEveryDayMoneyNode == null){
 				withdrawEveryDayMoneyNode = settingElement.addElement("withdrawEveryDayMoney");
 			}
-		if(withdrawMaxMoneyNode == null){
-				withdrawMaxMoneyNode = settingElement.addElement("withdrawMaxMoney");
+		if(withdrawEveryMaxMoneyNode == null){
+				withdrawEveryMaxMoneyNode = settingElement.addElement("withdrawEveryMaxMoney");
 			}
-	    if(withdrawMinMoneyNode == null){
-				withdrawMinMoneyNode = settingElement.addElement("withdrawMinMoney");
+	    if(withdrawEveryMinMoneyNode == null){
+				withdrawEveryMinMoneyNode = settingElement.addElement("withdrawEveryMinMoney");
 		}	
+	    if(withdrawMaxMoneyNode == null){
+	    	withdrawMaxMoneyNode = settingElement.addElement("withdrawMaxMoney");
+	    }
+	    if(withdrawMaxCountNode == null){
+	    	withdrawMaxCountNode = settingElement.addElement("withdrawMaxCount");
+	    }	
 		if(loginFailureLockTimeNode == null){
 			loginFailureLockTimeNode = settingElement.addElement("loginFailureLockTime");
 		}
@@ -467,8 +479,10 @@ public class SettingUtil {
 		
 		withdrawEveryDayCountNode.setText(String.valueOf(setting.getWithdrawEveryDayCount()));
 		withdrawEveryDayMoneyNode.setText(String.valueOf(setting.getWithdrawEveryDayMoney()));
+		withdrawEveryMaxMoneyNode.setText(String.valueOf(setting.getWithdrawEveryMaxMoney()));
+		withdrawEveryMinMoneyNode.setText(String.valueOf(setting.getWithdrawEveryMinMoney()));
 		withdrawMaxMoneyNode.setText(String.valueOf(setting.getWithdrawMaxMoney()));
-		withdrawMinMoneyNode.setText(String.valueOf(setting.getWithdrawMinMoney()));
+		withdrawMaxCountNode.setText(String.valueOf(setting.getWithdrawMaxCount()));
 		
 		watermarkPositionNode.setText(String.valueOf(setting.getWatermarkPosition()));
 		watermarkAlphaNode.setText(String.valueOf(setting.getWatermarkAlpha()));

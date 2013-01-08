@@ -19,7 +19,7 @@ public class MemberBusiness extends BaseEntity {
 	
 	// 商户类型
 	public enum BusinessType {
-		personal, enterprise, toDelete
+		personal, enterprise
 	};
 	// 商户类型
 	public enum ResultType {
@@ -42,6 +42,7 @@ public class MemberBusiness extends BaseEntity {
 	private String QQ;					//即时通讯 
 	private String address;				//通讯地址
 	private String zipcode;				//邮编
+	private String memo;				//是否通过备注
 	
 	private ResultType resultType;			//审核是否通过
 	private Member member; 				// 会员
@@ -193,8 +194,15 @@ public class MemberBusiness extends BaseEntity {
 	public void setZipcode(String zipcode) {
 		this.zipcode = zipcode;
 	}
-
 	
+	public String getMemo() {
+		return memo;
+	}
+
+	public void setMemo(String memo) {
+		this.memo = memo;
+	}
+
 	// 保存处理
 	@Override
 	@Transient
