@@ -1,7 +1,7 @@
 /*
 Navicat MySQL Data Transfer
 
-Source Server         : xxs
+Source Server         : JTM
 Source Server Version : 50154
 Source Host           : localhost:3306
 Source Database       : card
@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50154
 File Encoding         : 65001
 
-Date: 2013-01-08 23:41:39
+Date: 2013-01-09 17:49:43
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -43,7 +43,7 @@ CREATE TABLE `xx_admin` (
 -- ----------------------------
 -- Records of xx_admin
 -- ----------------------------
-INSERT INTO `xx_admin` VALUES ('0731dcsoft2010031200000000000017', '2011-01-01 00:00:00', '2013-01-08 23:05:27', '技术部', 'xxs@163.com', '', '', '', '', '2012-12-17 14:28:34', '2013-01-08 23:05:27', '0', '127.0.0.1', 'ADMIN', '21232f297a57a5a743894a0e4a801fc3', 'admin');
+INSERT INTO `xx_admin` VALUES ('0731dcsoft2010031200000000000017', '2011-01-01 00:00:00', '2013-01-09 12:48:43', '技术部', 'xxs@163.com', '', '', '', '', '2012-12-17 14:28:34', '2013-01-09 12:48:43', '0', '127.0.0.1', 'ADMIN', '21232f297a57a5a743894a0e4a801fc3', 'admin');
 
 -- ----------------------------
 -- Table structure for `xx_admin_role`
@@ -325,6 +325,7 @@ INSERT INTO `xx_log` VALUES ('4028bc743bb6fee6013bb75600b60004', '2012-12-20 16:
 INSERT INTO `xx_log` VALUES ('4028bc743bbb05c2013bbb25d5e20001', '2012-12-21 09:48:37', '2012-12-21 09:48:37', 'net.xxs.action.admin.ArticleCategoryAction', 'save', '添加文章分类: 新手上路', '127.0.0.1', '添加文章分类', 'admin');
 INSERT INTO `xx_log` VALUES ('4028bc743bbb05c2013bbb2613390003', '2012-12-21 09:48:52', '2012-12-21 09:48:52', 'net.xxs.action.admin.ArticleAction', 'save', '添加文章: 新手上路', '127.0.0.1', '添加文章', 'admin');
 INSERT INTO `xx_log` VALUES ('4028bc743c142aaf013c14324c2c0000', '2013-01-07 16:48:26', '2013-01-07 16:48:26', 'net.xxs.action.admin.MemberAction', 'update', '编辑会员: 112233', '127.0.0.1', '编辑会员', 'admin');
+INSERT INTO `xx_log` VALUES ('4028bc743c1da22d013c1da8d2eb0002', '2013-01-09 12:54:28', '2013-01-09 12:54:28', 'net.xxs.action.admin.OrderAction', 'completed', '订单编号: DD100049', '127.0.0.1', '订单完成', 'admin');
 INSERT INTO `xx_log` VALUES ('8a9182fc3ba86bc8013ba9782e800002', '2012-12-17 23:25:23', '2012-12-17 23:25:23', 'net.xxs.action.admin.MemberAction', 'save', '添加会员: 123123', '127.0.0.1', '添加会员', 'admin');
 INSERT INTO `xx_log` VALUES ('8a9182fc3ba86bc8013ba97939a00004', '2012-12-17 23:26:32', '2012-12-17 23:26:32', 'net.xxs.action.admin.MemberAction', 'update', '编辑会员: 123123', '127.0.0.1', '编辑会员', 'admin');
 INSERT INTO `xx_log` VALUES ('8ae484093bd1e9bd013bd2053e570001', '2012-12-25 20:24:17', '2012-12-25 20:24:17', 'net.xxs.action.admin.OrderAction', 'completed', '订单编号: DD100037', '127.0.0.1', '订单完成', 'admin');
@@ -486,7 +487,7 @@ CREATE TABLE `xx_member_business` (
 -- ----------------------------
 -- Records of xx_member_business
 -- ----------------------------
-INSERT INTO `xx_member_business` VALUES ('', '2013-01-08 21:45:29', '2013-01-08 21:45:35', '44556544', '上海徐汇区', '万和', '384985988774847', '1', '上海', 'g12312', '张先生', '28384783', '陈晨', '文化娱乐', '2883737', '24小时', '123233423', 'www.baidu.com', '340000', '8a9182fc3ba86bc8013ba9782de60001', '0', null);
+INSERT INTO `xx_member_business` VALUES ('', '2013-01-08 21:45:29', '2013-01-08 21:45:35', '44556544', '上海徐汇区', '万和', '384985988774847', '1', '上海', 'g12312', '张先生', '28384783', '陈晨', '文化娱乐', '2883737', '24小时', '123233423', 'www.baidu.com', '340000', '8a9182fc3ba86bc8013ba9782de60001', '1', null);
 
 -- ----------------------------
 -- Table structure for `xx_member_rank`
@@ -540,6 +541,7 @@ CREATE TABLE `xx_message` (
 -- ----------------------------
 -- Records of xx_message
 -- ----------------------------
+INSERT INTO `xx_message` VALUES ('4028bc743c1da22d013c1da6a1c30000', '2013-01-09 12:52:05', '2013-01-09 12:52:05', '123123', '0', '', '', '112222', null, '8a9182fc3ba86bc8013ba9782de60001');
 
 -- ----------------------------
 -- Table structure for `xx_navigation`
@@ -621,7 +623,7 @@ INSERT INTO `xx_order` VALUES ('4028bc743bd4d1f6013bd502b3b50005', '2012-12-26 1
 INSERT INTO `xx_order` VALUES ('4028bc743bd4d1f6013bd5336c8c0008', '2012-12-26 11:13:35', '2012-12-26 11:13:35', '8ae4839c3a887878013a88acef930005', null, 'DD100042', '0', '0.00000', '通道2', '0', '8a9182fc3ba86bc8013ba9782de60001', '4028bc743bac0d54013baca8729d0000', '10.00000', '3453456', '34534534', '/html/201212/28ee1eadf73640598a42c42a46c484ef.html', 'Q币卡 [10元]', '10.00000', 'SN_A18F88A39EA3', '4028bc743bb6fee6013bb755fed20002', null, null, null);
 INSERT INTO `xx_order` VALUES ('4028bc743bd4d1f6013bd538b593000b', '2012-12-26 11:19:21', '2012-12-26 11:19:21', '8ae4839c3a887878013a88acef930005', null, 'DD100043', '0', '0.00000', '通道2', '0', '8a9182fc3ba86bc8013ba9782de60001', '4028bc743bac0d54013baca8729d0000', '10.00000', '6666', '4456456', '/html/201212/28ee1eadf73640598a42c42a46c484ef.html', 'Q币卡 [10元]', '10.00000', 'SN_A18F88A39EA3', '4028bc743bb6fee6013bb755fed20002', null, null, null);
 INSERT INTO `xx_order` VALUES ('4028bc743bdf8efc013bdf91436e0000', '2012-12-28 11:32:17', '2012-12-28 11:32:17', '8ae4839c3a887878013a88acef930005', null, 'DD100048', '0', '0.00000', '通道1', '0', '8a9182fc3ba86bc8013ba9782de60001', '4028bc743bac0d54013baca8e1350001', '10.00000', '67867867', '678678', '/html/201212/28ee1eadf73640598a42c42a46c484ef.html', 'Q币卡 [10元]', '10.00000', 'SN_A18F88A39EA3', '4028bc743bb6fee6013bb755fed20002', '2002', '不支持该类卡或该面值', null);
-INSERT INTO `xx_order` VALUES ('4028bc743bdf8efc013bdf98c1180003', '2012-12-28 11:40:28', '2012-12-28 11:40:41', '8ae4839c3a887878013a88acef930005', null, 'DD100049', '0', '0.00000', '通道1', '0', '8a9182fc3ba86bc8013ba9782de60001', '4028bc743bac0d54013baca8e1350001', '10.00000', '9999', '9999', '/html/201212/28ee1eadf73640598a42c42a46c484ef.html', 'Q币卡 [10元]', '10.00000', 'SN_A18F88A39EA3', '4028bc743bb6fee6013bb755fed20002', '2014', '不存在该笔订单', '4028bc743bdf8efc013bdf98c1c40005');
+INSERT INTO `xx_order` VALUES ('4028bc743bdf8efc013bdf98c1180003', '2012-12-28 11:40:28', '2013-01-09 12:54:28', '8ae4839c3a887878013a88acef930005', null, 'DD100049', '2', '0.00000', '通道1', '0', '8a9182fc3ba86bc8013ba9782de60001', '4028bc743bac0d54013baca8e1350001', '10.00000', '9999', '9999', '/html/201212/28ee1eadf73640598a42c42a46c484ef.html', 'Q币卡 [10元]', '10.00000', 'SN_A18F88A39EA3', '4028bc743bb6fee6013bb755fed20002', '2014', '不存在该笔订单', '4028bc743bdf8efc013bdf98c1c40005');
 INSERT INTO `xx_order` VALUES ('8a9181603bd77698013bd7806e290000', '2012-12-26 21:56:56', '2012-12-26 21:56:57', '8ae4839c3a887878013a88acef930005', null, 'DD100044', '0', '0.00000', '通道1', '0', '8a9182fc3ba86bc8013ba9782de60001', '4028bc743bac0d54013baca8e1350001', '10.00000', '88888', '88888', '/html/201212/28ee1eadf73640598a42c42a46c484ef.html', 'Q币卡 [10元]', '10.00000', 'SN_A18F88A39EA3', '4028bc743bb6fee6013bb755fed20002', '2002', '不支持该类卡或该面值', null);
 INSERT INTO `xx_order` VALUES ('8a9181603bd7af5a013bd7b298ef0000', '2012-12-26 22:51:44', '2012-12-26 22:51:45', '8ae4839c3a887878013a88acef930005', null, 'DD100045', '0', '0.00000', '通道1', '0', '8a9182fc3ba86bc8013ba9782de60001', '4028bc743bac0d54013baca8e1350001', '10.00000', '99999999', '999999999', '/html/201212/28ee1eadf73640598a42c42a46c484ef.html', 'Q币卡 [10元]', '10.00000', 'SN_A18F88A39EA3', '4028bc743bb6fee6013bb755fed20002', '2002', '不支持该类卡或该面值', null);
 INSERT INTO `xx_order` VALUES ('8a9181603bd7af5a013bd7b74b9a0003', '2012-12-26 22:56:52', '2012-12-26 22:56:52', '8ae4839c3a887878013a88acef930005', null, 'DD100046', '0', '0.00000', '通道1', '0', '8a9182fc3ba86bc8013ba9782de60001', '4028bc743bac0d54013baca8e1350001', '10.00000', '456745', '45645', '/html/201212/28ee1eadf73640598a42c42a46c484ef.html', 'Q币卡 [10元]', '10.00000', 'SN_A18F88A39EA3', '4028bc743bb6fee6013bb755fed20002', '2002', '不支持该类卡或该面值', null);
@@ -688,6 +690,7 @@ INSERT INTO `xx_order_log` VALUES ('4028bc743bd4d1f6013bd5336d470009', '2012-12-
 INSERT INTO `xx_order_log` VALUES ('4028bc743bd4d1f6013bd538b5b2000c', '2012-12-26 11:19:21', '2012-12-26 11:19:21', null, null, '0', 'DD100043', '4028bc743bd4d1f6013bd538b593000b');
 INSERT INTO `xx_order_log` VALUES ('4028bc743bdf8efc013bdf91439d0001', '2012-12-28 11:32:17', '2012-12-28 11:32:17', null, null, '0', 'DD100048', '4028bc743bdf8efc013bdf91436e0000');
 INSERT INTO `xx_order_log` VALUES ('4028bc743bdf8efc013bdf98c1470004', '2012-12-28 11:40:28', '2012-12-28 11:40:28', null, null, '0', 'DD100049', '4028bc743bdf8efc013bdf98c1180003');
+INSERT INTO `xx_order_log` VALUES ('4028bc743c1da22d013c1da8d2ad0001', '2013-01-09 12:54:28', '2013-01-09 12:54:28', '订单完成,获得积分: ', 'admin', '3', 'DD100049', '4028bc743bdf8efc013bdf98c1180003');
 INSERT INTO `xx_order_log` VALUES ('8a9181603bd77698013bd7806eae0001', '2012-12-26 21:56:56', '2012-12-26 21:56:56', null, null, '0', 'DD100044', '8a9181603bd77698013bd7806e290000');
 INSERT INTO `xx_order_log` VALUES ('8a9181603bd7af5a013bd7b2998d0001', '2012-12-26 22:51:44', '2012-12-26 22:51:44', null, null, '0', 'DD100045', '8a9181603bd7af5a013bd7b298ef0000');
 INSERT INTO `xx_order_log` VALUES ('8a9181603bd7af5a013bd7b74c750004', '2012-12-26 22:56:52', '2012-12-26 22:56:52', null, null, '0', 'DD100046', '8a9181603bd7af5a013bd7b74b9a0003');

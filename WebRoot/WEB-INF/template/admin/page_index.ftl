@@ -14,84 +14,15 @@
 </head>
 <body class="index">
 	<div class="bar">
-		欢迎使用XXS网店管理系统！
+		您已进入${setting.systemName}管理系统！(目前版本${setting.systemVersion} 正式版)
 	</div>
 	<div class="body">
 		<div class="bodyLeft">
 			<table class="listTable">
 				<tr>
 					<th colspan="2">
-						软件信息
-					</th>
-				</tr>
-				<tr>
-					<td width="110">
-						系统名称: 
-					</td>
-					<td>
-						${setting.systemName}
-					</td>
-				</tr>
-				<tr>
-					<td>
-						系统版本: 
-					</td>
-					<td>
-						${setting.systemVersion} 商业版
-					</td>
-				</tr>
-				<tr>
-					<td>
-						官方网站: 
-					</td>
-					<td>
-					</td>
-				</tr>
-				<tr>
-					<td>
-						交流论坛: 
-					</td>
-					<td>
-					</td>
-				</tr>
-				<tr>
-					<td>
-						BUG反馈邮箱: 
-					</td>
-					<td>
-					</td>
-				</tr>
-				<tr>
-					<td>
-						商业授权: 
-					</td>
-					<td>
-						未取得商业授权之前,您不能将本软件应用于商业用途
-					</td>
-				</tr>
-			</table>
-			<div class="blank"></div>
-			<table class="listTable">
-				<tr>
-					<th colspan="2">
 						待处理事务
 					</th>
-				</tr>
-				<tr>
-					<td width="110">
-						未处理订单: 
-					</td>
-					<td>
-						${unprocessedOrderCount} <a href="order!list.action">[订单列表]</a>
-					</td>
-				</tr>
-				<tr>
-					<td width="110">
-						等待发货订单数: 
-					</td>
-					<td>
-						${paidUnshippedOrderCount} <a href="order!list.action">[订单列表]</a>
-					</td>
 				</tr>
 				<tr>
 					<td>
@@ -108,14 +39,6 @@
 					<td>
 						${unprocessedWithdrawCount} <a href="withdraw!list.action">[提现申请]</a>
 					</td>
-				</tr>
-			</table>
-			<div class="blank"></div>
-			<table class="listTable">
-				<tr>
-					<th colspan="2">
-						待处理事务
-					</th>
 				</tr>
 				<tr>
 					<td width="110">
@@ -138,7 +61,25 @@
 						未处理商户申请数: 
 					</td>
 					<td>
-						${unprocessedMemberBusinessApplyCount} <a href="withdraw!list.action">[商户申请]</a>
+						${unprocessedMemberBusinessApplyCount} <a href="member_business!applying.action">[商户申请]</a>
+					</td>
+				</tr>
+			</table>
+			<div class="blank"></div>
+		</div>
+		<div class="bodyRight">
+			<table class="listTable">
+				<tr>
+					<th colspan="2">
+						信息统计
+					</th>
+				</tr>
+				<tr>
+					<td width="110">
+						已上架充值卡: 
+					</td>
+					<td>
+						${marketableCardsCount}
 					</td>
 				</tr>
 				<tr>
@@ -146,7 +87,7 @@
 						商户总数: 
 					</td>
 					<td>
-						${unprocessedMemberBusinessCount} <a href="withdraw!list.action">[商户总数]</a>
+						${unprocessedMemberBusinessCount} <a href="member_business!list.action">[商户总数]</a>
 					</td>
 				</tr>
 				<tr>
@@ -165,9 +106,16 @@
 						${articleTotalCount}  篇
 					</td>
 				</tr>
+				<tr>
+					<td>
+						会员商户转换率: 
+					</td>
+					<td>
+						${unprocessedMemberBusinessCount/memberTotalCount*100}   %
+					</td>
+				</tr>
 			</table>
-		</div>
-		<div class="bodyRight">
+			<div class="blank"></div>
 			<table class="listTable">
 				<tr>
 					<th colspan="2">
@@ -223,46 +171,7 @@
 					</td>
 				</tr>
 			</table>
-			<div class="blank"></div>
-			<table class="listTable">
-				<tr>
-					<th colspan="2">
-						信息统计
-					</th>
-				</tr>
-				<tr>
-					<td width="110">
-						已上架充值卡: 
-					</td>
-					<td>
-						${marketableCardsCount}
-					</td>
-				</tr>
-				<tr>
-					<td>
-						已下架充值卡: 
-					</td>
-					<td>
-						${unMarketableCardsCount}
-					</td>
-				</tr>
-				<tr>
-					<td>
-						会员总数: 
-					</td>
-					<td>
-						${memberTotalCount}
-					</td>
-				</tr>
-				<tr>
-					<td>
-						文章总数: 
-					</td>
-					<td>
-						${articleTotalCount}
-					</td>
-				</tr>
-			</table>
+			
 		</div>
 		<p class="copyright">Copyright © 2005-2011 All Rights Reserved.</p>
 	</div>
