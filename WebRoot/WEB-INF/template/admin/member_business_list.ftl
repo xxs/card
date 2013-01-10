@@ -24,11 +24,23 @@
 				&nbsp;&nbsp;
 				<label>查找: </label>
 				<select name="pager.searchBy">
-					<option value="businessnum"<#if pager.searchBy == "businessnum"> selected</#if>>
-						银行账号
+					<option value="businessName"<#if pager.searchBy == "businessName"> selected</#if>>
+						商户名称
 					</option>
-					<option value="openname"<#if pager.searchBy == "openname"> selected</#if>>
-						开户姓名
+					<option value="realName"<#if pager.searchBy == "realName"> selected</#if>>
+						真实姓名
+					</option>
+					<option value="icp"<#if pager.searchBy == "icp"> selected</#if>>
+						ICP证备案号
+					</option>
+					<option value="linkMan"<#if pager.searchBy == "linkMan"> selected</#if>>
+						联系人
+					</option>
+					<option value="url"<#if pager.searchBy == "url"> selected</#if>>
+						商城网址
+					</option>
+					<option value="member"<#if pager.searchBy == "member"> selected</#if>>
+						关联会员名
 					</option>
 				</select>
 				<input type="text" name="pager.keyword" value="${pager.keyword!}" />

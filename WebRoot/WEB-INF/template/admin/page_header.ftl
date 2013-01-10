@@ -38,13 +38,8 @@ $().ready(function() {
 		<div class="bodyRight">
 			<div class="link">
 				<span class="welcome">
-					<strong><@sec.authentication property="name" /></strong>&nbsp;您好!&nbsp;
+					<strong><@sec.authentication property="name" /></strong>&nbsp;您好!&nbsp;欢迎进入后台管理中心!
 				</span>
-				<a href="page!index.action" target="mainFrame">后台首页</a>|
-            	<a href="#" target="_blank">技术支持</a>|
-                <a href="#" target="_blank">购买咨询</a>|
-                <a href="#" target="_blank">关于我们</a>|
-                <a href="#" target="_blank">联系我们</a>
 			</div>
 			<div id="menu" class="menu">
 				<ul>
@@ -78,6 +73,9 @@ $().ready(function() {
 							<a href="menu!setting.action" target="menuFrame" hidefocus>网站设置</a>
 						</li>
 					</@sec.authorize>
+					<li class="home">
+						<a href="page!index.action" target="mainFrame" hidefocus>后台首页</a>
+					</li>
 					<li class="home">
 						<a href="${base}/" target="_blank" hidefocus>网站首页</a>
 					</li>
