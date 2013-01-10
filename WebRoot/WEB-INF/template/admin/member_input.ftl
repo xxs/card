@@ -180,6 +180,9 @@ $().ready( function() {
 					<input type="button" value="基本信息" hidefocus />
 				</li>
 				<li>
+					<input type="button" value="预存款信息" hidefocus />
+				</li>
+				<li>
 					<input type="button" value="银行卡信息" hidefocus />
 				</li>
 				<li>
@@ -334,6 +337,9 @@ $().ready( function() {
 								<#elseif memberAttribute.systemAttributeType == "mobile">
 									<input type="text" name="memberAttributeValueMap['${memberAttribute.id}']" class="formText" value="${(member.getMemberAttributeValue(memberAttribute))!}" />
 									<#if memberAttribute.isRequired><label class="requireField">*</label></#if>
+								<#elseif memberAttribute.systemAttributeType == "referrer">
+									<input type="text" name="memberAttributeValueMap['${memberAttribute.id}']" class="formText" value="${(member.getMemberAttributeValue(memberAttribute))!}" />
+									<#if memberAttribute.isRequired><label class="requireField">*</label></#if>
 								</#if>
 							<#else>
 								<#if memberAttribute.attributeType == "text">
@@ -377,6 +383,56 @@ $().ready( function() {
 						</td>
 					</tr>
 				</#if>
+			</table>
+			<table id="memberBankTable" class="inputTable tabContent">
+				<tr class="title">
+					<th>
+						操作类型
+					</th>
+					<th>
+						存入金额
+					</th>
+					<th>
+						支出金额
+					</th>
+					<th>
+						手续费率
+					</th>
+					<th>
+						当前余额
+					</th>
+					<th>
+						被推荐人
+					</th>
+					<th>
+						提成订单号
+					</th>
+				</tr>
+				<#list (member.depositSet)! as deposit>
+					<tr >
+						<td>
+							${action.getText("DepositType." + deposit.depositType)}
+						</td>
+						<td>
+							${deposit.credit}
+						</td>
+						<td>
+							${deposit.debit}
+						</td>
+						<td>
+							${deposit.lossrate}
+						</td>
+						<td>
+							${deposit.balance}
+						</td>
+						<td>
+							${deposit.referrer}
+						</td>
+						<td>
+							${deposit.orderSn}
+						</td>
+					</tr>
+				</#list>
 			</table>
 			<table id="memberBankTable" class="inputTable tabContent">
 				<tr class="title">
@@ -429,13 +485,13 @@ $().ready( function() {
 				</#list>
 			</table>
 			<table id="memberBusinessTable" class="inputTable tabContent">
-				<#list (member.memberBusinessesSet)! as MemberBusiness>
+				<#list (member.memberBusinessesSet)! as memberBusiness>
 				<tr>
 					<th>
 						商户类型
 					</th>
 					<td>
-						${memberBusiness.businessType}
+						${action.getText("MemberBusiness." + memberBusiness.businessType)}
 					</td>
 					<th>
 						真实姓名 
@@ -446,86 +502,108 @@ $().ready( function() {
 				</tr>
 				<tr>
 					<th>
-						商户类型
+						身份证（营业执照）
 					</th>
 					<td>
-						${memberBusiness.businessType}
+						${memberBusiness.businessNumber}
 					</td>
 					<th>
-						真实姓名 
+						商户名称 
 					</th>
 					<td>
-						${memberBusiness.realName}
-					</td>
-				</tr>
-				<tr>
-					<th>
-						商户类型
-					</th>
-					<td>
-						${memberBusiness.businessType}
-					</td>
-					<th>
-						真实姓名 
-					</th>
-					<td>
-						${memberBusiness.realName}
+						${memberBusiness.businessName}
 					</td>
 				</tr>
 				<tr>
 					<th>
-						商户类型
+						商户地区
 					</th>
 					<td>
-						${memberBusiness.businessType}
+						${memberBusiness.city}
 					</td>
 					<th>
-						真实姓名 
+						经营范围
 					</th>
 					<td>
-						${memberBusiness.realName}
-					</td>
-				</tr>
-				<tr>
-					<th>
-						商户类型
-					</th>
-					<td>
-						${memberBusiness.businessType}
-					</td>
-					<th>
-						真实姓名 
-					</th>
-					<td>
-						${memberBusiness.realName}
+						${memberBusiness.scope}
 					</td>
 				</tr>
 				<tr>
 					<th>
-						商户类型
+						商城网址
 					</th>
 					<td>
-						${memberBusiness.businessType}
+						<a href="${memberBusiness.url}">${memberBusiness.url}</a>
 					</td>
 					<th>
-						真实姓名 
+						ICP证备案号
 					</th>
 					<td>
-						${memberBusiness.realName}
+						${memberBusiness.icp}
 					</td>
 				</tr>
 				<tr>
 					<th>
-						商户类型
+						联系人
 					</th>
 					<td>
-						${memberBusiness.businessType}
+						${memberBusiness.linkMan}
 					</td>
 					<th>
-						真实姓名 
+						业务电话
 					</th>
 					<td>
-						${memberBusiness.realName}
+						${memberBusiness.tel}
+					</td>
+				</tr>
+				<tr>
+					<th>
+						业务手机
+					</th>
+					<td>
+						${memberBusiness.phone}
+					</td>
+					<th>
+						服务热线
+					</th>
+					<td>
+						${memberBusiness.serverTel}
+					</td>
+				</tr>
+				<tr>
+					<th>
+						客服工作时间
+					</th>
+					<td>
+						${memberBusiness.serverTime}
+					</td>
+					<th>
+						即时通讯
+					</th>
+					<td>
+						${memberBusiness.QQ}
+					</td>
+				</tr>
+				<tr>
+					<th>
+						通讯地址
+					</th>
+					<td>
+						${memberBusiness.address}
+					</td>
+					<th>
+						邮编
+					</th>
+					<td>
+						${memberBusiness.zipcode}
+					</td>
+				</tr>
+				<tr>
+					<th>
+						备注
+					</th>
+					<td colspan="3">
+						${memberBusiness.mome}
 					</td>
 				</tr>
 				</#list>

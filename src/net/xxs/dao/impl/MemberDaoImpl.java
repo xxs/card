@@ -28,7 +28,7 @@ public class MemberDaoImpl extends BaseDaoImpl<Member, String> implements Member
 	}
 	@SuppressWarnings("unchecked")
 	public boolean isExistByReferrer(String referrer) {
-		String hql = "from Member as members where lower(members.referrer) = lower(:referrer)";
+		String hql = "from Member as members where lower(members.username) = lower(:referrer)";
 		Member member = (Member) getSession().createQuery(hql).setParameter("referrer", referrer).uniqueResult();
 		if (member != null) {
 			return true;

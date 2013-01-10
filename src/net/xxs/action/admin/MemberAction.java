@@ -138,6 +138,10 @@ public class MemberAction extends BaseAdminAction {
 			addActionError("用户名已存在!");
 			return ERROR;
 		}
+		if (memberService.isExistByReferrer(member.getReferrer())) {
+			addActionError("推荐人不存在!");
+			return ERROR;
+		}
 		if (member.getDeposit().compareTo(new BigDecimal(0)) < 0) {
 			addActionError("预存款不允许小于0");
 			return ERROR;
@@ -254,6 +258,10 @@ public class MemberAction extends BaseAdminAction {
 	public String update() {
 		if (member.getDeposit().compareTo(new BigDecimal(0)) < 0) {
 			addActionError("预存款不允许小于0");
+			return ERROR;
+		}
+		if (!memberService.isExistByReferrer(member.getReferrer())) {
+			addActionError("推荐人不存在!");
 			return ERROR;
 		}
 		List<MemberAttribute> memberAttributeList = memberAttributeService.getMemberAttributeList();

@@ -99,145 +99,9 @@ $().ready(function() {
 						商户类型: 
 					</th>
 					<td>
-						BusinessTypeList
 						<#list businessTypeList as businessType>
-							businessType
+							<input type="radio" name="memberBusiness.businessType" value="businessType" />${action.getText("BusinessType." + businessType)}
 						</#list>
-						<input type="text" name="memberBusiness.businessType" class="formText" value="${(memberBusiness.businessnum)!}" />
-						<label class="requireField">*</label>
-					</td>
-				</tr>
-				<tr>
-					<th>
-						商户名称: 
-					</th>
-					<td>
-						<input type="text" name="memberBusiness.businessName" class="formText" value="${(memberBusiness.businessnum)!}" />
-						<label class="requireField">*</label>
-					</td>
-				</tr>
-				<tr>
-					<th>
-						真实姓名: 
-					</th>
-					<td>
-						<input type="text" name="memberBusiness.realname" class="formText" value="${(memberBusiness.openname)!}" title="" />
-						<label class="requireField">*</label>
-					</td>
-				<tr>
-					<th>
-						身份证号（营业执照）: 
-					</th>
-					<td>
-						<input type="text" name="memberBusiness.businessNumber" class="formText" value="${(memberBusiness.openname)!}" title="" />
-						<label class="requireField">*</label>
-					</td>
-				</tr>
-				<tr>
-					<th>
-						商户地区: 
-					</th>
-					<td>
-						<input type="text" name="memberBusiness.city" class="formText" value="${(memberBusiness.openname)!}" title="" />
-						<label class="requireField">*</label>
-					</td>
-				</tr>
-				<tr>
-					<th>
-						经营范围: 
-					</th>
-					<td>
-						<input type="text" name="memberBusiness.scope" class="formText" value="${(memberBusiness.openname)!}" title="" />
-						<label class="requireField">*</label>
-					</td>
-				</tr>
-				<tr>
-					<th>
-						商城网址: 
-					</th>
-					<td>
-						<input type="text" name="memberBusiness.url" class="formText" value="${(memberBusiness.openname)!}" title="" />
-						<label class="requireField">*</label>
-					</td>
-				</tr>
-				<tr>
-					<th>
-						ICP证备案号: 
-					</th>
-					<td>
-						<input type="text" name="memberBusiness.icp" class="formText" value="${(memberBusiness.businessname)!}" title="" />
-						<label class="requireField">*</label>
-					</td>
-				</tr>
-				<tr>
-					<th>
-						联系人: 
-					</th>
-					<td>
-						<input type="text" name="memberBusiness.linkMan" class="formText" value="${(memberBusiness.businesscity)!}" title="" />
-						<label class="requireField">*</label>
-					</td>
-				</tr>
-				<tr>
-					<th>
-						业务电话: 
-					</th>
-					<td>
-						<input type="text" name="memberBusiness.tel" class="formText" value="${(memberBusiness.businessdetail)!}" title="只允许输入零或正整数" />
-						<label class="requireField">*</label>
-					</td>
-				</tr>
-				<tr>
-					<th>
-						业务手机: 
-					</th>
-					<td>
-						<input type="text" name="memberBusiness.phone" class="formText" value="${(memberBusiness.businessdetail)!}" title="只允许输入零或正整数" />
-						<label class="requireField">*</label>
-					</td>
-				</tr>
-				<tr>
-					<th>
-						客服热线: 
-					</th>
-					<td>
-						<input type="text" name="memberBusiness.serverTel" class="formText" value="${(memberBusiness.businessdetail)!}" title="只允许输入零或正整数" />
-						<label class="requireField">*</label>
-					</td>
-				</tr>
-				<tr>
-					<th>
-						客服工作时间: 
-					</th>
-					<td>
-						<input type="text" name="memberBusiness.serverTime" class="formText" value="${(memberBusiness.businessdetail)!}" title="只允许输入零或正整数" />
-						<label class="requireField">*</label>
-					</td>
-				</tr>
-				<tr>
-					<th>
-						即时通讯（QQ）: 
-					</th>
-					<td>
-						<input type="text" name="memberBusiness.QQ" class="formText" value="${(memberBusiness.businessdetail)!}" title="只允许输入零或正整数" />
-						<label class="requireField">*</label>
-					</td>
-				</tr>
-				<tr>
-					<th>
-						通讯地址: 
-					</th>
-					<td>
-						<input type="text" name="memberBusiness.address" class="formText" value="${(memberBusiness.businessdetail)!}" title="只允许输入零或正整数" />
-						<label class="requireField">*</label>
-					</td>
-				</tr>
-				<tr>
-					<th>
-						邮政编码: 
-					</th>
-					<td>
-						<input type="text" name="memberBusiness.zipcode" class="formText" value="${(memberBusiness.businessdetail)!}" title="只允许输入零或正整数" />
 						<label class="requireField">*</label>
 					</td>
 				</tr>
@@ -246,9 +110,144 @@ $().ready(function() {
 						审核状态: 
 					</th>
 					<td>
-						<label>
-							<@checkbox name="memberBusiness.isDefault" value="${(memberBusiness.isDefault)!false}" />默认
-						</label>
+						<#list resultTypeList as resultType>
+							<input type="radio" name="memberBusiness.resultType" value="resultType" />${action.getText("ResultType." + resultType)}
+						</#list>
+						<label class="requireField">*</label>
+					</td>
+				</tr>
+				<tr>
+					<th>
+						商户名称: 
+					</th>
+					<td>
+						<input type="text" name="memberBusiness.businessName" class="formText" value="${(memberBusiness.businessName)!}" />
+						<label class="requireField">*</label>
+					</td>
+				</tr>
+				<tr>
+					<th>
+						真实姓名: 
+					</th>
+					<td>
+						<input type="text" name="memberBusiness.realName" class="formText" value="${(memberBusiness.realName)!}" title="" />
+						<label class="requireField">*</label>
+					</td>
+				<tr>
+					<th>
+						身份证号（营业执照）: 
+					</th>
+					<td>
+						<input type="text" name="memberBusiness.businessNumber" class="formText" value="${(memberBusiness.businessNumber)!}" title="" />
+						<label class="requireField">*</label>
+					</td>
+				</tr>
+				<tr>
+					<th>
+						商户地区: 
+					</th>
+					<td>
+						<input type="text" name="memberBusiness.city" class="formText" value="${(memberBusiness.city)!}" title="" />
+						<label class="requireField">*</label>
+					</td>
+				</tr>
+				<tr>
+					<th>
+						经营范围: 
+					</th>
+					<td>
+						<input type="text" name="memberBusiness.scope" class="formText" value="${(memberBusiness.scope)!}" title="" />
+						<label class="requireField">*</label>
+					</td>
+				</tr>
+				<tr>
+					<th>
+						商城网址: 
+					</th>
+					<td>
+						<input type="text" name="memberBusiness.url" class="formText" value="${(memberBusiness.url)!}" title="" />
+						<label class="requireField">*</label>
+					</td>
+				</tr>
+				<tr>
+					<th>
+						ICP证备案号: 
+					</th>
+					<td>
+						<input type="text" name="memberBusiness.icp" class="formText" value="${(memberBusiness.icp)!}" title="" />
+						<label class="requireField">*</label>
+					</td>
+				</tr>
+				<tr>
+					<th>
+						联系人: 
+					</th>
+					<td>
+						<input type="text" name="memberBusiness.linkMan" class="formText" value="${(memberBusiness.linkMan)!}" title="" />
+						<label class="requireField">*</label>
+					</td>
+				</tr>
+				<tr>
+					<th>
+						业务电话: 
+					</th>
+					<td>
+						<input type="text" name="memberBusiness.tel" class="formText" value="${(memberBusiness.tel)!}" title="只允许输入零或正整数" />
+						<label class="requireField">*</label>
+					</td>
+				</tr>
+				<tr>
+					<th>
+						业务手机: 
+					</th>
+					<td>
+						<input type="text" name="memberBusiness.phone" class="formText" value="${(memberBusiness.phone)!}" title="只允许输入零或正整数" />
+						<label class="requireField">*</label>
+					</td>
+				</tr>
+				<tr>
+					<th>
+						客服热线: 
+					</th>
+					<td>
+						<input type="text" name="memberBusiness.serverTel" class="formText" value="${(memberBusiness.serverTel)!}" title="只允许输入零或正整数" />
+						<label class="requireField">*</label>
+					</td>
+				</tr>
+				<tr>
+					<th>
+						客服工作时间: 
+					</th>
+					<td>
+						<input type="text" name="memberBusiness.serverTime" class="formText" value="${(memberBusiness.serverTime)!}" title="只允许输入零或正整数" />
+						<label class="requireField">*</label>
+					</td>
+				</tr>
+				<tr>
+					<th>
+						即时通讯（QQ）: 
+					</th>
+					<td>
+						<input type="text" name="memberBusiness.QQ" class="formText" value="${(memberBusiness.QQ)!}" title="只允许输入零或正整数" />
+						<label class="requireField">*</label>
+					</td>
+				</tr>
+				<tr>
+					<th>
+						通讯地址: 
+					</th>
+					<td>
+						<input type="text" name="memberBusiness.address" class="formText" value="${(memberBusiness.address)!}" title="只允许输入零或正整数" />
+						<label class="requireField">*</label>
+					</td>
+				</tr>
+				<tr>
+					<th>
+						邮政编码: 
+					</th>
+					<td>
+						<input type="text" name="memberBusiness.zipcode" class="formText" value="${(memberBusiness.zipcode)!}" title="只允许输入零或正整数" />
+						<label class="requireField">*</label>
 					</td>
 				</tr>
 			</table>
