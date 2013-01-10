@@ -116,6 +116,7 @@
 				</tr>
 			</table>
 			<div class="blank"></div>
+		<!--	
 			<table class="listTable">
 				<tr>
 					<th colspan="2">
@@ -171,7 +172,7 @@
 					</td>
 				</tr>
 			</table>
-			
+		-->
 		</div>
 		<p class="copyright">Copyright © 2005-2011 All Rights Reserved.</p>
 	</div>
