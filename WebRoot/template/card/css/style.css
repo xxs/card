@@ -13,19 +13,22 @@
 
 
 /* logo */
-.logo{width:100%;height:77px; background:url(../images/index/sss.jpg) repeat-x;}
+.logo{width:100%;height:77px; background:url(../images/bj_top.jpg) repeat-x;}
 .logo_995{width:995px;margin:0 auto;}
 .logo_left{padding-top:14px;width:163px; float:left;}
-.logo_right{float:right;margin-top:41px;}
-.logo_right ul{width:800px;float:right;}
-.logo_right ul li{float:right;font-size:16px;font-weight:bold; font-family:"黑体";text-align:right;width:90px;}
+.logo_right{float:right;width:600px;margin-top:45px;}
+.logo_right ul{width:540px;float:right; height:27px;}
+.logo_right ul li{float:right;font-size:16px;font-family:"黑体";text-align:center;width:90px;height:27px;}
+.logo_right ul li a{display:block;height:30px;width:90px;text-align:center; float:right;}
+.logo_right ul li a:hover{border-bottom:3px solid #e10911;}
+.kan{border-bottom:3px solid #e10911;text-align:center; color:#e10911;}
 
 /* banner */
 .banner{width:995px;margin:0 auto;height:415px;}
-	.banner_left{width:638px;height:415px;background:url(../images/index/baij.jpg) left no-repeat; float:left;}
+	.banner_left{width:638px;height:415px;background:url(../images/banner.jpg) left no-repeat; float:left;}
 		.banner_left ul{margin:129px 0 0 111px;display:block; width:222px;}
 		.banner_left ul li{font-size:16px;font-weight:bold;font-family:"黑体";color:#6c6c6c;height:36px;}
-		.banner_left ul li span{background:url(../images/index/ww.png) no-repeat;float:right;width:126px;height:32px;display:block;line-height:32px;text-align:center;color:#FFF;}
+		.banner_left ul li span{background:url(../images/jiantou.png) no-repeat;float:right;width:126px;height:32px;display:block;line-height:32px;text-align:center;color:#FFF;}
 		.banner_left ul li p{display:block;width:88px;float:left; margin-top:9px;}
 	.banner_right{width:357px;height:415px;float:right;}
 		.banner_xiao{width:318px;height:278px;border:5px solid #a7a7a7;margin-top:64px;}
@@ -73,5 +76,34 @@ copyright_shang dl .xiao2 p{ margin-right:5px;}
 .copyright_xia span{text-align:center;width:995px;display:block;font-size:12px;color:#999; line-height:39px;}
 .copyright_xia span a{ margin:0 5px;}
 .copyright_xia p{text-align:center; color:#999;font-size:12px;}
- 
+/* 内容区 */
+.column{margin:20px auto;width:995px;height:493px;}
+	.column_left{float:left;width:175px;height:490px;background:#f8f8f8;border:1px solid #d7d7d7;}
+		.column_left_1{height:99px;background:url(../images/sda1.jpg) no-repeat;padding-top:14px;border-bottom:1px solid #d7d7d7;}
+		.column_left_1 a{display:block;text-align:center;width:52px; margin:0 auto;height:30px;}
+		.column_left ul{height:78px;border-bottom:1px solid #d7d7d7; padding-top:9px;}
+		.column_left ul li{float:left;width:87px;line-height:22px;text-align:center;}
+		.column_left_3 dl{;width:175px;}
+		.column_left_3 dl span{color:#666666;display:block;padding-top:20px;font-size:14px;font-weight:bold;height:20px;}
+		.column_left_3 dl dt{float:left;padding-left:10px;width:16px;height:188px; display:block;}
+		.column_left_3 dl dt img{margin:8px auto;}
+		.column_left_3 dl dd{width:140px;float:right;display:block;margin:9px 0;}
+		.column_left_3 dl p{width:40px;float:left;margin:8px 0 0 10px;padding-left:17px;}
+
+.column_right{float:right;height:490px;width:770px;float:right;}
+	.column_right_1{height:82px;line-height:82px;border:3px solid #d7d7d7;background:#f8f8f8;margin-bottom:30px;font-size:14px;font-weight:bold;color:#666666;}
+		.column_right_1 p{float:left;margin:24px 14px 0 129px;}
+	.column_right_2{height:372px;border:1px solid #d7d7d7;}
+	.column_right_2_shang{height:100px;padding:45px 0 0 55px;}
+		.column_right_2_shang span{height:100px;width:580px;display:block; background:url(../images/saaaa/sa3.jpg) no-repeat;padding-left:75px;border-bottom:1px dashed #878a86;}
+		.column_right_2_shang span strong{ float:left;width:400px;display:block;font-size:16px;color:#e10911; font-family:"宋体";line-height:36px;}
+		.column_right_2_shang span p{width:230px;float:left; display:block;}
+		.column_right_2_shang span b{ width:110px;float:right;}
+		.ddd{width:680px;border-bottom:1px solid #dbdcda;margin-left:55px;}
+		.column_right_ooo1{width:580px;height:50px;padding-left:80px;line-height:26px;margin-top:45px;background:url(../images/saaaa/sa4.jpg) no-repeat;}
+		.column_right_ooo1 strong{color:#e10911;font-family:"宋体";font-size:16px; display:block;float:left;}
+		.column_right_ooo1 b{ float:right;display:block;}
+		.column_right_ooo2{color:#929292;text-align:center;line-height:65px;}
+		.column_right_ooo2 a{ margin:0 10px;}
+
  

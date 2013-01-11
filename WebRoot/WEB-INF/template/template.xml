@@ -1,7 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <xxs>
-	<description>XXS模板配置文件</description>
+	<description>Freemarker模板配置文件</description>
 	<page>
+		<head>
+			<description>应用的资源文件</description>
+			<templatePath>WEB-INF/template/card/head.ftl</templatePath>
+		</head>
 		<header>
 			<description>顶部内容</description>
 			<templatePath>WEB-INF/template/card/header.ftl</templatePath>

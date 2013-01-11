@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50154
 File Encoding         : 65001
 
-Date: 2013-01-11 13:35:57
+Date: 2013-01-11 17:05:13
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -43,7 +43,7 @@ CREATE TABLE `xx_admin` (
 -- ----------------------------
 -- Records of xx_admin
 -- ----------------------------
-INSERT INTO `xx_admin` VALUES ('0731dcsoft2010031200000000000017', '2011-01-01 00:00:00', '2013-01-11 13:26:19', '技术部', 'xxs@163.com', '', '', '', '', '2012-12-17 14:28:34', '2013-01-11 13:26:19', '0', '127.0.0.1', 'ADMIN', '21232f297a57a5a743894a0e4a801fc3', 'admin');
+INSERT INTO `xx_admin` VALUES ('0731dcsoft2010031200000000000017', '2011-01-01 00:00:00', '2013-01-11 15:04:10', '技术部', 'xxs@163.com', '', '', '', '', '2012-12-17 14:28:34', '2013-01-11 15:04:10', '0', '127.0.0.1', 'ADMIN', '21232f297a57a5a743894a0e4a801fc3', 'admin');
 
 -- ----------------------------
 -- Table structure for `xx_admin_role`
@@ -94,6 +94,10 @@ CREATE TABLE `xx_article` (
 -- Records of xx_article
 -- ----------------------------
 INSERT INTO `xx_article` VALUES ('4028bc743bbb05c2013bbb2611650002', '2012-12-21 09:48:52', '2012-12-21 09:48:52', 'xxs', '新手上路', '0', '/html/201212/62ec638c2cc94115a783d57dc3e995f8.html', '', '', '', '新手上路', '新手上路', '1', '新手上路', '4028bc743bbb05c2013bbb25d49a0000');
+INSERT INTO `xx_article` VALUES ('4028bc743c286bdc013c28a2d78b0011', '2013-01-11 16:03:46', '2013-01-11 16:18:33', '成功案例', '成功案例', '6', '/html/201301/03754c8fbedf44e3bbd277e0b3dfc2d1.html', '', '', '', '成功案例', '成功案例', '1', '成功案例', '4028bc743c286bdc013c289277c5000a');
+INSERT INTO `xx_article` VALUES ('4028bc743c286bdc013c28a30f250013', '2013-01-11 16:04:00', '2013-01-11 16:04:00', '联系我们', '联系我们', '0', '/html/201301/8c73cc996c5240bc9e97cc40e4850266.html', '', '', '', '联系我们', '联系我们', '1', '联系我们', '4028bc743c286bdc013c28900dbb0008');
+INSERT INTO `xx_article` VALUES ('4028bc743c286bdc013c28a4128c0015', '2013-01-11 16:05:06', '2013-01-11 16:05:06', '新手上路', '新手上路', '0', '/html/201301/ad975ce72b7c483b94245d4e21d0ecb4.html', '', '', '', '新手上路', '新手上路', '1', '新手上路', '4028bc743bbb05c2013bbb25d49a0000');
+INSERT INTO `xx_article` VALUES ('4028bc743c286bdc013c28a44e8b0017', '2013-01-11 16:05:22', '2013-01-11 16:05:22', '收卡价格', '收卡价格', '0', '/html/201301/597c10bdbaf04f75a6c676128226ddf9.html', '', '', '', '收卡价格', '收卡价格', '1', '收卡价格', '4028bc743c286bdc013c288e82b60002');
 
 -- ----------------------------
 -- Table structure for `xx_article_category`
@@ -121,6 +125,11 @@ CREATE TABLE `xx_article_category` (
 -- Records of xx_article_category
 -- ----------------------------
 INSERT INTO `xx_article_category` VALUES ('4028bc743bbb05c2013bbb25d49a0000', '2012-12-21 09:48:36', '2012-12-21 09:48:36', '0', '新手上路', '新手上路', '新手上路', '1', '4028bc743bbb05c2013bbb25d49a0000', 'xs', null);
+INSERT INTO `xx_article_category` VALUES ('4028bc743c286bdc013c288e82b60002', '2013-01-11 15:41:33', '2013-01-11 15:41:33', '0', '收卡价格', '收卡价格', '收卡价格', '2', '4028bc743c286bdc013c288e82b60002', 'price', null);
+INSERT INTO `xx_article_category` VALUES ('4028bc743c286bdc013c288f326e0004', '2013-01-11 15:42:18', '2013-01-11 15:42:18', '0', '名臣公益', '名臣公益', '名臣公益', '3', '4028bc743c286bdc013c288f326e0004', 'gy', null);
+INSERT INTO `xx_article_category` VALUES ('4028bc743c286bdc013c288f930c0006', '2013-01-11 15:42:43', '2013-01-11 15:42:43', '0', '交易保障', '交易保障', '交易保障', '4', '4028bc743c286bdc013c288f930c0006', 'bz', null);
+INSERT INTO `xx_article_category` VALUES ('4028bc743c286bdc013c28900dbb0008', '2013-01-11 15:43:14', '2013-01-11 15:43:14', '0', '关于我们', '关于我们', '关于我们', '5', '4028bc743c286bdc013c28900dbb0008', 'us', null);
+INSERT INTO `xx_article_category` VALUES ('4028bc743c286bdc013c289277c5000a', '2013-01-11 15:45:53', '2013-01-11 15:45:53', '0', '成功案例', '成功案例', '成功案例', '7', '4028bc743c286bdc013c289277c5000a', 'su', null);
 
 -- ----------------------------
 -- Table structure for `xx_brand`
@@ -255,6 +264,8 @@ CREATE TABLE `xx_friend_link` (
 -- ----------------------------
 -- Records of xx_friend_link
 -- ----------------------------
+INSERT INTO `xx_friend_link` VALUES ('4028bc743c286bdc013c288103340000', '2013-01-11 15:26:49', '2013-01-11 16:34:18', '/upload/image/201301/43c4c152ff0e4414926e5389208ea297.jpg', '卡卡', '1', 'http://www.baidu.com');
+INSERT INTO `xx_friend_link` VALUES ('4028bc743c286bdc013c288156a40001', '2013-01-11 15:27:10', '2013-01-11 16:34:41', '/upload/image/201301/cb083f3c6d42476e9c29ba8e4476ee5e.jpg', '问问', '2', 'http://www.baidu.com');
 
 -- ----------------------------
 -- Table structure for `xx_instant_messaging`
@@ -335,6 +346,15 @@ INSERT INTO `xx_log` VALUES ('4028bc743c236a6b013c23a11c310003', '2013-01-10 16:
 INSERT INTO `xx_log` VALUES ('4028bc743c23b04e013c23b53ab40001', '2013-01-10 17:05:45', '2013-01-10 17:05:45', 'net.xxs.action.admin.MemberAction', 'update', '编辑会员: 123123', '127.0.0.1', '编辑会员', 'admin');
 INSERT INTO `xx_log` VALUES ('4028bc743c23b04e013c23b6e3630002', '2013-01-10 17:07:33', '2013-01-10 17:07:33', 'net.xxs.action.admin.MemberAction', 'update', '编辑会员: 123123', '127.0.0.1', '编辑会员', 'admin');
 INSERT INTO `xx_log` VALUES ('4028bc743c23b04e013c23cd45db0003', '2013-01-10 17:32:00', '2013-01-10 17:32:00', 'net.xxs.action.admin.MemberAction', 'update', '编辑会员: 123123', '127.0.0.1', '编辑会员', 'admin');
+INSERT INTO `xx_log` VALUES ('4028bc743c286bdc013c288e82f40003', '2013-01-11 15:41:33', '2013-01-11 15:41:33', 'net.xxs.action.admin.ArticleCategoryAction', 'save', '添加文章分类: 收卡价格', '127.0.0.1', '添加文章分类', 'admin');
+INSERT INTO `xx_log` VALUES ('4028bc743c286bdc013c288f32fb0005', '2013-01-11 15:42:18', '2013-01-11 15:42:18', 'net.xxs.action.admin.ArticleCategoryAction', 'save', '添加文章分类: 名臣公益', '127.0.0.1', '添加文章分类', 'admin');
+INSERT INTO `xx_log` VALUES ('4028bc743c286bdc013c288f935a0007', '2013-01-11 15:42:43', '2013-01-11 15:42:43', 'net.xxs.action.admin.ArticleCategoryAction', 'save', '添加文章分类: 交易保障', '127.0.0.1', '添加文章分类', 'admin');
+INSERT INTO `xx_log` VALUES ('4028bc743c286bdc013c28900df90009', '2013-01-11 15:43:14', '2013-01-11 15:43:14', 'net.xxs.action.admin.ArticleCategoryAction', 'save', '添加文章分类: 关于我们', '127.0.0.1', '添加文章分类', 'admin');
+INSERT INTO `xx_log` VALUES ('4028bc743c286bdc013c28927813000b', '2013-01-11 15:45:53', '2013-01-11 15:45:53', 'net.xxs.action.admin.ArticleCategoryAction', 'save', '添加文章分类: 成功案例', '127.0.0.1', '添加文章分类', 'admin');
+INSERT INTO `xx_log` VALUES ('4028bc743c286bdc013c28a2d8d30012', '2013-01-11 16:03:46', '2013-01-11 16:03:46', 'net.xxs.action.admin.ArticleAction', 'save', '添加文章: 成功案例', '127.0.0.1', '添加文章', 'admin');
+INSERT INTO `xx_log` VALUES ('4028bc743c286bdc013c28a30ff10014', '2013-01-11 16:04:00', '2013-01-11 16:04:00', 'net.xxs.action.admin.ArticleAction', 'save', '添加文章: 联系我们', '127.0.0.1', '添加文章', 'admin');
+INSERT INTO `xx_log` VALUES ('4028bc743c286bdc013c28a413660016', '2013-01-11 16:05:07', '2013-01-11 16:05:07', 'net.xxs.action.admin.ArticleAction', 'save', '添加文章: 新手上路', '127.0.0.1', '添加文章', 'admin');
+INSERT INTO `xx_log` VALUES ('4028bc743c286bdc013c28a44f750018', '2013-01-11 16:05:22', '2013-01-11 16:05:22', 'net.xxs.action.admin.ArticleAction', 'save', '添加文章: 收卡价格', '127.0.0.1', '添加文章', 'admin');
 INSERT INTO `xx_log` VALUES ('8a9182fc3ba86bc8013ba9782e800002', '2012-12-17 23:25:23', '2012-12-17 23:25:23', 'net.xxs.action.admin.MemberAction', 'save', '添加会员: 123123', '127.0.0.1', '添加会员', 'admin');
 INSERT INTO `xx_log` VALUES ('8a9182fc3ba86bc8013ba97939a00004', '2012-12-17 23:26:32', '2012-12-17 23:26:32', 'net.xxs.action.admin.MemberAction', 'update', '编辑会员: 123123', '127.0.0.1', '编辑会员', 'admin');
 INSERT INTO `xx_log` VALUES ('8ae484093bd1e9bd013bd2053e570001', '2012-12-25 20:24:17', '2012-12-25 20:24:17', 'net.xxs.action.admin.OrderAction', 'completed', '订单编号: DD100037', '127.0.0.1', '订单完成', 'admin');
@@ -580,8 +600,13 @@ CREATE TABLE `xx_navigation` (
 -- ----------------------------
 -- Records of xx_navigation
 -- ----------------------------
-INSERT INTO `xx_navigation` VALUES ('4028bc743bac0d54013bacbb0f14000d', '2012-12-18 14:37:18', '2012-12-18 14:37:18', '', '', '首页', '1', '1', '${base}/');
+INSERT INTO `xx_navigation` VALUES ('4028bc743bac0d54013bacbb0f14000d', '2012-12-18 14:37:18', '2013-01-11 16:01:51', '', '', '首页', '1', '100', '${base}/');
 INSERT INTO `xx_navigation` VALUES ('4028bc743bac0d54013bacbb688e000e', '2012-12-18 14:37:41', '2012-12-21 09:49:06', '', '', '新手导航', '0', '1', '${base}/shop/article_list/xs.htm');
+INSERT INTO `xx_navigation` VALUES ('4028bc743c286bdc013c28931dc9000c', '2013-01-11 15:46:35', '2013-01-11 15:46:35', '', '', '交易保障', '1', '3', '${base}/card/article_list/bz.htm');
+INSERT INTO `xx_navigation` VALUES ('4028bc743c286bdc013c28982ed8000d', '2013-01-11 15:52:07', '2013-01-11 15:52:07', '', '', '快捷通道', '1', '4', '${base}/');
+INSERT INTO `xx_navigation` VALUES ('4028bc743c286bdc013c2898a243000e', '2013-01-11 15:52:37', '2013-01-11 15:52:37', '', '', '成功案例', '1', '5', '${base}/card/article_list/su.htm');
+INSERT INTO `xx_navigation` VALUES ('4028bc743c286bdc013c2898de04000f', '2013-01-11 15:52:52', '2013-01-11 15:52:52', '', '', '在线留言', '0', '2', '${base}/card/leave_message.htm');
+INSERT INTO `xx_navigation` VALUES ('4028bc743c286bdc013c28993e930010', '2013-01-11 15:53:17', '2013-01-11 15:53:17', '', '', '交易保障', '1', '6', '${base}/card/article_list/bz.htm');
 
 -- ----------------------------
 -- Table structure for `xx_order`

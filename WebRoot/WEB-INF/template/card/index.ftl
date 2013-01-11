@@ -7,168 +7,97 @@
 <meta name="Copyright" content="XXS" />
 <#if (setting.metaKeywords)! != ""><meta name="keywords" content="${setting.metaKeywords}" /></#if>
 <#if (setting.metaDescription)! != ""><meta name="description" content="${setting.metaDescription}" /></#if>
-<link rel="icon" href="favicon.ico" type="image/x-icon" />
-<link href="${base}/template/card/css/base.css" rel="stylesheet" type="text/css" />
-<link href="${base}/template/card/css/card.css" rel="stylesheet" type="text/css" />
-<!--[if lte IE 6]>
-	<script type="text/javascript" src="${base}/template/common/js/belatedPNG.js"></script>
-	<script type="text/javascript">
-		// 解决IE6透明PNG图片BUG
-		DD_belatedPNG.fix(".belatedPNG");
-	</script>
-<![endif]-->
+<#include "/WEB-INF/template/card/head.ftl">
+<script type="text/javascript" >
+//<![CDATA[
+	$(function(){
+	    var $div_li =$("div.tab_menu ul li");
+	    $div_li.mouseover(function(){//要点击切换这click
+			$(this).addClass("selected")            //当前<li>元素高亮
+				   .siblings().removeClass("selected");  //去掉其它同辈<li>元素的高亮
+            var index =  $div_li.index(this);  // 获取当前点击的<li>元素 在 全部li元素中的索引。
+			$("div.tab_box > div")   	//选取子节点。不选取子节点的话，会引起错误。如果里面还有div 
+					.eq(index).show()   //显示 <li>元素对应的<div>元素
+					.siblings().hide(); //隐藏其它几个同辈的<div>元素
+		}).hover(function(){
+			$(this).addClass("hover");
+		},function(){
+			$(this).removeClass("hover");
+		})
+	})
+//]]>
+</script>
 </head>
-<body class="index">
+<body>
 	<#include "/WEB-INF/template/card/header.ftl">
-	<div class="body">
-		<div class="bodyLeft">
-			<div class="cardsCategory">
-            	<div class="top">充值卡分类</div>
-            	<div class="middle">
-            		<ul id="cardsCategoryMenu" class="menu">
-					</ul>
-            	</div>
-                <div class="bottom"></div>
-			</div>
-		</div>
-		<div class="bodyRight">
-			<div class="slider">
-				<div id="sliderScrollable" class="scrollable">
-					<div class="items">
-						<div>
-							<img src="" />
-						</div>
-						<div>
-							<img src="" />
-						</div>
-						<div>
-							<img src="" />
-						</div>
-					</div>
-					<div class="navi"></div>
-					<div class="prevNext">
-						<a class="prev browse left"></a>
-						<a class="next browse right"></a>
-					</div>
+	<!--banner-->
+	<div class="banner">
+		<div class="banner_left">
+	    	<ul>
+	        	<li style="margin-bottom:17px;"><p>付到银行卡</p>  <span>1小时内到帐</span></li>
+	            <li>服务费最低一元</li>
+	            <li>覆盖银行近20家</li>
+	            <li>全天24小时服务</li>
+	        </ul>
+	    </div>
+    	<div class="banner_right">
+    		<div class="banner_xiao">
+				<div class="tab">
+					<div class="tab_menu">
+						<ul>
+							<li class="selected">会员登录</li>
+							<li>名臣登录</li>
+						</ul>
+		 			</div>
+		 			<div class="tab_box"> 
+		 				<div class="anan">
+            			<form action="" method="get">
+			                <div><p>帐户名</p> <span><input name="" type="text"  size="12"/></span></div>
+            				    <div style="margin-top:19px;"><p>密  码</p> <span><input name="input" type="text" /></span></div>
+                					<div class="annnsa">
+           	      						<span style="float:left;"><input type="checkbox" /> <a href="#">记住密码？</a></span>
+                    					<span style="float:right;"><input name="" type="checkbox" value="" /> <a href="#">安全控件登录</a></span>
+                					</div>
+					                <div class="ddsa"><a href="#"><img src="images/index/dd.jpg" width="110" height="30" alt="hh" /></a>  <a href="#">忘记密码？</a></div>
+                					<div class="wenz"><a href="#">使用手机号码登陆</a> |  <a href="#">免费注册</a></div>
+                		</form>
+            			</div>
+		 				<div class="hide">体育</div>
+         			</div>
 				</div>
 			</div>
-			<div class="blank"></div>
-			<div class="hotGoodsSlider">
-				<div class="title">
-					<strong>热卖充值卡</strong>HOT
-				</div>
-				<a class="prev browse"></a>
-				<@cards_list type="hot" count=12; cardsList>
-					<#if (cardsList?? && cardsList?size > 0)>
-						<div id="hotGoodsScrollable" class="scrollable">
-							<div class="items">
-								<#list cardsList as cards>
-									<#if cards_index + 1 == 1>
-										<div>
-										<ul>
-									</#if>
-									<li>
-										<a href="${base}${cards.htmlPath}">
-											<img src="${base}${cards.defaultThumbnailGoodsImagePath}" alt="${cards.name}" />
-											<p title="${cards.name}">${substring(cards.name, 18, "...")}</p>
-										</a>
-									</li>
-									<#if (cards_index + 1) % 4 == 0 || !cards_has_next || cards_index + 1 == 12>
-										</ul>
-										</div>
-									</#if>
-									<#if (cards_index + 1) % 4 == 0 && cards_has_next>
-										<div>
-										<ul>
-									</#if>
-								</#list>
-							</div>
-						</div>
-					</#if>
-				</@cards_list>
-				<a class="next browse"></a>
-			</div>
-		</div>
-		<div class="blank"></div>
-		<img src="" />
-		<div class="blank"></div>
-		<div class="newGoods">
-			<div class="left">
-				<ul id="newGoodsTab" class="newGoodsTab">
-				</ul>
-			</div>
-			<div class="right">
-			</div>
-		</div>
-		<div class="blank"></div>
-		<div class="bodyLeft">
-			<@cards_list type="hot" count=10; cardsList>
-				<#if (cardsList?size > 0)>
-					<div class="hotGoods">
-						<div class="top">热销排行</div>
-						<div class="middle">
-							<ul>
-								<#list cardsList as cards>
-									<li class="number${cards_index + 1}">
-										<span class="icon">&nbsp;</span>
-										<a href="${base}${cards.htmlPath}" title="${cards.name}">${substring(cards.name, 24, "...")}</a>
-									</li>
-								</#list>
-							</ul>
-						</div>
-						<div class="bottom"></div>
-					</div>
-					<div class="blank"></div>
-				</#if>
-			</@cards_list>
-			<@article_list type="hot" count=10; articleList>
-				<#if (articleList?size > 0)>
-					<div class="hotArticle">
-						<div class="top">热点文章</div>
-						<div class="middle">
-							<ul>
-								<#list articleList as article>
-									<li class="number${article_index + 1}">
-										<span class="icon">&nbsp;</span>
-										<a href="${base}${article.htmlPath}" title="${article.title}">${substring(article.title, 24, "...")}</a>
-									</li>
-								</#list>
-							</ul>
-						</div>
-						<div class="bottom"></div>
-					</div>
-				</#if>
-			</@article_list>
-		</div>
-		<div class="bodyRight">
-			<@cards_list type="best" count=12; cardsList>
-				<#if (cardsList?size > 0)>
-					<div class="bestGoods">
-						<div class="top">
-							<strong>精品推荐</strong>BEST
-						</div>
-						<div class="middle">
-							<ul>
-								<#list cardsList as cards>
-									<li>
-										<a href="${base}${cards.htmlPath}">
-											<img src="${base}${cards.defaultThumbnailGoodsImagePath}" alt="${cards.name}" />
-											<p title="${cards.name}">${substring(cards.name, 18, "...")}</p>
-											<p class="red">${cards.price?string(currencyFormat)}</p>
-										</a>
-									</li>
-								</#list>
-							</ul>
-						</div>
-						<div class="bottom"></div>
-					</div>
-				</#if>
-			</@cards_list>
-		</div>
-		<div class="blank"></div>
-		<#include "/WEB-INF/template/card/friend_link.ftl">
-	</div>
-	<div class="blank"></div>
+  		</div>  
+    </div>   
+	<!--内容区-->
+<div class="column1">
+	<#include "/WEB-INF/template/card/friend_link.ftl">
+	
+      
+	<div class="Service">
+    	<ul>
+        	<li><a href="#"><img src="images/index/tu1.jpg" width="329" height="153" alt="s" /></a></li>
+            <li style="margin-right:4px;"><a href="#"><img src="images/index/tu2.jpg" width="329" height="153" alt="s" /></a></li>
+            <li style="margin-top:5px;"><a href="#"><img src="images/index/tu3.jpg" width="329" height="153" alt="s" /></a></li>
+            <li style="margin-top:5px;margin-right:4px;"><a href="#"><img src="images/index/tu4.jpg" width="329" height="153" alt="s" /></a></li>
+        </ul>
+    <div class="Service_right">
+        	<div class="Service_right_top">
+            	<span><a href="#">充话费</a> | <a href="#">购彩票</a> | <a href="#">买Q币</a> | <a href="#">还信用卡</a></span>
+                <p><a href="#">下载手机名臣福利</a></p>
+            </div>
+            <dl>
+           	  	<dt>活动</dt>
+                <dd><a href="#">音乐跨年礼，听歌100%赚话费</a></dd>
+                <dd><a href="#">名臣福利联手中国银行，话费Q币大放送</a></dd>
+            </dl>
+            <dl style=" border:none; padding-top:12px; height:60px;">
+           	  	<dt>公告</dt>
+                <dd><a href="#">12月14日农业银行维护通知</a></dd>
+                <dd><a href="#">12月14日农业银行维护通知</a></dd>
+            </dl>
+        </div>
+  </div>
+</div>
 	<#include "/WEB-INF/template/card/footer.ftl">
 	<script type="text/javascript" src="${base}/template/common/js/jquery.js"></script>
 	<script type="text/javascript" src="${base}/template/common/js/jquery.tools.js"></script>
