@@ -43,6 +43,9 @@ $().ready(function() {
 			</div>
 			<div id="menu" class="menu">
 				<ul>
+					<li class="menuItem">
+						<a href="page!index.action" target="mainFrame" hidefocus>后台首页</a>
+					</li>
 					<@sec.authorize ifAnyGranted="ROLE_CARDS,ROLE_CARDS_NOTIFY,ROLE_CARDS_CATEGORY,ROLE_CARDS_TYPE,ROLE_CARDS_ATTRIBUTE,ROLE_SPECIFICATION,ROLE_BRAND">
 						<li class="menuItem">
 							<a href="menu!cards.action" target="menuFrame" hidefocus>充值卡管理</a>
@@ -73,9 +76,6 @@ $().ready(function() {
 							<a href="menu!setting.action" target="menuFrame" hidefocus>网站设置</a>
 						</li>
 					</@sec.authorize>
-					<li class="home">
-						<a href="page!index.action" target="mainFrame" hidefocus>后台首页</a>
-					</li>
 					<li class="home">
 						<a href="${base}/" target="_blank" hidefocus>网站首页</a>
 					</li>
