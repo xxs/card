@@ -22,4 +22,8 @@ public class MemberBankServiceImpl extends BaseServiceImpl<MemberBank, String> i
 	public void setBaseDao(MemberBankDao memberBankDao) {
 		super.setBaseDao(memberBankDao);
 	}
+
+	public boolean isExistByBankNumber(String banknum) {
+		return memberBankDao.isExistByBankNumber(banknum);
+	}
 }

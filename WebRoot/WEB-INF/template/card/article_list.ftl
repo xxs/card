@@ -7,19 +7,76 @@
 <meta name="Copyright" content="XXS" />
 <#if (articleCategory.metaKeywords)! != ""><meta name="keywords" content="${articleCategory.metaKeywords}" /></#if>
 <#if (articleCategory.metaDescription)! != ""><meta name="description" content="${articleCategory.metaDescription}" /></#if>
-<link rel="icon" href="favicon.ico" type="image/x-icon" />
-<link href="${base}/template/card/css/base.css" rel="stylesheet" type="text/css" />
-<link href="${base}/template/card/css/card.css" rel="stylesheet" type="text/css" />
-<!--[if lte IE 6]>
-	<script type="text/javascript" src="${base}/template/common/js/belatedPNG.js"></script>
-	<script type="text/javascript">
-		// 解决IE6透明PNG图片BUG
-		DD_belatedPNG.fix(".belatedPNG");
-	</script>
-<![endif]-->
+<#include "/WEB-INF/template/card/head.ftl">
 </head>
 <body class="articleList">
 	<#include "/WEB-INF/template/card/header.ftl">
+	<div class="column">
+	<div class="column_left">
+    	<div class="column_left_1">
+    		<@article_list article_category_id=articleCategory.id type="recommend" count=10; articleList>
+				<#list articleList as article>
+					<a href="${base}${article.htmlPath}" title="${article.title}">${substring(article.title, 24, "...")}</a>
+				</#list>
+			</@article_list>	
+    	</div>
+        <ul>
+        	<li><a href="#">快捷支付</a></li>
+            <li><a href="#">安全中心</a></li>
+            <li style=" text-align:left; padding-left:19px;width:66px;"><a href="#">微支付</a></li>
+            <li><a href="#">境外支付</a></li>
+            <li><a href="#">刷卡支付</a></li>
+            <li><a href="#">境外支付</a></li>
+        </ul>
+        <div class="column_left_3">
+        	<dl>
+            	<span>我的应用（6）</span>
+                <dt>
+                <img src="images/saaaa/a1.jpg" width="16" height="16" alt="s" />
+                <img src="images/saaaa/a2.jpg" width="16" height="16" alt="s" /> 
+                <img src="images/saaaa/a3.jpg" width="16" height="16" alt="s" /> 
+                <img src="images/saaaa/a4.jpg" width="16" height="16" alt="s" /> 
+                <img src="images/saaaa/a5.jpg" width="16" height="16" alt="s" /> 
+                <img src="images/saaaa/a6.jpg" width="16" height="16" alt="s" />
+                </dt>
+                <dd><a href="#">手机充值</a></dd>
+                <dd><a href="#">信用卡还贷</a></dd>
+                <dd><a href="#">彩票卖场</a></dd>
+                <dd><a href="#">水电煤缴费</a></dd>
+                <dd><a href="#">游戏充值</a></dd>
+                <dd><a href="#">彩贝导航</a></dd>
+                <p style="background:url(images/saaaa/a7.jpg) no-repeat;"><a href="#">添加</a></p>     
+                <p  style="background:url(images/saaaa/a8.jpg) no-repeat;"><a href="#">管理</a></p>
+        	</dl>
+        </div>
+    </div>
+    <div class="column_right">
+   	    <div class="column_right_1"><p><img src="images/hhh.jpg" width="38" height="37" alt="jj" /></p>您的QQ帐号尚未激活，激活后才能使用财付通的更多支付功能</div>
+        <div class="column_right_2">
+        	<div class="column_right_2_shang">
+            	<span>
+                <strong>QQ号码激活</strong>
+                <b><a href="#"><img src="images/saaaa/sa1.jpg" width="110" height="30" alt="s" /></a></b>
+                <p>QQ号码直接激活，满足名臣福利基本功能</p>
+                </span>
+            </div>     
+   	    <div class="column_right_2_xia">
+	  <div class="ddd">
+            	<div class="column_right_ooo1">
+                	<strong>银行卡快捷激活</strong> 
+                    <b><a href="#"><img src="images/saaaa/sa1.jpg" width="110" height="30" alt="s" /></a></b>
+                    <img src="images/saaaa/sa5.jpg" width="176" height="26" alt="sa" /> 规则<a href="#"><img src="images/saaaa/a99.jpg" width="10" height="26" alt="s" /></a>  
+				</div>
+                </div>
+                <div class="column_right_ooo2">
+                	<a href="#"><strong style="color:#e10911; font-size:16px;">1</strong>注册后即开通网上支付功能</a>
+                    <a href="#"><strong style="color:#e10911; font-size:16px;"> 2</strong>支付密码+短信验证双重保障</a>
+                	<a href="#"><strong style="color:#e10911; font-size:16px;">3</strong>9折起购买腾讯服务</a>
+                </div>
+          </div>
+        </div>
+    </div>
+</div>
 	<div class="body">
 		<div class="bodyLeft">
 			<div class="recommendArticle">

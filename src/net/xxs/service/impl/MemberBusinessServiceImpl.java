@@ -39,4 +39,20 @@ public class MemberBusinessServiceImpl extends BaseServiceImpl<MemberBusiness, S
 	public Pager getMemberBusinessPager(ResultType resultType, Pager pager) {
 		return memberBusinessDao.getMemberBusinessPager(resultType, pager);
 	}
+
+	public boolean isExistByBusinessName(String businessname) {
+		return memberBusinessDao.isExistByBusinessName(businessname);
+	}
+
+	public boolean isExistByBusinessNumber(String businessNumber) {
+		return memberBusinessDao.isExistByBusinessNumber(businessNumber);
+	}
+
+	public boolean isExistByUrl(String url) {
+		return memberBusinessDao.isExistByUrl(url);
+	}
+
+	public boolean isExistByIcp(String icp) {
+		return memberBusinessDao.isExistByIcp(icp);
+	}
 }

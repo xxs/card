@@ -20,8 +20,8 @@ public class MemberBankDaoImpl extends BaseDaoImpl<MemberBank, String> implement
 	@SuppressWarnings("unchecked")
 	public String save(MemberBank memberBank) {
 		if (memberBank.getIsDefault()) {
-			String hql = "from MemberBank as memberBank where memberBank.isDefault = :isDefault";
-			List<MemberBank> memberBankList = getSession().createQuery(hql).setParameter("isDefault", true).list();
+			String hql = "from MemberBank as memberBank where memberBank.isDefault = :isDefault and memberBank.member = :member";
+			List<MemberBank> memberBankList = getSession().createQuery(hql).setParameter("isDefault", true).setParameter("member", memberBank.getMember()).list();
 			if (memberBankList != null) {
 				for (MemberBank r : memberBankList) {
 					r.setIsDefault(false);
@@ -36,8 +36,8 @@ public class MemberBankDaoImpl extends BaseDaoImpl<MemberBank, String> implement
 	@SuppressWarnings("unchecked")
 	public void update(MemberBank memberBank) {
 		if (memberBank.getIsDefault()) {
-			String hql = "from MemberBank as memberBank where memberBank.isDefault = :isDefault and memberBank != :memberBank";
-			List<MemberBank> memberBankList = getSession().createQuery(hql).setParameter("isDefault", true).setParameter("memberBank", memberBank).list();
+			String hql = "from MemberBank as memberBank where memberBank.isDefault = :isDefault and memberBank.member = :member and memberBank != :memberBank";
+			List<MemberBank> memberBankList = getSession().createQuery(hql).setParameter("isDefault", true).setParameter("member", memberBank.getMember()).setParameter("memberBank", memberBank).list();
 			if (memberBankList != null) {
 				for (MemberBank r : memberBankList) {
 					r.setIsDefault(false);
@@ -45,6 +45,16 @@ public class MemberBankDaoImpl extends BaseDaoImpl<MemberBank, String> implement
 			}
 		}
 		super.update(memberBank);
+	}
+
+	public boolean isExistByBankNumber(String banknum) {
+		String hql = "from MemberBank as memberBank where lower(memberBank.banknum) = lower(:banknum)";
+		MemberBank memberBank = (MemberBank) getSession().createQuery(hql).setParameter("banknum", banknum).uniqueResult();
+		if (memberBank != null) {
+			return true;
+		} else {
+			return false;
+		}
 	}
 
 }

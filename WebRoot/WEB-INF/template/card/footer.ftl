@@ -1,34 +1,6 @@
 <div class="footer">
-	<div class="bottomNavigation">
-		<@navigation_list position="bottom"; navigationList>
-			<#list navigationList as navigation>
-				<#if (navigation_index + 1) == 1>
-					<dl>
-				</#if>
-					<dd>
-						<a href="<@navigation.url?interpret />"<#if navigation.isBlankTarget> target="_blank"</#if>>${navigation.name}</a>
-					</dd>
-				<#if (navigation_index + 1) % 3 == 0 && navigation_has_next>
-					</dl>
-					<dl>
-				</#if>
-				<#if !navigation_has_next>
-					</dl>
-				</#if>
-			</#list>
-		</@navigation_list>
-	</div>
-	<div class="footerInfo">
-		<ul>
-			<li><a href="#">关于商城</a>|</li>
-			<li><a href="#">帮助中心</a>|</li>
-			<li><a href="#">网站地图</a>|</li>
-			<li><a href="#">诚聘英才</a>|</li>
-			<li><a href="#">联系我们</a>|</li>
-			<li><a href="#">版权说明</a></li>
-		</ul>
-		<p>Copyright &copy; 2011 XXS. All rights reserved. 长沙鼎诚软件有限公司</p>
-		<#if setting.isShowPoweredInfo>
-		</#if>
-	</div>
+	 <div class="copyright_xia">
+    	<span><a href="#">关于名臣福利</a> <a href="#">QQ导航</a> <a href="#">诚征英才 </a> <a href="#">联系我们</a> <a href="#">服务协议</a> International Business  Sbout Tenpay   增值电信业务经营许可证B2-20090295</span>
+        <p>Copyright©2005-2012  Tenpay All Tights Reserved 名臣福利公司  版权所有</p>
+  </div>
 </div>

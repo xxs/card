@@ -100,7 +100,7 @@ $().ready(function() {
 					</th>
 					<td>
 						<#list businessTypeList as businessType>
-							<input type="radio" name="memberBusiness.businessType" value="businessType" />${action.getText("BusinessType." + businessType)}
+							<input type="radio" name="" value="${businessType_index}" />${action.getText("BusinessType." + businessType)}${businessType_index}
 						</#list>
 						<label class="requireField">*</label>
 					</td>
@@ -111,7 +111,7 @@ $().ready(function() {
 					</th>
 					<td>
 						<#list resultTypeList as resultType>
-							<input type="radio" name="memberBusiness.resultType" value="resultType" />${action.getText("ResultType." + resultType)}
+							<input type="radio" name="" value="${resultType_index}" />${action.getText("ResultType." + resultType)}
 						</#list>
 						<label class="requireField">*</label>
 					</td>
