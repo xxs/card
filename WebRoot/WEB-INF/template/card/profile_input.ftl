@@ -5,24 +5,9 @@
 <title>个人信息<#if setting.isShowPoweredInfo> - XXS</#if></title>
 <meta name="Author" content="XXS-DW" />
 <meta name="Copyright" content="XXS" />
-<link rel="icon" href="favicon.ico" type="image/x-icon" />
-<link href="${base}/template/card/css/base.css" rel="stylesheet" type="text/css" />
-<link href="${base}/template/card/css/card.css" rel="stylesheet" type="text/css" />
-<script type="text/javascript" src="${base}/template/common/js/jquery.js"></script>
-<script type="text/javascript" src="${base}/template/common/js/jquery.tools.js"></script>
+<#include "/WEB-INF/template/card/member_head.ftl">
 <script type="text/javascript" src="${base}/template/common/js/jquery.lSelect.js"></script>
-<script type="text/javascript" src="${base}/template/common/js/jquery.validate.js"></script>
-<script type="text/javascript" src="${base}/template/common/js/jquery.validate.methods.js"></script>
 <script type="text/javascript" src="${base}/template/common/datePicker/WdatePicker.js"></script>
-<script type="text/javascript" src="${base}/template/admin/js/base.js"></script>
-<script type="text/javascript" src="${base}/template/admin/js/admin.js"></script>
-<!--[if lte IE 6]>
-	<script type="text/javascript" src="${base}/template/common/js/belatedPNG.js"></script>
-	<script type="text/javascript">
-		// 解决IE6透明PNG图片BUG
-		DD_belatedPNG.fix(".belatedPNG");
-	</script>
-<![endif]-->
 <script type="text/javascript">
 $().ready( function() {
 
@@ -128,72 +113,18 @@ $().ready( function() {
 </script>
 </head>
 <body class="memberCenter">
-	<#include "/WEB-INF/template/card/header.ftl">
-	<div class="body profileInput">
-		<div class="bodyLeft">
-			<div class="memberInfo">
-				<div class="top"></div>
-				<div class="middle">
-					<p>欢迎您!&nbsp;&nbsp;<span class="username">${loginMember.username}</span>&nbsp;&nbsp;[<a class="userLogout" href="member!logout.action"">退出</a>]</p>
-					<p>会员等级: <span class="red"> ${loginMember.memberRank.name}</span></p>
-				</div>
-				<div class="bottom"></div>
-			</div>
-			<div class="blank"></div>
-			<div class="memberMenu">
-				<div class="top">
-					<a href="member_center!index.action">会员中心首页</a>
-				</div>
-				<div class="middle">
-					<ul>
-	                	<li class="order">
-	                    	<ul>
-	                        	<li><a href="order!list.action">我的订单</a></li>
-	                        </ul>
-	                    </li>
-	                    <li class="category favorite">
-	                    	<ul>
-	                        	<li><a href="favorite!list.action">充值卡收藏</a></li>
-	                        	<li><a href="goods_notify!list.action">缺货登记</a></li>
-	                        </ul>
-	                    </li>
-	                  	<li class="message">
-	                    	<ul>
-	                        	<li><a href="message!send.action">发送消息</a></li>
-	                            <li><a href="message!inbox.action">收件箱</a></li>
-	                            <li><a href="message!draftbox.action">草稿箱</a></li>
-	                            <li><a href="message!outbox.action">发件箱</a></li>
-	                        </ul>
-	                    </li>
-	                    <li class="profile">
-	                    	<ul>
-	                        	<li class="current"><a href="profile!edit.action">个人信息</a></li>
-	                            <li><a href="password!edit.action">修改密码</a></li>
-	                            <li><a href="receiver!list.action">收货地址</a></li>
-	                        </ul>
-	                    </li>
-	                    <li class="deposit">
-	                    	<ul>
-	                    		<li><a href="deposit!list.action">我的预存款</a></li>
-	                        	<li><a href="deposit!recharge.action">预存款充值</a></li>
-	                        	<li><a href="deposit!withdraw.action">预存款提现</a></li>
-	                        </ul>
-	                    </li>
-	                </ul>
-				</div>
-				<div class="bottom"></div>
-			</div>
-		</div>
-		<div class="bodyRight">
-			<div class="memberCenterDetail">
-				<div class="top">个人信息</div>
-				<div class="middle">
-					<div id="validateErrorContainer" class="validateErrorContainer">
-						<div class="validateErrorTitle">以下信息填写有误,请重新填写</div>
-						<ul></ul>
-					</div>
-					<div class="blank"></div>
-					<form id="validateForm" action="profile!update.action" method="post">
+	<#include "/WEB-INF/template/card/member_header.ftl">
+		<div class="nei">
+	<div class="neiLeft">
+		<#include "/WEB-INF/template/card/menu_center.ftl">
+	</div>
+	<div class="neiRight">
+		<div class="katong">
+			<div class="fangz">修改密码 </div>
+			<div class="red">注：请一定正确选择卡面值提交,否则造成损失商户自行承担； </div>
+			<div class="hei">卡信息提交成功后，可在<a href="#">订单查询</a>页面查询支付结果。处理结果以订单查询页为准。</div>
+			<div class="memberCenter">
+			<form id="validateForm" action="profile!update.action" method="post">
 						<table class="inputTable">
 							<tr>
 								<th>
@@ -287,15 +218,11 @@ $().ready( function() {
 							</tr>
 						</table>
 					</form>
-					<div class="blank"></div>
-				</div>
-				<div class="bottom"></div>
 			</div>
 		</div>
-		<div class="blank"></div>
-		<#include "/WEB-INF/template/card/friend_link.ftl">
 	</div>
-	<div class="blank"></div>
-	<#include "/WEB-INF/template/card/footer.ftl">
+</div>
+	<div class="clear"></div>
+	<#include "/WEB-INF/template/card/member_footer.ftl">
 </body>
 </html>

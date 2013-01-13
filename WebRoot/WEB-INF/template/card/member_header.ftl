@@ -7,10 +7,9 @@
 			<li><a href="#">我要卖卡</a></li>
 			<li><a href="order!list.action">订单管理</a></li>
 			<li><a href="deposit!list.action">交易明细</a></li>
-			<li style="background:none;"><a href="#">商户接入</a></li>
-			
+			<li style="background:none;"><a href="business!info.action">商户接入</a></li>
 			</ul>
 		</div>
-		<div class="topRight">欢迎您：xxx     |<a href="#">  退出登录</a></div>
+		<div class="topRight"><a href="member!logout.action">  退出登录</a></div>
 	</div>
 </div>

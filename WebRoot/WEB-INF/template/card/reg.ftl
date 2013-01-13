@@ -10,7 +10,8 @@
 
 <script type="text/javascript" src="${base}/template/common/js/jquery.js"></script>
 <script type="text/javascript" src="${base}/template/common/js/jquery.tools.js"></script>
-
+<script type="text/javascript" src="${base}/template/card/js/base.js"></script>
+<script type="text/javascript" src="${base}/template/card/js/card.js"></script>
 <#include "/WEB-INF/template/card/head.ftl">
 <script type="text/javascript">
 	$().ready(function() {
@@ -61,14 +62,7 @@
 </script>
 </head>
 <body class="login">
-	<!--标志-->
-	<div class="logo">
-		<div class="logo_995">
-	    	<div class="logo_left"><a href="${base}" ><img src="/template/card/images/logo.jpg" alt="${(setting.shopName)!}" width="162" height="46" border="0" /></a></div>
-		</div>
-	    <div class="clear"></div>
-	</div>
-
+	<#include "/WEB-INF/template/card/header.ftl">
 	<div class="blank"></div>
 	<div class="body">
 		<div class="loginDetail">

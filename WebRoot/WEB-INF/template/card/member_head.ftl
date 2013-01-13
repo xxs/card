@@ -3,6 +3,8 @@
 <link href="${base}/template/card/css/member.css" rel="stylesheet" type="text/css" />
 <script type="text/javascript" src="${base}/template/common/js/jquery.js"></script>
 <script type="text/javascript" src="${base}/template/common/js/jquery.tools.js"></script>
+<script type="text/javascript" src="${base}/template/common/js/jquery.validate.js"></script>
+<script type="text/javascript" src="${base}/template/common/js/jquery.validate.methods.js"></script>
 <script type="text/javascript" src="${base}/template/card/js/base.js"></script>
 <script type="text/javascript" src="${base}/template/card/js/card.js"></script>
 <!--[if lte IE 6]>

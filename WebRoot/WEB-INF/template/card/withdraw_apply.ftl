@@ -53,53 +53,48 @@ $().ready( function() {
 	</div>
 	<div class="neiRight">
 		<div class="katong">
-			<div class="fangz">交易明细</a></div>
+			<div class="fangz">提现申请</a></div>
 			<div class="red">注：请一定正确选择卡面值提交,否则造成损失商户自行承担； </div>
 			<div class="hei">卡信息提交成功后，可在<a href="#">订单查询</a>页面查询支付结果。处理结果以订单查询页为准。</div>
 			<div class="memberCenter">
-			<table class="inputTable">
-						<tr>
-							<th>操作信息</th>
-							<th>提现金额</th>
-							<th>备注</th>
-							<th>实发金额</th>
-							<th>日期</th>
-							<th>状态</th>
-						</tr>
-						<#list pager.result as withdraw>
+			<form id="withdrawRechargeForm66" action="withdraw!save.action" method="post">
+						<input type="hidden" name="paymentType" value="recharge" />
+						<table class="inputTable">
 							<tr>
+								<th>
+									当前金额: 
+								</th>
 								<td>
-									
-										${withdraw.message}
-									
-								</td>
-								<td>
-									
-										${withdraw.money?string(currencyFormat)}
-									
-								</td>
-								<td>
-									
-										${withdraw.memo}
-									
-								</td>
-								<td>
-									
-										${withdraw.totalMoney?string(currencyFormat)}
-									
-								</td>
-								<td>
-									<span title="${withdraw.createDate?string("yyyy-MM-dd HH:mm:ss")}">${withdraw.createDate}</span>
-								</td>
-								<td>
-									[${action.getText("WithdrawStatus." + withdraw.withdrawStatus)}]
+									${loginMember.deposit?string(currencyFormat)}
 								</td>
 							</tr>
-						</#list>
-					</table>
-					<@pagination pager=pager baseUrl="/card/withdraw!list.action">
-         				<#include "/WEB-INF/template/card/pager.ftl">
-         			</@pagination>
+							<tr>
+								<th>
+									提现金额: 
+								</th>
+								<td>
+									<input type="text" name="withdraw.money" class="formText" />
+									<label class="requireField">*</label>
+								</td>
+							</tr>
+							<tr>
+								<th>
+									提现备注: 
+								</th>
+								<td>
+									<textarea cols="30" rows="5" name="withdraw.memo" class="formText" ></textarea>
+								</td>
+							</tr>
+							<tr>
+								<th>
+									&nbsp;
+								</th>
+								<td>
+									<input type="submit" class="submitButton" value="申  请" hidefocus />
+								</td>
+							</tr>
+						</table>
+					</form>
 				</div>
 		</div>
 	</div>

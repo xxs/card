@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="content-type" content="text/html; charset=utf-8" />
-<title>修改密码<#if setting.isShowPoweredInfo> - XXS</#if></title>
+<title>商户信息<#if setting.isShowPoweredInfo> - XXS</#if></title>
 <meta name="Author" content="XXS-DW" />
 <meta name="Copyright" content="XXS" />
 <#include "/WEB-INF/template/card/member_head.ftl">
@@ -78,11 +78,11 @@ $().ready( function() {
 	<#include "/WEB-INF/template/card/member_header.ftl">
 	<div class="nei">
 	<div class="neiLeft">
-		<#include "/WEB-INF/template/card/menu_center.ftl">
+		<#include "/WEB-INF/template/card/menu_business.ftl">
 	</div>
 	<div class="neiRight">
 		<div class="katong">
-			<div class="fangz">修改密码 </div>
+			<div class="fangz">商户信息 </div>
 			<div class="red">注：请一定正确选择卡面值提交,否则造成损失商户自行承担； </div>
 			<div class="hei">卡信息提交成功后，可在<a href="#">订单查询</a>页面查询支付结果。处理结果以订单查询页为准。</div>
 			<div class="memberCenter">

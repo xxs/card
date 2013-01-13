@@ -23,7 +23,6 @@ public class PromotionAction extends BaseCardAction {
 	
 	// 推广链接页面
 	public String execute() throws Exception {
-		System.out.println("跳转推广链接页面");
 		member = getLoginMember();
 		return "link";
 	}

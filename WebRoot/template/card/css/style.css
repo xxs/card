@@ -105,5 +105,109 @@ copyright_shang dl .xiao2 p{ margin-right:5px;}
 		.column_right_ooo1 b{ float:right;display:block;}
 		.column_right_ooo2{color:#929292;text-align:center;line-height:65px;}
 		.column_right_ooo2 a{ margin:0 10px;}
+/* ---------- Login ---------- */
+
+.loginWindow .dialogContent {
+	padding: 10px;
+	margin: 0px;
+}
+
+.loginWindow table {
+	width: 100%;
+}
+
+.loginWindow th {
+	width: 100px;
+	line-height: 35px;
+	padding-right: 10px;
+	text-align: right;
+	font-weight: normal;
+}
+
+.loginWindow td {
+	line-height: 35px;
+	text-align: left;
+}
+
+.loginWindow .loginWindowCaptcha {
+	width: 95px;
+	margin-right: 5px;
+	text-transform: uppercase;
+}
+
+.loginWindow .loginWindowCaptchaImage {
+	vertical-align: middle;
+	cursor: pointer;
+}
+
+.login .body {
+	width: 1000px;
+	margin: 0px auto;
+	text-align: center;
+}
+
+.login .loginDetail {
+	width: 500px;
+	margin: 0px auto;
+}
+
+.login .loginDetail .top {
+	width: 455px;
+	height: 41px;
+	line-height: 38px;
+	clear: both;
+	padding-top: 4px;
+	padding-left: 45px;
+	text-align: left;
+	font-size: 14px;
+	font-weight: bold;
+	color: #515151;
+	overflow: hidden;
+	background: url(../images/login_bg.gif) no-repeat 0px 0px;
+}
+
+.login .loginDetail .middle {
+	width: 500px;
+	clear: both;
+	padding-top: 10px;
+	text-align: center;
+	background: url(../images/login_y_bg.gif) repeat-y 0px 0px;
+}
+
+.login .loginDetail .bottom {
+	width: 500px;
+	height: 60px;
+	clear: both;
+	overflow: hidden;
+	background: url(../images/login_bg.gif) no-repeat 0px -60px;
+}
+
+.login .loginDetail table {
+	width: 100%;
+}
+
+.login .loginDetail th {
+	width: 160px;
+	line-height: 35px;
+	padding-right: 10px;
+	text-align: right;
+	font-weight: normal;
+}
+
+.login .loginDetail td {
+	line-height: 35px;
+	text-align: left;
+}
+
+.login .loginDetail .captcha {
+	width: 95px;
+	margin-right: 1px;
+	text-transform: uppercase;
+}
+
+.login .loginDetail .captchaImage {
+	vertical-align: middle;
+	cursor: pointer;
+}
 
  

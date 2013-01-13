@@ -473,33 +473,7 @@ $().ready( function() {
 		});
 	}
 	
-	/* ---------- AddCartItem ---------- */
-	
-	$.addCartItem = function(id, quantity) {
-		if ($.trim(id) == "") {
-			$.dialog({type: "warn", content: "请选择购买充值卡!", modal: true, autoCloseTime: 3000});
-			return false;
-		}
-		if (!/^[0-9]*[1-9][0-9]*$/.test($.trim(quantity))) {
-			$.dialog({type: "warn", content: "充值卡品数量必须为正整数!", modal: true, autoCloseTime: 3000});
-			return false;
-		}
 
-		$.ajax({
-			url: xxs.base + "/card/cart_item!ajaxAdd.action",
-			data: {"id": id, "quantity": quantity},
-			type: "POST",
-			dataType: "json",
-			cache: false,
-			success: function(data) {
-				if (data.status == "success") {
-					$.dialog({type: "success", content: "<span class=\"red\">" + data.message + "</span><br />充值卡总计: " + data.totalProductQuantity + " 件, 总金额: " + currencyFormat(data.totalProductPrice), width: 360, modal: true, autoCloseTime: 3000});
-				} else {
-					$.dialog({type: data.status, content: data.message, modal: true, autoCloseTime: 3000});
-				}
-			}
-		});
-	}
 	
 	/* ---------- GoodsList ---------- */
 	
@@ -601,156 +575,7 @@ $().ready( function() {
 			$.addFavorite($this.attr("goodsId"));
 		});
 	}
-	
-	/* ---------- Comment ---------- */
-	
-	var $comment = $("#comment");
-	if ($comment.size() > 0) {
-		var $commentReply = $(".commentReply");
-		var $sendTitle = $("#sendTitle");
-		var $sendComment = $("#sendComment");
-		var $commentForm = $("#commentForm");
-		var $forCommentId = $("#forCommentId");
-		var $commentContent = $("#commentContent");
-		var $commentCaptcha = $("#commentCaptcha");
-		var $commentCaptchaImage = $("#commentCaptchaImage");
-		var forCommentId = null;
-		var ajaxUrl = xxs.base + "/card/comment!ajaxSave.action";
-		
-		$commentReply.click( function() {
-			var $this = $(this);
-			forCommentId = $this.attr("forCommentId");
-			$forCommentId.val(forCommentId);
-			ajaxUrl = xxs.base + "/card/comment!ajaxReply.action";
-			$sendTitle.html("回复评论");
-			$sendComment.show();
-		});
-		
-		$sendComment.click( function() {
-			forCommentId = null;
-			$forCommentId.val("");
-			ajaxUrl = xxs.base + "/card/comment!ajaxSave.action";
-			$sendTitle.html("发表评论");
-			$sendComment.hide();
-		});
-		
-		function commentCaptchaImageRefresh() {
-			$commentCaptchaImage.attr("src", xxs.base + "/captcha.jpeg?timestamp=" + (new Date()).valueOf());
-		}
-	
-		$commentCaptchaImage.click( function() {
-			commentCaptchaImageRefresh();
-		});
-		
-		$commentForm.submit( function() {
-			<#if !setting.isCommentEnabled>
-				$.dialog({type: "warn", content: "本站充值卡评论功能已关闭!", modal: true, autoCloseTime: 3000});
-				return false;
-			</#if>
-			<#if setting.commentAuthority != "anyone">
-				if (!$.memberVerify()) {
-					$.showLoginWindow();
-					return false; 
-				}
-			</#if>
-			if ($.trim($commentContent.val()) == "") {
-				$.dialog({type: "warn", content: "请输入评论内容!", modal: true, autoCloseTime: 3000});
-				return false;
-			}
-			<#if setting.isCommentCaptchaEnabled>
-				if ($.trim($commentCaptcha.val()) == "") {
-					$.dialog({type: "warn", content: "请输入验证码!", modal: true, autoCloseTime: 3000});
-					return false;
-				}
-			</#if>
-			
-			$.ajax({
-				url: ajaxUrl,
-				data: $commentForm.serialize(),
-				type: "POST",
-				dataType: "json",
-				cache: false,
-				beforeSend: function() {
-					$commentForm.find("submit").attr("disabled", true);
-				},
-				success: function(data) {
-					$.dialog({type: data.status, content: data.message, modal: true, autoCloseTime: 3000});
-					if (data.status == "success") {
-						<#if setting.commentDisplayType == "direct">
-							var username = getCookie("memberUsername");
-							if (username == null) {
-								username = "游客";
-							}
-							if (forCommentId == null) {
-								var commentItemHtml = '<div class="commentItem"><p><span class="red">' + username + '</span> ' + new Date().toLocaleDateString() + '</p><p><pre>' + htmlEscape($commentContent.val()) + '</pre></p></div><div class="blank"></div>';
-								$comment.prepend(commentItemHtml);
-							} else {
-								var replyHtml = '<div class="reply"><p><span class="red">' + username + '</span> ' + new Date().toLocaleDateString() + '</p><p><pre>' + htmlEscape($commentContent.val()) + '</pre></p></div>';
-								$("#commentItem" + forCommentId).append(replyHtml);
-							}
-						</#if>
-						$commentContent.val("");
-					}
-				},
-				complete: function() {
-					$commentForm.find("submit").attr("disabled", false);
-					$commentCaptcha.val("");
-					commentCaptchaImageRefresh();
-				}
-			});
-			return false;
-		});
-		
-	}
-	
-	/* ---------- GoodsHistory ---------- */
-	
-	var $goodsHistory = $("#goodsHistory");
-	if ($goodsHistory.size() > 0) {
-		var $goodsHistoryListDetail = $("#goodsHistoryListDetail");
-		var maxGoodsHistoryListCount = 5;
-		$.addGoodsHistory = function(name, htmlPath) {
-			var goodsHistory = {
-				name: name,
-				htmlPath: htmlPath
-			};
-			var goodsHistoryArray = new Array();
-			var goodsHistoryListCookie = getCookie("goodsHistoryList");
-			if(goodsHistoryListCookie) {
-				goodsHistoryArray = eval(goodsHistoryListCookie);
-			}
-			var goodsHistoryListHtml = "";
-			for (var i in goodsHistoryArray) {
-				goodsHistoryListHtml += '<li><a href="' + goodsHistoryArray[i].htmlPath + '">' + goodsHistoryArray[i].name + '</a></li>';
-			}
-			for (var i in goodsHistoryArray) {
-				if(goodsHistoryArray[i].htmlPath == htmlPath) {
-					return;
-				}
-			}
-			if(goodsHistoryArray.length >= maxGoodsHistoryListCount) {
-				goodsHistoryArray.shift();
-			}
-			goodsHistoryArray.push(goodsHistory);
-			var newGoodsHistoryCookieString = "";
-			for (var i in goodsHistoryArray) {
-				newGoodsHistoryCookieString += ',{name: "' + goodsHistoryArray[i].name + '", htmlPath: "' + goodsHistoryArray[i].htmlPath + '"}'
-			}
-			newGoodsHistoryCookieString = "[" + newGoodsHistoryCookieString.substring(1, newGoodsHistoryCookieString.length) + "]";
-			setCookie("goodsHistoryList", newGoodsHistoryCookieString);
-		}
-		
-		var goodsHistoryArray = new Array();
-		var goodsHistoryListCookie = getCookie("goodsHistoryList");
-		if(goodsHistoryListCookie) {
-			goodsHistoryArray = eval(goodsHistoryListCookie);
-		}
-		var goodsHistoryListHtml = "";
-		for (var i in goodsHistoryArray) {
-			goodsHistoryListHtml += '<li><span class="icon">&nbsp;</span><a href="' + goodsHistoryArray[i].htmlPath + '">' + goodsHistoryArray[i].name + '</a></li>';
-		}
-		$goodsHistoryListDetail.html(goodsHistoryListHtml);
-	}
+
 	
 	/* ---------- ArticleSearch ---------- */
 	
@@ -801,7 +626,6 @@ $().ready( function() {
 	}
 	
 	/* ---------- InstantMessaging ---------- */
-	
 	<#if setting.isInstantMessagingEnabled>
 	
 		<@compress single_line = true>
@@ -843,7 +667,7 @@ $().ready( function() {
 			</div>';
 		</@compress>
 		
-		$body.append(instantMessagingHtml);
+		//$body.append(instantMessagingHtml);
 		
 		var $instantMessagingLayer = $("#instantMessagingLayer");
 		var $instantMessagingMin = $("#instantMessagingMin");

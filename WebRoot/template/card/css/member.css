@@ -8,9 +8,15 @@ img{vertical-align:top;border:0;}
 h1,h2,h3,h4,h5,h6{font-size:12px;font-weight:normal;}
 .clear{clear:both;width:0px;height:0px;line-height:0px;font-size:0;overflow:hidden;}
 
-
-
-
+.pager {float: right;clear: both;}
+.pager li {line-height: 18px;display: block;float: left;padding: 0px 5px;margin: 0px 3px;font-size: 12px;border: 1px solid #cccccc;}
+.pager li:hover {color: #ff9900;border: 1px solid #ff9900;}
+.pager li:hover a {color: #ff9900;}
+.pager li a {color: #464646;}
+.pager li span {color: #cfcfcf;}
+.pager li.currentPage {border: 1px solid #ff9900;background-color: #ff9900;}
+.pager li.currentPage span {font-weight: bold;color: #ffffff;}
+.pager li.pageInfo {margin-right: 5px;color: #464646;border: none;background: none;}
 
 .header{width:100%;height:81px;background:url(../images/chongz.gif) repeat-x;}
 	.header1000{height:81px;width:995px;margin:0 auto;}
@@ -23,7 +29,9 @@ h1,h2,h3,h4,h5,h6{font-size:12px;font-weight:normal;}
 
 
 .nei{width:995px;margin:20px auto 0 auto;}
-	.neiLeft{float:left;width:173px;border:1px solid #e1e2e2;padding-top:9px;}
+	.neiLeft{float:left;width:200px;border:1px solid #e1e2e2;margin:0 auto 10px auto;}
+	.neiLeft p{line-height:25px;padding-left:15px;font-size:12px;}
+	.neiLeft .heng{border-bottom:1px solid #e1e2e2;border-top:1px solid #e1e2e2;border-right:0px;border-left:0px;height:10px;}
 	.neiLeft li{height:36px;line-height:36px;text-align:center;font-size:14px;}
 	.neiLeft li:hover{background:#f8f8f8;}
 	.neiLeft li a{color:#666;text-decoration:none;width:150px;float:left;}
@@ -81,16 +89,22 @@ h1,h2,h3,h4,h5,h6{font-size:12px;font-weight:normal;}
 	.biaoTitle li{float:left;border-right:1px solid #e1e2e2;text-align:center;line-height:35px;}
 	.biaoText{height:90px;width:745px;text-align:center;line-height:90px;margin-bottom:10px;}
 	
+.memberCenter table.inputTable {width: 100%;border: 1px solid #e8e8e8;margin-top:15px;}
+.memberCenter table.inputTable th {	width: 150px;line-height: 45px;	padding-right: 10px;text-align: center;color: #333333;background-color: #fafafa;}
+.memberCenter table.inputTable tr:hover th {background-color: #eeeeee;}
+.memberCenter table.inputTable td {	line-height: 35px;padding: 3px 5px;	text-align: center;color: #595959;}
+.memberCenter table.inputTable tr:hover td {background-color: #fafafa;}
+
+.pager {float: right;clear: both;margin-top:15px;margin-bottom:15px;}
+.pager li {line-height: 18px;display: block;float: left;padding: 0px 5px;margin: 0px 3px;font-size: 12px;border: 1px solid #cccccc;}
+.pager li:hover {color: #D6060D;border: 1px solid #D6060D;}
+.pager li:hover a {color: #D6060D;}
+.pager li a {color: #464646;}
+.pager li span {color: #cfcfcf;}
+.pager li.currentPage {border: 1px solid #D6060D;background-color: #D6060D;}
+.pager li.currentPage span {font-weight: bold;color: #ffffff;}
+.pager li.pageInfo {margin-right: 5px;color: #464646;border: none;background: none;}
 	
-	
-
-
-
-
-
-
-
-
 
 .bottom{height:25px;line-height:25px;text-align:center;width:460px;color:#929292;margin:0 auto;clear:both;}
 
