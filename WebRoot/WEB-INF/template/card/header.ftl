@@ -15,14 +15,14 @@
 				</@navigation_list>
             </ul>
 		</div>
-    	<div class="top_995_right"><span><a href="#">激活我的名臣</a></span> <p><a href="#">退出</a></p></div>
+    	<div class="top_995_right"><span><a href="${base}/card/member_center!index.action">激活我的名臣</a></span> <p><a href="#">退出</a></p></div>
   	</div>
 </div>
 
 <!--标志-->
 <div class="logo">
 	<div class="logo_995">
-    	<div class="logo_left"><a href="#" ><img src="../images/logo.jpg" alt="${(setting.shopName)!}" width="162" height="46" border="0" /></a></div>
+    	<div class="logo_left"><a href="${base}" ><img src="/template/card/images/logo.jpg" alt="${(setting.shopName)!}" width="162" height="46" border="0" /></a></div>
     	<div class="logo_right">
         	<ul>
         		<@navigation_list position="middle"; navigationList>

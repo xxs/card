@@ -2,60 +2,23 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="content-type" content="text/html; charset=utf-8" />
-<title>预存款列表<#if setting.isShowPoweredInfo> - XXS</#if></title>
+<title>成功案例<#if setting.isShowPoweredInfo> - XXS</#if></title>
 <meta name="Author" content="XXS-DW" />
 <meta name="Copyright" content="XXS" />
-<#include "/WEB-INF/template/card/member_head.ftl">
+
+<script type="text/javascript" src="${base}/template/common/js/jquery.js"></script>
+<script type="text/javascript" src="${base}/template/common/js/jquery.tools.js"></script>
+<script type="text/javascript" src="${base}/template/card/js/base.js"></script>
+<script type="text/javascript" src="${base}/template/card/js/card.js"></script>
+<#include "/WEB-INF/template/card/head.ftl">
 </head>
 <body class="memberCenter">
-	<#include "/WEB-INF/template/card/member_header.ftl">
-	<div class="nei">
-	<div class="neiLeft">
-		<#include "/WEB-INF/template/card/menu_deposit.ftl">
-	</div>
-	<div class="neiRight">
-		<div class="katong">
-			<div class="fangz">腾讯一卡通 <a href="#">(设为首选)</a></div>
-			<div class="red">注：请一定正确选择卡面值提交,否则造成损失商户自行承担； </div>
-			<div class="hei">卡信息提交成功后，可在<a href="#">订单查询</a>页面查询支付结果。处理结果以订单查询页为准。</div>
-			<div class="anniu"><form action="" method="get"><input type="submit" class="QQ" />
-			</form></div>
-		</div>
-		<div class="zuiJin">
-		<div class="zuiJinTitle">最近8条订单</div>
-		<div class="zuiJinText">
-			<div class="tiSi"><div class="din">提示：订单如果还在处理中可以点击刷新按钮查看最新订单状态</div><div class="shuai"><form action="" method="get">
-			  <input name="Input" type="button" class="xin"/>
-			</form></div></div>
-			<div class="clear"></div>
-			<div class="biao">
-				<div class="biaoTitle">
-					<ul>
-						<li style="width:147px;">通道类型</li>
-						<li style="width:75px;">卡号</li>
-						<li style="width:147px;">提交金额</li>
-						<li style="width:147px;">成功金额</li>
-						<li style="width:74px;">状态</li>
-						<li style="width:74px;">说明</li>
-						<li style="width:74px;">操作</li>
-					</ul>
-				</div>
-				<div class="biaoText"></div>
-			</div>
-		</div>
-	</div>
-	</div>
-</div>
-<div class="clear"></div>
-<div class="bottom">Copyright © 2011-2012 名臣福利 laka5.Com ,Inc. All rights reserved. 版权所有
-渝ICP备12000968号 八天科技 渝公网备：50010801500291</div>
+	<#include "/WEB-INF/template/card/header.ftl">
 	<div class="body orderList">
 		<div class="bodyLeft">
 			<div class="memberInfo">
 				<div class="top"></div>
 				<div class="middle">
-					<p>欢迎您!&nbsp;&nbsp;<span class="username">${loginMember.username}</span>&nbsp;&nbsp;[<a class="userLogout" href="member!logout.action"">退出</a>]</p>
-					<p>会员等级: <span class="red"> ${loginMember.memberRank.name}</span></p>
 				</div>
 				<div class="bottom"></div>
 			</div>
@@ -105,7 +68,6 @@
 		</div>
 		<div class="bodyRight">
 			<div class="memberCenterDetail">
-				<div class="top">预存款记录 <span class="red">[预存款余额: ${loginMember.deposit?string(currencyFormat)}]</span></div>
 				<div class="middle">
 					<div class="blank"></div>
 					<table class="listTable">

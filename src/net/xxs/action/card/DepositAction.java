@@ -19,7 +19,7 @@ import org.apache.struts2.convention.annotation.ParentPackage;
 
 @ParentPackage("card")
 @InterceptorRefs({
-	@InterceptorRef(value = "memberVerifyInterceptor"),
+	@InterceptorRef(value = "memberVerifyInterceptor",params = {"excludeMethods", "successList" }),
 	@InterceptorRef(value = "cardStack")
 })
 public class DepositAction extends BaseCardAction {
@@ -35,6 +35,11 @@ public class DepositAction extends BaseCardAction {
 	public String list() {
 		pager = depositService.getDepositPager(getLoginMember(), pager);
 		return LIST;
+	}
+	// 获取成功案例列表
+	public String successList() {
+		pager = depositService.findPager(pager);
+		return "success";
 	}
 	
 	// 预存款充值
