@@ -1,7 +1,7 @@
 /*
 Navicat MySQL Data Transfer
 
-Source Server         : JTM
+Source Server         : xxs
 Source Server Version : 50154
 Source Host           : localhost:3306
 Source Database       : card
@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50154
 File Encoding         : 65001
 
-Date: 2013-01-11 17:05:13
+Date: 2013-01-13 21:19:02
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -43,7 +43,7 @@ CREATE TABLE `xx_admin` (
 -- ----------------------------
 -- Records of xx_admin
 -- ----------------------------
-INSERT INTO `xx_admin` VALUES ('0731dcsoft2010031200000000000017', '2011-01-01 00:00:00', '2013-01-11 15:04:10', '技术部', 'xxs@163.com', '', '', '', '', '2012-12-17 14:28:34', '2013-01-11 15:04:10', '0', '127.0.0.1', 'ADMIN', '21232f297a57a5a743894a0e4a801fc3', 'admin');
+INSERT INTO `xx_admin` VALUES ('0731dcsoft2010031200000000000017', '2011-01-01 00:00:00', '2013-01-13 21:10:10', '技术部', 'xxs@163.com', '', '', '', '', '2012-12-17 14:28:34', '2013-01-13 21:10:10', '0', '127.0.0.1', 'ADMIN', '21232f297a57a5a743894a0e4a801fc3', 'admin');
 
 -- ----------------------------
 -- Table structure for `xx_admin_role`
@@ -245,6 +245,8 @@ CREATE TABLE `xx_deposit` (
 -- ----------------------------
 INSERT INTO `xx_deposit` VALUES ('297e62b93bd214af013bd21ef38e0003', '2012-12-25 20:52:22', '2012-12-25 20:52:22', '3000.00', '3000.00', '0.00', '2', null, null, null, '8a9182fc3ba86bc8013ba9782de60001');
 INSERT INTO `xx_deposit` VALUES ('4028bc743c23b04e013c23b53a850000', '2013-01-10 17:05:45', '2013-01-10 17:05:45', '3400.00', '400.00', '0.00', '2', null, null, null, '8a9182fc3ba86bc8013ba9782de60001');
+INSERT INTO `xx_deposit` VALUES ('8a9181263c33448b013c3349d79d0002', '2013-01-13 17:42:22', '2013-01-13 17:42:22', '3230.00', '0.00', '170.00', '5', '0.97', null, null, '8a9182fc3ba86bc8013ba9782de60001');
+INSERT INTO `xx_deposit` VALUES ('8a9181263c33448b013c3349f0160003', '2013-01-13 17:42:29', '2013-01-13 17:42:29', '3050.00', '0.00', '180.00', '5', '0.97', null, null, '8a9182fc3ba86bc8013ba9782de60001');
 
 -- ----------------------------
 -- Table structure for `xx_friend_link`
@@ -421,7 +423,7 @@ CREATE TABLE `xx_member` (
 -- Records of xx_member
 -- ----------------------------
 INSERT INTO `xx_member` VALUES ('297e62b93bd214af013bd21a73550000', '2012-12-25 20:47:27', '2013-01-10 16:38:08', '123', '2012-12-27 00:00:00', '0.00000', '123456@qq.com', '0', '', '', null, '2012-12-25 20:47:27', '0', null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, '123123', '123123', '4297f44b13955235245b2497399d7a93', null, '123123', '123123', '127.0.0.1', null, null, '0', '112233', '123123', '402881833054c381013054d08bed0001');
-INSERT INTO `xx_member` VALUES ('8a9182fc3ba86bc8013ba9782de60001', '2012-12-17 23:25:23', '2013-01-11 13:32:08', 'www', '2012-12-20 00:00:00', '3400.00000', '123@qq.com', '0', '', '', null, '2013-01-11 13:32:08', '0', '127.0.0.1', null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, '123', '123', '4297f44b13955235245b2497399d7a93', null, '123', '112233', '127.0.0.1', null, null, '0', '123123', '213', '402881833054c381013054d08bed0001');
+INSERT INTO `xx_member` VALUES ('8a9182fc3ba86bc8013ba9782de60001', '2012-12-17 23:25:23', '2013-01-13 21:10:26', 'www', '2012-12-20 00:00:00', '3050.00000', '123@qq.com', '0', '', '', null, '2013-01-13 21:10:26', '0', '127.0.0.1', null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, '123', '123', '4297f44b13955235245b2497399d7a93', null, '123', '112233', '127.0.0.1', null, null, '0', '123123', '213', '402881833054c381013054d08bed0001');
 
 -- ----------------------------
 -- Table structure for `xx_member_attribute`
@@ -479,12 +481,12 @@ CREATE TABLE `xx_member_bank` (
 -- ----------------------------
 -- Records of xx_member_bank
 -- ----------------------------
-INSERT INTO `xx_member_bank` VALUES ('4028bc743c27703b013c27741eb80001', '2013-01-11 10:33:07', '2013-01-11 11:23:15', '1112222', '11', '11www', '111', '', null, '1122223333', '8a9182fc3ba86bc8013ba9782de60001');
+INSERT INTO `xx_member_bank` VALUES ('4028bc743c27703b013c27741eb80001', '2013-01-11 10:33:07', '2013-01-13 18:51:04', '1112222', '11', '11www', '111', '', null, '1122223333', '8a9182fc3ba86bc8013ba9782de60001');
 INSERT INTO `xx_member_bank` VALUES ('4028bc743c27703b013c2776e9be0002', '2013-01-11 10:36:10', '2013-01-11 10:42:40', '354234', '3245234', '12312', '123123', '', null, '121213', '297e62b93bd214af013bd21a73550000');
 INSERT INTO `xx_member_bank` VALUES ('4028bc743c278897013c278a9ab30000', '2013-01-11 10:57:40', '2013-01-11 11:04:44', '435645', '35645', '3456345999', '6456', '', null, '34563456', '297e62b93bd214af013bd21a73550000');
-INSERT INTO `xx_member_bank` VALUES ('4028bc743c27907a013c27a207a60000', '2013-01-11 11:23:15', '2013-01-11 11:23:30', '897', '8978', '7897', '888', '', null, '7878', '8a9182fc3ba86bc8013ba9782de60001');
-INSERT INTO `xx_member_bank` VALUES ('4028bc743c27907a013c27a241630001', '2013-01-11 11:23:30', '2013-01-11 11:23:43', 'et', 'rty', 'ety', '567', '', null, 'rty', '8a9182fc3ba86bc8013ba9782de60001');
-INSERT INTO `xx_member_bank` VALUES ('eeee', '2013-01-08 14:25:15', '2013-01-11 11:23:43', '郑州', '中信银行北环路', '中信银行', '1876276253753563', '', null, '123123', '8a9182fc3ba86bc8013ba9782de60001');
+INSERT INTO `xx_member_bank` VALUES ('4028bc743c27907a013c27a207a60000', '2013-01-11 11:23:15', '2013-01-13 15:49:37', '897', '8978', '7897', '888', '', null, '7878', '8a9182fc3ba86bc8013ba9782de60001');
+INSERT INTO `xx_member_bank` VALUES ('4028bc743c27907a013c27a241630001', '2013-01-11 11:23:30', '2013-01-13 18:51:04', 'et', 'rty', 'ety', '567', '', null, 'rty', '8a9182fc3ba86bc8013ba9782de60001');
+INSERT INTO `xx_member_bank` VALUES ('eeee', '2013-01-08 14:25:15', '2013-01-13 15:49:35', '郑州', '中信银行北环路', '中信银行', '1876276253753563', '', null, '123123', '8a9182fc3ba86bc8013ba9782de60001');
 
 -- ----------------------------
 -- Table structure for `xx_member_business`
@@ -604,9 +606,9 @@ INSERT INTO `xx_navigation` VALUES ('4028bc743bac0d54013bacbb0f14000d', '2012-12
 INSERT INTO `xx_navigation` VALUES ('4028bc743bac0d54013bacbb688e000e', '2012-12-18 14:37:41', '2012-12-21 09:49:06', '', '', '新手导航', '0', '1', '${base}/shop/article_list/xs.htm');
 INSERT INTO `xx_navigation` VALUES ('4028bc743c286bdc013c28931dc9000c', '2013-01-11 15:46:35', '2013-01-11 15:46:35', '', '', '交易保障', '1', '3', '${base}/card/article_list/bz.htm');
 INSERT INTO `xx_navigation` VALUES ('4028bc743c286bdc013c28982ed8000d', '2013-01-11 15:52:07', '2013-01-11 15:52:07', '', '', '快捷通道', '1', '4', '${base}/');
-INSERT INTO `xx_navigation` VALUES ('4028bc743c286bdc013c2898a243000e', '2013-01-11 15:52:37', '2013-01-11 15:52:37', '', '', '成功案例', '1', '5', '${base}/card/article_list/su.htm');
 INSERT INTO `xx_navigation` VALUES ('4028bc743c286bdc013c2898de04000f', '2013-01-11 15:52:52', '2013-01-11 15:52:52', '', '', '在线留言', '0', '2', '${base}/card/leave_message.htm');
 INSERT INTO `xx_navigation` VALUES ('4028bc743c286bdc013c28993e930010', '2013-01-11 15:53:17', '2013-01-11 15:53:17', '', '', '交易保障', '1', '6', '${base}/card/article_list/bz.htm');
+INSERT INTO `xx_navigation` VALUES ('8a9181263c31adc7013c31c753280000', '2013-01-13 10:40:12', '2013-01-13 11:05:24', '', '', '成功案例', '1', '7', '${base}/card/deposit!successList.action');
 
 -- ----------------------------
 -- Table structure for `xx_order`
@@ -1025,3 +1027,9 @@ CREATE TABLE `xx_withdraw` (
 -- Records of xx_withdraw
 -- ----------------------------
 INSERT INTO `xx_withdraw` VALUES ('297e62b93bd214af013bd21f47430005', '2012-12-25 20:52:43', '2013-01-04 10:07:59', '0.97', '222', '会员自主提现', '20.00', null, '19.40', 'TX100001', '2', '8a9182fc3ba86bc8013ba9782de60001');
+INSERT INTO `xx_withdraw` VALUES ('8a9181263c331960013c3332f53a0000', '2013-01-13 17:17:23', '2013-01-13 17:32:24', '0.97', '999', '会员自主提现', '999.00', null, '969.03', 'TX100002', '2', '8a9182fc3ba86bc8013ba9782de60001');
+INSERT INTO `xx_withdraw` VALUES ('8a9181263c333b44013c33400f010000', '2013-01-13 17:31:41', '2013-01-13 17:32:16', '0.97', '666', '会员自主提现', '666.00', null, '646.02', 'TX100003', '2', '8a9182fc3ba86bc8013ba9782de60001');
+INSERT INTO `xx_withdraw` VALUES ('8a9181263c33448b013c3345bc860000', '2013-01-13 17:37:53', '2013-01-13 17:42:29', '0.97', 'uuu', '会员自主提现', '180.00', null, '174.60', 'TX100004', '1', '8a9182fc3ba86bc8013ba9782de60001');
+INSERT INTO `xx_withdraw` VALUES ('8a9181263c33448b013c33463cd90001', '2013-01-13 17:38:26', '2013-01-13 17:42:22', '0.97', 'yyy', '会员自主提现', '170.00', null, '164.90', 'TX100005', '1', '8a9182fc3ba86bc8013ba9782de60001');
+INSERT INTO `xx_withdraw` VALUES ('8a9181263c33448b013c334a38900004', '2013-01-13 17:42:47', '2013-01-13 17:42:47', '0.97', '444', '会员自主提现', '100.00', null, '97.00', 'TX100006', '0', '8a9182fc3ba86bc8013ba9782de60001');
+INSERT INTO `xx_withdraw` VALUES ('8a9181263c334d8d013c3358f28c0000', '2013-01-13 17:58:52', '2013-01-13 17:58:52', '0.97', '999', '会员自主提现', '200.00', null, '194.00', 'TX100007', '0', '8a9182fc3ba86bc8013ba9782de60001');
