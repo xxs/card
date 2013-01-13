@@ -26,6 +26,7 @@
 							<th>下单时间</th>
 							<th>订单金额</th>
 							<th>订单状态</th>
+							<th>操作</th>
 						</tr>
 						<#list pager.result as order>
 							<tr>
@@ -44,7 +45,14 @@
 									${order.amount?string(currencyFormat)}
 								</td>
 								<td>
-									[${action.getText("OrderStatus." + order.orderStatus)}]
+									<#if order.orderStatus != "completed" && order.orderStatus != "invalid">
+										[${action.getText("PaymentStatus." + order.paymentStatus)}]
+									<#else>
+										[${action.getText("OrderStatus." + order.orderStatus)}]
+									</#if>
+								</td>
+								<td>
+									<a href="/card/order!query.action?id=${order.id}">刷新</a>
 								</td>
 							</tr>
 						</#list>	

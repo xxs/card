@@ -14,7 +14,6 @@
 <script type="text/javascript" src="${base}/template/admin/js/admin.js"></script>
 <script type="text/javascript">
 $().ready(function() {
-
 	var $menuItem = $("#menu .menuItem");
 	var $previousMenuItem;
 	
