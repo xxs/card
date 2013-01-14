@@ -204,7 +204,7 @@ public class OrderAction extends BaseCardAction {
 		}else{
 			System.out.println("订单状态未变化");
 		}
-		return "chenggong";
+		return ajax(Status.success,"刷新成功");
 	}
 	// 订单列表
 	public String list() {

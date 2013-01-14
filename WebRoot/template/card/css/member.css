@@ -64,10 +64,10 @@ h1,h2,h3,h4,h5,h6{font-size:12px;font-weight:normal;}
 	.yun{float:left;width:86px;color:#f00;}
 	.ka{margin-left:60px;height:31px;line-height:31px;margin-bottom:10px;}
 	.kaText{background:url(../images/chongz_39.jpg) no-repeat;height:31px;width:210px;border:none;margin-left:40px;text-indent:12px;line-height:31px;}
-	.tijiao{background:url(../images/an_03.gif) no-repeat;width:110px;height:30px;border:none; cursor:pointer;float:left;text-indent:200px;}
+	.tijiao{background:url(../images/chongz_43.gif) no-repeat;width:110px;height:30px;border:none; cursor:pointer;float:left;text-indent:200px;}
 	.chonx{background:url(../images/chongz_45.gif) no-repeat;width:110px;height:30px;border:none; cursor:pointer;float:left;margin-left:20px;text-indent:200px;}
 	.chonx:hover{background:url(../images/sdd_03.gif) no-repeat;width:110px;height:30px;}
-	.tijiao:hover{background:url(../images/chongz_43.gif) no-repeat;width:110px;height:30px;}
+	.tijiao:hover{background:url(../images/an_03.gif) no-repeat;width:110px;height:30px;}
 	.anniun{margin-left:40px;margin-top:30px;}
 	
 	.zhong{float:right;width:261px;height:243px;margin:10px 0px;background:url(../images/dsf.gif) no-repeat 25px 54px;}
@@ -106,7 +106,7 @@ h1,h2,h3,h4,h5,h6{font-size:12px;font-weight:normal;}
 .pager li.pageInfo {margin-right: 5px;color: #464646;border: none;background: none;}
 	
 
-.bottom{height:25px;line-height:25px;text-align:center;width:460px;color:#929292;margin:0 auto;clear:both;}
+.bottom{height:25px;line-height:25px;text-align:center;width:460px;color:#929292;margin:0 auto 10px;;clear:both;}
 
 
 
