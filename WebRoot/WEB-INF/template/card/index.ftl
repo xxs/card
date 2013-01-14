@@ -71,7 +71,6 @@
 	<!--内容区-->
 <div class="column1">
 	<#include "/WEB-INF/template/card/friend_link.ftl">
-	
       
 	<div class="Service">
     	<ul>
