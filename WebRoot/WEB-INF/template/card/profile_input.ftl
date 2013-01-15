@@ -125,7 +125,7 @@ $().ready( function() {
 			<div class="hei">卡信息提交成功后，可在<a href="#">订单查询</a>页面查询支付结果。处理结果以订单查询页为准。</div>
 			<div class="memberCenter">
 			<form id="validateForm" action="profile!update.action" method="post">
-						<table class="stateTable">
+						<table class="inputTable">
 							<tr>
 								<th>
 									推荐人: 

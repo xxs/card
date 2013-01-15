@@ -35,7 +35,7 @@
 						</tr>
 						<tr>
 							<th>预存款余额</th>
-							<td>${loginMember.deposit?string(currencyFormat)}</td>
+							<td>${loginMember.deposit?string(currencyFormat)}&nbsp;&nbsp;<a href="deposit!list.action">[预存款明细]</a></td>
 							<th>未读消息数</th>
 							<td>
 								${unreadMessageCount}&nbsp;&nbsp;
