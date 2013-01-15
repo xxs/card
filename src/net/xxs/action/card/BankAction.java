@@ -11,9 +11,11 @@ import org.apache.struts2.convention.annotation.InterceptorRefs;
 import org.apache.struts2.convention.annotation.ParentPackage;
 
 import com.opensymphony.xwork2.interceptor.annotations.InputConfig;
+import com.opensymphony.xwork2.validator.annotations.RequiredStringValidator;
+import com.opensymphony.xwork2.validator.annotations.Validations;
 
 /**
- * 前台Action类 - 密码、安全问题
+ * 前台Action类 - 提现账户信息
  */
 
 @ParentPackage("card")
@@ -23,7 +25,8 @@ import com.opensymphony.xwork2.interceptor.annotations.InputConfig;
 })
 public class BankAction extends BaseCardAction {
 
-	private static final long serialVersionUID = 8691965706902473480L;
+	
+	private static final long serialVersionUID = -4623009405964163795L;
 	
 	private Member member;
 	private MemberBank memberBank;
@@ -36,10 +39,15 @@ public class BankAction extends BaseCardAction {
 		member = getLoginMember();
 		return LIST;
 	}
-	// 账户
+	// 编辑
 	public String edit() {
 		memberBank = memberBankService.get(id);
-		return LIST;
+		return INPUT;
+	}
+	// 添加
+	public String add() {
+		memberBank = memberBankService.get(id);
+		return INPUT;
 	}
 	// 设置默认
 	public String check() {
@@ -51,12 +59,44 @@ public class BankAction extends BaseCardAction {
 	}
 
 	// 账户更新
+	@Validations(
+			requiredStrings = { 
+				@RequiredStringValidator(fieldName = "memberBank.banknum", message = "账号不允许为空!"),
+				@RequiredStringValidator(fieldName = "memberBank.bankname", message = "银行名称不允许为空!"),
+				@RequiredStringValidator(fieldName = "memberBank.openname", message = "开户姓名不允许为空!"),
+				@RequiredStringValidator(fieldName = "memberBank.bankcity", message = "银行所在地不允许为空!"),
+				@RequiredStringValidator(fieldName = "memberBank.bankdetail", message = "支行明细不允许为空!")
+			}
+		)
 	@InputConfig(resultName = "error")
 	public String update() {
 		memberBankService.update(memberBank);
+		redirectUrl = "bank!list.action";
 		return SUCCESS;
 	}
-
+	// Ajax验证银行账号是否存在
+	@InputConfig(resultName = "ajaxError")
+	public String ajaxBankNumVerify() throws Exception {
+		return ajax(memberBankService.isExistByBankNumber(memberBank.getBanknum()));
+	}
+	// 账户添加
+	@Validations(
+			requiredStrings = { 
+				@RequiredStringValidator(fieldName = "memberBank.banknum", message = "账号不允许为空!"),
+				@RequiredStringValidator(fieldName = "memberBank.bankname", message = "银行名称不允许为空!"),
+				@RequiredStringValidator(fieldName = "memberBank.openname", message = "开户姓名不允许为空!"),
+				@RequiredStringValidator(fieldName = "memberBank.bankcity", message = "银行所在地不允许为空!"),
+				@RequiredStringValidator(fieldName = "memberBank.bankdetail", message = "支行明细不允许为空!")
+			}
+		)
+	@InputConfig(resultName = "error")
+	public String save() {
+		member = getLoginMember();
+		memberBank.setMember(member);
+		memberBankService.save(memberBank);
+		redirectUrl = "bank!list.action";
+		return SUCCESS;
+	}
 	public Member getMember() {
 		return member;
 	}

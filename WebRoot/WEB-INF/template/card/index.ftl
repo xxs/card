@@ -7,29 +7,78 @@
 <meta name="Copyright" content="XXS" />
 <#if (setting.metaKeywords)! != ""><meta name="keywords" content="${setting.metaKeywords}" /></#if>
 <#if (setting.metaDescription)! != ""><meta name="description" content="${setting.metaDescription}" /></#if>
-<#include "/WEB-INF/template/card/head.ftl">
-<script type="text/javascript" >
-//<![CDATA[
-	$(function(){
-	    var $div_li =$("div.tab_menu ul li");
-	    $div_li.mouseover(function(){//要点击切换这click
-			$(this).addClass("selected")            //当前<li>元素高亮
-				   .siblings().removeClass("selected");  //去掉其它同辈<li>元素的高亮
-            var index =  $div_li.index(this);  // 获取当前点击的<li>元素 在 全部li元素中的索引。
-			$("div.tab_box > div")   	//选取子节点。不选取子节点的话，会引起错误。如果里面还有div 
-					.eq(index).show()   //显示 <li>元素对应的<div>元素
-					.siblings().hide(); //隐藏其它几个同辈的<div>元素
-		}).hover(function(){
-			$(this).addClass("hover");
-		},function(){
-			$(this).removeClass("hover");
+<link rel="icon" href="favicon.ico" type="image/x-icon" />
+<link href="${base}/template/card/css/base.css" rel="stylesheet" type="text/css" />
+<link href="${base}/template/card/css/style.css" rel="stylesheet" type="text/css" />
+<script type="text/javascript" src="${base}/template/card/js/base.js"></script>
+<script type="text/javascript" src="${base}/template/card/js/card.js"></script>
+<script type="text/javascript" src="${base}/template/card/js/slides.jquery.js"></script>
+<script type="text/javascript" src="${base}/template/common/js/jquery.js"></script>
+<script type="text/javascript" src="${base}/template/common/js/jquery.tools.js"></script>
+<!--[if lte IE 6]>
+	<script type="text/javascript" src="${base}/template/common/js/belatedPNG.js"></script>
+	<script type="text/javascript">
+		// 解决IE6透明PNG图片BUG
+		DD_belatedPNG.fix(".belatedPNG");
+	</script>
+	<![endif]-->
+	<script type="text/javascript" >
+	//<![CDATA[
+		$(function(){
+		    var $div_li =$("div.tab_menu ul li");
+		    $div_li.mouseover(function(){//要点击切换这click
+				$(this).addClass("selected")            //当前<li>元素高亮
+					   .siblings().removeClass("selected");  //去掉其它同辈<li>元素的高亮
+	            var index =  $div_li.index(this);  // 获取当前点击的<li>元素 在 全部li元素中的索引。
+				$("div.tab_box > div")   	//选取子节点。不选取子节点的话，会引起错误。如果里面还有div 
+						.eq(index).show()   //显示 <li>元素对应的<div>元素
+						.siblings().hide(); //隐藏其它几个同辈的<div>元素
+			}).hover(function(){
+				$(this).addClass("hover");
+			},function(){
+				$(this).removeClass("hover");
+			})
 		})
-	})
-//]]>
-</script>
+	//]]>
+	</script>
+	<script>
+		//保证导航栏背景与图片轮播背景一起显示
+		$("#mainbody").removeClass();
+		$("#mainbody").addClass("index_bg05");
+	</script>
+	<script>
+		$(function(){
+			//滚动Banner图片的显示
+			$('#slides').slides({
+				preload: false,
+				preloadImage: '/template/card/images/loading.gif',
+				effect: 'fade',
+				slideSpeed: 400,
+				fadeSpeed: 100,
+				play: 3000,
+				pause: 100,
+				hoverPause: true
+			});
+	        	$('#js-news').ticker();
+	    	});
+		</script>
 </head>
-<body>
+<body  id="mainbody">
 	<#include "/WEB-INF/template/card/header.ftl">
+	<div id="warp">
+	<div id="slides" class="banner">
+		<div class="banner_l"><a class="prev" href="#"><img alt="上一"页 src="/template/card/images/banner_l.png" width="24" height="43"></a></div>
+		<div class="bannerImg">
+			<div class="slides_container">
+				<div id="banner_pic_1"><a href="http://www.16sucai.com/" target="_blank"><img alt="16素材网" src="images/banner05.jpg" width="925" height="357"></a></div>
+				<div style="DISPLAY: none" id="banner_pic_2"><a href="http://www.16sucai.com/" target="_blank"><img alt="16素材网" src="/template/card/images/banner01.gif" width="925" height="357"></a></div>
+				<div style="DISPLAY: none" id="banner_pic_3"><a href="http://www.16sucai.com/" target="_blank"><img alt="16素材网" src="/template/card/images/banner02.jpg" width="925" height="357"></a></div>
+				<div style="DISPLAY: none" id="banner_pic_4"><a href="http://www.16sucai.com/" target="_blank"><img alt="16素材网" src="/template/card/images/banner03.jpg" width="925" height="357"></a></div>
+				<div style="DISPLAY: none" id="banner_pic_5"><a href="http://www.16sucai.com/" target="_blank"><img alt="16素材网" src="/template/card/images/banner04.jpg" width="925" height="357"></a></div>
+			</div>
+		</div>
+		<div class="banner_r"><a class="next" href="#"><img alt="下一页" src="/template/card/images/banner_r.png" width="24" height="43"></a></div>
+	</div>
 	<!--banner-->
 	<div class="banner">
 		<div class="banner_left">
@@ -69,9 +118,10 @@
   		</div>  
     </div>   
 	<!--内容区-->
-<div class="column1">
+<div class="content_line">
 	<#include "/WEB-INF/template/card/friend_link.ftl">
-      
+</div>
+	<div class="content_line">
 	<div class="Service">
     	<ul>
         	<li><a href="#"><img src="images/index/tu1.jpg" width="329" height="153" alt="s" /></a></li>
@@ -97,6 +147,7 @@
         </div>
   </div>
 </div>
+	
 	<#include "/WEB-INF/template/card/footer.ftl">
 	<script type="text/javascript" src="${base}/template/common/js/jquery.js"></script>
 	<script type="text/javascript" src="${base}/template/common/js/jquery.tools.js"></script>

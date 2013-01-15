@@ -47,11 +47,11 @@ $().ready( function() {
 </head>
 <body class="memberCenter">
 	<#include "/WEB-INF/template/card/member_header.ftl">
-	<div class="nei">
-	<div class="neiLeft">
+	<div class="content">
+	<div class="contentLeft">
 		<#include "/WEB-INF/template/card/menu_deposit.ftl">
 	</div>
-	<div class="neiRight">
+	<div class="contentRight">
 		<div class="katong">
 			<div class="fangz">提现申请</a></div>
 			<div class="red">注：请一定正确选择卡面值提交,否则造成损失商户自行承担； </div>

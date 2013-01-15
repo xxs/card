@@ -114,18 +114,18 @@ $().ready( function() {
 </head>
 <body class="memberCenter">
 	<#include "/WEB-INF/template/card/member_header.ftl">
-		<div class="nei">
-	<div class="neiLeft">
+		<div class="content">
+	<div class="contentLeft">
 		<#include "/WEB-INF/template/card/menu_center.ftl">
 	</div>
-	<div class="neiRight">
+	<div class="contentRight">
 		<div class="katong">
 			<div class="fangz">修改密码 </div>
 			<div class="red">注：请一定正确选择卡面值提交,否则造成损失商户自行承担； </div>
 			<div class="hei">卡信息提交成功后，可在<a href="#">订单查询</a>页面查询支付结果。处理结果以订单查询页为准。</div>
 			<div class="memberCenter">
 			<form id="validateForm" action="profile!update.action" method="post">
-						<table class="inputTable">
+						<table class="stateTable">
 							<tr>
 								<th>
 									推荐人: 

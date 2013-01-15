@@ -238,8 +238,7 @@ public class CardsAction extends BaseAdminAction {
 	// 更新
 	@Validations(
 		requiredStrings = {
-			@RequiredStringValidator(fieldName = "cards.name", message = "充值卡名称不允许为空!"),
-			@RequiredStringValidator(fieldName = "cards.cardsCategory.id", message = "充值卡分类不允许为空!")
+			@RequiredStringValidator(fieldName = "cards.name", message = "充值卡名称不允许为空!")
 		},
 		requiredFields = {
 			@RequiredFieldValidator(fieldName = "cards.isMarketable", message = "是否上架不允许为空!"),

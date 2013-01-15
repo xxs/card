@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="content-type" content="text/html; charset=utf-8" />
-<title>修改密码<#if setting.isShowPoweredInfo> - XXS</#if></title>
+<title>修改密保<#if setting.isShowPoweredInfo> - XXS</#if></title>
 <meta name="Author" content="XXS-DW" />
 <meta name="Copyright" content="XXS" />
 <#include "/WEB-INF/template/card/member_head.ftl">
@@ -86,29 +86,22 @@ $().ready( function() {
 			<div class="red">注：请一定正确选择卡面值提交,否则造成损失商户自行承担； </div>
 			<div class="hei">卡信息提交成功后，可在<a href="#">订单查询</a>页面查询支付结果。处理结果以订单查询页为准。</div>
 			<div class="memberCenter">
-			<table class="stateTable">
+				<form id="passwordForm" action="password!update.action" method="post">
+						<table class="inputTable tabContent">
 							<tr>
 								<th>
-									旧密码: 
+									安全问题: 
 								</th>
 								<td>
-									<input type="password" id="oldPassword" name="oldPassword" class="formText" />
+									<input type="text" id="memberSafeQuestion" name="member.safeQuestion" class="formText" />
 								</td>
 							</tr>
 							<tr>
 								<th>
-									新密码: 
+									安全答案: 
 								</th>
 								<td>
-									<input type="password" id="password" name="member.password" class="formText" />
-								</td>
-							</tr>
-							<tr>
-								<th>
-									确认新密码: 
-								</th>
-								<td>
-									<input type="password" name="rePassword" class="formText" />
+									<input type="text" id="memberSafeAnswer" name="member.safeAnswer" class="formText" />
 								</td>
 							</tr>
 							<tr>
@@ -116,7 +109,7 @@ $().ready( function() {
 									&nbsp;
 								</th>
 								<td>
-									<span class="warnInfo"><span class="icon">&nbsp;</span>系统提示: 若密码留空则保持不变</span>
+									<span class="warnInfo"><span class="icon">&nbsp;</span>系统提示: 若安全问题留空则保持不变</span>
 								</td>
 							</tr>
 							<tr>
@@ -128,6 +121,7 @@ $().ready( function() {
 								</td>
 							</tr>
 						</table>
+					</form>
 			</div>
 		</div>
 	</div>

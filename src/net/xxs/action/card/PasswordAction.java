@@ -39,6 +39,11 @@ public class PasswordAction extends BaseCardAction {
 		member = getLoginMember();
 		return INPUT;
 	}
+	// 密码密保
+	public String editquestion() {
+		member = getLoginMember();
+		return "question";
+	}
 
 	// 密码更新
 	@Validations(

@@ -7,6 +7,7 @@ import javax.annotation.Resource;
 
 import net.xxs.bean.Pager.Order;
 import net.xxs.entity.Brand;
+import net.xxs.entity.Cards;
 import net.xxs.entity.PaymentConfig;
 import net.xxs.service.BrandService;
 import net.xxs.service.CardsService;
@@ -37,7 +38,7 @@ public class CardsAction extends BaseCardAction {
 	private String sign;
 	private Map<String, String> cardsAttributeIdMap;
 	private String orderType;
-	
+	private Cards cards;
 	private Brand brand;
 	
 	@Resource(name = "cardsServiceImpl")
@@ -46,66 +47,16 @@ public class CardsAction extends BaseCardAction {
 	private BrandService brandService;
 	@Resource(name = "paymentConfigServiceImpl")
 	private PaymentConfigService paymentConfigService;
-	@Validations(
-		requiredStrings = {
-			@RequiredStringValidator(fieldName = "sign", message = "参数错误!")
-		}
-	)
+	
 	@InputConfig(resultName = "error")
 	public String list() {
-		
-		if (StringUtils.equalsIgnoreCase(orderType, "priceAsc")) {
-			pager.setOrderBy("price");
-			pager.setOrder(Order.asc);
-		} else if (StringUtils.equalsIgnoreCase(orderType, "priceDesc")) {
-			pager.setOrderBy("price");
-			pager.setOrder(Order.desc);
-		} else if (StringUtils.equalsIgnoreCase(orderType, "dateAsc")) {
-			pager.setOrderBy("createDate");
-			pager.setOrder(Order.asc);
-		} else {
-			orderType = "";
-			pager.setOrderBy(null);
-			pager.setOrder(null);
-		}
-		pager.setSearchBy(null);
-		pager.setKeyword(null);
-		
-		if (brand != null && StringUtils.isNotEmpty(brand.getId())) {
-			brand = brandService.load(brand.getId());
-		} else {
-			brand = null;
-		}
-		
-		return "picture_list";
+		cards = cardsService.get("4028bc743c3c4340013c3c51dac90001");
+		return "content";
 	}
-	
-	@Validations(
-		requiredStrings = { 
-			@RequiredStringValidator(fieldName = "pager.keyword", message = "搜索关键词不允许为空!") 
-		}
-	)
-	@InputConfig(resultName = "error")
-	public String search() throws Exception {
-		if (StringUtils.equalsIgnoreCase(orderType, "priceAsc")) {
-			pager.setOrderBy("price");
-			pager.setOrder(Order.asc);
-		} else if (StringUtils.equalsIgnoreCase(orderType, "priceDesc")) {
-			pager.setOrderBy("price");
-			pager.setOrder(Order.desc);
-		} else if (StringUtils.equalsIgnoreCase(orderType, "dateAsc")) {
-			pager.setOrderBy("createDate");
-			pager.setOrder(Order.asc);
-		} else {
-			pager.setOrderBy(null);
-			pager.setOrder(null);
-		}
-		
-		pager = cardsService.search(pager);
-		
-		return "picture_search";
+	public String detail(){
+		cards = cardsService.get(id);
+		return "content";
 	}
-
 	public String getSign() {
 		return sign;
 	}
@@ -142,4 +93,13 @@ public class CardsAction extends BaseCardAction {
 	public List<PaymentConfig> getAllPaymentConfigList() {
 		return paymentConfigService.getAllList();
 	}
+
+	public Cards getCards() {
+		return cards;
+	}
+
+	public void setCards(Cards cards) {
+		this.cards = cards;
+	}
+	
 }

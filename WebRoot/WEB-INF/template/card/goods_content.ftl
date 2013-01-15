@@ -2,11 +2,11 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="content-type" content="text/html; charset=utf-8" />
-<title>${goods.name}<#if setting.isShowPoweredInfo> - XXS</#if></title>
+<title>${cards.name}<#if setting.isShowPoweredInfo> - XXS</#if></title>
 <meta name="Author" content="XXS-DW" />
 <meta name="Copyright" content="XXS" />
-<#if (goods.metaKeywords)! != ""><meta name="keywords" content="${goods.metaKeywords}" /></#if>
-<#if (goods.metaDescription)! != ""><meta name="description" content="${goods.metaDescription}" /></#if>
+<#if (cards.metaKeywords)! != ""><meta name="keywords" content="${cards.metaKeywords}" /></#if>
+<#if (cards.metaDescription)! != ""><meta name="description" content="${cards.metaDescription}" /></#if>
 <link rel="icon" href="favicon.ico" type="image/x-icon" />
 <link href="${base}/template/common/css/jquery.zoomimage.css" rel="stylesheet" type="text/css" />
 <link href="${base}/template/card/css/base.css" rel="stylesheet" type="text/css" />
@@ -19,62 +19,62 @@
 	</script>
 <![endif]-->
 </head>
-<body id="goodsContent" class="goodsContent">
+<body id="cardsContent" class="cardsContent">
 	<#include "/WEB-INF/template/card/header.ftl">
 	<div class="body">
 		<div class="bodyLeft">
-			<div class="goodsCategory">
+			<div class="cardsCategory">
             	<div class="top">充值卡分类</div>
             	<div class="middle">
-            		<ul id="goodsCategoryMenu" class="menu">
-            			<@goods_category_tree; goodsCategoryTree>
-	            			<#list goodsCategoryTree as firstGoodsCategory>
+            		<ul id="cardsCategoryMenu" class="menu">
+            			<@cards_category_tree; cardsCategoryTree>
+	            			<#list cardsCategoryTree as firstCardsCategory>
 	            				<li class="mainCategory">
-									<a href="${base}${firstGoodsCategory.url}">${firstGoodsCategory.name}</a>
+									<a href="${base}${firstCardsCategory.url}">${firstCardsCategory.name}</a>
 								</li>
-								<#if (firstGoodsCategory.children?? && firstGoodsCategory.children?size > 0)>
-									<#list firstGoodsCategory.children as secondGoodsCategory>
+								<#if (firstCardsCategory.children?? && firstCardsCategory.children?size > 0)>
+									<#list firstCardsCategory.children as secondCardsCategory>
 										<li>
-											<a href="${base}${secondGoodsCategory.url}">
-												<span class="icon">&nbsp;</span>${secondGoodsCategory.name}
+											<a href="${base}${secondCardsCategory.url}">
+												<span class="icon">&nbsp;</span>${secondCardsCategory.name}
 											</a>
 										</li>
-										<#if secondGoodsCategory_index + 1 == 5>
+										<#if secondCardsCategory_index + 1 == 5>
 											<#break />
 										</#if>
 									</#list>
 								</#if>
-								<#if firstGoodsCategory_index + 1 == 3>
+								<#if firstCardsCategory_index + 1 == 3>
 									<#break />
 								</#if>
 	            			</#list>
-	            		</@goods_category_tree>
+	            		</@cards_category_tree>
 					</ul>
             	</div>
                 <div class="bottom"></div>
 			</div>
 			<div class="blank"></div>
-			<div class="hotGoods">
+			<div class="hotCards">
 				<div class="top">热销排行</div>
 				<div class="middle">
 					<ul>
-						<@goods_list goods_category_id=goods.goodsCategory.id type="hot" count=10; goodsList>
-							<#list goodsList as goods>
-								<li class="number${goods_index + 1}">
+						<@cards_list cards_category_id=cards.cardsCategory.id type="hot" count=10; cardsList>
+							<#list cardsList as cards>
+								<li class="number${cards_index + 1}">
 									<span class="icon">&nbsp;</span>
-									<a href="${base}${goods.htmlPath}" title="${goods.name}">${substring(goods.name, 24, "...")}</a>
+									<a href="${base}${cards.htmlPath}" title="${cards.name}">${substring(cards.name, 24, "...")}</a>
 								</li>
 							</#list>
-						</@goods_list>
+						</@cards_list>
 					</ul>
 				</div>
 				<div class="bottom"></div>
 			</div>
 			<div class="blank"></div>
-			<div id="goodsHistory" class="goodsHistory">
+			<div id="cardsHistory" class="cardsHistory">
 				<div class="top">浏览记录</div>
 				<div class="middle">
-					<ul id="goodsHistoryListDetail"></ul>
+					<ul id="cardsHistoryListDetail"></ul>
 				</div>
 				<div class="bottom"></div>
 			</div>
@@ -93,31 +93,31 @@
 				<div class="right"></div>
 			</div>
 			<div class="blank"></div>
-			<div class="goodsTop">
-				<div class="goodsTopLeft">
-					<div class="goodsImage">
-						<#if goods.goodsImageList??>
-		                	<#list goods.goodsImageList as goodsImage>
-		                		<a href="${base}${goodsImage.bigImagePath}" class="tabContent zoom<#if (goodsImage_index > 0)> nonFirst</#if>">
-									<img src="${base}${goodsImage.smallImagePath}" alt="点击放大" />
+			<div class="cardsTop">
+				<div class="cardsTopLeft">
+					<div class="cardsImage">
+						<#if cards.cardsImageList??>
+		                	<#list cards.cardsImageList as cardsImage>
+		                		<a href="${base}${cardsImage.bigImagePath}" class="tabContent zoom<#if (cardsImage_index > 0)> nonFirst</#if>">
+									<img src="${base}${cardsImage.smallImagePath}" alt="点击放大" />
 								</a>
 							</#list>
 						<#else>
-	            			<a href="${base}${setting.defaultBigGoodsImagePath}" class="zoom">
-								<img src="${base}${setting.defaultSmallGoodsImagePath}" alt="点击放大" />
+	            			<a href="${base}${setting.defaultBigCardsImagePath}" class="zoom">
+								<img src="${base}${setting.defaultSmallCardsImagePath}" alt="点击放大" />
 							</a>
 	                	</#if>
                 	</div>
-					<div class="thumbnailGoodsImage">
+					<div class="thumbnailCardsImage">
 						<a class="prev browse" href="javascript: void(0);" hidefocus></a>
-						<div id="thumbnailGoodsImageScrollable" class="scrollable">
-							<ul id="goodsImageTab" class="items goodsImageTab">
-								<#if goods.goodsImageList??>
-									<#list goods.goodsImageList as goodsImage>
-										<li><img src="${base}${goodsImage.thumbnailImagePath}" alt="${goodsImage.description}" /></li>
+						<div id="thumbnailCardsImageScrollable" class="scrollable">
+							<ul id="cardsImageTab" class="items cardsImageTab">
+								<#if cards.cardsImageList??>
+									<#list cards.cardsImageList as cardsImage>
+										<li><img src="${base}${cardsImage.thumbnailImagePath}" alt="${cardsImage.description}" /></li>
 									</#list>
 								<#else>
-									<li><img src="${base}${setting.defaultThumbnailGoodsImagePath}" /></li>
+									<li><img src="${base}${setting.defaultThumbnailCardsImagePath}" /></li>
 	                        	</#if>
 							</ul>
 						</div>
@@ -125,29 +125,29 @@
 					</div>
 				</div>
 				<form action="order!saveCard.action" method="post">
-				<div class="goodsTopRight">
-					<h1 class="title">${substring(goods.name, 50, "...")}</h1>
-					<ul class="goodsAttribute">
-						<li>充值卡编号: ${goods.goodsSn}</li>
-						<li>货品编号: <span id="productSn">${goods.defaultProduct.productSn}</span><input type="text" name="productId" value="${goods.defaultProduct.id}" /></li>
-						<#list (goods.goodsType.goodsAttributeSet)! as goodsAttribute>
-							<#if goods.getGoodsAttributeValue(goodsAttribute)?? && goods.getGoodsAttributeValue(goodsAttribute) != "">
-	                    		<li>${goodsAttribute.name}: ${substring(goods.getGoodsAttributeValue(goodsAttribute), 26)}</li>
+				<div class="cardsTopRight">
+					<h1 class="title">${substring(cards.name, 50, "...")}</h1>
+					<ul class="cardsAttribute">
+						<li>充值卡编号: ${cards.cardsSn}</li>
+						<li>货品编号: <span id="productSn">${cards.defaultProduct.productSn}</span><input type="text" name="productId" value="${cards.defaultProduct.id}" /></li>
+						<#list (cards.cardsType.cardsAttributeSet)! as cardsAttribute>
+							<#if cards.getCardsAttributeValue(cardsAttribute)?? && cards.getCardsAttributeValue(cardsAttribute) != "">
+	                    		<li>${cardsAttribute.name}: ${substring(cards.getCardsAttributeValue(cardsAttribute), 26)}</li>
 							</#if>
 						</#list>
 					</ul>
 					<div class="blank"></div>
-					<div class="goodsPrice">
+					<div class="cardsPrice">
 						<div class="left"></div>
 						<div class="right">
 							<div class="top">
 								销 售 价:
-								<span id="price" class="price">${goods.price?string(currencyFormat)}</span>
+								<span id="price" class="price">${cards.price?string(currencyFormat)}</span>
 							</div>
 							<div class="bottom">
 								市 场 价:
 								<#if setting.isShowMarketPrice>
-									<span id="marketPrice" class="marketPrice">${goods.marketPrice?string(currencyFormat)}</span>
+									<span id="marketPrice" class="marketPrice">${cards.marketPrice?string(currencyFormat)}</span>
 								<#else>
 									-
 								</#if>
@@ -157,20 +157,20 @@
 					<div class="blank"></div>
 					
 					<table id="buyInfo" class="buyInfo">
-						<#if goods.isSpecificationEnabled>
-							<#assign specificationValueSet = goods.specificationValueSet>
+						<#if cards.isSpecificationEnabled>
+							<#assign specificationValueSet = cards.specificationValueSet>
 							<tr class="specificationTips">
 								<th id="tipsTitle">请选择:</th>
 								<td>
 									<div id="tipsContent" class="tipsContent">
-										<#list goods.specificationSet as specification>
+										<#list cards.specificationSet as specification>
 											${specification.name} 
 										</#list>
 									</div>
 									<div id="closeHighlight" class="closeHighlight" title="关闭"></div>
 								</td>
 							</tr>
-							<#list goods.specificationSet as specification>
+							<#list cards.specificationSet as specification>
 								<#if specification.specificationType == "text">
 									<tr class="text">
 										<th>${specification.name}:</th>
@@ -214,15 +214,15 @@
 							<th>购买数量:</th>
 							<td>
 								<input type="text" id="quantity" value="1" />
-								<#if setting.scoreType == "goodsSet" && goods.score != 0>
-									&nbsp;&nbsp;( 所得积分: ${goods.score} )
+								<#if setting.scoreType == "cardsSet" && cards.score != 0>
+									&nbsp;&nbsp;( 所得积分: ${cards.score} )
 								</#if>
 							</td>
 						</tr>
 						<tr>
 							<th>确认金额:</th>
 							<td>
-								<span id="price1" class="price">${goods.price?string(currencyFormat)}</span>
+								<span id="price1" class="price">${cards.price?string(currencyFormat)}</span>
 							</td>
 						</tr>
 						<tr>
@@ -262,13 +262,13 @@
 						<tr>
 							<th>&nbsp;</th>
 							<td>
-								<#if !goods.isSpecificationEnabled && goods.isOutOfStock>
-									<input type="button" id="goodsButton" class="goodsNotifyButton" value="" hidefocus />
+								<#if !cards.isSpecificationEnabled && cards.isOutOfStock>
+									<input type="button" id="cardsButton" class="cardsNotifyButton" value="" hidefocus />
 								<#else>
-									<input type="button" id="goodsButton" class="addCartItemButton" value="" hidefocus />
+									<input type="button" id="cardsButton" class="addCartItemButton" value="" hidefocus />
 								</#if>
 								 
-								 <input type="button" id="addFavorite" class="addFavoriteButton" goodsId="${goods.id}" hidefocus />
+								 <input type="button" id="addFavorite" class="addFavoriteButton" cardsId="${cards.id}" hidefocus />
 							</td>
 						</tr>
 					</table>
@@ -276,13 +276,13 @@
 				</div>
 			</div>
 			<div class="blank"></div>
-			<div class="goodsBottom">
-				<ul id="goodsParameterTab" class="goodsParameterTab">
+			<div class="cardsBottom">
+				<ul id="cardsParameterTab" class="cardsParameterTab">
 					<li>
 						<a href="javascript: void(0);" class="current" hidefocus>充值卡介绍</a>
 					</li>
 					<li>
-						<a href="javascript: void(0);" name="goodsAttribute" hidefocus>充值卡参数</a>
+						<a href="javascript: void(0);" name="cardsAttribute" hidefocus>充值卡参数</a>
 					</li>
 					<#if setting.isCommentEnabled>
 						<li>
@@ -290,19 +290,19 @@
 						</li>
 					</#if>
 				</ul>
-				<div class="tabContent goodsIntroduction">
-					${goods.introduction}
+				<div class="tabContent cardsIntroduction">
+					${cards.introduction}
 				</div>
-				<div class="tabContent goodsAttribute">
-					<table class="goodsParameterTable">
-						<#list (goods.goodsType.goodsParameterList)! as goodsParameter>
-							<#if goods.goodsParameterValueMap.get(goodsParameter.id)?? && goods.goodsParameterValueMap.get(goodsParameter.id) != "">
+				<div class="tabContent cardsAttribute">
+					<table class="cardsParameterTable">
+						<#list (cards.cardsType.cardsParameterList)! as cardsParameter>
+							<#if cards.cardsParameterValueMap.get(cardsParameter.id)?? && cards.cardsParameterValueMap.get(cardsParameter.id) != "">
 								<tr>
 									<th>
-										${goodsParameter.name}
+										${cardsParameter.name}
 									</th>
 									<td>
-										${(goods.goodsParameterValueMap.get(goodsParameter.id))!}
+										${(cards.cardsParameterValueMap.get(cardsParameter.id))!}
 									</td>
 								</tr>
 							</#if>
@@ -311,7 +311,7 @@
 				</div>
 				<#if setting.isCommentEnabled>
 					<div id="comment" class="tabContent comment">
-						<@comment_list goods_id=goods.id count=5; commentList>
+						<@comment_list cards_id=cards.id count=5; commentList>
 							<#list commentList as comment>
 								<#assign isHasComment = true />
 								<div class="commentItem" id="commentItem${comment.id}">
@@ -332,12 +332,12 @@
 							</#list>
 							<#if (commentList?size > 0)>
 								<div class="info">
-									<a href="${base}/card/comment_list/${goods.id}.htm">查看所有评论&gt;&gt;</a>
+									<a href="${base}/card/comment_list/${cards.id}.htm">查看所有评论&gt;&gt;</a>
 								</div>
 							</#if>
 						</@comment_list>
 						<form id="commentForm" name="commentForm" method="post">
-							<input type="hidden" name="comment.goods.id" value="${goods.id}" />
+							<input type="hidden" name="comment.cards.id" value="${cards.id}" />
 							<input type="hidden" id="forCommentId" name="forCommentId" />
 							<table class="sendTable">
 								<tr class="title">
@@ -412,14 +412,14 @@
 		$closeHighlight = $("#closeHighlight");
 		$specificationValue = $("#buyInfo li");
 		$quantity = $("#quantity");
-		$goodsButton = $("#goodsButton");
+		$cardsButton = $("#cardsButton");
 	
 		// 添加充值卡浏览记录
-		$.addGoodsHistory("${substring(goods.name, 24, "...")}", "${base}${goods.htmlPath}");
+		$.addCardsHistory("${substring(cards.name, 24, "...")}", "${base}${cards.htmlPath}");
 		
-		<#if goods.isSpecificationEnabled>
+		<#if cards.isSpecificationEnabled>
 			var productDatas = {};
-			<#list goods.productSet as product>
+			<#list cards.productSet as product>
 				<#if product.isMarketable>
 					productDatas['${product.id}'] = {
 						productSn: "${product.productSn}",
@@ -431,7 +431,7 @@
 			</#list>
 			
 			var specificationValueDatas = {};
-			<#list goods.productSet as product>
+			<#list cards.productSet as product>
 				<#if product.isMarketable>
 					specificationValueDatas['${product.id}'] = new Array(<#list product.specificationValueList as specificationValue>"${specificationValue.id}"<#if specificationValue_has_next>, </#if></#list>);
 				</#if>
@@ -472,7 +472,7 @@
 					$tipsContent.text(tipsContentText);
 				} else {
 					$tipsTitle.text("请选择: ");
-					$tipsContent.text("<#list goods.specificationSet as specification>${specification.name} </#list>");
+					$tipsContent.text("<#list cards.specificationSet as specification>${specification.name} </#list>");
 				}
 				$.each(specificationValueDatas, function(i) {
 					if (arrayContains(specificationValueDatas[i], specificationValueSelecteds)) {
@@ -488,24 +488,24 @@
 						selectedProductId = i;
 						$buyInfo.removeClass("highlight");
 						if (productDatas[i].isOutOfStock) {
-							$goodsButton.addClass("goodsNotifyButton");
-							$goodsButton.removeClass("addCartItemButton");
+							$cardsButton.addClass("cardsNotifyButton");
+							$cardsButton.removeClass("addCartItemButton");
 						} else {
-							$goodsButton.addClass("addCartItemButton");
-							$goodsButton.removeClass("goodsNotifyButton");
+							$cardsButton.addClass("addCartItemButton");
+							$cardsButton.removeClass("cardsNotifyButton");
 						}
 					}
 				});
 			});
 			
 			// 添加充值卡至购物车/到货通知
-			$goodsButton.click(function () {
+			$cardsButton.click(function () {
 				var $this = $(this);
 				if (selectedProductId != null) {
 					if ($this.hasClass("addCartItemButton")) {
 						$.addCartItem(selectedProductId, $quantity.val());
 					} else {
-						location.href = '${base}/card/goods_notify!add.action?product.id=' + selectedProductId;
+						location.href = '${base}/card/cards_notify!add.action?product.id=' + selectedProductId;
 					}
 				} else {
 					$buyInfo.addClass("highlight");
@@ -518,7 +518,7 @@
 			$closeHighlight.click(function () {
 				$buyInfo.removeClass("highlight");
 				$tipsTitle.html("请选择: ");
-				$tipsContent.html("<#list goods.specificationSet as specification>${specification.name} </#list>");
+				$tipsContent.html("<#list cards.specificationSet as specification>${specification.name} </#list>");
 			});
 			
 			// 判断数组是否包含另一个数组中所有元素
@@ -553,15 +553,15 @@
 				return true;
 			}
 		<#else>
-			var selectedProductId = "${goods.defaultProduct.id}";
+			var selectedProductId = "${cards.defaultProduct.id}";
 			
 			// 添加充值卡至购物车/到货通知
-			$goodsButton.click(function () {
+			$cardsButton.click(function () {
 				var $this = $(this);
 				if ($this.hasClass("addCartItemButton")) {
 					$.addCartItem(selectedProductId, $quantity.val());
 				} else {
-					location.href='${base}/card/goods_notify!add.action?product.id=' + selectedProductId;
+					location.href='${base}/card/cards_notify!add.action?product.id=' + selectedProductId;
 				}
 			});
 		</#if>
