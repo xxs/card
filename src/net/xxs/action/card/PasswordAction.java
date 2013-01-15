@@ -40,7 +40,7 @@ public class PasswordAction extends BaseCardAction {
 		return INPUT;
 	}
 	// 密码密保
-	public String editquestion() {
+	public String safe() {
 		member = getLoginMember();
 		return "question";
 	}

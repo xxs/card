@@ -56,6 +56,28 @@ h1,h2,h3,h4,h5,h6{font-size:12px;font-weight:normal;}
 .chonx:hover{background:url(../images/sdd_03.gif) no-repeat;width:110px;height:30px;}
 .tijiao:hover{background:url(../images/an_03.gif) no-repeat;width:110px;height:30px;}
 .anniun{margin-left:40px;margin-top:30px;}
+/* button */
+input.red_button {
+	width: 110px;
+	height: 30px;
+	display: block;
+	float: left;
+	margin-right: 10px;
+	font-size: 14px;
+	font-weight: bold;
+	letter-spacing: 5px;
+	color: #ffff;
+	outline: none;
+	cursor: pointer;
+	border: none;
+	background: url(../images/btn_bj.gif) 0px 0px no-repeat;
+}
+
+input.red_button:hover {
+	background: url(../images/btn_bj.gif) 0px -30px no-repeat;
+}
+.red_button{background:url(../images/btn_bj.gif) no-repeat 0px 0px;width:110px;height:30px;cursor:pointer;float:left;text-indent:200px;}
+.red_button .btn_text{width:110px;height:30px;line-size:30px;font-size:18px;color:#000;}
 
 .zhong{float:right;width:261px;height:243px;margin:10px 0px;background:url(../images/dsf.gif) no-repeat 25px 54px;}
 .wenZi{float:right;margin:20px 10px 0 0;font-size:12px;width:165px;color:#666;line-height:18px;}
@@ -74,7 +96,7 @@ h1,h2,h3,h4,h5,h6{font-size:12px;font-weight:normal;}
 .biaoTitle li{float:left;border-right:1px solid #e1e2e2;text-align:center;line-height:35px;}
 .biaoText{height:90px;width:745px;text-align:center;line-height:90px;margin-bottom:10px;}
 
-.memberCenter table.stateTable {width: 100%;border: 1px solid #e8e8e8;margin-top:15px;}
+.memberCenter table.stateTable {width: 100%;border: 1px solid #e8e8e8;}
 .memberCenter table.stateTable th {line-height: 30px;padding-left: 10px;text-align: right;border-bottom: 1px solid #f1f1f1;background-color: #f6f6f6;}
 .memberCenter table.stateTable td {line-height: 28px;padding: 3px 10px;text-align: left;color: #595959;word-break: break-all;border-bottom: 1px solid #f1f1f1;}
 .memberCenter table.stateTable tr:hover {background-color: #f6f6f6}

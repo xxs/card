@@ -49,52 +49,6 @@
 							<td>${loginMember.loginIp}</td>
 						</tr>
 					</table>
-		</div>
-	</div>
-</div>
-<div class="clear"></div>
-<#include "/WEB-INF/template/card/member_footer.ftl">
-
-	
-		<div class="bodyRight">
-			<div class="memberCenterDetail">
-				<div class="top">会员中心首页</div>
-				<div class="middle">
-					<div class="blank"></div>
-					<table class="listTable">
-						<tr>
-							<td colspan="4">
-								您目前是[${loginMember.memberRank.name}]
-								<#if loginMember.memberRank.preferentialScale != 100>
-									<span class="red">[优惠百分比: ${loginMember.memberRank.preferentialScale}%]</span>
-								</#if>
-							</td>
-						</tr>
-						<tr>
-							<th>帐户总积分</th>
-							<td>${loginMember.score}</td>
-							<th>订单总数量</th>
-							<td>
-								${loginMember.orderSet?size}&nbsp;&nbsp;
-								<a href="order!list.action">[查看订单列表]</a>
-							</td>
-						</tr>
-						<tr>
-							<th>预存款余额</th>
-							<td>${loginMember.deposit?string(currencyFormat)}</td>
-							<th>未读消息数</th>
-							<td>
-								${unreadMessageCount}&nbsp;&nbsp;
-								<a href="message!inbox.action">[查看收件箱]</a>
-							</td>
-						</tr>
-						<tr>
-							<th>注册日期</th>
-							<td>${loginMember.createDate?string("yyyy-MM-dd HH:mm:ss")}</td>
-							<th>最后登录IP</th>
-							<td>${loginMember.loginIp}</td>
-						</tr>
-					</table>
 					<div class="blank"></div>
 					<table class="listTable">
 						<tr>
@@ -108,15 +62,7 @@
 							<tr>
 								<td width="350">
 									<a href="order!view.action?id=${order.id}">
-										<span title="<#list order.productItemSet as productItem><#if productItem_index != 0>、</#if>${productItem.name}</#list>">
-											<#list order.orderItemSet as orderItem>
-												<#if orderItem_index != 0>、</#if>
-												${orderItem.productName}
-												<#if orderItem_index == 3 && orderItem_has_next>
-													...<#break />
-												</#if>
-											</#list>
-										</span>
+										${order.productName}
 									</a>
 								</td>
 								<td>
@@ -126,12 +72,11 @@
 									<span title="${order.createDate?string("yyyy-MM-dd HH:mm:ss")}">${order.createDate}</span>
 								</td>
 								<td>
-									${order.totalAmount?string(currencyFormat)}
+									${order.amount?string(currencyFormat)}
 								</td>
 								<td>
 									<#if order.orderStatus != "completed" && order.orderStatus != "invalid">
 										[${action.getText("PaymentStatus." + order.paymentStatus)}]
-										[${action.getText("ShippingStatus." + order.shippingStatus)}]
 									<#else>
 										[${action.getText("OrderStatus." + order.orderStatus)}]
 									</#if>
@@ -147,15 +92,11 @@
 							</td>
 						</tr>
 					</table>
-					<div class="blank"></div>
-				</div>
-				<div class="bottom"></div>
-			</div>
+					<#include "/WEB-INF/template/card/pager.ftl">
 		</div>
-		<div class="blank"></div>
-		<#include "/WEB-INF/template/card/friend_link.ftl">
 	</div>
-	<div class="blank"></div>
-	<#include "/WEB-INF/template/card/footer.ftl">
+</div>
+<div class="clear"></div>
+<#include "/WEB-INF/template/card/member_footer.ftl">
 </body>
 </html>

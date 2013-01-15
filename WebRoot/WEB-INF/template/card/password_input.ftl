@@ -86,7 +86,7 @@ $().ready( function() {
 			<div class="red">注：请一定正确选择卡面值提交,否则造成损失商户自行承担； </div>
 			<div class="hei">卡信息提交成功后，可在<a href="#">订单查询</a>页面查询支付结果。处理结果以订单查询页为准。</div>
 			<div class="memberCenter">
-			<table class="stateTable">
+				<table class="stateTable">
 							<tr>
 								<th>
 									旧密码: 
@@ -124,7 +124,8 @@ $().ready( function() {
 									&nbsp;
 								</th>
 								<td>
-									<input type="submit" class="submitButton" value="提 交" hidefocus />
+									
+									<input type="submit" class="red_button" value="提   交iiiiiiiiiiiiiiiiiiiii" hidefocus />
 								</td>
 							</tr>
 						</table>

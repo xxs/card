@@ -10,7 +10,6 @@
 $().ready( function() {
 	var $refOrder = $(".refOrder");
 	alter("qqq");
-	// 删除收藏
 	$refOrder.click( function() {
 		alert("qqq");
 		var $this = $(this);
