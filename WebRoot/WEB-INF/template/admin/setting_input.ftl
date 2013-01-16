@@ -715,31 +715,6 @@ $().ready(function() {
 				</tr>
 				<tr>
 					<th>
-						充值卡库存报警数量: 
-					</th>
-					<td>
-						<input type="text" name="setting.storeAlertCount" class="formText" value="${setting.storeAlertCount}" title="只允许输入零或正整数" />
-						<label class="requireField">*</label>
-					</td>
-				</tr>
-				<tr>
-					<th>
-						库存预占时间点: 
-					</th>
-					<td>
-						<label title="设置库存预先扣除(占用)的时间点,而系统实际扣除库存点是发货操作">
-							<select name="setting.storeFreezeTime" class="requireField">
-								<#list storeFreezeTimeList as storeFreezeTime>
-									<option value="${storeFreezeTime}"<#if storeFreezeTime == setting.storeFreezeTime> selected</#if>>
-										${action.getText("StoreFreezeTime." + storeFreezeTime)}
-									</option>
-								</#list>
-							</select>
-						</label>
-					</td>
-				</tr>
-				<tr>
-					<th>
 						积分获取方式: 
 					</th>
 					<td>

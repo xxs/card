@@ -20,163 +20,187 @@
 			<div class="fangz">${substring(cards.name, 50, "...")}</div>
 			<div class="red">注：请一定正确选择卡面值提交,否则造成损失商户自行承担； </div>
 			<div class="hei">卡信息提交成功后，可在<a href="#">订单查询</a>页面查询支付结果。处理结果以订单查询页为准。</div>
-			<div class="memberCenter">
-			<form action="order!saveCard.action" method="post">
-				<div class="cardsTopRight">
-					<h1 class="title">${substring(cards.name, 50, "...")}</h1>
-					<ul class="cardsAttribute">
-						<li>充值卡编号: ${cards.cardsSn}</li>
-						<li>货品编号: <span id="productSn">${cards.defaultProduct.productSn}</span><input type="text" name="productId" value="${cards.defaultProduct.id}" /></li>
-						<#list (cards.cardsType.cardsAttributeSet)! as cardsAttribute>
-							<#if cards.getCardsAttributeValue(cardsAttribute)?? && cards.getCardsAttributeValue(cardsAttribute) != "">
-	                    		<li>${cardsAttribute.name}: ${substring(cards.getCardsAttributeValue(cardsAttribute), 26)}</li>
-							</#if>
-						</#list>
-					</ul>
-					<div class="blank"></div>
-					<div class="cardsPrice">
-						<div class="left"></div>
-						<div class="right">
-							<div class="top">
-								销 售 价:
-								<span id="price" class="price">${cards.price?string(currencyFormat)}</span>
-							</div>
-							<div class="bottom">
-								市 场 价:
-								<#if setting.isShowMarketPrice>
-									<span id="marketPrice" class="marketPrice">${cards.marketPrice?string(currencyFormat)}</span>
-								<#else>
-									-
-								</#if>
-							</div>
-						</div>
-					</div>
-					<div class="blank"></div>
-					
-					<table id="buyInfo" class="buyInfo">
+			<div class="tab">
+			<div class="tab_menu">
+			  	<ul>
+					<li class="selected">单张消耗</li>
+					<li style="border-right:1px solid #e1e2e2;">批量消耗</li>
+			  	</ul>
+				</div>
+				<div class="tab_box"> 
+	 			  <div class="tab_box_1">
+	 			  	<div class="memberCenter">
+					<form action="order!save.action" method="post">
+					<table class="tabTable">
+						<tr>
+							<th>充值卡编号: </th>
+							<td>
+								${cards.cardsSn}
+							</td>
+						</tr>
 						<#if cards.isSpecificationEnabled>
 							<#assign specificationValueSet = cards.specificationValueSet>
-							<tr class="specificationTips">
-								<th id="tipsTitle">请选择:</th>
-								<td>
-									<div id="tipsContent" class="tipsContent">
-										<#list cards.specificationSet as specification>
-											${specification.name} 
-										</#list>
-									</div>
-									<div id="closeHighlight" class="closeHighlight" title="关闭"></div>
-								</td>
-							</tr>
 							<#list cards.specificationSet as specification>
-								<#if specification.specificationType == "text">
 									<tr class="text">
 										<th>${specification.name}:</th>
 										<td>
-											<ul>
-												<#list specification.specificationValueList as specificationValue>
-													<#if specificationValueSet.contains(specificationValue)>
-														<li class="${specificationValue.id}" title="${specificationValue.name}" specificationValueId="${specificationValue.id}">
-															${specificationValue.name}qq
-															<span title="点击取消选择"></span>
-														</li>
-													</#if>
+											<ul id="buyInfo">
+												<#list cards.productSet as product>
+													<input type="radio" name="productId" value="${product.id}" <#if cards.defaultProduct.productSn != product.productSn >selected="selected"</#if> />&nbsp;${product.price}元
 												</#list>
 											</ul>
 										</td>
 									</tr>
-								<#else>
-									<tr class="image">
-										<th>${specification.name}:</th>
-										<td>
-											<ul>
-												<#list specification.specificationValueList as specificationValue>
-													<#if specificationValueSet.contains(specificationValue)>
-														<li class="${specificationValue.id}" title="${specificationValue.name}" specificationValueId="${specificationValue.id}">
-															<#if specificationValue.imagePath??>
-																<img src="${base}${specificationValue.imagePath}" alt="${specificationValue.name}" />
-															<#else>
-																<img src="${base}/template/card/images/default_specification.gif" />
-															</#if>
-															<span title="点击取消选择"></span>
-														</li>
-													</#if>
-												</#list>
-											</ul>
-										</td>
-									</tr>
-								</#if>
 							</#list>
 						</#if>
 						<tr>
-							<th>购买数量:</th>
-							<td>
-								<input type="text" id="quantity" value="1" />
-								<#if setting.scoreType == "cardsSet" && cards.score != 0>
-									&nbsp;&nbsp;( 所得积分: ${cards.score} )
-								</#if>
-							</td>
-						</tr>
-						<tr>
 							<th>确认金额:</th>
 							<td>
-								<span id="price1" class="price">${cards.price?string(currencyFormat)}</span>
+								<span id="price1" class="red">${cards.price?string(currencyFormat)}</span>
 							</td>
 						</tr>
 						<tr>
-							<th>支付方式:</th>
+							<th>卡号:</th>
 							<td>
-								<input type="radio" name="222" />单张支付
-								<input type="radio" name="222" />多张支付
-							</td>
-						</tr>
-						<tr>
-							<th>卡号组合:</th>
-							<td>
-								<input type="text"  />
+								<input type="text" name="cardNum" />
 								
 							</td>
 						</tr>
 						<tr>
-							<th>密码组合:</th>
+							<th>密码:</th>
 							<td>
-								<input type="text" />
+								<input type="text" name="cardPwd"/>
 								
 							</td>
 						</tr>
 						<tr>
-							<th>支付途径:</th>
+							<th>支付通道:</th>
 							<td>
-								<input type="radio" name="444" />易宝支付<input type="text" name="paymentConfig.id" value="4028bc743ab4e741013ab538ee9c0006" />
-								<input type="radio" name="444" />拉卡支付
+								<#list allPaymentConfigList as paymentConfig>
+									<input type="radio" name="paymentConfig.id" value="${paymentConfig.id}"/>&nbsp;${paymentConfig.name}
+								</#list>
 							</td>
 						</tr>
 						<tr>
 							<th></th>
 							<td>
-								<input type="submit" value="生成订单" />
-							</td>
-						</tr>
-						<tr>
-							<th>&nbsp;</th>
-							<td>
-								<#if !cards.isSpecificationEnabled && cards.isOutOfStock>
-									<input type="button" id="cardsButton" class="cardsNotifyButton" value="" hidefocus />
-								<#else>
-									<input type="button" id="cardsButton" class="addCartItemButton" value="" hidefocus />
-								</#if>
-								 
-								 <input type="button" id="addFavorite" class="addFavoriteButton" cardsId="${cards.id}" hidefocus />
+								<input type="submit" class="red_button" value="生成订单" />
 							</td>
 						</tr>
 					</table>
-					</form>
+				</form>
 				</div>
+				</div>
+		 			<div class="hide">
+				 	<div class="memberCenter">
+					<form action="order!batch.action" method="post">
+					<table class="tabTable">
+						<tr>
+							<th>充值卡编号: </th>
+							<td>
+								${cards.cardsSn}
+							</td>
+						</tr>
+						<#if cards.isSpecificationEnabled>
+							<#assign specificationValueSet = cards.specificationValueSet>
+							<#list cards.specificationSet as specification>
+									<tr class="text">
+										<th>${specification.name}:</th>
+										<td>
+											<ul id="buyInfo">
+												<#list cards.productSet as product>
+													<input type="radio" name="productId" value="${product.id}"/>&nbsp;${product.price}元
+												</#list>
+											</ul>
+										</td>
+									</tr>
+							</#list>
+						</#if>
+						<tr>
+							<th>确认金额:</th>
+							<td>
+								<span id="resultPrice" class="red">${cards.price?string(currencyFormat)}</span>
+							</td>
+						</tr>
+						<tr>
+							
+						</tr>
+							<th>卡密组合:</th>
+							<td>
+								<p>输入格式如:xxxxx(账号)xxxxx,xxxxxx(密码)xxxx</p>
+								<textarea cols="60" rows="10" name="cardString"></textarea>
+							</td>
+						<tr>
+							<th>支付通道:</th>
+							<td>
+								<#list allPaymentConfigList as paymentConfig>
+									<input type="radio" name="paymentConfig.id" value="${paymentConfig.id}"/>&nbsp;${paymentConfig.name}
+								</#list>
+							</td>
+						</tr>
+						<tr>
+							<th></th>
+							<td>
+								<input type="submit" class="red_button" value="生成订单" />
+							</td>
+						</tr>
+					</table>
+				</form>
+				</div>
+		 			</div>
+				</div>
+			</div> 
+
 			</div>
 			</div>
 		</div>
 	</div>
 	</div>
-<div class="clear"></div>
+	<div class="clear"></div>
 	<#include "/WEB-INF/template/card/member_footer.ftl">
+	<script type="text/javascript" src="${base}/template/common/js/jquery.js"></script>
+	<script type="text/javascript" src="${base}/template/common/js/jquery.tools.js"></script>
+	<script type="text/javascript">
+		$().ready( function() {
+			var $refOrder = $(".refOrder");
+			alter("qqq");
+			$refOrder.click( function() {
+				alert("qqq");
+				var $this = $(this);
+				var orderId = $this.attr("orderId");
+				$.ajax({url: "/card/order!query.action",
+						data: {id: orderId},
+						type: "POST",
+						dataType: "json",
+						cache: false,
+						success: function(data) {
+							$.message({type: data.status, content: data.message});
+							//$this.parent().parent().remove();
+						}
+					});
+				}
+				return false;
+			});
+		});
+	</script>
+	<script type="text/javascript" >
+	//<![CDATA[
+		$(function(){
+		    var $div_li =$("div.tab_menu ul li");
+		    $div_li.click(function(){//要点击切换这click
+				$(this).addClass("selected")            //当前<li>元素高亮
+					   .siblings().removeClass("selected");  //去掉其它同辈<li>元素的高亮
+	            var index =  $div_li.index(this);  // 获取当前点击的<li>元素 在 全部li元素中的索引。
+				$("div.tab_box > div")   	//选取子节点。不选取子节点的话，会引起错误。如果里面还有div 
+						.eq(index).show()   //显示 <li>元素对应的<div>元素
+						.siblings().hide(); //隐藏其它几个同辈的<div>元素
+			}).hover(function(){
+				$(this).addClass("hover");
+			},function(){
+				$(this).removeClass("hover");
+			})
+		})
+	//]]>
+	</script>
 </body>
 </html>

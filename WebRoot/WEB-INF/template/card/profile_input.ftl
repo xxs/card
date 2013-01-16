@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="content-type" content="text/html; charset=utf-8" />
-<title>个人信息<#if setting.isShowPoweredInfo> - XXS</#if></title>
+<title>个人信息<#if setting.isShowPoweredInfo> - 会员中心</#if></title>
 <meta name="Author" content="XXS-DW" />
 <meta name="Copyright" content="XXS" />
 <#include "/WEB-INF/template/card/member_head.ftl">
@@ -15,13 +15,6 @@ $().ready( function() {
 	var $validateErrorLabelContainer = $("#validateErrorContainer ul");
 	var $validateForm = $("#validateForm");
 
-	var $areaSelect = $("#areaSelect");
-
-	// 地区选择菜单
-	$areaSelect.lSelect({
-		url: "${base}/card/area!ajaxArea.action"// AJAX数据获取url
-	});
-	
 	// 表单验证
 	$validateForm.validate({
 		errorContainer: $validateErrorContainer,
@@ -120,20 +113,11 @@ $().ready( function() {
 	</div>
 	<div class="contentRight">
 		<div class="katong">
-			<div class="fangz">修改密码 </div>
-			<div class="red">注：请一定正确选择卡面值提交,否则造成损失商户自行承担； </div>
-			<div class="hei">卡信息提交成功后，可在<a href="#">订单查询</a>页面查询支付结果。处理结果以订单查询页为准。</div>
+			<div class="fangz">个人信息 </div>
+			<div class="hei">注：完善个人信息有助于申请商户权限</div>
 			<div class="memberCenter">
 			<form id="validateForm" action="profile!update.action" method="post">
 						<table class="inputTable">
-							<tr>
-								<th>
-									推荐人: 
-								</th>
-								<td>
-									${member.referrer}
-								</td>
-							</tr>
 							<tr>
 								<th>
 									E-mail: 
@@ -175,6 +159,9 @@ $().ready( function() {
 											<#elseif memberAttribute.systemAttributeType == "mobile">
 												<input type="text" name="memberAttributeValueMap['${memberAttribute.id}']" class="formText" value="${(member.getMemberAttributeValue(memberAttribute))!}" />
 												<#if memberAttribute.isRequired><label class="requireField">*</label></#if>
+											<#elseif memberAttribute.systemAttributeType == "referrer">
+												<input type="text" name="memberAttributeValueMap['${memberAttribute.id}']" class="formText" value="${(member.getMemberAttributeValue(memberAttribute))!}" />
+												<#if memberAttribute.isRequired><label class="requireField">*</label></#if>
 											</#if>
 										<#else>
 											<#if memberAttribute.attributeType == "text">
@@ -213,7 +200,7 @@ $().ready( function() {
 									&nbsp;
 								</th>
 								<td>
-									<input type="submit" class="submitButton" value="提 交" hidefocus />
+									<input type="submit" class="red_button" value="提 交" hidefocus />
 								</td>
 							</tr>
 						</table>

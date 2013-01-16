@@ -17,17 +17,25 @@ h1,h2,h3,h4,h5,h6{font-size:12px;font-weight:normal;}
 
 
 .content{width:995px;margin:20px auto 0 auto;overflow:hidden;}
-.contentLeft{float:left;width:200px;border:1px solid #e1e2e2;margin:0 auto 10px auto;}
+.contentLeft{float:left;width:200px;border:1px solid #e1e2e2;margin:0 auto 10px auto;overflow:hidden; min-height:700px;}
 .contentLeft p{line-height:25px;padding-left:15px;font-size:12px;}
 .contentLeft .heng{border-bottom:1px solid #e1e2e2;border-top:1px solid #e1e2e2;border-right:0px;border-left:0px;height:10px;}
 .contentLeft li{height:36px;line-height:36px;text-align:center;font-size:14px;}
 .contentLeft li:hover{background:#f8f8f8;}
 .contentLeft li a{color:#666;text-decoration:none;width:150px;float:left;}
 .contentLeft li a:hover{color:#f00;font-weight:bold;background:url(../images/chongz_20.jpg) no-repeat right;}
-.dang{color:#f00;font-weight:bold;background:url(../images/chongz_20.jpg) no-repeat right;}
 	
 .contentRight{float:right;width:770px;margin-bottom:15px;}
-
+/* tab */
+.tab {width:760px;margin-top:15px;}
+.tab_menu {clear:both;overflow:hidden;}
+.tab_menu li{border:1px solid #e1e2e2; border-bottom:none;border-right:none;float:left;color:#666;text-align:center;padding:0 15px;cursor:pointer;height:40px;line-height:40px;background:#efefef url(../images/xian.jpg) bottom no-repeat;font-size:14px;font-weight:bold;}
+.tab_menu li.hover {background:#fff;color:#666;}
+.tab_menu li.selected {color:#600;background:#fff;}
+.tab_box {clear:both;border-top:none;overflow:hidden;padding-top:0px;}
+.hide{display:none}
+.tab_box_1{clear:both;border-top:none;overflow:hidden;padding-top:0px;}
+		
 .katong{height:120px;}
 .fangz{background:url(../images/chongz_16.jpg) no-repeat;height:37px;border-bottom:1px solid #ebebeb;font-weight:bold;font-size:24px;color:#666;padding-left:30px;line-height:34px;margin-bottom:10px;}
 .fangz a{font-weight:none;color:#f00;text-decoration:none;}
@@ -52,9 +60,6 @@ h1,h2,h3,h4,h5,h6{font-size:12px;font-weight:normal;}
 .ka{margin-left:60px;height:31px;line-height:31px;margin-bottom:10px;}
 .kaText{background:url(../images/chongz_39.jpg) no-repeat;height:31px;width:210px;border:none;margin-left:40px;text-indent:12px;line-height:31px;}
 .tijiao{background:url(../images/chongz_43.gif) no-repeat;width:110px;height:30px;border:none; cursor:pointer;float:left;text-indent:200px;}
-.chonx{background:url(../images/chongz_45.gif) no-repeat;width:110px;height:30px;border:none; cursor:pointer;float:left;margin-left:20px;text-indent:200px;}
-.chonx:hover{background:url(../images/sdd_03.gif) no-repeat;width:110px;height:30px;}
-.tijiao:hover{background:url(../images/an_03.gif) no-repeat;width:110px;height:30px;}
 .anniun{margin-left:40px;margin-top:30px;}
 /* button */
 input.red_button {
@@ -96,23 +101,28 @@ input.red_button:hover {
 .biaoTitle li{float:left;border-right:1px solid #e1e2e2;text-align:center;line-height:35px;}
 .biaoText{height:90px;width:745px;text-align:center;line-height:90px;margin-bottom:10px;}
 
-.memberCenter table.stateTable {width: 100%;border: 1px solid #e8e8e8;}
+.memberCenter table.stateTable {width: 100%;border: 2px solid #e8e8e8;overflow:hidden;}
 .memberCenter table.stateTable th {line-height: 30px;padding-left: 10px;text-align: right;border-bottom: 1px solid #f1f1f1;background-color: #f6f6f6;}
 .memberCenter table.stateTable td {line-height: 28px;padding: 3px 10px;text-align: left;color: #595959;word-break: break-all;border-bottom: 1px solid #f1f1f1;}
 .memberCenter table.stateTable tr:hover {background-color: #f6f6f6}
 .memberCenter table.stateTable .title {width: 70px;font-weight: bold;}
 
-.memberCenter table.listTable {width: 100%;border: 1px solid #e8e8e8;margin-top:15px;}
+.memberCenter table.listTable {width: 100%;border: 2px solid #e8e8e8;margin-top:15px;overflow:hidden;}
 .memberCenter table.listTable th {width: 150px;line-height: 45px;	padding-right: 10px;text-align: center;color: #333333;background-color: #fafafa;}
 .memberCenter table.listTable tr:hover th {background-color: #eeeeee;}
 .memberCenter table.listTable td {line-height: 35px;padding: 3px 5px;	text-align: center;color: #595959;}
 .memberCenter table.listTable tr:hover td {background-color: #fafafa;}
 
-.memberCenter table.inputTable {width: 100%;border: 1px solid #e8e8e8;margin-top:15px;}
+.memberCenter table.inputTable {width: 100%;border: 2px solid #e8e8e8;margin-top:15px;overflow:hidden;}
 .memberCenter table.inputTable th {	width: 150px;line-height: 35px;	padding-right: 10px;text-align: right;color: #333333;background-color: #fafafa;}
 .memberCenter table.inputTable tr:hover th {background-color: #eeeeee;}
 .memberCenter table.inputTable td {	line-height: 30px;padding: 3px 5px;	text-align: left;color: #595959;}
 .memberCenter table.inputTable tr:hover td {background-color: #fafafa;}
+
+.memberCenter table.tabTable {width: 100%;border: 2px solid #e8e8e8;margin-top:-1px;overflow:hidden;}
+.memberCenter table.tabTable th {	width: 150px;line-height: 35px;	padding-right: 10px;text-align: right;color: #333333;background-color: #fafafa;}
+.memberCenter table.tabTable td {	line-height: 30px;padding: 3px 5px;	text-align: left;color: #595959;}
+.memberCenter table.tabTable tr:hover td {background-color: #fafafa;}
 
 .pager {float: right;clear: both;margin-top:15px;margin-bottom:15px;}
 .pager li {line-height: 18px;display: block;float: left;padding: 0px 5px;margin: 0px 3px;font-size: 12px;border: 1px solid #cccccc;}
@@ -124,4 +134,4 @@ input.red_button:hover {
 .pager li.currentPage span {font-weight: bold;color: #ffffff;}
 .pager li.pageInfo {margin-right: 5px;color: #464646;border: none;background: none;}
 	
-.bottom{height:25px;line-height:25px;text-align:center;width:460px;color:#929292;margin:0 auto 10px;clear:both;}
+.bottom{clear:both;height:25px;line-height:25px;text-align:center;width:760px;color:#929292;margin:0 auto 50px;}

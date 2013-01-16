@@ -52,7 +52,6 @@ $().ready( function() {
 							<th>订单金额</th>
 							<th>订单状态</th>
 							<th>状态码</th>
-							<th>支付结果</th>
 							<th>操作</th>
 						</tr>
 						<#list pager.result as order>
@@ -60,7 +59,7 @@ $().ready( function() {
 								<td>
 									<a href="order!view.action?id=${order.id}">${order.orderSn}</a>
 								</td>
-								<td width="100">
+								<td width="250">
 									<a href="order!view.action?id=${order.id}">
 										${order.productName}
 									</a>
@@ -80,22 +79,12 @@ $().ready( function() {
 									</#if>
 								</td>
 								<td>
-									<#if order.retCode == "">
-										${order.retCode}
-									<#else>
-										-
-									</#if>
-								</td>
-								<td>
-									<#if order.retMsg == "">
-										${order.retMsg}
-									<#else>
-										-
-									</#if>
+										
+										<span title="${order.retMsg}">${order.retCode}</span>
 								</td>
 								<td>
 									<!-- <span class="refOrder" orderId="${order.id}" >刷新</span> -->
-									<input name="" type="button" class="chonx" value="按钮"/>
+									<input name="" type="button" class="red_button" value="按钮"/>
 								</td>
 							</tr>
 						</#list>	

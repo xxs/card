@@ -66,12 +66,7 @@
 .friendlink ul li{width:103px;float:left; margin-left:5px;}
 .friendlink ul li span{width:60px;float:left; margin-left:20px;line-height:30px;}
 /* copyright */
-.copyright{width:100%;height:246px;background:#dbdbdb;}
-.copyright_shang{ height:123px; padding-top:20px;border-bottom:1px solid #c0c0c0;width:995px; margin:0 auto;}
-.copyright_shang dl{float:left; display:block;}
-.copyright_shang dl dt{ font-size:12px;}
-.copyright_shang dl dd p{ display:block;margin-right:10px; margin-top:12px;float: left;}
-copyright_shang dl .xiao2 p{ margin-right:5px;}
+.bottom{clear:both;height:50px;line-height:25px;text-align:center;width:760px;color:#929292;margin:0 auto 10px;}
 
 .copyright_xia{width:995px;height:100px;margin:0 auto;}
 .copyright_xia span{text-align:center;width:995px;display:block;font-size:12px;color:#999; line-height:39px;}
@@ -131,7 +126,7 @@ ul,li{ list-style-type:none;}
 .index_bg03 {BACKGROUND: url(../images/banner_bg03.gif) repeat-x 0px 0px}
 .index_bg04 {BACKGROUND: url(../images/banner_bg04.gif) repeat-x 0px 0px}
 .index_bg05 {BACKGROUND: url(../images/banner_bg05.gif) repeat-x 0px 0px}
-#warp {PADDING-BOTTOM: 0px; MARGIN: 0px; PADDING-LEFT: 0px; WIDTH: 100%; PADDING-RIGHT: 0px; HEIGHT: 357px;; PADDING-TOP: 0px;}
+#warp {PADDING-BOTTOM: 0px; MARGIN: 0px; PADDING-LEFT: 0px; WIDTH: 100%; PADDING-RIGHT: 0px; HEIGHT: 357px;; PADDING-TOP: 1px;}
 .banner {Z-INDEX: 99; MARGIN: 0px auto; WIDTH: 971px; HEIGHT: 357px; _width: 973px}
 .banner_l {MARGIN-TOP: 147px; WIDTH: 23px; FLOAT: left}
 .banner_r {MARGIN-TOP: 147px; WIDTH: 23px; FLOAT: left}

@@ -5,7 +5,6 @@ import java.util.Map;
 
 import javax.annotation.Resource;
 
-import net.xxs.bean.Pager.Order;
 import net.xxs.entity.Brand;
 import net.xxs.entity.Cards;
 import net.xxs.entity.PaymentConfig;
@@ -13,14 +12,11 @@ import net.xxs.service.BrandService;
 import net.xxs.service.CardsService;
 import net.xxs.service.PaymentConfigService;
 
-import org.apache.commons.lang.StringUtils;
 import org.apache.struts2.convention.annotation.InterceptorRef;
 import org.apache.struts2.convention.annotation.InterceptorRefs;
 import org.apache.struts2.convention.annotation.ParentPackage;
 
 import com.opensymphony.xwork2.interceptor.annotations.InputConfig;
-import com.opensymphony.xwork2.validator.annotations.RequiredStringValidator;
-import com.opensymphony.xwork2.validator.annotations.Validations;
 
 /**
  * 前台Action类 - 充值卡
@@ -101,5 +97,4 @@ public class CardsAction extends BaseCardAction {
 	public void setCards(Cards cards) {
 		this.cards = cards;
 	}
-	
 }

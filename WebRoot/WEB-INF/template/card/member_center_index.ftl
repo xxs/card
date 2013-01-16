@@ -18,7 +18,8 @@
 				<table class="stateTable">
 						<tr>
 							<td colspan="4">
-								您目前是[${loginMember.memberRank.name}]
+								您目前是[${loginMember.memberRank.name}],目前等级享受的提现手续费率为：${(1-loginMember.memberRank.lossrate)*100}%&nbsp;!
+								下一等级将享受的提现手续费率为：${(1-loginMember.memberRank.lossrate)*100}%
 								<#if loginMember.memberRank.preferentialScale != 100>
 									<span class="red">[优惠百分比: ${loginMember.memberRank.preferentialScale}%]</span>
 								</#if>
@@ -60,7 +61,7 @@
 						</tr>
 						<#list loginMember.orderSet as order>
 							<tr>
-								<td width="350">
+								<td width="150">
 									<a href="order!view.action?id=${order.id}">
 										${order.productName}
 									</a>
@@ -96,7 +97,7 @@
 		</div>
 	</div>
 </div>
-<div class="clear"></div>
+<div class="blank"></div>
 <#include "/WEB-INF/template/card/member_footer.ftl">
 </body>
 </html>

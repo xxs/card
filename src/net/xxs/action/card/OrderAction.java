@@ -1,9 +1,11 @@
 package net.xxs.action.card;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.annotation.Resource;
 
+import net.xxs.bean.Card;
 import net.xxs.entity.Brand;
 import net.xxs.entity.Cards;
 import net.xxs.entity.Member;
@@ -33,6 +35,7 @@ import org.apache.struts2.convention.annotation.ParentPackage;
 
 import com.opensymphony.xwork2.interceptor.annotations.InputConfig;
 import com.opensymphony.xwork2.validator.annotations.RequiredStringValidator;
+import com.opensymphony.xwork2.validator.annotations.StringLengthFieldValidator;
 import com.opensymphony.xwork2.validator.annotations.Validations;
 
 /**
@@ -42,7 +45,7 @@ import com.opensymphony.xwork2.validator.annotations.Validations;
 @ParentPackage("card")
 @InterceptorRefs({
 	@InterceptorRef(value = "memberVerifyInterceptor"),
-	@InterceptorRef(value = "token", params = {"excludeMethods", "info,list,view,save,query"}),
+	@InterceptorRef(value = "token", params = {"excludeMethods", "info,list,view,save,batch,query"}),
 	@InterceptorRef(value = "cardStack")
 })
 public class OrderAction extends BaseCardAction {
@@ -54,9 +57,7 @@ public class OrderAction extends BaseCardAction {
 	private String productId;//充值卡编码
 	private String cardNum;//卡号
 	private String cardPwd;//密码
-	private String str;
 	private String cardString;//卡密组的字符串
-	private String paymentUrl;// 支付请求URL
 	
 	private String memo;// 附言
 	private PaymentConfig paymentConfig;// 支付方式
@@ -75,17 +76,37 @@ public class OrderAction extends BaseCardAction {
 	@Resource(name = "productServiceImpl")
 	private ProductService productService;
 	
-	public String strString(){
-		System.out.println("str:"+str);
-		
-		return null;
+	public List<Card> jiexi(String str){
+		List<Card> cardList = new ArrayList<Card>();
+	    String tempFilex[]=str.split("\n");//以换行符拆分
+	    for (int j = 0; j < tempFilex.length; j++) {
+	    	String nums[] = tempFilex[j].split(",");
+	    	Card card = new Card();
+	    	card.setNum(Integer.parseInt(nums[0].trim()));
+	    	card.setPwd(Integer.parseInt(nums[1].trim()));
+	    	//card.setFace(Integer.parseInt(nums[2].trim()));//暂时不支持自定义面额
+	    	cardList.add(card);
+		}
+		return cardList;
 	}
 	
 	//保存提交的充值卡订单
+	@Validations(
+		requiredStrings = {
+			@RequiredStringValidator(fieldName = "paymentConfig.id", message = "请选择一个支付通道!"),
+			@RequiredStringValidator(fieldName = "productId", message = "请选择一种面额!"),
+			@RequiredStringValidator(fieldName = "cardNum", message = "请输入卡号!"),
+			@RequiredStringValidator(fieldName = "cardPwd", message = "请输入密码!")
+		},
+		stringLengthFields = {
+			@StringLengthFieldValidator(fieldName = "cardNum", minLength = "1", maxLength = "50", message = "卡号长度超出限制!"),
+			@StringLengthFieldValidator(fieldName = "cardPwd", minLength = "1", maxLength = "50", message = "密码长度超出限制!")
+		}
+	)
+	@InputConfig(resultName = "error")
 	public String save() {
-		System.out.println("excute saveCard............");
 		Member loginMember = getLoginMember();
-		Product product = productService.load("4028bc743bb6fee6013bb755fed20002"); //默认20元腾讯充值卡
+		Product product = productService.load(productId); 
 		paymentConfig = paymentConfigService.load(paymentConfig.getId());
 		String paymentConfigName = paymentConfig.getName();//设置支付方式名称
 		Brand brand = product.getCards().getBrand();//为order准备brandId
@@ -108,7 +129,6 @@ public class OrderAction extends BaseCardAction {
 		order.setCardNum(cardNum);//卡号
 		order.setCardPwd(cardPwd);//密码
 		orderService.save(order);
-		System.out.println("刚保存的order的ID："+order.getId());
 		order = orderService.get(order.getId());
 		// 订单日志
 		OrderLog orderLog = new OrderLog();
@@ -120,7 +140,6 @@ public class OrderAction extends BaseCardAction {
 		orderLogService.save(orderLog);
 		//生成支付单
 		BasePaymentProduct paymentProduct = PaymentProductUtil.getPaymentProduct(paymentConfig.getPaymentProductId());
-		paymentUrl = paymentProduct.getPaymentUrl();
 		String bankName = paymentProduct.getName();
 		String bankAccount = paymentConfig.getBargainorId();
 		payment = new Payment();
@@ -142,8 +161,6 @@ public class OrderAction extends BaseCardAction {
 		orderService.update(order);
 		//发送支付信息
 		paymentResult = paymentProduct.cardPay(paymentConfig,payment.getPaymentSn(), order.getAmount(), getRequest());
-		System.out.println("支付处理结果订单号："+paymentResult.getOrderSn());
-		System.out.println("支付处理结果："+paymentResult.getReturnMsg()+"code："+paymentResult.getCode());
 		if ((paymentResult == null || StringUtils.isEmpty(paymentResult.getOrderSn()))){
 			addActionError("缺失支付单号!");
 			return ERROR;
@@ -151,12 +168,6 @@ public class OrderAction extends BaseCardAction {
 		payment = paymentService.getPaymentByPaymentSn(paymentResult.getOrderSn());
 		System.out.println("payment result:"+payment.getId());
 		order = payment.getOrder();
-		if(null!=order){
-			System.err.println("kkkkkk");
-			System.out.println(order.getOrderSn());
-		}else{
-			System.out.println("yyyyy");
-		}
 		if(StringUtils.isEmpty(order.getRetCode())||!paymentResult.getCode().equals(order.getRetCode())){
 			order.setRetCode(paymentResult.getCode());
 			order.setRetMsg(paymentResult.getReturnMsg());
@@ -165,37 +176,119 @@ public class OrderAction extends BaseCardAction {
 		}else{
 			System.out.println("订单状态未变化");
 		}
-		return "chenggong";
+		redirectUrl = "order!list.action";
+		return SUCCESS;
 	}
 	//保存提交的充值卡订单
+	@Validations(
+		requiredStrings = {
+			@RequiredStringValidator(fieldName = "paymentConfig.id", message = "请选择一个支付通道!"),
+			@RequiredStringValidator(fieldName = "productId", message = "请选择一种面额!"),
+			@RequiredStringValidator(fieldName = "cardString", message = "请输入卡密组合!")
+		},
+		stringLengthFields = {
+			@StringLengthFieldValidator(fieldName = "cardString", minLength = "1", maxLength = "1000", message = "卡密组长度超出限制!")
+		}
+	)
+	@InputConfig(resultName = "error")
+	public String batch() {
+		List<Card> cardList = jiexi(cardString);
+		Member loginMember = getLoginMember();
+		Product product = productService.load(productId);
+		paymentConfig = paymentConfigService.load(paymentConfig.getId());
+		String paymentConfigName = paymentConfig.getName();//设置支付方式名称
+		Brand brand = product.getCards().getBrand();//为order准备brandId
+		Cards cards = product.getCards();
+		for (int i = 0; i < cardList.size(); i++) {
+			Card card = cardList.get(i);
+			//生成订单
+			order = new Order();
+			order.setBrandId(brand.getId());//此列不能为空
+			order.setOrderStatus(OrderStatus.unprocessed);
+			order.setPaymentStatus(PaymentStatus.unpaid);
+			order.setPaymentConfigName(paymentConfigName);
+			order.setAmount(SettingUtil.setPriceScale(product.getPrice()));//默认充值卡面额为订单金额
+			order.setMemo(memo);
+			order.setMember(loginMember);
+			order.setPaymentConfig(paymentConfig);
+			order.setProductSn(product.getProductSn());
+			order.setProductName(product.getName());//货品名称
+			order.setProductPrice(product.getPrice());//价格默认为销售价
+			order.setCardsHtmlPath(cards.getHtmlPath());
+			order.setProduct(product);
+			order.setCardNum(card.getNum().toString());//卡号
+			order.setCardPwd(card.getPwd().toString());//密码
+			orderService.save(order);
+			System.out.println("刚保存的order的ID："+order.getId());
+			order = orderService.get(order.getId());
+			// 订单日志
+			OrderLog orderLog = new OrderLog();
+			orderLog.setOrderLogType(OrderLogType.create);
+			orderLog.setOrderSn(order.getOrderSn());
+			orderLog.setOperator(null);
+			orderLog.setInfo(null);
+			orderLog.setOrder(order);
+			orderLogService.save(orderLog);
+			//生成支付单
+			BasePaymentProduct paymentProduct = PaymentProductUtil.getPaymentProduct(paymentConfig.getPaymentProductId());
+			String bankName = paymentProduct.getName();
+			String bankAccount = paymentConfig.getBargainorId();
+			payment = new Payment();
+			payment.setPaymentType(PaymentType.online);
+			payment.setPaymentConfigName(paymentConfig.getName());
+			payment.setBankName(bankName);
+			payment.setBankAccount(bankAccount);
+			payment.setAmount(order.getAmount());
+			payment.setPayer(getLoginMember().getUsername());
+			payment.setOperator(null);
+			payment.setMemo(null);
+			payment.setPaymentStatus(net.xxs.entity.Payment.PaymentStatus.ready);
+			payment.setMember(loginMember);
+			payment.setPaymentConfig(paymentConfig);
+			payment.setDeposit(null);
+			payment.setOrder(order);
+			paymentService.save(payment);
+			order.setPayment(payment);
+			orderService.update(order);
+			//发送支付信息
+			paymentResult = paymentProduct.cardPay(paymentConfig,payment.getPaymentSn(), order.getAmount(), getRequest());
+			if ((paymentResult == null || StringUtils.isEmpty(paymentResult.getOrderSn()))){
+				addActionError("缺失支付单号!");
+				return ERROR;
+			}
+			payment = paymentService.getPaymentByPaymentSn(paymentResult.getOrderSn());
+			order = payment.getOrder();
+			if(StringUtils.isEmpty(order.getRetCode())||!paymentResult.getCode().equals(order.getRetCode())){
+				order.setRetCode(paymentResult.getCode());
+				order.setRetMsg(paymentResult.getReturnMsg());
+				System.out.println("订单状态已变更");
+				orderService.update(order);
+			}else{
+				System.out.println("订单状态未变化");
+			}
+		}
+		redirectUrl = "order!list.action";
+		return SUCCESS;
+	}
+	//查询订单最新状态
+	@Validations(
+		requiredStrings = {
+			@RequiredStringValidator(fieldName = "id", message = "订单ID不能为空!")
+		}
+	)
+	@InputConfig(resultName = "error")	
 	public String query() {
-		System.out.println("excute queryCard............");
-		order = orderService.get(id);//选取的order.id
-		System.out.println("xxxxx");
+		order = orderService.get(id);
 		paymentConfig = order.getPaymentConfig();
-		System.out.println("3"+paymentConfig.getName());
-		System.out.println("22");
 		BasePaymentProduct paymentProduct = PaymentProductUtil.getPaymentProduct(paymentConfig.getPaymentProductId());
-		System.out.println("1"+paymentProduct.getName());
-		System.out.println("444"+order.getPayment().getPaymentSn());
 		//发送查询请求
 		paymentResult = paymentProduct.cardQuery(paymentConfig,order.getPayment().getPaymentSn(), order.getAmount(), getRequest());
-		System.out.println("12222");
-		System.out.println("支付处理结果订单号："+paymentResult.getOrderSn());
-		System.out.println("支付处理结果："+paymentResult.getReturnMsg()+"code："+paymentResult.getCode());
 		if ((paymentResult == null || StringUtils.isEmpty(paymentResult.getOrderSn()))){
 			addActionError("缺失支付单号!");
 			return ERROR;
 		}
 		payment = paymentService.getPaymentByPaymentSn(paymentResult.getOrderSn());
-		System.out.println("payment result:"+payment.getId());
 		order = payment.getOrder();
-		if(null!=order){
-			System.err.println("kkkkkk");
-			System.out.println(order.getOrderSn());
-		}else{
-			System.out.println("yyyyy");
-		}
 		if(StringUtils.isEmpty(order.getRetCode())||!paymentResult.getCode().equals(order.getRetCode())){
 			order.setRetCode(paymentResult.getCode());
 			order.setRetMsg(paymentResult.getReturnMsg());
@@ -285,12 +378,6 @@ public class OrderAction extends BaseCardAction {
 	public void setCardString(String cardString) {
 		this.cardString = cardString;
 	}
-	public String getPaymentUrl() {
-		return paymentUrl;
-	}
-	public void setPaymentUrl(String paymentUrl) {
-		this.paymentUrl = paymentUrl;
-	}
 	public PaymentResult getPaymentResult() {
 		return paymentResult;
 	}
@@ -302,14 +389,6 @@ public class OrderAction extends BaseCardAction {
 	}
 	public void setPayment(Payment payment) {
 		this.payment = payment;
-	}
-
-	public String getStr() {
-		return str;
-	}
-
-	public void setStr(String str) {
-		this.str = str;
 	}
 
 }

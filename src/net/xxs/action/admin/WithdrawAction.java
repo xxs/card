@@ -94,6 +94,7 @@ public class WithdrawAction extends BaseAdminAction {
 			
 			withdraw.setWithdrawStatus(WithdrawStatus.success);
 			withdrawService.update(withdraw);
+			redirectUrl="withdraw!applying.action";
 			return ajax(Status.success, "您的操作已成功!");
 		}
 	}

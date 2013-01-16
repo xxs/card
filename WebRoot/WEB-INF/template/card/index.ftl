@@ -66,19 +66,6 @@
 <body  id="mainbody">
 	<#include "/WEB-INF/template/card/header.ftl">
 	<div id="warp">
-	<div id="slides" class="banner">
-		<div class="banner_l"><a class="prev" href="#"><img alt="上一"页 src="/template/card/images/banner_l.png" width="24" height="43"></a></div>
-		<div class="bannerImg">
-			<div class="slides_container">
-				<div id="banner_pic_1"><a href="http://www.16sucai.com/" target="_blank"><img alt="16素材网" src="images/banner05.jpg" width="925" height="357"></a></div>
-				<div style="DISPLAY: none" id="banner_pic_2"><a href="http://www.16sucai.com/" target="_blank"><img alt="16素材网" src="/template/card/images/banner01.gif" width="925" height="357"></a></div>
-				<div style="DISPLAY: none" id="banner_pic_3"><a href="http://www.16sucai.com/" target="_blank"><img alt="16素材网" src="/template/card/images/banner02.jpg" width="925" height="357"></a></div>
-				<div style="DISPLAY: none" id="banner_pic_4"><a href="http://www.16sucai.com/" target="_blank"><img alt="16素材网" src="/template/card/images/banner03.jpg" width="925" height="357"></a></div>
-				<div style="DISPLAY: none" id="banner_pic_5"><a href="http://www.16sucai.com/" target="_blank"><img alt="16素材网" src="/template/card/images/banner04.jpg" width="925" height="357"></a></div>
-			</div>
-		</div>
-		<div class="banner_r"><a class="next" href="#"><img alt="下一页" src="/template/card/images/banner_r.png" width="24" height="43"></a></div>
-	</div>
 	<!--banner-->
 	<div class="banner">
 		<div class="banner_left">

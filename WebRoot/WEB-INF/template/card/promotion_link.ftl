@@ -16,8 +16,8 @@
 	<div class="contentRight">
 		<div class="katong">
 			<div class="fangz">推广链接 </div>
-			<div class="red"><p>推广链接：<input type="text" class="formText" value="http://127.0.0.1:8080/card/member!memberreg.action?id=${member.id}"/></p> </div>
-			<div class="hei">卡信息提交成功后，可在<a href="#">订单查询</a>页面查询支付结果。处理结果以订单查询页为准。</div>
+			<div class="red"><p>推广链接：<input type="text" class="formText" value="http://127.0.0.1:8080/card/member!memberreg.action?id=${member.id}"/>&nbsp; <a >复制</a></p></div>
+			<div class="hei">xxxxxxxx</div>
 		</div>
 	</div>
 	</div>
