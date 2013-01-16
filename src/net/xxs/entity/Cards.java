@@ -226,6 +226,7 @@ public class Cards extends BaseEntity {
 	}
 
 	@OneToMany(mappedBy = "cards", fetch = FetchType.LAZY, cascade = {CascadeType.REMOVE})
+	@OrderBy("price asc")
 	public Set<Product> getProductSet() {
 		return productSet;
 	}
