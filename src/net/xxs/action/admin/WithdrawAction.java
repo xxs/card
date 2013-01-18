@@ -64,6 +64,7 @@ public class WithdrawAction extends BaseAdminAction {
 	// 提现单处理
 	public String process() {
 		withdraw = withdrawService.load(id);
+		pager = withdrawService.getWithdrawPager(WithdrawStatus.apply, pager);
 		return "process";
 	}
 	// 提现通过

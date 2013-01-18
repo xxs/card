@@ -106,6 +106,9 @@ public class PaymentDiscount extends BaseEntity {
 		if (StringUtils.isEmpty(memo)) {
 			memo = null;
 		}
+		if (StringUtils.isEmpty(face)) {
+			face = "0";
+		}
 	}
 	
 	// 更新处理
@@ -120,6 +123,9 @@ public class PaymentDiscount extends BaseEntity {
 		}
 		if (StringUtils.isEmpty(memo)) {
 			memo = null;
+		}
+		if (StringUtils.isEmpty(face)) {
+			face = "0";
 		}
 	}
 	

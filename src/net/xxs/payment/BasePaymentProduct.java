@@ -6,6 +6,7 @@ import java.util.Map;
 import javax.servlet.http.HttpServletRequest;
 
 import net.xxs.bean.Setting.CurrencyType;
+import net.xxs.entity.Order;
 import net.xxs.entity.PaymentConfig;
 
 import org.apache.commons.lang.StringUtils;
@@ -100,7 +101,7 @@ public abstract class BasePaymentProduct {
 	 * 
 	 * @return 结果PayMentResult
 	 */
-	public abstract PaymentResult cardPay(PaymentConfig paymentConfig, String paymentSn, BigDecimal paymentAmount, HttpServletRequest httpServletRequest);
+	public abstract PaymentResult cardPay(PaymentConfig paymentConfig, String paymentSn, Order order, HttpServletRequest httpServletRequest);
 	
 	/**
 	 *  点卡支付结果查询
@@ -116,7 +117,7 @@ public abstract class BasePaymentProduct {
 	 * 
 	 * @return 结果PayMentResult
 	 */
-	public abstract PaymentResult cardQuery(PaymentConfig paymentConfig, String paymentSn, BigDecimal paymentAmount, HttpServletRequest httpServletRequest);
+	public abstract PaymentResult cardQuery(PaymentConfig paymentConfig, String paymentSn, HttpServletRequest httpServletRequest);
 
 	/**
 	 * 验证签名

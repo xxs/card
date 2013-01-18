@@ -232,7 +232,7 @@ public class PaymentAction extends BaseCardAction {
 		System.out.println(paymentConfig.getId());
 		System.out.println(getRequest());
 		paymentResult = paymentProduct.cardPay(paymentConfig,
-				payment1.getPaymentSn(), amount, getRequest());
+				payment1.getPaymentSn(), order, getRequest());
 		System.out.println("支付处理结果订单号："+paymentResult.getOrderSn());
 		System.out.println("支付处理结果："+paymentResult.getReturnMsg()+"code："+paymentResult.getCode());
 		if ((paymentResult == null || StringUtils.isEmpty(paymentResult.getOrderSn()))){

@@ -74,7 +74,7 @@
 						支持面额: 
 					</th>
 					<td>
-						<input name="paymentDiscount.face" class="formText"  value="${(paymentDiscount.face)!}" />
+						<input name="paymentDiscount.face" class="formText"  value="${(paymentDiscount.face)!}" />为0表示所有面额
 					</td>
 				</tr>
 				<tr>

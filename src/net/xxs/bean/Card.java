@@ -7,28 +7,26 @@ package net.xxs.bean;
 
 public class Card {
 	
-	private Integer num;// 卡号
-	private Integer pwd;// 密码
-	private Integer face;// 面额
-	
-	public Integer getNum() {
+	private String num;// 卡号
+	private String pwd;// 密码
+	private String face;// 面额
+	public String getNum() {
 		return num;
 	}
-	public void setNum(Integer num) {
+	public void setNum(String num) {
 		this.num = num;
 	}
-	public Integer getPwd() {
+	public String getPwd() {
 		return pwd;
 	}
-	public void setPwd(Integer pwd) {
+	public void setPwd(String pwd) {
 		this.pwd = pwd;
 	}
-	public Integer getFace() {
+	public String getFace() {
 		return face;
 	}
-	public void setFace(Integer face) {
+	public void setFace(String face) {
 		this.face = face;
 	}
 	
-
 }

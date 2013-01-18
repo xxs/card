@@ -11,6 +11,7 @@ import java.util.Map;
 import javax.servlet.http.HttpServletRequest;
 
 import net.xxs.bean.Setting.CurrencyType;
+import net.xxs.entity.Order;
 import net.xxs.entity.PaymentConfig;
 import net.xxs.util.SettingUtil;
 
@@ -227,14 +228,13 @@ public class Yeepay extends BasePaymentProduct {
 
 	@Override
 	public PaymentResult cardPay(PaymentConfig paymentConfig, String paymentSn,
-			BigDecimal paymentAmount, HttpServletRequest httpServletRequest) {
+			Order order, HttpServletRequest httpServletRequest) {
 		return null;
 	}
 
 	@Override
 	public PaymentResult cardQuery(PaymentConfig paymentConfig,
-			String paymentSn, BigDecimal paymentAmount,
-			HttpServletRequest httpServletRequest) {
+			String paymentSn, HttpServletRequest httpServletRequest) {
 		return null;
 	}
 

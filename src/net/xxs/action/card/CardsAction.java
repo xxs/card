@@ -1,5 +1,6 @@
 package net.xxs.action.card;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -7,10 +8,9 @@ import javax.annotation.Resource;
 
 import net.xxs.entity.Brand;
 import net.xxs.entity.Cards;
-import net.xxs.entity.PaymentConfig;
-import net.xxs.service.BrandService;
+import net.xxs.entity.PaymentDiscount;
 import net.xxs.service.CardsService;
-import net.xxs.service.PaymentConfigService;
+import net.xxs.service.PaymentDiscountService;
 
 import org.apache.struts2.convention.annotation.InterceptorRef;
 import org.apache.struts2.convention.annotation.InterceptorRefs;
@@ -36,21 +36,22 @@ public class CardsAction extends BaseCardAction {
 	private String orderType;
 	private Cards cards;
 	private Brand brand;
+	private List<PaymentDiscount> paymentDiscountList = new ArrayList<PaymentDiscount>();
 	
 	@Resource(name = "cardsServiceImpl")
 	private CardsService cardsService;
-	@Resource(name = "brandServiceImpl")
-	private BrandService brandService;
-	@Resource(name = "paymentConfigServiceImpl")
-	private PaymentConfigService paymentConfigService;
+	@Resource(name = "paymentDiscountServiceImpl")
+	private PaymentDiscountService paymentDiscountService;
 	
 	@InputConfig(resultName = "error")
 	public String list() {
 		cards = cardsService.get("4028bc743c3c4340013c3c51dac90001");
+		paymentDiscountList = paymentDiscountService.getPaymentDiscountByBrand(cards.getBrand());
 		return "content";
 	}
 	public String detail(){
 		cards = cardsService.get(id);
+		paymentDiscountList = paymentDiscountService.getPaymentDiscountByBrand(cards.getBrand());
 		return "content";
 	}
 	public String getSign() {
@@ -84,11 +85,17 @@ public class CardsAction extends BaseCardAction {
 	public void setBrand(Brand brand) {
 		this.brand = brand;
 	}
-
-	// 获取所有支付方式集合
-	public List<PaymentConfig> getAllPaymentConfigList() {
-		return paymentConfigService.getAllList();
+	
+	public List<PaymentDiscount> getPaymentDiscountList() {
+		return paymentDiscountList;
 	}
+	public void setPaymentDiscountList(List<PaymentDiscount> paymentDiscountList) {
+		this.paymentDiscountList = paymentDiscountList;
+	}
+//	// 获取所有支付方式集合
+//	public List<PaymentConfig> getAllPaymentConfigList() {
+//		return paymentConfigService.getAllList();
+//	}
 
 	public Cards getCards() {
 		return cards;

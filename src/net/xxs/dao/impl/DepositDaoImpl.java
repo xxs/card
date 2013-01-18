@@ -1,8 +1,11 @@
 package net.xxs.dao.impl;
 
+import java.util.Date;
+
 import net.xxs.bean.Pager;
 import net.xxs.dao.DepositDao;
 import net.xxs.entity.Deposit;
+import net.xxs.entity.Deposit.DepositType;
 import net.xxs.entity.Member;
 
 import org.hibernate.criterion.Restrictions;
@@ -17,6 +20,11 @@ public class DepositDaoImpl extends BaseDaoImpl<Deposit, String> implements Depo
 
 	public Pager getDepositPager(Member member, Pager pager) {
 		return super.findPager(pager, Restrictions.eq("member", member));
+	}
+
+	public Pager getDepositPager(Member member, Date startDate, Date endDate,
+			DepositType depositType, Pager pager) {
+		return null;
 	}
 	
 }

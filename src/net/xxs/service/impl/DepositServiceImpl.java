@@ -1,10 +1,13 @@
 package net.xxs.service.impl;
 
+import java.util.Date;
+
 import javax.annotation.Resource;
 
 import net.xxs.bean.Pager;
 import net.xxs.dao.DepositDao;
 import net.xxs.entity.Deposit;
+import net.xxs.entity.Deposit.DepositType;
 import net.xxs.entity.Member;
 import net.xxs.service.DepositService;
 
@@ -29,6 +32,11 @@ public class DepositServiceImpl extends BaseServiceImpl<Deposit, String> impleme
 	@Transactional(readOnly = true)
 	public Pager getDepositPager(Member member, Pager pager) {
 		return depositDao.getDepositPager(member, pager);
+	}
+
+	public Pager getDepositPager(Member member, Date startDate, Date endDate,
+			DepositType depositType, Pager pager) {
+		return depositDao.getDepositPager(member,startDate,endDate,depositType, pager);
 	}
 
 }

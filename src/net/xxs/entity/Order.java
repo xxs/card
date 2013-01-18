@@ -51,8 +51,9 @@ public class Order extends BaseEntity {
 	
 	private String productSn;// 充值卡货号
 	private String productName;// 充值卡名称
+	private String cardCode;// 充值卡通道编码
+	private BigDecimal cardDiscount;// 按照用户选择的支付方式的折扣率（即时费率）
 	private BigDecimal productPrice;// 充值卡价格（面额）
-	private String cardsHtmlPath;// 充值卡HTML静态文件路径
 	private String cardNum;//卡号
 	private String cardPwd;//密码
 	
@@ -184,7 +185,7 @@ public class Order extends BaseEntity {
 		this.orderLogSet = orderLogSet;
 	}
 
-	@OneToOne(fetch = FetchType.LAZY)
+	@OneToOne(mappedBy = "order", fetch = FetchType.LAZY, cascade = {CascadeType.REMOVE})
 	@ForeignKey(name = "fk_order_payment")
 	public Payment getPayment() {
 		return payment;
@@ -193,8 +194,6 @@ public class Order extends BaseEntity {
 	public void setPayment(Payment payment) {
 		this.payment = payment;
 	}
-
-	
 
 	// 保存处理
 	@Override
@@ -231,13 +230,22 @@ public class Order extends BaseEntity {
 		this.productPrice = productPrice;
 	}
 	@Column(nullable = false, updatable = false)
-	public String getCardsHtmlPath() {
-		return cardsHtmlPath;
+	public BigDecimal getCardDiscount() {
+		return cardDiscount;
 	}
 
-	public void setCardsHtmlPath(String cardsHtmlPath) {
-		this.cardsHtmlPath = cardsHtmlPath;
+	public void setCardDiscount(BigDecimal cardDiscount) {
+		this.cardDiscount = cardDiscount;
 	}
+	@Column(nullable = false, updatable = false)
+	public String getCardCode() {
+		return cardCode;
+	}
+
+	public void setCardCode(String cardCode) {
+		this.cardCode = cardCode;
+	}
+
 	@Column(nullable = false, updatable = false)
 	public String getCardNum() {
 		return cardNum;

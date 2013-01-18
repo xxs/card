@@ -60,25 +60,23 @@
 							</td>
 						</tr>
 						<tr>
+							<th>支付通道:</th>
+							<td>
+								<#list paymentDiscountList as paymentDiscount>
+									<input type="radio" name="paymentConfig.id" value="${paymentDiscount.paymentConfig.id}"/>&nbsp;${paymentDiscount.paymentConfig.name}(<span style="color:red">折扣率：${paymentDiscount.discount}</span>)
+								</#list>
+							</td>
+						</tr>
+						<tr>
 							<th>卡号:</th>
 							<td>
 								<input type="text" name="cardNum" />
-								
 							</td>
 						</tr>
 						<tr>
 							<th>密码:</th>
 							<td>
 								<input type="text" name="cardPwd"/>
-								
-							</td>
-						</tr>
-						<tr>
-							<th>支付通道:</th>
-							<td>
-								<#list allPaymentConfigList as paymentConfig>
-									<input type="radio" name="paymentConfig.id" value="${paymentConfig.id}"/>&nbsp;${paymentConfig.name}
-								</#list>
 							</td>
 						</tr>
 						<tr>
@@ -123,19 +121,18 @@
 							</td>
 						</tr>
 						<tr>
-							
+							<th>支付通道:</th>
+							<td>
+								<#list paymentDiscountList as paymentDiscount>
+									<input type="radio" name="paymentConfig.id" value="${paymentDiscount.paymentConfig.id}"/>&nbsp;${paymentDiscount.paymentConfig.name}(<span style="color:red">折扣率：${paymentDiscount.discount}</span>)${paymentDiscount.face}
+								</#list>
+							</td>
 						</tr>
+						<tr>
 							<th>卡密组合:</th>
 							<td>
 								<p>输入格式如:xxxxx(账号)xxxxx,xxxxxx(密码)xxxx</p>
 								<textarea cols="60" rows="10" name="cardString"></textarea>
-							</td>
-						<tr>
-							<th>支付通道:</th>
-							<td>
-								<#list allPaymentConfigList as paymentConfig>
-									<input type="radio" name="paymentConfig.id" value="${paymentConfig.id}"/>&nbsp;${paymentConfig.name}
-								</#list>
 							</td>
 						</tr>
 						<tr>

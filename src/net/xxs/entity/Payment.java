@@ -172,7 +172,7 @@ public class Payment extends BaseEntity {
 	}
 
 	
-	@OneToOne(mappedBy = "payment", fetch = FetchType.LAZY)
+	@OneToOne(fetch = FetchType.LAZY)
 	@ForeignKey(name = "fk_payment_order")
 	public Order getOrder() {
 		return order;

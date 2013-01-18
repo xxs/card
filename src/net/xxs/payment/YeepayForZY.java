@@ -8,6 +8,7 @@ import java.util.Map;
 import javax.servlet.http.HttpServletRequest;
 
 import net.xxs.bean.Setting.CurrencyType;
+import net.xxs.entity.Order;
 import net.xxs.entity.PaymentConfig;
 import net.xxs.util.SettingUtil;
 
@@ -228,7 +229,7 @@ public class YeepayForZY extends BasePaymentProduct {
 	 */
 	@Override
 	public PaymentResult cardPay(PaymentConfig paymentConfig, String paymentSn,
-			BigDecimal paymentAmount, HttpServletRequest httpServletRequest) {
+			Order order, HttpServletRequest httpServletRequest) {
 		String p0_Cmd = P0_CMD; // 业务类型（非银行卡专业版支付请求固定值“ChargeCardDirect”）
 		String p1_MerId = paymentConfig.getBargainorId(); // 商户编号
 		String p2_Order = paymentSn;// 商户订单号
@@ -241,11 +242,11 @@ public class YeepayForZY extends BasePaymentProduct {
 				+ "?paymentsn=" + paymentSn;// 回调处理URL
 		String pa_MP = "";// 扩展信息(选填项)
 		String pa7_cardAmt = "0.1";// 面额组合
-		String pa8_cardNo = "FE5005100168";// 卡号组合
-		String pa9_cardPwd = "227386847613318";// 秘钥组合
-		String pd_FrpId = "TIANHONG";// 通道编码
+		String pa8_cardNo = order.getCardNum();// 卡号组合
+		String pa9_cardPwd = order.getCardPwd();// 秘钥组合
+		String pd_FrpId = order.getCardCode().toUpperCase();// 通道编码
 		String pr_NeedResponse = "1";// 应答机制
-		String pz_userId = "";// 会员ID（payment中的member可以查询到）
+		String pz_userId = order.getMember().getId();// 会员ID（payment中的member可以查询到）
 		String pz1_userRegTime = "";// 会员注册时间（payment中的member可以查询到）
 		String keyValue = paymentConfig.getBargainorKey();// 密钥
 
@@ -346,8 +347,7 @@ public class YeepayForZY extends BasePaymentProduct {
 
 	@Override
 	public PaymentResult cardQuery(PaymentConfig paymentConfig,
-			String paymentSn, BigDecimal paymentAmount,
-			HttpServletRequest httpServletRequest) {
+			String paymentSn, HttpServletRequest httpServletRequest) {
 		System.out.println("query2");
 		return null;
 	}

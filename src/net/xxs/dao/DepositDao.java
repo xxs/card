@@ -1,8 +1,11 @@
 package net.xxs.dao;
 
+import java.util.Date;
+
 import net.xxs.bean.Pager;
 import net.xxs.entity.Deposit;
 import net.xxs.entity.Member;
+import net.xxs.entity.Deposit.DepositType;
 
 /**
  * Dao接口 - 预存款记录
@@ -23,4 +26,5 @@ public interface DepositDao extends BaseDao<Deposit, String> {
 	 */
 	public Pager getDepositPager(Member member, Pager pager);
 
+	public Pager getDepositPager(Member member,Date startDate,Date endDate,DepositType depositType,Pager pager);
 }
