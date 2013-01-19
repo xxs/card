@@ -13,6 +13,6 @@
 		<p>会员等级: <span class="red"> ${loginMember.memberRank.name}</span></p>
 	<div class="heng"></div>	
 	<li><a href="business!info.action">商户信息</a></li>
-	<li><a href="deposit!apidoc.action">API文档</a></li>
-	<li><a href="withdraw!list.action">接入说明</a></li>
+	<li><a href="business!doc.action">API文档</a></li>
+	<li><a href="business!help.action">接入说明</a></li>
 </ul>

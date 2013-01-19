@@ -38,6 +38,7 @@ public class BaseCardAction extends ActionSupport {
 	
 	public static final String VIEW = "view";
 	public static final String LIST = "list";
+	public static final String REGISTER = "register";
 	public static final String SUCCESS = "success";
 	public static final String ERROR = "error";
 	public static final String REDIRECT = "redirect";

@@ -32,8 +32,14 @@ public class Withdraw extends BaseEntity {
 	private String message;		//备注
 	private String memo;		//留言
 	private String rememo;		//回复
+	//保留一些瞬态的记录信息
+	private String banknum;
+	private String bankname;
+	private String openname;
+	
 	private WithdrawStatus withdrawStatus; // 提现状态
 
+	private MemberBank memberBank;// 会员
 	private Member member;// 会员
 
 	@Enumerated
@@ -118,5 +124,40 @@ public class Withdraw extends BaseEntity {
 	public void setMember(Member member) {
 		this.member = member;
 	}
+	
+	@ManyToOne(fetch = FetchType.LAZY)
+	@ForeignKey(name = "fk_withdraw_memberBank")
+	public MemberBank getMemberBank() {
+		return memberBank;
+	}
 
+	public void setMemberBank(MemberBank memberBank) {
+		this.memberBank = memberBank;
+	}
+
+	public String getBanknum() {
+		return banknum;
+	}
+
+	public void setBanknum(String banknum) {
+		this.banknum = banknum;
+	}
+
+	public String getBankname() {
+		return bankname;
+	}
+
+	public void setBankname(String bankname) {
+		this.bankname = bankname;
+	}
+
+	public String getOpenname() {
+		return openname;
+	}
+
+	public void setOpenname(String openname) {
+		this.openname = openname;
+	}
+	
+	
 }

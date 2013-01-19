@@ -145,7 +145,7 @@ $().ready(function() {
 					</th>
 					<td>
 						<label>
-							<@checkbox name="memberBank.isDefault" value="${(memberBank.isDefault)!false}" />默认
+							<@checkbox name="memberBank.isDefault" value="${(memberBank.isDefault)!false}" />  设置为默认
 						</label>
 					</td>
 				</tr>

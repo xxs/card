@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="content-type" content="text/html; charset=utf-8" />
-<title>预存款提现<#if setting.isShowPoweredInfo> - XXS</#if></title>
+<title>添加/编辑账户信息<#if setting.isShowPoweredInfo> - XXS</#if></title>
 <meta name="Author" content="XXS-DW" />
 <meta name="Copyright" content="XXS" />
 <#include "/WEB-INF/template/card/member_head.ftl">
@@ -49,54 +49,80 @@ $().ready( function() {
 	<#include "/WEB-INF/template/card/member_header.ftl">
 	<div class="content">
 	<div class="contentLeft">
-		<#include "/WEB-INF/template/card/menu_deposit.ftl">
+		<#include "/WEB-INF/template/card/menu_center.ftl">
 	</div>
 	<div class="contentRight">
 		<div class="katong">
-			<div class="fangz">提现申请</a></div>
+			<div class="fangz"><#if isAddAction>添加账户<#else>编辑账户</#if></div>
 			<div class="red">注：请一定正确选择卡面值提交,否则造成损失商户自行承担； </div>
 			<div class="hei">卡信息提交成功后，可在<a href="#">订单查询</a>页面查询支付结果。处理结果以订单查询页为准。</div>
 			<div class="memberCenter">
-			<form id="withdrawRechargeForm66" action="withdraw!save.action" method="post">
+			<form id="withdrawRechargeForm66" action="<#if isAddAction>bank!save.action<#else>bank!update.action</#if>" method="post">
 						<input type="hidden" name="paymentType" value="recharge" />
 						<table class="inputTable">
+							<input type="hidden" name="id" value="${id}" />
 							<tr>
 								<th>
-									当前金额: 
+									所属会员名: 
 								</th>
 								<td>
-									${loginMember.deposit?string(currencyFormat)}
+									<input type="hidden" name="memberBank.member.username" value="${loginMember.username}" />
+									${loginMember.username}
 								</td>
 							</tr>
 							<tr>
 								<th>
-									提现账户: 
+									银行账号: 
 								</th>
 								<td>
-									<#if loginMember.memberBankSet??>
-										<div class="hei">您还没有设置提现账户，<a href="bank!add.action">点击添加！</a></div>
-									<#else>
-										<#list loginMember.memberBankSet as memberBank>
-											<input type="radio" name="memberBank.id" value="${memberBank.id}" <#if memberBank.isDefault >checked="checked"</#if> />${memberBank.banknum}(开户名：${memberBank.openname},开户银行:${memberBank.bankname})<br />
-										</#list>
-									</#if>
-								</td>
-							</tr>
-							<tr>
-								<th>
-									提现金额: 
-								</th>
-								<td>
-									<input type="text" name="withdraw.money" class="formText" />
+									<input type="text" name="memberBank.banknum" class="formText" value="${(memberBank.banknum)!}" />
 									<label class="requireField">*</label>
 								</td>
 							</tr>
 							<tr>
 								<th>
-									提现备注: 
+									开户姓名: 
 								</th>
 								<td>
-									<textarea cols="30" rows="5" name="withdraw.memo" class="formText" ></textarea>
+									<input type="text" name="memberBank.openname" class="formText" value="${(memberBank.openname)!}" title="" />
+									<label class="requireField">*</label>
+								</td>
+							</tr>
+							<tr>
+								<th>
+									所属银行: 
+								</th>
+								<td>
+									<input type="text" name="memberBank.bankname" class="formText" value="${(memberBank.bankname)!}" title="" />
+									<label class="requireField">*</label>
+								</td>
+							</tr>
+							<tr>
+								<th>
+									银行归属地: 
+								</th>
+								<td>
+									<input type="text" name="memberBank.bankcity" class="formText" value="${(memberBank.bankcity)!}" title="" />
+									<label class="requireField">*</label>
+								</td>
+							</tr>
+							<tr>
+								<th>
+									所属支行: 
+								</th>
+								<td>
+									<input type="text" name="memberBank.bankdetail" class="formText" value="${(memberBank.bankdetail)!}" title="只允许输入零或正整数" />
+									<label class="requireField">*</label>
+								</td>
+							</tr>
+							<tr>
+								<th>
+									设置: 
+								</th>
+								<td>
+									<label>
+										<@checkbox name="memberBank.isDefault" value="${(memberBank.isDefault)!false}" />  设置为默认
+									</label>
 								</td>
 							</tr>
 							<tr>
@@ -104,7 +130,8 @@ $().ready( function() {
 									&nbsp;
 								</th>
 								<td>
-									<input type="submit" class="red_button" value="申  请" hidefocus />
+									
+									<input type="submit" class="red_button" value="提   交iiiiiiiiiiiiiiiiiiiii" hidefocus />
 								</td>
 							</tr>
 						</table>

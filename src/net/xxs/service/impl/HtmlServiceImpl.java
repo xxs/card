@@ -101,6 +101,13 @@ public class HtmlServiceImpl implements HtmlService, ServletContextAware {
 		String templatePath = pageTemplateConfig.getTemplatePath();
 		buildHtml(templatePath, htmlPath, data);
 	}
+	public void buildRegisterHtml() {
+		PageTemplateConfig pageTemplateConfig = TemplateConfigUtil.getPageTemplateConfig(PageTemplateConfig.REGISTER);
+		Map<String, Object> data = getCommonData();
+		String htmlPath = pageTemplateConfig.getHtmlPath();
+		String templatePath = pageTemplateConfig.getTemplatePath();
+		buildHtml(templatePath, htmlPath, data);
+	}
 	
 	public void buildRegisterAgreementHtml() {
 		PageTemplateConfig pageTemplateConfig = TemplateConfigUtil.getPageTemplateConfig(PageTemplateConfig.REGISTER_AGREEMENT);

@@ -1,9 +1,14 @@
 package net.xxs.entity;
 
+import java.util.HashSet;
+import java.util.Set;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
+import javax.persistence.OrderBy;
 import javax.persistence.Transient;
 
 import org.hibernate.annotations.ForeignKey;
@@ -25,6 +30,8 @@ public class MemberBank extends BaseEntity {
 	private String memo;
 	private Boolean isDefault;
 	private Member member; // 会员
+	
+	private Set<Withdraw> withdrawSet = new HashSet<Withdraw>();// 提现记录
 
 	@Column(nullable = false, unique = true)
 	public String getBanknum() {
@@ -92,6 +99,17 @@ public class MemberBank extends BaseEntity {
 	public void setMember(Member member) {
 		this.member = member;
 	}
+
+	@OneToMany(mappedBy = "memberBank", fetch = FetchType.LAZY)
+	@OrderBy("createDate desc")	
+	public Set<Withdraw> getWithdrawSet() {
+		return withdrawSet;
+	}
+
+	public void setWithdrawSet(Set<Withdraw> withdrawSet) {
+		this.withdrawSet = withdrawSet;
+	}
+	
 
 	// 保存处理
 	@Override

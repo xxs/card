@@ -454,12 +454,13 @@ public class MemberAction extends BaseCardAction {
 		return SUCCESS;
 	}
 	// 会员注册页面
-	public String memberreg() throws Exception {
-		System.out.println("跳转会员注册页面");
+	public String register() throws Exception {
 		if(null != id && !id.isEmpty()){
 			member = memberService.get(id);
+			return "register";
+		}else{
+			return REGISTER;
 		}
-		return "reg";
 	}
 
 	public Member getMember() {

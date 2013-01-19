@@ -160,6 +160,11 @@
 			<templatePath>WEB-INF/template/card/login.ftl</templatePath>
 			<htmlPath>/html/login.html</htmlPath>
 		</login>
+		<register>
+			<description>注册</description>
+			<templatePath>WEB-INF/template/card/register.ftl</templatePath>
+			<htmlPath>/html/register.html</htmlPath>
+		</register>
 		<adminJs>
 			<description>ADMIN_JS</description>
 			<templatePath>WEB-INF/template/admin/admin_js.ftl</templatePath>

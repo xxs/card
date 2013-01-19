@@ -6,8 +6,10 @@ import java.util.List;
 import javax.annotation.Resource;
 
 import net.xxs.bean.Setting;
+import net.xxs.entity.MemberBank;
 import net.xxs.entity.Withdraw;
 import net.xxs.entity.Withdraw.WithdrawStatus;
+import net.xxs.service.MemberBankService;
 import net.xxs.service.WithdrawService;
 import net.xxs.util.SerialNumberUtil;
 import net.xxs.util.SettingUtil;
@@ -17,6 +19,9 @@ import org.apache.struts2.convention.annotation.InterceptorRefs;
 import org.apache.struts2.convention.annotation.ParentPackage;
 
 import com.opensymphony.xwork2.interceptor.annotations.InputConfig;
+import com.opensymphony.xwork2.validator.annotations.RequiredStringValidator;
+import com.opensymphony.xwork2.validator.annotations.StringLengthFieldValidator;
+import com.opensymphony.xwork2.validator.annotations.Validations;
 
 /**
  * 前台Action类 - 会员提现
@@ -31,10 +36,13 @@ public class WithdrawAction extends BaseCardAction {
 
 	private static final long serialVersionUID = 7391785904288731356L;
 	private Withdraw withdraw;
+	private MemberBank memberBank;
 	private List<Withdraw> withdrawList;
 	
 	@Resource(name = "withdrawServiceImpl")
 	private WithdrawService withdrawService;
+	@Resource(name = "memberBankServiceImpl")
+	private MemberBankService memberBankService;
 	
 	// 申请提现
 	public String apply() {
@@ -48,6 +56,15 @@ public class WithdrawAction extends BaseCardAction {
 	}
 	
 	// 保存
+	@Validations(
+			requiredStrings = {
+				@RequiredStringValidator(fieldName = "memberBank.id", message = "提现账户不能为空!"),
+				@RequiredStringValidator(fieldName = "withdraw.money", message = "提现金额不能为空!")
+			},
+			stringLengthFields = {
+				@StringLengthFieldValidator(fieldName = "withdraw.memo", minLength = "0", maxLength = "500", message = "备注长度500超出限制!")
+			}
+		)
 	@InputConfig(resultName = "error")
 	public String save() {
 		Setting setting = SettingUtil.getSetting();
@@ -90,7 +107,7 @@ public class WithdrawAction extends BaseCardAction {
 		}
 		
 		//判断提现金额是否满足提现设置中的setting范围
-		
+		MemberBank pt = memberBankService.get(memberBank.getId());
 		withdraw.setWithdrawSn(SerialNumberUtil.buildWithdrawSn());
 		withdraw.setMoney(withdraw.getMoney());
 		withdraw.setTotalMoney(withdraw.getMoney().multiply(BigDecimal.valueOf(getLoginMember().getMemberRank().getLossrate())));
@@ -100,6 +117,12 @@ public class WithdrawAction extends BaseCardAction {
 		withdraw.setLossrate(BigDecimal.valueOf(getLoginMember().getMemberRank().getLossrate()));
 		withdraw.setMember(getLoginMember());
 		withdraw.setMemo(withdraw.getMemo());
+		//存储瞬态信息
+		withdraw.setBankname(pt.getBankname());
+		withdraw.setBanknum(pt.getBanknum());
+		withdraw.setOpenname(pt.getOpenname());
+		
+		withdraw.setMemberBank(pt);
 		withdrawService.save(withdraw);
 		redirectUrl = "withdraw!list.action";
 		return SUCCESS;
@@ -120,4 +143,12 @@ public class WithdrawAction extends BaseCardAction {
 	public void setWithdrawList(List<Withdraw> withdrawList) {
 		this.withdrawList = withdrawList;
 	}
+	public MemberBank getMemberBank() {
+		return memberBank;
+	}
+	public void setMemberBank(MemberBank memberBank) {
+		this.memberBank = memberBank;
+	}
+	
+	
 }

@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="content-type" content="text/html; charset=utf-8" />
-<title>商户信息<#if setting.isShowPoweredInfo> - XXS</#if></title>
+<title>商户API接入文档<#if setting.isShowPoweredInfo> - XXS</#if></title>
 <meta name="Author" content="XXS-DW" />
 <meta name="Copyright" content="XXS" />
 <#include "/WEB-INF/template/card/member_head.ftl">
@@ -15,7 +15,7 @@
 	</div>
 	<div class="contentRight">
 		<div class="katong">
-			<div class="fangz">商户信息 </div>
+			<div class="fangz">商户API接入文档 </div>
 			<div class="red">暂未开放！ </div>
 		</div>
 	</div>

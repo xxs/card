@@ -15,7 +15,15 @@
 				</@navigation_list>
             </ul>
 		</div>
-    	<div class="top_995_right"><span><a href="${base}/card/member_center!index.action">激活我的名臣</a></span> <p><a href="#">退出</a></p></div>
+    	<div class="top_995_right">
+    	<#if loginMember??>
+    		<span><a href="${base}/card/member_center!index.action">激活我的名臣</a></span> 
+    	<#else>
+    		<span><a href="${base}/card/member_center!index.action">进入会员中心</a></span> 
+    	</#if>
+    	<p><a href="${base}/card/member!logout.action">退出</a></p>
+    	<p><a href="${base}/card/member!register.action">注册</a></p>
+    	</div>
   	</div>
 </div>
 

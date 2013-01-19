@@ -107,6 +107,9 @@
 				<param name="location">/html/login.html</param>
 				<param name="loginRedirectUrl">${loginRedirectUrl}</param>
 			</result>
+			<result name="register" type="redirect">
+				<param name="location">/html/register.html</param>
+			</result>
 			<result name="redirect" type="redirectAction">
 				<param name="namespace">/card</param>
 				<param name="actionName">redirect</param>
@@ -123,7 +126,6 @@
 			<interceptor name="securityInterceptor" class="net.xxs.interceptor.SecurityInterceptor" />
 			<interceptor name="trimInterceptor" class="net.xxs.interceptor.TrimInterceptor" />
 			<interceptor-stack name="apiStack">
-				<interceptor-ref name="securityInterceptor" />
 				<interceptor-ref name="trimInterceptor" />
 				<interceptor-ref name="baseStack" />
 			</interceptor-stack>

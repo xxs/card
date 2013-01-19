@@ -31,6 +31,11 @@ public interface HtmlService {
 	 * 
 	 */
 	public void buildIndexHtml();
+	/**
+	 * 生成注册HTML
+	 * 
+	 */
+	public void buildRegisterHtml();
 	
 	/**
 	 * 生成登录HTML

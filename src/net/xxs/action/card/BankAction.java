@@ -46,7 +46,6 @@ public class BankAction extends BaseCardAction {
 	}
 	// 添加
 	public String add() {
-		memberBank = memberBankService.get(id);
 		return INPUT;
 	}
 	// 设置默认

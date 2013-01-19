@@ -10,11 +10,15 @@ import org.apache.struts2.convention.annotation.ParentPackage;
 
 @ParentPackage("api")
 @InterceptorRefs({
-	@InterceptorRef(value = "memberVerifyInterceptor"),
-	@InterceptorRef(value = "cardStack")
+	@InterceptorRef(value = "apiStack")
 })
 public class qrycardAction extends BaseCardAction {
 
 	private static final long serialVersionUID = -7516107723213363852L;
+	
+	public String execute() throws Exception {
+		System.out.println("执行了查询操作");
+		return null;
+	}
 
 }

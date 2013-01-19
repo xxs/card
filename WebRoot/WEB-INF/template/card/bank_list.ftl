@@ -84,7 +84,7 @@ $().ready( function() {
 		<div class="katong">
 			<div class="fangz">账户列表 </div>
 			<div class="red">注：请一定正确选择卡面值提交,否则造成损失商户自行承担； </div>
-			<div class="hei">卡信息提交成功后，可在<a href="#">订单查询</a>页面查询支付结果。处理结果以订单查询页为准。</div>
+			<div class="hei">可在<a href="bank!add.action">添加账户</a>页面添加</div>
 			<div class="memberCenter">
 			<table class="listTable">
 				<tr>
@@ -108,16 +108,17 @@ $().ready( function() {
 								${memberBank.bankname}
 							</td>
 							<td>
-								${memberBank.city}
+								${memberBank.bankcity}
 							</td>
 							<td>
 								${memberBank.bankdetail}
 							</td>
 							<td>
-								${memberBank.isDefault}
+								${memberBank.isDefault?string('是','否')}
 							</td>
 							<td>
-								<a href="bank!check.action?id=${memberBank.id}">设置为默认</a>
+								<a href="bank!check.action?id=${memberBank.id}">[默认]</a>
+								<a href="bank!edit.action?id=${memberBank.id}">[修改]</a>
 							</td>
 						</tr>
 					</#list>		

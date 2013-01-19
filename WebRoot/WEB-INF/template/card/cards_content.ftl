@@ -46,7 +46,7 @@
 										<td>
 											<ul id="buyInfo">
 												<#list cards.productSet as product>
-													<input type="radio" name="productId" value="${product.id}" <#if cards.defaultProduct.productSn != product.productSn >selected="selected"</#if> />&nbsp;${product.price}元
+													<input type="radio" name="productId" value="${product.id}" <#if product.isDefault >checked="checked"</#if> />&nbsp;${product.price}元
 												</#list>
 											</ul>
 										</td>
@@ -56,14 +56,14 @@
 						<tr>
 							<th>确认金额:</th>
 							<td>
-								<span id="price1" class="red">${cards.price?string(currencyFormat)}</span>
+								<span id="price1" class="red">￥${cards.price} 元</span>
 							</td>
 						</tr>
 						<tr>
 							<th>支付通道:</th>
 							<td>
 								<#list paymentDiscountList as paymentDiscount>
-									<input type="radio" name="paymentConfig.id" value="${paymentDiscount.paymentConfig.id}"/>&nbsp;${paymentDiscount.paymentConfig.name}(<span style="color:red">折扣率：${paymentDiscount.discount}</span>)
+									<input type="radio" name="paymentConfig.id" value="${paymentDiscount.paymentConfig.id}" <#if paymentDiscount.paymentConfig.isDefault >checked="checked"</#if> />&nbsp;${paymentDiscount.paymentConfig.name}(<span style="color:red">折扣率：${paymentDiscount.discount}</span>)
 								</#list>
 							</td>
 						</tr>

@@ -10,6 +10,7 @@ public class PageTemplateConfig {
 	
 	public static final String INDEX = "index";// 首页
 	public static final String LOGIN = "login";// 登录
+	public static final String REGISTER = "register";// 注册
 	public static final String REGISTER_AGREEMENT = "registerAgreement";// 注册协议
 	public static final String ADMIN_JS = "adminJs";// ADMIN.JS
 	public static final String CARD_JS = "cardJs";// CARD.JS

@@ -102,9 +102,9 @@ input.red_button:hover {
 .biaoText{height:90px;width:745px;text-align:center;line-height:90px;margin-bottom:10px;}
 
 .memberCenter table.stateTable {width: 100%;border: 2px solid #e8e8e8;overflow:hidden;}
-.memberCenter table.stateTable th {line-height: 30px;padding-left: 10px;text-align: right;border-bottom: 1px solid #f1f1f1;background-color: #f6f6f6;}
+.memberCenter table.stateTable th {line-height: 30px;padding-left: 10px;text-align: center;border-bottom: 1px solid #f1f1f1;background-color: #f6f6f6;}
 .memberCenter table.stateTable td {line-height: 28px;padding: 3px 10px;text-align: left;color: #595959;word-break: break-all;border-bottom: 1px solid #f1f1f1;}
-.memberCenter table.stateTable tr:hover {background-color: #f6f6f6}
+.memberCenter table.stateTable tr:hover {background-color: #fafafa}
 .memberCenter table.stateTable .title {width: 70px;font-weight: bold;}
 
 .memberCenter table.listTable {width: 100%;border: 2px solid #e8e8e8;margin-top:15px;overflow:hidden;}

@@ -87,6 +87,14 @@ public class BuildHtmlAction extends BaseAdminAction {
 			jsonMap.put("buildTime", System.currentTimeMillis()
 					- beginTimeMillis);
 			return ajax(jsonMap);
+		} else if (buildContent.equalsIgnoreCase("register")) {
+			htmlService.buildRegisterHtml();
+			Map<String, Object> jsonMap = new HashMap<String, Object>();
+			jsonMap.put(STATUS_PARAMETER_NAME, "registerFinish");
+			jsonMap.put("buildCount", 1);
+			jsonMap.put("buildTime", System.currentTimeMillis()
+					- beginTimeMillis);
+			return ajax(jsonMap);
 		} else if (buildContent.equalsIgnoreCase("registerAgreement")) {
 			htmlService.buildRegisterAgreementHtml();
 			Map<String, Object> jsonMap = new HashMap<String, Object>();

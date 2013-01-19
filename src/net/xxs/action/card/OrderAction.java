@@ -85,6 +85,8 @@ public class OrderAction extends BaseCardAction {
 	    for (int j = 0; j < tempFilex.length; j++) {
 	    	String nums[] = tempFilex[j].split(",");
 	    	Card card = new Card();
+	    	Integer.parseInt(nums[0].trim());
+	    	Integer.parseInt(nums[1].trim());
 	    	card.setNum(nums[0].trim());
 	    	card.setPwd(nums[1].trim());
 	    	//card.setFace(Integer.parseInt(nums[2].trim()));//暂时不支持自定义面额
@@ -208,7 +210,17 @@ public class OrderAction extends BaseCardAction {
 	)
 	@InputConfig(resultName = "error")
 	public String batch() {
-		List<Card> cardList = jiexi(cardString);
+		List<Card> cardList = null;
+		try {
+			cardList = jiexi(cardString);
+		} catch (Exception e) {
+			addActionError("卡号组解析异常，请严格按照给定的格式填写!");
+			return ERROR;
+		}
+		if(null == cardList){
+			addActionError("请至少输入一个卡密组合!");
+			return ERROR;
+		}
 		Member loginMember = getLoginMember();
 		Product product = productService.load(productId);
 		paymentConfig = paymentConfigService.load(paymentConfig.getId());//获取支付方式

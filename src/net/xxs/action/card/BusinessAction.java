@@ -36,6 +36,16 @@ public class BusinessAction extends BaseCardAction {
 		member = getLoginMember();
 		return "info";
 	}
+	// 商户信息
+	public String doc() {
+		member = getLoginMember();
+		return "doc";
+	}
+	// 商户信息
+	public String help() {
+		member = getLoginMember();
+		return "help";
+	}
 	// 账户
 	public String edit() {
 		memberBusiness = memberBusinessService.get(id);

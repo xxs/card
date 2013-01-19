@@ -73,6 +73,10 @@ $().ready( function() {
 				$("#buildContent").val("registerAgreement");
 				$("#inputForm").submit();
 			} else if (data.status == "registerAgreementFinish") {
+				$("#status").text("正在更新注册页,请稍后...");
+				$("#buildContent").val("register");
+				$("#inputForm").submit();
+			} else if (data.status == "registerFinish") {
 				$("#status").text("正在更新ADMIN.JS,请稍后...");
 				$("#buildContent").val("adminJs");
 				$("#inputForm").submit();

@@ -526,3 +526,4 @@ pre {
 .pointer {
 	cursor: pointer;
 }
+a{blr:expression(this.onFocus=this.blur())}/*去掉a标签的虚线框，避免出现奇怪的选中区域*/

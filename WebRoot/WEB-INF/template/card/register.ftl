@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="content-type" content="text/html; charset=utf-8" />
-<title>会员登录<#if setting.isShowPoweredInfo> - XXS</#if></title>
+<title>会员注册<#if setting.isShowPoweredInfo> - XXS</#if></title>
 <meta name="Author" content="XXS-DW" />
 <meta name="Copyright" content="XXS" />
 <#if (article.metaKeywords)! != ""><meta name="keywords" content="${article.metaKeywords}" /></#if>
@@ -72,35 +72,9 @@
 					<input type="hidden" id="loginRedirectUrl" name="loginRedirectUrl" />
 					<table>
 						<tr>
-							<th>用户名</th>
+							<th>推荐人</th>
 							<td>
-								<input type="text" id="memberUsername" name="member.username" class="formText" />
-							</td>
-						</tr>
-						<tr>
-							<th>密&nbsp;&nbsp;&nbsp;码</th>
-							<td>
-								<input type="password" id="memberPassword" name="member.password" class="formText" />
-							</td>
-						</tr>
-						<tr>
-							<th>验证码</th>
-							<td>
-								<input type="text" id="captcha" name="j_captcha" class="formText captcha" />
-								<img id="captchaImage" class="captchaImage" src="${base}/captcha.jpeg" alt="换一张" />
-							</td>
-						</tr>
-						<tr>
-							<th>&nbsp;</th>
-							<td>
-								<span class="warnIcon">&nbsp;</span>
-								<a href="${base}/card/member!passwordRecover.action">忘记了密码? 点击找回!</a>
-							</td>
-						</tr>
-						<tr>
-							<th>&nbsp;</th>
-							<td>
-								<input type="submit" id="submitButton" class="formButton" value="登 录" hidefocus />
+								eeeee
 							</td>
 						</tr>
 					</table>
