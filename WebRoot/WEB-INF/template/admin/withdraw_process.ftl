@@ -36,7 +36,7 @@ $().ready(function() {
 				success: function(data) {
 					$.message({type: data.status, content: data.message});
 					if (data.status == "success") {
-						 window.localtion.href="withdraw!list.action";
+						 window.localtion.href="${base}/admin/withdraw!applying.action";
 					} else {
 						$this.attr("disabled", true);
 					}
@@ -61,7 +61,7 @@ $().ready(function() {
 				success: function(data) {
 					$.message({type: data.status, content: data.message});
 					if (data.status == "success") {
-						window.localtion.href="withdraw!list.action";
+						window.localtion.href="${base}/admin/withdraw!list.action";
 					} else {
 						$this.attr("disabled", false);
 					}
@@ -84,31 +84,22 @@ $().ready(function() {
 			<table class="inputTable">
 				<tr>
 					<th>
-						提现处理: 
-					</th>
-					<td>
-						<#if withdraw.withdrawStatus == "apply">
-						<input type="button" id="successProcessButton" name="successProcess" class="formButton" value="通过审核" hidefocus />						
-						<input type="button" id="invalidProcessButton" name="invalidProcess" class="formButton" value="作  废" hidefocus />
-						</#if>
-					</td>
-				</tr>
-				<#if withdraw.withdrawStatus == "success" || withdraw.withdrawStatus == "lose">
-					<tr>
-					<th>
-						处理结果: 
-					</th>
-					<td>
-						${(withdraw.withdrawStatus)!}
-					</td>
-					</tr>								
-				</#if>
-				<tr>
-					<th>
 						申请人: 
 					</th>
 					<td>
 						${(withdraw.member.username)!}
+					</td>
+				</tr>
+				<tr>
+					<th>
+						提现账户: 
+					</th>
+					<td>
+						提现账号：${(withdraw.memberBank.banknum)!}<br/>
+						开户姓名：${(withdraw.memberBank.openname)!}<br/>
+						银行名称：${(withdraw.memberBank.bankname)!}<br/>
+						银行地址：${(withdraw.memberBank.bankcity)!}<br/>
+						支行明细：${(withdraw.memberBank.bankdetail)!}<br/>
 					</td>
 				</tr>
 				<tr>
@@ -119,8 +110,30 @@ $().ready(function() {
 						${(withdraw.money)!}
 					</td>
 				</tr>
+				<tr>
+					<th>
+						审核说明: 
+					</th>
+					<td>
+						<textarea rows="4"></textarea>
+					</td>
+				</tr>
+				<#if withdraw.withdrawStatus == "success" || withdraw.withdrawStatus == "lose">
+					<tr>
+					<th>
+						处理结果: 
+					</th>
+					<td>
+						[${action.getText("WithdrawStatus." + withdraw.withdrawStatus)}]
+					</td>
+					</tr>								
+				</#if>
 			</table>
 			<div class="buttonArea">
+				<#if withdraw.withdrawStatus == "apply">
+						<input type="button" id="successProcessButton" name="successProcess" class="formButton" value="通过审核" hidefocus />						
+						<input type="button" id="invalidProcessButton" name="invalidProcess" class="formButton" value="作  废" hidefocus />
+						</#if>
 				<input type="button" class="formButton" onclick="window.history.back(); return false;" value="返  回" hidefocus />
 			</div>
 	</div>

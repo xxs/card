@@ -10,18 +10,25 @@
 <link rel="icon" href="favicon.ico" type="image/x-icon" />
 <link href="${base}/template/card/css/base.css" rel="stylesheet" type="text/css" />
 <link href="${base}/template/card/css/style.css" rel="stylesheet" type="text/css" />
-<script type="text/javascript" src="${base}/template/card/js/base.js"></script>
-<script type="text/javascript" src="${base}/template/card/js/card.js"></script>
-<script type="text/javascript" src="${base}/template/card/js/slides.jquery.js"></script>
-<script type="text/javascript" src="${base}/template/common/js/jquery.js"></script>
-<script type="text/javascript" src="${base}/template/common/js/jquery.tools.js"></script>
-<!--[if lte IE 6]>
+
+	<!--[if lte IE 6]>
 	<script type="text/javascript" src="${base}/template/common/js/belatedPNG.js"></script>
 	<script type="text/javascript">
 		// 解决IE6透明PNG图片BUG
 		DD_belatedPNG.fix(".belatedPNG");
 	</script>
 	<![endif]-->
+	<script type="text/javascript">
+	$(function(){
+		$("body").Sonline({
+			Position:"right",//left或right
+			Top:200,//顶部距离，默认200px
+			Effect:false, //滚动或者固定两种方式，布尔值：true或false
+			DefaultsOpen:false, //默认展开：true,默认收缩：false
+			Qqlist:"734074125|xxs,435027|客服02,435027|客服03,435027|客服04,435027|客服05" //多个QQ用','隔开，QQ和客服名用'|'隔开
+		});
+	})	
+	</script>
 	<script type="text/javascript" >
 	//<![CDATA[
 		$(function(){
@@ -41,103 +48,19 @@
 		})
 	//]]>
 	</script>
-	<script>
-		//保证导航栏背景与图片轮播背景一起显示
-		$("#mainbody").removeClass();
-		$("#mainbody").addClass("index_bg05");
-	</script>
-	<script>
-		$(function(){
-			//滚动Banner图片的显示
-			$('#slides').slides({
-				preload: false,
-				preloadImage: '/template/card/images/loading.gif',
-				effect: 'fade',
-				slideSpeed: 400,
-				fadeSpeed: 100,
-				play: 3000,
-				pause: 100,
-				hoverPause: true
-			});
-	        	$('#js-news').ticker();
-	    	});
-		</script>
+		
 </head>
-<body  id="mainbody">
+<body>
 	<#include "/WEB-INF/template/card/header.ftl">
 	<div id="warp">
-	<!--banner-->
-	<div class="banner">
-		<div class="banner_left">
-	    	<ul>
-	        	<li style="margin-bottom:17px;"><p>付到银行卡</p>  <span>1小时内到帐</span></li>
-	            <li>服务费最低一元</li>
-	            <li>覆盖银行近20家</li>
-	            <li>全天24小时服务</li>
-	        </ul>
-	    </div>
-    	<div class="banner_right">
-    		<div class="banner_xiao">
-				<div class="tab">
-					<div class="tab_menu">
-						<ul>
-							<li class="selected">会员登录</li>
-							<li>名臣登录</li>
-						</ul>
-		 			</div>
-		 			<div class="tab_box"> 
-		 				<div class="anan">
-            			<form action="" method="get">
-			                <div><p>帐户名</p> <span><input name="" type="text"  size="12"/></span></div>
-            				    <div style="margin-top:19px;"><p>密  码</p> <span><input name="input" type="text" /></span></div>
-                					<div class="annnsa">
-           	      						<span style="float:left;"><input type="checkbox" /> <a href="#">记住密码？</a></span>
-                    					<span style="float:right;"><input name="" type="checkbox" value="" /> <a href="#">安全控件登录</a></span>
-                					</div>
-					                <div class="ddsa"><a href="#"><img src="images/index/dd.jpg" width="110" height="30" alt="hh" /></a>  <a href="#">忘记密码？</a></div>
-                					<div class="wenz"><a href="#">使用手机号码登陆</a> |  <a href="#">免费注册</a></div>
-                		</form>
-            			</div>
-		 				<div class="hide">体育</div>
-         			</div>
-				</div>
-			</div>
-  		</div>  
-    </div>   
 	<!--内容区-->
-<div class="content_line">
-	<#include "/WEB-INF/template/card/friend_link.ftl">
-</div>
 	<div class="content_line">
-	<div class="Service">
-    	<ul>
-        	<li><a href="#"><img src="images/index/tu1.jpg" width="329" height="153" alt="s" /></a></li>
-            <li style="margin-right:4px;"><a href="#"><img src="images/index/tu2.jpg" width="329" height="153" alt="s" /></a></li>
-            <li style="margin-top:5px;"><a href="#"><img src="images/index/tu3.jpg" width="329" height="153" alt="s" /></a></li>
-            <li style="margin-top:5px;margin-right:4px;"><a href="#"><img src="images/index/tu4.jpg" width="329" height="153" alt="s" /></a></li>
-        </ul>
-    <div class="Service_right">
-        	<div class="Service_right_top">
-            	<span><a href="#">充话费</a> | <a href="#">购彩票</a> | <a href="#">买Q币</a> | <a href="#">还信用卡</a></span>
-                <p><a href="#">下载手机名臣福利</a></p>
-            </div>
-            <dl>
-           	  	<dt>活动</dt>
-                <dd><a href="#">音乐跨年礼，听歌100%赚话费</a></dd>
-                <dd><a href="#">名臣福利联手中国银行，话费Q币大放送</a></dd>
-            </dl>
-            <dl style=" border:none; padding-top:12px; height:60px;">
-           	  	<dt>公告</dt>
-                <dd><a href="#">12月14日农业银行维护通知</a></dd>
-                <dd><a href="#">12月14日农业银行维护通知</a></dd>
-            </dl>
-        </div>
-  </div>
-</div>
+		<#include "/WEB-INF/template/card/friend_link.ftl">
+	</div>
 	
 	<#include "/WEB-INF/template/card/footer.ftl">
-	<script type="text/javascript" src="${base}/template/common/js/jquery.js"></script>
-	<script type="text/javascript" src="${base}/template/common/js/jquery.tools.js"></script>
+	<script type="text/javascript" src="${base}/template/card/js/jquery.js"></script>
+	<script type="text/javascript" src="${base}/template/card/js/jquery.Sonline.js"></script>
 	<script type="text/javascript" src="${base}/template/card/js/base.js"></script>
 	<script type="text/javascript" src="${base}/template/card/js/card.js"></script>
 </body>

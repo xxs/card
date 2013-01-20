@@ -164,7 +164,7 @@
 						<tr>
 							<th>推荐人: </th>
 							<td>
-								<input type="text" id="registerWindowMemberReferrer" name="member.referrer" class="formText" title="填写后不能修改!"/>
+								<input type="text" id="registerWindowMemberReferrer" name="member.referrer" value="${member.username}" class="formText" title="填写后不能修改!"/>
 							</td>
 						</tr>
 						<tr>

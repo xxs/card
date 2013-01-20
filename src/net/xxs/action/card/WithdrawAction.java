@@ -19,6 +19,7 @@ import org.apache.struts2.convention.annotation.InterceptorRefs;
 import org.apache.struts2.convention.annotation.ParentPackage;
 
 import com.opensymphony.xwork2.interceptor.annotations.InputConfig;
+import com.opensymphony.xwork2.validator.annotations.RequiredFieldValidator;
 import com.opensymphony.xwork2.validator.annotations.RequiredStringValidator;
 import com.opensymphony.xwork2.validator.annotations.StringLengthFieldValidator;
 import com.opensymphony.xwork2.validator.annotations.Validations;
@@ -58,8 +59,10 @@ public class WithdrawAction extends BaseCardAction {
 	// 保存
 	@Validations(
 			requiredStrings = {
-				@RequiredStringValidator(fieldName = "memberBank.id", message = "提现账户不能为空!"),
-				@RequiredStringValidator(fieldName = "withdraw.money", message = "提现金额不能为空!")
+				@RequiredStringValidator(fieldName = "memberBank.id", message = "提现账户不能为空!")
+			},
+			requiredFields = { 
+				@RequiredFieldValidator(fieldName = "withdraw.money", message = "提现金额不允许为空!")
 			},
 			stringLengthFields = {
 				@StringLengthFieldValidator(fieldName = "withdraw.memo", minLength = "0", maxLength = "500", message = "备注长度500超出限制!")

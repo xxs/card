@@ -95,8 +95,7 @@ public class WithdrawAction extends BaseAdminAction {
 			
 			withdraw.setWithdrawStatus(WithdrawStatus.success);
 			withdrawService.update(withdraw);
-			redirectUrl="withdraw!applying.action";
-			return ajax(Status.success, "您的操作已成功!");
+			return ajax(Status.success, "审核通过成功！");
 		}
 	}
 	// 提现作废
@@ -109,7 +108,7 @@ public class WithdrawAction extends BaseAdminAction {
 		} else {
 			withdraw.setWithdrawStatus(WithdrawStatus.lose);
 			withdrawService.update(withdraw);
-			return ajax(Status.success, "您的操作已成功!");
+			return ajax(Status.success, "审核作废成功！");
 		}
 	}
 	// 设置

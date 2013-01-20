@@ -82,7 +82,7 @@ $().ready( function() {
 	</div>
 	<div class="contentRight">
 		<div class="katong">
-			<div class="fangz">修改密码 </div>
+			<div class="fangz">修改密保 </div>
 			<div class="red">注：请一定正确选择卡面值提交,否则造成损失商户自行承担； </div>
 			<div class="hei">卡信息提交成功后，可在<a href="#">订单查询</a>页面查询支付结果。处理结果以订单查询页为准。</div>
 			<div class="memberCenter">

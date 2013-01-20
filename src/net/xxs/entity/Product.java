@@ -176,19 +176,4 @@ public class Product extends BaseEntity {
 			productSn = SerialNumberUtil.buildProductSn();
 		}
 	}
-	
-	/**
-	 * 获取优惠价格,若member对象为null则返回原价格
-	 */
-	@Transient
-	public BigDecimal getPreferentialPrice(Member member) {
-		if (member != null) {
-			BigDecimal preferentialPrice = price.multiply(new BigDecimal(member.getMemberRank().getPreferentialScale().toString()).divide(new BigDecimal(100)));
-			preferentialPrice = SettingUtil.setPriceScale(preferentialPrice);
-			return preferentialPrice;
-		} else {
-			return price;
-		}
-	}
-
 }

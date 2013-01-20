@@ -395,4 +395,5 @@ public class Cards extends BaseEntity {
 			ReflectionUtil.invokeSetterMethod(this, propertyName, null, String.class);
 		}
 	}
+	
 }

@@ -82,7 +82,8 @@ public class MemberRankAction extends BaseAdminAction {
 			@RequiredStringValidator(fieldName = "memberRank.name", message = "等级名称不允许为空!")
 		}, 
 		requiredFields = { 
-			@RequiredFieldValidator(fieldName = "memberRank.preferentialScale", message = "优惠百分比不允许为空!"),
+			@RequiredFieldValidator(fieldName = "memberRank.lossrate", message = "手续费率不允许为空!"),
+			@RequiredFieldValidator(fieldName = "memberRank.benefits", message = "提成率不允许为空!"),
 			@RequiredFieldValidator(fieldName = "memberRank.score", message = "所需积分不允许为空!")
 		},
 		intRangeFields = {
@@ -95,8 +96,12 @@ public class MemberRankAction extends BaseAdminAction {
 			addActionError("名称已存在!");
 			return ERROR;
 		}
-		if (memberRank.getPreferentialScale() < 0) {
-			addActionError("优惠百分比必须大于或等于零!");
+		if (memberRank.getLossrate() < 0) {
+			addActionError("手续费率必须大于或等于零!");
+			return ERROR;
+		}
+		if (memberRank.getBenefits() < 0) {
+			addActionError("提现率必须大于或等于零!");
 			return ERROR;
 		}
 		if (memberRankService.getMemberRankByScore(memberRank.getScore()) != null) {
@@ -114,7 +119,8 @@ public class MemberRankAction extends BaseAdminAction {
 			@RequiredStringValidator(fieldName = "memberRank.name", message = "等级名称不允许为空!")
 		}, 
 		requiredFields = { 
-			@RequiredFieldValidator(fieldName = "memberRank.preferentialScale", message = "优惠百分比不允许为空!"),
+				@RequiredFieldValidator(fieldName = "memberRank.lossrate", message = "手续费率不允许为空!"),
+				@RequiredFieldValidator(fieldName = "memberRank.benefits", message = "提成率不允许为空!"),
 			@RequiredFieldValidator(fieldName = "memberRank.score", message = "所需积分不允许为空!")
 		},
 		intRangeFields = {
@@ -128,8 +134,12 @@ public class MemberRankAction extends BaseAdminAction {
 			addActionError("名称已存在!");
 			return ERROR;
 		}
-		if (memberRank.getPreferentialScale() < 0) {
-			addActionError("优惠百分比必须大于或等于零!");
+		if (memberRank.getLossrate() < 0) {
+			addActionError("手续费率必须大于或等于零!");
+			return ERROR;
+		}
+		if (memberRank.getBenefits() < 0) {
+			addActionError("提现率必须大于或等于零!");
 			return ERROR;
 		}
 		MemberRank equalScoreMemberRank = memberRankService.getMemberRankByScore(memberRank.getScore());

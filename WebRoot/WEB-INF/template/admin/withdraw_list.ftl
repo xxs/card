@@ -63,13 +63,13 @@
 						<a href="#" class="sort" name="member" hidefocus>申请人</a>    
 					</th>
 					<th>
-						<a href="#" class="sort" name="message" hidefocus>操作信息</a>    
+						<a href="#" class="sort" name="memberBank" hidefocus>提现账户</a>    
+					</th>
+					<th>
+						<a href="#" class="sort" name="message" hidefocus>操作类型</a>    
 					</th>
 					<th>
 						<a href="#" class="sort" name="money" hidefocus>提现金额</a>
-					</th>
-					<th>
-						<a href="#" class="sort" name="memo" hidefocus>备注</a>
 					</th>
 					<th>
 						<a href="#" class="sort" name="totalMoney" hidefocus>实发金额</a>
@@ -96,13 +96,13 @@
 							${(withdraw.member.username)!"-"}
 						</td>
 						<td>
+							${(withdraw.memberBank.banknum)!"-"}
+						</td>
+						<td>
 							${withdraw.message}
 						</td>
 						<td>
 							${withdraw.money}
-						</td>
-						<td>
-							${withdraw.memo}
 						</td>
 						<td>
 							${withdraw.totalMoney}

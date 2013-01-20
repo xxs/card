@@ -453,11 +453,34 @@ $().ready( function() {
 		});
 	}
 	
+	/* ---------- Sonline server ---------- */
+	$(function(){
+		$("body").Sonline({
+			Position:"right",//left或right
+			Top:200,//顶部距离，默认200px
+			Effect:false, //滚动或者固定两种方式，布尔值：true或false
+			DefaultsOpen:false, //默认展开：true,默认收缩：false
+			Qqlist:"
+				<@instant_messaging_list; instantMessagingList>
+					<#list instantMessagingList as instantMessaging>
+							<#if instantMessaging.instantMessagingType == "qq">
+								${instantMessaging.value}|${instantMessaging.title},
+							</#if>
+					</#list>
+				</@instant_messaging_list>
+			" //多个QQ用','隔开，QQ和客服名用'|'隔开
+		});
+	})	
+	
 	/* ---------- InstantMessaging ---------- */
 	<#if setting.isInstantMessagingEnabled>
 	
 		<@compress single_line = true>
 			var instantMessagingHtml = '
+			
+			
+			
+			
 			<div id="instantMessagingLayer" class="instantMessagingLayer <#if setting.instantMessagingPosition == "left">leftInstantMessagingLayer<#else>rightInstantMessagingLayer</#if>">
 				<div id="instantMessagingMin" class="instantMessagingMin"></div>
 				<div id="instantMessagingMain" class="instantMessagingMain">

@@ -31,9 +31,6 @@
 						<a href="#" class="sort" name="name" hidefocus>等級名称</a>
 					</th>
 					<th>
-						<a href="#" class="sort" name="preferentialScale" hidefocus>优惠百分比</a>
-					</th>
-					<th>
 						<a href="#" class="sort" name="lossrate" hidefocus>手续费率</a>
 					</th>
 					<th>
@@ -56,9 +53,6 @@
 						</td>
 						<td>
 							${memberRank.name}
-						</td>
-						<td>
-							${memberRank.preferentialScale}%
 						</td>
 						<td>
 							${memberRank.lossrate}%

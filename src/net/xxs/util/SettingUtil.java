@@ -242,8 +242,6 @@ public class SettingUtil {
 		Node currencyUnitNode = document.selectSingleNode("/xxs/setting/currencyUnit");
 		Node priceScaleNode = document.selectSingleNode("/xxs/setting/priceScale");
 		Node priceRoundTypeNode = document.selectSingleNode("/xxs/setting/priceRoundType");
-		Node storeAlertCountNode = document.selectSingleNode("/xxs/setting/storeAlertCount");
-		Node storeFreezeTimeNode = document.selectSingleNode("/xxs/setting/storeFreezeTime");
 		Node isLoginFailureLockNode = document.selectSingleNode("/xxs/setting/isLoginFailureLock");
 		Node loginFailureLockCountNode = document.selectSingleNode("/xxs/setting/loginFailureLockCount");
 		Node loginFailureLockTimeNode = document.selectSingleNode("/xxs/setting/loginFailureLockTime");
@@ -262,9 +260,6 @@ public class SettingUtil {
 		Node smallCardsImageHeightNode = document.selectSingleNode("/xxs/setting/smallCardsImageHeight");
 		Node thumbnailCardsImageWidthNode = document.selectSingleNode("/xxs/setting/thumbnailCardsImageWidth");
 		Node thumbnailCardsImageHeightNode = document.selectSingleNode("/xxs/setting/thumbnailCardsImageHeight");
-		Node isShowMarketPriceNode = document.selectSingleNode("/xxs/setting/isShowMarketPrice");
-		Node defaultMarketPriceOperatorNode = document.selectSingleNode("/xxs/setting/defaultMarketPriceOperator");
-		Node defaultMarketPriceNumberNode = document.selectSingleNode("/xxs/setting/defaultMarketPriceNumber");
 		Node smtpFromMailNode = document.selectSingleNode("/xxs/setting/smtpFromMail");
 		Node smtpHostNode = document.selectSingleNode("/xxs/setting/smtpHost");
 		Node smtpPortNode = document.selectSingleNode("/xxs/setting/smtpPort");
@@ -330,12 +325,6 @@ public class SettingUtil {
 		if(priceRoundTypeNode == null){
 			priceRoundTypeNode = settingElement.addElement("priceRoundType");
 		}
-		if(storeAlertCountNode == null){
-			storeAlertCountNode = settingElement.addElement("storeAlertCount");
-		}
-		if(storeFreezeTimeNode == null){
-			storeFreezeTimeNode = settingElement.addElement("storeFreezeTime");
-		}
 		if(isLoginFailureLockNode == null){
 			isLoginFailureLockNode = settingElement.addElement("isLoginFailureLock");
 		}
@@ -389,15 +378,6 @@ public class SettingUtil {
 		}
 		if(thumbnailCardsImageHeightNode == null){
 			thumbnailCardsImageHeightNode = settingElement.addElement("thumbnailCardsImageHeight");
-		}
-		if(isShowMarketPriceNode == null){
-			isShowMarketPriceNode = settingElement.addElement("isShowMarketPrice");
-		}
-		if(defaultMarketPriceOperatorNode == null){
-			defaultMarketPriceOperatorNode = settingElement.addElement("defaultMarketPriceOperator");
-		}
-		if(defaultMarketPriceNumberNode == null){
-			defaultMarketPriceNumberNode = settingElement.addElement("defaultMarketPriceNumber");
 		}
 		if(smtpFromMailNode == null){
 			smtpFromMailNode = settingElement.addElement("smtpFromMail");

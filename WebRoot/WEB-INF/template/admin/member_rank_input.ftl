@@ -36,7 +36,11 @@ $().ready(function() {
 					remote: "member_rank!checkName.action?oldValue=${memberRank.name?url}"
 				</#if>
 			},
-			"memberRank.preferentialScale": {
+			"memberRank.lossrate": {
+				required: true,
+				min: 0
+			},
+			"memberRank.benefits": {
 				required: true,
 				min: 0
 			},
@@ -50,9 +54,13 @@ $().ready(function() {
 				required: "请填写等级名称",
 				remote: "等级名称已存在"
 			},
-			"memberRank.preferentialScale": {
-				required: "请填写优惠百分比",
-				min: "优惠百分比必须为零或正数"
+			"memberRank.lossrate": {
+				required: "请填写手续费率",
+				min: "手续费率必须为零或正数"
+			},
+			"memberRank.benefits": {
+				required: "请填写提成了率",
+				min: "提成率必须为零或正数"
 			},
 			"memberRank.score": {
 				required: "请填写所需积分",
@@ -86,15 +94,6 @@ $().ready(function() {
 					</th>
 					<td>
 						<input type="text" name="memberRank.name" class="formText" value="${(memberRank.name)!}" />
-						<label class="requireField">*</label>
-					</td>
-				</tr>
-				<tr>
-					<th>
-						优惠百分比: 
-					</th>
-					<td>
-						<input type="text" name="memberRank.preferentialScale" class="formText" value="${(memberRank.preferentialScale)!"100"}" title="单位: %, 若输入90,表示该会员等级以充值卡价格的90%进行销售" />单位: %, 若输入90,表示该会员等级以充值卡价格的90%进行销售
 						<label class="requireField">*</label>
 					</td>
 				</tr>

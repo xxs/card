@@ -6,6 +6,12 @@
 <meta name="Author" content="XXS-DW" />
 <meta name="Copyright" content="XXS" />
 <#include "/WEB-INF/template/card/member_head.ftl">
+<script type="text/javascript" src="${base}/template/common/js/jquery.qrcode.min.js"></script>
+<script>
+jQuery(function(){
+	jQuery('#output').qrcode("http://127.0.0.1:8080/card/member!register.action?id=${member.id}");
+})
+</script>
 </head>
 <body class="memberCenter">
 	<#include "/WEB-INF/template/card/member_header.ftl">
@@ -16,9 +22,15 @@
 	<div class="contentRight">
 		<div class="katong">
 			<div class="fangz">推广链接 </div>
-			<div class="red"><p>推广链接：<input type="text" class="formText" value="http://127.0.0.1:8080/card/member!memberreg.action?id=${member.id}"/>&nbsp; <a >复制</a></p></div>
-			<div class="hei">xxxxxxxx</div>
+			<div class="red">
+				<p>推广链接：<input type="text" class="formText" value="http://127.0.0.1:8080/card/member!memberreg.action?id=${member.id}"/> 
+					&nbsp;<a >复制</a>
+					&nbsp;<a href="member!register.action?id=${member.id}" target="_block">测试</a>
+				</p>
+			</div>
+			<div class="hei">分享二维码，获取更多的推荐用户</div>
 		</div>
+		<div id="output"></div>
 	</div>
 	</div>
 </div>

@@ -11,94 +11,47 @@
 </head>
 <body class="articleContent">
 	<#include "/WEB-INF/template/card/header.ftl">
-	<div class="body">
-		<div class="bodyLeft">
-			<div class="recommendArticle">
-				<div class="top">推荐文章</div>
-				<div class="middle">
-					<ul>
-						<@article_list article_category_id=article.articleCategory.id type="recommend" count=10; articleList>
-							<#list articleList as article>
-								<li>
-									<span class="icon">&nbsp;</span>
-									<a href="${base}${article.htmlPath}" title="${article.title}">${substring(article.title, 24, "...")}</a>
-								</li>
-							</#list>
-						</@article_list>
-					</ul>
-				</div>
-				<div class="bottom"></div>
-			</div>
-			<div class="blank"></div>
-			<div class="hotArticle">
-				<div class="top">热点文章</div>
-				<div class="middle">
-					<ul>
+	<div class="column">
+	<div class="column_left">
+        <ul>
 						<@article_list article_category_id=article.articleCategory.id type="hot" count=10; articleList>
 							<#list articleList as article>
 								<li class="number${article_index + 1}">
-									<span class="icon">&nbsp;</span>
 									<a href="${base}${article.htmlPath}" title="${article.title}">${substring(article.title, 24, "...")}</a>
 								</li>
 							</#list>
-						</@article_list>
-					</ul>
-				</div>
-				<div class="bottom"></div>
-			</div>
-		</div>
-		<div class="bodyRight">
-			<div class="listBar">
-				<div class="left"></div>
-				<div class="middle">
-					<div class="path">
-						<a href="${base}/" class="shop"><span class="icon">&nbsp;</span>首页</a> &gt;
-						<#list pathList as path>
-							<a href="${base}${path.url}">${path.name}</a> &gt;
-						</#list>
-					</div>
-					<div id="articleSearch" class="articleSearch">
-						<form id="articleSearchForm" action="${base}/card/article!search.action" method="post">
-							<input type="text" name="pager.keyword" id="articleSearchKeyword" class="keyword" value="请输入关键词..." />
-							<input type="submit" class="searchButton" value="" />
-						</form>
-					</div>
-				</div>
-				<div class="right"></div>
-			</div>
-			<div class="blank"></div>
-			<div class="articleContentDetail">
-				<div class="articleContentTop"></div>
-				<div class="articleContentMiddle">
-					<div class="title">${article.title}<#if (pageCount > 1 && pageNumber > 1)>( ${pageNumber} )</#if></div>
-                    <div class="blank"></div>
-                    <div class="info">
-                    	<span class="createDate">日期: ${article.createDate?string("yyyy-MM-dd HH: mm")}</span>
-                    	<#if article.author??>
-                    		<span class="author">作者: ${article.author}</span>
-                    	</#if>
-                    	点击: <span id="hits"></span> 次
-                    	<span class="fontSize">【<a id="changeBigFontSize" href="javascript: void(0);">大</a> <a id="changeNormalFontSize" href="javascript: void(0);">中</a> <a id="changeSmallFontSize" href="javascript: void(0);">小</a>】</span>
-                    </div>
-					<div id="articleContent" class="content">
-						${content}
-             			<div class="blank"></div>
-             			<#import "/WEB-INF/template/card/pager.ftl" as p>
-             			<@pagination urlList = article.htmlPathList pageNumber = pageNumber>
-	         				<#include "/WEB-INF/template/card/pager.ftl">
-	         			</@pagination>
-                    </div>
-				</div>
-				<div class="articleContentBottom"></div>
-			</div>
-		</div>
+						</@article_list>		
+        </ul>
+    </div>
+     <div class="column_right">
+   	    <div class="column_right_1"><p>您尚未登陆，请点击<a href="${base}/card/promotion.action">登陆</a>立即参与到分享二维码，推荐会员拿提成活动</div>
+        <div class="column_right_2_shang">
+                	<div class="title">
+	                     	<a href="${base}${article.htmlPath}">
+								${substring(article.title, 40, "...")}
+							</a>
+						</div>
+                          <span class="author">
+                            	${article.contentText}
+                                	<div class="info">
+										作者: <#if article.author == "">未知<#else>${article.author}</#if>&nbsp;
+										${article.createDate}&nbsp;
+										点击: <a id="hits"></a> 次&nbsp;
+									</div>
+                                </span>
+        </div>
+    </div>
+</div>
 		<div class="blank"></div>
 		<#include "/WEB-INF/template/card/friend_link.ftl">
-		<script type="text/javascript" src="${base}/template/common/js/jquery.js"></script>
-		<script type="text/javascript" src="${base}/template/common/js/jquery.tools.js"></script>
-		<script type="text/javascript" src="${base}/template/card/js/base.js"></script>
-		<script type="text/javascript" src="${base}/template/card/js/card.js"></script>
-		<script type="text/javascript">
+	</div>
+	<div class="blank"></div>
+	<#include "/WEB-INF/template/card/footer.ftl">
+	<script type="text/javascript" src="${base}/template/common/js/jquery.js"></script>
+	<script type="text/javascript" src="${base}/template/common/js/jquery.tools.js"></script>
+	<script type="text/javascript" src="${base}/template/card/js/base.js"></script>
+	<script type="text/javascript" src="${base}/template/card/js/card.js"></script>
+	<script type="text/javascript">
 		$().ready( function() {
 		
 			$hits = $("#hits");
@@ -116,8 +69,5 @@
 		
 		});
 		</script>
-	</div>
-	<div class="blank"></div>
-	<#include "/WEB-INF/template/card/footer.ftl">
 </body>
 </html>

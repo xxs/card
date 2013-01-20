@@ -111,8 +111,6 @@ public class SettingAction extends BaseAdminAction {
 			@RequiredFieldValidator(fieldName = "setting.currencyType", message = "货币种类不允许为空!"),
 			@RequiredFieldValidator(fieldName = "setting.priceScale", message = "充值卡价格精确位数不允许为空!"),
 			@RequiredFieldValidator(fieldName = "setting.priceRoundType", message = "充值卡价格精确方式不允许为空!"),
-			@RequiredFieldValidator(fieldName = "setting.storeAlertCount", message = "充值卡库存报警数量不允许为空!"),
-			@RequiredFieldValidator(fieldName = "setting.storeFreezeTime", message = "库存预占时间点不允许为空!"),
 			@RequiredFieldValidator(fieldName = "setting.isRegisterEnabled", message = "是否开放注册不允许为空!"),
 			@RequiredFieldValidator(fieldName = "setting.isLoginFailureLock", message = "是否开启自动锁定账号功能不允许为空!"),
 			@RequiredFieldValidator(fieldName = "setting.loginFailureLockCount", message = "连续登录失败最大次数不允许为空!"),
@@ -125,9 +123,6 @@ public class SettingAction extends BaseAdminAction {
 			@RequiredFieldValidator(fieldName = "setting.thumbnailCardsImageHeight", message = "充值卡缩略图高不允许为空!"),
 			@RequiredFieldValidator(fieldName = "setting.smtpPort", message = "SMTP服务器端口不允许为空!"),
 			@RequiredFieldValidator(fieldName = "setting.watermarkAlpha", message = "水印透明度不允许为空!"),
-			@RequiredFieldValidator(fieldName = "setting.isShowMarketPrice", message = "前台是否显示市场价不允许为空!"),
-			@RequiredFieldValidator(fieldName = "setting.defaultMarketPriceOperator", message = "默认市场价运算符不允许为空!"),
-			@RequiredFieldValidator(fieldName = "setting.defaultMarketPriceNumber", message = "默认市场价运算基数不允许为空!"),
 			@RequiredFieldValidator(fieldName = "setting.scoreType", message = "积分获取方式不允许为空!"),
 			@RequiredFieldValidator(fieldName = "setting.scoreScale", message = "积分换算比率不允许为空!"),
 			@RequiredFieldValidator(fieldName = "setting.isGzipEnabled", message = "是否开启GZIP功能不允许为空!"),
@@ -188,7 +183,7 @@ public class SettingAction extends BaseAdminAction {
 			File destWatermarkImage = new File(getRealPath(persistent.getWatermarkImagePath()));
 			ImageUtil.toJpegImageFile(watermarkImage, destWatermarkImage);
 		}
-		BeanUtils.copyProperties(setting, persistent, new String[] {"systemName", "systemVersion", "systemDescription", "contextPath", "imageUploadPath", "imageBrowsePath", "adminLoginUrl", "adminLoginProcessingUrl", "isShowPoweredInfo", "cardLogoPath", "defaultBigCardsImagePath", "defaultSmallCardsImagePath", "defaultThumbnailCardsImagePath", "watermarkImagePath", "isInstantMessagingEnabled", "instantMessagingPosition", "instantMessagingTitle", "isLeaveMessageEnabled", "isLeaveMessageCaptchaEnabled", "leaveMessageDisplayType", "isCommentEnabled", "isCommentCaptchaEnabled", "commentAuthority", "commentDisplayType"});
+		BeanUtils.copyProperties(setting, persistent, new String[] {"systemName", "systemVersion", "systemDescription", "contextPath", "imageUploadPath", "imageBrowsePath", "adminLoginUrl", "adminLoginProcessingUrl", "isShowPoweredInfo","withdrawEveryDayCount","withdrawEveryDayMoney","withdrawEveryMaxMoney","withdrawEveryMinMoney","withdrawMaxMoney","withdrawMaxCount", "cardLogoPath", "defaultBigCardsImagePath", "defaultSmallCardsImagePath", "defaultThumbnailCardsImagePath", "watermarkImagePath", "isInstantMessagingEnabled", "instantMessagingPosition", "instantMessagingTitle", "isLeaveMessageEnabled", "isLeaveMessageCaptchaEnabled", "leaveMessageDisplayType", "isCommentEnabled", "isCommentCaptchaEnabled", "commentAuthority", "commentDisplayType"});
 		SettingUtil.updateSetting(persistent);
 		
 		cacheService.flushAllPageCache(getRequest());

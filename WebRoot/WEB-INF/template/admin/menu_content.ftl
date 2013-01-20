@@ -77,9 +77,11 @@
 				<dd>
 					<a href="build_html!articleInput.action" target="mainFrame">文章更新</a>
 				</dd>
+				<!--
 				<dd>
 					<a href="build_html!cardsInput.action" target="mainFrame">充值卡更新</a>
 				</dd>
+				-->
 			</dl>
 		</@sec.authorize>
 	</div>

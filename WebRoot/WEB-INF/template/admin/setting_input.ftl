@@ -175,10 +175,6 @@ $().ready(function() {
 				required: true,
 				digits: true
 			},
-			"setting.defaultMarketPriceNumber": {
-				required: true,
-				number: true
-			},
 			"setting.loginFailureLockCount": {
 				required: true,
 				positiveInteger: true
@@ -200,10 +196,6 @@ $().ready(function() {
 			"setting.currencyType": "required",
 			"setting.currencySign": "required",
 			"setting.currencyUnit": "required",
-			"setting.storeAlertCount": {
-				required: true,
-				digits: true
-			},
 			"setting.scoreScale": {
 				required: true,
 				min: 0
@@ -250,10 +242,6 @@ $().ready(function() {
 				required: "请填写水印透明度",
 				digits: "水印透明度必须为零或正整数"
 			},
-			"setting.defaultMarketPriceNumber": {
-				required: "请填写默认市场价运算基数",
-				number: "默认市场价运算基数必须为数字"
-			},
 			"setting.loginFailureLockCount": {
 				required: "请填写连续登录失败最大次数",
 				positiveInteger: "连续登录失败最大次数请输入合法的正整数"
@@ -275,10 +263,6 @@ $().ready(function() {
 			"setting.currencyType": "请选择货币种类",
 			"setting.currencySign": "请填写货币符号",
 			"setting.currencyUnit": "请填写货币单位",
-			"setting.storeAlertCount": {
-				required: "请填写充值卡库存报警数量",
-				digits: "充值卡库存报警数量必须为零或正整数"
-			},
 			"setting.scoreScale": {
 				required: "请填写积分换算比率",
 				min: "积分换算比率必须为零或正数"
@@ -513,32 +497,6 @@ $().ready(function() {
 					<td>
 						<input type="text" name="setting.watermarkAlpha" class="formText" value="${setting.watermarkAlpha}" title="取值范围: 0-100,  0代表完全透明" />
 						<label class="requireField">*</label>
-					</td>
-				</tr>
-				<tr>
-					<th>
-						市场价显示设置: 
-					</th>
-					<td>
-						<label>
-							<@checkbox name="setting.isShowMarketPrice" value="${setting.isShowMarketPrice}" />前台是否显示市场价
-						</label>
-					</td>
-				</tr>
-				<tr>
-					<th>
-						默认市场价运算: 
-					</th>
-					<td>
-						市场价 = 销售价
-						<select name="setting.defaultMarketPriceOperator">
-							<#list operatorList as operator>
-								<option value="${operator}"<#if operator == setting.defaultMarketPriceOperator> selected</#if>>
-								${action.getText("Operator." + operator)}
-								</option>
-							</#list>
-						</select>
-						<input type="text" name="setting.defaultMarketPriceNumber" class="formText" value="${setting.defaultMarketPriceNumber}" style="width: 50px;" />
 					</td>
 				</tr>
 			</table>

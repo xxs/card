@@ -19,7 +19,6 @@ public class MemberRank extends BaseEntity {
 	private static final long serialVersionUID = 3599029355500655209L;
 
 	private String name;// 等級名称
-	private Double preferentialScale;// 优惠百分比
 	private Double lossrate;// 手续费率
 	private Double benefits;//提成率
 	private Integer score;// 所需积分
@@ -36,15 +35,6 @@ public class MemberRank extends BaseEntity {
 		this.name = name;
 	}
 
-	@Column(nullable = false)
-	public Double getPreferentialScale() {
-		return preferentialScale;
-	}
-
-	public void setPreferentialScale(Double preferentialScale) {
-		this.preferentialScale = preferentialScale;
-	}
-	
 	@Column(nullable = false)
 	public Double getLossrate() {
 		return lossrate;
@@ -93,9 +83,6 @@ public class MemberRank extends BaseEntity {
 	@Override
 	@Transient
 	public void onSave() {
-		if (preferentialScale == null || preferentialScale < 0D) {
-			preferentialScale = 0D;
-		}
 		if (lossrate == null || lossrate < 0D) {
 			lossrate = 0D;
 		}
@@ -114,9 +101,6 @@ public class MemberRank extends BaseEntity {
 	@Override
 	@Transient
 	public void onUpdate() {
-		if (preferentialScale == null || preferentialScale < 0D) {
-			preferentialScale = 0D;
-		}
 		if (lossrate == null || lossrate < 0D) {
 			lossrate = 0D;
 		}

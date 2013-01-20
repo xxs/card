@@ -28,8 +28,6 @@
 		<currencyUnit>元</currencyUnit>  
 		<priceScale>2</priceScale>  
 		<priceRoundType>roundHalfUp</priceRoundType>  
-		<storeAlertCount>5</storeAlertCount>  
-		<storeFreezeTime>order</storeFreezeTime>  
 		<uploadLimit>1024</uploadLimit>  
 		<isLoginFailureLock>true</isLoginFailureLock>  
 		<loginFailureLockCount>5</loginFailureLockCount>  
@@ -53,9 +51,6 @@
 		<defaultBigCardsImagePath>/images/default_big_cards_image.jpg</defaultBigCardsImagePath>  
 		<defaultSmallCardsImagePath>/images/default_small_cards_image.jpg</defaultSmallCardsImagePath>  
 		<defaultThumbnailCardsImagePath>/images/default_thumbnail_cards_image.jpg</defaultThumbnailCardsImagePath>  
-		<isShowMarketPrice>true</isShowMarketPrice>  
-		<defaultMarketPriceOperator>multiply</defaultMarketPriceOperator>  
-		<defaultMarketPriceNumber>1.2</defaultMarketPriceNumber>  
 		<smtpFromMail>test@xxs.net</smtpFromMail>  
 		<smtpHost>smtp.xxs.net</smtpHost>  
 		<smtpPort>25</smtpPort>  

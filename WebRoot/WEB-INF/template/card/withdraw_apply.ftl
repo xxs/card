@@ -73,13 +73,10 @@ $().ready( function() {
 									提现账户: 
 								</th>
 								<td>
-									<#if loginMember.memberBankSet??>
-										<div class="hei">您还没有设置提现账户，<a href="bank!add.action">点击添加！</a></div>
-									<#else>
 										<#list loginMember.memberBankSet as memberBank>
 											<input type="radio" name="memberBank.id" value="${memberBank.id}" <#if memberBank.isDefault >checked="checked"</#if> />${memberBank.banknum}(开户名：${memberBank.openname},开户银行:${memberBank.bankname})<br />
 										</#list>
-									</#if>
+										<div class="hei">没有找到合适的账户，<a href="bank!add.action">点击添加！</a></div>
 								</td>
 							</tr>
 							<tr>
