@@ -13,7 +13,7 @@
 
 
 /* logo */
-.logo{width:100%;height:77px; background:url(../images/bj_top.jpg) repeat-x;}
+.logo{width:100%;height:77px;margin:0 auto 1px;; background:url(../images/bj_top.jpg) repeat-x;}
 .logo_995{width:995px;margin:0 auto;}
 .logo_left{padding-top:14px;width:163px; float:left;}
 .logo_right{float:right;width:700px;margin-top:45px;}
@@ -24,26 +24,17 @@
 .kan{border-bottom:3px solid #e10911;text-align:center; color:#e10911;}
 
 /* banner */
-.banner{width:995px;margin:0 auto;height:415px;}
-.banner_left{width:638px;height:415px;background:url(../images/banner.jpg) left no-repeat; float:left;}
-.banner_left ul{margin:129px 0 0 111px;display:block; width:222px;}
-.banner_left ul li{font-size:16px;font-weight:bold;font-family:"黑体";color:#6c6c6c;height:36px;}
-.banner_left ul li span{background:url(../images/jiantou.png) no-repeat;float:right;width:126px;height:32px;display:block;line-height:32px;text-align:center;color:#FFF;}
-.banner_left ul li p{display:block;width:88px;float:left; margin-top:9px;}
-.banner_right{width:357px;height:415px;float:right;}
-.banner_xiao{width:318px;height:278px;border:5px solid #a7a7a7;margin-top:64px;}
-.tab_menu {clear:both;height:32px;l}
-.tab_menu li {float:left;color:#898989;text-align:center;cursor:pointer;list-style:none; font-family:"宋体"; font-size:16px;margin-right:1px;background:#dddddd;width:158px;height:32px;line-height:32px; font-weight:bold;}
-.tab_menu li.hover {background:#fff;}
-.tab_menu li.selected {color:#000;background:#fff;}
-.tab_box {clear:both;height:220px; padding:25px 0 0 25px;}
-.tab_box .anan p{height:27px;float:left;width:36px;line-height:27px; display:block; margin-right:15px;}
-.tab_box .anan span{display:block;}
-.oo{width:189px;height:27px;background:url(../images/index/xian.jpg) no-repeat;border:0;}
-.annnsa{width:189px; height:45px; line-height:15px;margin-top:11px;margin-left:50px;}
-.ddsa{margin-left:50px; line-height:30px;}
-.wenz{margin-left:50px;line-height:58px;}
-.hide{display:none}
+img{ border:none}
+#flash { width:980px; height:393px; overflow:hidden; margin:0 auto; clear:both; position:relative;/*--*/ padding:0px 10px;}
+#flash a {width:980px; height:393px; display:none;}
+#flash img {width:980px; height:393px;/* display:none;*/}
+.flash_bar { width:520px; padding-left:470px; z-index:69; height:30px; overflow:hidden; position:absolute;padding-top:13px!important; padding-top:12px; bottom:0px; left:0px; background:url(../images/tg_flashbar.png) no-repeat 10px 0px; text-align:center;}
+.flash_bar .dq { display:block; float:left; width:8px; height:8px; margin:5px 5px; /* background: url(tg_flash_p.png) no-repeat 0px 0px;*/ cursor:pointer;
+background:url(../images/tg_flash_p.png) no-repeat 0px 0px; _background:none; _filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src="../images/tg_flash_p.png" ,sizingMethod="crop"); }
+.flash_bar .no { display:block; float:left; width:8px; height:8px; margin:5px 5px; /* background: url(tg_flash_p.png) no-repeat 0px 0px;*/ cursor:pointer;
+background:url(../images/tg_flash_p2.png) no-repeat 0px 0px; _background:none; _filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src="../images/tg_flash_p2.png" ,sizingMethod="crop"); }
+#flashBg { height:393px; overflow:hidden; width:100%; clear:both; margin:0; padding:0;}
+#flashLine {background:url(../images/touming.png) repeat-x center bottom;height:393px; width:100%; clear:both;}
 
 /* content */
 .content_line{width:100%;height:100px;background:#eeeeee;}

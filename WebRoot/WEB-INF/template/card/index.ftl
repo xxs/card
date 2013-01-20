@@ -29,30 +29,23 @@
 		});
 	})	
 	</script>
-	<script type="text/javascript" >
-	//<![CDATA[
-		$(function(){
-		    var $div_li =$("div.tab_menu ul li");
-		    $div_li.mouseover(function(){//要点击切换这click
-				$(this).addClass("selected")            //当前<li>元素高亮
-					   .siblings().removeClass("selected");  //去掉其它同辈<li>元素的高亮
-	            var index =  $div_li.index(this);  // 获取当前点击的<li>元素 在 全部li元素中的索引。
-				$("div.tab_box > div")   	//选取子节点。不选取子节点的话，会引起错误。如果里面还有div 
-						.eq(index).show()   //显示 <li>元素对应的<div>元素
-						.siblings().hide(); //隐藏其它几个同辈的<div>元素
-			}).hover(function(){
-				$(this).addClass("hover");
-			},function(){
-				$(this).removeClass("hover");
-			})
-		})
-	//]]>
-	</script>
-		
 </head>
 <body>
 	<#include "/WEB-INF/template/card/header.ftl">
-	<div id="warp">
+	<div id="flashBg" style="background-color: rgb(11, 11, 11); ">
+	<div id="flashLine">
+	<div id="flash">
+	<a href="#" target="_blank" id="flash1" style="display: block; " name="#0b0b0b"><img src="${base}/template/card/images/01.jpg" width="980" height="393"></a>
+	<a href="#" target="_blank" id="flash2" name="#194982" style="display: none; "><img src="${base}/template/card/images/02.jpg" width="980" height="393"></a>
+	<a href="#" target="_blank" id="flash3" name="#04304b" style="display: none; "><img src="${base}/template/card/images/03.jpg" width="980" height="393"></a>
+	  <div class="flash_bar">
+	<div class="dq" id="f1" onclick="changeflash(1)"></div>
+	<div class="no" id="f2" onclick="changeflash(2)"></div>
+	<div class="no" id="f3" onclick="changeflash(3)"></div>
+	  </div>
+	</div>
+	</div>
+	</div>
 	<!--内容区-->
 	<div class="content_line">
 		<#include "/WEB-INF/template/card/friend_link.ftl">
@@ -63,5 +56,40 @@
 	<script type="text/javascript" src="${base}/template/card/js/jquery.Sonline.js"></script>
 	<script type="text/javascript" src="${base}/template/card/js/base.js"></script>
 	<script type="text/javascript" src="${base}/template/card/js/card.js"></script>
+	<script>
+	var currentindex=1;
+	var length = $(".flash_bar div").length;
+	
+	$("#flashBg").css("background-color",$("#flash1").attr("name"));
+	function changeflash(i) {	
+	currentindex=i;
+	
+	for (j=1;j<=length;j++){
+		if (j==i) 
+		{$("#flash"+j).fadeIn("normal");
+		$("#flash"+j).css("display","block");
+		$("#f"+j).removeClass();
+		$("#f"+j).addClass("dq");
+		$("#flashBg").css("background-color",$("#flash"+j).attr("name"));
+		}
+		else
+		{$("#flash"+j).css("display","none");
+		$("#f"+j).removeClass();
+		$("#f"+j).addClass("no");}
+	}}
+	function startAm(){
+	timerID = setInterval("timer_tick()",8000);
+	}
+	function stopAm(){
+	clearInterval(timerID);
+	}
+	function timer_tick() {
+	    currentindex=currentindex>=length?1:currentindex+1;
+		changeflash(currentindex);}
+	$(document).ready(function(){
+	$(".flash_bar div").mouseover(function(){stopAm();}).mouseout(function(){startAm();});
+	startAm();
+	});
+	</script>
 </body>
 </html>
