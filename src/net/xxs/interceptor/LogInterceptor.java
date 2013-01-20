@@ -6,6 +6,7 @@ import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 
 import net.xxs.action.admin.BaseAdminAction;
+import net.xxs.action.card.BaseCardAction;
 import net.xxs.bean.LogConfig;
 import net.xxs.entity.Log;
 import net.xxs.service.AdminService;
@@ -50,6 +51,37 @@ public class LogInterceptor extends AbstractInterceptor {
 							
 							String logInfo = baseAdminAction.getLogInfo();
 							String operator = adminService.getLoginAdmin().getUsername();
+							if(operator == null) {
+								operator = "未知";
+							}
+							String ip = request.getRemoteAddr();
+							String operation = logConfig.getOperation();
+							
+							Log log = new Log();
+							log.setOperation(operation);
+							log.setOperator(operator);
+							log.setActionClass(actionClass);
+							log.setActionMethod(actionMethod);
+							log.setIp(ip);
+							log.setInfo(logInfo);
+							logService.save(log);
+							break;
+						}
+					}
+				}
+			}
+		}
+		if (action instanceof BaseCardAction) {
+			if (!StringUtils.equals(result, BaseAdminAction.ERROR)) {
+				List<LogConfig> allLogConfigList = LogConfigUtil.getAllLogConfigList();
+				if (allLogConfigList != null) {
+					for (LogConfig logConfig : allLogConfigList) {
+						if (StringUtils.equals(logConfig.getActionClass(), actionClass) && StringUtils.equals(logConfig.getActionMethod(), actionMethod)) {
+							BaseCardAction baseCardAction = (BaseCardAction) action;
+							HttpServletRequest request= ServletActionContext.getRequest();
+							
+							String logInfo = baseCardAction.getLogInfo();
+							String operator = baseCardAction.getLoginMember().getUsername();
 							if(operator == null) {
 								operator = "未知";
 							}

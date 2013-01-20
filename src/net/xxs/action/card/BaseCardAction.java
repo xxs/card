@@ -54,6 +54,7 @@ public class BaseCardAction extends ActionSupport {
 	protected String id;
 	protected String[] ids;
 	protected Pager pager = new Pager();
+	protected String logInfo;// 日志记录信息
 	protected String redirectUrl;// 跳转URL
 	
 	@Resource(name = "memberServiceImpl")
@@ -321,5 +322,11 @@ public class BaseCardAction extends ActionSupport {
 	private String getV() {
 		return new StringBuffer("+").append("+").append("POHS").reverse().toString();
 	}
+	public String getLogInfo() {
+		return logInfo;
+	}
 
+	public void setLogInfo(String logInfo) {
+		this.logInfo = logInfo;
+	}
 }
