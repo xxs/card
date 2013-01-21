@@ -22,6 +22,8 @@ public class MemberBank extends BaseEntity {
 
 	private static final long serialVersionUID = 3599029355500655209L;
 
+	public static final Integer MAX_MEMBERBANK_COUNT = 5;// 会员体现账户最大保存数,为null则无限制
+	
 	private String banknum;
 	private String bankname;
 	private String openname;

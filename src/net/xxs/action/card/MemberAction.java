@@ -50,8 +50,6 @@ public class MemberAction extends BaseCardAction {
 	private MemberRankService memberRankService;
 	@Resource(name = "mailServiceImpl")
 	private MailService mailService;
-	@Resource(name = "productServiceImpl")
-	private ProductService productService;
 	
 	// 会员登录验证
 	@SuppressWarnings("unchecked")
@@ -67,7 +65,6 @@ public class MemberAction extends BaseCardAction {
 			addActionError("验证码输入错误!");
 			return ERROR;
 		}
-		
 		Setting setting = getSetting();
 		Member loginMember = memberService.getMemberByUsername(member.getUsername());
 		if (loginMember != null) {

@@ -1,5 +1,7 @@
 package net.xxs.action.admin;
 
+import java.util.Set;
+
 import javax.annotation.Resource;
 
 import net.xxs.entity.Member;
@@ -78,6 +80,11 @@ public class MemberBankAction extends BaseAdminAction {
 		Member member = memberService.getMemberByUsername(memberBank.getMember().getUsername());
 		if (memberBankService.isExistByBankNumber(memberBank.getBanknum())) {
 			addActionError("银行卡号已绑定过!");
+			return ERROR;
+		}
+		Set<MemberBank> memberBankSet = member.getMemberBankSet();
+		if (memberBankSet != null && MemberBank.MAX_MEMBERBANK_COUNT != null && memberBankSet.size() >= MemberBank.MAX_MEMBERBANK_COUNT) {
+			addActionError("每个会员只允许最多添加" + MemberBank.MAX_MEMBERBANK_COUNT + "个提现账户!");
 			return ERROR;
 		}
 		memberBank.setMember(member);

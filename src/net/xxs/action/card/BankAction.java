@@ -1,5 +1,7 @@
 package net.xxs.action.card;
 
+import java.util.Set;
+
 import javax.annotation.Resource;
 
 import net.xxs.entity.Member;
@@ -46,6 +48,12 @@ public class BankAction extends BaseCardAction {
 	}
 	// 添加
 	public String add() {
+		Member loginMember = getLoginMember();
+		Set<MemberBank> memberBankSet = loginMember.getMemberBankSet();
+		if (memberBankSet != null && MemberBank.MAX_MEMBERBANK_COUNT != null && memberBankSet.size() >= MemberBank.MAX_MEMBERBANK_COUNT) {
+			addActionError("只允许最多添加" + MemberBank.MAX_MEMBERBANK_COUNT + "个提现账户!");
+			return ERROR;
+		}
 		return INPUT;
 	}
 	// 设置默认
@@ -91,6 +99,11 @@ public class BankAction extends BaseCardAction {
 	@InputConfig(resultName = "error")
 	public String save() {
 		member = getLoginMember();
+		Set<MemberBank> memberBankSet = member.getMemberBankSet();
+		if (memberBankSet != null && MemberBank.MAX_MEMBERBANK_COUNT != null && memberBankSet.size() >= MemberBank.MAX_MEMBERBANK_COUNT) {
+			addActionError("只允许最多添加" + MemberBank.MAX_MEMBERBANK_COUNT + "个提现账户!");
+			return ERROR;
+		}
 		memberBank.setMember(member);
 		memberBankService.save(memberBank);
 		redirectUrl = "bank!list.action";

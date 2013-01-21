@@ -575,6 +575,9 @@ public class Member extends BaseEntity {
 			if (systemAttributeType == SystemAttributeType.mobile) {
 				return mobile;
 			}
+			if (systemAttributeType == SystemAttributeType.referrer) {
+				return referrer;
+			}
 		} else if(attributeType != null) {
 			String propertyName = MEMBER_ATTRIBUTE_VALUE_PROPERTY_NAME_PREFIX + memberAttribute.getPropertyIndex();
 			String propertyValue = (String) ReflectionUtil.invokeGetterMethod(this, propertyName);
@@ -619,6 +622,8 @@ public class Member extends BaseEntity {
 			} else if (systemAttributeType == SystemAttributeType.phone) {
 				phone = memberAttributeValue.toString();
 			} else if (systemAttributeType == SystemAttributeType.mobile) {
+				mobile = memberAttributeValue.toString();
+			} else if (systemAttributeType == SystemAttributeType.referrer) {
 				mobile = memberAttributeValue.toString();
 			}
 		} else if(attributeType != null) {
