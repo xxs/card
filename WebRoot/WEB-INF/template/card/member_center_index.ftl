@@ -20,9 +20,6 @@
 							<td colspan="4">
 								您目前是[${loginMember.memberRank.name}],目前等级享受的提现手续费率为：${(1-loginMember.memberRank.lossrate)*100}%&nbsp;!
 								下一等级将享受的提现手续费率为：${(1-loginMember.memberRank.lossrate)*100}%
-								<#if loginMember.memberRank.preferentialScale != 100>
-									<span class="red">[优惠百分比: ${loginMember.memberRank.preferentialScale}%]</span>
-								</#if>
 							</td>
 						</tr>
 						<tr>

@@ -1,15 +1,15 @@
 @charset "utf-8";
 /* top */
-.top{width:100%;height:29px;background:#2d2d2d;}
+.top{width:100%;height:29px;border-bottom:2px solid #e10911;}
 .top_995{height:29px;width:995px;margin:0 auto;}
 .top_995_left{height:29px;width:500px;float:left;}
 .top_995_left ul{ height:29px;line-height:29px;}
 .top_995_left ul li{float:left; background:url(../images/index/top.jpg) right no-repeat; text-align:center;width:94px;}
-.top_995_left ul li a{color:#ccc;}
-.top_995_right{height:29px;width:160px;float:right;}
-.top_995_right a{ color:#FFF;}
-.top_995_right span{ width:111px;line-height:29px;background:#e10911;float:left; text-align:center;display:block;}
-.top_995_right p{ line-height:29px;float:right;}
+.top_995_left ul li a{color:#2d2d2d;}
+.top_995_right{height:29px;width:260px;float:right;}
+.top_995_right a{ color:#2d2d2d;}
+.top_995_right span{ width:111px;line-height:29px;background:#e10911;float:right; text-align:center;display:block;}
+.top_995_right p{ width:50px; line-height:29px;text-align:center;float:right;}
 
 
 /* logo */

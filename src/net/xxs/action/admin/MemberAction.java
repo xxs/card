@@ -260,10 +260,6 @@ public class MemberAction extends BaseAdminAction {
 			addActionError("预存款不允许小于0");
 			return ERROR;
 		}
-		if (!memberService.isExistByReferrer(member.getReferrer())) {
-			addActionError("推荐人不存在!");
-			return ERROR;
-		}
 		List<MemberAttribute> memberAttributeList = memberAttributeService.getMemberAttributeList();
 		Pattern numberPattern = Pattern.compile("^-?(?:\\d+|\\d{1,3}(?:,\\d{3})+)(?:\\.\\d+)?");
 		Pattern alphaintPattern = Pattern.compile("[a-zA-Z]+");
@@ -319,6 +315,10 @@ public class MemberAction extends BaseAdminAction {
 			member.setPassword(StringUtil.md5(member.getPassword()));
 		}
 		BeanUtils.copyProperties(member, persistent, new String[] {"id", "createDate", "modifyDate", "username", "safeQuestion", "safeAnswer", "isAccountLocked", "loginFailureCount", "lockedDate", "registerIp", "loginIp", "loginDate", "passwordRecoverKey", "receiverSet", "favoriteCardsSet", "inboxMessageSet", "outboxMessageSet", "orderSet", "depositSet", "cardsNotifySet" });
+		if (!memberService.isExistByReferrer(member.getReferrer())) {
+			addActionError("推荐人不存在!");
+			return ERROR;
+		}
 		memberService.update(persistent);
 		logInfo = "编辑会员: " + persistent.getUsername();
 		

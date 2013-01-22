@@ -78,7 +78,9 @@ public class BankAction extends BaseCardAction {
 	@InputConfig(resultName = "error")
 	public String update() {
 		memberBankService.update(memberBank);
-		redirectUrl = "bank!list.action";
+		if(null == redirectUrl){
+			redirectUrl = "bank!list.action";
+		}
 		return SUCCESS;
 	}
 	// Ajax验证银行账号是否存在
@@ -106,7 +108,9 @@ public class BankAction extends BaseCardAction {
 		}
 		memberBank.setMember(member);
 		memberBankService.save(memberBank);
-		redirectUrl = "bank!list.action";
+		if(null == redirectUrl){
+			redirectUrl = "bank!list.action";
+		}
 		return SUCCESS;
 	}
 	public Member getMember() {

@@ -58,7 +58,7 @@ $().ready( function() {
 			<div class="hei">卡信息提交成功后，可在<a href="#">订单查询</a>页面查询支付结果。处理结果以订单查询页为准。</div>
 			<div class="memberCenter">
 			<form id="withdrawRechargeForm66" action="<#if isAddAction>bank!save.action<#else>bank!update.action</#if>" method="post">
-						<input type="hidden" name="paymentType" value="recharge" />
+						<input type="hidden" name="redirectUrl" value="${redirectUrl}" />
 						<table class="inputTable">
 							<input type="hidden" name="id" value="${id}" />
 							<tr>

@@ -15,7 +15,6 @@ import net.xxs.entity.Member;
 import net.xxs.service.MailService;
 import net.xxs.service.MemberRankService;
 import net.xxs.service.MemberService;
-import net.xxs.service.ProductService;
 import net.xxs.util.CaptchaUtil;
 import net.xxs.util.StringUtil;
 
@@ -456,6 +455,7 @@ public class MemberAction extends BaseCardAction {
 			member = memberService.get(id);
 			return "register";
 		}else{
+			member.setUsername("123123");
 			return REGISTER;
 		}
 	}

@@ -37,7 +37,7 @@
 						未处理提现申请数: 
 					</td>
 					<td>
-						${unprocessedWithdrawCount} <a href="withdraw!list.action">[提现申请]</a>
+						${unprocessedWithdrawCount} <a href="withdraw!applying.action">[提现申请]</a>
 					</td>
 				</tr>
 				<tr>

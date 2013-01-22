@@ -263,14 +263,6 @@ $().ready( function() {
 				</tr>
 				<tr>
 					<th>
-						推荐人
-					</th>
-					<td>
-						<input type="text" name="member.referrer" class="formText" value="${(member.referrer)!""}" title="只允许输入存在的会员" />
-					</td>
-					</tr>
-				<tr>
-					<th>
 						设置: 
 					</th>
 					<td>

@@ -18,8 +18,10 @@ import javax.persistence.OrderBy;
 import javax.persistence.Transient;
 
 import net.xxs.bean.Gender;
+import net.xxs.entity.Deposit.DepositType;
 import net.xxs.entity.MemberAttribute.AttributeType;
 import net.xxs.entity.MemberAttribute.SystemAttributeType;
+import net.xxs.entity.Withdraw.WithdrawStatus;
 import net.xxs.util.JsonUtil;
 import net.xxs.util.ReflectionUtil;
 import net.xxs.util.SettingUtil;
@@ -624,7 +626,7 @@ public class Member extends BaseEntity {
 			} else if (systemAttributeType == SystemAttributeType.mobile) {
 				mobile = memberAttributeValue.toString();
 			} else if (systemAttributeType == SystemAttributeType.referrer) {
-				mobile = memberAttributeValue.toString();
+				referrer = memberAttributeValue.toString();
 			}
 		} else if(attributeType != null) {
 			String propertyName = MEMBER_ATTRIBUTE_VALUE_PROPERTY_NAME_PREFIX + memberAttribute.getPropertyIndex();
@@ -706,5 +708,30 @@ public class Member extends BaseEntity {
 			ReflectionUtil.invokeSetterMethod(this, propertyName, null, String.class);
 		}
 	}
-
+	/**
+	 * 获取会员提现的总金额
+	 */
+	@Transient
+	public BigDecimal getTotalWithdrawMoneySuccess() {
+		BigDecimal totolMoney = new BigDecimal(0);
+		for(Withdraw withdraw:withdrawSet){
+			if(withdraw.getWithdrawStatus().equals(WithdrawStatus.success)){
+				totolMoney = totolMoney.add(withdraw.getMoney());
+			}	
+		}	
+		return totolMoney;
+	}
+	/**
+	 * 获取会员提现中的金额（即冻结）
+	 */
+	@Transient
+	public BigDecimal getTotalWithdrawMoneyApplying() {
+		BigDecimal totolMoney = new BigDecimal(0);
+		for(Withdraw withdraw:withdrawSet){
+			if(withdraw.getWithdrawStatus().equals(WithdrawStatus.apply)){
+				totolMoney = totolMoney.add(withdraw.getMoney());
+			}	
+		}	
+		return totolMoney;
+	}
 }
