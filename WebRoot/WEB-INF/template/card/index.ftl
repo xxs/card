@@ -78,7 +78,7 @@
 		$("#f"+j).addClass("no");}
 	}}
 	function startAm(){
-	timerID = setInterval("timer_tick()",8000);
+	timerID = setInterval("timer_tick()",5000);
 	}
 	function stopAm(){
 	clearInterval(timerID);

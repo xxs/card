@@ -52,7 +52,6 @@ $().ready( function() {
 							<th>订单金额</th>
 							<th>订单状态</th>
 							<th>状态码</th>
-							<th>操作</th>
 						</tr>
 						<#list pager.result as order>
 							<tr>
@@ -79,12 +78,7 @@ $().ready( function() {
 									</#if>
 								</td>
 								<td>
-										
-										<span title="${order.retMsg}">${order.retCode}</span>
-								</td>
-								<td>
-									<!-- <span class="refOrder" orderId="${order.id}" >刷新</span> -->
-									<input name="" type="button" class="red_button" value="按钮"/>
+									<span title="${order.retMsg}">${order.retCode}</span>
 								</td>
 							</tr>
 						</#list>	

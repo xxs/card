@@ -121,6 +121,10 @@ public class ProfileAction extends BaseCardAction {
 			persistent.setPassword(passwordMd5);
 		}
 		BeanUtils.copyProperties(member, persistent, new String[] {"id", "createDate", "modifyDate", "username", "password", "safeQuestion", "safeAnswer", "score", "deposit", "isAccountEnabled", "isAccountLocked", "loginFailureCount", "lockedDate", "registerIp", "loginIp", "loginDate", "passwordRecoverKey", "memberRank", "receiverSet", "favoriteProductSet", "cartItemSet", "inboxMessageSet", "outboxMessageSet", "orderSet", "depositSet" });
+		if (!memberService.isExistByReferrer(member.getReferrer())) {
+			addActionError("推荐人不存在!");
+			return ERROR;
+		}
 		memberService.update(persistent);
 		redirectUrl = "profile!edit.action";
 		return SUCCESS;

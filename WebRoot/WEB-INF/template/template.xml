@@ -3,7 +3,7 @@
 	<description>Freemarker模板配置文件</description>
 	<page>
 		<head>
-			<description>应用的资源文件</description>
+			<description>资源文件(首页)</description>
 			<templatePath>WEB-INF/template/card/head.ftl</templatePath>
 		</head>
 		<header>
@@ -22,42 +22,14 @@
 			<description>在线留言</description>
 			<templatePath>WEB-INF/template/card/leave_message_list.ftl</templatePath>
 		</leaveMessageList>
-		<cardsPictureList>
-			<description>充值卡列表[图片]</description>
-			<templatePath>WEB-INF/template/card/cards_picture_list.ftl</templatePath>
-		</cardsPictureList>
-		<cardsPictureSearch>
-			<description>充值卡搜索[图片]</description>
-			<templatePath>WEB-INF/template/card/cards_picture_search.ftl</templatePath>
-		</cardsPictureSearch>
-		<cardsTableList>
-			<description>充值卡列表[表格]</description>
-			<templatePath>WEB-INF/template/card/cards_table_list.ftl</templatePath>
-		</cardsTableList>
-		<cardsTableSearch>
-			<description>充值卡搜索[表格]</description>
-			<templatePath>WEB-INF/template/card/cards_table_search.ftl</templatePath>
-		</cardsTableSearch>
+		<cardsContent>
+			<description>我要收卡</description>
+			<templatePath>WEB-INF/template/card/cards_content.ftl</templatePath>
+		</cardsContent>
 		<articleList>
 			<description>文章列表</description>
 			<templatePath>WEB-INF/template/card/article_list.ftl</templatePath>
 		</articleList>
-		<articleSearch>
-			<description>文章搜索</description>
-			<templatePath>WEB-INF/template/card/article_search.ftl</templatePath>
-		</articleSearch>
-		<cartItemList>
-			<description>查看购物车</description>
-			<templatePath>WEB-INF/template/card/cart_item_list.ftl</templatePath>
-		</cartItemList>
-		<orderInfo>
-			<description>填写订单信息</description>
-			<templatePath>WEB-INF/template/card/order_info.ftl</templatePath>
-		</orderInfo>
-		<orderResult>
-			<description>查看订单结果</description>
-			<templatePath>WEB-INF/template/card/order_result.ftl</templatePath>
-		</orderResult>
 		<paymentConfirm>
 			<description>支付结果</description>
 			<templatePath>WEB-INF/template/card/payment_result.ftl</templatePath>
@@ -70,18 +42,6 @@
 			<description>会员中心 - 订单列表</description>
 			<templatePath>WEB-INF/template/card/order_list.ftl</templatePath>
 		</orderList>
-		<orderView>
-			<description>会员中心 - 订单查看</description>
-			<templatePath>WEB-INF/template/card/order_view.ftl</templatePath>
-		</orderView>
-		<favoriteList>
-			<description>会员中心 - 充值卡收藏</description>
-			<templatePath>WEB-INF/template/card/favorite_list.ftl</templatePath>
-		</favoriteList>
-		<cardsNotifyList>
-			<description>会员中心 - 缺货登记</description>
-			<templatePath>WEB-INF/template/card/cards_notify_list.ftl</templatePath>
-		</cardsNotifyList>
 		<messageSend>
 			<description>会员中心 - 消息发送</description>
 			<templatePath>WEB-INF/template/card/message_send.ftl</templatePath>
@@ -110,22 +70,18 @@
 			<description>会员中心 - 个人资料修改</description>
 			<templatePath>WEB-INF/template/card/profile_input.ftl</templatePath>
 		</profileInput>
-		<receiverInput>
-			<description>会员中心 - 收货地址添加/修改</description>
-			<templatePath>WEB-INF/template/card/receiver_input.ftl</templatePath>
-		</receiverInput>
-		<receiverList>
-			<description>会员中心 - 收货地址列表</description>
-			<templatePath>WEB-INF/template/card/receiver_list.ftl</templatePath>
-		</receiverList>
+		<bankInput>
+			<description>会员中心 - 提现账户添加/修改</description>
+			<templatePath>WEB-INF/template/card/bank_input.ftl</templatePath>
+		</bankInput>
+		<bankList>
+			<description>会员中心 - 提现账户列表</description>
+			<templatePath>WEB-INF/template/card/bank_list.ftl</templatePath>
+		</bankList>
 		<depositList>
 			<description>会员中心 - 我的预存款</description>
 			<templatePath>WEB-INF/template/card/deposit_list.ftl</templatePath>
 		</depositList>
-		<depositRecharge>
-			<description>会员中心 - 预存款充值</description>
-			<templatePath>WEB-INF/template/card/deposit_recharge.ftl</templatePath>
-		</depositRecharge>
 		<memberPasswordRecover>
 			<description>密码找回</description>
 			<templatePath>WEB-INF/template/card/member_password_recover.ftl</templatePath>

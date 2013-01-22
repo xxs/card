@@ -174,7 +174,7 @@
 			</table>
 		-->
 		</div>
-		<p class="copyright">Copyright © 2005-2011 All Rights Reserved.</p>
+		<p class="copyright">Copyright © 2012-2013 mcfl.</p>
 	</div>
 </body>
 </html>

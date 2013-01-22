@@ -14,137 +14,139 @@
 <#include "/WEB-INF/template/card/head.ftl">
 <script type="text/javascript">
 	$().ready(function() {
-					var $registerWindowForm = $("#registerWindowForm");
-			var $registerWindowMemberUsername = $("#registerWindowMemberUsername");
-			var $registerWindowMemberPassword = $("#registerWindowMemberPassword");
-			var $registerWindowReMemberPassword = $("#registerWindowReMemberPassword");
-			var $registerWindowMemberEmail = $("#registerWindowMemberEmail");
-			var $registerWindowMemberReferrer = $("#registerWindowMemberReferrer");
-			var $registerWindowCaptcha = $("#registerWindowCaptcha");
-			var $registerWindowCaptchaImage = $("#registerWindowCaptchaImage");
-			var $registerWindowIsAgreeAgreement = $("#registerWindowIsAgreeAgreement");
-			var $registerWindowShowAgreementWindow = $("#registerWindowShowAgreementWindow");
+		alert("666");
+			var $registerForm = $("#registerForm");
+			var $registerMemberUsername = $("#registerMemberUsername");
+			var $registerMemberPassword = $("#registerMemberPassword");
+			var $registerReMemberPassword = $("#registerReMemberPassword");
+			var $registerMemberEmail = $("#registerMemberEmail");
+			var $registerMemberReferrer = $("#registerMemberReferrer");
+			var $registerCaptcha = $("#registerCaptcha");
+			var $registerCaptchaImage = $("#registerCaptchaImage");
+			var $registerIsAgreeAgreement = $("#registerIsAgreeAgreement");
+			var $registerShowAgreement = $("#registerShowAgreement");
 			
-			function registerWindowCaptchaImageRefresh() {
-				$registerWindowCaptchaImage.attr("src", xxs.base + "/captcha.jpeg?timestamp=" + (new Date()).valueOf());
+			function registerCaptchaImageRefresh() {
+				$registerCaptchaImage.attr("src", xxs.base + "/captcha.jpeg?timestamp=" + (new Date()).valueOf());
 			}
 			
-			$registerWindowCaptchaImage.click( function() {
-				registerWindowCaptchaImageRefresh();
+			$registerCaptchaImage.click( function() {
+				registerCaptchaImageRefresh();
 			});
 			
-			$registerWindowShowAgreementWindow.click( function() {
-				$.showAgreementWindow();
+			$registerShowAgreement.click( function() {
+				$.showAgreement();
 			});
 			
-			function register() {
-				if ($.trim($registerWindowMemberUsername.val()) == "") {
-					$registerWindowMemberUsername.focus();
+			// 表单验证
+			$registerForm.submit( function() {
+				alert("444");
+				if ($.trim($registerMemberUsername.val()) == "") {
+					$registerMemberUsername.focus();
 					$.message({type: "warn", content: "请输入用户名!"});
 					return false;
 				}
-				if (!/^[\u0391-\uFFE5\w]+$/.test($registerWindowMemberUsername.val())) {
-					$registerWindowMemberUsername.focus();
+				if (!/^[\u0391-\uFFE5\w]+$/.test($registerMemberUsername.val())) {
+					$registerMemberUsername.focus();
 					$.message({type: "warn", content: "用户名只允许包含中文、英文、数字和下划线!"});
 					return false;
 				}
-				if ($.trim($registerWindowMemberUsername.val()).length < 2 || $.trim($registerWindowMemberUsername.val()).length > 20) {
-					$registerWindowMemberUsername.focus();
+				if ($.trim($registerMemberUsername.val()).length < 2 || $.trim($registerMemberUsername.val()).length > 20) {
+					$registerMemberUsername.focus();
 					$.message({type: "warn", content: "用户名长度只允许在2-20之间!"});
 					return false;
 				}
-				if ($.trim($registerWindowMemberPassword.val()) == "") {
-					$registerWindowMemberPassword.focus();
+				if ($.trim($registerMemberPassword.val()) == "") {
+					$registerMemberPassword.focus();
 					$.message({type: "warn", content: "请输入密码!"});
 					return false;
 				}
-				if ($.trim($registerWindowMemberPassword.val()).length < 4 || $.trim($registerWindowMemberPassword.val()).length > 20) {
-					$registerWindowMemberPassword.focus();
+				if ($.trim($registerMemberPassword.val()).length < 4 || $.trim($registerMemberPassword.val()).length > 20) {
+					$registerMemberPassword.focus();
 					$.message({type: "warn", content: "密码长度只允许在4-20之间!"});
 					return false;
 				}
-				if ($.trim($registerWindowReMemberPassword.val()) == "") {
-					$registerWindowReMemberPassword.focus();
+				if ($.trim($registerReMemberPassword.val()) == "") {
+					$registerReMemberPassword.focus();
 					$.message({type: "warn", content: "请输入重复密码!"});
 					return false;
 				}
-				if ($.trim($registerWindowReMemberPassword.val()) != $.trim($registerWindowMemberPassword.val())) {
-					$registerWindowReMemberPassword.focus();
+				if ($.trim($registerReMemberPassword.val()) != $.trim($registerMemberPassword.val())) {
+					$registerReMemberPassword.focus();
 					$.message({type: "warn", content: "两次密码输入不相同!"});
 					return false;
 				}
-				if ($.trim($registerWindowMemberEmail.val()) == "") {
-					$registerWindowMemberEmail.focus();
+				if ($.trim($registerMemberEmail.val()) == "") {
+					$registerMemberEmail.focus();
 					$.message({type: "warn", content: "请输入E-mail!"});
 					return false;
 				}
-				if (!/^([a-zA-Z0-9._-])+@([a-zA-Z0-9_-])+(\.[a-zA-Z0-9_-])+/.test($registerWindowMemberEmail.val())) {
-					$registerWindowMemberEmail.focus();
+				if (!/^([a-zA-Z0-9._-])+@([a-zA-Z0-9_-])+(\.[a-zA-Z0-9_-])+/.test($registerMemberEmail.val())) {
+					$registerMemberEmail.focus();
 					$.message({type: "warn", content: "E-mail格式错误!"});
 					return false;
 				}
-				if ($.trim($registerWindowMemberReferrer.val()) == "") {
-					$registerWindowMemberReferrer.focus();
+				if ($.trim($registerMemberReferrer.val()) == "") {
+					$registerMemberReferrer.focus();
 					$.message({type: "warn", content: "请输入推荐人!"});
 					return false;
 				}
-				if ($.trim($registerWindowCaptcha.val()) == "") {
-					$registerWindowCaptcha.focus();
+				if ($.trim($registerCaptcha.val()) == "") {
+					$registerCaptcha.focus();
 					$.message({type: "warn", content: "请输入验证码!"});
 					return false;
 				}
-				if (!$registerWindowIsAgreeAgreement.attr("checked")) {
-					$registerWindowIsAgreeAgreement.focus();
+				if (!$registerIsAgreeAgreement.attr("checked")) {
+					$registerIsAgreeAgreement.focus();
 					$.message({type: "warn", content: "注册前必须阅读并同意《注册协议》!"});
 					return false;
 				}
 				$.ajax({
 					url: xxs.base + "/card/member!checkUsername.action",
-					data: {"member.username": $registerWindowMemberUsername.val()},
+					data: {"member.username": $registerMemberUsername.val()},
 					type: "POST",
 					cache: false,
 					beforeSend: function() {
-						$registerWindowForm.find("button").attr("disabled", true);
+						$registerForm.find("button").attr("disabled", true);
 					},
 					success: function(data) {
 						if (data == "true") {
 							$.ajax({
 								url: xxs.base + "/card/member!checkReferrer.action",
-								data: {"member.referrer": $registerWindowMemberReferrer.val()},
+								data: {"member.referrer": $registerMemberReferrer.val()},
 								type: "POST",
 								cache: false,
 								beforeSend: function() {
-									$registerWindowForm.find("button").attr("disabled", true);
+									$registerForm.find("button").attr("disabled", true);
 								},
 								success: function(data) {
 									if (data == "true") {
 										$.ajax({
 											url: xxs.base + "/card/member!ajaxRegister.action",
-											data: $registerWindowForm.serialize(),
+											data: $registerForm.serialize(),
 											type: "POST",
 											dataType: "json",
 											cache: false,
 											success: function(data) {
 												if (data.status == "success") {
-													$.closeDialog("registerWindow");
-													$.flushHeaderInfo();
+													alert("注册成功");
 												}
 												$.message({type: data.status, content: data.message});
 											},
 											complete: function() {
-												$registerWindowForm.find("button").attr("disabled", false);
-												$registerWindowCaptcha.val("");
-												registerWindowCaptchaImageRefresh();
+												$registerForm.find("button").attr("disabled", false);
+												$registerCaptcha.val("");
+												registerCaptchaImageRefresh();
 											}
 										});
 									} else {
-										$registerWindowMemberReferrer.focus();
+										$registerMemberReferrer.focus();
 										$.message({type: "warn", content: "推荐人不存在,请重新输入；或者为空！"});
 									}
 								}
 							});
 						} else {
-							$registerWindowMemberUsername.focus();
+							$registerMemberUsername.focus();
 							$.message({type: "warn", content: "用户名已存在,请重新输入!"});
 						}
 					}
@@ -153,136 +155,32 @@
 			}
 		}
 		
-		$.showAgreementWindow = function() {
-			if ($("#agreementWindow").length == 0) {
-				var agreementWindowHtml = '<div id="agreementWindowContent" class="agreementWindowContent"></div>';
+		$.showAgreement = function() {
+			if ($("#agreement").length == 0) {
+				var agreementHtml = '<div id="agreementContent" class="agreementContent"></div>';
 				
 				function agreeAgreement() {
-					var $registerWindowIsAgreeAgreement = $("#registerWindowIsAgreeAgreement");
-					$registerWindowIsAgreeAgreement.attr("checked", true);
+					var $registerIsAgreeAgreement = $("#registerIsAgreeAgreement");
+					$registerIsAgreeAgreement.attr("checked", true);
 				}
 			
-				$.dialog({title: "注册协议", content: agreementWindowHtml, ok: "同 意", cancel: "取 消", id: "agreementWindow", className: "agreementWindow", width: 520, okCallback: agreeAgreement});
+				$.dialog({title: "注册协议", content: agreementHtml, ok: "同 意", cancel: "取 消", id: "agreement", className: "agreement", width: 520, okCallback: agreeAgreement});
 				
-				var $agreementWindowContent = $("#agreementWindowContent");
+				var $agreementContent = $("#agreementContent");
 				
 				$.ajax({
 					url: xxs.base + "/html/register_agreement.html",
 					datatype: "html",
 					beforeSend: function(data) {
-						$agreementWindowContent.html('<span class="loadingIcon">&nbsp;</span> 加载中...');
+						$agreementContent.html('<span class="loadingIcon">&nbsp;</span> 加载中...');
 					},
 					success: function(data) {
-						$agreementWindowContent.html(data);
+						$agreementContent.html(data);
 					}
 				});
 			}
 		}
-		
-		var $loginForm = $("#loginForm");
-		var $loginRedirectUrl = $("#loginRedirectUrl");
-		var $memberUsername = $("#memberUsername");
-		var $memberPassword = $("#memberPassword");
-		var $captcha = $("#captcha");
-		var $captchaImage = $("#captchaImage");
-		var $submitButton = $("#submitButton");
-		
-		$loginRedirectUrl.val(getParameter("loginRedirectUrl"));
-		
-		
-	
-		// 表单验证
-		$loginForm.submit( function() {
-			if ($.trim($memberUsername.val()) == "") {
-				$.dialog({type: "warn", content: "请输入用户名!", modal: true, autoCloseTime: 3000});
-				return false;
-			}
-			if ($.trim($memberPassword.val()) == "") {
-				$.dialog({type: "warn", content: "请输入密码!", modal: true, autoCloseTime: 3000});
-				return false;
-			}
-			if ($.trim($captcha.val()) == "") {
-				$.dialog({type: "warn", content: "请输入验证码!", modal: true, autoCloseTime: 3000});
-				return false;
-			}
-		});
-		
-		// 获取参数
-		function getParameter(name) {
-			var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)","i");
-			var r = window.location.search.substr(1).match(reg);
-			if (r != null) {
-				return decodeURIComponent(r[2]);
-			} else {
-				return null;
-			}
-		}
-	
-	})
-	var $loginWindowForm = $("#loginWindowForm");
-			var $loginWindowMemberUsername = $("#loginWindowMemberUsername");
-			var $loginWindowMemberPassword = $("#loginWindowMemberPassword");
-			var $loginWindowCaptcha = $("#loginWindowCaptcha");
-			var $loginWindowCaptchaImage = $("#loginWindowCaptchaImage");
-			
-			function loginWindowCaptchaImageRefresh() {
-				$loginWindowCaptchaImage.attr("src", xxs.base + "/captcha.jpeg?timestamp=" + (new Date()).valueOf());
-			}
-			
-			$loginWindowCaptchaImage.click( function() {
-				loginWindowCaptchaImageRefresh();
-			});
-			
-			// 刷新验证码图片
-		$captchaImage.click( function() {
-			$captchaImage.attr("src", xxs.base + "/captcha.jpeg?timestamp" + (new Date()).valueOf());
-		});
-			
-			function login() {
-				if ($.trim($loginWindowMemberUsername.val()) == "") {
-					$loginWindowMemberUsername.focus();
-					$.message({type: "warn", content: "请输入用户名!"});
-					return false;
-				}
-				if ($.trim($loginWindowMemberPassword.val()) == "") {
-					$loginWindowMemberPassword.focus();
-					$.message({type: "warn", content: "请输入密码!"});
-					return false;
-				}
-				if ($.trim($loginWindowCaptcha.val()) == "") {
-					$loginWindowCaptcha.focus();
-					$.message({type: "warn", content: "请输入验证码!"});
-					return false;
-				}
-				
-				$.ajax({
-					url: xxs.base + "/card/member!ajaxLogin.action",
-					data: $loginWindowForm.serialize(),
-					type: "POST",
-					dataType: "json",
-					cache: false,
-					beforeSend: function() {
-						$loginWindowForm.find("button").attr("disabled", true);
-					},
-					success: function(data) {
-						if (data.status == "success") {
-							$.flushHeaderInfo();
-							$.closeDialog("loginWindow");
-						}
-						$.message({type: data.status, content: data.message});
-						if(redirectUrl != null) {
-							location.href = redirectUrl;
-						}
-					},
-					complete: function() {
-						$loginWindowForm.find("button").attr("disabled", false);
-						$loginWindowCaptcha.val("");
-						loginWindowCaptchaImageRefresh();
-					}
-				});
-				return false;
-			}
-		}
+	}
 </script>
 </head>
 <body class="login">
@@ -297,38 +195,38 @@
 	<div class="blank"></div>
 	<div class="body">
 		<div class="loginDetail">
-			<div class="top">会员注册</div>
+			<div class="top1">会员注册</div>
 			<div class="middle">
-				<form id="registerWindowForm">
+				<form id="registerForm" autocomplete="off">
 					<table>
 						<tr>
 							<th>用户名: </th>
 							<td>
-								<input type="text" id="registerWindowMemberUsername" name="member.username" class="formText" title="用户名只允许包含中文、英文、数字和下划线!" />
+								<input type="text" id="registerMemberUsername" name="member.username" class="formText" title="用户名只允许包含中文、英文、数字和下划线!" />
 							</td>
 						</tr>
 						<tr>
 							<th>密&nbsp;&nbsp;&nbsp;码: </th>
 							<td>
-								<input type="password" id="registerWindowMemberPassword" name="member.password" class="formText" />
+								<input type="password" id="registerMemberPassword" name="member.password" class="formText" />
 							</td>
 						</tr>
 						<tr>
 							<th>重复密码: </th>
 							<td>
-								<input type="password" id="registerWindowReMemberPassword" name="reMemberPassword" class="formText" title="密码长度只允许在4-20之间!" />
+								<input type="password" id="registerReMemberPassword" name="reMemberPassword" class="formText" title="密码长度只允许在4-20之间!" />
 							</td>
 						</tr>
 						<tr>
 							<th>E-mail: </th>
 							<td>
-								<input type="text" id="registerWindowMemberEmail" name="member.email" class="formText" />
+								<input type="text" id="registerMemberEmail" name="member.email" class="formText" />
 							</td>
 						</tr>
 						<tr>
 							<th>推荐人: </th>
 							<td>
-								<input type="text" id="registerWindowMemberReferrer" name="member.referrer" value="${member.username}" class="formText" title="填写后不能修改!"/>
+								<input type="text" id="registerMemberReferrer" name="member.referrer" value="${member.username}" class="formText" title="填写后不能修改!"/>
 							</td>
 						</tr>
 						<tr>
@@ -342,9 +240,15 @@
 							<th>&nbsp;</th>
 							<td>
 								<label>
-									<input type="checkbox" id="registerWindowIsAgreeAgreement" name="isAgreeAgreement" value="true" checked />已阅读并同意
-									<a id="registerWindowShowAgreementWindow" class="showAgreementWindow" href="javascript: void(0);" title="查看会员注册协议">《会员注册协议》</a>
+									<input type="checkbox" id="registerIsAgreeAgreement" name="isAgreeAgreement" value="true" checked />已阅读并同意
+									<a id="registerShowAgreement" class="showAgreement" href="javascript: void(0);" title="查看会员注册协议">《会员注册协议》</a>
 								</label>
+							</td>
+						</tr>
+						<tr>
+							<th>&nbsp;</th>
+							<td>
+								<input type="submit" id="submitButton" class="formButton" value="注  册" hidefocus />
 							</td>
 						</tr>
 					</table>
@@ -352,7 +256,6 @@
 			</div>
 			<div class="bottom"></div>
 		</div>
-		<div class="blank"></div>
 		<div class="blank"></div>
 		<#include "/WEB-INF/template/card/friend_link.ftl">
 	</div>

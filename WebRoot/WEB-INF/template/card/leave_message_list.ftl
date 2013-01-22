@@ -106,7 +106,7 @@
 					</div>
 				</#if>
 				<div class="blank"></div>
-				<form id="leaveMessageForm" method="post">
+				<form id="leaveMessageForm" method="post" autocomplete="off">
 					<table class="sendTable">
 						<tr class="title">
 							<td width="100">
@@ -184,6 +184,7 @@
 			
 			// 刷新在线留言验证码图片
 			function leaveMessageCaptchaImageRefresh() {
+				
 				$leaveMessageCaptchaImage.attr("src", xxs.base + "/captcha.jpeg?timestamp=" + (new Date()).valueOf());
 			}
 			

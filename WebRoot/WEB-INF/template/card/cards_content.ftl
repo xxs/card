@@ -30,7 +30,7 @@
 				<div class="tab_box"> 
 	 			  <div class="tab_box_1">
 	 			  	<div class="memberCenter">
-					<form action="order!save.action" method="post">
+					<form action="order!save.action" method="post" autocomplete="off">
 					<table class="tabTable">
 						<tr>
 							<th>充值卡编号: </th>
@@ -82,7 +82,7 @@
 						<tr>
 							<th></th>
 							<td>
-								<input type="submit" class="red_button" value="生成订单" />
+								<input type="submit" class="formButton" value="生成订单" />
 							</td>
 						</tr>
 					</table>
@@ -91,7 +91,7 @@
 				</div>
 		 			<div class="hide">
 				 	<div class="memberCenter">
-					<form action="order!batch.action" method="post">
+					<form action="order!batch.action" method="post" autocomplete="off">
 					<table class="tabTable">
 						<tr>
 							<th>充值卡编号: </th>
@@ -138,7 +138,7 @@
 						<tr>
 							<th></th>
 							<td>
-								<input type="submit" class="red_button" value="生成订单" />
+								<input type="submit" class="formButton" value="生成订单" />
 							</td>
 						</tr>
 					</table>

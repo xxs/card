@@ -17,12 +17,17 @@
 	<div class="column">
 	<div class="column_left">
         <ul>
-        	<li><a href="#">快捷支付</a></li>
-            <li><a href="#">安全中心</a></li>
-            <li><a href="#">境外支付</a></li>
-            <li><a href="#">刷卡支付</a></li>
-            <li><a href="#">境外支付</a></li>
-        </ul>
+			<@cards_list type="hot" count=11; cardsList>
+				<#list cardsList as cards>
+					<li>
+						<a href="${base}/card/cards!detail.action?id=${cards.id}" title="${cards.name}">${substring(cards.name, 24, "...")}</a>
+					</li>
+				</#list>
+				<li>
+					<a href="${base}/card/cards!list.action" class="red">跟多卡种  &gt;&gt;</a>
+				</li>
+			</@cards_list>
+		</ul>
     </div>
     <div class="column_right">
    	    <div class="column_right_1"><p>您尚未登陆，请点击<a href="${base}/card/promotion.action">登陆</a>立即参与到分享二维码，推荐会员拿提成活动</div>

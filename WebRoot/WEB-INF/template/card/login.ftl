@@ -72,7 +72,7 @@
 	<div class="blank"></div>
 	<div class="body">
 		<div class="loginDetail">
-			<div class="top">会员登录</div>
+			<div class="top1">会员登录</div>
 			<div class="middle">
 				<form id="loginForm" action="${base}/card/member!login.action" method="post">
 					<input type="hidden" id="loginRedirectUrl" name="loginRedirectUrl" />
@@ -114,7 +114,6 @@
 			</div>
 			<div class="bottom"></div>
 		</div>
-		<div class="blank"></div>
 		<div class="blank"></div>
 		<#include "/WEB-INF/template/card/friend_link.ftl">
 	</div>

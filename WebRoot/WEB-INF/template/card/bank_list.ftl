@@ -84,7 +84,7 @@ $().ready( function() {
 		<div class="katong">
 			<div class="fangz">账户列表 </div>
 			<div class="red">注：请一定正确选择卡面值提交,否则造成损失商户自行承担； </div>
-			<div class="hei">可在<a href="bank!add.action">添加账户</a>页面添加</div>
+			<div class="hei">可点击<a class="formButton" href="bank!add.action">添加账户</a>页面添加</div>
 			<div class="memberCenter">
 			<table class="listTable">
 				<tr>

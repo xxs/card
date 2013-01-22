@@ -125,7 +125,7 @@ $().ready( function() {
 								</th>
 								<td>
 									
-									<input type="submit" class="red_button" value="提   交iiiiiiiiiiiiiiiiiiiii" hidefocus />
+									<input type="submit" class="formButton" value="提   交" hidefocus />
 								</td>
 							</tr>
 						</table>

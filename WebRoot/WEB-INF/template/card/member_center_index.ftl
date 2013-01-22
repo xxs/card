@@ -55,10 +55,11 @@
 							<th>下单时间</th>
 							<th>订单金额</th>
 							<th>订单状态</th>
+							<th><input class="formButton red"  value="刷新订单"/></th>
 						</tr>
 						<#list loginMember.orderSet as order>
 							<tr>
-								<td width="150">
+								<td width="170">
 									<a href="order!view.action?id=${order.id}">
 										${order.productName}
 									</a>
@@ -79,6 +80,10 @@
 										[${action.getText("OrderStatus." + order.orderStatus)}]
 									</#if>
 								</td>
+								<td>
+									
+									<span title="${order.retMsg}">${order.retCode}</span>
+								</td>
 							</tr>
 							<#if (order_index + 1 > 10)>
 								<#break />
@@ -87,6 +92,9 @@
 						<tr>
 							<td colspan="5">
 								<a href="order!list.action">更多订单>></a>
+							</td>
+							<td colspan="1">
+								
 							</td>
 						</tr>
 					</table>

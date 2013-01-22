@@ -92,7 +92,7 @@ background:url(../images/tg_flash_p2.png) no-repeat 0px 0px; _background:none; _
 .loginWindow .loginWindowCaptchaImage {vertical-align: middle;cursor: pointer;}
 .login .body {width: 1000px;margin: 0px auto;text-align: center;}
 .login .loginDetail {width: 500px;margin: 0px auto;}
-.login .loginDetail .top {width: 455px;height: 41px;line-height: 38px;clear: both;padding-top: 4px;padding-left: 45px;text-align: left;font-size: 14px;font-weight: bold;color: #515151;overflow: hidden;	background: url(../images/login_bg.gif) no-repeat 0px 0px;}
+.login .loginDetail .top1 {width: 455px;height: 41px;line-height: 38px;clear: both;padding-top: 4px;padding-left: 45px;text-align: left;font-size: 14px;font-weight: bold;color: #515151;overflow: hidden;	background: url(../images/login_bg.gif) no-repeat 0px 0px;}
 .login .loginDetail .middle {width: 500px;clear: both;padding-top: 10px;text-align: center;background: url(../images/login_y_bg.gif) repeat-y 0px 0px;}
 .login .loginDetail .bottom {width: 500px;height: 60px;clear: both;overflow: hidden;background: url(../images/login_bg.gif) no-repeat 0px -60px;}
 .login .loginDetail table {width: 100%;}
@@ -111,7 +111,6 @@ body{font:12px/180% Arial, Helvetica, sans-serif,"宋体";}
 /* yellow_button */
 .yellow_button{background:url(../images/yellow_button.png);border:none;cursor:pointer;height:36px;line-height:36px; overflow:hidden; display:inline-block; text-align:center; font-size:14px; font-weight:800; color:#fff;background-position:0 0;width:139px;}
 #registsubmit.disabled{background-position:0 -36px;cursor:default!important;}
-.red{color:#ff0000;font-family:"宋体";font-weight:normal;}
 /* formbox */
 #formbox{padding:20px;border:solid 1px #D1D1D1;margin:20px auto;width:880px;}
 #formbox h3{font-size:16px;height:32px;color:#3366cc;font-weight:800;border-bottom:solid 1px #D1D1D1;margin:0 0 20px 0;padding:0 10px;}
