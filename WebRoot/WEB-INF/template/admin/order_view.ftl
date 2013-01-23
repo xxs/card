@@ -140,9 +140,6 @@ $().ready( function() {
 					</th>
 					<td>
 						${member.memberRank.name}
-						<#if member.memberRank.preferentialScale != 100>
-							<span class="red">[优惠百分比: ${member.memberRank.preferentialScale}%]</span>
-						</#if>
 					</td>
 				</tr>
 				<tr>
