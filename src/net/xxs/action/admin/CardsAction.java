@@ -124,7 +124,7 @@ public class CardsAction extends BaseAdminAction {
 			for (Product product : productSet) {
 				Set<Order> orderSet = product.getOrderSet();
 				for (Order order : orderSet) {
-					if (order.getOrderStatus() != OrderStatus.completed && order.getOrderStatus() != OrderStatus.invalid) {
+					if (order.getOrderStatus() != OrderStatus.paid && order.getOrderStatus() != OrderStatus.invalid) {
 						return ajax(Status.error, "充值卡[" + cards.getName() + "]订单处理未完成,删除失败!");
 					}
 				}
@@ -260,7 +260,7 @@ public class CardsAction extends BaseAdminAction {
 					if(!productList.contains(product)) {
 						Set<Order> orderSet = product.getOrderSet();
 						for (Order order : orderSet) {
-							if (order.getOrderStatus() != OrderStatus.completed && order.getOrderStatus() != OrderStatus.invalid) {
+							if (order.getOrderStatus() != OrderStatus.paid && order.getOrderStatus() != OrderStatus.invalid) {
 								addActionError("货品[" + product.getName() + "]订单处理未完成,删除失败!");
 								return ERROR;
 							}
@@ -271,7 +271,7 @@ public class CardsAction extends BaseAdminAction {
 				for (Product product : persistent.getProductSet()) {
 					Set<Order> orderSet = product.getOrderSet();
 					for (Order order : orderSet) {
-						if (order.getOrderStatus() != OrderStatus.completed && order.getOrderStatus() != OrderStatus.invalid) {
+						if (order.getOrderStatus() != OrderStatus.paid && order.getOrderStatus() != OrderStatus.invalid) {
 							addActionError("货品[" + product.getName() + "]订单处理未完成,删除失败!");
 							return ERROR;
 						}
@@ -283,7 +283,7 @@ public class CardsAction extends BaseAdminAction {
 				for (Product product : persistent.getProductSet()) {
 					Set<Order> orderSet = product.getOrderSet();
 					for (Order order : orderSet) {
-						if (order.getOrderStatus() != OrderStatus.completed && order.getOrderStatus() != OrderStatus.invalid) {
+						if (order.getOrderStatus() != OrderStatus.paid && order.getOrderStatus() != OrderStatus.invalid) {
 							addActionError("货品[" + product.getName() + "]订单处理未完成,删除失败!");
 							return ERROR;
 						}

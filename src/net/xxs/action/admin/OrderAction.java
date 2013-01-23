@@ -64,13 +64,9 @@ public class OrderAction extends BaseAdminAction {
 	// 订单编辑
 	public String edit() {
 		order = orderService.load(id);
-		if (order.getOrderStatus() == OrderStatus.completed
+		if (order.getOrderStatus() == OrderStatus.paid
 				|| order.getOrderStatus() == OrderStatus.invalid) {
 			addActionError("此订单状态无法编辑!");
-			return ERROR;
-		}
-		if (order.getPaymentStatus() != net.xxs.entity.Order.PaymentStatus.unpaid) {
-			addActionError("此订单付款状态无法编辑!");
 			return ERROR;
 		}
 		return INPUT;
@@ -86,12 +82,12 @@ public class OrderAction extends BaseAdminAction {
 	// 订单完成
 	public String completed() {
 		order = orderService.load(id);
-		if (order.getOrderStatus() == OrderStatus.completed) {
+		if (order.getOrderStatus() == OrderStatus.paid) {
 			return ajax(Status.warn, "此订单已经完成!");
 		} else if (order.getOrderStatus() == OrderStatus.invalid) {
 			return ajax(Status.error, "此订单已经作废!");
 		} else {
-			order.setOrderStatus(OrderStatus.completed);
+			order.setOrderStatus(OrderStatus.paid);
 			orderService.update(order);
 			logInfo = "订单编号: " + order.getOrderSn();
 			String orderLogInfo = "订单完成,获得积分: ";
@@ -111,21 +107,10 @@ public class OrderAction extends BaseAdminAction {
 	// 作废
 	public String invalid() {
 		order = orderService.load(id);
-		if (order.getOrderStatus() == OrderStatus.completed
-				|| order.getOrderStatus() == OrderStatus.invalid) {
-			addActionError("此订单状态无法编辑!");
-			return ERROR;
-		}
-		if (order.getPaymentStatus() != net.xxs.entity.Order.PaymentStatus.unpaid) {
-			addActionError("此订单支付状态无法编辑!");
-			return ERROR;
-		}
-		if (order.getOrderStatus() == OrderStatus.completed) {
+		if (order.getOrderStatus() == OrderStatus.paid) {
 			return ajax(Status.warn, "此订单已经完成!");
 		} else if (order.getOrderStatus() == OrderStatus.invalid) {
 			return ajax(Status.error, "此订单已经作废!");
-		} else if (order.getPaymentStatus() != net.xxs.entity.Order.PaymentStatus.unpaid) {
-			return ajax(Status.error, "此订单付款状态无法作废!");
 		} else {
 			order.setOrderStatus(OrderStatus.invalid);
 			orderService.update(order);

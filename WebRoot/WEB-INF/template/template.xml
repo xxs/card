@@ -66,10 +66,22 @@
 			<description>会员中心 - 密码修改</description>
 			<templatePath>WEB-INF/template/card/password_input.ftl</templatePath>
 		</passwordInput>
+		<promotionLink>
+			<description>会员中心 - 推广链接</description>
+			<templatePath>WEB-INF/template/card/promotion_link.ftl</templatePath>
+		</promotionLink>
 		<profileInput>
 			<description>会员中心 - 个人资料修改</description>
 			<templatePath>WEB-INF/template/card/profile_input.ftl</templatePath>
 		</profileInput>
+		<businessInput>
+			<description>会员中心 - 商户信息添加/修改</description>
+			<templatePath>WEB-INF/template/card/bank_input.ftl</templatePath>
+		</businessInput>
+		<businessList>
+			<description>会员中心 - 商户中心</description>
+			<templatePath>WEB-INF/template/card/bank_list.ftl</templatePath>
+		</businessList>
 		<bankInput>
 			<description>会员中心 - 提现账户添加/修改</description>
 			<templatePath>WEB-INF/template/card/bank_input.ftl</templatePath>

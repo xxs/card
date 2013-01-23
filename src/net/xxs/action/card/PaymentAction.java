@@ -16,7 +16,6 @@ import net.xxs.entity.OrderLog;
 import net.xxs.entity.OrderLog.OrderLogType;
 import net.xxs.entity.Payment;
 import net.xxs.entity.Payment.PaymentStatus;
-import net.xxs.entity.Payment.PaymentType;
 import net.xxs.entity.PaymentConfig;
 import net.xxs.entity.PaymentConfig.PaymentConfigType;
 import net.xxs.entity.PaymentDiscount;
@@ -62,7 +61,6 @@ public class PaymentAction extends BaseCardAction {
 	private String payreturnMessage;// 支付返回信息
 	private String paynotifyMessage;// 支付通知信息
 
-	private PaymentType paymentType;// 支付类型
 	private PaymentConfig paymentConfig;// 支付方式
 	private Order order;// 订单
 	private Map<String, String> parameterMap;// 支付参数
@@ -115,13 +113,9 @@ public class PaymentAction extends BaseCardAction {
 			return ERROR;
 		}
 		order = orderService.load(order.getId());
-		if (order.getOrderStatus() == OrderStatus.completed
+		if (order.getOrderStatus() == OrderStatus.paid
 				|| order.getOrderStatus() == OrderStatus.invalid) {
 			addActionError("订单状态错误!");
-			return ERROR;
-		}
-		if (order.getPaymentStatus() == net.xxs.entity.Order.PaymentStatus.paid) {
-			addActionError("订单付款状态错误!");
 			return ERROR;
 		}
 		System.out.println("开始订单信息........"+order.getOrderSn());
@@ -137,7 +131,6 @@ public class PaymentAction extends BaseCardAction {
 		String bankAccount = paymentConfig.getBargainorId();
 		System.out.println("开始订单信息..2222...ssss..."+order.getOrderSn());
 		Payment payment1 = new Payment();
-		payment1.setPaymentType(PaymentType.online);
 		payment1.setPaymentConfigName(paymentConfig.getName());
 		payment1.setBankName(bankName);
 		payment1.setBankAccount(bankAccount);
@@ -191,13 +184,9 @@ public class PaymentAction extends BaseCardAction {
 			return ERROR;
 		}
 		order = orderService.load(order.getId());
-		if (order.getOrderStatus() == OrderStatus.completed
+		if (order.getOrderStatus() == OrderStatus.paid
 				|| order.getOrderStatus() == OrderStatus.invalid) {
 			addActionError("订单状态错误!");
-			return ERROR;
-		}
-		if (order.getPaymentStatus() == net.xxs.entity.Order.PaymentStatus.paid) {
-			addActionError("订单付款状态错误!");
 			return ERROR;
 		}
 		System.out.println("开始订单信息........"+order.getOrderSn());
@@ -213,7 +202,6 @@ public class PaymentAction extends BaseCardAction {
 		String bankAccount = paymentConfig.getBargainorId();
 		System.out.println("开始订单信息..2222...ssss..."+order.getOrderSn());
 		Payment payment1 = new Payment();
-		payment1.setPaymentType(PaymentType.online);
 		payment1.setPaymentConfigName(paymentConfig.getName());
 		payment1.setBankName(bankName);
 		payment1.setBankAccount(bankAccount);
@@ -315,7 +303,6 @@ public class PaymentAction extends BaseCardAction {
 
 		System.out.println();
 		order = payment.getOrder();
-		order.setPaymentStatus(net.xxs.entity.Order.PaymentStatus.paid);
 		order.setPaidAmount(order.getAmount().add(totalAmount));
 		orderService.update(order);
 
@@ -462,7 +449,6 @@ public class PaymentAction extends BaseCardAction {
 		}
 
 		order = payment.getOrder();
-		order.setPaymentStatus(net.xxs.entity.Order.PaymentStatus.paid);
 		order.setPaidAmount(order.getPaidAmount().add(totalAmount));
 		orderService.update(order);
 
@@ -478,14 +464,6 @@ public class PaymentAction extends BaseCardAction {
 		payment.setPaymentStatus(PaymentStatus.success);
 		paymentService.update(payment);
 		return "paynotify";
-	}
-
-	public PaymentType getPaymentType() {
-		return paymentType;
-	}
-
-	public void setPaymentType(PaymentType paymentType) {
-		this.paymentType = paymentType;
 	}
 
 	public PaymentConfig getPaymentConfig() {

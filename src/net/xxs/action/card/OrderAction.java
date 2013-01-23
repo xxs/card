@@ -1,6 +1,8 @@
 package net.xxs.action.card;
 
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Date;
 import java.util.List;
 
 import javax.annotation.Resource;
@@ -10,16 +12,15 @@ import net.xxs.entity.Brand;
 import net.xxs.entity.Member;
 import net.xxs.entity.Order;
 import net.xxs.entity.Order.OrderStatus;
-import net.xxs.entity.Order.PaymentStatus;
 import net.xxs.entity.OrderLog;
 import net.xxs.entity.OrderLog.OrderLogType;
 import net.xxs.entity.Payment;
-import net.xxs.entity.Payment.PaymentType;
 import net.xxs.entity.PaymentConfig;
 import net.xxs.entity.PaymentDiscount;
 import net.xxs.entity.Product;
 import net.xxs.payment.BasePaymentProduct;
 import net.xxs.payment.PaymentResult;
+import net.xxs.service.BrandService;
 import net.xxs.service.OrderLogService;
 import net.xxs.service.OrderService;
 import net.xxs.service.PaymentConfigService;
@@ -46,7 +47,7 @@ import com.opensymphony.xwork2.validator.annotations.Validations;
 @ParentPackage("card")
 @InterceptorRefs({
 	@InterceptorRef(value = "memberVerifyInterceptor"),
-	@InterceptorRef(value = "token", params = {"excludeMethods", "info,list,view,save,batch,query"}),
+	@InterceptorRef(value = "token", params = {"excludeMethods", "info,list,view,save,batch,query,search"}),
 	@InterceptorRef(value = "cardStack")
 })
 public class OrderAction extends BaseCardAction {
@@ -59,8 +60,11 @@ public class OrderAction extends BaseCardAction {
 	private String cardNum;//卡号
 	private String cardPwd;//密码
 	private String cardString;//卡密组的字符串
-	
 	private String memo;// 附言
+	
+	private Date beginDate;// 开始日期
+	private Date endDate;// 结束日期
+	
 	private PaymentConfig paymentConfig;// 支付方式
 	private Order order;// 订单
 	private PaymentResult paymentResult;// 支付返回参数
@@ -78,6 +82,9 @@ public class OrderAction extends BaseCardAction {
 	private OrderLogService orderLogService;
 	@Resource(name = "productServiceImpl")
 	private ProductService productService;
+	@Resource(name = "brandServiceImpl")
+	private BrandService brandService;
+	
 	
 	public List<Card> jiexi(String str){
 		List<Card> cardList = new ArrayList<Card>();
@@ -133,8 +140,7 @@ public class OrderAction extends BaseCardAction {
 		//生成订单
 		order = new Order();
 		order.setBrandId(brand.getId());//此列不能为空
-		order.setOrderStatus(OrderStatus.unprocessed);
-		order.setPaymentStatus(PaymentStatus.unpaid);
+		order.setOrderStatus(OrderStatus.paymenting);
 		order.setPaymentConfigName(paymentConfig.getName());
 		order.setAmount(SettingUtil.setPriceScale(product.getPrice()));//默认充值卡面额为订单金额
 		order.setMemo(memo);
@@ -163,7 +169,6 @@ public class OrderAction extends BaseCardAction {
 		String bankName = paymentProduct.getName();
 		String bankAccount = paymentConfig.getBargainorId();
 		payment = new Payment();
-		payment.setPaymentType(PaymentType.online);
 		payment.setPaymentConfigName(paymentConfig.getName());
 		payment.setBankName(bankName);
 		payment.setBankAccount(bankAccount);
@@ -242,8 +247,7 @@ public class OrderAction extends BaseCardAction {
 			//生成订单
 			order = new Order();
 			order.setBrandId(brand.getId());//此列不能为空
-			order.setOrderStatus(OrderStatus.unprocessed);
-			order.setPaymentStatus(PaymentStatus.unpaid);
+			order.setOrderStatus(OrderStatus.paymenting);
 			order.setPaymentConfigName(paymentConfigName);
 			order.setAmount(SettingUtil.setPriceScale(product.getPrice()));//默认充值卡面额为订单金额
 			order.setMemo(memo);
@@ -272,7 +276,6 @@ public class OrderAction extends BaseCardAction {
 			String bankName = paymentProduct.getName();
 			String bankAccount = paymentConfig.getBargainorId();
 			payment = new Payment();
-			payment.setPaymentType(PaymentType.online);
 			payment.setPaymentConfigName(paymentConfig.getName());
 			payment.setBankName(bankName);
 			payment.setBankAccount(bankAccount);
@@ -307,37 +310,63 @@ public class OrderAction extends BaseCardAction {
 		return SUCCESS;
 	}
 	//查询订单最新状态
-	@Validations(
-		requiredStrings = {
-			@RequiredStringValidator(fieldName = "id", message = "订单ID不能为空!")
-		}
-	)
 	@InputConfig(resultName = "error")	
 	public String query() {
-		order = orderService.get(id);
-		paymentConfig = order.getPaymentConfig();
-		BasePaymentProduct paymentProduct = PaymentProductUtil.getPaymentProduct(paymentConfig.getPaymentProductId());
-		//发送查询请求
-		paymentResult = paymentProduct.cardQuery(paymentConfig,order.getPayment().getPaymentSn(), getRequest());
-		if ((paymentResult == null || StringUtils.isEmpty(paymentResult.getOrderSn()))){
-			addActionError("缺失支付单号!");
-			return ERROR;
-		}
-		payment = paymentService.getPaymentByPaymentSn(paymentResult.getOrderSn());
-		order = payment.getOrder();
-		if(StringUtils.isEmpty(order.getRetCode())||!paymentResult.getCode().equals(order.getRetCode())){
-			order.setRetCode(paymentResult.getCode());
-			order.setRetMsg(paymentResult.getReturnMsg());
-			System.out.println("订单状态已变更");
-			orderService.update(order);
+		if(ids!=null && ids.length>0){
+			for (int i = 0; i < ids.length; i++) {
+				id = ids[i];
+				order = orderService.get(id);
+				paymentConfig = order.getPaymentConfig();
+				BasePaymentProduct paymentProduct = PaymentProductUtil.getPaymentProduct(paymentConfig.getPaymentProductId());
+				//发送查询请求
+				paymentResult = paymentProduct.cardQuery(paymentConfig,order.getPayment().getPaymentSn(), getRequest());
+				if ((paymentResult == null || StringUtils.isEmpty(paymentResult.getOrderSn()))){
+					addActionError("缺失支付单号!");
+					return ERROR;
+				}
+				payment = paymentService.getPaymentByPaymentSn(paymentResult.getOrderSn());
+				order = payment.getOrder();
+				if(StringUtils.isEmpty(order.getRetCode())||!paymentResult.getCode().equals(order.getRetCode())){
+					order.setRetCode(paymentResult.getCode());
+					order.setRetMsg(paymentResult.getReturnMsg());
+					System.out.println("订单状态已变更");
+					orderService.update(order);
+				}else{
+					System.out.println("订单状态未变化");
+				}
+			}
 		}else{
-			System.out.println("订单状态未变化");
+			order = orderService.get(id);
+			paymentConfig = order.getPaymentConfig();
+			BasePaymentProduct paymentProduct = PaymentProductUtil.getPaymentProduct(paymentConfig.getPaymentProductId());
+			//发送查询请求
+			paymentResult = paymentProduct.cardQuery(paymentConfig,order.getPayment().getPaymentSn(), getRequest());
+			if ((paymentResult == null || StringUtils.isEmpty(paymentResult.getOrderSn()))){
+				addActionError("缺失支付单号!");
+				return ERROR;
+			}
+			payment = paymentService.getPaymentByPaymentSn(paymentResult.getOrderSn());
+			order = payment.getOrder();
+			if(StringUtils.isEmpty(order.getRetCode())||!paymentResult.getCode().equals(order.getRetCode())){
+				order.setRetCode(paymentResult.getCode());
+				order.setRetMsg(paymentResult.getReturnMsg());
+				System.out.println("订单状态已变更");
+				orderService.update(order);
+			}else{
+				System.out.println("订单状态未变化");
+			}
 		}
 		return ajax(Status.success,"刷新成功");
 	}
 	// 订单列表
 	public String list() {
 		pager = orderService.getOrderPager(getLoginMember(), pager);
+		return LIST;
+	}
+	
+	// 查询订单
+	public String search() {
+		pager = orderService.getOrderPager(beginDate,endDate,order,pager);
 		return LIST;
 	}
 	
@@ -357,7 +386,15 @@ public class OrderAction extends BaseCardAction {
 	public List<PaymentConfig> getAllPaymentConfigList() {
 		return paymentConfigService.getAllList();
 	}
-
+	// 获取所有品牌
+	public List<Brand> getAllBrandList() {
+		return brandService.getAllList();
+	}
+	//获取所有的订单状态
+	public List<OrderStatus> getOrderStatusList() {
+		return Arrays.asList(OrderStatus.values());
+	}
+	
 	public String getMemo() {
 		return memo;
 	}
@@ -426,4 +463,17 @@ public class OrderAction extends BaseCardAction {
 	public void setPayment(Payment payment) {
 		this.payment = payment;
 	}
+	public Date getBeginDate() {
+		return beginDate;
+	}
+	public void setBeginDate(Date beginDate) {
+		this.beginDate = beginDate;
+	}
+	public Date getEndDate() {
+		return endDate;
+	}
+	public void setEndDate(Date endDate) {
+		this.endDate = endDate;
+	}
+	
 }

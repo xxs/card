@@ -1,5 +1,7 @@
 package net.xxs.service;
 
+import java.util.Date;
+
 import net.xxs.bean.Pager;
 import net.xxs.entity.Member;
 import net.xxs.entity.Order;
@@ -29,6 +31,8 @@ public interface OrderService extends BaseService<Order, String> {
 	 * @return 订单分页对象
 	 */
 	public Pager getOrderPager(Member member, Pager pager);
+	
+	public Pager getOrderPager(Date beginDate, Date endDate,Order order,Pager pager);
 	
 	/**
 	 * 获取未处理订单数

@@ -65,6 +65,9 @@
 						<a href="#" class="sort" name="isRecommend" hidefocus>是否推荐</a>
 					</th>
 					<th>
+						<a href="#" class="sort" name="isAdvice" hidefocus>是否是公告</a>
+					</th>
+					<th>
 						<a href="#" class="sort" name="createDate" hidefocus>添加时间</a>
 					</th>
 					<th>
@@ -89,6 +92,9 @@
 						</td>
 						<td>
 							<span class="${article.isRecommend?string('true','false')}Icon">&nbsp;</span>
+						</td>
+						<td>
+							<span class="${article.isAdvice?string('true','false')}Icon">&nbsp;</span>
 						</td>
 						<td>
 							<span title="${article.createDate?string("yyyy-MM-dd HH:mm:ss")}">${article.createDate}</span>

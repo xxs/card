@@ -111,6 +111,9 @@ $().ready(function() {
 						<label>
 							<@checkbox name="article.isTop" value="${(article.isTop)!false}" />置顶
 						</label>
+						<label>
+							<@checkbox name="article.isAdvice" value="${(article.isAdvice)!false}" />公告信息
+						</label>
 					</td>
 				</tr>
 				<tr>

@@ -28,20 +28,14 @@ public class Order extends BaseEntity {
 
 	private static final long serialVersionUID = -8541323033439515148L;
 
-	// 订单状态（未处理、已处理、已完成、已作废）
+	// 订单状态（ 未支付、支付中、已支付、已作废）
 	public enum OrderStatus {
-		unprocessed, processed, completed, invalid
-	};
-
-	// 付款状态（未支付、支付中、已支付）
-	public enum PaymentStatus {
-		unpaid, paymenting, paid
+		unpaid, paymenting, paid, invalid
 	};
 
 	private String orderSn;// 订单编号
 	private String brandId;// 品牌编号（为获取通道及费率单独添加）
 	private OrderStatus orderStatus;// 订单状态
-	private PaymentStatus paymentStatus;// 支付状态
 	private String paymentConfigName;// 支付方式名称
 	private BigDecimal amount;// 应付金额
 	private BigDecimal paidAmount;// 实付金额
@@ -83,16 +77,6 @@ public class Order extends BaseEntity {
 		this.orderStatus = orderStatus;
 	}
 
-	@Enumerated
-	@Column(nullable = false)
-	public PaymentStatus getPaymentStatus() {
-		return paymentStatus;
-	}
-
-	public void setPaymentStatus(PaymentStatus paymentStatus) {
-		this.paymentStatus = paymentStatus;
-	}
-	
 	@Column(nullable = false, precision = 15, scale = 5)
 	public BigDecimal getAmount() {
 		return amount;

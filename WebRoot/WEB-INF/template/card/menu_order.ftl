@@ -13,6 +13,4 @@
 							</#if>
 	</p>
 	<p>会员等级: <span class="red"> ${loginMember.memberRank.name}</span></p>
-	<div class="heng"></div>	
-	<li><a href="order!list.action">我的订单</a></li>
 </ul>

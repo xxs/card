@@ -40,9 +40,10 @@ h1,h2,h3,h4,h5,h6{font-size:12px;font-weight:normal;}
 .fangz{background:url(../images/chongz_16.jpg) no-repeat;height:37px;border-bottom:1px solid #ebebeb;font-weight:bold;font-size:24px;color:#666;padding-left:30px;line-height:34px;margin-bottom:10px;}
 .fangz a{font-weight:none;color:#f00;text-decoration:none;}
 .red{color:#F00;margin-bottom:10px;}
-.hei a{color:#f00;text-decoration:none;}
+.hei a{color:#f00;text-decoration:none;margin:auto 5px auto 5px;}
+.hei p{line-size:12px;}
+.hei span{line-size:12px;width:20px;}
 .anniu{width:110px;height:30px;margin-top:9px;}
-.QQ{background:url(../images/chongz_23.gif) no-repeat;width:110px;height:25px;border:none;cursor:pointer;text-indent:120px;float:left;}
 
 .xuan{margin-top:30px;}
 .xuanTitle{height:42px;background:url(../images/xian2_03.gif) no-repeat bottom;}

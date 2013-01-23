@@ -35,23 +35,97 @@ $().ready( function() {
 <body class="memberCenter">
 	<#include "/WEB-INF/template/card/member_header.ftl">
 	<div class="content">
-	<div class="contentLeft">
+	<div class="contentLeft" style="min-height:200px;">
 		<#include "/WEB-INF/template/card/menu_order.ftl">
 	</div>
 	<div class="contentRight">
 		<div class="katong">
 			<div class="fangz">订单列表</div>
-			<div class="red">注：请一定正确选择卡面值提交,否则造成损失商户自行承担； </div>
-			<div class="hei">卡信息提交成功后，可在<a href="#">订单查询</a>页面查询支付结果。处理结果以订单查询页为准。</div>
-			<div class="memberCenter">
+			<div class="hei">
+				<div class="memberCenter">
+				<form action="order!search.action" method="post">
+				<table class="stateTable">
+					<tr>
+						<th>订单编号</th>
+						<td>
+							<input type="text" name="order.orderSn"/>
+						</td>	
+						<th>充值卡账号</th>
+						<td>
+							<input type="text" name="order.cardNum"/>
+						</td>
+					</tr>
+					<tr>
+						<th>充值卡品牌</th>
+						<td>
+							<select name="order.brandId">
+								<option value="">请选择...</option>
+								<#list allBrandList as brand>
+									<option value="${brand.id}"<#if (brand == cards.brand)!> selected</#if>>
+										${brand.name}
+									</option>
+								</#list>
+							</select>
+						</td>	
+						<th>单据通道</th>
+						<td>
+							<select name="order.paymentConfig.id">
+								<option value="">请选择...</option>
+								<#list allPaymentConfigList as paymentConfig>
+									<option value="${paymentConfig.id}"<#if (paymentConfig == cards.paymentConfig)!> selected</#if>>
+										${paymentConfig.name}
+									</option>
+								</#list>
+							</select>
+						</td>
+					</tr>
+					<tr>
+						<th>单据状态</th>
+						<td>
+							<select name="order.orderStatus">
+								<option value="">请选择...</option>
+								<#list orderStatusList as orderStatus> 
+									<option value="${orderStatus}" >
+										${action.getText("OrderStatus." + orderStatus)}
+									</option>
+								</#list>
+							</select>
+						</td>	
+						<th>时间范围</th>
+						<td >
+							<input name="beginDate" onclick="WdatePicker()"/>
+							~
+							<input name="endDate" onclick="WdatePicker()"/>
+						</td>
+					</tr>	
+					<tr>
+						<td>
+						</td>	
+						<td colspan="3" align="center">
+							<input type="submit" class="formButton" value="查询" />	
+							<a href="#">今日订单</a>
+							<a href="#">本周订单</a>
+							<a href="#">本月订单</a>
+							<a href="#">季度订单</a>
+						</td>
+					</tr>	
+				</table>
+				</form>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="memberCenter">
 			<table class="listTable tabContent">
 				<tr>
 							<th>订单编号</th>
 							<th>充值卡名称</th>
 							<th>下单时间</th>
+							<th>单据通道</th>
+							<th>充值卡账号</th>
 							<th>订单金额</th>
 							<th>订单状态</th>
-							<th>状态码</th>
+							<th>状态</th>
 						</tr>
 						<#list pager.result as order>
 							<tr>
@@ -63,22 +137,23 @@ $().ready( function() {
 										${order.productName}
 									</a>
 								</td>
+								<td width="200">
+									<span title="${order.createDate?string("yyyy-MM-dd HH:mm:ss")}">${order.createDate?string("yyyy-MM-dd HH:mm:ss")}</span>
+								</td>
 								<td>
-									<span title="${order.createDate?string("yyyy-MM-dd HH:mm:ss")}">${order.createDate}</span>
+									${order.paymentConfig.name}
+								</td>
+								<td>
+									${order.cardNum}
 								</td>
 								<td>
 									${order.amount?string(currencyFormat)}
 								</td>
 								<td class="steteText">
-									<span></span>
-									<#if order.orderStatus != "completed" && order.orderStatus != "invalid">
-										[${action.getText("PaymentStatus." + order.paymentStatus)}]
-									<#else>
 										[${action.getText("OrderStatus." + order.orderStatus)}]
-									</#if>
 								</td>
 								<td>
-									<span title="${order.retMsg}">${order.retCode}</span>
+									<span title="${order.retCode}">${order.retMsg}</span>
 								</td>
 							</tr>
 						</#list>	
@@ -87,8 +162,6 @@ $().ready( function() {
          			<#include "/WEB-INF/template/card/pager.ftl">
          		</@pagination>
 			</div>
-		</div>
-	</div>
 	</div>
 </div>
 <div class="clear"></div>

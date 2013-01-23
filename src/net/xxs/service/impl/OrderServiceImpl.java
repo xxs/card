@@ -1,5 +1,7 @@
 package net.xxs.service.impl;
 
+import java.util.Date;
+
 import javax.annotation.Resource;
 
 import net.xxs.bean.Pager;
@@ -39,6 +41,11 @@ public class OrderServiceImpl extends BaseServiceImpl<Order, String> implements 
 	@Transactional(readOnly = true)
 	public Long getUnprocessedOrderCount() {
 		return orderDao.getUnprocessedOrderCount();
+	}
+
+	public Pager getOrderPager(Date beginDate, Date endDate, Order order,
+			Pager pager) {
+		return orderDao.getOrderPager(beginDate, endDate, order, pager);
 	}
 	
 }

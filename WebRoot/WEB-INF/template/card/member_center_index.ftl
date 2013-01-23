@@ -48,6 +48,7 @@
 						</tr>
 					</table>
 					<div class="blank"></div>
+					<form method="post" action="order!query.action" >
 					<table class="listTable">
 						<tr>
 							<th>充值卡名称</th>
@@ -55,7 +56,7 @@
 							<th>下单时间</th>
 							<th>订单金额</th>
 							<th>订单状态</th>
-							<th><input class="formButton red"  value="刷新订单"/></th>
+							<th><input class="formButton red" type="submit" value="刷新订单"/></th>
 						</tr>
 						<#list loginMember.orderSet as order>
 							<tr>
@@ -81,7 +82,7 @@
 									</#if>
 								</td>
 								<td>
-									
+									<input type="hidden" name="ids" value="${order.id}"/>
 									<span title="${order.retMsg}">${order.retCode}</span>
 								</td>
 							</tr>
@@ -98,6 +99,7 @@
 							</td>
 						</tr>
 					</table>
+					</form>
 					<#include "/WEB-INF/template/card/pager.ftl">
 		</div>
 	</div>

@@ -23,18 +23,12 @@ public class Payment extends BaseEntity {
 
 	private static final long serialVersionUID = 6404772131152718534L;
 	
-	// 支付类型（在线支付）
-	public enum PaymentType {
-		online
-	};
-	
 	// 支付状态（准备、超时、作废、成功、失败）
 	public enum PaymentStatus {
 		ready, timeout, invalid, success, failure
 	};
 	
 	private String paymentSn;// 支付编号
-	private PaymentType paymentType;// 支付类型
 	private String paymentConfigName;// 支付配置名称
 	private String bankName;// 收款银行名称
 	private String bankAccount;// 收款银行账号
@@ -58,16 +52,6 @@ public class Payment extends BaseEntity {
 		this.paymentSn = paymentSn;
 	}
 	
-	@Enumerated
-	@Column(nullable = false, updatable = false)
-	public PaymentType getPaymentType() {
-		return paymentType;
-	}
-
-	public void setPaymentType(PaymentType paymentType) {
-		this.paymentType = paymentType;
-	}
-
 	@Column(nullable = false, updatable = false)
 	public String getPaymentConfigName() {
 		return paymentConfigName;

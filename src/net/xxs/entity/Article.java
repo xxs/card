@@ -53,6 +53,7 @@ public class Article extends BaseEntity {
 	private String metaDescription;// 页面描述
 	private Boolean isPublication;// 是否发布
 	private Boolean isTop;// 是否置顶
+	private Boolean isAdvice;// 是否是公告信息
 	private Boolean isRecommend;// 是否为推荐文章
 	private Integer pageCount;// 文章页数
 	private String htmlPath;// HTML静态文件路径(首页)
@@ -135,6 +136,16 @@ public class Article extends BaseEntity {
 
 	@SearchableProperty(store = Store.YES, index = Index.ANALYZED)
 	@Column(nullable = false)
+	public Boolean getIsAdvice() {
+		return isAdvice;
+	}
+
+	public void setIsAdvice(Boolean isAdvice) {
+		this.isAdvice = isAdvice;
+	}
+
+	@SearchableProperty(store = Store.YES, index = Index.ANALYZED)
+	@Column(nullable = false)
 	public Boolean getIsRecommend() {
 		return isRecommend;
 	}
@@ -192,6 +203,9 @@ public class Article extends BaseEntity {
 		if (isPublication == null) {
 			isPublication = false;
 		}
+		if (isAdvice == null) {
+			isAdvice = false;
+		}
 		if (isTop == null) {
 			isTop = false;
 		}
@@ -213,6 +227,9 @@ public class Article extends BaseEntity {
 		}
 		if (isPublication == null) {
 			isPublication = false;
+		}
+		if (isAdvice == null) {
+			isAdvice = false;
 		}
 		if (isTop == null) {
 			isTop = false;
