@@ -183,7 +183,12 @@ public class OrderAction extends BaseCardAction {
 		payment.setOrder(order);
 		paymentService.save(payment);
 		//发送支付信息
-		paymentResult = paymentProduct.cardPay(paymentConfig,payment.getPaymentSn(), order, getRequest());
+		try {
+			paymentResult = paymentProduct.cardPay(paymentConfig,payment.getPaymentSn(), order, getRequest());
+		} catch (Exception e) {
+			addActionError("订单支付提交失败!"+paymentResult.getReason());
+			return ERROR;
+		}
 		if ((paymentResult == null || StringUtils.isEmpty(paymentResult.getOrderSn()))){
 			addActionError("缺失支付单号!");
 			return ERROR;
@@ -192,6 +197,11 @@ public class OrderAction extends BaseCardAction {
 		System.out.println("payment result:"+payment.getId());
 		order = payment.getOrder();
 		if(StringUtils.isEmpty(order.getRetCode())||!paymentResult.getCode().equals(order.getRetCode())){
+			if(paymentResult.getIsSuccess()){
+				order.setOrderStatus(OrderStatus.paymenting);
+			}else{
+				order.setOrderStatus(OrderStatus.failure);
+			}
 			order.setRetCode(paymentResult.getCode());
 			order.setRetMsg(paymentResult.getReturnMsg());
 			System.out.println("订单状态已变更");
@@ -290,7 +300,13 @@ public class OrderAction extends BaseCardAction {
 			payment.setOrder(order);
 			paymentService.save(payment);
 			//发送支付信息
-			paymentResult = paymentProduct.cardPay(paymentConfig,payment.getPaymentSn(), order, getRequest());
+			try {
+				paymentResult = paymentProduct.cardPay(paymentConfig,payment.getPaymentSn(), order, getRequest());
+			} catch (Exception e) {
+				addActionError("订单支付提交失败!");
+				return ERROR;
+			}
+			
 			if ((paymentResult == null || StringUtils.isEmpty(paymentResult.getOrderSn()))){
 				addActionError("缺失支付单号!");
 				return ERROR;
@@ -298,6 +314,11 @@ public class OrderAction extends BaseCardAction {
 			payment = paymentService.getPaymentByPaymentSn(paymentResult.getOrderSn());
 			order = payment.getOrder();
 			if(StringUtils.isEmpty(order.getRetCode())||!paymentResult.getCode().equals(order.getRetCode())){
+				if(paymentResult.getIsSuccess()){
+					order.setOrderStatus(OrderStatus.paymenting);
+				}else{
+					order.setOrderStatus(OrderStatus.failure);
+				}
 				order.setRetCode(paymentResult.getCode());
 				order.setRetMsg(paymentResult.getReturnMsg());
 				System.out.println("订单状态已变更");
@@ -310,16 +331,29 @@ public class OrderAction extends BaseCardAction {
 		return SUCCESS;
 	}
 	//查询订单最新状态
+	@Validations(
+			requiredStrings = {
+				@RequiredStringValidator(fieldName = "ids", message = "订单ID不能为空!")
+			}
+		)
 	@InputConfig(resultName = "error")	
 	public String query() {
 		if(ids!=null && ids.length>0){
 			for (int i = 0; i < ids.length; i++) {
 				id = ids[i];
 				order = orderService.get(id);
+				if(order.getOrderStatus()==OrderStatus.failure || order.getOrderStatus() == OrderStatus.paid){
+					continue;
+				}
 				paymentConfig = order.getPaymentConfig();
 				BasePaymentProduct paymentProduct = PaymentProductUtil.getPaymentProduct(paymentConfig.getPaymentProductId());
 				//发送查询请求
-				paymentResult = paymentProduct.cardQuery(paymentConfig,order.getPayment().getPaymentSn(), getRequest());
+				try {
+					paymentResult = paymentProduct.cardQuery(paymentConfig,order.getPayment().getPaymentSn(), getRequest());
+				} catch (Exception e) {
+					addActionError("订单支付提交失败!");
+					return ERROR;
+				}
 				if ((paymentResult == null || StringUtils.isEmpty(paymentResult.getOrderSn()))){
 					addActionError("缺失支付单号!");
 					return ERROR;
@@ -334,26 +368,6 @@ public class OrderAction extends BaseCardAction {
 				}else{
 					System.out.println("订单状态未变化");
 				}
-			}
-		}else{
-			order = orderService.get(id);
-			paymentConfig = order.getPaymentConfig();
-			BasePaymentProduct paymentProduct = PaymentProductUtil.getPaymentProduct(paymentConfig.getPaymentProductId());
-			//发送查询请求
-			paymentResult = paymentProduct.cardQuery(paymentConfig,order.getPayment().getPaymentSn(), getRequest());
-			if ((paymentResult == null || StringUtils.isEmpty(paymentResult.getOrderSn()))){
-				addActionError("缺失支付单号!");
-				return ERROR;
-			}
-			payment = paymentService.getPaymentByPaymentSn(paymentResult.getOrderSn());
-			order = payment.getOrder();
-			if(StringUtils.isEmpty(order.getRetCode())||!paymentResult.getCode().equals(order.getRetCode())){
-				order.setRetCode(paymentResult.getCode());
-				order.setRetMsg(paymentResult.getReturnMsg());
-				System.out.println("订单状态已变更");
-				orderService.update(order);
-			}else{
-				System.out.println("订单状态未变化");
 			}
 		}
 		return ajax(Status.success,"刷新成功");

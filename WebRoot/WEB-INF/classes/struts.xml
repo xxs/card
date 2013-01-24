@@ -123,30 +123,12 @@
 	
 	<package name="api" extends="basePackage" namespace="/api">
 		<interceptors>
-			<interceptor name="securityInterceptor" class="net.xxs.interceptor.SecurityInterceptor" />
 			<interceptor name="trimInterceptor" class="net.xxs.interceptor.TrimInterceptor" />
 			<interceptor-stack name="apiStack">
 				<interceptor-ref name="trimInterceptor" />
-				<interceptor-ref name="baseStack" />
 			</interceptor-stack>
 		</interceptors>
-
 		<default-interceptor-ref name="apiStack" />
-
-		<global-results>
-			<result name="login" type="redirect">
-				<param name="location">/html/login.html</param>
-				<param name="loginRedirectUrl">${loginRedirectUrl}</param>
-			</result>
-			<result name="redirect" type="redirectAction">
-				<param name="namespace">/card</param>
-				<param name="actionName">redirect</param>
-				<param name="redirectUrl">${redirectUrl}</param>
-			</result>
-			<result name="invalid.token" type="freemarker">/WEB-INF/template/card/invalid_token.ftl</result>
-			<result name="error" type="freemarker">/WEB-INF/template/card/error.ftl</result>
-			<result name="ajaxError" type="freemarker">/WEB-INF/template/card/ajax_error.ftl</result>
-		</global-results>
 	</package>
 
 </struts>

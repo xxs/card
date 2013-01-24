@@ -28,9 +28,9 @@ public class Order extends BaseEntity {
 
 	private static final long serialVersionUID = -8541323033439515148L;
 
-	// 订单状态（ 未支付、支付中、已支付、已作废）
+	// 订单状态（ 未支付、支付中、已支付、支付失败、已作废）
 	public enum OrderStatus {
-		unpaid, paymenting, paid, invalid
+		unpaid, paymenting, paid,failure,invalid
 	};
 
 	private String orderSn;// 订单编号

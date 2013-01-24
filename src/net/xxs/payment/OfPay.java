@@ -29,8 +29,7 @@ public class OfPay extends BasePaymentProduct {
 
 	public static final String PAYMENT_URL ="http://card.pay.ofpay.com/rcvcard.do";// 正式支付请求URL
 	public static final String QUERY_URL ="http://card.pay.ofpay.com/querycard.do";// 正式查询请求URL
-	public static final String RETURN_URL = ":8080/card/payment!payreturn.action";// 回调处理URL
-	public static final String NOTIFY_URL = ":8080/card/payment!paynotify.action";// 消息通知URL
+	public static final String RETURN_URL = "/card/payment!payreturn.action";// 回调处理URL
 	public static final String SHOW_URL = "/";// 充值卡显示URL
 	public static final String PAY_MODE = "r";// 支付mode
 	public static final String QUERY_MODE = "q";// 查询mode  
@@ -50,11 +49,11 @@ public class OfPay extends BasePaymentProduct {
 		if (httpServletRequest == null) {
 			return null;
 		}
-		String r6Order = httpServletRequest.getParameter("r6_Order");
-		if (StringUtils.isEmpty(r6Order)) {
+		String orderno = httpServletRequest.getParameter("orderno");
+		if (StringUtils.isEmpty(orderno)) {
 			return null;
 		}
-		return r6Order;
+		return orderno;
 	}
 
 	@Override
@@ -62,11 +61,11 @@ public class OfPay extends BasePaymentProduct {
 		if (httpServletRequest == null) {
 			return null;
 		}
-		String r3Amt = httpServletRequest.getParameter("p3_Amt");
-		if (StringUtils.isEmpty(r3Amt)) {
+		String value = httpServletRequest.getParameter("value");
+		if (StringUtils.isEmpty(value)) {
 			return null;
 		}
-		return new BigDecimal(r3Amt);
+		return new BigDecimal(value);
 	}
 
 	public boolean isPaySuccess(HttpServletRequest httpServletRequest) {
@@ -91,16 +90,31 @@ public class OfPay extends BasePaymentProduct {
 	@Override
 	public boolean verifySign(PaymentConfig paymentConfig,
 			HttpServletRequest httpServletRequest) {
-		return true;
+		String usercode = httpServletRequest.getParameter("usercode");
+		String mode = httpServletRequest.getParameter("mode");
+		String version = httpServletRequest.getParameter("version");
+		String orderno = httpServletRequest.getParameter("orderno");
+		String billid = httpServletRequest.getParameter("billid");
+		String result = httpServletRequest.getParameter("result");
+		String info = httpServletRequest.getParameter("info");
+		String value = httpServletRequest.getParameter("value");
+		String accountvalue = httpServletRequest.getParameter("accountvalue");
+		String datetime = httpServletRequest.getParameter("datetime");
+		String sign = httpServletRequest.getParameter("sign");
+		String keyValue = paymentConfig.getBargainorKey();// 密钥
+		// 验证hmac
+		String md5src = (usercode+mode+version+orderno+billid+result+info+value+accountvalue+datetime+keyValue).toLowerCase();
+		// 验证支付签名
+		if (sign.equals(EncodeUtils.testDigest(md5src))) {
+			return true;
+		} else {
+			return false;
+		}		
 	}
 
 	@Override
 	public String getPayreturnMessage(String paymentSn) {
-		return "ok<html><head><meta http-equiv=\"content-type\" content=\"text/html; charset=utf-8\" /><title>页面跳转中..</title></head><body onload=\"javascript: document.forms[0].submit();\"><form action=\""
-				+ SettingUtil.getSetting().getCardUrl()
-				+ RESULT_URL
-				+ "\"><input type=\"hidden\" name=\"paymentsn\" value=\""
-				+ paymentSn + "\" /></form></body></html>";
+		return "ok";
 	}
 
 	@Override
@@ -116,7 +130,8 @@ public class OfPay extends BasePaymentProduct {
 	@Override
 	public PaymentResult cardPay(PaymentConfig paymentConfig, String paymentSn,
 			Order order, HttpServletRequest httpServletRequest) {
-		
+		// 创建非银行卡专业版消费请求结果
+		PaymentResult paymentResult = new PaymentResult();
 		System.out.println("开始组织参数");
 		String usercode = paymentConfig.getBargainorId(); // 合作伙伴在欧飞的用户ID
 		String md5key = paymentConfig.getBargainorKey();//签名密钥，是在申请为欧飞第四方支付用户的时候由系统分配的
@@ -127,8 +142,7 @@ public class OfPay extends BasePaymentProduct {
 		System.out.println("cardcode:"+cardcode);
 		String cardno = order.getCardNum();// 充值卡的卡号
 		String cardpass = order.getCardPwd();// 充值卡密码(该参数可以使用RSA加密发送)。
-		String retaction = SettingUtil.getSetting().getCardUrl() + RETURN_URL
-				+ "?paymentsn=" + paymentSn;// 合作伙伴的回调地址，不能包含 & ? 等特别字符,必须拥有回调地址。
+		String retaction = SettingUtil.getSetting().getCardUrl() + RETURN_URL+ "?paymentsn=" + paymentSn;// 合作伙伴的回调地址，不能包含 & ? 等特别字符,必须拥有回调地址。
 		String datetime = DateUtil.getNowTime();// 日期时间，格式：YYYYMMDDHHMMSS，如 20110515080808
 		String format = FORMAT;// 固定“xml”
 		System.out.println("参数完成");
@@ -137,7 +151,7 @@ public class OfPay extends BasePaymentProduct {
 				+ cardno + cardpass + retaction + datetime + format+ md5key;
 		//签名（参见Sign计算方法）
 		String sign = EncodeUtils.testDigest(md5src);
-		System.out.println("sdfsdfs");
+		System.out.println(sign);
 		try {
 			System.out.println("1");
 			System.out.println("usercode"+usercode);
@@ -145,14 +159,12 @@ public class OfPay extends BasePaymentProduct {
 //			System.out.println("2");
 //			System.out.println("cardpass"+cardpass);
 //			cardpass = RSA.encrypt(cardpass, "gbk");
-			System.out.println("3");
 		} catch (Exception e1) {
-			e1.printStackTrace();
+			paymentResult.setReason("参数编码失败");
+			paymentResult.setIsSuccess(false);
 		}
-		System.out.println("code   md5");
 		HttpClient hClient = new HttpClient();
-		HttpConnectionManagerParams managerParams = hClient
-				.getHttpConnectionManager().getParams();
+		HttpConnectionManagerParams managerParams = hClient.getHttpConnectionManager().getParams();
 		// 设置连接超时时间(单位毫秒)
 		managerParams.setConnectionTimeout(1110000);
 		// 设置读数据超时时间(单位毫秒)
@@ -178,14 +190,17 @@ public class OfPay extends BasePaymentProduct {
 		try {
 			hClient.executeMethod(post);
 		} catch (HttpException e) {
-			e.printStackTrace();
+			paymentResult.setReason("请求操作失败");
+			paymentResult.setIsSuccess(false);
 		} catch (IOException e) {
-			e.printStackTrace();
+			paymentResult.setReason("请求操作失败");
+			paymentResult.setIsSuccess(false);
 		}
 		try {
 			returnStr = post.getResponseBodyAsString();
 		} catch (IOException e) {
-			e.printStackTrace();
+			paymentResult.setReason("没有返回结果");
+			paymentResult.setIsSuccess(false);
 		}
 		System.out.println("提交收卡支付返回:" + returnStr);
 		XmlStringParse xml = new XmlStringParse(returnStr);
@@ -206,16 +221,22 @@ public class OfPay extends BasePaymentProduct {
 		md5src = retusercode + retmode + retversion + retorderno
 				+ retbillid + retcardcode + retcardno + retretaction
 				+ retresult + retinfo + retdatetime;
-		System.out.println("yanzhegnqian ");
 		// MD5check
 		if (!retsign.equals(EncodeUtils.testDigest(md5src + md5key))) {
-		System.out.println("加密验证失败");
+			System.out.println("加密验证失败");
+			paymentResult.setReason("加密验证失败");
+			paymentResult.setIsSuccess(false);
 		}
 		post.releaseConnection();
 		post = null;
 		hClient = null;
-		// 创建非银行卡专业版消费请求结果
-		PaymentResult paymentResult = new PaymentResult();
+		if("2000".equals(retresult)||"2011".equals(retresult)){
+			paymentResult.setReason("提交成功");
+			paymentResult.setIsSuccess(true);
+		}else{
+			paymentResult.setReason("加密验证失败");
+			paymentResult.setIsSuccess(false);
+		}
 		paymentResult.setCmd(retmode);
 		paymentResult.setCode(retresult);
 		paymentResult.setReturnMsg(retinfo);
@@ -227,8 +248,9 @@ public class OfPay extends BasePaymentProduct {
 	@Override
 	public PaymentResult cardQuery(PaymentConfig paymentConfig,
 			String paymentSn,HttpServletRequest httpServletRequest) {
-		System.out.println("query1");
 		try {
+			// 创建非银行卡专业版消费请求结果
+			PaymentResult paymentResult = new PaymentResult();
 			String usercode = paymentConfig.getBargainorId();
 			String mode = QUERY_MODE;
 			String version = VERSION;
@@ -284,8 +306,7 @@ public class OfPay extends BasePaymentProduct {
 			post.releaseConnection();
 			post = null;
 			hClient = null;
-			// 创建非银行卡专业版消费请求结果
-			PaymentResult paymentResult = new PaymentResult();
+			
 			paymentResult.setCmd(retmode);
 			paymentResult.setCode(retresult);
 			paymentResult.setReturnMsg(retinfo);

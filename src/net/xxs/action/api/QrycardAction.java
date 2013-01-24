@@ -1,7 +1,5 @@
 package net.xxs.action.api;
 
-import net.xxs.action.card.BaseCardAction;
-
 import org.apache.struts2.convention.annotation.InterceptorRef;
 import org.apache.struts2.convention.annotation.InterceptorRefs;
 import org.apache.struts2.convention.annotation.ParentPackage;
@@ -14,10 +12,11 @@ import org.apache.struts2.convention.annotation.ParentPackage;
 @InterceptorRefs({
 	@InterceptorRef(value = "apiStack")
 })
-public class QrycardAction extends BaseCardAction {
+public class QrycardAction extends BaseApiAction {
 
-	private static final long serialVersionUID = -7516107723213363852L;
 	
+	private static final long serialVersionUID = 4779672839882044187L;
+
 	public String execute() throws Exception {
 		System.out.println("执行了查询操作");
 		return null;

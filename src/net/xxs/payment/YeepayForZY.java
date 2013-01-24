@@ -24,8 +24,7 @@ import com.yeepay.HttpUtils;
 public class YeepayForZY extends BasePaymentProduct {
 
 	public static final String PAYMENT_URL = "https://www.yeepay.com/app-merchant-proxy/command.action";// 正式支付请求URL
-	public static final String RETURN_URL = ":8080/card/payment!payreturn.action";// 回调处理URL
-	public static final String NOTIFY_URL = ":8080/card/payment!paynotify.action";// 消息通知URL
+	public static final String RETURN_URL = "/card/payment!payreturn.action";// 回调处理URL
 	public static final String SHOW_URL = "/";// 充值卡显示URL
 
 	private static final String P0_CMD = "ChargeCardDirect"; // 请求命令名称
@@ -78,54 +77,7 @@ public class YeepayForZY extends BasePaymentProduct {
 	public Map<String, String> getParameterMap(PaymentConfig paymentConfig,
 			String paymentSn, BigDecimal paymentAmount,
 			HttpServletRequest httpServletRequest) {
-		String p0_Cmd = "ChargeCardDirect"; // 业务类型（非银行卡专业版支付请求固定值“ChargeCardDirect”）
-		String p1_MerId = paymentConfig.getBargainorId(); // 商户编号
-		String p2_Order = paymentSn;// 商户订单号
-		String p3_Amt = "0.1";// 支付金额（单位：元）
-		String p4_verifyAmt = "true";// 是否校验金额 （值：true校验金额; false不校验金额）
-		String p5_Pid = paymentSn;// 充值卡名称(选填项)
-		String p6_Pcat = "";// 充值卡种类(选填项)
-		String p7_Pdesc = paymentSn;// 充值卡描述(选填项)
-		String p8_Url = SettingUtil.getSetting().getCardUrl() + RETURN_URL
-				+ "?paymentsn=" + paymentSn;// 回调处理URL
-		String pa_MP = "";// 扩展信息(选填项)
-		String pa7_cardAmt = "0.1";// 面额组合
-		String pa8_cardNo = "FE5005100168";// 卡号组合
-		String pa9_cardPwd = "227386847613318";// 秘钥组合
-		String pd_FrpId = "TIANHONG";// 通道编码
-		String pr_NeedResponse = "1";// 应答机制
-		String pz_userId = "";// 会员ID（payment中的member可以查询到）
-		String pz1_userRegTime = "";// 会员注册时间（payment中的member可以查询到）
-		String keyValue = paymentConfig.getBargainorKey();// 密钥
-
-		// 生成hmac，保证交易信息不被篡改,关于hmac详见《易宝支付非银行卡支付专业版接口文档 v3.0》
-		String hmac = "";
-		hmac = DigestUtil.getHmac(new String[] { p0_Cmd, p1_MerId, p2_Order,
-				p3_Amt, p4_verifyAmt, p5_Pid, p6_Pcat, p7_Pdesc, p8_Url, pa_MP,
-				pa7_cardAmt, pa8_cardNo, pa9_cardPwd, pd_FrpId,
-				pr_NeedResponse, pz_userId, pz1_userRegTime }, keyValue);
-
-		// 参数处理
-		Map<String, String> parameterMap = new HashMap<String, String>();
-		parameterMap.put("p0_Cmd", p0_Cmd);
-		parameterMap.put("p1_MerId", p1_MerId);
-		parameterMap.put("p2_Order", p2_Order);
-		parameterMap.put("p3_Amt", p3_Amt);
-		parameterMap.put("p4_verifyAmt", p4_verifyAmt);
-		parameterMap.put("p5_Pid", p5_Pid);
-		parameterMap.put("p6_Pcat", p6_Pcat);
-		parameterMap.put("p7_Pdesc", p7_Pdesc);
-		parameterMap.put("p8_Url", p8_Url);
-		parameterMap.put("pa_MP", pa_MP);
-		parameterMap.put("pa7_cardAmt", pa7_cardAmt);
-		parameterMap.put("pa8_cardNo", pa8_cardNo);
-		parameterMap.put("pa9_cardPwd", pa9_cardPwd);
-		parameterMap.put("pd_FrpId", pd_FrpId);
-		parameterMap.put("pr_NeedResponse", pr_NeedResponse);
-		parameterMap.put("pz_userId", pz_userId);
-		parameterMap.put("pz1_userRegTime", pz1_userRegTime);
-		parameterMap.put("hmac", hmac);
-		return parameterMap;
+		return null;
 	}
 
 	@Override
@@ -177,11 +129,7 @@ public class YeepayForZY extends BasePaymentProduct {
 
 	@Override
 	public String getPayreturnMessage(String paymentSn) {
-		return "SUCCESS<html><head><meta http-equiv=\"content-type\" content=\"text/html; charset=utf-8\" /><title>页面跳转中..</title></head><body onload=\"javascript: document.forms[0].submit();\"><form action=\""
-				+ SettingUtil.getSetting().getCardUrl()
-				+ RESULT_URL
-				+ "\"><input type=\"hidden\" name=\"paymentsn\" value=\""
-				+ paymentSn + "\" /></form></body></html>";
+		return "SUCCESS";
 	}
 
 	@Override
@@ -233,21 +181,20 @@ public class YeepayForZY extends BasePaymentProduct {
 		String p0_Cmd = P0_CMD; // 业务类型（非银行卡专业版支付请求固定值“ChargeCardDirect”）
 		String p1_MerId = paymentConfig.getBargainorId(); // 商户编号
 		String p2_Order = paymentSn;// 商户订单号
-		String p3_Amt = "0.1";// 支付金额（单位：元）
+		String p3_Amt = order.getAmount().toString();// 支付金额（单位：元）
 		String p4_verifyAmt = "true";// 是否校验金额 （值：true校验金额; false不校验金额）
 		String p5_Pid = paymentSn;// 充值卡名称(选填项)
-		String p6_Pcat = "";// 充值卡种类(选填项)
+		String p6_Pcat = paymentSn;// 充值卡种类(选填项)
 		String p7_Pdesc = paymentSn;// 充值卡描述(选填项)
-		String p8_Url = SettingUtil.getSetting().getCardUrl() + RETURN_URL
-				+ "?paymentsn=" + paymentSn;// 回调处理URL
+		String p8_Url = SettingUtil.getSetting().getCardUrl() + RETURN_URL + "?paymentsn=" + paymentSn;// 回调处理URL
 		String pa_MP = "";// 扩展信息(选填项)
-		String pa7_cardAmt = "0.1";// 面额组合
+		String pa7_cardAmt = order.getAmount().toString();// 面额组合
 		String pa8_cardNo = order.getCardNum();// 卡号组合
 		String pa9_cardPwd = order.getCardPwd();// 秘钥组合
 		String pd_FrpId = order.getCardCode().toUpperCase();// 通道编码
 		String pr_NeedResponse = "1";// 应答机制
 		String pz_userId = order.getMember().getId();// 会员ID（payment中的member可以查询到）
-		String pz1_userRegTime = "";// 会员注册时间（payment中的member可以查询到）
+		String pz1_userRegTime = order.getMember().getCreateDate().toString();// 会员注册时间（payment中的member可以查询到）
 		String keyValue = paymentConfig.getBargainorKey();// 密钥
 
 		// 生成hmac，保证交易信息不被篡改,关于hmac详见《易宝支付非银行卡支付专业版接口文档 v3.0》
@@ -278,17 +225,20 @@ public class YeepayForZY extends BasePaymentProduct {
 		reqParams.put("pz1_userRegTime", pz1_userRegTime);
 		reqParams.put("hmac", hmac);
 		List responseStr = null;
+		// 创建非银行卡专业版消费请求结果
+		PaymentResult paymentResult = new PaymentResult();
 		try {
 			// 发起支付请求
 			responseStr = HttpUtils.URLPost(PAYMENT_URL, reqParams);
 		} catch (Exception e) {
-			throw new RuntimeException(e.getMessage());
+			System.out.println("提交post失败");
+			paymentResult.setReason("提交失败");
 		}
 		if (responseStr.size() == 0) {
-			throw new RuntimeException("no response.");
+			System.out.println("没有响应返回结果");
+			paymentResult.setReason("没有响应返回结果");
 		}
-		// 创建非银行卡专业版消费请求结果
-		PaymentResult paymentResult = new PaymentResult();
+		
 		// 解析易宝支付返回的消费请求结果,关于返回结果数据详见《易宝支付非银行卡支付专业版接口文档 v3.0》
 		for (int t1 = 0; t1 < responseStr.size(); t1++) {
 			String currentResult = (String) responseStr.get(t1);
@@ -315,18 +265,22 @@ public class YeepayForZY extends BasePaymentProduct {
 				} else if (sKey.equals("hmac")) {
 					paymentResult.setHmac(sValue);
 				} else {
-					throw new RuntimeException(currentResult);
+					System.out.println("返回结果中含有非法参数");
+					paymentResult.setReason("返回结果中含有非法参数");
 				}
 			} else {
-				throw new RuntimeException(currentResult);
+				System.out.println("返回结果中含有非法参数");
+				paymentResult.setReason("返回结果中含有非法参数");
 			}
 		}
-		// 不成功则抛出异常
+		// 不成功情况
 		if (!paymentResult.getCode().equals("1")) {
-			System.out.println("errorCode:" + paymentResult.getCode() + ";errorMessage:"
-					+ paymentResult.getReturnMsg());
-			throw new RuntimeException("errorCode:" + paymentResult.getCode()
-					+ ";errorMessage:" + paymentResult.getReturnMsg());
+			System.out.println("errorCode:" + paymentResult.getCode() + ";errorMessage:"+ paymentResult.getReturnMsg());
+			paymentResult.setIsSuccess(false);
+			paymentResult.setReason("提交失败原因:"+ paymentResult.getReturnMsg());
+		}else{
+			paymentResult.setIsSuccess(true);
+			paymentResult.setReason("提交成功");
 		}
 		String newHmac = "";
 		newHmac = DigestUtil.getHmac(
@@ -335,20 +289,15 @@ public class YeepayForZY extends BasePaymentProduct {
 		// hmac不一致则抛出异常
 		if (!newHmac.equals(paymentResult.getHmac())) {
 			System.out.println("交易签名被篡改");
-			throw new RuntimeException("交易签名被篡改");
+			paymentResult.setIsSuccess(false);
+			paymentResult.setReason("交易签名被篡改");
 		}
-//		if("2000".equals(retresult)||"2011".equals(retresult)){
-//			paymentResult.setIsSuccess(true);
-//		}else{
-//			paymentResult.setIsSuccess(false);
-//		}
 		return (paymentResult);
 	}
 
 	@Override
 	public PaymentResult cardQuery(PaymentConfig paymentConfig,
 			String paymentSn, HttpServletRequest httpServletRequest) {
-		System.out.println("query2");
 		return null;
 	}
 
