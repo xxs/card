@@ -1,4 +1,6 @@
-package net.xxs.action.card;
+package net.xxs.action.api;
+
+import net.xxs.action.card.BaseCardAction;
 
 import org.apache.struts2.convention.annotation.InterceptorRef;
 import org.apache.struts2.convention.annotation.InterceptorRefs;
