@@ -1,6 +1,5 @@
 package net.xxs.action.api;
 
-import java.io.IOException;
 import java.io.PrintWriter;
 
 import net.sf.json.JSONObject;
