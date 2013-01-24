@@ -14,7 +14,7 @@ import org.apache.struts2.convention.annotation.ParentPackage;
 @InterceptorRefs({
 	@InterceptorRef(value = "apiStack")
 })
-public class regcardAction extends BaseCardAction {
+public class RegcardAction extends BaseCardAction {
 
 	private static final long serialVersionUID = 6232859913698282083L;
 

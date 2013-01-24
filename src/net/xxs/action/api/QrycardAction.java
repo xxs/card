@@ -14,7 +14,7 @@ import org.apache.struts2.convention.annotation.ParentPackage;
 @InterceptorRefs({
 	@InterceptorRef(value = "apiStack")
 })
-public class qrycardAction extends BaseCardAction {
+public class QrycardAction extends BaseCardAction {
 
 	private static final long serialVersionUID = -7516107723213363852L;
 	
