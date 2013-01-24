@@ -124,8 +124,10 @@
 	<package name="api" extends="basePackage" namespace="/api">
 		<interceptors>
 			<interceptor name="trimInterceptor" class="net.xxs.interceptor.TrimInterceptor" />
+			<interceptor name="paramsInterceptor" class="net.xxs.interceptor.ParamsInterceptor" />
 			<interceptor-stack name="apiStack">
 				<interceptor-ref name="trimInterceptor" />
+				<interceptor-ref name="paramsInterceptor" />
 			</interceptor-stack>
 		</interceptors>
 		<default-interceptor-ref name="apiStack" />
