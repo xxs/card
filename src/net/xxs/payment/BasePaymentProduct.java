@@ -60,6 +60,15 @@ public abstract class BasePaymentProduct {
 	 * @return 支付金额
 	 */
 	public abstract BigDecimal getPaymentAmount(HttpServletRequest httpServletRequest);
+	/**
+	 * 获取支付流水号
+	 * 
+	 * @param httpServletRequest
+	 *            httpServletRequest
+	 * 
+	 * @return 支付流水号
+	 */
+	public abstract String getPaySn(HttpServletRequest httpServletRequest);
 	
 	/**
 	 * 判断是否支付成功

@@ -70,13 +70,13 @@
 						<tr>
 							<th>卡号:</th>
 							<td>
-								<input type="text" name="cardNum" />
+								<input type="text" name="cardNum"  class="formText"/>
 							</td>
 						</tr>
 						<tr>
 							<th>密码:</th>
 							<td>
-								<input type="text" name="cardPwd"/>
+								<input type="text" name="cardPwd"  class="formText"/>
 							</td>
 						</tr>
 						<tr>
@@ -107,7 +107,7 @@
 										<td>
 											<ul id="buyInfo">
 												<#list cards.productSet as product>
-													<input type="radio" name="productId" value="${product.id}"/>&nbsp;${product.price}元
+													<input type="radio" name="productId" value="${product.id}" <#if product.isDefault >checked="checked"</#if> />&nbsp;${product.price}元
 												</#list>
 											</ul>
 										</td>
@@ -124,7 +124,7 @@
 							<th>支付通道:</th>
 							<td>
 								<#list paymentDiscountList as paymentDiscount>
-									<input type="radio" name="paymentConfig.id" value="${paymentDiscount.paymentConfig.id}"/>&nbsp;${paymentDiscount.paymentConfig.name}(<span style="color:red">折扣率：${paymentDiscount.discount}</span>)${paymentDiscount.face}
+									<input type="radio" name="paymentConfig.id" value="${paymentDiscount.paymentConfig.id}" <#if paymentDiscount.paymentConfig.isDefault >checked="checked"</#if> />&nbsp;${paymentDiscount.paymentConfig.name}(<span style="color:red">折扣率：${paymentDiscount.discount}</span>)
 								</#list>
 							</td>
 						</tr>
@@ -132,7 +132,7 @@
 							<th>卡密组合:</th>
 							<td>
 								<p>输入格式如:xxxxx(账号)xxxxx,xxxxxx(密码)xxxx</p>
-								<textarea cols="60" rows="10" name="cardString"></textarea>
+								<textarea cols="60" rows="10" name="cardString"  class="formTextarea"></textarea>
 							</td>
 						</tr>
 						<tr>

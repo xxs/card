@@ -8,23 +8,13 @@
 <#include "/WEB-INF/template/card/head.ftl">
 <style type="text/css">
 <!--
-.leaveMessageItem {
+.leaveMessage {
+	width: 960px;
 	line-height: 18px;
-	padding: 5px 10px;
-	border: 1px solid #c7dbe5;
-	background-color: #ecf2f8;
+	margin:20px auto 0 auto;
 }
-
-.leaveMessageItem .reply {
-	line-height: 18px;
-	padding: 5px 10px;
-	margin: 3px 0px;
-	border: 1px solid #c7dbe5;
-	background-color: #ffffff;
-}
-
 .sendTable {
-	width: 100%;
+	width: 960px;
 	line-height: 30px;
 	border: 1px solid #c7dbe5;
 }
@@ -62,54 +52,12 @@
 <body class="singlePage">
 	<#include "/WEB-INF/template/card/header.ftl">
 	<div class="body leaveMessage">
-		<div class="titleBar">
-			<div class="left"></div>
-			<div class="middle">
-				<span class="icon">&nbsp;</span>在线留言
-			</div>
-			<div class="right"></div>
-		</div>
-		<div class="blank"></div>
 		<div class="singlePageDetail">
-			<div id="leaveMessage">
-				<#list pager.result as leaveMessage>
-					<div class="leaveMessageItem">
-						<p>
-							<span class="red">${(leaveMessage.username)!"游客"}</span> ${leaveMessage.createDate?string("yyyy-MM-dd HH: mm")}
-						</p>
-						<p>
-							<pre>${leaveMessage.content}</pre>
-						</p>
-						<#list leaveMessage.replyLeaveMessageSet as replyLeaveMessage>
-							<div class="reply">
-								<p>
-									<span class="red">管理员</span> ${replyLeaveMessage.createDate?string("yyyy-MM-dd HH: mm")}
-								</p>
-								<p>
-									<pre>${replyLeaveMessage.content}</pre>
-								</p>
-							</div>
-						</#list>
-					</div>
-					<#if leaveMessage_has_next>
-						<div class="blank"></div>
-					</#if>
-				</#list>
-				<#if (pager.result?size > 0)>
-					<div class="blank"></div>
-					<@pagination pager=pager baseUrl="/card/leave_message.htm">
-         				<#include "/WEB-INF/template/card/pager.ftl">
-         			</@pagination>
-				<#else>
-					<div class="leaveMessageItem">
-						暂无留言!
-					</div>
-				</#if>
 				<div class="blank"></div>
 				<form id="leaveMessageForm" method="post" autocomplete="off">
 					<table class="sendTable">
 						<tr class="title">
-							<td width="100">
+							<td width="200">
 								发布留言
 							</td>
 							<td>
@@ -174,7 +122,7 @@
 	<script type="text/javascript" src="${base}/template/card/js/card.js"></script>
 	<script type="text/javascript">
 		$().ready(function() {
-		
+		$.dialog({type: 'success', content: '成功成功', modal: true, autoCloseTime: 3000});
 			var $leaveMessage = $("#leaveMessage");
 			var $leaveMessageForm = $("#leaveMessageForm");
 			var $leaveMessageTitle = $("#leaveMessageTitle");
@@ -184,7 +132,6 @@
 			
 			// 刷新在线留言验证码图片
 			function leaveMessageCaptchaImageRefresh() {
-				
 				$leaveMessageCaptchaImage.attr("src", xxs.base + "/captcha.jpeg?timestamp=" + (new Date()).valueOf());
 			}
 			
@@ -240,7 +187,6 @@
 				});
 				return false;
 			});
-		
 		})
 	</script>
 </body>

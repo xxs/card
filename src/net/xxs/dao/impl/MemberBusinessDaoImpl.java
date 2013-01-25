@@ -1,5 +1,7 @@
 package net.xxs.dao.impl;
 
+import java.util.List;
+
 import net.xxs.bean.Pager;
 import net.xxs.dao.MemberBusinessDao;
 import net.xxs.entity.MemberBusiness;
@@ -67,6 +69,26 @@ public class MemberBusinessDaoImpl extends BaseDaoImpl<MemberBusiness, String> i
 	public boolean isExistByIcp(String icp) {
 		String hql = "from MemberBusiness as memberBusiness where lower(memberBusiness.icp) = lower(:icp)";
 		MemberBusiness memberBusiness = (MemberBusiness) getSession().createQuery(hql).setParameter("icp", icp).uniqueResult();
+		if (memberBusiness != null) {
+			return true;
+		} else {
+			return false;
+		}
+	}
+
+	public String getLastBusinessNumber() {
+		String hql = "from MemberBusiness as memberBusiness order by memberBusiness.createDate desc";
+		List<MemberBusiness> businesseList =  getSession().createQuery(hql).setFirstResult(0).setMaxResults(1).list();
+		if (businesseList != null && businesseList.size() > 0) {
+			return businesseList.get(0).getBusinessNumber();
+		} else {
+			return null;
+		}
+	}
+
+	public Boolean isExistByBusinessNum(String businessNumber) {
+		String hql = "from MemberBusiness as memberBusiness where lower(memberBusiness.businessNumber) = lower(:businessNumber)";
+		MemberBusiness memberBusiness = (MemberBusiness) getSession().createQuery(hql).setParameter("businessNumber", businessNumber).uniqueResult();
 		if (memberBusiness != null) {
 			return true;
 		} else {

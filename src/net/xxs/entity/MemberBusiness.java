@@ -6,10 +6,12 @@ import javax.persistence.FetchType;
 import javax.persistence.ManyToOne;
 import javax.persistence.Transient;
 
+import net.xxs.util.SerialNumberUtil;
+
 import org.hibernate.annotations.ForeignKey;
 
 /**
- * 实体类 - 会员商务信息（商户信息）
+ * 实体类 - 会员（商户信息）
  */
 
 @Entity
@@ -43,6 +45,10 @@ public class MemberBusiness extends BaseEntity {
 	private String address;				//通讯地址
 	private String zipcode;				//邮编
 	private String memo;				//是否通过备注
+	
+	private String BusinessNum;  			//商户号
+	private String BusinessKey;					//秘钥
+	
 	
 	private ResultType resultType;			//审核是否通过
 	private Member member; 				// 会员
@@ -202,17 +208,37 @@ public class MemberBusiness extends BaseEntity {
 	public void setMemo(String memo) {
 		this.memo = memo;
 	}
+	
+	@Column(nullable = true, updatable = false, unique = true)
+	public String getBusinessNum() {
+		return BusinessNum;
+	}
 
+	public void setBusinessNum(String businessNum) {
+		BusinessNum = businessNum;
+	}
+
+	@Column(nullable = true, unique = true)
+	public String getBusinessKey() {
+		return BusinessKey;
+	}
+
+	public void setBusinessKey(String businessKey) {
+		BusinessKey = businessKey;
+	}
 	// 保存处理
 	@Override
 	@Transient
 	public void onSave() {
+		BusinessNum = SerialNumberUtil.buildBusinessNumber();
+		BusinessKey = SerialNumberUtil.buildBusinessKey();
 	}
 	
 	// 更新处理
 	@Override
 	@Transient
 	public void onUpdate() {
+		
 	}
 
 }

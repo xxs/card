@@ -40,6 +40,7 @@ public class Order extends BaseEntity {
 	private BigDecimal amount;// 应付金额
 	private BigDecimal paidAmount;// 实付金额
 	private String memo;// 附言
+	private String paySn;//第三方支付生成的订单号
 	private String retCode;//记录支付过程中的状态码
 	private String retMsg;//状态吗对应的消息
 	
@@ -202,6 +203,14 @@ public class Order extends BaseEntity {
 		return productName;
 	}
 	
+	public String getPaySn() {
+		return paySn;
+	}
+
+	public void setPaySn(String paySn) {
+		this.paySn = paySn;
+	}
+
 	public void setProductName(String productName) {
 		this.productName = productName;
 	}

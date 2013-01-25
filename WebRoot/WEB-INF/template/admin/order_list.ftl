@@ -91,9 +91,6 @@ $().ready(function() {
 						<a href="#" class="sort" name="createDate" hidefocus>下单时间</a>
 					</th>
 					<th>
-						<a href="#" class="sort" name="paymentStatus" hidefocus>付款状态</a>
-					</th>
-					<th>
 						<a href="#" class="sort" name="orderStatus" hidefocus>订单状态</a>
 					</th>
 					<th>
@@ -122,9 +119,6 @@ $().ready(function() {
 						</td>
 						<td>
 							<span title="${order.createDate?string("yyyy-MM-dd HH:mm:ss")}">${order.createDate}</span>
-						</td>
-						<td>
-							${action.getText("PaymentStatus." + order.paymentStatus)}
 						</td>
 						<td>
 							${action.getText("OrderStatus." + order.orderStatus)}

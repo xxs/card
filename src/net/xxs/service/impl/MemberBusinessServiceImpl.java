@@ -55,4 +55,12 @@ public class MemberBusinessServiceImpl extends BaseServiceImpl<MemberBusiness, S
 	public boolean isExistByIcp(String icp) {
 		return memberBusinessDao.isExistByIcp(icp);
 	}
+
+	public String getLastBusinessNumber() {
+		return memberBusinessDao.getLastBusinessNumber();
+	}
+
+	public Boolean isExistByBusinessNum(String businessNumber) {
+		return memberBusinessDao.isExistByBusinessNum(businessNumber);
+	}
 }

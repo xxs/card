@@ -238,4 +238,9 @@ public class Yeepay extends BasePaymentProduct {
 		return null;
 	}
 
+	@Override
+	public String getPaySn(HttpServletRequest httpServletRequest) {
+		return null;
+	}
+
 }

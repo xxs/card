@@ -326,4 +326,16 @@ public class OfPay extends BasePaymentProduct {
 		return null;
 	}
 
+	@Override
+	public String getPaySn(HttpServletRequest httpServletRequest) {
+		if (httpServletRequest == null) {
+			return null;
+		}
+		String billid = httpServletRequest.getParameter("billid");
+		if (StringUtils.isEmpty(billid)) {
+			return null;
+		}
+		return billid;
+	}
+
 }

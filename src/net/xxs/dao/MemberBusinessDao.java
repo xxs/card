@@ -16,6 +16,18 @@ public interface MemberBusinessDao extends BaseDao<MemberBusiness, String> {
 	
 	public Pager getMemberBusinessPager(ResultType resultType,Pager pager);
 	/**
+	 * 获取最后生成的商户编号
+	 * 
+	 * @return 商户编号
+	 */
+	public String getLastBusinessNumber();
+	/**
+	 * 判断商户编号是否存在
+	 * 
+	 * @return 商户编号
+	 */
+	public Boolean isExistByBusinessNum(String businessNumber);
+	/**
 	 * 判断商户名称是否存在（不区分大小写）
 	 * 
 	 */

@@ -36,6 +36,7 @@ public class Payment extends BaseEntity {
 	private String payer;// 付款人
 	private String operator;// 操作员
 	private String memo;// 备注
+	private String paySn;//第三方支付生成的订单号
 	private PaymentStatus paymentStatus;// 支付状态
 	
 	private Member member;// 会员
@@ -107,6 +108,14 @@ public class Payment extends BaseEntity {
 		this.payer = payer;
 	}
 	
+	public String getPaySn() {
+		return paySn;
+	}
+
+	public void setPaySn(String paySn) {
+		this.paySn = paySn;
+	}
+
 	@Column(updatable = false)
 	public String getOperator() {
 		return operator;

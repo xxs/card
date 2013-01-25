@@ -13,6 +13,19 @@ public interface MemberBusinessService extends BaseService<MemberBusiness, Strin
 	public Long getUnprocessedMemberBusinessApplyCount();
 	
 	public Long getUnprocessedMemberBusinessCount();
+	/**
+	 * 获取最后生成的商户编号
+	 * 
+	 * @return 商户编号
+	 */
+	public String getLastBusinessNumber();
+	
+	/**
+	 * 判断商户编号是否存在
+	 * 
+	 * @return 商户编号
+	 */
+	public Boolean isExistByBusinessNum(String businessNumber);
 
 	public Pager getMemberBusinessPager(ResultType resultType,Pager pager);
 	/**

@@ -16,6 +16,7 @@ import org.apache.struts2.convention.annotation.ParentPackage;
 import org.springframework.beans.BeanUtils;
 
 import com.opensymphony.xwork2.interceptor.annotations.InputConfig;
+import com.opensymphony.xwork2.validator.annotations.RequiredFieldValidator;
 import com.opensymphony.xwork2.validator.annotations.RequiredStringValidator;
 import com.opensymphony.xwork2.validator.annotations.Validations;
 
@@ -53,8 +54,6 @@ public class MemberBusinessAction extends BaseAdminAction {
 	// 保存
 	@Validations(
 		requiredStrings = { 
-			//@RequiredStringValidator(fieldName = "memberBusiness.businessType", message = "商户类型不允许为空!"),
-			//@RequiredStringValidator(fieldName = "memberBusiness.resultType", message = "审核状态过不允许为空!"),
 			@RequiredStringValidator(fieldName = "memberBusiness.realName", message = "真实姓名不允许为空!"),
 			@RequiredStringValidator(fieldName = "memberBusiness.businessNumber", message = "身份证号（营业执照号码）不允许为空!"),
 			@RequiredStringValidator(fieldName = "memberBusiness.businessName", message = "商户名称不允许为空!"),
@@ -70,7 +69,11 @@ public class MemberBusinessAction extends BaseAdminAction {
 			@RequiredStringValidator(fieldName = "memberBusiness.QQ", message = "即时通讯不允许为空!"),
 			@RequiredStringValidator(fieldName = "memberBusiness.address", message = "通讯地址不允许为空!"),
 			@RequiredStringValidator(fieldName = "memberBusiness.zipcode", message = "邮编不允许为空!")
-		}
+		},
+		requiredFields = { 
+				@RequiredFieldValidator(fieldName = "memberBusiness.businessType", message = "商户类型不允许为空!"),
+				@RequiredFieldValidator(fieldName = "memberBusiness.resultType", message = "审核状态过不允许为空!")
+			}
 	)
 	@InputConfig(resultName = "error")
 	public String save() {
@@ -94,8 +97,6 @@ public class MemberBusinessAction extends BaseAdminAction {
 			addActionError("ICP备案号已注册过!");
 			return ERROR;
 		}
-		memberBusiness.setResultType(ResultType.apply);
-		memberBusiness.setBusinessType(BusinessType.personal);
 		Member member = memberService.getMemberByUsername(memberBusiness.getMember().getUsername());
 		memberBusiness.setMember(member);
 		memberBusinessService.save(memberBusiness);
@@ -110,8 +111,6 @@ public class MemberBusinessAction extends BaseAdminAction {
 	// 更新
 	@Validations(
 		requiredStrings = { 
-				//@RequiredStringValidator(fieldName = "memberBusiness.businessType", message = "商户类型不允许为空!"),
-				//@RequiredStringValidator(fieldName = "memberBusiness.resultType", message = "审核状态过不允许为空!"),
 				@RequiredStringValidator(fieldName = "memberBusiness.realName", message = "真实姓名不允许为空!"),
 				@RequiredStringValidator(fieldName = "memberBusiness.businessNumber", message = "身份证号（营业执照号码）不允许为空!"),
 				@RequiredStringValidator(fieldName = "memberBusiness.businessName", message = "商户名称不允许为空!"),
@@ -127,6 +126,10 @@ public class MemberBusinessAction extends BaseAdminAction {
 				@RequiredStringValidator(fieldName = "memberBusiness.QQ", message = "即时通讯不允许为空!"),
 				@RequiredStringValidator(fieldName = "memberBusiness.address", message = "通讯地址不允许为空!"),
 				@RequiredStringValidator(fieldName = "memberBusiness.zipcode", message = "邮编不允许为空!")
+		},
+		requiredFields = { 
+			@RequiredFieldValidator(fieldName = "memberBusiness.businessType", message = "商户类型不允许为空!"),
+			@RequiredFieldValidator(fieldName = "memberBusiness.resultType", message = "审核状态过不允许为空!")
 		}
 	)
 	@InputConfig(resultName = "error")

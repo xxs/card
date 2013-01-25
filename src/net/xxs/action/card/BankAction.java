@@ -11,6 +11,7 @@ import net.xxs.service.MemberBankService;
 import org.apache.struts2.convention.annotation.InterceptorRef;
 import org.apache.struts2.convention.annotation.InterceptorRefs;
 import org.apache.struts2.convention.annotation.ParentPackage;
+import org.springframework.beans.BeanUtils;
 
 import com.opensymphony.xwork2.interceptor.annotations.InputConfig;
 import com.opensymphony.xwork2.validator.annotations.RequiredStringValidator;
@@ -77,6 +78,8 @@ public class BankAction extends BaseCardAction {
 		)
 	@InputConfig(resultName = "error")
 	public String update() {
+		MemberBank persistent = memberBankService.get(id);
+		BeanUtils.copyProperties(memberBank, persistent, new String[] {"id", "createDate", "modifyDate", "member"});
 		memberBankService.update(memberBank);
 		if(null == redirectUrl){
 			redirectUrl = "bank!list.action";

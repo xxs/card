@@ -367,7 +367,6 @@ $().ready( function() {
 					<td colspan="3">
 						<span class="red">
 							[${action.getText("OrderStatus." + order.orderStatus)}]
-							[${action.getText("PaymentStatus." + order.paymentStatus)}]
 						</span>
 					</td>
 				</tr>
@@ -417,6 +416,18 @@ $().ready( function() {
 						<a href="${base}${order.cardsHtmlPath}" target="_blank">
 							${order.productName}
 						</a>
+					</td>
+				</tr>
+					<tr>
+						<th>卡号</th>
+						<td>
+							${order.cardNum}
+						</td>
+					<th>
+						密码: 
+					</th>
+					<td>
+						${order.cardPwd}
 					</td>
 				</tr>
 					<tr>

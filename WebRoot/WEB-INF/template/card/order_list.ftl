@@ -150,10 +150,16 @@ $().ready( function() {
 									${order.amount?string(currencyFormat)}
 								</td>
 								<td class="steteText">
-										[${action.getText("OrderStatus." + order.orderStatus)}]
+									<#if order.orderStatus == "paid">
+										<span class="green">[${action.getText("OrderStatus." + order.orderStatus)}]</span>
+									<#else>
+										<span class="red"> [${action.getText("OrderStatus." + order.orderStatus)}] </span>
+									</#if>
 								</td>
 								<td>
-									<span title="${order.retCode}">${order.retMsg}</span>
+									<span title="${order.retCode}">
+										${order.retMsg}
+									</span>
 								</td>
 							</tr>
 						</#list>	

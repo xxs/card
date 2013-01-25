@@ -116,10 +116,12 @@ public class PaymentAction extends BaseCardAction {
 		}
 
 		payment.setPaymentStatus(PaymentStatus.success);
+		payment.setPaySn(paymentProduct.getPaySn(getRequest()));
 		paymentService.update(payment);
 
 		System.out.println();
 		order = payment.getOrder();
+		order.setPaySn(paymentProduct.getPaySn(getRequest()));
 		order.setPaidAmount(order.getAmount().add(totalAmount));
 		order.setOrderStatus(OrderStatus.paid);
 		orderService.update(order);
