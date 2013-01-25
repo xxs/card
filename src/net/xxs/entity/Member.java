@@ -48,6 +48,7 @@ public class Member extends BaseEntity {
 	
 	private String username;// 用户名
 	private String password;// 密码
+	private String withdrawPwd;// 提现密码
 	private String email;// E-mail
 	private String safeQuestion;// 密码保护问题
 	private String safeAnswer;// 密码保护问题答案
@@ -121,6 +122,14 @@ public class Member extends BaseEntity {
 		this.password = password;
 	}
 	
+	public String getWithdrawPwd() {
+		return withdrawPwd;
+	}
+
+	public void setWithdrawPwd(String withdrawPwd) {
+		this.withdrawPwd = withdrawPwd;
+	}
+
 	@Column(nullable = false)
 	public String getEmail() {
 		return email;

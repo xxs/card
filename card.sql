@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50154
 File Encoding         : 65001
 
-Date: 2013-01-24 17:11:47
+Date: 2013-01-25 17:14:24
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -43,7 +43,7 @@ CREATE TABLE `xx_admin` (
 -- ----------------------------
 -- Records of xx_admin
 -- ----------------------------
-INSERT INTO `xx_admin` VALUES ('0731dcsoft2010031200000000000017', '2011-01-01 00:00:00', '2013-01-24 17:06:56', '名臣管理员', 'xxs@163.com', '', '', '', '', '2012-12-17 14:28:34', '2013-01-24 17:06:56', '0', '127.0.0.1', 'ADMIN', '21232f297a57a5a743894a0e4a801fc3', 'admin');
+INSERT INTO `xx_admin` VALUES ('0731dcsoft2010031200000000000017', '2011-01-01 00:00:00', '2013-01-25 16:37:29', '名臣管理员', 'xxs@163.com', '', '', '', '', '2012-12-17 14:28:34', '2013-01-25 16:37:29', '0', '127.0.0.1', 'ADMIN', '21232f297a57a5a743894a0e4a801fc3', 'admin');
 
 -- ----------------------------
 -- Table structure for `xx_admin_role`
@@ -372,6 +372,7 @@ CREATE TABLE `xx_leave_message` (
 -- ----------------------------
 -- Records of xx_leave_message
 -- ----------------------------
+INSERT INTO `xx_leave_message` VALUES ('4028bc743c6fd935013c706074b60002', '2013-01-25 14:23:55', '2013-01-25 14:23:55', '555', '555', '127.0.0.1', '555', null, null);
 
 -- ----------------------------
 -- Table structure for `xx_log`
@@ -448,6 +449,7 @@ INSERT INTO `xx_log` VALUES ('4028bc743c604c36013c60b17626000a', '2013-01-22 13:
 INSERT INTO `xx_log` VALUES ('4028bc743c65859f013c65872d400001', '2013-01-23 11:50:23', '2013-01-23 11:50:23', 'net.xxs.action.admin.ArticleAction', 'save', '添加文章: eeeeeeee', '127.0.0.1', '添加文章', 'admin');
 INSERT INTO `xx_log` VALUES ('4028bc743c65859f013c658900890003', '2013-01-23 11:52:22', '2013-01-23 11:52:22', 'net.xxs.action.admin.ArticleCategoryAction', 'save', '添加文章分类: 网站公告', '127.0.0.1', '添加文章分类', 'admin');
 INSERT INTO `xx_log` VALUES ('4028bc743c65859f013c658921500004', '2013-01-23 11:52:31', '2013-01-23 11:52:31', 'net.xxs.action.admin.ArticleAction', 'update', '编辑文章: eeeeeeee', '127.0.0.1', '编辑文章', 'admin');
+INSERT INTO `xx_log` VALUES ('4028bc743c6f3698013c6f3908b80004', '2013-01-25 09:01:14', '2013-01-25 09:01:14', 'net.xxs.action.admin.OrderAction', 'completed', '订单编号: DD100012', '127.0.0.1', '订单完成', 'admin');
 INSERT INTO `xx_log` VALUES ('8a9181383c55f633013c56a4f47d0001', '2013-01-20 14:28:36', '2013-01-20 14:28:36', 'net.xxs.action.admin.ArticleAction', 'update', '编辑文章: 收卡价格', '127.0.0.1', '编辑文章', 'admin');
 INSERT INTO `xx_log` VALUES ('8a9181383c55f633013c56c8a5c40003', '2013-01-20 15:07:35', '2013-01-20 15:07:35', 'net.xxs.action.admin.ArticleAction', 'save', '添加文章: aaa', '127.0.0.1', '添加文章', 'admin');
 INSERT INTO `xx_log` VALUES ('8a9181383c571fbe013c572a8f450000', '2013-01-20 16:54:32', '2013-01-20 16:54:32', 'net.xxs.action.admin.ArticleAction', 'update', '编辑文章: 新手上路', '127.0.0.1', '编辑文章', 'admin');
@@ -523,6 +525,7 @@ CREATE TABLE `xx_member` (
   `username` varchar(255) NOT NULL,
   `zip_code` varchar(255) DEFAULT NULL,
   `member_rank_id` varchar(32) NOT NULL,
+  `withdraw_pwd` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `username` (`username`),
   KEY `fk_member_member_rank` (`member_rank_id`),
@@ -532,8 +535,8 @@ CREATE TABLE `xx_member` (
 -- ----------------------------
 -- Records of xx_member
 -- ----------------------------
-INSERT INTO `xx_member` VALUES ('297e62b93bd214af013bd21a73550000', '2012-12-25 20:47:27', '2013-01-22 13:15:40', '123', '2012-12-27 00:00:00', '0.00000', '123456@qq.com', '0', '', '', null, '2013-01-19 16:40:02', '0', '127.0.0.1', null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, '234', '123123', '4297f44b13955235245b2497399d7a93', null, '123123', '112233', '127.0.0.1', null, null, '0', '112233', '123123', '402881833054c381013054d08bed0001');
-INSERT INTO `xx_member` VALUES ('8a9182fc3ba86bc8013ba9782de60001', '2012-12-17 23:25:23', '2013-01-23 17:24:30', '河南郑州', '2012-12-20 00:00:00', '1744.00000', '123@qq.com', '0', '', '', null, '2013-01-23 17:24:30', '0', '127.0.0.1', null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, '123', '123', '4297f44b13955235245b2497399d7a93', null, '123', null, '127.0.0.1', 'www', 'qqq', '0', '123123', '213', '402881833054c381013054d08bed0001');
+INSERT INTO `xx_member` VALUES ('297e62b93bd214af013bd21a73550000', '2012-12-25 20:47:27', '2013-01-22 13:15:40', '123', '2012-12-27 00:00:00', '0.00000', '123456@qq.com', '0', '', '', null, '2013-01-19 16:40:02', '0', '127.0.0.1', null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, '234', '123123', '4297f44b13955235245b2497399d7a93', null, '123123', '112233', '127.0.0.1', null, null, '0', '112233', '123123', '402881833054c381013054d08bed0001', null);
+INSERT INTO `xx_member` VALUES ('8a9182fc3ba86bc8013ba9782de60001', '2012-12-17 23:25:23', '2013-01-25 16:02:42', '河南郑州', '2012-12-20 00:00:00', '1744.00000', '123@qq.com', '0', '', '', null, '2013-01-25 16:02:42', '0', '127.0.0.1', null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, '123', '123', '4297f44b13955235245b2497399d7a93', '1359097653234_c3c4b2c8b2e7423283cebe642460738757834bf3ed1f40192f27ffcca663d5b7', '123', null, '127.0.0.1', 'www', 'qqq', '0', '123123', '213', '402881833054c381013054d08bed0001', null);
 
 -- ----------------------------
 -- Table structure for `xx_member_attribute`
@@ -591,9 +594,9 @@ CREATE TABLE `xx_member_bank` (
 -- ----------------------------
 -- Records of xx_member_bank
 -- ----------------------------
-INSERT INTO `xx_member_bank` VALUES ('4028bc743c604c36013c60644d960003', '2013-01-22 11:54:11', '2013-01-22 11:54:11', '666', '666', '666', '666', '', null, '666', '8a9182fc3ba86bc8013ba9782de60001');
-INSERT INTO `xx_member_bank` VALUES ('8a9181383c571fbe013c5737cd510002', '2013-01-20 17:09:00', '2013-01-22 11:45:48', '23234', '23423', '1341234', '26273672366@qq.com', '', null, '张三', '8a9182fc3ba86bc8013ba9782de60001');
-INSERT INTO `xx_member_bank` VALUES ('eeee', '2013-01-08 14:25:15', '2013-01-18 22:30:03', '郑州', '中信银行北环路', '中信银行', '1876276253753563', '', null, '123123', '8a9182fc3ba86bc8013ba9782de60001');
+INSERT INTO `xx_member_bank` VALUES ('4028bc743c604c36013c60644d960003', '2013-01-22 11:54:11', '2013-01-25 09:47:32', '666', '666', '666', '666', '', null, '666', '8a9182fc3ba86bc8013ba9782de60001');
+INSERT INTO `xx_member_bank` VALUES ('8a9181383c571fbe013c5737cd510002', '2013-01-20 17:09:00', '2013-01-25 09:47:32', '23234', '23423', '1341234', '26273672366@qq.com', '', null, '张三', '8a9182fc3ba86bc8013ba9782de60001');
+INSERT INTO `xx_member_bank` VALUES ('eeee', '2013-01-08 14:25:15', '2013-01-25 09:47:31', '郑州', '中信银行北环路', '中信银行', '1876276253753563', '', null, '123123', '8a9182fc3ba86bc8013ba9782de60001');
 
 -- ----------------------------
 -- Table structure for `xx_member_business`
@@ -622,7 +625,11 @@ CREATE TABLE `xx_member_business` (
   `member_id` varchar(32) DEFAULT NULL,
   `result_type` int(11) NOT NULL,
   `memo` varchar(255) DEFAULT NULL,
+  `business_key` varchar(255) DEFAULT NULL,
+  `business_num` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`id`),
+  UNIQUE KEY `business_key` (`business_key`),
+  UNIQUE KEY `business_num` (`business_num`),
   KEY `fk_member_business_member` (`member_id`),
   CONSTRAINT `fk_member_business_member` FOREIGN KEY (`member_id`) REFERENCES `xx_member` (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
@@ -630,9 +637,8 @@ CREATE TABLE `xx_member_business` (
 -- ----------------------------
 -- Records of xx_member_business
 -- ----------------------------
-INSERT INTO `xx_member_business` VALUES ('4028bc743c27ad57013c27bd0f820000', '2013-01-11 11:52:47', '2013-01-11 11:57:35', '3', '4', '2345', '5234', '0', '52435', '2', '3', '3', '234', '2435', '3', '3rrrrr', '3', '245', '5', '8a9182fc3ba86bc8013ba9782de60001', '0', null);
-INSERT INTO `xx_member_business` VALUES ('4028bc743c27ad57013c27be71d10001', '2013-01-11 11:54:17', '2013-01-11 11:57:48', 'ert', 'ert11111111', '2345454', '345', '0', 'wret', 'er', 'te', 'ert', '234', 'wer', 'er', 'rt', 'er', 'wtr', 'ert', '297e62b93bd214af013bd21a73550000', '0', null);
-INSERT INTO `xx_member_business` VALUES ('aaa', '2013-01-08 21:45:29', '2013-01-08 21:45:35', '44556544', '上海徐汇区', '万和', '384985988774847', '1', '上海', 'g12312', '张先生', '28384783', '陈晨', '文化娱乐', '2883737', '24小时', '123233423', 'www.baidu.com', '340000', '8a9182fc3ba86bc8013ba9782de60001', '1', null);
+INSERT INTO `xx_member_business` VALUES ('4028bc743c6fd935013c6fda34cb0000', '2013-01-25 11:57:16', '2013-01-25 11:57:16', '9', '9', '123', '555', '0', '9', '9', '9', '9', '5', '9', '9', '9', '9', '9', '9', '8a9182fc3ba86bc8013ba9782de60001', '0', null, '9ac46f4436524732b36b067218130574', 'SH707502FBEA12');
+INSERT INTO `xx_member_business` VALUES ('4028bc743c6fd935013c702324ab0001', '2013-01-25 13:16:56', '2013-01-25 13:16:56', '4', '4', '1231', '4', '0', '4', '4', '4', '4', '1234', '4', '4', '4', '4', '4', '4', '297e62b93bd214af013bd21a73550000', '0', null, '2ccc87b1701642caa645728adefd3fb5', 'SH3D733AF462F8');
 
 -- ----------------------------
 -- Table structure for `xx_member_log`
@@ -765,6 +771,7 @@ CREATE TABLE `xx_order` (
   `ret_msg` varchar(100) DEFAULT NULL,
   `card_code` varchar(255) NOT NULL,
   `card_discount` decimal(19,2) NOT NULL,
+  `pay_sn` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `order_sn` (`order_sn`),
   KEY `fk_order_member` (`member_id`),
@@ -778,7 +785,12 @@ CREATE TABLE `xx_order` (
 -- ----------------------------
 -- Records of xx_order
 -- ----------------------------
-INSERT INTO `xx_order` VALUES ('4028bc743c663f39013c66421d740001', '2013-01-23 15:14:34', '2013-01-23 15:14:34', '8ae4839c3a887878013a88aca0800003', null, 'DD100012', '1', '0.00000', '通道1', '8a9182fc3ba86bc8013ba9782de60001', '4028bc743bac0d54013baca8e1350001', '10.00000', '2345234', '2435234', '移动充值卡 [10元]', '10.00000', 'SN_0E1F5B480D30', '4028bc743c3c4340013c3c51db950002', '2010', '充值卡无效', '000101', '0.97');
+INSERT INTO `xx_order` VALUES ('4028bc743c663f39013c66421d740001', '2013-01-23 15:14:34', '2013-01-25 09:01:14', '8ae4839c3a887878013a88aca0800003', null, 'DD100012', '2', '0.00000', '通道1', '8a9182fc3ba86bc8013ba9782de60001', '4028bc743bac0d54013baca8e1350001', '10.00000', '2345234', '2435234', '移动充值卡 [10元]', '10.00000', 'SN_0E1F5B480D30', '4028bc743c3c4340013c3c51db950002', '2010', '充值卡无效', '000101', '0.97', null);
+INSERT INTO `xx_order` VALUES ('4028bc743c6f3698013c6f386d340000', '2013-01-25 09:00:34', '2013-01-25 09:00:35', '8ae4839c3a887878013a88aca0800003', null, 'DD100013', '3', '0.00000', '通道1', '8a9182fc3ba86bc8013ba9782de60001', '4028bc743bac0d54013baca8e1350001', '10.00000', '444', '444', '移动充值卡 [10元]', '10.00000', 'SN_0E1F5B480D30', '4028bc743c3c4340013c3c51db950002', '2010', '充值卡无效', '000101', '0.97', null);
+INSERT INTO `xx_order` VALUES ('4028bc743c6f3698013c6f399f6b0005', '2013-01-25 09:01:52', '2013-01-25 09:01:53', '8ae4839c3a887878013a88aca0800003', null, 'DD100014', '3', '0.00000', '通道2', '8a9182fc3ba86bc8013ba9782de60001', '4028bc743bac0d54013baca8729d0000', '10.00000', '66', '666', '移动充值卡 [10元]', '10.00000', 'SN_0E1F5B480D30', '4028bc743c3c4340013c3c51db950002', '-1', '', 'szx-net', '0.96', null);
+INSERT INTO `xx_order` VALUES ('4028bc743c6f3698013c6f4fe13b0008', '2013-01-25 09:26:11', '2013-01-25 09:26:11', '8ae4839c3a887878013a88ad18e10006', null, 'DD100015', '3', '0.00000', '通道1', '8a9182fc3ba86bc8013ba9782de60001', '4028bc743bac0d54013baca8e1350001', '100.00000', '701201004210014', '7006070872040597487', '联通充值卡 [100元]', '100.00000', 'SN_7864C9FC94CB', '8ae4834e3c4308a2013c435b98ef005c', '2006', '订单号重复', '000201', '0.96', null);
+INSERT INTO `xx_order` VALUES ('4028bc743c6f3698013c6f518b03000b', '2013-01-25 09:28:00', '2013-01-25 09:28:00', '8ae4839c3a887878013a88ad18e10006', null, 'DD100016', '3', '0.00000', '通道2', '8a9182fc3ba86bc8013ba9782de60001', '4028bc743bac0d54013baca8729d0000', '100.00000', '701201004210014', '7006070872040597487', '联通充值卡 [100元]', '100.00000', 'SN_7864C9FC94CB', '8ae4834e3c4308a2013c435b98ef005c', '-1', '', 'unicom-net', '0.96', null);
+INSERT INTO `xx_order` VALUES ('4028bc743c6f612c013c6f6201cc0000', '2013-01-25 09:45:59', '2013-01-25 09:45:59', '8ae4839c3a887878013a88aca0800003', null, 'DD100017', '3', '0.00000', '通道1', '8a9182fc3ba86bc8013ba9782de60001', '4028bc743bac0d54013baca8e1350001', '20.00000', '5678', '56785678', '移动充值卡 [20元]', '20.00000', 'SN_E1B7A69B1095', '8ae4834e3c4308a2013c435d42a60060', '2010', '充值卡无效', '000101', '0.97', null);
 
 -- ----------------------------
 -- Table structure for `xx_order_log`
@@ -802,6 +814,12 @@ CREATE TABLE `xx_order_log` (
 -- Records of xx_order_log
 -- ----------------------------
 INSERT INTO `xx_order_log` VALUES ('4028bc743c663f39013c66421d930002', '2013-01-23 15:14:34', '2013-01-23 15:14:34', null, null, '0', 'DD100012', '4028bc743c663f39013c66421d740001');
+INSERT INTO `xx_order_log` VALUES ('4028bc743c6f3698013c6f386d630001', '2013-01-25 09:00:34', '2013-01-25 09:00:34', null, null, '0', 'DD100013', '4028bc743c6f3698013c6f386d340000');
+INSERT INTO `xx_order_log` VALUES ('4028bc743c6f3698013c6f39088a0003', '2013-01-25 09:01:14', '2013-01-25 09:01:14', '订单完成,获得积分: ', 'admin', '3', 'DD100012', '4028bc743c663f39013c66421d740001');
+INSERT INTO `xx_order_log` VALUES ('4028bc743c6f3698013c6f399f7a0006', '2013-01-25 09:01:52', '2013-01-25 09:01:52', null, null, '0', 'DD100014', '4028bc743c6f3698013c6f399f6b0005');
+INSERT INTO `xx_order_log` VALUES ('4028bc743c6f3698013c6f4fe15a0009', '2013-01-25 09:26:11', '2013-01-25 09:26:11', null, null, '0', 'DD100015', '4028bc743c6f3698013c6f4fe13b0008');
+INSERT INTO `xx_order_log` VALUES ('4028bc743c6f3698013c6f518b42000c', '2013-01-25 09:28:00', '2013-01-25 09:28:00', null, null, '0', 'DD100016', '4028bc743c6f3698013c6f518b03000b');
+INSERT INTO `xx_order_log` VALUES ('4028bc743c6f612c013c6f6201eb0001', '2013-01-25 09:45:59', '2013-01-25 09:45:59', null, null, '0', 'DD100017', '4028bc743c6f612c013c6f6201cc0000');
 
 -- ----------------------------
 -- Table structure for `xx_payment`
@@ -824,6 +842,7 @@ CREATE TABLE `xx_payment` (
   `member_id` varchar(32) DEFAULT NULL,
   `payment_config_id` varchar(32) DEFAULT NULL,
   `order_id` varchar(32) DEFAULT NULL,
+  `pay_sn` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `payment_sn` (`payment_sn`),
   KEY `fk_payment_member` (`member_id`),
@@ -839,7 +858,12 @@ CREATE TABLE `xx_payment` (
 -- ----------------------------
 -- Records of xx_payment
 -- ----------------------------
-INSERT INTO `xx_payment` VALUES ('4028bc743c663f39013c66421da30003', '2013-01-23 15:14:34', '2013-01-23 15:14:34', 'A819109', '殴飞消耗点卡接口', null, null, '123123', '通道1', 'ZF100011', '0', '10.00000', null, '8a9182fc3ba86bc8013ba9782de60001', '4028bc743bac0d54013baca8e1350001', '4028bc743c663f39013c66421d740001');
+INSERT INTO `xx_payment` VALUES ('4028bc743c663f39013c66421da30003', '2013-01-23 15:14:34', '2013-01-23 15:14:34', 'A819109', '殴飞消耗点卡接口', null, null, '123123', '通道1', 'ZF100011', '0', '10.00000', null, '8a9182fc3ba86bc8013ba9782de60001', '4028bc743bac0d54013baca8e1350001', '4028bc743c663f39013c66421d740001', null);
+INSERT INTO `xx_payment` VALUES ('4028bc743c6f3698013c6f386e4d0002', '2013-01-25 09:00:34', '2013-01-25 09:00:34', 'A819109', '殴飞消耗点卡接口', null, null, '123123', '通道1', 'ZF100012', '0', '10.00000', null, '8a9182fc3ba86bc8013ba9782de60001', '4028bc743bac0d54013baca8e1350001', '4028bc743c6f3698013c6f386d340000', null);
+INSERT INTO `xx_payment` VALUES ('4028bc743c6f3698013c6f399fa90007', '2013-01-25 09:01:52', '2013-01-25 09:01:52', '10011842896', '易宝非银行卡支付(专业版)', null, null, '123123', '通道2', 'ZF100013', '0', '10.00000', null, '8a9182fc3ba86bc8013ba9782de60001', '4028bc743bac0d54013baca8729d0000', '4028bc743c6f3698013c6f399f6b0005', null);
+INSERT INTO `xx_payment` VALUES ('4028bc743c6f3698013c6f4fe1a9000a', '2013-01-25 09:26:11', '2013-01-25 09:26:11', 'A819109', '殴飞消耗点卡接口', null, null, '123123', '通道1', 'ZF100014', '0', '100.00000', null, '8a9182fc3ba86bc8013ba9782de60001', '4028bc743bac0d54013baca8e1350001', '4028bc743c6f3698013c6f4fe13b0008', null);
+INSERT INTO `xx_payment` VALUES ('4028bc743c6f3698013c6f518b51000d', '2013-01-25 09:28:00', '2013-01-25 09:28:00', '10011842896', '易宝非银行卡支付(专业版)', null, null, '123123', '通道2', 'ZF100015', '0', '100.00000', null, '8a9182fc3ba86bc8013ba9782de60001', '4028bc743bac0d54013baca8729d0000', '4028bc743c6f3698013c6f518b03000b', null);
+INSERT INTO `xx_payment` VALUES ('4028bc743c6f612c013c6f62020a0002', '2013-01-25 09:45:59', '2013-01-25 09:45:59', 'A819109', '殴飞消耗点卡接口', null, null, '123123', '通道1', 'ZF100016', '0', '20.00000', null, '8a9182fc3ba86bc8013ba9782de60001', '4028bc743bac0d54013baca8e1350001', '4028bc743c6f612c013c6f6201cc0000', null);
 
 -- ----------------------------
 -- Table structure for `xx_payment_config`

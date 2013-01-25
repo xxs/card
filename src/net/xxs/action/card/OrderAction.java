@@ -36,6 +36,7 @@ import org.apache.struts2.convention.annotation.InterceptorRefs;
 import org.apache.struts2.convention.annotation.ParentPackage;
 
 import com.opensymphony.xwork2.interceptor.annotations.InputConfig;
+import com.opensymphony.xwork2.validator.annotations.RequiredFieldValidator;
 import com.opensymphony.xwork2.validator.annotations.RequiredStringValidator;
 import com.opensymphony.xwork2.validator.annotations.StringLengthFieldValidator;
 import com.opensymphony.xwork2.validator.annotations.Validations;
@@ -332,10 +333,10 @@ public class OrderAction extends BaseCardAction {
 	}
 	//查询订单最新状态
 	@Validations(
-			requiredStrings = {
-				@RequiredStringValidator(fieldName = "ids", message = "订单ID不能为空!")
-			}
-		)
+		requiredFields = { 
+			@RequiredFieldValidator(fieldName = "ids", message = "订单ID不能为空!")
+		}		
+	)
 	@InputConfig(resultName = "error")	
 	public String query() {
 		if(ids!=null && ids.length>0){

@@ -16,6 +16,7 @@
 	<li><a href="profile!edit.action">个人信息</a></li>
 	<li><a href="bank!list.action">提现账户</a></li>
 	<li><a href="password!safe.action">密保问题</a></li>
-	<li><a href="password!edit.action">修改密码</a></li>
+	<li><a href="password!edit.action">登录密码</a></li>
+	<li><a href="password!withdrawPwd.action">提现密码</a></li>
 	<li><a href="promotion.action">推广链接</a></li>
 </ul>

@@ -50,7 +50,7 @@ $().ready( function() {
 						<td>
 							<input type="text" name="order.orderSn"/>
 						</td>	
-						<th>充值卡账号</th>
+						<th>充值卡卡号</th>
 						<td>
 							<input type="text" name="order.cardNum"/>
 						</td>
@@ -122,7 +122,7 @@ $().ready( function() {
 							<th>充值卡名称</th>
 							<th>下单时间</th>
 							<th>单据通道</th>
-							<th>充值卡账号</th>
+							<th>充值卡卡号</th>
 							<th>订单金额</th>
 							<th>订单状态</th>
 							<th>状态</th>

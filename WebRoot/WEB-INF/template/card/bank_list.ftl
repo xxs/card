@@ -9,68 +9,6 @@
 <script type="text/javascript">
 $().ready( function() {
 
-	var $tab = $("#tab");
-	
-	var $validateErrorContainer = $("#validateErrorContainer");
-	var $validateErrorLabelContainer = $("#validateErrorContainer ul");
-	var $passwordForm = $("#passwordForm");
-
-	// Tab效果
-	$tab.tabs(".tabContent", {
-		tabs: "input"
-	});
-	
-	// 表单验证
-	$passwordForm.validate({
-		errorContainer: $validateErrorContainer,
-		errorLabelContainer: $validateErrorLabelContainer,
-		wrapper: "li",
-		errorClass: "validateError",
-		ignoreTitle: true,
-		rules: {
-			"oldPassword": {
-				requiredTo: "#password"
-			},
-			"member.password": {
-				minlength: 4,
-				maxlength: 20,
-				requiredTo: "#oldPassword"
-			},
-			"rePassword": {
-				equalTo: "#password"
-			},
-			"member.safeQuestion": {
-				requiredTo: "#memberSafeAnswer"
-			},
-			"member.safeAnswer": {
-				requiredTo: "#memberSafeQuestion"
-			}
-		},
-		messages: {
-			"oldPassword": {
-				requiredTo: "请填写旧密码"
-			},
-			"member.password": {
-				minlength: "密码长度必须大于等于4",
-				maxlength: "密码长度必须小于等于20",
-				requiredTo: "请填写新密码"
-			},
-			"rePassword": {
-				equalTo: "两次密码输入不一致"
-			},
-			"member.safeQuestion": {
-				requiredTo: "请填写安全问题"
-			},
-			"member.safeAnswer": {
-				requiredTo: "请填写安全答案"
-			}
-		},
-		submitHandler: function(form) {
-			$(form).find(":submit").attr("disabled", true);
-			form.submit();
-		}
-	});
-
 });
 </script>
 </head>

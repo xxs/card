@@ -89,7 +89,7 @@ $().ready( function() {
 				<table class="inputTable">
 							<tr>
 								<th>
-									旧密码: 
+									旧登录密码: 
 								</th>
 								<td>
 									<input type="password" id="oldPassword" name="oldPassword" class="formText" />
@@ -97,7 +97,7 @@ $().ready( function() {
 							</tr>
 							<tr>
 								<th>
-									新密码: 
+									新登录密码: 
 								</th>
 								<td>
 									<input type="password" id="password" name="member.password" class="formText" />
@@ -105,7 +105,7 @@ $().ready( function() {
 							</tr>
 							<tr>
 								<th>
-									确认新密码: 
+									确认新登录密码: 
 								</th>
 								<td>
 									<input type="password" name="rePassword" class="formText" />

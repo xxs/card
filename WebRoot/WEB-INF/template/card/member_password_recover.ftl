@@ -97,12 +97,54 @@
 	
 	})
 </script>
+<style type="text/css">
+<!--
+.center {
+	width: 960px;
+	line-height: 18px;
+	margin:20px auto 0 auto;
+}
+.sendTable {
+	width: 960px;
+	line-height: 30px;
+}
+
+.sendTable .title td {
+	height: 30px;
+	padding-left: 100px;
+	text-align: left;
+	font-weight: bold;
+	background-color: #ecf2f8;
+}
+
+.sendTable th {
+	width: 195px;
+	text-align: right;
+	font-weight: normal;
+}
+
+.sendTable td {
+	padding: 5px;
+}
+
+.sendTable .captcha {
+	width: 95px;
+	margin-right: 5px;
+	text-transform: uppercase;
+}
+
+.sendTable .captchaImage {
+	vertical-align: middle;
+	cursor: pointer;
+}
+-->
+</style>
 </head>
 <body>
 	<#include "/WEB-INF/template/card/header.ftl">
-	<div class="">
+	<div class="center">
 	<div class="singlePage body passwordRecover">
-		<div class="titleBar">
+		<div class="sendTable">
 			<div class="left"></div>
 			<div class="middle">
 				<span class="icon">&nbsp;</span>找回密码
@@ -112,7 +154,7 @@
 		<div class="blank"></div>
 		<div class="singlePageDetail">
 			<form id="passwordRecoverForm">
-				<table class="inputTable">
+				<table class="sendTable">
 					<tr>
 						<th>用户名: </th>
 						<td>

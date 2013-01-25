@@ -44,6 +44,11 @@ public class PasswordAction extends BaseCardAction {
 		member = getLoginMember();
 		return "question";
 	}
+	// 提现密码
+	public String withdrawPwd() {
+		member = getLoginMember();
+		return "withdraw_pwd";
+	}
 
 	// 密码更新
 	@Validations(

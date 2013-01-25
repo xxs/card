@@ -45,7 +45,7 @@ $().ready(function() {
 						用户名
 					</option>
 					<option value="cardNum"<#if pager.searchBy == "cardNum"> selected</#if>>
-						充值卡账号
+						充值卡卡号
 					</option>
 				</select>
 				<input type="text" name="pager.keyword" value="${pager.keyword!}" />
