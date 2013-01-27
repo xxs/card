@@ -329,7 +329,7 @@ textarea.editor {
 	left: 50%;
 	z-index: 1000;
 	color: #000000;
-	border: 2px solid #ffaa71;
+	border: 2px solid red;
 	background-color: #fff5ee;
 }
 
