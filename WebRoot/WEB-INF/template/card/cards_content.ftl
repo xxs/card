@@ -8,6 +8,117 @@
 <#if (cards.metaKeywords)! != ""><meta name="keywords" content="${cards.metaKeywords}" /></#if>
 <#if (cards.metaDescription)! != ""><meta name="description" content="${cards.metaDescription}" /></#if>
 <#include "/WEB-INF/template/card/member_head.ftl">
+<script type="text/javascript">
+	$().ready(function() {
+        $(".text1 input[type='radio']").click(function(){     //绑定radio绑定事件                
+             $("#price1").text("￥  "+$(this).attr("price")+" 元");
+	    });
+		$(".text2 input[type='radio']").click(function(){     //绑定radio绑定事件                
+             $("#price2").text("￥  "+$(this).attr("price")+" 元");
+	    });
+	    var str = $(".tongdaoS input[type='radio']:checked").attr("face");
+	    var strs = str.split(","); //字符分割
+	    $(".text1 input[type='radio']").each(function(){
+			$(this).attr("disabled","disabled");
+		});
+		$(".text1 input[type='radio']").each(function(){
+	        for (i=0;i<strs.length ;i++ ){
+				if(strs[i]!="0"){
+				   	if($(this).attr("price")==strs[i]){ 
+				    	$(this).removeAttr("disabled");
+				    }
+				}else{
+					$(this).removeAttr("disabled");
+				}
+			}
+		});
+		
+	    var str = $(".tongdaoP input[type='radio']:checked").attr("face");
+	    var strs = str.split(","); //字符分割
+	    $(".text2 input[type='radio']").each(function(){
+			$(this).attr("disabled","disabled");
+		});
+		$(".text2 input[type='radio']").each(function(){
+	        for (i=0;i<strs.length ;i++ ){
+				if(strs[i]!="0"){
+				   	if($(this).attr("price")==strs[i]){ 
+				    	$(this).removeAttr("disabled");
+				    }
+				}else{
+					$(this).removeAttr("disabled");
+				}
+			}
+		});
+			
+			
+			
+		$(".tongdaoS input[type='radio']").click(function(){     //绑定radio绑定事件                
+			$(".text1 input[type='radio']").each(function(){
+				$(this).attr("disabled","disabled");
+			});
+            var str = $(this).attr("face");
+            var strs = str.split(","); //字符分割
+			$(".text1 input[type='radio']").each(function(){
+	            for (i=0;i<strs.length ;i++ ){
+					if(strs[i]!="0"){
+					   	if($(this).attr("price")==strs[i]){ 
+					    	$(this).removeAttr("disabled");
+					    }
+					}else{
+						$(this).removeAttr("disabled");
+					}
+				}
+			});
+	    });
+	    $(".tongdaoP input[type='radio']").click(function(){     //绑定radio绑定事件                
+			$(".text2 input[type='radio']").each(function(){
+				$(this).attr("disabled","disabled");
+			});
+            var str = $(this).attr("face");
+            var strs = str.split(","); //字符分割
+			$(".text2 input[type='radio']").each(function(){
+	            for (i=0;i<strs.length ;i++ ){
+					if(strs[i]!="0"){
+					   	if($(this).attr("price")==strs[i]){ 
+					    	$(this).removeAttr("disabled");
+					    }
+					}else{
+						$(this).removeAttr("disabled");
+					}
+				}
+			});
+	    });
+		
+		var $refForm = $("#refForm");
+		var $refBtn = $("#refBtn");
+		var $status = $(".state");
+	
+		$refBtn.click( function() {
+			$.ajax({
+				url: "order!query.action",
+				data: $refForm.serialize(),
+				type: "POST",
+				dataType: "json",
+				cache: false,
+				beforeSend: function(data) {
+					$status.html('<span class="loadingIcon">&nbsp;</span>刷新中');
+					$refBtn.attr("disabled", true);
+				},
+				success: function(data) {
+					if (data.status == "success") {
+						$status.text(data.message);
+						$.dialog({type: data.status, content: data.message, modal: true, autoCloseTime: 3000});
+					} else {
+						$status.text(data.message);
+						$.dialog({type: data.status, content: data.message, modal: true, autoCloseTime: 3000});
+					}
+					$refBtn.attr("disabled", false);
+				}
+			});
+			return false;
+		});
+	})
+</script>
 </head>
 <body id="cardsContent" class="cardsContent">
 	<#include "/WEB-INF/template/card/member_header.ftl">
@@ -32,6 +143,14 @@
 	 			  	<div class="memberCenter">
 					<form action="order!save.action" method="post" autocomplete="off">
 					<table class="tabTable">
+						<tr class="tongdaoS">
+							<th>支付通道:</th>
+							<td>
+								<#list paymentDiscountList as paymentDiscount>
+									<input type="radio" name="paymentConfig.id" value="${paymentDiscount.paymentConfig.id}" face="${paymentDiscount.face}" <#if paymentDiscount.paymentConfig.isDefault >checked="checked"</#if> />&nbsp;${paymentDiscount.paymentConfig.name}(<span style="color:red">折扣率：${paymentDiscount.discount}</span>)
+								</#list>
+							</td>
+						</tr>
 						<tr>
 							<th>充值卡编号: </th>
 							<td>
@@ -41,12 +160,12 @@
 						<#if cards.isSpecificationEnabled>
 							<#assign specificationValueSet = cards.specificationValueSet>
 							<#list cards.specificationSet as specification>
-									<tr class="text">
+									<tr class="text1">
 										<th>${specification.name}:</th>
 										<td>
 											<ul id="buyInfo">
 												<#list cards.productSet as product>
-													<input type="radio" name="productId" value="${product.id}" <#if product.isDefault >checked="checked"</#if> />&nbsp;${product.price}元
+													<input type="radio" name="productId" value="${product.id}" price="${product.price}" <#if product.isDefault >checked="checked"</#if> />&nbsp;${product.price}元
 												</#list>
 											</ul>
 										</td>
@@ -57,14 +176,6 @@
 							<th>确认金额:</th>
 							<td>
 								<span id="price1" class="red">￥${cards.price} 元</span>
-							</td>
-						</tr>
-						<tr>
-							<th>支付通道:</th>
-							<td>
-								<#list paymentDiscountList as paymentDiscount>
-									<input type="radio" name="paymentConfig.id" value="${paymentDiscount.paymentConfig.id}" <#if paymentDiscount.paymentConfig.isDefault >checked="checked"</#if> />&nbsp;${paymentDiscount.paymentConfig.name}(<span style="color:red">折扣率：${paymentDiscount.discount}</span>)
-								</#list>
 							</td>
 						</tr>
 						<tr>
@@ -93,6 +204,14 @@
 				 	<div class="memberCenter">
 					<form action="order!batch.action" method="post" autocomplete="off">
 					<table class="tabTable">
+						<tr class="tongdaoP">
+							<th>支付通道:</th>
+							<td>
+								<#list paymentDiscountList as paymentDiscount>
+									<input type="radio" name="paymentConfig.id" value="${paymentDiscount.paymentConfig.id}" face="${paymentDiscount.face}" <#if paymentDiscount.paymentConfig.isDefault >checked="checked"</#if> />&nbsp;${paymentDiscount.paymentConfig.name}(<span style="color:red">折扣率：${paymentDiscount.discount}</span>)
+								</#list>
+							</td>
+						</tr>
 						<tr>
 							<th>充值卡编号: </th>
 							<td>
@@ -102,12 +221,12 @@
 						<#if cards.isSpecificationEnabled>
 							<#assign specificationValueSet = cards.specificationValueSet>
 							<#list cards.specificationSet as specification>
-									<tr class="text">
+									<tr class="text2">
 										<th>${specification.name}:</th>
 										<td>
 											<ul id="buyInfo">
 												<#list cards.productSet as product>
-													<input type="radio" name="productId" value="${product.id}" <#if product.isDefault >checked="checked"</#if> />&nbsp;${product.price}元
+													<input type="radio" name="productId" value="${product.id}" price="${product.price}" <#if product.isDefault >checked="checked"</#if> />&nbsp;${product.price}元
 												</#list>
 											</ul>
 										</td>
@@ -117,15 +236,7 @@
 						<tr>
 							<th>确认金额:</th>
 							<td>
-								<span id="resultPrice" class="red">${cards.price?string(currencyFormat)}</span>
-							</td>
-						</tr>
-						<tr>
-							<th>支付通道:</th>
-							<td>
-								<#list paymentDiscountList as paymentDiscount>
-									<input type="radio" name="paymentConfig.id" value="${paymentDiscount.paymentConfig.id}" <#if paymentDiscount.paymentConfig.isDefault >checked="checked"</#if> />&nbsp;${paymentDiscount.paymentConfig.name}(<span style="color:red">折扣率：${paymentDiscount.discount}</span>)
-								</#list>
+								<span id="price2" class="red">￥${cards.price} 元</span>
 							</td>
 						</tr>
 						<tr>

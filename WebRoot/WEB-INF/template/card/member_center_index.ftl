@@ -6,6 +6,39 @@
 <meta name="Author" content="XXS-DW" />
 <meta name="Copyright" content="XXS" />
 <#include "/WEB-INF/template/card/member_head.ftl">
+<script type="text/javascript">
+	$().ready(function() {
+	
+		var $refForm = $("#refForm");
+		var $refBtn = $("#refBtn");
+		var $status = $(".state");
+	
+		$refBtn.click( function() {
+			$.ajax({
+				url: "order!query.action",
+				data: $refForm.serialize(),
+				type: "POST",
+				dataType: "json",
+				cache: false,
+				beforeSend: function(data) {
+					$status.html('<span class="loadingIcon">&nbsp;</span>刷新中');
+					$refBtn.attr("disabled", true);
+				},
+				success: function(data) {
+					if (data.status == "success") {
+						$status.text(data.message);
+						$.dialog({type: data.status, content: data.message, modal: true, autoCloseTime: 3000});
+					} else {
+						$status.text(data.message);
+						$.dialog({type: data.status, content: data.message, modal: true, autoCloseTime: 3000});
+					}
+					$refBtn.attr("disabled", false);
+				}
+			});
+			return false;
+		});
+	})
+</script>
 </head>
 <body class="memberCenter">
 	<#include "/WEB-INF/template/card/member_header.ftl">
@@ -48,7 +81,7 @@
 						</tr>
 					</table>
 					<div class="blank"></div>
-					<form method="post" action="order!query.action" >
+					<form id="refForm" >
 					<table class="listTable">
 						<tr>
 							<th>充值卡名称</th>
@@ -56,7 +89,7 @@
 							<th>下单时间</th>
 							<th>订单金额</th>
 							<th>订单状态</th>
-							<th><input class="formButton red" type="submit" value="刷新订单"/></th>
+							<th><input class="formButton red" id="refBtn" type="button" value="刷新订单"/></th>
 						</tr>
 						<#list loginMember.orderSet as order>
 							<tr>
@@ -75,15 +108,19 @@
 									${order.amount?string(currencyFormat)}
 								</td>
 								<td>
-									<#if order.orderStatus != "completed" && order.orderStatus != "invalid">
-										[${action.getText("PaymentStatus." + order.paymentStatus)}]
-									<#else>
-										[${action.getText("OrderStatus." + order.orderStatus)}]
-									</#if>
+									<span class="state">
+										<#if order.orderStatus == "paid">
+											<span class="green">[${action.getText("OrderStatus." + order.orderStatus)}]</span>
+										<#else>
+											<span class="red"> [${action.getText("OrderStatus." + order.orderStatus)}] </span>
+										</#if>
+									</span>
 								</td>
 								<td>
 									<input type="hidden" name="ids" value="${order.id}"/>
-									<span title="${order.retMsg}">${order.retCode}</span>
+									<span class="state">
+										<span title="${order.retMsg}">${order.retCode}</span>
+									</span>
 								</td>
 							</tr>
 							<#if (order_index + 1 > 10)>
@@ -106,5 +143,7 @@
 </div>
 <div class="blank"></div>
 <#include "/WEB-INF/template/card/member_footer.ftl">
+<script type="text/javascript" src="${base}/template/common/js/jquery.js"></script>
+<script type="text/javascript" src="${base}/template/common/js/jquery.tools.js"></script>
 </body>
 </html>

@@ -50,7 +50,8 @@
 					$registerMemberUsername.focus();
 					$.dialog({type: "warn", content: "用户名长度只允许在2-20之间!"});
 					return false;
-				}else{
+				}
+				if ($.trim($registerMemberUsername.val()).length > 2 && $.trim($registerMemberUsername.val()).length < 20){
 					$.ajax({
 						url: xxs.base + "/card/member!checkUsername.action",
 						data: {"member.username": $registerMemberUsername.val()},
@@ -165,7 +166,7 @@
 	<!--标志-->
 	<div class="logo">
 		<div class="logo_995">
-	    	<div class="logo_left"><a href="${base}/" ><img src="/template/card/images/logo.jpg" alt="${(setting.shopName)!}" width="162" height="46" border="0" /></a></div>
+	    	<div class="logo_left"><a href="${base}/" ><img src="/template/card/images/logo.jpg" alt="${(setting.shopName)!}" width="162" height="46" border="0" /></a><span>用户注册</span><div class="shu"></div></div>
 		</div>
 	    <div class="clear"></div>
 	</div>
