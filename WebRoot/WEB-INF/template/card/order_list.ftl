@@ -8,27 +8,6 @@
 <#include "/WEB-INF/template/card/member_head.ftl">
 <script type="text/javascript">
 $().ready( function() {
-	var $refOrder = $(".refOrder");
-	alter("qqq");
-	$refOrder.click( function() {
-		alert("qqq");
-		var $this = $(this);
-		var orderId = $this.attr("orderId");
-		$.ajax({
-				url: "/card/order!query.action",
-				data: {id: orderId},
-				type: "POST",
-				dataType: "json",
-				cache: false,
-				success: function(data) {
-					$.message({type: data.status, content: data.message});
-					//$this.parent().parent().remove();
-				}
-			});
-		}
-		return false;
-	});
-	
 });
 </script>
 </head>
@@ -48,11 +27,11 @@ $().ready( function() {
 					<tr>
 						<th>订单编号</th>
 						<td>
-							<input type="text" name="order.orderSn"/>
+							<input type="text" name="order.orderSn" value="<#if order??>${order.orderSn!""}</#if>"/>
 						</td>	
 						<th>充值卡卡号</th>
 						<td>
-							<input type="text" name="order.cardNum"/>
+							<input type="text" name="order.cardNum" value="<#if order??>${order.cardNum!""}</#if>"/>
 						</td>
 					</tr>
 					<tr>
@@ -61,7 +40,7 @@ $().ready( function() {
 							<select name="order.brandId">
 								<option value="">请选择...</option>
 								<#list allBrandList as brand>
-									<option value="${brand.id}"<#if (brand == cards.brand)!> selected</#if>>
+									<option value="${brand.id}" <#if order??><#if brand.id == order.brandId> selected</#if></#if>>
 										${brand.name}
 									</option>
 								</#list>
@@ -72,7 +51,7 @@ $().ready( function() {
 							<select name="order.paymentConfig.id">
 								<option value="">请选择...</option>
 								<#list allPaymentConfigList as paymentConfig>
-									<option value="${paymentConfig.id}"<#if (paymentConfig == cards.paymentConfig)!> selected</#if>>
+									<option value="${paymentConfig.id}" <#if order??><#if paymentConfig == order.paymentConfig> selected</#if></#if>>
 										${paymentConfig.name}
 									</option>
 								</#list>
@@ -85,7 +64,7 @@ $().ready( function() {
 							<select name="order.orderStatus">
 								<option value="">请选择...</option>
 								<#list orderStatusList as orderStatus> 
-									<option value="${orderStatus}" >
+									<option value="${orderStatus}" <#if order??><#if order.orderStatus == orderStatus>selected="selected"</#if></#if> >
 										${action.getText("OrderStatus." + orderStatus)}
 									</option>
 								</#list>
@@ -93,9 +72,9 @@ $().ready( function() {
 						</td>	
 						<th>时间范围</th>
 						<td >
-							<input name="beginDate" onclick="WdatePicker()"/>
+							<input name="beginDate" onclick="WdatePicker()" value="<#if beginDate??>${beginDate}</#if>" />
 							~
-							<input name="endDate" onclick="WdatePicker()"/>
+							<input name="endDate" onclick="WdatePicker()" value="<#if endDate??>${endDate}</#if>" />
 						</td>
 					</tr>	
 					<tr>

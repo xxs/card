@@ -210,7 +210,6 @@ public class OrderAction extends BaseCardAction {
 		}else{
 			System.out.println("订单状态未变化");
 		}
-		redirectUrl = "order!list.action";
 		return SUCCESS;
 	}
 	//保存提交的充值卡订单
@@ -328,7 +327,6 @@ public class OrderAction extends BaseCardAction {
 				System.out.println("订单状态未变化");
 			}
 		}
-		redirectUrl = "order!list.action";
 		return SUCCESS;
 	}
 	//查询订单最新状态
@@ -425,6 +423,7 @@ public class OrderAction extends BaseCardAction {
 	
 	// 查询订单
 	public String search() {
+		order.setMember(getLoginMember());
 		pager = orderService.getOrderPager(beginDate,endDate,order,pager);
 		return LIST;
 	}

@@ -205,7 +205,7 @@
 						<tr>
 							<th>推荐人: </th>
 							<td>
-								<input type="text" id="registerMemberReferrer" name="member.referrer" value="${member.username}" class="formText" title="填写后不能修改!"/>
+								<input type="text" id="registerMemberReferrer" name="member.referrer" value="<#if member.username??>${member.username}</#if>" class="formText" title="填写后不能修改!"/>
 							</td>
 						</tr>
 						<tr>

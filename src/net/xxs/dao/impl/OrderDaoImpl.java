@@ -1,5 +1,6 @@
 package net.xxs.dao.impl;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -9,6 +10,7 @@ import net.xxs.entity.Member;
 import net.xxs.entity.Order;
 import net.xxs.entity.Order.OrderStatus;
 
+import org.hibernate.criterion.Criterion;
 import org.hibernate.criterion.Restrictions;
 import org.springframework.stereotype.Repository;
 
@@ -63,12 +65,33 @@ public class OrderDaoImpl extends BaseDaoImpl<Order, String> implements
 	}
 
 	public Pager getOrderPager(Date beginDate, Date endDate,Order order,Pager pager) {
-		return super.findPager(pager, Restrictions.eq("orderSn", order.getOrderSn()),
-				Restrictions.eq("cardNum", order.getCardNum()),
-				Restrictions.eq("member",order.getMember()),
-				Restrictions.ge("createDate", beginDate),
-				Restrictions.le("createDate", endDate),
-				Restrictions.eq("brandId", order.getBrandId()));
+		List <Criterion> lists = new ArrayList<Criterion>();
+		if(beginDate!=null){
+			lists.add(Restrictions.ge("createDate", beginDate));
+		}
+		if(endDate!=null){
+			lists.add(Restrictions.ge("createDate", endDate));
+		}
+		if(order.getOrderSn()!=null&&!order.getOrderSn().isEmpty()){
+			lists.add(Restrictions.ge("orderSn", order.getOrderSn()));
+		}
+		if(order.getCardNum()!=null&&!order.getCardNum().isEmpty()){
+			lists.add(Restrictions.ge("cardNum", order.getCardNum()));
+		}
+		if(order.getMember()!=null){
+			lists.add(Restrictions.ge("member", order.getMember()));
+		}
+		if(order.getPaymentConfig()!=null&&!"".equals(order.getPaymentConfig().getId())){
+			lists.add(Restrictions.ge("paymentConfig", order.getPaymentConfig()));
+		}
+		if(order.getOrderStatus()!=null){
+			lists.add(Restrictions.ge("orderStatus", order.getOrderStatus()));
+		}
+		if(order.getBrandId()!=null&&!order.getBrandId().isEmpty()){
+			lists.add(Restrictions.ge("brandId", order.getBrandId()));
+		}
+		Criterion [] c = (Criterion []) lists.toArray(new Criterion[lists.size()]);
+		return super.findPager(pager,c);
 	}
 
 }
