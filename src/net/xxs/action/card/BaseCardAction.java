@@ -2,6 +2,7 @@ package net.xxs.action.card;
 
 import java.io.IOException;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import javax.annotation.Resource;
@@ -45,6 +46,7 @@ public class BaseCardAction extends ActionSupport {
 	
 	public static final String STATUS_PARAMETER_NAME = "status";// 操作状态参数名称
 	public static final String MESSAGE_PARAMETER_NAME = "message";// 操作消息参数名称
+	public static final String LIST_PARAMETER_NAME = "list";// 操作集合参数名称
 	
 	// 操作状态（警告、错误、成功）
 	public enum Status {
@@ -246,6 +248,33 @@ public class BaseCardAction extends ActionSupport {
 		return NONE;
 	}
 	
+	// 根据操作状态、消息内容输出AJAX
+	protected String ajax(Status status, String message,List list) {
+		HttpServletResponse response = initResponse(HEADER_JSON_CONTENT_TYPE);
+		try {
+			Map<String, Object> jsonMap = new HashMap<String, Object>();
+			jsonMap.put(STATUS_PARAMETER_NAME, status.toString());
+			jsonMap.put(MESSAGE_PARAMETER_NAME, message);
+			jsonMap.put(LIST_PARAMETER_NAME, JsonUtil.toJson(list));
+			JsonUtil.getMapper().writeValue(response.getWriter(), jsonMap);
+		} catch (IOException e) {
+			throw new IllegalArgumentException(e);
+		}
+		return NONE;
+	}
+	// 根据操作状态、消息内容输出AJAX
+	protected String ajax(Status status, String message,Map map) {
+		HttpServletResponse response = initResponse(HEADER_JSON_CONTENT_TYPE);
+		try {
+			Map<String, String> jsonMap = new HashMap<String, String>();
+			jsonMap.put(STATUS_PARAMETER_NAME, status.toString());
+			jsonMap.put(MESSAGE_PARAMETER_NAME, message);
+			JsonUtil.getMapper().writeValue(response.getWriter(), jsonMap);
+		} catch (IOException e) {
+			throw new IllegalArgumentException(e);
+		}
+		return NONE;
+	}
 	// 根据Object输出AJAX
 	protected String ajax(Object object) {
 		HttpServletResponse response = initResponse(HEADER_JSON_CONTENT_TYPE);

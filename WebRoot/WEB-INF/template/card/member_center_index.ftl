@@ -12,25 +12,34 @@
 		var $refForm = $("#refForm");
 		var $refBtn = $("#refBtn");
 		var $status = $(".state");
+		var $recode = $(".recode");
 	
 		$refBtn.click( function() {
 			$.ajax({
-				url: "order!query.action",
+				url: "order!Lquery.action",
 				data: $refForm.serialize(),
 				type: "POST",
 				dataType: "json",
 				cache: false,
 				beforeSend: function(data) {
-					$status.html('<span class="loadingIcon">&nbsp;</span>刷新中');
+					$recode.html('<span class="loadingIcon">&nbsp;</span>刷新中');
+					//$status.html('<span class="loadingIcon">&nbsp;</span>刷新中');
 					$refBtn.attr("disabled", true);
 				},
 				success: function(data) {
 					if (data.status == "success") {
-						$status.text(data.message);
-						$.dialog({type: data.status, content: data.message, modal: true, autoCloseTime: 3000});
+						var object = eval("("+data.message+")");
+						$.each(object,function(index,item){
+					      // alert(item.id+""+index);
+					       //$("#ss"+item.id).text(item.orderStatus);
+					       $("#rr"+item.id).text(item.retCode);
+					    })
+						//$status.text(data.message);
+						//$.dialog({type: data.status, content: '刷新成功', modal: true, autoCloseTime: 3000});
 					} else {
-						$status.text(data.message);
-						$.dialog({type: data.status, content: data.message, modal: true, autoCloseTime: 3000});
+						$status.text("刷新失败");
+						$recode.text("刷新失败");
+						$.dialog({type: data.status, content: '刷新超时', modal: true, autoCloseTime: 3000});
 					}
 					$refBtn.attr("disabled", false);
 				}
@@ -70,7 +79,7 @@
 							<th>未读消息数</th>
 							<td>
 								${unreadMessageCount}&nbsp;&nbsp;
-								<a href="message!inbox.action">[查看收件箱]</a>
+								<!--<a href="message!inbox.action">[查看收件箱]</a>-->
 							</td>
 						</tr>
 						<tr>
@@ -108,7 +117,7 @@
 									${order.amount?string(currencyFormat)}
 								</td>
 								<td>
-									<span class="state">
+									<span class="state" id="ss${order.id}">
 										<#if order.orderStatus == "paid">
 											<span class="green">[${action.getText("OrderStatus." + order.orderStatus)}]</span>
 										<#else>
@@ -116,10 +125,10 @@
 										</#if>
 									</span>
 								</td>
-								<td>
+								<td width="170">
 									<input type="hidden" name="ids" value="${order.id}"/>
-									<span class="state">
-										<span title="${order.retMsg}">${resultText(order.paymentConfig.paymentProductId)}${order.retCode}</span>
+									<span class="recode" id="rr${order.id}">
+										<span title="${order.retMsg}">${resultText(order.paymentConfig.paymentProductId,order.retCode)}</span>
 									</span>
 								</td>
 							</tr>

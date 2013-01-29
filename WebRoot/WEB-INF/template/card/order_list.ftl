@@ -137,8 +137,7 @@ $().ready( function() {
 								</td>
 								<td>
 									<span title="${order.retCode}">
-										${order.retMsg}
-										${substring(order.retCode)}
+										${resultText(order.paymentConfig.paymentProductId,order.retCode)}
 									</span>
 								</td>
 							</tr>

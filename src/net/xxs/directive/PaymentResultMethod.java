@@ -19,10 +19,19 @@ public class PaymentResultMethod implements TemplateMethodModel {
 	public static String resultText(String resultcode) {
 		Map<String,String> resultMap  = new HashMap<String, String>();
 		resultMap.put("yeepay1","支付成功");
-		resultMap.put("yeepay-1","支付失败");
+		resultMap.put("yeepay-1","支付失败");    
+		resultMap.put("yeepayforzy-1","签名较验失败或未知错误");
 		resultMap.put("yeepayforzy0","销卡成功，订单成功");
 		resultMap.put("yeepayforzy1","销卡成功，订单失败");
-		resultMap.put("yeepayforzy7","卡号卡密或者卡面额不符合规则 ");
+		resultMap.put("yeepayforzy2","卡密成功处理过或者提交卡号过于频繁");
+		resultMap.put("yeepayforzy5","卡数量过多，目前最多支持10张卡");
+		resultMap.put("yeepayforzy7","卡号卡密或卡面额不符合规则");
+		resultMap.put("yeepayforzy11","订单号重复");
+		resultMap.put("yeepayforzy66","支付金额有误");
+		resultMap.put("yeepayforzy95","支付方式未开通");
+		resultMap.put("yeepayforzy112","业务状态不可用，未开通此类卡业务");
+		resultMap.put("yeepayforzy8001","卡面额组填写错误");
+		resultMap.put("yeepayforzy8002","卡号密码为空或者数量不相等（使用组合支付时） ");
 		resultMap.put("yeepayforzy1002","本张卡密提交过于频繁，请稍后再试");
 		resultMap.put("yeepayforzy1003","不支持的卡类型");
 		resultMap.put("yeepayforzy1004","密码错误或充值卡无效");
@@ -79,9 +88,12 @@ public class PaymentResultMethod implements TemplateMethodModel {
 		if (arguments.size() == 1) {
 			String str = arguments.get(0).toString();
 			return new SimpleScalar(resultText(str));
+		} else if (arguments.size() == 2) {
+			String str = arguments.get(0).toString()+arguments.get(1).toString();
+			System.out.println("字符串为："+str);
+			return new SimpleScalar(resultText(str));
 		}else {
 			throw new TemplateModelException("Wrong arguments");
 		}
 	}
-
 }

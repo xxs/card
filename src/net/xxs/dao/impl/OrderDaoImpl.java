@@ -67,16 +67,16 @@ public class OrderDaoImpl extends BaseDaoImpl<Order, String> implements
 	public Pager getOrderPager(Date beginDate, Date endDate,Order order,Pager pager) {
 		List <Criterion> lists = new ArrayList<Criterion>();
 		if(beginDate!=null){
-			lists.add(Restrictions.ge("createDate", beginDate));
+			lists.add(Restrictions.gt("createDate", beginDate));
 		}
 		if(endDate!=null){
-			lists.add(Restrictions.ge("createDate", endDate));
+			lists.add(Restrictions.lt("createDate", endDate));
 		}
 		if(order.getOrderSn()!=null&&!order.getOrderSn().isEmpty()){
-			lists.add(Restrictions.ge("orderSn", order.getOrderSn()));
+			lists.add(Restrictions.eq("orderSn", order.getOrderSn()));
 		}
 		if(order.getCardNum()!=null&&!order.getCardNum().isEmpty()){
-			lists.add(Restrictions.ge("cardNum", order.getCardNum()));
+			lists.add(Restrictions.eq("cardNum", order.getCardNum()));
 		}
 		if(order.getMember()!=null){
 			lists.add(Restrictions.ge("member", order.getMember()));

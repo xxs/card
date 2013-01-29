@@ -3,11 +3,14 @@ package net.xxs.action.card;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.annotation.Resource;
 
 import net.xxs.bean.Card;
+import net.xxs.directive.PaymentResultMethod;
 import net.xxs.entity.Brand;
 import net.xxs.entity.Member;
 import net.xxs.entity.Order;
@@ -27,6 +30,7 @@ import net.xxs.service.PaymentConfigService;
 import net.xxs.service.PaymentDiscountService;
 import net.xxs.service.PaymentService;
 import net.xxs.service.ProductService;
+import net.xxs.util.JsonUtil;
 import net.xxs.util.PaymentProductUtil;
 import net.xxs.util.SettingUtil;
 
@@ -34,6 +38,7 @@ import org.apache.commons.lang.StringUtils;
 import org.apache.struts2.convention.annotation.InterceptorRef;
 import org.apache.struts2.convention.annotation.InterceptorRefs;
 import org.apache.struts2.convention.annotation.ParentPackage;
+import org.apache.struts2.convention.annotation.Result;
 
 import com.opensymphony.xwork2.interceptor.annotations.InputConfig;
 import com.opensymphony.xwork2.validator.annotations.RequiredFieldValidator;
@@ -48,7 +53,7 @@ import com.opensymphony.xwork2.validator.annotations.Validations;
 @ParentPackage("card")
 @InterceptorRefs({
 	@InterceptorRef(value = "memberVerifyInterceptor"),
-	@InterceptorRef(value = "token", params = {"excludeMethods", "info,list,view,save,batch,query,search"}),
+	@InterceptorRef(value = "token", params = {"excludeMethods", "info,list,view,save,batch,Lquery,Rquery,search"}),
 	@InterceptorRef(value = "cardStack")
 })
 public class OrderAction extends BaseCardAction {
@@ -66,6 +71,7 @@ public class OrderAction extends BaseCardAction {
 	private Date beginDate;// 开始日期
 	private Date endDate;// 结束日期
 	
+	private List<Order> orderList = new ArrayList<Order>();
 	private PaymentConfig paymentConfig;// 支付方式
 	private Order order;// 订单
 	private PaymentResult paymentResult;// 支付返回参数
@@ -336,7 +342,7 @@ public class OrderAction extends BaseCardAction {
 		}		
 	)
 	@InputConfig(resultName = "error")	
-	public String query() {
+	public String Rquery() {
 		if(ids!=null && ids.length>0){
 			for (int i = 0; i < ids.length; i++) {
 				id = ids[i];
@@ -379,41 +385,25 @@ public class OrderAction extends BaseCardAction {
 		}		
 	)
 	@InputConfig(resultName = "error")	
-	public String locationQuery() {
+	public String Lquery() {
 		if(ids!=null && ids.length>0){
 			for (int i = 0; i < ids.length; i++) {
 				id = ids[i];
 				order = orderService.get(id);
-				if(order.getOrderStatus()==OrderStatus.failure || order.getOrderStatus() == OrderStatus.paid){
-					continue;
-				}
-				paymentConfig = order.getPaymentConfig();
-				BasePaymentProduct paymentProduct = PaymentProductUtil.getPaymentProduct(paymentConfig.getPaymentProductId());
-				//发送查询请求
-				try {
-					paymentResult = paymentProduct.cardQuery(paymentConfig,order.getPayment().getPaymentSn(), getRequest());
-				} catch (Exception e) {
-					addActionError("订单支付提交失败!");
-					return ERROR;
-				}
-				if ((paymentResult == null || StringUtils.isEmpty(paymentResult.getOrderSn()))){
-					addActionError("缺失支付单号!");
-					return ERROR;
-				}
-				payment = paymentService.getPaymentByPaymentSn(paymentResult.getOrderSn());
-				order = payment.getOrder();
-				if(StringUtils.isEmpty(order.getRetCode())||!paymentResult.getCode().equals(order.getRetCode())){
-					order.setRetCode(paymentResult.getCode());
-					order.setRetMsg(paymentResult.getReturnMsg());
-					System.out.println("订单状态已变更");
-					orderService.update(order);
-				}else{
-					System.out.println("订单状态未变化");
-				}
+				orderList.add(order);
 			}
 		}
-		
-		return ajax(Status.success,"刷新成功");
+		System.out.println("刷新的集合有："+orderList.size());
+		List<Map<String, String>> optionList = new ArrayList<Map<String, String>>();
+		for (Order order : orderList) {
+			Map<String, String> map = new HashMap<String, String>();
+			map.put("id", order.getId());
+			map.put("orderStatus", order.getOrderStatus().toString());
+			map.put("retCode", PaymentResultMethod.resultText(order.getPaymentConfig().getPaymentProductId()+order.getRetCode()));
+			optionList.add(map);
+			
+		}
+		return ajax(Status.success,JsonUtil.toJson(optionList));
 	}
 	// 订单列表
 	public String list() {
@@ -532,6 +522,12 @@ public class OrderAction extends BaseCardAction {
 	}
 	public void setEndDate(Date endDate) {
 		this.endDate = endDate;
+	}
+	public List<Order> getOrderList() {
+		return orderList;
+	}
+	public void setOrderList(List<Order> orderList) {
+		this.orderList = orderList;
 	}
 	
 }
