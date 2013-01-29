@@ -119,7 +119,7 @@
 								<td>
 									<input type="hidden" name="ids" value="${order.id}"/>
 									<span class="state">
-										<span title="${order.retMsg}">${order.retCode}</span>
+										<span title="${order.retMsg}">${resultText(order.paymentConfig.paymentProductId)}${order.retCode}</span>
 									</span>
 								</td>
 							</tr>

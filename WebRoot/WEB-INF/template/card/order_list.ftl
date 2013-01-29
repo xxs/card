@@ -138,6 +138,7 @@ $().ready( function() {
 								<td>
 									<span title="${order.retCode}">
 										${order.retMsg}
+										${substring(order.retCode)}
 									</span>
 								</td>
 							</tr>

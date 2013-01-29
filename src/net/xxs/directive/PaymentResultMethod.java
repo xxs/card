@@ -50,6 +50,7 @@ public class PaymentResultMethod implements TemplateMethodModel {
 		resultMap.put("yeepayforzy3007","卡正在处理中");
 		resultMap.put("yeepayforzy3101","系统错误");
 		resultMap.put("yeepayforzy3102","卡已过期");
+		resultMap.put("ofpay","测试方法");
 		resultMap.put("ofpay2000","支付成功");
 		resultMap.put("ofpay2001","数据接收成功");
 		resultMap.put("ofpay2002","不支持该卡类或者该面值的卡");
