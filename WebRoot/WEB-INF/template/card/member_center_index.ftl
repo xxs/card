@@ -119,9 +119,9 @@
 								<td>
 									<span class="state" id="ss${order.id}">
 										<#if order.orderStatus == "paid">
-											<span class="green">[${action.getText("OrderStatus." + order.orderStatus)}]</span>
+											<span class="green">${action.getText("OrderStatus." + order.orderStatus)}</span>
 										<#else>
-											<span class="red"> [${action.getText("OrderStatus." + order.orderStatus)}] </span>
+											<span class="red"> ${action.getText("OrderStatus." + order.orderStatus)}</span>
 										</#if>
 									</span>
 								</td>

@@ -9,7 +9,7 @@
 <script type="text/javascript" src="${base}/template/common/js/jquery.qrcode.min.js"></script>
 <script>
 jQuery(function(){
-	jQuery('#output').qrcode("http://127.0.0.1:8080/card/member!register.action?id=${member.id}");
+	jQuery('#output').qrcode("http://116.255.199.171/card/member!register.action?id=${member.id}");
 })
 </script>
 </head>
@@ -23,7 +23,7 @@ jQuery(function(){
 		<div class="katong">
 			<div class="fangz">推广链接 </div>
 			<div class="red">
-				<p>推广链接：<input type="text" class="formText" value="http://127.0.0.1:8080/card/member!memberreg.action?id=${member.id}"/> 
+				<p>推广链接：<input type="text" class="formText" value="http://116.255.199.171/card/member!memberreg.action?id=${member.id}"/> 
 					&nbsp;<a class="formButton">复制</a>
 					&nbsp;<a class="formButton" href="member!register.action?id=${member.id}" target="_block">测试</a>
 				</p>

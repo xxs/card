@@ -102,6 +102,26 @@ background:url(../images/tg_flash_p2.png) no-repeat 0px 0px; _background:none; _
 .login .loginDetail td {line-height: 35px;text-align: left;}
 .login .loginDetail .captcha {width: 95px;margin-right: 1px;text-transform: uppercase;}
 .login .loginDetail .captchaImage {vertical-align: middle;cursor: pointer;}
+
+.agreement .dialogContent {padding: 5px;margin: 0px;overflow: hidden;}
+.agreement .agreementContent {
+	width: 486px;
+	height: 260px;
+	line-height: 20px;
+	clear: both;
+	text-align: left;
+	color: #6f6f6f;
+	border: 1px solid #e0e5e9;
+	padding: 10px;
+	overflow-y: scroll;
+	scrollbar-face-color: #ffffff;
+	scrollbar-shadow-color: #d2e5f4;
+	scrollbar-highlight-color: #d2e5f4;
+	scrollbar-3dlight-color: #ffffff;
+	scrollbar-darkshadow-color: #ffffff;
+	scrollbar-track-color: #ffffff;
+	scrollbar-arrow-color: #d2e5f4;
+}
 /* ---------- Register ---------- */
 *{margin:0;padding:0;list-style-type:none;}
 a,img{border:0;}

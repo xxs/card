@@ -8,117 +8,7 @@
 <#if (cards.metaKeywords)! != ""><meta name="keywords" content="${cards.metaKeywords}" /></#if>
 <#if (cards.metaDescription)! != ""><meta name="description" content="${cards.metaDescription}" /></#if>
 <#include "/WEB-INF/template/card/member_head.ftl">
-<script type="text/javascript">
-	$().ready(function() {
-        $(".text1 input[type='radio']").click(function(){     //绑定radio绑定事件                
-             $("#price1").text("￥  "+$(this).attr("price")+" 元");
-	    });
-		$(".text2 input[type='radio']").click(function(){     //绑定radio绑定事件                
-             $("#price2").text("￥  "+$(this).attr("price")+" 元");
-	    });
-	    var str = $(".tongdaoS input[type='radio']:checked").attr("face");
-	    var strs = str.split(","); //字符分割
-	    $(".text1 input[type='radio']").each(function(){
-			$(this).attr("disabled","disabled");
-		});
-		$(".text1 input[type='radio']").each(function(){
-	        for (i=0;i<strs.length ;i++ ){
-				if(strs[i]!="0"){
-				   	if($(this).attr("price")==strs[i]){ 
-				    	$(this).removeAttr("disabled");
-				    }
-				}else{
-					$(this).removeAttr("disabled");
-				}
-			}
-		});
-		
-	    var str = $(".tongdaoP input[type='radio']:checked").attr("face");
-	    var strs = str.split(","); //字符分割
-	    $(".text2 input[type='radio']").each(function(){
-			$(this).attr("disabled","disabled");
-		});
-		$(".text2 input[type='radio']").each(function(){
-	        for (i=0;i<strs.length ;i++ ){
-				if(strs[i]!="0"){
-				   	if($(this).attr("price")==strs[i]){ 
-				    	$(this).removeAttr("disabled");
-				    }
-				}else{
-					$(this).removeAttr("disabled");
-				}
-			}
-		});
-			
-			
-			
-		$(".tongdaoS input[type='radio']").click(function(){     //绑定radio绑定事件                
-			$(".text1 input[type='radio']").each(function(){
-				$(this).attr("disabled","disabled");
-			});
-            var str = $(this).attr("face");
-            var strs = str.split(","); //字符分割
-			$(".text1 input[type='radio']").each(function(){
-	            for (i=0;i<strs.length ;i++ ){
-					if(strs[i]!="0"){
-					   	if($(this).attr("price")==strs[i]){ 
-					    	$(this).removeAttr("disabled");
-					    }
-					}else{
-						$(this).removeAttr("disabled");
-					}
-				}
-			});
-	    });
-	    $(".tongdaoP input[type='radio']").click(function(){     //绑定radio绑定事件                
-			$(".text2 input[type='radio']").each(function(){
-				$(this).attr("disabled","disabled");
-			});
-            var str = $(this).attr("face");
-            var strs = str.split(","); //字符分割
-			$(".text2 input[type='radio']").each(function(){
-	            for (i=0;i<strs.length ;i++ ){
-					if(strs[i]!="0"){
-					   	if($(this).attr("price")==strs[i]){ 
-					    	$(this).removeAttr("disabled");
-					    }
-					}else{
-						$(this).removeAttr("disabled");
-					}
-				}
-			});
-	    });
-		
-		var $refForm = $("#refForm");
-		var $refBtn = $("#refBtn");
-		var $status = $(".state");
-	
-		$refBtn.click( function() {
-			$.ajax({
-				url: "order!query.action",
-				data: $refForm.serialize(),
-				type: "POST",
-				dataType: "json",
-				cache: false,
-				beforeSend: function(data) {
-					$status.html('<span class="loadingIcon">&nbsp;</span>刷新中');
-					$refBtn.attr("disabled", true);
-				},
-				success: function(data) {
-					if (data.status == "success") {
-						$status.text(data.message);
-						$.dialog({type: data.status, content: data.message, modal: true, autoCloseTime: 3000});
-					} else {
-						$status.text(data.message);
-						$.dialog({type: data.status, content: data.message, modal: true, autoCloseTime: 3000});
-					}
-					$refBtn.attr("disabled", false);
-				}
-			});
-			return false;
-		});
-	})
-</script>
+
 </head>
 <body id="cardsContent" class="cardsContent">
 	<#include "/WEB-INF/template/card/member_header.ftl">
@@ -141,7 +31,7 @@
 				<div class="tab_box"> 
 	 			  <div class="tab_box_1">
 	 			  	<div class="memberCenter">
-					<form action="order!save.action" method="post" autocomplete="off">
+					<form id="sForm" autocomplete="off">
 					<table class="tabTable">
 						<tr class="tongdaoS">
 							<th>支付通道:</th>
@@ -193,7 +83,7 @@
 						<tr>
 							<th></th>
 							<td>
-								<input type="submit" class="formButton" value="生成订单" />
+								<input type="button" id="sBtn" class="formButton" value="生成订单" />
 							</td>
 						</tr>
 					</table>
@@ -202,7 +92,7 @@
 				</div>
 		 			<div class="hide">
 				 	<div class="memberCenter">
-					<form action="order!batch.action" method="post" autocomplete="off">
+					<form id="pForm" autocomplete="off">
 					<table class="tabTable">
 						<tr class="tongdaoP">
 							<th>支付通道:</th>
@@ -249,7 +139,7 @@
 						<tr>
 							<th></th>
 							<td>
-								<input type="submit" class="formButton" value="生成订单" />
+								<input type="button" id="pBtn" class="formButton" value="生成订单" />
 							</td>
 						</tr>
 					</table>
@@ -268,29 +158,6 @@
 	<#include "/WEB-INF/template/card/member_footer.ftl">
 	<script type="text/javascript" src="${base}/template/common/js/jquery.js"></script>
 	<script type="text/javascript" src="${base}/template/common/js/jquery.tools.js"></script>
-	<script type="text/javascript">
-		$().ready( function() {
-			var $refOrder = $(".refOrder");
-			alter("qqq");
-			$refOrder.click( function() {
-				alert("qqq");
-				var $this = $(this);
-				var orderId = $this.attr("orderId");
-				$.ajax({url: "/card/order!query.action",
-						data: {id: orderId},
-						type: "POST",
-						dataType: "json",
-						cache: false,
-						success: function(data) {
-							$.message({type: data.status, content: data.message});
-							//$this.parent().parent().remove();
-						}
-					});
-				}
-				return false;
-			});
-		});
-	</script>
 	<script type="text/javascript" >
 	//<![CDATA[
 		$(function(){
@@ -309,6 +176,136 @@
 			})
 		})
 	//]]>
+	</script>
+	<script type="text/javascript">
+		$().ready(function() {
+			
+	        $(".text1 input[type='radio']").click(function(){     //绑定radio绑定事件                
+	             $("#price1").text("￥  "+$(this).attr("price")+" 元");
+		    });
+			$(".text2 input[type='radio']").click(function(){     //绑定radio绑定事件                
+	             $("#price2").text("￥  "+$(this).attr("price")+" 元");
+		    });
+		    var str = $(".tongdaoS input[type='radio']:checked").attr("face");
+		    var strs = str.split(","); //字符分割
+		    $(".text1 input[type='radio']").each(function(){
+				$(this).attr("disabled","disabled");
+			});
+			$(".text1 input[type='radio']").each(function(){
+		        for (i=0;i<strs.length ;i++ ){
+					if(strs[i]!="0"){
+					   	if($(this).attr("price")==strs[i]){ 
+					    	$(this).removeAttr("disabled");
+					    }
+					}else{
+						$(this).removeAttr("disabled");
+					}
+				}
+			});
+			
+		    var str = $(".tongdaoP input[type='radio']:checked").attr("face");
+		    var strs = str.split(","); //字符分割
+		    $(".text2 input[type='radio']").each(function(){
+				$(this).attr("disabled","disabled");
+			});
+			$(".text2 input[type='radio']").each(function(){
+		        for (i=0;i<strs.length ;i++ ){
+					if(strs[i]!="0"){
+					   	if($(this).attr("price")==strs[i]){ 
+					    	$(this).removeAttr("disabled");
+					    }
+					}else{
+						$(this).removeAttr("disabled");
+					}
+				}
+			});
+			$(".tongdaoS input[type='radio']").click(function(){     //绑定radio绑定事件                
+				$(".text1 input[type='radio']").each(function(){
+					$(this).attr("disabled","disabled");
+				});
+	            var str = $(this).attr("face");
+	            var strs = str.split(","); //字符分割
+				$(".text1 input[type='radio']").each(function(){
+		            for (i=0;i<strs.length ;i++ ){
+						if(strs[i]!="0"){
+						   	if($(this).attr("price")==strs[i]){ 
+						    	$(this).removeAttr("disabled");
+						    }
+						}else{
+							$(this).removeAttr("disabled");
+						}
+					}
+				});
+		    });
+		    $(".tongdaoP input[type='radio']").click(function(){     //绑定radio绑定事件                
+				$(".text2 input[type='radio']").each(function(){
+					$(this).attr("disabled","disabled");
+				});
+	            var str = $(this).attr("face");
+	            var strs = str.split(","); //字符分割
+				$(".text2 input[type='radio']").each(function(){
+		            for (i=0;i<strs.length ;i++ ){
+						if(strs[i]!="0"){
+						   	if($(this).attr("price")==strs[i]){ 
+						    	$(this).removeAttr("disabled");
+						    }
+						}else{
+							$(this).removeAttr("disabled");
+						}
+					}
+				});
+		    });
+			var $sForm = $("#sForm");
+			var $pForm = $("#pForm");
+			var $sBtn = $("#sBtn");
+			var $pBtn = $("#pBtn");
+			$sBtn.click( function() {
+				$.ajax({
+					url: "order!save.action",
+					data: $sForm.serialize(),
+					type: "POST",
+					dataType: "json",
+					cache: false,
+					beforeSend: function(data) {
+						//$.dialog({type: 'warn', content: '<span class="loadingIcon">&nbsp;</span>提交中...', modal: true, autoCloseTime: 1000});
+						$sBtn.attr("disabled", true);
+					},
+					success: function(data) {
+						if (data.status == "success") {
+							$.dialog({type: data.status, content: data.message, modal: true, autoCloseTime: 3000});
+							$("input[type='text'],textarea").val("");
+						} else {
+							$.dialog({type: data.status, content: data.message, modal: true, autoCloseTime: 3000});
+						}
+							$sBtn.attr("disabled", false);
+					}
+				});
+				return false;
+			});
+			$pBtn.click( function() {
+				$.ajax({
+					url: "order!batch.action",
+					data: $pForm.serialize(),
+					type: "POST",
+					dataType: "json",
+					cache: false,
+					beforeSend: function(data) {
+						//$.dialog({type: 'warn', content: '<span class="loadingIcon">&nbsp;</span>提交中...', modal: true, autoCloseTime: 1000});
+						$pBtn.attr("disabled", true);
+					},
+					success: function(data) {
+						if (data.status == "success") {
+							$.dialog({type: data.status, content: data.message, modal: true, autoCloseTime: 3000});
+							$("input[type='text'],textarea").val("");
+						} else {
+							$.dialog({type: data.status, content: data.message, modal: true, autoCloseTime: 3000});
+						}
+						$pBtn.attr("disabled", false);
+					}
+				});
+				return false;
+			});
+		})
 	</script>
 </body>
 </html>

@@ -24,6 +24,7 @@
 			var $registerCaptchaImage = $("#registerCaptchaImage");
 			var $registerIsAgreeAgreement = $("#registerIsAgreeAgreement");
 			var $registerShowAgreement = $("#registerShowAgreement");
+			var $submitButton = $("#submitButton");
 			
 			// 刷新验证码图片
 			$registerCaptchaImage.click( function() {
@@ -35,7 +36,7 @@
 			});
 			
 			// 表单验证
-			$registerForm.submit( function() {
+			$submitButton.click( function() {
 				if ($.trim($registerMemberUsername.val()) == "") {
 					$registerMemberUsername.focus();
 					$.dialog({type: "warn", content: "请输入用户名!"});
@@ -51,25 +52,6 @@
 					$.dialog({type: "warn", content: "用户名长度只允许在2-20之间!"});
 					return false;
 				}
-				if ($.trim($registerMemberUsername.val()).length > 2 && $.trim($registerMemberUsername.val()).length < 20){
-					$.ajax({
-						url: xxs.base + "/card/member!checkUsername.action",
-						data: {"member.username": $registerMemberUsername.val()},
-						type: "POST",
-						cache: false,
-						success: function(data) {
-							if (data == "true") {
-								$.dialog({type: "warn", content: "成功"});
-								return false;
-							} else {
-								$registerMemberUsername.focus();
-								$.dialog({type: "warn", content: "用户名已存在,请重新输入!"});
-								$registerCaptchaImage.attr("src", xxs.base + "/captcha.jpeg?timestamp" + (new Date()).valueOf());
-								return false;
-							}
-						}
-					});
-				}	
 				if ($.trim($registerMemberPassword.val()) == "") {
 					$registerMemberPassword.focus();
 					$.dialog({type: "warn", content: "请输入密码!"});
@@ -104,22 +86,6 @@
 					$registerMemberReferrer.focus();
 					$.dialog({type: "warn", content: "请输入推荐人!"});
 					return false;
-				}else{
-					$.ajax({
-						url: xxs.base + "/card/member!ajaxRegister.action",
-						data: $registerWindowForm.serialize(),
-						type: "POST",
-						dataType: "json",
-						cache: false,
-						success: function(data) {
-							if (data.status == "success") {
-								
-							}else{
-								
-							}
-							$.dialog({type: data.status, content: data.message});
-						}
-					});
 				}
 				if ($.trim($registerCaptcha.val()) == "") {
 					$registerCaptcha.focus();
@@ -131,7 +97,54 @@
 					$.dialog({type: "warn", content: "注册前必须阅读并同意《注册协议》!"});
 					return false;
 				}
-				
+				$.ajax({
+						url: xxs.base + "/card/member!checkUsername.action",
+						data: {"member.username": $registerMemberUsername.val()},
+						type: "POST",
+						cache: false,
+						success: function(data) {
+							if (data == "true") {
+								$.ajax({
+									url: xxs.base + "/card/member!checkReferrer.action",
+									data: {"member.referrer": $registerMemberReferrer.val()},
+									type: "POST",
+									cache: false,
+									success: function(data) {
+										if (data == "true") {
+											$.ajax({
+												url: xxs.base + "/card/member!ajaxRegister.action",
+												data: $registerForm.serialize(),
+												type: "POST",
+												dataType: "json",
+												cache: false,
+												success: function(data) {
+													if (data.status == "success") {
+														$.dialog({type: data.status, content: data.message});
+														window.location.href ="${base}/card/member_center!index.action";
+													}else{
+														$.dialog({type: data.status, content: data.message});
+														return false;
+													}
+												}
+											});
+											return false;
+										} else {
+											$registerMemberUsername.focus();
+											$.dialog({type: "warn", content: "推荐人不存在,请重新输入!"});
+											$registerCaptchaImage.attr("src", xxs.base + "/captcha.jpeg?timestamp" + (new Date()).valueOf());
+											return false;
+										}
+									}
+								});
+								//return false;
+							} else {
+								$registerMemberUsername.focus();
+								$.dialog({type: "warn", content: "用户名已存在,请重新输入!"});
+								$registerCaptchaImage.attr("src", xxs.base + "/captcha.jpeg?timestamp" + (new Date()).valueOf());
+								return false;
+							}
+						}
+					});
 			});
 		
 		$.showAgreement = function() {
@@ -227,7 +240,7 @@
 						<tr>
 							<th>&nbsp;</th>
 							<td>
-								<input type="submit" id="submitButton" class="formButton" value="注  册" hidefocus />
+								<input type="button" id="submitButton" class="formButton" value="注  册" hidefocus />
 							</td>
 						</tr>
 					</table>

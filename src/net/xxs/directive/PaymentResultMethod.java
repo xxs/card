@@ -18,8 +18,10 @@ public class PaymentResultMethod implements TemplateMethodModel {
 	@SuppressWarnings("static-access")
 	public static String resultText(String resultcode) {
 		Map<String,String> resultMap  = new HashMap<String, String>();
+		resultMap.put("yeepaynull","状态暂无");
 		resultMap.put("yeepay1","支付成功");
 		resultMap.put("yeepay-1","支付失败");    
+		resultMap.put("yeepayforzynull","状态暂无");
 		resultMap.put("yeepayforzy-1","签名较验失败或未知错误");
 		resultMap.put("yeepayforzy0","销卡成功，订单成功");
 		resultMap.put("yeepayforzy1","销卡成功，订单失败");
@@ -59,7 +61,7 @@ public class PaymentResultMethod implements TemplateMethodModel {
 		resultMap.put("yeepayforzy3007","卡正在处理中");
 		resultMap.put("yeepayforzy3101","系统错误");
 		resultMap.put("yeepayforzy3102","卡已过期");
-		resultMap.put("ofpay","测试方法");
+		resultMap.put("ofpaynull","状态暂无");
 		resultMap.put("ofpay2000","支付成功");
 		resultMap.put("ofpay2001","数据接收成功");
 		resultMap.put("ofpay2002","不支持该卡类或者该面值的卡");
@@ -71,7 +73,7 @@ public class PaymentResultMethod implements TemplateMethodModel {
 		resultMap.put("ofpay2008","用户非法");
 		resultMap.put("ofpay2009","暂时停止该类卡或者该面值的卡交易");
 		resultMap.put("ofpay2010","充值卡无效");
-		resultMap.put("ofpay2011","支付成功，十几面值{0}元");
+		resultMap.put("ofpay2011","支付成功，实际面值{0}元");
 		resultMap.put("ofpay2012","网络出错");
 		resultMap.put("ofpay2013","系统繁忙");
 		resultMap.put("ofpay2014","不存在该笔订单");
@@ -89,6 +91,9 @@ public class PaymentResultMethod implements TemplateMethodModel {
 			String str = arguments.get(0).toString();
 			return new SimpleScalar(resultText(str));
 		} else if (arguments.size() == 2) {
+			if("".equals(arguments.get(1).toString())||arguments.get(1).toString().isEmpty()){
+				arguments.set(1, "null");
+			}
 			String str = arguments.get(0).toString()+arguments.get(1).toString();
 			System.out.println("字符串为："+str);
 			return new SimpleScalar(resultText(str));

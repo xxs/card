@@ -38,7 +38,6 @@ import org.apache.commons.lang.StringUtils;
 import org.apache.struts2.convention.annotation.InterceptorRef;
 import org.apache.struts2.convention.annotation.InterceptorRefs;
 import org.apache.struts2.convention.annotation.ParentPackage;
-import org.apache.struts2.convention.annotation.Result;
 
 import com.opensymphony.xwork2.interceptor.annotations.InputConfig;
 import com.opensymphony.xwork2.validator.annotations.RequiredFieldValidator;
@@ -135,13 +134,12 @@ public class OrderAction extends BaseCardAction {
 		Brand brand = product.getCards().getBrand();//为order准备brandId
 		PaymentDiscount paymentDiscount = paymentDiscountService.getPaymentDiscountByPaymentConfigAndBrand(paymentConfig, brand);
 		if (null == paymentDiscount){
-			addActionError("通道信息异常!请与客服联系解决！");
-			return ERROR;
+			addActionError("");
+			return ajax(Status.error,"通道信息异常!请与客服联系解决！");
 		}
 		if(!"0".equals(paymentDiscount.getFace())){
 			if (containsAny(paymentDiscount.getFace(),String.valueOf(product.getPrice().intValue()))){
-				addActionError(paymentConfig.getName()+"暂不支持名额为："+product.getPrice()+"元的"+product.getCards().getName());
-				return ERROR;
+				return ajax(Status.error,paymentConfig.getName()+"暂不支持名额为："+product.getPrice()+"元的"+product.getCards().getName());
 			}
 		}
 		//生成订单
@@ -194,11 +192,10 @@ public class OrderAction extends BaseCardAction {
 			paymentResult = paymentProduct.cardPay(paymentConfig,payment.getPaymentSn(), order, getRequest());
 		} catch (Exception e) {
 			addActionError("订单支付提交失败!"+paymentResult.getReason());
-			return ERROR;
+			return ajax(Status.error,"订单支付提交失败!"+paymentResult.getReason());
 		}
 		if ((paymentResult == null || StringUtils.isEmpty(paymentResult.getOrderSn()))){
-			addActionError("缺失支付单号!");
-			return ERROR;
+			return ajax(Status.error,"订单支付提交失败!"+paymentResult.getReason());
 		}
 		payment = paymentService.getPaymentByPaymentSn(paymentResult.getOrderSn());
 		System.out.println("payment result:"+payment.getId());
@@ -216,7 +213,7 @@ public class OrderAction extends BaseCardAction {
 		}else{
 			System.out.println("订单状态未变化");
 		}
-		return SUCCESS;
+		return ajax(Status.success,"提交成功");
 	}
 	//保存提交的充值卡订单
 	@Validations(
@@ -235,12 +232,10 @@ public class OrderAction extends BaseCardAction {
 		try {
 			cardList = jiexi(cardString);
 		} catch (Exception e) {
-			addActionError("卡号组解析异常，请严格按照给定的格式填写!");
-			return ERROR;
+			return ajax(Status.error,"卡号组解析异常，请严格按照给定的格式填写!");
 		}
 		if(null == cardList){
-			addActionError("请至少输入一个卡密组合!");
-			return ERROR;
+			return ajax(Status.error,"请至少输入一个卡密组合!");
 		}
 		Member loginMember = getLoginMember();
 		Product product = productService.load(productId);
@@ -249,13 +244,11 @@ public class OrderAction extends BaseCardAction {
 		Brand brand = product.getCards().getBrand();//为order准备brandId
 		PaymentDiscount paymentDiscount = paymentDiscountService.getPaymentDiscountByPaymentConfigAndBrand(paymentConfig, brand);
 		if (null == paymentDiscount){
-			addActionError("通道信息异常!请与客服联系解决！");
-			return ERROR;
+			return ajax(Status.error,"通道信息异常!请与客服联系解决！");
 		}
 		if(!"0".equals(paymentDiscount.getFace())){
 			if (containsAny(paymentDiscount.getFace(),String.valueOf(product.getPrice().intValue()))){
-				addActionError(paymentConfig.getName()+"暂不支持名额为："+product.getPrice()+"元的"+product.getCards().getName());
-				return ERROR;
+				return ajax(Status.error,paymentConfig.getName()+"暂不支持名额为："+product.getPrice()+"元的"+product.getCards().getName());
 			}
 		}
 		for (int i = 0; i < cardList.size(); i++) {
@@ -309,13 +302,10 @@ public class OrderAction extends BaseCardAction {
 			try {
 				paymentResult = paymentProduct.cardPay(paymentConfig,payment.getPaymentSn(), order, getRequest());
 			} catch (Exception e) {
-				addActionError("订单支付提交失败!");
-				return ERROR;
+				return ajax(Status.error,"订单支付提交失败!");
 			}
-			
 			if ((paymentResult == null || StringUtils.isEmpty(paymentResult.getOrderSn()))){
-				addActionError("缺失支付单号!");
-				return ERROR;
+				return ajax(Status.error,"缺失支付单号!");
 			}
 			payment = paymentService.getPaymentByPaymentSn(paymentResult.getOrderSn());
 			order = payment.getOrder();
@@ -333,7 +323,7 @@ public class OrderAction extends BaseCardAction {
 				System.out.println("订单状态未变化");
 			}
 		}
-		return SUCCESS;
+		return ajax(Status.success,"提交成功");
 	}
 	//查询订单最新状态
 	@Validations(
@@ -400,6 +390,7 @@ public class OrderAction extends BaseCardAction {
 			map.put("id", order.getId());
 			map.put("orderStatus", order.getOrderStatus().toString());
 			map.put("retCode", PaymentResultMethod.resultText(order.getPaymentConfig().getPaymentProductId()+order.getRetCode()));
+//			System.out.println(order.getPaymentConfig().getPaymentProductId()+"||"+order.getRetCode()+"||"+order.getPaymentConfig().getPaymentProductId()+order.getRetCode()+"||"+PaymentResultMethod.resultText(order.getPaymentConfig().getPaymentProductId()+order.getRetCode()));
 			optionList.add(map);
 			
 		}

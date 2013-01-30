@@ -8,13 +8,73 @@
 <#include "/WEB-INF/template/card/member_head.ftl">
 <script type="text/javascript">
 $().ready( function() {
+			var $queryForm = $("#queryForm");
+			var $queryBtn = $("#queryBtn");
+			$queryBtn.click( function() {
+				$.ajax({
+					url: "query!query.action",
+					data: $queryForm.serialize(),
+					type: "POST",
+					dataType: "json",
+					cache: false,
+					beforeSend: function(data) {
+						$queryBtn.attr("disabled", true);
+					},
+					success: function(data) {
+						if (data.status == "success") {
+							$.dialog({type: data.status, content: data.message, modal: true, autoCloseTime: 3000});
+						} else {
+							$.dialog({type: data.status, content: data.message, modal: true, autoCloseTime: 3000});
+						}
+						$queryBtn.attr("disabled", false);
+					}
+				});
+				return false;
+			});
+		var $refForm = $("#refForm");
+		var $refBtn = $("#refBtn");
+		var $status = $(".state");
+		var $recode = $(".recode");
+	
+		$refBtn.click( function() {
+			$.ajax({
+				url: "order!Lquery.action",
+				data: $refForm.serialize(),
+				type: "POST",
+				dataType: "json",
+				cache: false,
+				beforeSend: function(data) {
+					$recode.html('<span class="loadingIcon">&nbsp;</span>刷新中');
+					//$status.html('<span class="loadingIcon">&nbsp;</span>刷新中');
+					$refBtn.attr("disabled", true);
+				},
+				success: function(data) {
+					if (data.status == "success") {
+						var object = eval("("+data.message+")");
+						$.each(object,function(index,item){
+					      // alert(item.id+""+index);
+					       //$("#ss"+item.id).text(item.orderStatus);
+					       $("#rr"+item.id).text(item.retCode);
+					    })
+						//$status.text(data.message);
+						//$.dialog({type: data.status, content: '刷新成功', modal: true, autoCloseTime: 3000});
+					} else {
+						$status.text("刷新失败");
+						$recode.text("刷新失败");
+						$.dialog({type: data.status, content: '刷新超时', modal: true, autoCloseTime: 3000});
+					}
+					$refBtn.attr("disabled", false);
+				}
+			});
+			return false;
+		});		
 });
 </script>
 </head>
 <body class="memberCenter">
 	<#include "/WEB-INF/template/card/member_header.ftl">
 	<div class="content">
-	<div class="contentLeft" style="min-height:200px;">
+	<div class="contentLeft" style="min-height:320px;">
 		<#include "/WEB-INF/template/card/menu_order.ftl">
 	</div>
 	<div class="contentRight">
@@ -90,11 +150,70 @@ $().ready( function() {
 					</tr>	
 				</table>
 				</form>
+				<form id="queryForm" >
+				<table class="stateTable">
+					<tr>
+						<th>开始时间：</th>
+						<td >
+							<input name="beginDate" onclick="WdatePicker()" value="<#if beginDate??>${beginDate}</#if>" />
+						</td>
+						<th>结束时间：</th>
+						<td >
+							<input name="endDate" onclick="WdatePicker()" value="<#if endDate??>${endDate}</#if>" />
+						</td>
+					</tr>
+					<tr>
+						<th>充值卡品牌</th>
+						<td>
+							<select name="order.brandId">
+								<option value="">请选择...</option>
+								<#list allBrandList as brand>
+									<option value="${brand.id}" <#if order??><#if brand.id == order.brandId> selected</#if></#if>>
+										${brand.name}
+									</option>
+								</#list>
+							</select>
+						</td>	
+						<th>单据通道</th>
+						<td>
+							<select name="order.paymentConfig.id">
+								<option value="">请选择...</option>
+								<#list allPaymentConfigList as paymentConfig>
+									<option value="${paymentConfig.id}" <#if order??><#if paymentConfig == order.paymentConfig> selected</#if></#if>>
+										${paymentConfig.name}
+									</option>
+								</#list>
+							</select>
+						</td>
+					</tr>
+					<tr>
+						<th>单据状态</th>
+						<td>
+							<select name="order.orderStatus">
+								<option value="">请选择...</option>
+								<#list orderStatusList as orderStatus> 
+									<option value="${orderStatus}" <#if order??><#if order.orderStatus == orderStatus>selected="selected"</#if></#if> >
+										${action.getText("OrderStatus." + orderStatus)}
+									</option>
+								</#list>
+							</select>
+						</td>	
+					</tr>	
+					<tr>
+						<td>
+						</td>	
+						<td colspan="3" align="center">
+							<input type="button" id="queryBtn" class="formButton" value="查询" />	
+						</td>
+					</tr>	
+				</table>
+				</form>
 				</div>
 			</div>
 		</div>
 	</div>
 	<div class="memberCenter">
+		<form id="refForm" >
 			<table class="listTable tabContent">
 				<tr>
 							<th>订单编号</th>
@@ -104,7 +223,7 @@ $().ready( function() {
 							<th>充值卡卡号</th>
 							<th>订单金额</th>
 							<th>订单状态</th>
-							<th>状态</th>
+							<th><input class="formButton red" id="refBtn" type="button" value="刷新订单"/></th>
 						</tr>
 						<#list pager.result as order>
 							<tr>
@@ -128,21 +247,25 @@ $().ready( function() {
 								<td>
 									${order.amount?string(currencyFormat)}
 								</td>
-								<td class="steteText">
-									<#if order.orderStatus == "paid">
-										<span class="green">[${action.getText("OrderStatus." + order.orderStatus)}]</span>
-									<#else>
-										<span class="red"> [${action.getText("OrderStatus." + order.orderStatus)}] </span>
-									</#if>
-								</td>
 								<td>
-									<span title="${order.retCode}">
+									<span class="state" id="ss${order.id}">
+									<#if order.orderStatus == "paid">
+										<span class="green">${action.getText("OrderStatus." + order.orderStatus)}</span>
+									<#else>
+										<span class="red"> ${action.getText("OrderStatus." + order.orderStatus)}</span>
+									</#if>
+									</span>
+								</td>
+								<td  width="250">
+									<input type="hidden" name="ids" value="${order.id}"/>
+									<span class="recode" id="rr${order.id}" title="${order.retCode}">
 										${resultText(order.paymentConfig.paymentProductId,order.retCode)}
 									</span>
 								</td>
 							</tr>
 						</#list>	
 				</table>
+				</form>
 				<@pagination pager=pager baseUrl="/card/order!list.action">
          			<#include "/WEB-INF/template/card/pager.ftl">
          		</@pagination>
