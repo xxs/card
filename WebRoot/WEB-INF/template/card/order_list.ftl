@@ -5,6 +5,7 @@
 <title>订单列表<#if setting.isShowPoweredInfo> - XXS</#if></title>
 <meta name="Author" content="XXS-DW" />
 <meta name="Copyright" content="XXS" />
+<script type="text/javascript" src="${base}/template/common/datePicker/WdatePicker.js"></script>
 <#include "/WEB-INF/template/card/member_head.ftl">
 <script type="text/javascript">
 $().ready( function() {
