@@ -452,7 +452,7 @@ public class MemberAction extends BaseCardAction {
 	// 会员注册页面
 	public String register() throws Exception {
 		if(null != id && !id.isEmpty()){
-			member = memberService.get(id);
+			member = memberService.getMemberByUsername(id);
 			return "register";
 		}else{
 			member = memberService.getMemberByUsername("123123");

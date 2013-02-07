@@ -19,5 +19,16 @@
 		<from>^/card/leave_message.htm$</from>
 		<to type="forward">/card/leave_message!list.action</to>
 	</rule>
-
+	
+	<rule>
+		<note>成功案例</note>
+		<from>^/card/deposit_success.htm$</from>
+		<to type="forward">/card/deposit!successList.action</to>
+	</rule>
+	
+	<rule>
+		<note>推广注册</note>
+		<from>^/(\w+).htm$</from>
+		<to type="forward">/card/member!register.action?id=$1</to>
+	</rule>
 </urlrewrite>
