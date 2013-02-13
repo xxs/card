@@ -455,7 +455,6 @@ public class MemberAction extends BaseCardAction {
 			member = memberService.get(id);
 			return "register";
 		}else{
-			member = memberService.getMemberByUsername("123123");
 			return REGISTER;
 		}
 	}

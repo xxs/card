@@ -77,6 +77,9 @@
 						<a href="#" class="sort" name="isHot" hidefocus>热销</a>
 					</th>
 					<th>
+						<a href="#" class="sort" name="orderList" hidefocus>排序</a>
+					</th>
+					<th>
 						<span>操作</span>
 					</th>
 				</tr>
@@ -109,12 +112,10 @@
 							<span class="${cards.isHot?string('true','false')}Icon">&nbsp;</span>
 						</td>
 						<td>
+							<span >${cards.orderList}</span>
+						</td>
+						<td>
 							<a href="cards!edit.action?id=${cards.id}" title="编辑">[编辑]</a>
-							<#if cards.isMarketable>
-								<a href="${base}${cards.htmlPath}" target="_blank" title="浏览">[浏览]</a>
-							<#else>
-								<span title="未上架">[未上架]</span>
-							</#if>
 						</td>
 					</tr>
 				</#list>

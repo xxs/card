@@ -23,6 +23,7 @@ public class Pager {
 	private Order order;// 排序方式
 
 	private int totalCount;// 总记录数
+	private int totalMoney;// 总记金额
 	private List<?> result;// 返回结果
 	
 	// 获取总页数
@@ -96,6 +97,14 @@ public class Pager {
 
 	public void setTotalCount(int totalCount) {
 		this.totalCount = totalCount;
+	}
+	
+	public int getTotalMoney() {
+		return totalMoney;
+	}
+
+	public void setTotalMoney(int totalMoney) {
+		this.totalMoney = totalMoney;
 	}
 
 	public List<?> getResult() {

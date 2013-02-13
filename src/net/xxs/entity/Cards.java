@@ -54,6 +54,7 @@ public class Cards extends BaseEntity {
 	private String name;// 充值卡名称
 	private BigDecimal price;// 销售价
 	private Integer score;// 积分
+	private Integer orderList;// 排序
 	private Boolean isMarketable;// 是否上架
 	private Boolean isBest;// 是否为精品充值卡
 	private Boolean isNew;// 是否为新品充值卡
@@ -106,6 +107,13 @@ public class Cards extends BaseEntity {
 
 	public void setScore(Integer score) {
 		this.score = score;
+	}
+	public Integer getOrderList() {
+		return orderList;
+	}
+
+	public void setOrderList(Integer orderList) {
+		this.orderList = orderList;
 	}
 	
 	@SearchableProperty(store = Store.YES, index = Index.ANALYZED)
@@ -270,6 +278,9 @@ public class Cards extends BaseEntity {
 		if (score == null || score < 0) {
 			score = 0;
 		}
+		if (orderList == null || orderList < 0) {
+			orderList = 0;
+		}
 		if (isMarketable == null) {
 			isMarketable = false;
 		}
@@ -301,6 +312,9 @@ public class Cards extends BaseEntity {
 		}
 		if (score == null || score < 0) {
 			score = 0;
+		}
+		if (orderList == null || orderList < 0) {
+			orderList = 0;
 		}
 		if (isMarketable == null) {
 			isMarketable = false;

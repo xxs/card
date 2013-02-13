@@ -39,7 +39,7 @@ public class CardsDaoImpl extends BaseDaoImpl<Cards, String> implements
 	public List<Cards> getCardsList(Integer maxResults) {
 		Query query = null;
 
-		String hql = "from Cards as cards where cards.isMarketable = :isMarketable order by cards.createDate desc";
+		String hql = "from Cards as cards where cards.isMarketable = :isMarketable order by cards.orderList asc";
 		query = getSession().createQuery(hql);
 		query.setParameter("isMarketable", true);
 		if (maxResults != null) {

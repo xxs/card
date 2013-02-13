@@ -670,6 +670,15 @@ $().ready(function() {
 				</tr>
 				<tr>
 					<th>
+						排序: 
+					</th>
+					<td>
+						<input type="text" name="cards.orderList" class="formText" value="${(cards.orderList)!}" />
+						<label class="requireField">*</label>
+					</td>
+				</tr>
+				<tr>
+					<th>
 						页面关键词: 
 					</th>
 					<td>
