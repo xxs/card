@@ -99,6 +99,15 @@
 			<logoPath>/template/admin/images/payment/ofpay_icon.gif</logoPath>  
 			<className>net.xxs.payment.OfPay</className> 
 		</ofpay>  
+		<szfpay> 
+			<name>神州付直连接口</name>  
+			<description>神州付直连接口</description>  
+			<bargainorIdName>商户编号</bargainorIdName>  
+			<bargainorKeyName>密钥</bargainorKeyName>  
+			<currencyTypes>CNY</currencyTypes>  
+			<logoPath>/template/admin/images/payment/szfpay_icon.gif</logoPath>  
+			<className>net.xxs.payment.SzfPay</className> 
+		</szfpay>  
 	</paymentProduct>  
 	<logConfig> 
 		<item operation="系统设置" actionClass="net.xxs.action.admin.SettingAction" actionMethod="update"/>  
