@@ -38,7 +38,7 @@ public class YeepayForZY extends BasePaymentProduct {
 	}
 
 	@Override
-	public String getPaymentSn(HttpServletRequest httpServletRequest) {
+	public String getOrderSn(HttpServletRequest httpServletRequest) {
 		if (httpServletRequest == null) {
 			return null;
 		}
@@ -176,17 +176,16 @@ public class YeepayForZY extends BasePaymentProduct {
 	 * @return
 	 */
 	@Override
-	public PaymentResult cardPay(PaymentConfig paymentConfig, String paymentSn,
-			Order order, HttpServletRequest httpServletRequest) {
+	public PaymentResult cardPay(PaymentConfig paymentConfig,Order order, HttpServletRequest httpServletRequest) {
 		String p0_Cmd = P0_CMD; // 业务类型（非银行卡专业版支付请求固定值“ChargeCardDirect”）
 		String p1_MerId = paymentConfig.getBargainorId(); // 商户编号
-		String p2_Order = paymentSn;// 商户订单号
+		String p2_Order = order.getOrderSn();// 商户订单号
 		String p3_Amt = order.getAmount().toString();// 支付金额（单位：元）
 		String p4_verifyAmt = "false";// 是否校验金额 （值：true校验金额; false不校验金额）
-		String p5_Pid = paymentSn;// 充值卡名称(选填项)
-		String p6_Pcat = paymentSn;// 充值卡种类(选填项)
-		String p7_Pdesc = paymentSn;// 充值卡描述(选填项)
-		String p8_Url = SettingUtil.getSetting().getCardUrl() + RETURN_URL + "?paymentsn=" + paymentSn;// 回调处理URL
+		String p5_Pid = "";// 充值卡名称(选填项)
+		String p6_Pcat = "";// 充值卡种类(选填项)
+		String p7_Pdesc = "";// 充值卡描述(选填项)
+		String p8_Url = SettingUtil.getSetting().getCardUrl() + RETURN_URL + "?ordersn=" + order.getOrderSn();// 回调处理URL
 		String pa_MP = "";// 扩展信息(选填项)
 		String pa7_cardAmt = order.getAmount().toString();// 面额组合
 		String pa8_cardNo = order.getCardNum();// 卡号组合

@@ -17,7 +17,6 @@ import net.xxs.entity.Order;
 import net.xxs.entity.Order.OrderStatus;
 import net.xxs.entity.OrderLog;
 import net.xxs.entity.OrderLog.OrderLogType;
-import net.xxs.entity.Payment;
 import net.xxs.entity.PaymentConfig;
 import net.xxs.entity.PaymentDiscount;
 import net.xxs.entity.Product;
@@ -28,7 +27,6 @@ import net.xxs.service.OrderLogService;
 import net.xxs.service.OrderService;
 import net.xxs.service.PaymentConfigService;
 import net.xxs.service.PaymentDiscountService;
-import net.xxs.service.PaymentService;
 import net.xxs.service.ProductService;
 import net.xxs.util.JsonUtil;
 import net.xxs.util.PaymentProductUtil;
@@ -59,8 +57,6 @@ public class OrderAction extends BaseCardAction {
 	
 	private static final long serialVersionUID = 2553137844831167917L;
 	
-	
-	
 	private String productId;//充值卡编码
 	private String cardNum;//卡号
 	private String cardPwd;//密码
@@ -74,14 +70,11 @@ public class OrderAction extends BaseCardAction {
 	private PaymentConfig paymentConfig;// 支付方式
 	private Order order;// 订单
 	private PaymentResult paymentResult;// 支付返回参数
-	private Payment payment;
 	
 	@Resource(name = "paymentConfigServiceImpl")
 	private PaymentConfigService paymentConfigService;
 	@Resource(name = "paymentDiscountServiceImpl")
 	private PaymentDiscountService paymentDiscountService;
-	@Resource(name = "paymentServiceImpl")
-	private PaymentService paymentService;
 	@Resource(name = "orderServiceImpl")
 	private OrderService orderService;
 	@Resource(name = "orderLogServiceImpl")
@@ -173,23 +166,9 @@ public class OrderAction extends BaseCardAction {
 		BasePaymentProduct paymentProduct = PaymentProductUtil.getPaymentProduct(paymentConfig.getPaymentProductId());
 		String bankName = paymentProduct.getName();
 		String bankAccount = paymentConfig.getBargainorId();
-		payment = new Payment();
-		payment.setPaymentConfigName(paymentConfig.getName());
-		payment.setBankName(bankName);
-		payment.setBankAccount(bankAccount);
-		payment.setAmount(order.getAmount());
-		payment.setPayer(getLoginMember().getUsername());
-		payment.setOperator(null);
-		payment.setMemo(null);
-		payment.setPaymentStatus(net.xxs.entity.Payment.PaymentStatus.ready);
-		payment.setMember(loginMember);
-		payment.setPaymentConfig(paymentConfig);
-		payment.setDeposit(null);
-		payment.setOrder(order);
-		paymentService.save(payment);
 		//发送支付信息
 		try {
-			paymentResult = paymentProduct.cardPay(paymentConfig,payment.getPaymentSn(), order, getRequest());
+			paymentResult = paymentProduct.cardPay(paymentConfig,order, getRequest());
 		} catch (Exception e) {
 			addActionError("订单支付提交失败!"+paymentResult.getReason());
 			return ajax(Status.error,"订单支付提交失败!"+paymentResult.getReason());
@@ -197,9 +176,7 @@ public class OrderAction extends BaseCardAction {
 		if ((paymentResult == null || StringUtils.isEmpty(paymentResult.getOrderSn()))){
 			return ajax(Status.error,"订单支付提交失败!"+paymentResult.getReason());
 		}
-		payment = paymentService.getPaymentByPaymentSn(paymentResult.getOrderSn());
-		System.out.println("payment result:"+payment.getId());
-		order = payment.getOrder();
+		order = orderService.getOrderByOrderSn(paymentResult.getOrderSn());
 		if(StringUtils.isEmpty(order.getRetCode())||!paymentResult.getCode().equals(order.getRetCode())){
 			if(paymentResult.getIsSuccess()){
 				order.setOrderStatus(OrderStatus.paymenting);
@@ -284,31 +261,16 @@ public class OrderAction extends BaseCardAction {
 			BasePaymentProduct paymentProduct = PaymentProductUtil.getPaymentProduct(paymentConfig.getPaymentProductId());
 			String bankName = paymentProduct.getName();
 			String bankAccount = paymentConfig.getBargainorId();
-			payment = new Payment();
-			payment.setPaymentConfigName(paymentConfig.getName());
-			payment.setBankName(bankName);
-			payment.setBankAccount(bankAccount);
-			payment.setAmount(order.getAmount());
-			payment.setPayer(getLoginMember().getUsername());
-			payment.setOperator(null);
-			payment.setMemo(null);
-			payment.setPaymentStatus(net.xxs.entity.Payment.PaymentStatus.ready);
-			payment.setMember(loginMember);
-			payment.setPaymentConfig(paymentConfig);
-			payment.setDeposit(null);
-			payment.setOrder(order);
-			paymentService.save(payment);
 			//发送支付信息
 			try {
-				paymentResult = paymentProduct.cardPay(paymentConfig,payment.getPaymentSn(), order, getRequest());
+				paymentResult = paymentProduct.cardPay(paymentConfig,order, getRequest());
 			} catch (Exception e) {
 				return ajax(Status.error,"订单支付提交失败!");
 			}
 			if ((paymentResult == null || StringUtils.isEmpty(paymentResult.getOrderSn()))){
 				return ajax(Status.error,"缺失支付单号!");
 			}
-			payment = paymentService.getPaymentByPaymentSn(paymentResult.getOrderSn());
-			order = payment.getOrder();
+			order = orderService.getOrderByOrderSn(paymentResult.getOrderSn());
 			if(StringUtils.isEmpty(order.getRetCode())||!paymentResult.getCode().equals(order.getRetCode())){
 				if(paymentResult.getIsSuccess()){
 					order.setOrderStatus(OrderStatus.paymenting);
@@ -344,7 +306,7 @@ public class OrderAction extends BaseCardAction {
 				BasePaymentProduct paymentProduct = PaymentProductUtil.getPaymentProduct(paymentConfig.getPaymentProductId());
 				//发送查询请求
 				try {
-					paymentResult = paymentProduct.cardQuery(paymentConfig,order.getPayment().getPaymentSn(), getRequest());
+					paymentResult = paymentProduct.cardQuery(paymentConfig,order.getOrderSn(), getRequest());
 				} catch (Exception e) {
 					addActionError("订单支付提交失败!");
 					return ERROR;
@@ -353,8 +315,7 @@ public class OrderAction extends BaseCardAction {
 					addActionError("缺失支付单号!");
 					return ERROR;
 				}
-				payment = paymentService.getPaymentByPaymentSn(paymentResult.getOrderSn());
-				order = payment.getOrder();
+				order = orderService.getOrderByOrderSn(paymentResult.getOrderSn());
 				if(StringUtils.isEmpty(order.getRetCode())||!paymentResult.getCode().equals(order.getRetCode())){
 					order.setRetCode(paymentResult.getCode());
 					order.setRetMsg(paymentResult.getReturnMsg());
@@ -495,12 +456,6 @@ public class OrderAction extends BaseCardAction {
 	}
 	public void setPaymentResult(PaymentResult paymentResult) {
 		this.paymentResult = paymentResult;
-	}
-	public Payment getPayment() {
-		return payment;
-	}
-	public void setPayment(Payment payment) {
-		this.payment = payment;
 	}
 	public Date getBeginDate() {
 		return beginDate;

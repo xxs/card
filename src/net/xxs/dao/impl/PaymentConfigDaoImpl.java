@@ -5,7 +5,6 @@ import java.util.Set;
 
 import net.xxs.dao.PaymentConfigDao;
 import net.xxs.entity.Order;
-import net.xxs.entity.Payment;
 import net.xxs.entity.PaymentConfig;
 import net.xxs.entity.PaymentConfig.PaymentConfigType;
 
@@ -37,13 +36,6 @@ public class PaymentConfigDaoImpl extends BaseDaoImpl<PaymentConfig, String> imp
 		if (orderSet != null) {
 			for (Order order : orderSet) {
 				order.setPaymentConfig(null);
-			}
-		}
-		
-		Set<Payment> paymentSet = paymentConfig.getPaymentSet();
-		if (paymentSet != null) {
-			for (Payment payment : paymentSet) {
-				payment.setPaymentConfig(null);
 			}
 		}
 		

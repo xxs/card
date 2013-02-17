@@ -12,7 +12,6 @@ import net.xxs.entity.PaymentConfig;
 import net.xxs.service.BrandService;
 import net.xxs.service.OrderService;
 import net.xxs.service.PaymentConfigService;
-import net.xxs.service.PaymentService;
 
 import org.apache.struts2.convention.annotation.InterceptorRef;
 import org.apache.struts2.convention.annotation.InterceptorRefs;
@@ -43,8 +42,6 @@ public class QueryAction extends BaseCardAction {
 	
 	@Resource(name = "paymentConfigServiceImpl")
 	private PaymentConfigService paymentConfigService;
-	@Resource(name = "paymentServiceImpl")
-	private PaymentService paymentService;
 	@Resource(name = "orderServiceImpl")
 	private OrderService orderService;
 	@Resource(name = "brandServiceImpl")

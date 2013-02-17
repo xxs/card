@@ -5,7 +5,6 @@ import java.util.Set;
 import net.xxs.dao.MemberDao;
 import net.xxs.entity.Member;
 import net.xxs.entity.Order;
-import net.xxs.entity.Payment;
 
 import org.springframework.stereotype.Repository;
 
@@ -50,13 +49,6 @@ public class MemberDaoImpl extends BaseDaoImpl<Member, String> implements Member
 		if (orderSet != null) {
 			for (Order order : orderSet) {
 				order.setMember(null);
-			}
-		}
-		
-		Set<Payment> paymentSet = member.getPaymentSet();
-		if (paymentSet != null) {
-			for (Payment payment : paymentSet) {
-				payment.setMember(null);
 			}
 		}
 		

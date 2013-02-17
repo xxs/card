@@ -49,7 +49,7 @@ public abstract class BasePaymentProduct {
 	 * 
 	 * @return 支付编号
 	 */
-	public abstract String getPaymentSn(HttpServletRequest httpServletRequest);
+	public abstract String getOrderSn(HttpServletRequest httpServletRequest);
 	
 	/**
 	 * 获取支付金额（单位：元）
@@ -110,7 +110,7 @@ public abstract class BasePaymentProduct {
 	 * 
 	 * @return 结果PayMentResult
 	 */
-	public abstract PaymentResult cardPay(PaymentConfig paymentConfig, String paymentSn, Order order, HttpServletRequest httpServletRequest);
+	public abstract PaymentResult cardPay(PaymentConfig paymentConfig, Order order, HttpServletRequest httpServletRequest);
 	
 	/**
 	 *  点卡支付结果查询
@@ -126,7 +126,7 @@ public abstract class BasePaymentProduct {
 	 * 
 	 * @return 结果PayMentResult
 	 */
-	public abstract PaymentResult cardQuery(PaymentConfig paymentConfig, String paymentSn, HttpServletRequest httpServletRequest);
+	public abstract PaymentResult cardQuery(PaymentConfig paymentConfig, String orderSn, HttpServletRequest httpServletRequest);
 
 	/**
 	 * 验证签名

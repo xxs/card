@@ -22,6 +22,12 @@ public interface OrderDao extends BaseDao<Order, String> {
 	 * @return 订单编号
 	 */
 	public String getLastOrderSn();
+	/**
+	 * 根据订单号获取订单
+	 * 
+	 * @return 订单
+	 */
+	public Order getOrderByOrderSn(String orderSn);
 	
 	/**
 	 * 根据Member、Pager获取订单分页对象

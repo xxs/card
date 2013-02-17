@@ -97,7 +97,6 @@ public class Member extends BaseEntity {
 	private Set<Message> inboxMessageSet = new HashSet<Message>();// 收件箱消息
 	private Set<Message> outboxMessageSet = new HashSet<Message>();// 发件箱消息
 	private Set<Order> orderSet = new HashSet<Order>();// 订单
-	private Set<Payment> paymentSet = new HashSet<Payment>();// 支付
 	private Set<Deposit> depositSet = new HashSet<Deposit>();// 预存款
 	//新添加选项
 	private Set<MemberBank> memberBankSet = new HashSet<MemberBank>();//银行卡信息
@@ -514,16 +513,6 @@ public class Member extends BaseEntity {
 
 	public void setOrderSet(Set<Order> orderSet) {
 		this.orderSet = orderSet;
-	}
-
-	@OneToMany(mappedBy = "member", fetch = FetchType.LAZY)
-	@OrderBy("createDate asc")
-	public Set<Payment> getPaymentSet() {
-		return paymentSet;
-	}
-
-	public void setPaymentSet(Set<Payment> paymentSet) {
-		this.paymentSet = paymentSet;
 	}
 
 	@OneToMany(mappedBy = "member", fetch = FetchType.LAZY, cascade = {CascadeType.REMOVE})

@@ -38,7 +38,7 @@ public class Yeepay extends BasePaymentProduct {
 	}
 	
 	@Override
-	public String getPaymentSn(HttpServletRequest httpServletRequest) {
+	public String getOrderSn(HttpServletRequest httpServletRequest) {
 		if (httpServletRequest == null) {
 			return null;
 		}
@@ -227,8 +227,7 @@ public class Yeepay extends BasePaymentProduct {
 	}
 
 	@Override
-	public PaymentResult cardPay(PaymentConfig paymentConfig, String paymentSn,
-			Order order, HttpServletRequest httpServletRequest) {
+	public PaymentResult cardPay(PaymentConfig paymentConfig,Order order, HttpServletRequest httpServletRequest) {
 		return null;
 	}
 

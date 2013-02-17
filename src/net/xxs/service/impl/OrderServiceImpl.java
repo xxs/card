@@ -47,5 +47,9 @@ public class OrderServiceImpl extends BaseServiceImpl<Order, String> implements 
 			Pager pager) {
 		return orderDao.getOrderPager(beginDate, endDate, order, pager);
 	}
+
+	public Order getOrderByOrderSn(String orderSn) {
+		return orderDao.getOrderByOrderSn(orderSn);
+	}
 	
 }

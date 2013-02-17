@@ -94,4 +94,14 @@ public class OrderDaoImpl extends BaseDaoImpl<Order, String> implements
 		return super.findPager(pager,c);
 	}
 
+	public Order getOrderByOrderSn(String orderSn) {
+		String hql = "from Order as order where lower(order.orderSn) = lower(:ordersn)";
+		Order order = (Order)getSession().createQuery(hql).setParameter("ordersn", orderSn).uniqueResult();
+		if (order != null) {
+			return order;
+		} else {
+			return null;
+		}
+	}
+
 }

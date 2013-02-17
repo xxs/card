@@ -37,7 +37,7 @@ public class Deposit extends BaseEntity {
 	private String orderSn;// 被推荐人操作的订单号 (只有提现单涉及，记录预存款来源)
 	
 	private Member member;// 会员
-	private Payment payment;// 收款
+	private Order order;// 订单
 	
 	@Enumerated
 	@Column(nullable = false, updatable = false)
@@ -112,13 +112,15 @@ public class Deposit extends BaseEntity {
 	}
 
 	@OneToOne(mappedBy = "deposit", fetch = FetchType.LAZY, cascade = {CascadeType.REMOVE})
-	@ForeignKey(name = "fk_deposit_payment")
-	public Payment getPayment() {
-		return payment;
+	@ForeignKey(name = "fk_deposit_order")
+	public Order getOrder() {
+		return order;
 	}
 
-	public void setPayment(Payment payment) {
-		this.payment = payment;
+	public void setOrder(Order order) {
+		this.order = order;
 	}
+
+	
 
 }

@@ -215,13 +215,13 @@ public class MemberAction extends BaseAdminAction {
 			deposit.setDebit(new BigDecimal(0));
 			deposit.setBalance(member.getDeposit());
 			deposit.setMember(member);
-			deposit.setPayment(null);
+			deposit.setOrder(null);
 			System.out.println(deposit.getDepositType());
 			System.out.println(deposit.getCredit());
 			System.out.println(deposit.getDebit());
 			System.out.println(deposit.getBalance());
 			System.out.println(deposit.getMember().getUsername());
-			System.out.println(deposit.getPayment());
+			System.out.println(deposit.getOrder());
 			
 			depositService.save(deposit);
 		}
@@ -330,14 +330,14 @@ public class MemberAction extends BaseAdminAction {
 			deposit.setDebit(new BigDecimal(0));
 			deposit.setBalance(currentDeposit);
 			deposit.setMember(persistent);
-			deposit.setPayment(null);
+			deposit.setOrder(null);
 			
 			System.out.println(deposit.getDepositType());
 			System.out.println(deposit.getCredit());
 			System.out.println(deposit.getDebit());
 			System.out.println(deposit.getBalance());
 			System.out.println(deposit.getMember().getUsername());
-			System.out.println(deposit.getPayment());
+			System.out.println(deposit.getOrder());
 			
 			depositService.save(deposit);
 		} else if (member.getDeposit().compareTo(previousDeposit) < 0) {
@@ -347,14 +347,14 @@ public class MemberAction extends BaseAdminAction {
 			deposit.setDebit(previousDeposit.subtract(currentDeposit));
 			deposit.setBalance(currentDeposit);
 			deposit.setMember(persistent);
-			deposit.setPayment(null);
+			deposit.setOrder(null);
 			
 			System.out.println(deposit.getDepositType());
 			System.out.println(deposit.getCredit());
 			System.out.println(deposit.getDebit());
 			System.out.println(deposit.getBalance());
 			System.out.println(deposit.getMember().getUsername());
-			System.out.println(deposit.getPayment());
+			System.out.println(deposit.getOrder());
 			
 			depositService.save(deposit);
 		}

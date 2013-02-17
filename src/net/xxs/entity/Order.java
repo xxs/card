@@ -52,10 +52,13 @@ public class Order extends BaseEntity {
 	private String cardNum;//卡号
 	private String cardPwd;//密码
 	
+	private String bankName;// 收款银行名称
+	private String bankAccount;// 收款银行账号
+	
 	private Product product;// 充值卡
 	private Member member;// 会员
 	private PaymentConfig paymentConfig;// 支付方式
-	private Payment payment;// 收款
+	private Deposit deposit;// 预存款
 	
 	private Set<OrderLog> orderLogSet = new HashSet<OrderLog>();// 订单日志
 	
@@ -87,6 +90,16 @@ public class Order extends BaseEntity {
 		this.amount = amount;
 	}
 
+	@OneToOne(fetch = FetchType.LAZY)
+	@ForeignKey(name = "fk_order_deposit")
+	public Deposit getDeposit() {
+		return deposit;
+	}
+
+	public void setDeposit(Deposit deposit) {
+		this.deposit = deposit;
+	}
+	
 	@Column(nullable = false, precision = 15, scale = 5)
 	public BigDecimal getPaidAmount() {
 		return paidAmount;
@@ -168,16 +181,6 @@ public class Order extends BaseEntity {
 
 	public void setOrderLogSet(Set<OrderLog> orderLogSet) {
 		this.orderLogSet = orderLogSet;
-	}
-
-	@OneToOne(mappedBy = "order", fetch = FetchType.LAZY, cascade = {CascadeType.REMOVE})
-	@ForeignKey(name = "fk_order_payment")
-	public Payment getPayment() {
-		return payment;
-	}
-
-	public void setPayment(Payment payment) {
-		this.payment = payment;
 	}
 
 	// 保存处理

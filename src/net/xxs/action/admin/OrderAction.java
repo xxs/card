@@ -10,7 +10,6 @@ import net.xxs.entity.Order;
 import net.xxs.entity.Order.OrderStatus;
 import net.xxs.entity.OrderLog;
 import net.xxs.entity.OrderLog.OrderLogType;
-import net.xxs.entity.Payment;
 import net.xxs.entity.PaymentConfig;
 import net.xxs.service.AdminService;
 import net.xxs.service.OrderLogService;
@@ -33,7 +32,6 @@ public class OrderAction extends BaseAdminAction {
 	private static final long serialVersionUID = -2080980180511054311L;
 
 	private Order order;
-	private Payment payment;
 	private PaymentConfig paymentConfig;
 
 	@Resource(name = "orderServiceImpl")
@@ -168,14 +166,6 @@ public class OrderAction extends BaseAdminAction {
 
 	public void setOrder(Order order) {
 		this.order = order;
-	}
-
-	public Payment getPayment() {
-		return payment;
-	}
-
-	public void setPayment(Payment payment) {
-		this.payment = payment;
 	}
 
 	public PaymentConfig getPaymentConfig() {

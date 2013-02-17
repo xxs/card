@@ -45,7 +45,7 @@ public class SzfPay extends BasePaymentProduct {
 	}
 
 	@Override
-	public String getPaymentSn(HttpServletRequest httpServletRequest) {
+	public String getOrderSn(HttpServletRequest httpServletRequest) {
 		if (httpServletRequest == null) {
 			return null;
 		}
@@ -128,8 +128,7 @@ public class SzfPay extends BasePaymentProduct {
 	}
 
 	@Override
-	public PaymentResult cardPay(PaymentConfig paymentConfig, String paymentSn,
-			Order order, HttpServletRequest httpServletRequest) {
+	public PaymentResult cardPay(PaymentConfig paymentConfig,Order order, HttpServletRequest httpServletRequest) {
 		// 创建非银行卡专业版消费请求结果
 		PaymentResult paymentResult = new PaymentResult();
 		System.out.println("开始组织参数");
@@ -137,12 +136,12 @@ public class SzfPay extends BasePaymentProduct {
 		String md5key = paymentConfig.getBargainorKey();//签名密钥，是在申请为欧飞第四方支付用户的时候由系统分配的
 		String mode = PAY_MODE; // 商户编号
 		String version = VERSION;// 固定填"1.0"
-		String orderno = paymentSn;// 合作伙伴方定单号，要求系统唯一
+		String orderno = order.getOrderSn();// 合作伙伴方定单号，要求系统唯一
 		String cardcode = order.getCardCode()+String.valueOf(order.getAmount().intValue());// 卡类代码
 		System.out.println("cardcode:"+cardcode);
 		String cardno = order.getCardNum();// 充值卡的卡号
 		String cardpass = order.getCardPwd();// 充值卡密码(该参数可以使用RSA加密发送)。
-		String retaction = SettingUtil.getSetting().getCardUrl() + RETURN_URL+ "?paymentsn=" + paymentSn;// 合作伙伴的回调地址，不能包含 & ? 等特别字符,必须拥有回调地址。
+		String retaction = SettingUtil.getSetting().getCardUrl() + RETURN_URL+ "?ordersn=" + order.getOrderSn();// 合作伙伴的回调地址，不能包含 & ? 等特别字符,必须拥有回调地址。
 		String datetime = DateUtil.getNowTime();// 日期时间，格式：YYYYMMDDHHMMSS，如 20110515080808
 		String format = FORMAT;// 固定“xml”
 		System.out.println("参数完成");

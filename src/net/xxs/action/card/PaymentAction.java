@@ -12,8 +12,6 @@ import net.xxs.entity.Order;
 import net.xxs.entity.Order.OrderStatus;
 import net.xxs.entity.OrderLog;
 import net.xxs.entity.OrderLog.OrderLogType;
-import net.xxs.entity.Payment;
-import net.xxs.entity.Payment.PaymentStatus;
 import net.xxs.entity.PaymentDiscount;
 import net.xxs.payment.BasePaymentProduct;
 import net.xxs.service.BrandService;
@@ -22,7 +20,6 @@ import net.xxs.service.MemberService;
 import net.xxs.service.OrderLogService;
 import net.xxs.service.OrderService;
 import net.xxs.service.PaymentDiscountService;
-import net.xxs.service.PaymentService;
 import net.xxs.util.PaymentProductUtil;
 import net.xxs.util.SettingUtil;
 
@@ -48,16 +45,13 @@ public class PaymentAction extends BaseCardAction {
 	private static final long serialVersionUID = -4817743897444468581L;
 
 	private BigDecimal rechargeAmount;// 充值金额
-	private Payment payment;
 	private String paymentUrl;// 支付请求URL
-	private String paymentsn;// 支付编号
+	private String ordersn;// 支付编号
 	private String payreturnMessage;// 支付返回信息
 	private String paynotifyMessage;// 支付通知信息
 
 	private Order order;// 订单
 
-	@Resource(name = "paymentServiceImpl")
-	private PaymentService paymentService;
 	@Resource(name = "depositServiceImpl")
 	private DepositService depositService;
 	@Resource(name = "orderServiceImpl")
@@ -76,14 +70,12 @@ public class PaymentAction extends BaseCardAction {
 	@InputConfig(resultName = "error")
 	public String payreturn() {
 		System.out.println("支付回调处理......");
-		payment = paymentService.getPaymentByPaymentSn(paymentsn);
-		if (payment == null) {
-			addActionError("支付记录不存在!");
+		order = orderService.getOrderByOrderSn(ordersn);
+		if (order == null) {
+			addActionError("订单不存在!");
 			return ERROR;
 		}
-		BasePaymentProduct paymentProduct = PaymentProductUtil
-				.getPaymentProduct(payment.getPaymentConfig()
-						.getPaymentProductId());
+		BasePaymentProduct paymentProduct = PaymentProductUtil.getPaymentProduct(order.getPaymentConfig().getPaymentProductId());
 		if (paymentProduct == null) {
 			addActionError("支付产品不存在!");
 			return ERROR;
@@ -93,7 +85,7 @@ public class PaymentAction extends BaseCardAction {
 		boolean isSuccess = paymentProduct.isPaySuccess(getRequest());
 		payreturnMessage = paymentProduct.getPayreturnMessage(null);//获取回送关键字
 
-		if (!paymentProduct.verifySign(payment.getPaymentConfig(), getRequest())) {
+		if (!paymentProduct.verifySign(order.getPaymentConfig(), getRequest())) {
 			addActionError("支付签名错误!");
 			return ERROR;
 		}
@@ -102,25 +94,19 @@ public class PaymentAction extends BaseCardAction {
 			return ERROR;
 		}
 
-		if (payment.getPaymentStatus() == PaymentStatus.success) {
+		if (order.getOrderStatus() == OrderStatus.paid) {
 			return "result";
 		}
 		
-		if (payment.getPaymentStatus() != PaymentStatus.ready) {
+		if (order.getOrderStatus() == OrderStatus.invalid) {
 			addActionError("交易状态错误!");
 			return ERROR;
 		}
-		if (totalAmount.compareTo(payment.getAmount()) != 0) {
+		if (totalAmount.compareTo(order.getAmount()) != 0) {
 			addActionError("交易金额错误!");
 			return ERROR;
 		}
 
-		payment.setPaymentStatus(PaymentStatus.success);
-		payment.setPaySn(paymentProduct.getPaySn(getRequest()));
-		paymentService.update(payment);
-
-		System.out.println();
-		order = payment.getOrder();
 		order.setPaySn(paymentProduct.getPaySn(getRequest()));
 		order.setPaidAmount(order.getAmount().add(totalAmount));
 		order.setOrderStatus(OrderStatus.paid);
@@ -128,11 +114,11 @@ public class PaymentAction extends BaseCardAction {
 
 		// ---------支付成功后为用户添加上预存款，并计算提现率
 		System.out.println("支付金额为totalAmount：" + totalAmount);
-		Member member = payment.getMember();
+		Member member = order.getMember();
 		System.out.println("提现人为：" + member.getUsername());
 		System.out.println("用户提现前的预存款：" + member.getDeposit());
 		Brand brand = brandService.get(order.getBrandId());
-		PaymentDiscount paymentDiscount = paymentDiscountService.getPaymentDiscountByPaymentConfigAndBrand(payment.getPaymentConfig(), brand);
+		PaymentDiscount paymentDiscount = paymentDiscountService.getPaymentDiscountByPaymentConfigAndBrand(order.getPaymentConfig(), brand);
 		System.out.println("订单成功金额为：" + totalAmount);
 		BigDecimal tempAmount = new BigDecimal(0);
 		if (null == paymentDiscount) {
@@ -154,7 +140,7 @@ public class PaymentAction extends BaseCardAction {
 		deposit.setBalance(member.getDeposit());
 		deposit.setLossrate(paymentDiscount.getDiscount());
 		deposit.setMember(member);
-		deposit.setPayment(payment);
+		deposit.setOrder(order);
 		depositService.save(deposit);
 		// 为推荐人加提成
 		if (!"".equals(member.getReferrer()) && null != member.getReferrer()) {
@@ -177,12 +163,12 @@ public class PaymentAction extends BaseCardAction {
 			benefits.setReferrer(member.getUsername());
 			benefits.setOrderSn(order.getOrderSn());
 			benefits.setMember(referrerMember);
-			benefits.setPayment(payment);
+			benefits.setOrder(order);
 			depositService.save(benefits);
 		}
 
 		// 订单日志
-		String logInfo = "支付总金额: " + SettingUtil.currencyFormat(payment.getAmount());
+		String logInfo = "支付总金额: " + SettingUtil.currencyFormat(order.getAmount());
 		
 		OrderLog orderLog = new OrderLog();
 		orderLog.setOrderLogType(OrderLogType.payment);
@@ -199,9 +185,8 @@ public class PaymentAction extends BaseCardAction {
 	@InputConfig(resultName = "error")
 	public String result() {
 		System.out.println("支付结果......");
-		payment = paymentService.getPaymentByPaymentSn(paymentsn);
-		if (payment == null
-				|| payment.getPaymentStatus() != PaymentStatus.success) {
+		order = orderService.getOrderByOrderSn(ordersn);
+		if (order == null|| order.getOrderStatus() !=OrderStatus.paid) {
 			addActionError("参数错误!");
 			return ERROR;
 		}
