@@ -102,16 +102,16 @@
 							${withdraw.message}
 						</td>
 						<td>
-							${withdraw.money}
+							${withdraw.money?string(currencyFormat)}
 						</td>
 						<td>
-							${withdraw.totalMoney}
+							${withdraw.totalMoney?string(currencyFormat)}
 						</td>
 						<td>
 							${withdraw.createDate}
 						</td>
 						<td>
-							[${action.getText("WithdrawStatus." + withdraw.withdrawStatus)}]
+							${action.getText("WithdrawStatus." + withdraw.withdrawStatus)}
 						</td>
 						<td>
 							<a href="withdraw!process.action?id=${withdraw.id}" title="处理">[处理]</a>

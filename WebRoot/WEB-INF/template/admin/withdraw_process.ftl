@@ -74,7 +74,7 @@ $().ready(function() {
 </head>
 <body class="input">
 	<div class="bar">
-		处理体现单
+		处理提现单
 	</div>
 	<div id="validateErrorContainer" class="validateErrorContainer">
 		<div class="validateErrorTitle">以下信息填写有误,请重新填写</div>
@@ -107,7 +107,7 @@ $().ready(function() {
 						提现金额: 
 					</th>
 					<td>
-						${(withdraw.money)!}
+						${withdraw.money?string(currencyFormat)}
 					</td>
 				</tr>
 				<tr>
@@ -124,7 +124,7 @@ $().ready(function() {
 						处理结果: 
 					</th>
 					<td>
-						[${action.getText("WithdrawStatus." + withdraw.withdrawStatus)}]
+						${action.getText("WithdrawStatus." + withdraw.withdrawStatus)}
 					</td>
 					</tr>								
 				</#if>

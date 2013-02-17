@@ -14,11 +14,11 @@ import javax.persistence.FetchType;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.OrderBy;
 import javax.persistence.Transient;
 
 import net.xxs.bean.Gender;
-import net.xxs.entity.Deposit.DepositType;
 import net.xxs.entity.MemberAttribute.AttributeType;
 import net.xxs.entity.MemberAttribute.SystemAttributeType;
 import net.xxs.entity.Withdraw.WithdrawStatus;
@@ -92,6 +92,7 @@ public class Member extends BaseEntity {
 	private String memberAttributeValue19;// 会员注册项值19
 	
 	private MemberRank memberRank;// 会员等级
+	private MemberBusiness memberBusiness ; //商户信息
 	
 	private Set<Withdraw> withdrawSet = new HashSet<Withdraw>();// 提现申请
 	private Set<Message> inboxMessageSet = new HashSet<Message>();// 收件箱消息
@@ -100,7 +101,6 @@ public class Member extends BaseEntity {
 	private Set<Deposit> depositSet = new HashSet<Deposit>();// 预存款
 	//新添加选项
 	private Set<MemberBank> memberBankSet = new HashSet<MemberBank>();//银行卡信息
-	private Set<MemberBusiness> memberBusinessesSet = new HashSet<MemberBusiness>(); //商户信息
 	
 
 	@Column(nullable = false, updatable = false, unique = true)
@@ -535,15 +535,16 @@ public class Member extends BaseEntity {
 		this.memberBankSet = memberBankSet;
 	}
 	
-	@OneToMany(mappedBy = "member", fetch = FetchType.LAZY, cascade = {CascadeType.REMOVE})
-	@OrderBy("createDate asc")
-	public Set<MemberBusiness> getMemberBusinessesSet() {
-		return memberBusinessesSet;
+	@OneToOne(fetch = FetchType.LAZY)
+	@ForeignKey(name = "fk_member_member_business")
+	public MemberBusiness getMemberBusiness() {
+		return memberBusiness;
+	}
+	
+	public void setMemberBusiness(MemberBusiness memberBusiness) {
+		this.memberBusiness = memberBusiness;
 	}
 
-	public void setMemberBusinessesSet(Set<MemberBusiness> memberBusinessesSet) {
-		this.memberBusinessesSet = memberBusinessesSet;
-	}
 
 	// 获取会员注册项值
 	@Transient
@@ -594,6 +595,7 @@ public class Member extends BaseEntity {
 		return null;
 	}
 	
+
 	// 设置会员注册项值
 	@SuppressWarnings("unchecked")
 	@Transient

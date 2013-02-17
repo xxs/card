@@ -35,9 +35,6 @@ $().ready( function() {
 				<input type="button" value="订单信息" hidefocus />
 			</li>
 			<li>
-				<input type="button" value="收款记录" hidefocus />
-			</li>
-			<li>
 				<input type="button" value="订单日志" hidefocus />
 			</li>
 		</ul>
@@ -189,46 +186,6 @@ $().ready( function() {
 					</td>
 				</tr>
 			</#if>
-		</table>
-		<table class="inputTable tabContent">
-			<tr class="title">
-				<th>序号</th>
-				<th>支付编号</th>
-				<th>支付类型</th>
-				<th>支付方式</th>
-				<th>支付金额</th>
-				<th>付款人</th>
-				<th>支付状态</th>
-				<th>支付时间</th>
-			</tr>
-			<#list order.paymentSet as payment>
-				<tr>
-					<td>${payment_index + 1}</td>
-					<td>
-						<a href="payment!view.action?id=${payment.id}">
-							${payment.paymentSn}
-						</a>
-					</td>
-					<td>
-						${action.getText("PaymentType." + payment.paymentType)}
-					</td>
-					<td>
-						${payment.paymentConfigName}
-					</td>
-					<td>
-						${payment.amount?string(currencyFormat)}
-					</td>
-					<td>
-						${payment.payer}
-					</td>
-					<td>
-						${action.getText("PaymentStatus." + payment.paymentStatus)}
-					</td>
-					<td>
-						<span title="${payment.createDate?string("yyyy-MM-dd HH:mm:ss")}">${payment.createDate}</span>
-					</td>
-				</tr>
-			</#list>
 		</table>
 		<table class="inputTable tabContent">
 			<tr class="title">

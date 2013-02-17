@@ -477,19 +477,18 @@ $().ready( function() {
 				</#list>
 			</table>
 			<table id="memberBusinessTable" class="inputTable tabContent">
-				<#list (member.memberBusinessesSet)! as memberBusiness>
 				<tr>
 					<th>
 						商户类型
 					</th>
 					<td>
-						${action.getText("MemberBusiness." + memberBusiness.businessType)}
+						${action.getText("MemberBusiness." + member.memberBusiness.businessType)}
 					</td>
 					<th>
 						真实姓名 
 					</th>
 					<td>
-						${memberBusiness.realName}
+						${member.memberBusiness.realName}
 					</td>
 				</tr>
 				<tr>
@@ -497,13 +496,13 @@ $().ready( function() {
 						身份证（营业执照）
 					</th>
 					<td>
-						${memberBusiness.businessNumber}
+						${member.memberBusiness.businessNumber}
 					</td>
 					<th>
 						商户名称 
 					</th>
 					<td>
-						${memberBusiness.businessName}
+						${member.memberBusiness.businessName}
 					</td>
 				</tr>
 				<tr>
@@ -511,13 +510,13 @@ $().ready( function() {
 						商户地区
 					</th>
 					<td>
-						${memberBusiness.city}
+						${member.memberBusiness.city}
 					</td>
 					<th>
 						经营范围
 					</th>
 					<td>
-						${memberBusiness.scope}
+						${member.memberBusiness.scope}
 					</td>
 				</tr>
 				<tr>
@@ -525,13 +524,13 @@ $().ready( function() {
 						商城网址
 					</th>
 					<td>
-						<a href="${memberBusiness.url}">${memberBusiness.url}</a>
+						<a href="${member.memberBusiness.url}">${member.memberBusiness.url}</a>
 					</td>
 					<th>
 						ICP证备案号
 					</th>
 					<td>
-						${memberBusiness.icp}
+						${member.memberBusiness.icp}
 					</td>
 				</tr>
 				<tr>
@@ -539,13 +538,13 @@ $().ready( function() {
 						联系人
 					</th>
 					<td>
-						${memberBusiness.linkMan}
+						${member.memberBusiness.linkMan}
 					</td>
 					<th>
 						业务电话
 					</th>
 					<td>
-						${memberBusiness.tel}
+						${member.memberBusiness.tel}
 					</td>
 				</tr>
 				<tr>
@@ -553,13 +552,13 @@ $().ready( function() {
 						业务手机
 					</th>
 					<td>
-						${memberBusiness.phone}
+						${member.memberBusiness.phone}
 					</td>
 					<th>
 						服务热线
 					</th>
 					<td>
-						${memberBusiness.serverTel}
+						${member.memberBusiness.serverTel}
 					</td>
 				</tr>
 				<tr>
@@ -567,13 +566,13 @@ $().ready( function() {
 						客服工作时间
 					</th>
 					<td>
-						${memberBusiness.serverTime}
+						${member.memberBusiness.serverTime}
 					</td>
 					<th>
 						即时通讯
 					</th>
 					<td>
-						${memberBusiness.QQ}
+						${member.memberBusiness.QQ}
 					</td>
 				</tr>
 				<tr>
@@ -581,13 +580,13 @@ $().ready( function() {
 						通讯地址
 					</th>
 					<td>
-						${memberBusiness.address}
+						${member.memberBusiness.address}
 					</td>
 					<th>
 						邮编
 					</th>
 					<td>
-						${memberBusiness.zipcode}
+						${member.memberBusiness.zipcode}
 					</td>
 				</tr>
 				<tr>
@@ -595,10 +594,9 @@ $().ready( function() {
 						备注
 					</th>
 					<td colspan="3">
-						${memberBusiness.mome}
+						${member.memberBusiness.mome}
 					</td>
 				</tr>
-				</#list>
 			</table>
 			<div class="buttonArea">
 				<input type="submit" class="formButton" value="确  定" hidefocus />&nbsp;&nbsp;

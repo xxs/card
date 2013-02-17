@@ -229,12 +229,10 @@ $().ready( function() {
 						<#list pager.result as order>
 							<tr>
 								<td>
-									<a href="order!view.action?id=${order.id}">${order.orderSn}</a>
+									${order.orderSn}
 								</td>
 								<td width="250">
-									<a href="order!view.action?id=${order.id}">
 										${order.productName}
-									</a>
 								</td>
 								<td width="200">
 									<span title="${order.createDate?string("yyyy-MM-dd HH:mm:ss")}">${order.createDate?string("yyyy-MM-dd HH:mm:ss")}</span>

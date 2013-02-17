@@ -30,8 +30,6 @@
 		<sec:intercept-url pattern="/admin/order!**" access="ROLE_ORDER" />
 		<!-- 提现管理 -->
 		<sec:intercept-url pattern="/admin/withdraw!**" access="ROLE_WITHDRAW" />
-		<!-- 收款管理 -->
-		<sec:intercept-url pattern="/admin/payment!**" access="ROLE_PAYMENT" />
 		<!-- 会员管理 -->
 		<sec:intercept-url pattern="/admin/member!**" access="ROLE_MEMBER" />
 		<!-- 会员等级管理 -->

@@ -1,9 +1,11 @@
 package net.xxs.entity;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
 import javax.persistence.Transient;
 
 import net.xxs.util.SerialNumberUtil;
@@ -53,7 +55,7 @@ public class MemberBusiness extends BaseEntity {
 	private ResultType resultType;			//审核是否通过
 	private Member member; 				// 会员
 
-	@ManyToOne(fetch = FetchType.LAZY)
+	@OneToOne(mappedBy = "memberBusiness", fetch = FetchType.LAZY, cascade = {CascadeType.REMOVE})
 	@ForeignKey(name = "fk_member_business_member")
 	public Member getMember() {
 		return member;

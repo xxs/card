@@ -22,11 +22,6 @@
 						<a href="order!list.action" target="mainFrame">订单列表</a>
 					</dd>
 				</@sec.authorize>
-				<@sec.authorize ifAnyGranted="ROLE_PAYMENT">
-					<dd>
-						<a href="payment!list.action" target="mainFrame">收款单</a>
-					</dd>
-				</@sec.authorize>
 			</dl>
 		</@sec.authorize>
 		<@sec.authorize ifAnyGranted="ROLE_WITHDRAW">
