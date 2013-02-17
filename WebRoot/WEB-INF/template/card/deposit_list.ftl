@@ -26,6 +26,8 @@
 							<th>支出金额</th>
 							<th>当前余额</th>
 							<th>日期</th>
+							<th>推荐奖励单据号</th>
+							<th>被推荐人</th>
 						</tr>
 						<#list pager.result as deposit>
 							<tr>
@@ -57,6 +59,12 @@
 								</td>
 								<td>
 									<span title="${deposit.createDate?string("yyyy-MM-dd HH:mm:ss")}">${deposit.createDate}</span>
+								</td>
+								<td>
+									${deposit.orderSn}
+								</td>
+								<td>
+									${deposit.referrer}
 								</td>
 							</tr>
 						</#list>

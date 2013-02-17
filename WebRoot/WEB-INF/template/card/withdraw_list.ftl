@@ -61,9 +61,9 @@ $().ready( function() {
 						<tr>
 							<th>操作信息</th>
 							<th>提现金额</th>
-							<th>备注</th>
+							<th>收款账号</th>
 							<th>实发金额</th>
-							<th>日期</th>
+							<th>申请日期</th>
 							<th>状态</th>
 						</tr>
 						<#list pager.result as withdraw>
@@ -85,7 +85,7 @@ $().ready( function() {
 									<span title="${withdraw.createDate?string("yyyy-MM-dd HH:mm:ss")}">${withdraw.createDate}</span>
 								</td>
 								<td>
-									[${action.getText("WithdrawStatus." + withdraw.withdrawStatus)}]
+									${action.getText("WithdrawStatus." + withdraw.withdrawStatus)}
 								</td>
 							</tr>
 						</#list>

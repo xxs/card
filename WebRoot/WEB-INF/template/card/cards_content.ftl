@@ -41,12 +41,6 @@
 								</#list>
 							</td>
 						</tr>
-						<tr>
-							<th>充值卡编号: </th>
-							<td>
-								${cards.cardsSn}
-							</td>
-						</tr>
 						<#if cards.isSpecificationEnabled>
 							<#assign specificationValueSet = cards.specificationValueSet>
 							<#list cards.specificationSet as specification>

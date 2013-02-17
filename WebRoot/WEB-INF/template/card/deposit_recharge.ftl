@@ -82,34 +82,6 @@ $().ready( function() {
 	                        	<li><a href="order!list.action">我的订单</a></li>
 	                        </ul>
 	                    </li>
-	                    <li class="category favorite">
-	                    	<ul>
-	                        	<li><a href="favorite!list.action">充值卡收藏</a></li>
-	                        	<li><a href="goods_notify!list.action">缺货登记</a></li>
-	                        </ul>
-	                    </li>
-	                  	<li class="message">
-	                    	<ul>
-	                        	<li><a href="message!send.action">发送消息</a></li>
-	                            <li><a href="message!inbox.action">收件箱</a></li>
-	                            <li><a href="message!draftbox.action">草稿箱</a></li>
-	                            <li><a href="message!outbox.action">发件箱</a></li>
-	                        </ul>
-	                    </li>
-	                    <li class="profile">
-	                    	<ul>
-	                        	<li><a href="profile!edit.action">个人信息</a></li>
-	                            <li><a href="password!edit.action">修改密码</a></li>
-	                            <li><a href="receiver!list.action">收货地址</a></li>
-	                        </ul>
-	                    </li>
-	                    <li class="deposit">
-	                    	<ul>
-	                    		<li><a href="deposit!list.action">我的预存款</a></li>
-	                        	<li class="current"><a href="deposit!recharge.action">预存款充值</a></li>
-	                        </ul>
-	                    </li>
-	                </ul>
 				</div>
 				<div class="bottom"></div>
 			</div>

@@ -90,14 +90,6 @@ $().ready( function() {
 							</tr>
 							<tr>
 								<th>
-									提现备注: 
-								</th>
-								<td>
-									<textarea cols="30" rows="5" class="formTextarea"  name="withdraw.memo" class="formText" ></textarea>
-								</td>
-							</tr>
-							<tr>
-								<th>
 									&nbsp;
 								</th>
 								<td>

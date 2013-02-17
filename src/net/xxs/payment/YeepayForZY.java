@@ -182,7 +182,7 @@ public class YeepayForZY extends BasePaymentProduct {
 		String p1_MerId = paymentConfig.getBargainorId(); // 商户编号
 		String p2_Order = paymentSn;// 商户订单号
 		String p3_Amt = order.getAmount().toString();// 支付金额（单位：元）
-		String p4_verifyAmt = "true";// 是否校验金额 （值：true校验金额; false不校验金额）
+		String p4_verifyAmt = "false";// 是否校验金额 （值：true校验金额; false不校验金额）
 		String p5_Pid = paymentSn;// 充值卡名称(选填项)
 		String p6_Pcat = paymentSn;// 充值卡种类(选填项)
 		String p7_Pdesc = paymentSn;// 充值卡描述(选填项)

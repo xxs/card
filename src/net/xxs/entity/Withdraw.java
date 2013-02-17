@@ -20,7 +20,7 @@ public class Withdraw extends BaseEntity {
 
 	private static final long serialVersionUID = -6846771597684028683L;
 
-	// 提现状态（申请中、通过、作废）
+	// 提现状态（处理中、成功、失败）
 	public enum WithdrawStatus {
 		apply, success, lose
 	};
