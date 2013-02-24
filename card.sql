@@ -1,7 +1,7 @@
 /*
 Navicat MySQL Data Transfer
 
-Source Server         : JTM
+Source Server         : xxs
 Source Server Version : 50154
 Source Host           : localhost:3306
 Source Database       : card
@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50154
 File Encoding         : 65001
 
-Date: 2013-02-24 17:28:32
+Date: 2013-02-24 23:59:42
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -43,7 +43,7 @@ CREATE TABLE `xx_admin` (
 -- ----------------------------
 -- Records of xx_admin
 -- ----------------------------
-INSERT INTO `xx_admin` VALUES ('0731dcsoft2010031200000000000017', '2011-01-01 00:00:00', '2013-02-24 16:36:38', '名臣管理员', 'xxs@163.com', '', '', '', '', '2012-12-17 14:28:34', '2013-02-24 16:36:38', '0', '127.0.0.1', 'ADMIN', '21232f297a57a5a743894a0e4a801fc3', 'admin');
+INSERT INTO `xx_admin` VALUES ('0731dcsoft2010031200000000000017', '2011-01-01 00:00:00', '2013-02-24 23:07:04', '名臣管理员', 'xxs@163.com', '', '', '', '', '2012-12-17 14:28:34', '2013-02-24 23:07:04', '0', '127.0.0.1', 'ADMIN', '21232f297a57a5a743894a0e4a801fc3', 'admin');
 
 -- ----------------------------
 -- Table structure for `xx_admin_role`
@@ -99,7 +99,9 @@ INSERT INTO `xx_article` VALUES ('4028bc743c286bdc013c28a2d78b0011', '2013-01-11
 INSERT INTO `xx_article` VALUES ('4028bc743c286bdc013c28a30f250013', '2013-01-11 16:04:00', '2013-01-22 14:46:19', '联系我们', '联系我们', '15', '/html/201301/8c73cc996c5240bc9e97cc40e4850266.html', '', '', '', '联系我们', '联系我们', '1', '联系我们', '4028bc743c286bdc013c28900dbb0008', '');
 INSERT INTO `xx_article` VALUES ('4028bc743c286bdc013c28a4128c0015', '2013-01-11 16:05:06', '2013-01-20 16:55:31', '新手上路', '<ul class=\"help2_right_ul3\" style=\"font-family:微软雅黑, \'microsoft yahei\', 宋体, Tahoma, Verdana, Arial, Helvetica, sans-serif;margin:0px 0px 20px 46px;padding:0px;color:#4b4c4c;list-style:none;width:687px;display:inline;overflow:hidden;line-height:21.600000381469727px;\"><li class=\"help2_right_b\" style=\"width:687px;margin-bottom:0px;float:left;height:22px;line-height:20px;padding-left:4px;\"><b>名臣福利可以为您做什么？</b></li>\r\n<li class=\"help2_right_bj2\" style=\"width:687px;height:2px;display:block;overflow:hidden;float:left;background-image:url(http://www.mcfl.cn/themes/default/images/help/help_right_line.jpg);margin-bottom:10px;background-position:0px -3px;background-repeat:no-repeat no-repeat;\">&nbsp;</li>\r\n<li style=\"width:687px;margin-bottom:20px;float:left;\">名臣福利是全国第一家在线手机话费变现金、手机充值卡和各类游戏点卡回购网站。简单说，我们可以收购您手里多余的手机充值卡和游戏点卡、手机话费，你把它们折合成现金，然后把钱直接打到您的银行账户，这一切都通过网络进行。</li>\r\n<li class=\"help2_right_b\" style=\"width:687px;margin-bottom:0px;float:left;height:22px;line-height:20px;padding-left:4px;\"><b>名臣福利的交易流程</b></li>\r\n<li class=\"help2_right_bj2\" style=\"width:687px;height:2px;display:block;overflow:hidden;float:left;background-image:url(http://www.mcfl.cn/themes/default/images/help/help_right_line.jpg);margin-bottom:10px;background-position:0px -3px;background-repeat:no-repeat no-repeat;\">&nbsp;</li>\r\n<li style=\"width:687px;margin-bottom:20px;float:left;\">1. 注册成为名臣福利会员，填写您我们汇款的银行账户信息</li>\r\n<li style=\"width:687px;margin-bottom:20px;float:left;\">2. 在网站上建立卖卡的订单，然后进入第三方在线支付系统，提交充值卡卡号和密码</li>\r\n<li style=\"width:687px;margin-bottom:20px;float:left;\">3. 提交成功充值后，返回登录名臣福利网站<a src=\"#\" style=\"color:#53a0be;\">提现</a>，在法定工作日内，提现后等待财务核账处理。</li>\r\n<li class=\"help2_right_b\" style=\"width:687px;margin-bottom:0px;float:left;height:22px;line-height:20px;padding-left:4px;\"><b>名臣福利如何保证回购交易的进行？</b></li>\r\n<li class=\"help2_right_bj2\" style=\"width:687px;height:2px;display:block;overflow:hidden;float:left;background-image:url(http://www.mcfl.cn/themes/default/images/help/help_right_line.jpg);margin-bottom:10px;background-position:0px -3px;background-repeat:no-repeat no-repeat;\">&nbsp;</li>\r\n<li style=\"width:687px;margin-bottom:20px;float:left;\">名臣福利的充值卡和点卡回购交易和现实生活中的回购交易流程一样，包括两个步骤：交货和付款</li>\r\n<li class=\"help2_right_b\" style=\"width:687px;margin-bottom:0px;float:left;height:22px;line-height:20px;padding-left:4px;\"><b>手机话费、固话话费、宽带如何变成现金？</b></li>\r\n<li class=\"help2_right_bj2\" style=\"width:687px;height:2px;display:block;overflow:hidden;float:left;background-image:url(http://www.mcfl.cn/themes/default/images/help/help_right_line.jpg);margin-bottom:10px;background-position:0px -3px;background-repeat:no-repeat no-repeat;\">&nbsp;</li>\r\n<li style=\"width:687px;margin-bottom:20px;float:left;\">手机话费不想要了，想变成现金，只要有话费，进入<a href=\"http://www.jcard.cn/\" target=\"_blank\" style=\"text-decoration:initial;color:#53a0be;\">骏网(www.jcard.cn)</a>利用声讯购卡(短信、固话、宽带)购买骏网一卡通后进入本站充值兑换成现金后提现即可。或者利用声讯购卡购买易宝e卡通、<a href=\"https://pay.sdo.com/BuyCard.aspx\" target=\"_blank\" style=\"text-decoration:initial;color:#53a0be;\">盛大游戏卡</a>等本站支持的充值卡也可以兑换现金。</li>\r\n</ul>', '2', '/html/201301/ad975ce72b7c483b94245d4e21d0ecb4.html', '', '', '', '新手上路', '新手上路', '1', '新手上路', '4028bc743bbb05c2013bbb25d49a0000', '');
 INSERT INTO `xx_article` VALUES ('4028bc743c286bdc013c28a44e8b0017', '2013-01-11 16:05:22', '2013-01-22 13:58:33', '收卡价格', '收卡价格', '4', '/html/201301/597c10bdbaf04f75a6c676128226ddf9.html', '', '', '', '收卡价格', '收卡价格', '1', '收卡价格', '4028bc743c286bdc013c288f930c0006', '');
-INSERT INTO `xx_article` VALUES ('4028bc743c65859f013c65872b4c0000', '2013-01-23 11:50:22', '2013-01-23 11:52:31', 'gg', 'ssssssssssssssssss', '0', '/html/201301/c31d9dcfed44425eb41a46c4b471d788.html', '', '', '', '公告', '公告', '1', 'eeeeeeee', '4028bc743c65859f013c6589000c0002', '');
+INSERT INTO `xx_article` VALUES ('4028bc743c65859f013c65872b4c0000', '2013-01-23 11:50:22', '2013-02-24 23:35:39', 'gg', 'ssssssssssssssssss', '2', '/html/201301/c31d9dcfed44425eb41a46c4b471d788.html', '', '', '', '公告', '公告', '1', 'eeeeeeee', '4028bc743c65859f013c6589000c0002', '');
+INSERT INTO `xx_article` VALUES ('8a9180203d0cb184013d0ce3bcb00001', '2013-02-24 23:48:04', '2013-02-24 23:54:49', 'admin', 'aqqqq', '0', '/html/201302/f3ad21abce9f41fda2d84ff154c34d3f.html', '', '', '', '', '', '1', 'qrtwqerewt', '4028bc743c65859f013c6589000c0002', '');
+INSERT INTO `xx_article` VALUES ('8a9180203d0cb184013d0cec45f30006', '2013-02-24 23:57:23', '2013-02-24 23:57:23', 'admin', '欢迎欢迎广利名称福利官网网站，欢迎欢迎广利名称福利官网网站，欢迎欢迎广利名称福利官网网站欢迎欢迎广利名称福利官网网站欢迎欢迎广利名称福利官网网站欢迎欢迎广利名称福利官网网站，欢迎欢迎广利名称福利官网网站，欢迎欢迎广利名称福利官网网站，欢迎欢迎广利名称福利官网网站，欢迎欢迎广利名称福利官网网站', '0', '/html/201302/2804d90fad7643c98b17f2371bfcf6c3.html', '', '', '', '', '', '1', '名臣福利新系统上线优惠让利', '4028bc743c65859f013c6589000c0002', '');
 INSERT INTO `xx_article` VALUES ('8a9181383c55f633013c56c8a3d20002', '2013-01-20 15:07:35', '2013-01-20 21:59:14', 'sss', 'sssss', '5', '/html/201301/dba7e39e0d674a7dba8e2af25ab10ff1.html', '', '', '', 'sss', 'sss', '1', 'aaa', '4028bc743c286bdc013c288f930c0006', '');
 
 -- ----------------------------
@@ -461,6 +463,11 @@ INSERT INTO `xx_log` VALUES ('8a8f81ff3c9ed8aa013c9edf30b60001', '2013-02-03 15:
 INSERT INTO `xx_log` VALUES ('8a8f81ff3c9ed8aa013c9edf6c4a0002', '2013-02-03 15:05:07', '2013-02-03 15:05:07', 'net.xxs.action.admin.CardsAction', 'update', '编辑充值卡: 电信充值卡', '127.0.0.1', '编辑充值卡', 'admin');
 INSERT INTO `xx_log` VALUES ('8a8f81ff3c9ed8aa013c9ef87fad0003', '2013-02-03 15:32:31', '2013-02-03 15:32:31', 'net.xxs.action.admin.CardsAction', 'update', '编辑充值卡: 腾讯Q币卡', '127.0.0.1', '编辑充值卡', 'admin');
 INSERT INTO `xx_log` VALUES ('8a8f81ff3c9ed8aa013c9ef8a5570004', '2013-02-03 15:32:40', '2013-02-03 15:32:40', 'net.xxs.action.admin.CardsAction', 'update', '编辑充值卡: 腾讯Q币卡', '127.0.0.1', '编辑充值卡', 'admin');
+INSERT INTO `xx_log` VALUES ('8a9180203d0cb184013d0ce3bdfe0002', '2013-02-24 23:48:04', '2013-02-24 23:48:04', 'net.xxs.action.admin.ArticleAction', 'save', '添加文章: 可否支持银行卡进行在线支付', '127.0.0.1', '添加文章', 'admin');
+INSERT INTO `xx_log` VALUES ('8a9180203d0cb184013d0ce782ca0003', '2013-02-24 23:52:11', '2013-02-24 23:52:11', 'net.xxs.action.admin.ArticleAction', 'update', '编辑文章: 可否支持银行卡进行在线支付', '127.0.0.1', '编辑文章', 'admin');
+INSERT INTO `xx_log` VALUES ('8a9180203d0cb184013d0ce7f2570004', '2013-02-24 23:52:40', '2013-02-24 23:52:40', 'net.xxs.action.admin.ArticleAction', 'update', '编辑文章: qrtwqerewt', '127.0.0.1', '编辑文章', 'admin');
+INSERT INTO `xx_log` VALUES ('8a9180203d0cb184013d0ce9ec500005', '2013-02-24 23:54:49', '2013-02-24 23:54:49', 'net.xxs.action.admin.ArticleAction', 'update', '编辑文章: qrtwqerewt', '127.0.0.1', '编辑文章', 'admin');
+INSERT INTO `xx_log` VALUES ('8a9180203d0cb184013d0cec46db0007', '2013-02-24 23:57:24', '2013-02-24 23:57:24', 'net.xxs.action.admin.ArticleAction', 'save', '添加文章: 名臣福利新系统上线优惠让利', '127.0.0.1', '添加文章', 'admin');
 INSERT INTO `xx_log` VALUES ('8a9181383c55f633013c56a4f47d0001', '2013-01-20 14:28:36', '2013-01-20 14:28:36', 'net.xxs.action.admin.ArticleAction', 'update', '编辑文章: 收卡价格', '127.0.0.1', '编辑文章', 'admin');
 INSERT INTO `xx_log` VALUES ('8a9181383c55f633013c56c8a5c40003', '2013-01-20 15:07:35', '2013-01-20 15:07:35', 'net.xxs.action.admin.ArticleAction', 'save', '添加文章: aaa', '127.0.0.1', '添加文章', 'admin');
 INSERT INTO `xx_log` VALUES ('8a9181383c571fbe013c572a8f450000', '2013-01-20 16:54:32', '2013-01-20 16:54:32', 'net.xxs.action.admin.ArticleAction', 'update', '编辑文章: 新手上路', '127.0.0.1', '编辑文章', 'admin');
@@ -550,7 +557,7 @@ CREATE TABLE `xx_member` (
 -- Records of xx_member
 -- ----------------------------
 INSERT INTO `xx_member` VALUES ('297e62b93bd214af013bd21a73550000', '2012-12-25 20:47:27', '2013-01-22 13:15:40', '123', '2012-12-27 00:00:00', '0.00000', '123456@qq.com', '0', '', '', null, '2013-01-19 16:40:02', '0', '127.0.0.1', null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, '234', '123123', '4297f44b13955235245b2497399d7a93', null, '123123', '112233', '127.0.0.1', null, null, '0', '112233', '123123', '402881833054c381013054d08bed0001', null, '4028bc743c6fd935013c6fda34cb0000');
-INSERT INTO `xx_member` VALUES ('8a9182fc3ba86bc8013ba9782de60001', '2012-12-17 23:25:23', '2013-02-24 17:21:54', '河南郑州', '2012-12-20 00:00:00', '1411.00000', '123@qq.com', '0', '', '', null, '2013-02-24 17:21:54', '0', '127.0.0.1', null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, '123', '123', '4297f44b13955235245b2497399d7a93', '1359097653234_c3c4b2c8b2e7423283cebe642460738757834bf3ed1f40192f27ffcca663d5b7', '123', '112233', '127.0.0.1', 'www', 'qqq', '0', '123123', '213', '402881833054c381013054d08bed0001', null, '4028bc743c6fd935013c702324ab0001');
+INSERT INTO `xx_member` VALUES ('8a9182fc3ba86bc8013ba9782de60001', '2012-12-17 23:25:23', '2013-02-24 23:13:07', '河南郑州', '2012-12-20 00:00:00', '1411.00000', '123@qq.com', '0', '', '', null, '2013-02-24 23:13:07', '0', '127.0.0.1', null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, '123', '123', '4297f44b13955235245b2497399d7a93', '1359097653234_c3c4b2c8b2e7423283cebe642460738757834bf3ed1f40192f27ffcca663d5b7', '123', '112233', '127.0.0.1', 'www', 'qqq', '0', '123123', '213', '402881833054c381013054d08bed0001', null, '4028bc743c6fd935013c702324ab0001');
 
 -- ----------------------------
 -- Table structure for `xx_member_attribute`
@@ -608,9 +615,9 @@ CREATE TABLE `xx_member_bank` (
 -- ----------------------------
 -- Records of xx_member_bank
 -- ----------------------------
-INSERT INTO `xx_member_bank` VALUES ('4028bc743c604c36013c60644d960003', '2013-01-22 11:54:11', '2013-02-24 16:27:45', '666', '666', '666', '666', '', null, '666', '8a9182fc3ba86bc8013ba9782de60001');
-INSERT INTO `xx_member_bank` VALUES ('8a9181383c571fbe013c5737cd510002', '2013-01-20 17:09:00', '2013-02-24 16:49:52', '23234', '23423', '1341234', '26273672366@qq.com', '', null, '张三', '8a9182fc3ba86bc8013ba9782de60001');
-INSERT INTO `xx_member_bank` VALUES ('eeee', '2013-01-08 14:25:15', '2013-02-24 16:49:52', '郑州', '中信银行北环路', '中信银行', '1876276253753563', '', null, '123123', '8a9182fc3ba86bc8013ba9782de60001');
+INSERT INTO `xx_member_bank` VALUES ('4028bc743c604c36013c60644d960003', '2013-01-22 11:54:11', '2013-02-24 23:13:03', '666', '666', '666', '666', '', null, '666', '8a9182fc3ba86bc8013ba9782de60001');
+INSERT INTO `xx_member_bank` VALUES ('8a9181383c571fbe013c5737cd510002', '2013-01-20 17:09:00', '2013-02-24 23:13:03', '23234', '23423', '1341234', '26273672366@qq.com', '', null, '张三', '8a9182fc3ba86bc8013ba9782de60001');
+INSERT INTO `xx_member_bank` VALUES ('eeee', '2013-01-08 14:25:15', '2013-02-24 23:12:58', '郑州', '中信银行北环路', '中信银行', '1876276253753563', '', null, '123123', '8a9182fc3ba86bc8013ba9782de60001');
 
 -- ----------------------------
 -- Table structure for `xx_member_business`
@@ -682,6 +689,7 @@ INSERT INTO `xx_member_log` VALUES ('4028bc743d0b3351013d0b34dc5a0000', '2013-02
 INSERT INTO `xx_member_log` VALUES ('4028bc743d0b3351013d0b3ed8330001', '2013-02-24 16:08:20', '2013-02-24 16:08:20', 'net.xxs.action.card.MemberAction', 'login', '会员登录: 123123', '127.0.0.1', '会员登录', '123123');
 INSERT INTO `xx_member_log` VALUES ('4028bc743d0b5317013d0b557d510000', '2013-02-24 16:33:04', '2013-02-24 16:33:04', 'net.xxs.action.card.MemberAction', 'login', '会员登录: 123123', '127.0.0.1', '会员登录', '123123');
 INSERT INTO `xx_member_log` VALUES ('4028bc743d0b813d013d0b8230110000', '2013-02-24 17:21:54', '2013-02-24 17:21:54', 'net.xxs.action.card.MemberAction', 'login', '会员登录: 123123', '127.0.0.1', '会员登录', '123123');
+INSERT INTO `xx_member_log` VALUES ('8a9180203d0cb184013d0cbe8e480000', '2013-02-24 23:07:27', '2013-02-24 23:07:27', 'net.xxs.action.card.MemberAction', 'login', '会员登录: 123123', '127.0.0.1', '会员登录', '123123');
 
 -- ----------------------------
 -- Table structure for `xx_member_rank`

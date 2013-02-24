@@ -7,46 +7,14 @@
 <meta name="Copyright" content="XXS" />
 <#include "/WEB-INF/template/card/member_head.ftl">
 <script type="text/javascript">
-	$().ready(function() {
-	
-		var $refForm = $("#refForm");
-		var $refBtn = $("#refBtn");
-		var $status = $(".state");
-		var $recode = $(".recode");
-	
-		$refBtn.click( function() {
-			$.ajax({
-				url: "order!Lquery.action",
-				data: $refForm.serialize(),
-				type: "POST",
-				dataType: "json",
-				cache: false,
-				beforeSend: function(data) {
-					$recode.html('<span class="loadingIcon">&nbsp;</span>刷新中');
-					//$status.html('<span class="loadingIcon">&nbsp;</span>刷新中');
-					$refBtn.attr("disabled", true);
-				},
-				success: function(data) {
-					if (data.status == "success") {
-						var object = eval("("+data.message+")");
-						$.each(object,function(index,item){
-					      // alert(item.id+""+index);
-					       //$("#ss"+item.id).text(item.orderStatus);
-					       $("#rr"+item.id).text(item.retCode);
-					    })
-						//$status.text(data.message);
-						//$.dialog({type: data.status, content: '刷新成功', modal: true, autoCloseTime: 3000});
-					} else {
-						$status.text("刷新失败");
-						$recode.text("刷新失败");
-						$.dialog({type: data.status, content: '刷新超时', modal: true, autoCloseTime: 3000});
-					}
-					$refBtn.attr("disabled", false);
-				}
-			});
+	$().ready( function() {
+		$(".gonggao").bind("click",function(event){
+			$content = event.target.name;
+			$title = event.target.title;
+			$.showAdviceWindow($title,$content);
 			return false;
 		});
-	})
+	});
 </script>
 </head>
 <body class="memberCenter">
@@ -90,62 +58,24 @@
 						</tr>
 					</table>
 					<div class="blank"></div>
-					<form id="refForm" >
 					<table class="listTable">
 						<tr>
-							<th>充值卡名称</th>
-							<th>订单编号</th>
-							<th>下单时间</th>
-							<th>订单金额</th>
-							<th>订单状态</th>
-							<th><input class="formButton red" id="refBtn" type="button" value="刷新订单"/></th>
+							<th>公告信息</th>
+							<th>发布日期</th>
 						</tr>
-						<#list loginMember.orderSet as order>
+						<@article_list type="advice" count=10; articleList>
+							<#list articleList as article>
 							<tr>
-								<td width="170">
-									<a href="order!view.action?id=${order.id}">
-										${order.productName}
-									</a>
-								</td>
-								<td>
-									<a href="order!view.action?id=${order.id}">${order.orderSn}</a>
-								</td>
-								<td>
-									<span title="${order.createDate?string("yyyy-MM-dd HH:mm:ss")}">${order.createDate}</span>
-								</td>
-								<td>
-									${order.amount?string(currencyFormat)}
-								</td>
-								<td>
-									<span class="state" id="ss${order.id}">
-										<#if order.orderStatus == "paid">
-											<span class="green">${action.getText("OrderStatus." + order.orderStatus)}</span>
-										<#else>
-											<span class="red"> ${action.getText("OrderStatus." + order.orderStatus)}</span>
-										</#if>
-									</span>
-								</td>
-								<td width="170">
-									<input type="hidden" name="ids" value="${order.id}"/>
-									<span class="recode" id="rr${order.id}">
-										<span title="${order.retMsg}">${resultText(order.paymentConfig.paymentProductId,order.retCode)}</span>
-									</span>
-								</td>
-							</tr>
-							<#if (order_index + 1 > 10)>
-								<#break />
-							</#if>
-						</#list>
-						<tr>
-							<td colspan="5">
-								<a href="order!list.action">更多订单>></a>
+								<td align="left">
+								<a href="#" name="${article.content}" class="red gonggao" title="${article.title}">${substring(article.title, 150, "...")}</a>
 							</td>
-							<td colspan="1">
-								
-							</td>
-						</tr>
+								<td>
+								<span title="${article.createDate?string("yyyy-MM-dd HH:mm:ss")}">${article.createDate?string("yyyy-MM-dd HH:mm:ss")}</span>
+								</td>
+							</tr>	
+							</#list>
+						</@article_list>
 					</table>
-					</form>
 					<#include "/WEB-INF/template/card/pager.ftl">
 		</div>
 	</div>

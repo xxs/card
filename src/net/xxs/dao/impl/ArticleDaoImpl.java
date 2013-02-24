@@ -55,6 +55,16 @@ public class ArticleDaoImpl extends BaseDaoImpl<Article, String> implements Arti
 					query = getSession().createQuery(hql);
 					query.setParameter("isPublication", true).setParameter("articleCategory", articleCategory);
 				}
+			}else if (StringUtils.equalsIgnoreCase(type, "advice")) {
+				if (isContainChildren) {
+					String hql = "from Article as article where article.isPublication = :isPublication and article.isAdvice = :isAdvice and article.articleCategory.path like :path order by article.hits desc, article.createDate desc";
+					query = getSession().createQuery(hql);
+					query.setParameter("isPublication", true).setParameter("isAdvice", true).setParameter("path", articleCategory.getPath() + "%");
+				} else {
+					String hql = "from Article as article where article.isPublication = :isPublication and article.isAdvice = :isAdvice and article.articleCategory = :articleCategory order by article.hits desc, article.createDate desc";
+					query = getSession().createQuery(hql);
+					query.setParameter("isPublication", true).setParameter("isAdvice", true).setParameter("articleCategory", articleCategory);
+				}
 			} else {
 				if (isContainChildren) {
 					String hql = "from Article as article where article.isPublication = :isPublication and article.articleCategory.path like :path order by article.isTop desc, article.createDate desc";
@@ -79,8 +89,12 @@ public class ArticleDaoImpl extends BaseDaoImpl<Article, String> implements Arti
 				String hql = "from Article as article where article.isPublication = :isPublication order by article.hits desc, article.createDate desc";
 				query = getSession().createQuery(hql);
 				query.setParameter("isPublication", true);
+			} else if (StringUtils.equalsIgnoreCase(type, "advice")) {
+				String hql = "from Article as article where article.isPublication = :isPublication and article.isAdvice = :isAdvice  order by article.hits desc, article.createDate desc";
+				query = getSession().createQuery(hql);
+				query.setParameter("isPublication", true).setParameter("isAdvice", true);
 			} else {
-				String hql = "from Article as article where article.isPublication = :isPublication order by article.isTop desc, article.createDate desc";
+				String hql = "from Article as article where article.isPublication = :isPublication  order by article.isTop desc, article.createDate desc";
 				query = getSession().createQuery(hql);
 				query.setParameter("isPublication", true);
 			}
