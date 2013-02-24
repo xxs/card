@@ -89,6 +89,7 @@
 			<interceptor name="securityInterceptor" class="net.xxs.interceptor.SecurityInterceptor" />
 			<interceptor name="trimInterceptor" class="net.xxs.interceptor.TrimInterceptor" />
 			<interceptor name="memberVerifyInterceptor" class="net.xxs.interceptor.MemberVerifyInterceptor" />
+			<interceptor name="logInterceptor" class="net.xxs.interceptor.LogInterceptor" />
 			<interceptor-stack name="cardStack">
 				<interceptor-ref name="fileUpload">
 					<param name="allowedTypes">image/jpeg,image/pjpeg,image/gif,image/bmp,image/x-ms-bmp,image/png,image/x-png</param>
@@ -96,6 +97,7 @@
 				</interceptor-ref>
 				<interceptor-ref name="securityInterceptor" />
 				<interceptor-ref name="trimInterceptor" />
+				<interceptor-ref name="logInterceptor" />
 				<interceptor-ref name="baseStack" />
 			</interceptor-stack>
 		</interceptors>

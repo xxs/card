@@ -8,7 +8,14 @@
 <#include "/WEB-INF/template/card/member_head.ftl">
 <script type="text/javascript">
 $().ready( function() {
-
+	// 修改前验证密保问题
+	$(".xiugai").bind("click",function(event){
+		$redirectUrl = event.target.name;
+		$question = $("#question").val();
+		//alert("123:"+$redirectUrl);
+		$.showQuestionVerifyWindow($question,$redirectUrl);
+		return false;
+	});
 });
 </script>
 </head>
@@ -23,6 +30,7 @@ $().ready( function() {
 			<div class="fangz">账户列表 </div>
 			<div class="red">注：请一定正确选择卡面值提交,否则造成损失商户自行承担； </div>
 			<div class="hei">可点击<a class="formButton" href="bank!add.action">添加账户</a>页面添加</div>
+			<input value="${member.safeQuestion}" type="hidden" id="question"/>
 			<div class="memberCenter">
 			<table class="listTable">
 				<tr>
@@ -55,8 +63,8 @@ $().ready( function() {
 								${memberBank.isDefault?string('是','否')}
 							</td>
 							<td>
-								<a href="bank!check.action?id=${memberBank.id}">[默认]</a>
-								<a href="bank!edit.action?id=${memberBank.id}">[修改]</a>
+								<a name="bank!check.action?id=${memberBank.id}" class="xiugai">[默认]</a>
+								<a name="bank!edit.action?id=${memberBank.id}" class="xiugai">[修改]</a>
 							</td>
 						</tr>
 					</#list>		

@@ -150,6 +150,7 @@ public class MemberAction extends BaseCardAction {
 		if (StringUtils.isNotEmpty(loginRedirectUrl)) {
 			redirectUrl = loginRedirectUrl;
 		}
+		logInfo = "会员登录: " +loginMember.getUsername();
 		return REDIRECT;
 	}
 	
@@ -164,6 +165,45 @@ public class MemberAction extends BaseCardAction {
 			removeCookie(Member.MEMBER_USERNAME_COOKIE_NAME);
 			return ajax(false);
 		}
+	}
+	
+	// Ajax会员密保验证
+	@SuppressWarnings("unchecked")
+	@Validations(
+		requiredStrings = { 
+			@RequiredStringValidator(fieldName = "member.safeQuestion", message = "密保问题不允许为空!"),
+			@RequiredStringValidator(fieldName = "member.safeAnswer", message = "密保答案不允许为空!")
+		}
+	)
+	@InputConfig(resultName = "ajaxError")
+	public String ajaxSafeQuestion() throws Exception {
+		Member loginMember = getLoginMember();
+		if (!memberService.verifyMemberQuestion(loginMember,member.getSafeQuestion(), member.getSafeAnswer())) {
+			return ajax(Status.error, "密保验证错误!");
+		}
+		loginMember.setLoginIp(getRequest().getRemoteAddr());
+		loginMember.setLoginDate(new Date());
+		memberService.update(loginMember);
+		
+		// 防止Session Fixation攻击
+		HttpSession httpSession = getRequest().getSession();
+		Enumeration enumeration = httpSession.getAttributeNames();
+		Map<String, Object> sessionMap = new HashMap<String, Object>();
+		while (enumeration.hasMoreElements()) {
+			String key = (String) enumeration.nextElement();
+			sessionMap.put(key, httpSession.getAttribute(key));
+		}
+		httpSession.invalidate();
+		httpSession = getRequest().getSession(true);
+		for (String key : sessionMap.keySet()) {
+			Object value = sessionMap.get(key);
+			httpSession.setAttribute(key, value);
+		}
+		
+		// 写入会员密保Session
+		httpSession.setAttribute(Member.MEMBER_ANSWER_SESSION_NAME, loginMember.getSafeAnswer());
+		
+		return ajax(Status.success, "密保验证通过!");
 	}
 	
 	// Ajax会员登录验证

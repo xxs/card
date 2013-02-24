@@ -13,6 +13,8 @@
 	<#include "/WEB-INF/template/card/header.ftl">
 	<div class="column">
 	<div class="column_left">
+	<div class="column_left_1"><a href="reg.html">免费注册</a><a href="findpassword.html"  class="current" >找回密码</a><a href="login.html">立刻登陆</a>
+        </div>
         <ul>
         	<@article_list article_category_id=articleCategory.id type="publication" count=10; articleList>
 				<#list articleList as article>

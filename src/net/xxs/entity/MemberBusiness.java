@@ -3,6 +3,7 @@ package net.xxs.entity;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.Enumerated;
 import javax.persistence.FetchType;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
@@ -64,6 +65,7 @@ public class MemberBusiness extends BaseEntity {
 	public void setMember(Member member) {
 		this.member = member;
 	}
+	@Enumerated
 	@Column(nullable = false)
 	public BusinessType getBusinessType() {
 		return businessType;
@@ -72,7 +74,7 @@ public class MemberBusiness extends BaseEntity {
 	public void setBusinessType(BusinessType businessType) {
 		this.businessType = businessType;
 	}
-	
+	@Enumerated
 	@Column(nullable = false)
 	public ResultType getResultType() {
 		return resultType;

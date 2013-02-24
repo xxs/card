@@ -1,7 +1,7 @@
 /*
 Navicat MySQL Data Transfer
 
-Source Server         : xxs
+Source Server         : JTM
 Source Server Version : 50154
 Source Host           : localhost:3306
 Source Database       : card
@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50154
 File Encoding         : 65001
 
-Date: 2013-02-17 23:28:46
+Date: 2013-02-24 17:28:32
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -43,7 +43,7 @@ CREATE TABLE `xx_admin` (
 -- ----------------------------
 -- Records of xx_admin
 -- ----------------------------
-INSERT INTO `xx_admin` VALUES ('0731dcsoft2010031200000000000017', '2011-01-01 00:00:00', '2013-02-17 23:22:32', '名臣管理员', 'xxs@163.com', '', '', '', '', '2012-12-17 14:28:34', '2013-02-17 23:22:32', '0', '127.0.0.1', 'ADMIN', '21232f297a57a5a743894a0e4a801fc3', 'admin');
+INSERT INTO `xx_admin` VALUES ('0731dcsoft2010031200000000000017', '2011-01-01 00:00:00', '2013-02-24 16:36:38', '名臣管理员', 'xxs@163.com', '', '', '', '', '2012-12-17 14:28:34', '2013-02-24 16:36:38', '0', '127.0.0.1', 'ADMIN', '21232f297a57a5a743894a0e4a801fc3', 'admin');
 
 -- ----------------------------
 -- Table structure for `xx_admin_role`
@@ -452,6 +452,7 @@ INSERT INTO `xx_log` VALUES ('4028bc743c65859f013c65872d400001', '2013-01-23 11:
 INSERT INTO `xx_log` VALUES ('4028bc743c65859f013c658900890003', '2013-01-23 11:52:22', '2013-01-23 11:52:22', 'net.xxs.action.admin.ArticleCategoryAction', 'save', '添加文章分类: 网站公告', '127.0.0.1', '添加文章分类', 'admin');
 INSERT INTO `xx_log` VALUES ('4028bc743c65859f013c658921500004', '2013-01-23 11:52:31', '2013-01-23 11:52:31', 'net.xxs.action.admin.ArticleAction', 'update', '编辑文章: eeeeeeee', '127.0.0.1', '编辑文章', 'admin');
 INSERT INTO `xx_log` VALUES ('4028bc743c6f3698013c6f3908b80004', '2013-01-25 09:01:14', '2013-01-25 09:01:14', 'net.xxs.action.admin.OrderAction', 'completed', '订单编号: DD100012', '127.0.0.1', '订单完成', 'admin');
+INSERT INTO `xx_log` VALUES ('4028bc743d09c365013d09c8f0f00000', '2013-02-24 09:19:56', '2013-02-24 09:19:56', 'net.xxs.action.admin.ArticleAction', 'update', '编辑文章: eeeeeeee', '127.0.0.1', '编辑文章', 'admin');
 INSERT INTO `xx_log` VALUES ('8a8f81ff3c9e2f64013c9e35400f0000', '2013-02-03 11:59:15', '2013-02-03 11:59:15', 'net.xxs.action.admin.CardsAction', 'update', '编辑充值卡: 腾讯Q币卡', '127.0.0.1', '编辑充值卡', 'admin');
 INSERT INTO `xx_log` VALUES ('8a8f81ff3c9e2f64013c9ecc04030001', '2013-02-03 14:43:56', '2013-02-03 14:43:56', 'net.xxs.action.admin.CardsAction', 'update', '编辑充值卡: 移动充值卡', '127.0.0.1', '编辑充值卡', 'admin');
 INSERT INTO `xx_log` VALUES ('8a8f81ff3c9e2f64013c9ecc4f880002', '2013-02-03 14:44:15', '2013-02-03 14:44:15', 'net.xxs.action.admin.CardsAction', 'update', '编辑充值卡: 联通充值卡', '127.0.0.1', '编辑充值卡', 'admin');
@@ -549,7 +550,7 @@ CREATE TABLE `xx_member` (
 -- Records of xx_member
 -- ----------------------------
 INSERT INTO `xx_member` VALUES ('297e62b93bd214af013bd21a73550000', '2012-12-25 20:47:27', '2013-01-22 13:15:40', '123', '2012-12-27 00:00:00', '0.00000', '123456@qq.com', '0', '', '', null, '2013-01-19 16:40:02', '0', '127.0.0.1', null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, '234', '123123', '4297f44b13955235245b2497399d7a93', null, '123123', '112233', '127.0.0.1', null, null, '0', '112233', '123123', '402881833054c381013054d08bed0001', null, '4028bc743c6fd935013c6fda34cb0000');
-INSERT INTO `xx_member` VALUES ('8a9182fc3ba86bc8013ba9782de60001', '2012-12-17 23:25:23', '2013-02-17 23:02:59', '河南郑州', '2012-12-20 00:00:00', '1411.00000', '123@qq.com', '0', '', '', null, '2013-02-17 22:55:17', '0', '127.0.0.1', null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, '123', '123', '4297f44b13955235245b2497399d7a93', '1359097653234_c3c4b2c8b2e7423283cebe642460738757834bf3ed1f40192f27ffcca663d5b7', '123', '112233', '127.0.0.1', 'www', 'qqq', '0', '123123', '213', '402881833054c381013054d08bed0001', null, '4028bc743c6fd935013c702324ab0001');
+INSERT INTO `xx_member` VALUES ('8a9182fc3ba86bc8013ba9782de60001', '2012-12-17 23:25:23', '2013-02-24 17:21:54', '河南郑州', '2012-12-20 00:00:00', '1411.00000', '123@qq.com', '0', '', '', null, '2013-02-24 17:21:54', '0', '127.0.0.1', null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, '123', '123', '4297f44b13955235245b2497399d7a93', '1359097653234_c3c4b2c8b2e7423283cebe642460738757834bf3ed1f40192f27ffcca663d5b7', '123', '112233', '127.0.0.1', 'www', 'qqq', '0', '123123', '213', '402881833054c381013054d08bed0001', null, '4028bc743c6fd935013c702324ab0001');
 
 -- ----------------------------
 -- Table structure for `xx_member_attribute`
@@ -607,9 +608,9 @@ CREATE TABLE `xx_member_bank` (
 -- ----------------------------
 -- Records of xx_member_bank
 -- ----------------------------
-INSERT INTO `xx_member_bank` VALUES ('4028bc743c604c36013c60644d960003', '2013-01-22 11:54:11', '2013-01-25 09:47:32', '666', '666', '666', '666', '', null, '666', '8a9182fc3ba86bc8013ba9782de60001');
-INSERT INTO `xx_member_bank` VALUES ('8a9181383c571fbe013c5737cd510002', '2013-01-20 17:09:00', '2013-01-25 09:47:32', '23234', '23423', '1341234', '26273672366@qq.com', '', null, '张三', '8a9182fc3ba86bc8013ba9782de60001');
-INSERT INTO `xx_member_bank` VALUES ('eeee', '2013-01-08 14:25:15', '2013-01-25 09:47:31', '郑州', '中信银行北环路', '中信银行', '1876276253753563', '', null, '123123', '8a9182fc3ba86bc8013ba9782de60001');
+INSERT INTO `xx_member_bank` VALUES ('4028bc743c604c36013c60644d960003', '2013-01-22 11:54:11', '2013-02-24 16:27:45', '666', '666', '666', '666', '', null, '666', '8a9182fc3ba86bc8013ba9782de60001');
+INSERT INTO `xx_member_bank` VALUES ('8a9181383c571fbe013c5737cd510002', '2013-01-20 17:09:00', '2013-02-24 16:49:52', '23234', '23423', '1341234', '26273672366@qq.com', '', null, '张三', '8a9182fc3ba86bc8013ba9782de60001');
+INSERT INTO `xx_member_bank` VALUES ('eeee', '2013-01-08 14:25:15', '2013-02-24 16:49:52', '郑州', '中信银行北环路', '中信银行', '1876276253753563', '', null, '123123', '8a9182fc3ba86bc8013ba9782de60001');
 
 -- ----------------------------
 -- Table structure for `xx_member_business`
@@ -670,6 +671,17 @@ CREATE TABLE `xx_member_log` (
 -- ----------------------------
 -- Records of xx_member_log
 -- ----------------------------
+INSERT INTO `xx_member_log` VALUES ('4028bc743d0a09e8013d0a0d39680000', '2013-02-24 10:34:31', '2013-02-24 10:34:31', 'net.xxs.action.card.MemberAction', 'login', '会员登录ID: 8a9182fc3ba86bc8013ba9782de60001', '127.0.0.1', '会员登录', '123123');
+INSERT INTO `xx_member_log` VALUES ('4028bc743d0a09e8013d0a12f4b10001', '2013-02-24 10:40:47', '2013-02-24 10:40:47', 'net.xxs.action.card.MemberAction', 'login', '会员登录: 123123', '127.0.0.1', '会员登录', '123123');
+INSERT INTO `xx_member_log` VALUES ('4028bc743d0a09e8013d0a13ace50002', '2013-02-24 10:41:34', '2013-02-24 10:41:34', 'net.xxs.action.card.MemberAction', 'login', '会员登录: 123123', '127.0.0.1', '会员登录', '123123');
+INSERT INTO `xx_member_log` VALUES ('4028bc743d0a17b2013d0a1b8f350000', '2013-02-24 10:50:11', '2013-02-24 10:50:11', 'net.xxs.action.card.MemberAction', 'login', '会员登录: 123123', '127.0.0.1', '会员登录', '123123');
+INSERT INTO `xx_member_log` VALUES ('4028bc743d0a17b2013d0a1e8f840001', '2013-02-24 10:53:27', '2013-02-24 10:53:27', 'net.xxs.action.card.MemberAction', 'login', '会员登录: 123123', '127.0.0.1', '会员登录', '123123');
+INSERT INTO `xx_member_log` VALUES ('4028bc743d0a17b2013d0a23853b0002', '2013-02-24 10:58:52', '2013-02-24 10:58:52', 'net.xxs.action.card.MemberAction', 'login', '会员登录: 123123', '127.0.0.1', '会员登录', '123123');
+INSERT INTO `xx_member_log` VALUES ('4028bc743d0a17b2013d0a3893ac0003', '2013-02-24 11:21:52', '2013-02-24 11:21:52', 'net.xxs.action.card.MemberAction', 'login', '会员登录: 123123', '127.0.0.1', '会员登录', '123123');
+INSERT INTO `xx_member_log` VALUES ('4028bc743d0b3351013d0b34dc5a0000', '2013-02-24 15:57:26', '2013-02-24 15:57:26', 'net.xxs.action.card.MemberAction', 'login', '会员登录: 123123', '127.0.0.1', '会员登录', '123123');
+INSERT INTO `xx_member_log` VALUES ('4028bc743d0b3351013d0b3ed8330001', '2013-02-24 16:08:20', '2013-02-24 16:08:20', 'net.xxs.action.card.MemberAction', 'login', '会员登录: 123123', '127.0.0.1', '会员登录', '123123');
+INSERT INTO `xx_member_log` VALUES ('4028bc743d0b5317013d0b557d510000', '2013-02-24 16:33:04', '2013-02-24 16:33:04', 'net.xxs.action.card.MemberAction', 'login', '会员登录: 123123', '127.0.0.1', '会员登录', '123123');
+INSERT INTO `xx_member_log` VALUES ('4028bc743d0b813d013d0b8230110000', '2013-02-24 17:21:54', '2013-02-24 17:21:54', 'net.xxs.action.card.MemberAction', 'login', '会员登录: 123123', '127.0.0.1', '会员登录', '123123');
 
 -- ----------------------------
 -- Table structure for `xx_member_rank`

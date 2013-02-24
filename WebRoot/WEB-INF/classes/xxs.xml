@@ -134,6 +134,8 @@
 		<item operation="订单支付" actionClass="net.xxs.action.admin.OrderAction" actionMethod="payment"/>  
 		<item operation="订单完成" actionClass="net.xxs.action.admin.OrderAction" actionMethod="completed"/>  
 		<item operation="订单作废" actionClass="net.xxs.action.admin.OrderAction" actionMethod="invalid"/> 
-		<item operation="会员登陆" actionClass="net.xxs.action.card.MemberAction" actionMethod="login"/> 
 	</logConfig> 
+	<memberLogConfig> 
+		<item operation="会员登录" actionClass="net.xxs.action.card.MemberAction" actionMethod="login"/>  
+	</memberLogConfig> 
 </xxs>

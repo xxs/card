@@ -95,7 +95,7 @@ public class PaymentResultMethod implements TemplateMethodModel {
 				arguments.set(1, "null");
 			}
 			String str = arguments.get(0).toString()+arguments.get(1).toString();
-			System.out.println("字符串为："+str);
+//			System.out.println("字符串为："+str);
 			return new SimpleScalar(resultText(str));
 		}else {
 			throw new TemplateModelException("Wrong arguments");

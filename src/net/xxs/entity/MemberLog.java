@@ -75,6 +75,7 @@ public class MemberLog extends BaseEntity {
 		this.info = info;
 	}
 	
+	
 	// 保存处理
 	@Override
 	@Transient

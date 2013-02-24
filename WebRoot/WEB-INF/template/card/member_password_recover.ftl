@@ -152,6 +152,64 @@
 			<div class="right"></div>
 		</div>
 		<div class="blank"></div>
+		<div class="column">
+	<div class="column_left">
+    	<div class="column_left_1"><a href="reg.html">免费注册</a><a href="findpassword.html"  class="current" >找回密码</a><a href="login.html">立刻登陆</a>
+        </div>
+       <ul>
+        	<li><a href="card.html">支持卡种</a></li>
+            <li><a href="safeguard.html">交易保障</a></li>
+            <li style=" text-align:left; padding-left:19px;width:66px;"><a href="success.html">成功案例</a></li>
+            <li><a href="contribution.html">名臣公益</a></li>
+         
+        </ul>
+        <div class="column_left_3">
+        	<dl>
+            	<span>帮助中心</span>
+                <dt>
+                <img src="images/saaaa/xin.png" width="16" height="16" alt="s" />
+                <img src="images/saaaa/a3.jpg" width="16" height="16" alt="s" /> 
+                <img src="images/saaaa/a2.jpg" width="16" height="16" alt="s" /> 
+                <img src="images/saaaa/cell.png" width="16" height="16" alt="s" /> 
+                <img src="images/saaaa/dlzq.gif" width="16" height="16" alt="s" /> 
+                <img src="images/saaaa/zizhi.png" width="16" height="16" alt="s" /> 
+                </dt>
+                <dd><a href="help.html">新手入门</a></dd>
+                <dd><a href="question.html">常见问题</a></dd>
+                <dd><a href="withdraw.html">提现说明</a></dd>
+                <dd><a href="contact.html">联系我们</a></dd>
+                <dd><a href="business.html">商务合作</a></dd>
+                <dd><a href="company.html">公司资质</a></dd>
+               <!-- <p style="background:url(images/saaaa/a7.jpg) no-repeat;"><a href="#">添加</a></p>     
+                <p  style="background:url(images/saaaa/a8.jpg) no-repeat;"><a href="#">管理</a></p>-->
+        	</dl>
+        </div>
+    </div>
+    <div class="column_right">
+   	    <div class="column_right_1"><p><img src="images/hhh.jpg" width="38" height="37" alt="jj" /></p>
+   	    忘记账号密码了？填写用户名和注册时留下的邮箱后进查收邮件修改密码！</div>
+        <div class="column_right_2">
+        	<div class="column_right_2_shang">
+            	<span>
+                <font>找回密码</font>
+                </span>
+            </div>     
+   	    
+        <form action="" method="post" >
+        <ol id="need">
+
+<li><label class="email">&nbsp;&nbsp;&nbsp;&nbsp;用户名：</label> <input name='' type='text' id='' maxlength="18" />*<dfn>填写您登录时使用的账号</dfn></li>
+
+<li><label class="email">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;邮&nbsp;箱：</label> <input name='' type='text' id='' />*<dfn>填写注册时留下的邮箱</dfn></li>
+
+</ol>
+ <div class="anniu"><input type="submit" value="确 定" class="button"/><input type="reset" value="重新填写" class="button" style="margin-left:30px;" /></div>
+
+         </form>
+         
+         </div>
+        </div>
+    </div>
 		<div class="singlePageDetail">
 			<form id="passwordRecoverForm">
 				<table class="sendTable">

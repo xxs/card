@@ -40,7 +40,9 @@ public class Member extends BaseEntity {
 	private static final long serialVersionUID = 1533130686714725835L;
 	
 	public static final String MEMBER_ID_SESSION_NAME = "memberId";// 保存登录会员ID的Session名称
+	public static final String MEMBER_ANSWER_SESSION_NAME = "memberAnswer";// 保存登录会员密保的Session名称
 	public static final String MEMBER_USERNAME_COOKIE_NAME = "memberUsername";// 保存登录会员用户名的Cookie名称
+	public static final String MEMBER_QUESTION_COOKIE_NAME = "memberQuestion";// 保存登录会员用户名的Cookie名称
 	public static final String PASSWORD_RECOVER_KEY_SEPARATOR = "_";// 密码找回Key分隔符
 	public static final int PASSWORD_RECOVER_KEY_PERIOD = 10080;// 密码找回Key有效时间（单位：分钟）
 	public static final int MEMBER_ATTRIBUTE_VALUE_PROPERTY_COUNT = 20;// 会员注册项值对象属性个数

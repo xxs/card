@@ -40,6 +40,16 @@ public interface MemberService extends BaseService<Member, String> {
 	 * @return 验证是否通过
 	 */
 	public boolean verifyMember(String username, String password);
+	/**
+	 * 根据密保问题、密保答案验证是否通过
+	 * 
+	 * @param safeQuestion  密保问题
+	 *            
+	 * @param safeAnswer    密保答案
+	 * 
+	 * @return 验证是否通过
+	 */
+	public boolean verifyMemberQuestion(Member loginMember,String safeQuestion, String safeAnswer);
 	
 	/**
 	 * 生成密码找回Key

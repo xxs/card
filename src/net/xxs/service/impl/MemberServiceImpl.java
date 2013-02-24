@@ -60,4 +60,12 @@ public class MemberServiceImpl extends BaseServiceImpl<Member, String> implement
 		return new Date(time);
 	}
 
+	public boolean verifyMemberQuestion(Member loginMember,String safeQuestion, String safeAnswer) {
+		if (safeQuestion.equals(loginMember.getSafeQuestion()) && safeAnswer.equals(loginMember.getSafeAnswer())) {
+			return true;
+		} else {
+			return false;
+		}
+	}
+
 }
