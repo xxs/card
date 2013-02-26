@@ -94,7 +94,6 @@ public class Member extends BaseEntity {
 	private String memberAttributeValue19;// 会员注册项值19
 	
 	private MemberRank memberRank;// 会员等级
-	private MemberBusiness memberBusiness ; //商户信息
 	
 	private Set<Withdraw> withdrawSet = new HashSet<Withdraw>();// 提现申请
 	private Set<Message> inboxMessageSet = new HashSet<Message>();// 收件箱消息
@@ -537,17 +536,6 @@ public class Member extends BaseEntity {
 		this.memberBankSet = memberBankSet;
 	}
 	
-	@OneToOne(fetch = FetchType.LAZY)
-	@ForeignKey(name = "fk_member_member_business")
-	public MemberBusiness getMemberBusiness() {
-		return memberBusiness;
-	}
-	
-	public void setMemberBusiness(MemberBusiness memberBusiness) {
-		this.memberBusiness = memberBusiness;
-	}
-
-
 	// 获取会员注册项值
 	@Transient
 	public Object getMemberAttributeValue(MemberAttribute memberAttribute) {

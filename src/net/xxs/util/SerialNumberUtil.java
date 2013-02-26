@@ -3,7 +3,6 @@ package net.xxs.util;
 import java.util.UUID;
 
 import net.xxs.service.CardsService;
-import net.xxs.service.MemberBusinessService;
 import net.xxs.service.OrderService;
 import net.xxs.service.ProductService;
 import net.xxs.service.WithdrawService;
@@ -27,7 +26,6 @@ public class SerialNumberUtil {
 	public static final long WITHDRAW_SN_FIRST = 100000L;// 提现编号起始数
 	public static final long WITHDRAW_SN_STEP = 1L;// 提现编号步长
 	
-	public static final String BUSINESS_Number_PREFIX = "SH";// 商户编号前缀
 	
 	public static Long lastOrderSnNumber;
 	public static Long lastPaymentSnNumber;
@@ -101,21 +99,6 @@ public class SerialNumberUtil {
 	public synchronized static String buildWithdrawSn() {
 		lastWithdrawSnNumber += WITHDRAW_SN_STEP;
 		return WITHDRAW_SN_PREFIX + lastWithdrawSnNumber;
-	}
-	
-	/**
-	 * 生成商户编号
-	 * 
-	 * @return 商户编号
-	 */
-	public static String buildBusinessNumber() {
-		MemberBusinessService memberBusinessService = (MemberBusinessService) SpringUtil.getBean("memberBusinessServiceImpl");
-		String businessNumber;
-		do {
-			String uuid = UUID.randomUUID().toString();
-			businessNumber = BUSINESS_Number_PREFIX + (uuid.substring(0, 8) + uuid.substring(9, 13)).toUpperCase();
-		} while (memberBusinessService.isExistByBusinessNumber(businessNumber));
-		return businessNumber;
 	}
 	
 	/**
