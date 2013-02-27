@@ -5,15 +5,11 @@
     	<dl class="xiao2" style="width:295px; margin-left:0px;">
        	  <dt>合作伙伴</dt>
             <dd>
-            	<p><a href="http://www.10086.com" target="_blank"><img src="/template/card/images/bottom/1.gif" width="48" height="18" alt="中国移动手机充值卡" /></a></p>
-            	<p><a href="http://www.10010.com" target="_blank"><img src="/template/card/images/bottom/2.gif" width="48" height="18" alt="中国联通手机充值卡" /></a></p>
-                <p><a href="http://www.ct10000.com" target="_blank"><img src="/template/card/images/bottom/3.gif" width="49" height="18" alt="中国电信手机充值卡" /></a></p>
-                <p><a href="http://www.qq.com" target="_blank"><img src="/template/card/images/bottom/4.gif" width="48" height="18" alt="Q币卡" /></a></p>
-                <p><a href="http://www.jcard.cn" target="_blank"><img src="/template/card/images/bottom/5.gif" width="48" height="18" alt="骏网一卡通" /></a></p>
-                <p><a href="http://www.snda.com" target="_blank"><img src="/template/card/images/bottom/6.gif" width="47" height="18" alt="盛大一卡通" /></a></p>
-                <p><a href="http://www.sohu.com" target="_blank"><img src="/template/card/images/bottom/7.gif" width="48" height="18" alt="搜狐一卡通" /></a></p>
-                <p><a href="http://www.163.com" target="_blank"><img src="/template/card/images/bottom/8.gif" width="48" height="18" alt="网易一卡通" /></a></p>
-                <p><a href="http://www.ztgame.com" target="_blank"><img src="/template/card/images/bottom/9.gif" width="48" height="18" alt="巨人一卡通" /></a></p>
+            	<@friend_link_list type="picture" count=9; friendLinkList>
+					<#list friendLinkList as friendLink>
+						<p><a href="${friendLink.url}" target="_blank" title="${friendLink.name}"><img src="${base}${friendLink.logoPath}" width="48" height="18" alt="${friendLink.name}" /></a></p>
+					</#list>
+				</@friend_link_list>
             </dd>
       </dl>
       <dl class="xiao1" style="width:auto;float:right;margin:0px auto">
@@ -35,7 +31,7 @@
   </div>
     <div class="copyright_xia">
     	<span><a href="help.html">关于名臣福利</a> <a href="business.html">商务合作</a> <a href="help.html">帮助中心 </a> <a href="contact.html">联系我们</a> <a href="reg.html">服务协议</a></span>
-      <p>Copyright &copy; 2012-2013&nbsp;&nbsp;名臣福利 版权所有&nbsp;Inc. All rights reserved.&nbsp;<a href="http://www.miibeian.gov.cn" target="_blank">粤ICP备12031800号</a>&nbsp;<script src="http://s21.cnzz.com/stat.php?id=4460850&web_id=4460850" language="JavaScript"></script></p><br />
-      <p>关键词：<b>名臣福利 收购手机充值卡 手机充值卡回收 手机充值卡回购 手机充值卡变现 手机充值卡提现 一卡通回收 Q币卡点卡回收 点卡供货 点卡寄售</b></p>
+      <p>Copyright &copy; 2012-2013&nbsp;&nbsp;名臣福利 版权所有&nbsp;Inc. All rights reserved.&nbsp;<a href="http://www.miibeian.gov.cn" target="_blank">粤ICP备12031800号</a>&nbsp;<script src="http://s21.cnzz.com/stat.php?id=4460850&web_id=4460850" language="JavaScript"></script></p>
+      <p>关键词：<b>名臣福利 收购手机充值卡 手机充值卡回收 手机充值卡回购 手机充值卡变现 手机充值卡提现 一卡通回收 Q币卡点卡回收 点卡供货 点卡寄售</b></p><br />
   </div>
 </div>

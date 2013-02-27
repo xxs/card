@@ -122,19 +122,18 @@
 	<!--内容区-->
 	<div class="column1">
 	<div class="column2">
-    以下服务即将上线……
     	<ul>
-        	<li style=" margin:0px;"><a href="#"><img src="/template/card/index/a1.jpg" width="48" height="61" alt="dd" />  手机充值</a></li>
-            <li><a href="#"><img src="/template/card/images/a2.jpg" width="48" height="61" alt="dd" />  <center>信用卡</center></a></li>
-            <li><a href="#"><img src="/template/card/images/a3.jpg" width="48" height="61" alt="dd" />  <center>商城</center></a></li>
-            <li><a href="#"><img src="/template/card/images/a4.jpg" width="48" height="61" alt="dd" />  <center>彩票</center></a></li>
-            <li><a href="#"><img src="/template/card/images/a6.jpg" width="48" height="61" alt="dd" />  <center>缴费</center></a></li>
-            <li><a href="#"><img src="/template/card/images/a7.jpg" width="48" height="61" alt="dd" />  <center>快递</center></a></li>
-            <li><a href="#"><img src="/template/card/images/a8.jpg" width="48" height="61" alt="dd" /> <center>机票</center></a></li>
-            <li><a href="#"><img src="/template/card/images/a5.jpg" width="48" height="61" alt="dd" /> <center>信用还款</center></a></li>
-            <li><a href="#"><img src="/template/card/images/a9.jpg" width="48" height="61" alt="dd" />  <center>游戏</center></a></li>
-            <li><a href="#"><img src="/template/card/images/a10.jpg" width="48" height="61" alt="dd" /> <center>房租</center></a></li>
-            <li><a href="#"><img src="/template/card/images/a11.jpg" width="48" height="61" alt="dd" />  <center>更多服务</center></a></li>
+        	<li style=" margin:0px;"><a href="#"  alt="此功能即将上线"><img src="/template/card/images/a1.jpg" width="48" height="61" alt="此功能即将上线" /><center>手机充值</center></a></li>
+            <li><a href="#" alt="此功能即将上线"><img src="/template/card/images/a2.jpg" width="48" height="61" alt="此功能即将上线" />  <center>信用卡</center></a></li>
+            <li><a href="#" alt="此功能即将上线"><img src="/template/card/images/a3.jpg" width="48" height="61" alt="此功能即将上线" />  <center>商城</center></a></li>
+            <li><a href="#" alt="此功能即将上线"><img src="/template/card/images/a4.jpg" width="48" height="61" alt="此功能即将上线" />  <center>彩票</center></a></li>
+            <li><a href="#" alt="此功能即将上线"><img src="/template/card/images/a6.jpg" width="48" height="61" alt="此功能即将上线" />  <center>缴费</center></a></li>
+            <li><a href="#" alt="此功能即将上线"><img src="/template/card/images/a7.jpg" width="48" height="61" alt="此功能即将上线" />  <center>快递</center></a></li>
+            <li><a href="#" alt="此功能即将上线"><img src="/template/card/images/a8.jpg" width="48" height="61" alt="此功能即将上线" /> <center>机票</center></a></li>
+            <li><a href="#" alt="此功能即将上线"><img src="/template/card/images/a5.jpg" width="48" height="61" alt="此功能即将上线" /> <center>信用还款</center></a></li>
+            <li><a href="#" alt="此功能即将上线"><img src="/template/card/images/a9.jpg" width="48" height="61" alt="此功能即将上线" />  <center>游戏</center></a></li>
+            <li><a href="#" alt="此功能即将上线"><img src="/template/card/images/a10.jpg" width="48" height="61" alt="此功能即将上线" /> <center>房租</center></a></li>
+            <li><a href="#" alt="此功能即将上线"><img src="/template/card/images/a11.jpg" width="48" height="61" alt="此功能即将上线" />  <center>更多服务</center></a></li>
         </ul>
     </div>
       
@@ -183,22 +182,17 @@
 	                <p><a href="#">站内动态</a></p>
 	            </div>
 	            <dl style="margin-top:0px;border:none; padding:0px; height:120px;">
-	           	  	<dt >公告</dt>
+	           	  	<dt >最新站内公告：</dt>
 	                <dd><a href="#">12月14日农业银行维护通知</a></dd>
 	            		<@article_list type="advice" count=10; articleList>
 							<#list articleList as article>
-								<dd><a href="#" name="${article.content}" class="red gonggao" title="${article.title}">${substring(article.title, 20, "...")} ${article.createDate?string("yyyy-MM-dd HH:mm:ss")}</a></dd>
+								<dd><a href="#" name="${article.content}" class="red gonggao" title="${article.title} 发布日期：${article.createDate?string("yyyy-MM-dd HH:mm:ss")}">${substring(article.title, 40, "...")} </a></dd>
 							</tr>	
 							</#list>
 						</@article_list>    
 	            </dl>
 	        </div>
 	  </div>
-	</div>
-	
-	
-	<div class="content_line">
-		<#include "/WEB-INF/template/card/friend_link.ftl">
 	</div>
 	
 	<#include "/WEB-INF/template/card/footer.ftl">

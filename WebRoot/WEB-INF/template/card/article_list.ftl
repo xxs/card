@@ -13,17 +13,37 @@
 	<#include "/WEB-INF/template/card/header.ftl">
 	<div class="column">
 	<div class="column_left">
-	<div class="column_left_1"><a href="reg.html">免费注册</a><a href="findpassword.html"  class="current" >找回密码</a><a href="login.html">立刻登陆</a>
+		<div class="column_left_1">
+			<a href="reg.html">免费注册</a>
+			<a href="findpassword.html">找回密码</a>
+			<a href="login.html">立刻登陆</a>
         </div>
         <ul>
-        	<@article_list article_category_id=articleCategory.id type="publication" count=10; articleList>
+			<@article_list type="hot" count=6; articleList>
 				<#list articleList as article>
-				<li>
-					<a href="${base}${article.htmlPath}" title="${article.title}">${substring(article.title, 24, "...")}</a>
-				</li>
+					<li class="number${article_index + 1}">
+						<a href="${base}${article.htmlPath}" title="${article.title}">${substring(article.title, 24, "...")}</a>
+					</li>
 				</#list>
-			</@article_list>
+			</@article_list>		
         </ul>
+        <div class="column_left_3">
+        	<dl>
+            	<span>帮助中心</span>
+                <dt>
+                <@article_list type="hot" count=5; articleList>
+					<#list articleList as article>
+						<img src="/template/card/images/${article.title}.png" width="16" height="16" alt="${article.title}" />
+					</#list>
+				</@article_list>
+                </dt>
+                <@article_list type="hot" count=5; articleList>
+					<#list articleList as article>
+						<dd><a href="${base}${article.htmlPath}" title="${article.title}">${substring(article.title, 24, "...")}</a></dd>
+					</#list>
+				</@article_list>
+        	</dl>
+        </div>
     </div>
     <div class="column_right">
    	    <div class="column_right_1"><p>您尚未登陆，请点击<a href="${base}/card/promotion.action">登陆</a>立即参与到分享二维码，推荐会员拿提成活动</div>

@@ -13,16 +13,12 @@
 						</li>
 					</#list>
 				</@navigation_list>
+				<li style="margin-left:10px;background:none;width:auto"><a href="#">全国免费咨询热线：400-611-8420</a></li>
             </ul>
 		</div>
     	<div class="top_995_right">
-    	<p><a href="${base}/card/member!logout.action">退出</a></p>
     	<p><a href="${base}/card/member!register.action">注册</a></p>
-    	<#if loginMember??>
-    		<span><a href="${base}/card/member_center!index.action">激活我的名臣</a></span> 
-    	<#else>
-    		<span><a href="${base}/card/member_center!index.action">进入会员中心</a></span> 
-    	</#if>
+    		<span><a href="${base}/card/member_center!index.action">登陆</a></span> 
     	</div>
   	</div>
 </div>
