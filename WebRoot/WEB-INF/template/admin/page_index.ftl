@@ -56,14 +56,6 @@
 						${unprocessedWithdrawCount} <a href="withdraw!applying.action">[提现申请]</a>
 					</td>
 				</tr>
-				<tr>
-					<td>
-						未处理商户申请数: 
-					</td>
-					<td>
-						${unprocessedMemberBusinessApplyCount} <a href="member_business!applying.action">[商户申请]</a>
-					</td>
-				</tr>
 			</table>
 			<div class="blank"></div>
 		</div>
@@ -84,14 +76,6 @@
 				</tr>
 				<tr>
 					<td>
-						商户总数: 
-					</td>
-					<td>
-						${unprocessedMemberBusinessCount} <a href="member_business!list.action">[商户总数]</a>
-					</td>
-				</tr>
-				<tr>
-					<td>
 						会员总数: 
 					</td>
 					<td>
@@ -104,14 +88,6 @@
 					</td>
 					<td>
 						${articleTotalCount}  篇
-					</td>
-				</tr>
-				<tr>
-					<td>
-						会员商户转换率: 
-					</td>
-					<td>
-						${unprocessedMemberBusinessCount/memberTotalCount*100}   %
 					</td>
 				</tr>
 			</table>

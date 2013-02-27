@@ -1,7 +1,7 @@
 /*
 Navicat MySQL Data Transfer
 
-Source Server         : xxs
+Source Server         : JTM
 Source Server Version : 50154
 Source Host           : localhost:3306
 Source Database       : card
@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50154
 File Encoding         : 65001
 
-Date: 2013-02-24 23:59:42
+Date: 2013-02-27 17:33:55
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -43,7 +43,7 @@ CREATE TABLE `xx_admin` (
 -- ----------------------------
 -- Records of xx_admin
 -- ----------------------------
-INSERT INTO `xx_admin` VALUES ('0731dcsoft2010031200000000000017', '2011-01-01 00:00:00', '2013-02-24 23:07:04', '名臣管理员', 'xxs@163.com', '', '', '', '', '2012-12-17 14:28:34', '2013-02-24 23:07:04', '0', '127.0.0.1', 'ADMIN', '21232f297a57a5a743894a0e4a801fc3', 'admin');
+INSERT INTO `xx_admin` VALUES ('0731dcsoft2010031200000000000017', '2011-01-01 00:00:00', '2013-02-27 14:19:26', '名臣管理员', 'xxs@163.com', '', '', '', '', '2012-12-17 14:28:34', '2013-02-27 14:19:26', '0', '127.0.0.1', 'ADMIN', '21232f297a57a5a743894a0e4a801fc3', 'admin');
 
 -- ----------------------------
 -- Table structure for `xx_admin_role`
@@ -767,11 +767,11 @@ CREATE TABLE `xx_navigation` (
 -- Records of xx_navigation
 -- ----------------------------
 INSERT INTO `xx_navigation` VALUES ('4028bc743bac0d54013bacbb0f14000d', '2012-12-18 14:37:18', '2013-01-11 16:01:51', '', '', '首页', '1', '100', '${base}/');
-INSERT INTO `xx_navigation` VALUES ('4028bc743bac0d54013bacbb688e000e', '2012-12-18 14:37:41', '2013-01-20 16:02:35', '', '', '新手导航', '0', '1', '${base}/card/article_list/xs.htm');
-INSERT INTO `xx_navigation` VALUES ('4028bc743c286bdc013c28931dc9000c', '2013-01-11 15:46:35', '2013-01-20 15:52:00', '', '', '关于我们', '1', '3', '${base}/card/article_list/us.htm');
-INSERT INTO `xx_navigation` VALUES ('4028bc743c286bdc013c28982ed8000d', '2013-01-11 15:52:07', '2013-01-11 15:52:07', '', '', '快捷通道', '1', '4', '${base}/');
+INSERT INTO `xx_navigation` VALUES ('4028bc743bac0d54013bacbb688e000e', '2012-12-18 14:37:41', '2013-02-27 14:01:29', '', '', '新手导航', '0', '1', '${base}/template/html/help.html');
+INSERT INTO `xx_navigation` VALUES ('4028bc743c286bdc013c28931dc9000c', '2013-01-11 15:46:35', '2013-01-20 15:52:00', '', '', '公司资质', '1', '3', '${base}/template/html/company.html');
+INSERT INTO `xx_navigation` VALUES ('4028bc743c286bdc013c28982ed8000d', '2013-01-11 15:52:07', '2013-01-11 15:52:07', '', '', '商务合作', '1', '4', '${base}/template/html/business.html');
 INSERT INTO `xx_navigation` VALUES ('4028bc743c286bdc013c2898de04000f', '2013-01-11 15:52:52', '2013-01-11 15:52:52', '', '', '在线留言', '0', '2', '${base}/card/leave_message.htm');
-INSERT INTO `xx_navigation` VALUES ('4028bc743c286bdc013c28993e930010', '2013-01-11 15:53:17', '2013-01-11 15:53:17', '', '', '交易保障', '1', '6', '${base}/card/article_list/bz.htm');
+INSERT INTO `xx_navigation` VALUES ('4028bc743c286bdc013c28993e930010', '2013-01-11 15:53:17', '2013-01-11 15:53:17', '', '', '联系我们', '1', '6', '${base}/template/html/contact.html');
 INSERT INTO `xx_navigation` VALUES ('8a9181263c31adc7013c31c753280000', '2013-01-13 10:40:12', '2013-01-13 11:05:24', '', '', '成功案例', '1', '7', '${base}/card/deposit!successList.action');
 
 -- ----------------------------

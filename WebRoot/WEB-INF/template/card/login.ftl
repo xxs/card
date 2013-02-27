@@ -78,7 +78,7 @@
 					<input type="hidden" id="loginRedirectUrl" name="loginRedirectUrl" />
 					<table>
 						<tr>
-							<th>用户名</th>
+							<th>账&nbsp;&nbsp;&nbsp;号</th>
 							<td>
 								<input type="text" id="memberUsername" name="member.username" class="formText" />
 							</td>

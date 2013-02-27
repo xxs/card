@@ -18,16 +18,25 @@
 		DD_belatedPNG.fix(".belatedPNG");
 	</script>
 	<![endif]-->
-	<script type="text/javascript">
-	$(function(){
-		$("body").Sonline({
-			Position:"right",//left或right
-			Top:200,//顶部距离，默认200px
-			Effect:false, //滚动或者固定两种方式，布尔值：true或false
-			DefaultsOpen:false, //默认展开：true,默认收缩：false
-			Qqlist:"734074125|xxs,435027|客服02,435027|客服03,435027|客服04,435027|客服05" //多个QQ用','隔开，QQ和客服名用'|'隔开
-		});
-	})	
+	<!--鼠标移动到登录挂件标签后自动切换的JS-->
+	<script type="text/javascript" >
+	//<![CDATA[
+		$(function(){
+		    var $div_li =$("div.tab_menu ul li");
+		    $div_li.mouseover(function(){//要点击切换这click
+				$(this).addClass("selected")            //当前<li>元素高亮
+					   .siblings().removeClass("selected");  //去掉其它同辈<li>元素的高亮
+	            var index =  $div_li.index(this);  // 获取当前点击的<li>元素 在 全部li元素中的索引。
+				$("div.tab_box > div")   	//选取子节点。不选取子节点的话，会引起错误。如果里面还有div 
+						.eq(index).show()   //显示 <li>元素对应的<div>元素
+						.siblings().hide(); //隐藏其它几个同辈的<div>元素
+			}).hover(function(){
+				$(this).addClass("hover");
+			},function(){
+				$(this).removeClass("hover");
+			})
+		})
+	//]]>
 	</script>
 </head>
 <body>
@@ -46,7 +55,148 @@
 	</div>
 	</div>
 	</div>
+	
+	 <!--中部banner上层-->
+    <div class="banner2">
+    <div class="banner_over">
+     <div class="banner_right">
+    	<div class="banner_xiao">
+		<div class="tab">
+			<div class="tab_menu">
+				<ul>
+					<li class="selected">会员登录</li>
+					<li>已登录</li>
+				</ul>
+		 	</div>
+		 <div class="tab_box"> 
+		 	<div id="beforeLogin" class="anan">
+            	<form id="loginForm" action="${base}/card/member!login.action" method="post">
+					<input type="hidden" id="loginRedirectUrl" name="loginRedirectUrl" />
+	                <div>
+	                	<p>账&nbsp;&nbsp;号</p> 
+	                	<span>
+	                		<input type="text" id="memberUsername"  size="15" name="member.username" class="oo" />
+	                	</span>
+	                </div>
+	                <div style="margin-top:19px;">
+	                  	<p>密&nbsp;&nbsp;码</p> 
+	                  	<span>
+	                  		<input type="password" id="memberPassword" name="member.password" class="oo" />
+	                  	</span>
+	                </div>
+	                <div style="margin-top:19px;">
+	                	<p>验证码</p>
+	                  	<span>
+	                  		<input type="text" id="captcha" maxlength="4" name="j_captcha" style="width:90px" class="oo captcha" />
+	                  		<img id="captchaImage" class="captchaImage" src="${base}/captcha.jpeg" alt="换一张" />
+	                  	</span>
+	                </div>
+	                <span id="loginError" style="font-size:15px;margin-top:10px;margin-bottom:5px;text-align:center;color:red;font-weight:bold">验证失败，此处提示错误信息</span>
+	                <div class="ddsa" >
+	                	<input id="loginButton1" class="button" style="display:inline" type="button"  name="login" value="登&nbsp;&nbsp;&nbsp;录" onclick="change()" />
+	                </div>
+	                <div class="wenz">
+	                	还没有账号？<a href="reg.html" style="font-size:14px;font-weight:bold">免费注册</a>&nbsp;|
+	                	&nbsp;<a href="${base}/card/member!passwordRecover.action" style="font-size:13px;font-weight:bold">忘记密码？</a>
+	                </div>
+                </form>
+            </div>
+		 	<div id="afterLogin" class="hide">
+	         	<h1 style="font-size:18px"><strong>欢迎使用名臣福利!</strong></h1>
+	         	<hr noshade width=100% style="margin-left:-15px;margin-top:5px"><br />
+	         	<font style="font-size:15px">你当前使用的名臣福利账号是：</font><br />
+	         	<br/>
+	         	<strong><span id="account" style="text-align:center;font-size:16px;color:#FF9700">里显示账号123456789@qq.com</span></strong><br />
+	         	<br />
+         		<div style="margin-left:10px;margin-top:15px;">
+         			<a target="_blank" href="#"><img src="images/jinru.jpg" style="margin-left:0px;" /></a>
+         			<a target="_self" href="#"><img src="images/tc.jpg" style="margin-left:15px" name="logout" /></a>
+         		</div>
+           	</div>
+          </div>
+		</div>
+     </div>
+    </div>  
+ </div>   
+ </div>
 	<!--内容区-->
+	<div class="column1">
+	<div class="column2">
+    以下服务即将上线……
+    	<ul>
+        	<li style=" margin:0px;"><a href="#"><img src="/template/card/index/a1.jpg" width="48" height="61" alt="dd" />  手机充值</a></li>
+            <li><a href="#"><img src="/template/card/images/a2.jpg" width="48" height="61" alt="dd" />  <center>信用卡</center></a></li>
+            <li><a href="#"><img src="/template/card/images/a3.jpg" width="48" height="61" alt="dd" />  <center>商城</center></a></li>
+            <li><a href="#"><img src="/template/card/images/a4.jpg" width="48" height="61" alt="dd" />  <center>彩票</center></a></li>
+            <li><a href="#"><img src="/template/card/images/a6.jpg" width="48" height="61" alt="dd" />  <center>缴费</center></a></li>
+            <li><a href="#"><img src="/template/card/images/a7.jpg" width="48" height="61" alt="dd" />  <center>快递</center></a></li>
+            <li><a href="#"><img src="/template/card/images/a8.jpg" width="48" height="61" alt="dd" /> <center>机票</center></a></li>
+            <li><a href="#"><img src="/template/card/images/a5.jpg" width="48" height="61" alt="dd" /> <center>信用还款</center></a></li>
+            <li><a href="#"><img src="/template/card/images/a9.jpg" width="48" height="61" alt="dd" />  <center>游戏</center></a></li>
+            <li><a href="#"><img src="/template/card/images/a10.jpg" width="48" height="61" alt="dd" /> <center>房租</center></a></li>
+            <li><a href="#"><img src="/template/card/images/a11.jpg" width="48" height="61" alt="dd" />  <center>更多服务</center></a></li>
+        </ul>
+    </div>
+      
+	<div class="Service">
+        <div class="Service_left">
+        <span><p>什么是手机充值卡回购？</p></span><br /><img class="i1" src="/template/card/images/h1bg.gif" />
+        <ul>
+
+        <li><h1>A. 您有如下充值卡</h1> 
+	赠送、公司福利得到的<br />
+	各种面值的游戏卡和<br />
+	移动/电信/联通手机充值卡
+	        </li>
+	        <li><h1>B. 自己手机话费够了</h1> 
+	不玩游戏 送人没人要<br />扔了可惜<br />
+	也不用充值卡购物
+	        </li>
+	        <li><h1>C. 我们帮您把它变现</h1> 
+	通过在线销售系统<br />即刻完成充值卡回购<br />
+	申请提现20分钟内处理
+	        </li>
+	        <li><h1>D. 您还可以贡献公益卡</h1> 
+	每回购一张充值卡<br />我们将拿出0.1-1.0元<br />捐助公益
+	     </li>
+	        </ul>
+	       
+	        <span style="margin-top:55px;float:left;"><p>关于名臣福利</p></span><br /><img class="i1" src="/template/card/images/h1bg.gif" />
+	        <ul>
+	        <li><h1>1. 为您谋福利</h1> 
+	名臣福利致力于帮您把<br />多余的手机充值卡、游戏卡<br />通过在线销售系统变成现金
+	        </li>
+	        <li><h1>2. 为大家谋福利</h1> 
+	名臣福利会把收取的手续费<br />的一部分捐助给公益事业<br />从而实现更多人的福利 
+	        </li>
+	        <li><h1>3. 交易保障</h1> 
+	通过在线支付系统即时<br />完成充值卡回购<br />提现后几分钟内给您打款 
+	        </li>
+	        <li><h1>4. 在线客服</h1> 
+	<p><a target="_blank" href="http://wpa.qq.com/msgrd?v=3&uin=554368159&site=qq&menu=yes"><img border="0" src="http://wpa.qq.com/pa?p=2:554368159:41" alt="点击这里给我发消息" title="点击这里给我发消息"></a>554368159</p><p><a target="_blank" href="http://wpa.qq.com/msgrd?v=3&uin=854768232&site=qq&menu=yes"><img border="0" src="http://wpa.qq.com/pa?p=2:854768232:41" alt="点击这里给我发消息" title="点击这里给我发消息"></a>854768232</p>
+	     </li>
+	        </ul>
+	        </div>
+	    <div class="Service_right">
+	        	<div class="Service_right_top">
+	            	<span style="text-align:center;margin-left:30px;"><a href="#">手机充值卡回购</a> | <a href="#">人工回收</a> </span>
+	                <p><a href="#">站内动态</a></p>
+	            </div>
+	            <dl style="margin-top:0px;border:none; padding:0px; height:120px;">
+	           	  	<dt >公告</dt>
+	                <dd><a href="#">12月14日农业银行维护通知</a></dd>
+	            		<@article_list type="advice" count=10; articleList>
+							<#list articleList as article>
+								<dd><a href="#" name="${article.content}" class="red gonggao" title="${article.title}">${substring(article.title, 20, "...")} ${article.createDate?string("yyyy-MM-dd HH:mm:ss")}</a></dd>
+							</tr>	
+							</#list>
+						</@article_list>    
+	            </dl>
+	        </div>
+	  </div>
+	</div>
+	
+	
 	<div class="content_line">
 		<#include "/WEB-INF/template/card/friend_link.ftl">
 	</div>
