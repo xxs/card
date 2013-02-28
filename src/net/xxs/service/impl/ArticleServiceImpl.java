@@ -67,6 +67,11 @@ public class ArticleServiceImpl extends BaseServiceImpl<Article, String> impleme
 		return articleDao.getArticlePager(articleCategory, pager);
 	}
 	
+	@Transactional(readOnly = true)
+	public List<Article> getArticleTree() {
+		return articleDao.getArticleTree();
+	}
+	
 	public Pager search(Pager pager) {
 		Compass compass = compassTemplate.getCompass();
 		CompassSession compassSession = compass.openSession();

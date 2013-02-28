@@ -46,29 +46,24 @@
         </div>
     </div>
     <div class="column_right">
-   	    <div class="column_right_1"><p>您尚未登陆，请点击<a href="${base}/card/promotion.action">登陆</a>立即参与到分享二维码，推荐会员拿提成活动</div>
-        <div class="column_right_2_shang">
-                <#list pager.result as article>
-                	<div class="title">
-	                     	<a href="${base}${article.htmlPath}">
-								${substring(article.title, 40, "...")}
-							</a>
-						</div>
-                          <span class="author">
-                            	${substring(article.contentText, 500, "...")}
-                                	<div class="info">
-										作者: <#if article.author == "">未知<#else>${article.author}</#if>${article.createDate}
-										<a href="${base}${article.htmlPath}">[阅读全文]</a>
-									</div>
-                                </span>
-                		</#list>
+   	    <div class="column_right_1"><p><img src="images/hhh.jpg" width="38" height="37" alt="jj" /></p>
+   	    	<#if (article.metaDescription)! != "">${article.metaDescription}</#if>
+   	   		<#if (article.metaDescription)! == "">您尚未登陆，请点击<a href="${base}/card/promotion.action">登陆</a>立即参与到分享二维码，推荐会员拿提成活动</#if>
+   	   </div>
+        <div class="column_right_2">
+        <#list pager.result as article>
+        	<div class="column_right_2_shang">
+            	<span>
+                <font>${substring(article.title, 40, "...")}</font>
+                </span>
+            </div>     
+       		${article.contentText}
+       	</#list>	
+       </div>
+        
+        </div>
         </div>
     </div>
-</div>
-		<div class="blank"></div>
-		<#include "/WEB-INF/template/card/friend_link.ftl">
-	</div>
-	<div class="blank"></div>
 	<#include "/WEB-INF/template/card/footer.ftl">
 	<script type="text/javascript" src="${base}/template/common/js/jquery.js"></script>
 	<script type="text/javascript" src="${base}/template/common/js/jquery.tools.js"></script>

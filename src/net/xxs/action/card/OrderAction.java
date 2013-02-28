@@ -28,6 +28,7 @@ import net.xxs.service.OrderService;
 import net.xxs.service.PaymentConfigService;
 import net.xxs.service.PaymentDiscountService;
 import net.xxs.service.ProductService;
+import net.xxs.util.DateUtil;
 import net.xxs.util.JsonUtil;
 import net.xxs.util.PaymentProductUtil;
 import net.xxs.util.SettingUtil;
@@ -63,6 +64,7 @@ public class OrderAction extends BaseCardAction {
 	private String cardString;//卡密组的字符串
 	private String memo;// 附言
 	
+	private String dateScope; //时间范围
 	private Date beginDate;// 开始日期
 	private Date endDate;// 结束日期
 	
@@ -366,6 +368,22 @@ public class OrderAction extends BaseCardAction {
 	// 查询订单
 	public String search() {
 		order.setMember(getLoginMember());
+		if("day".equals(dateScope)){
+			beginDate = new Date();
+			endDate	= new Date();
+		}
+		if("week".equals(dateScope)){
+			beginDate = DateUtil.getAfterDay(7);
+			endDate	= new Date();
+		}
+		if("month".equals(dateScope)){
+			beginDate = DateUtil.getMonthFirst();
+			endDate	= new Date();	
+		}
+		if("quarter".equals(dateScope)){
+			beginDate = DateUtil.getAfterMonth(3);
+			endDate	= new Date();
+		}
 		pager = orderService.getOrderPager(beginDate,endDate,order,pager);
 		return LIST;
 	}
@@ -474,6 +492,12 @@ public class OrderAction extends BaseCardAction {
 	}
 	public void setOrderList(List<Order> orderList) {
 		this.orderList = orderList;
+	}
+	public String getDateScope() {
+		return dateScope;
+	}
+	public void setDateScope(String dateScope) {
+		this.dateScope = dateScope;
 	}
 	
 }

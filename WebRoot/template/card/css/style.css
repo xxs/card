@@ -138,10 +138,10 @@ background:url(../images/tg_flash_p2.png) no-repeat 0px 0px; _background:none; _
 .column_left_3 dl dd{width:100px;float:left;display:block;margin:8px 0 7px 3px;font-family:"Microsoft YaHei", Verdana;font-size:13px;}
 .column_left_3 dl p{width:40px;float:left;margin:8px 0 0 10px;padding-left:17px;}
 
-.column_right{height:300px;width:770px;float:right;}
+.column_right{overflow: hidden;width:770px;float:right;}
 	.column_right_1{height:82px;line-height:82px;border:3px solid #d7d7d7;background:#f8f8f8;margin-bottom:10px;font-size:14px;font-weight:bold;color:#666666;}
 		.column_right_1 p{float:left;margin:24px 14px 0 129px;}
-	.column_right_2{height:549px;border:1px solid #d7d7d7;}
+	.column_right_2{height:395px;border:1px solid #d7d7d7; margin-bottom:20px;}
 	.column_right_2_shang{height:50px;padding:45px 0 0 55px;}
 		.column_right_2_shang span{height:40px;width:580px;display:block; background:url(../images/saaaa/sa3.jpg) no-repeat;padding-left:75px;border-bottom:1px dashed #878a86;}
 		.column_right_2_shang span font{font-family:"Microsoft YaHei", Verdana;font-size:20px;margin-top:50px;}

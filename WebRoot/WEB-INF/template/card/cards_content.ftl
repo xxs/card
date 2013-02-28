@@ -33,14 +33,6 @@
 	 			  	<div class="memberCenter">
 					<form id="sForm" autocomplete="off">
 					<table class="tabTable">
-						<tr class="tongdaoS">
-							<th>支付通道:</th>
-							<td>
-								<#list paymentDiscountList as paymentDiscount>
-									<input type="radio" name="paymentConfig.id" value="${paymentDiscount.paymentConfig.id}" face="${paymentDiscount.face}" <#if paymentDiscount.paymentConfig.isDefault >checked="checked"</#if> />&nbsp;${paymentDiscount.paymentConfig.name}(<span style="color:red">折扣率：${paymentDiscount.discount}</span>)
-								</#list>
-							</td>
-						</tr>
 						<#if cards.isSpecificationEnabled>
 							<#assign specificationValueSet = cards.specificationValueSet>
 							<#list cards.specificationSet as specification>
@@ -56,6 +48,14 @@
 									</tr>
 							</#list>
 						</#if>
+						<tr class="tongdaoS">
+							<th>支付通道:</th>
+							<td>
+								<#list paymentDiscountList as paymentDiscount>
+									<input type="radio" name="paymentConfig.id" value="${paymentDiscount.paymentConfig.id}" face="${paymentDiscount.face}" <#if paymentDiscount.paymentConfig.isDefault >checked="checked"</#if> />&nbsp;${paymentDiscount.paymentConfig.name}(<span style="color:red">折扣率：${paymentDiscount.discount}</span>)
+								</#list>
+							</td>
+						</tr>
 						<tr>
 							<th>确认金额:</th>
 							<td>
@@ -88,20 +88,6 @@
 				 	<div class="memberCenter">
 					<form id="pForm" autocomplete="off">
 					<table class="tabTable">
-						<tr class="tongdaoP">
-							<th>支付通道:</th>
-							<td>
-								<#list paymentDiscountList as paymentDiscount>
-									<input type="radio" name="paymentConfig.id" value="${paymentDiscount.paymentConfig.id}" face="${paymentDiscount.face}" <#if paymentDiscount.paymentConfig.isDefault >checked="checked"</#if> />&nbsp;${paymentDiscount.paymentConfig.name}(<span style="color:red">折扣率：${paymentDiscount.discount}</span>)
-								</#list>
-							</td>
-						</tr>
-						<tr>
-							<th>充值卡编号: </th>
-							<td>
-								${cards.cardsSn}
-							</td>
-						</tr>
 						<#if cards.isSpecificationEnabled>
 							<#assign specificationValueSet = cards.specificationValueSet>
 							<#list cards.specificationSet as specification>
@@ -117,6 +103,14 @@
 									</tr>
 							</#list>
 						</#if>
+						<tr class="tongdaoP">
+							<th>支付通道:</th>
+							<td>
+								<#list paymentDiscountList as paymentDiscount>
+									<input type="radio" name="paymentConfig.id" value="${paymentDiscount.paymentConfig.id}" face="${paymentDiscount.face}" <#if paymentDiscount.paymentConfig.isDefault >checked="checked"</#if> />&nbsp;${paymentDiscount.paymentConfig.name}(<span style="color:red">折扣率：${paymentDiscount.discount}</span>)
+								</#list>
+							</td>
+						</tr>
 						<tr>
 							<th>确认金额:</th>
 							<td>
@@ -180,15 +174,17 @@
 			$(".text2 input[type='radio']").click(function(){     //绑定radio绑定事件                
 	             $("#price2").text("￥  "+$(this).attr("price")+" 元");
 		    });
-		    var str = $(".tongdaoS input[type='radio']:checked").attr("face");
-		    var strs = str.split(","); //字符分割
-		    $(".text1 input[type='radio']").each(function(){
+		    
+		    var price1 = $(".text1 input[type='radio']:checked").attr("price");
+		    $(".tongdaoS input[type='radio']").each(function(){
 				$(this).attr("disabled","disabled");
 			});
-			$(".text1 input[type='radio']").each(function(){
+		    $(".tongdaoS input[type='radio']").each(function(){
+		    	var str = $(this).attr("face");
+		    	var strs = str.split(","); //字符分割
 		        for (i=0;i<strs.length ;i++ ){
 					if(strs[i]!="0"){
-					   	if($(this).attr("price")==strs[i]){ 
+					   	if(price1==strs[i]){ 
 					    	$(this).removeAttr("disabled");
 					    }
 					}else{
@@ -197,15 +193,16 @@
 				}
 			});
 			
-		    var str = $(".tongdaoP input[type='radio']:checked").attr("face");
-		    var strs = str.split(","); //字符分割
-		    $(".text2 input[type='radio']").each(function(){
+			var price2 = $(".text2 input[type='radio']:checked").attr("price");
+		    $(".tongdaoP input[type='radio']").each(function(){
 				$(this).attr("disabled","disabled");
 			});
-			$(".text2 input[type='radio']").each(function(){
+		    $(".tongdaoP input[type='radio']").each(function(){
+		    	var str = $(this).attr("face");
+		    	var strs = str.split(","); //字符分割
 		        for (i=0;i<strs.length ;i++ ){
 					if(strs[i]!="0"){
-					   	if($(this).attr("price")==strs[i]){ 
+					   	if(price2==strs[i]){ 
 					    	$(this).removeAttr("disabled");
 					    }
 					}else{
@@ -213,42 +210,47 @@
 					}
 				}
 			});
-			$(".tongdaoS input[type='radio']").click(function(){     //绑定radio绑定事件                
-				$(".text1 input[type='radio']").each(function(){
+		    
+			$(".text1 input[type='radio']").click(function(){     //绑定radio绑定事件             
+				var price1 = $(".text1 input[type='radio']:checked").attr("price");  
+				//alert(price); 
+				$(".tongdaoS input[type='radio']").each(function(){
 					$(this).attr("disabled","disabled");
 				});
-	            var str = $(this).attr("face");
-	            var strs = str.split(","); //字符分割
-				$(".text1 input[type='radio']").each(function(){
-		            for (i=0;i<strs.length ;i++ ){
-						if(strs[i]!="0"){
-						   	if($(this).attr("price")==strs[i]){ 
-						    	$(this).removeAttr("disabled");
-						    }
-						}else{
-							$(this).removeAttr("disabled");
-						}
+	            $(".tongdaoS input[type='radio']").each(function(){
+		    	var str = $(this).attr("face");
+		    	var strs = str.split(","); //字符分割
+		        for (i=0;i<strs.length ;i++ ){
+					if(strs[i]!="0"){
+					   	if(price1==strs[i]){ 
+					    	$(this).removeAttr("disabled");
+					    }
+					}else{
+						$(this).removeAttr("disabled");
 					}
+				}
 				});
 		    });
-		    $(".tongdaoP input[type='radio']").click(function(){     //绑定radio绑定事件                
-				$(".text2 input[type='radio']").each(function(){
+		    $(".text2 input[type='radio']").click(function(){     //绑定radio绑定事件             
+				var price2 = $(".text2 input[type='radio']:checked").attr("price");  
+				$(".tongdaoP input[type='radio']").each(function(){
 					$(this).attr("disabled","disabled");
 				});
-	            var str = $(this).attr("face");
-	            var strs = str.split(","); //字符分割
-				$(".text2 input[type='radio']").each(function(){
-		            for (i=0;i<strs.length ;i++ ){
-						if(strs[i]!="0"){
-						   	if($(this).attr("price")==strs[i]){ 
-						    	$(this).removeAttr("disabled");
-						    }
-						}else{
-							$(this).removeAttr("disabled");
-						}
+	            $(".tongdaoP input[type='radio']").each(function(){
+		    	var str = $(this).attr("face");
+		    	var strs = str.split(","); //字符分割
+		        for (i=0;i<strs.length ;i++ ){
+					if(strs[i]!="0"){
+					   	if(price2==strs[i]){ 
+					    	$(this).removeAttr("disabled");
+					    }
+					}else{
+						$(this).removeAttr("disabled");
 					}
+				}
 				});
 		    });
+		    
 			var $sForm = $("#sForm");
 			var $pForm = $("#pForm");
 			var $sBtn = $("#sBtn");

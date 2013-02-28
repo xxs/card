@@ -74,7 +74,9 @@ $().ready( function() {
 								</th>
 								<td>
 										<#list loginMember.memberBankSet as memberBank>
-											<input type="radio" name="memberBank.id" value="${memberBank.id}" <#if memberBank.isDefault >checked="checked"</#if> />${memberBank.banknum}(开户名：${memberBank.openname},开户银行:${memberBank.bankname})<br />
+											<#if memberBank.isDefault >
+												<input type="radio" name="memberBank.id" value="${memberBank.id}" <#if memberBank.isDefault >checked="checked"</#if> />${memberBank.banknum}(开户名：${memberBank.openname},开户银行:${memberBank.bankname})<br />
+											</#if>
 										</#list>
 										<div class="hei">没有找到合适的账户，<a href="bank!add.action?redirectUrl=withdraw!apply.action">点击添加！</a>(最多添加5个账户，请谨慎操作)</div>
 								</td>

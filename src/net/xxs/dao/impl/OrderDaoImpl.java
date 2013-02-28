@@ -52,13 +52,11 @@ public class OrderDaoImpl extends BaseDaoImpl<Order, String> implements
 				.uniqueResult();
 	}
 
-	// 保存对象时,自动更新充值卡ID集合
 	@Override
 	public String save(Order order) {
 		return super.save(order);
 	}
 
-	// 更新对象时,自动更新充值卡ID集合
 	@Override
 	public void update(Order order) {
 		super.update(order);
@@ -79,16 +77,16 @@ public class OrderDaoImpl extends BaseDaoImpl<Order, String> implements
 			lists.add(Restrictions.eq("cardNum", order.getCardNum()));
 		}
 		if(order.getMember()!=null){
-			lists.add(Restrictions.ge("member", order.getMember()));
+			lists.add(Restrictions.eq("member", order.getMember()));
 		}
 		if(order.getPaymentConfig()!=null&&!"".equals(order.getPaymentConfig().getId())){
-			lists.add(Restrictions.ge("paymentConfig", order.getPaymentConfig()));
+			lists.add(Restrictions.eq("paymentConfig", order.getPaymentConfig()));
 		}
 		if(order.getOrderStatus()!=null){
-			lists.add(Restrictions.ge("orderStatus", order.getOrderStatus()));
+			lists.add(Restrictions.eq("orderStatus", order.getOrderStatus()));
 		}
 		if(order.getBrandId()!=null&&!order.getBrandId().isEmpty()){
-			lists.add(Restrictions.ge("brandId", order.getBrandId()));
+			lists.add(Restrictions.eq("brandId", order.getBrandId()));
 		}
 		Criterion [] c = (Criterion []) lists.toArray(new Criterion[lists.size()]);
 		return super.findPager(pager,c);

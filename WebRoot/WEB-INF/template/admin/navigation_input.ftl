@@ -111,6 +111,22 @@ $().ready( function() {
 								</option>
 							</#list>
 						</select>
+						<select>
+							<#list articleTreeList as article>
+								<option >
+									${article.title}
+								</option>
+							</#list>
+						</select>
+						<select>
+							<@article_list type="hot" count=5; articleList>
+								<#list articleList as article>
+									<option >
+									${article.title}
+								</option>
+								</#list>
+							</@article_list>
+						</select>
 					</td>
 				</tr>
 				<tr>

@@ -161,5 +161,13 @@ public class ArticleDaoImpl extends BaseDaoImpl<Article, String> implements Arti
 		criteria.add(Restrictions.or(Restrictions.eq("articleCategory", articleCategory), Restrictions.like("articleCategory.path", articleCategory.getPath() + "%")));
 		return super.findPager(pager, criteria);
 	}
+	
+	@SuppressWarnings("unchecked")
+	public List<Article> getArticleTree() {
+		String hql = "from Article as article order by article.createDate asc";
+		List<Article> articleTreeList = getSession().createQuery(hql).list();
+		return articleTreeList;
+	}
+	
 
 }

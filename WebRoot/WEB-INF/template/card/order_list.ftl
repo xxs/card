@@ -143,10 +143,10 @@ $().ready( function() {
 						</td>	
 						<td colspan="3" align="center">
 							<input type="submit" class="formButton" value="查询" />	
-							<a href="#">今日订单</a>
-							<a href="#">本周订单</a>
-							<a href="#">本月订单</a>
-							<a href="#">季度订单</a>
+							<a href="order!search.action?dateScope=day">今日订单</a>
+							<a href="order!search.action?dateScope=week">本周订单</a>
+							<a href="order!search.action?dateScope=month">本月订单</a>
+							<a href="order!search.action?dateScope=quarter">季度订单</a>
 						</td>
 					</tr>	
 				</table>

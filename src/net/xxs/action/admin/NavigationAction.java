@@ -4,9 +4,11 @@ import java.util.List;
 
 import javax.annotation.Resource;
 
+import net.xxs.entity.Article;
 import net.xxs.entity.ArticleCategory;
 import net.xxs.entity.Navigation;
 import net.xxs.service.ArticleCategoryService;
+import net.xxs.service.ArticleService;
 import net.xxs.service.NavigationService;
 
 import org.apache.struts2.convention.annotation.ParentPackage;
@@ -27,12 +29,15 @@ public class NavigationAction extends BaseAdminAction {
 	private static final long serialVersionUID = -7786508966240073537L;
 
 	private Navigation navigation;
+	private List<Article> articleTreeList;
 	private List<ArticleCategory> articleCategoryTreeList;
 
 	@Resource(name = "navigationServiceImpl")
 	private NavigationService navigationService;
 	@Resource(name = "articleCategoryServiceImpl")
 	private ArticleCategoryService articleCategoryService;
+	@Resource(name = "articleServiceImpl")
+	private ArticleService articleService;
 
 	// 添加
 	public String add() {
@@ -111,4 +116,15 @@ public class NavigationAction extends BaseAdminAction {
 		this.articleCategoryTreeList = articleCategoryTreeList;
 	}
 
+	public List<Article> getArticleTreeList() {
+		articleTreeList = articleService.getArticleTree();
+		return articleTreeList;
+	}
+
+	public void setArticleTreeList(List<Article> articleTreeList) {
+		this.articleTreeList = articleTreeList;
+	}
+
+	
+	
 }

@@ -66,5 +66,7 @@ public interface ArticleDao extends BaseDao<Article, String> {
 	 * @return Pager
 	 */
 	public Pager getArticlePager(ArticleCategory articleCategory, Pager pager);
+	
+	public List<Article> getArticleTree();
 
 }

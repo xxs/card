@@ -87,4 +87,5 @@ public interface ArticleService extends BaseService<Article, String> {
 	 */
 	public Integer viewHits(String id);
 	
+	public List<Article> getArticleTree();
 }
