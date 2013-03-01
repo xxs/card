@@ -68,6 +68,15 @@ $().ready( function() {
 				}
 			});
 			return false;
+		});	
+		$(".quickquery").click(function() {
+			var newaction = $(this).attr("alt");
+		  	thisform.action=newaction;
+			thisform.submit();
+		});		
+		$(".query").click(function() {
+		  	thisform.action="order!search.action";
+			thisform.submit();
 		});		
 });
 </script>
@@ -83,7 +92,7 @@ $().ready( function() {
 			<div class="fangz">订单列表</div>
 			<div class="hei">
 				<div class="memberCenter">
-				<form action="order!search.action" method="post">
+				<form action="order!search.action" method="post" name="thisform">
 				<table class="stateTable">
 					<tr>
 						<th>订单编号</th>
@@ -133,20 +142,20 @@ $().ready( function() {
 						</td>	
 						<th>时间范围</th>
 						<td >
-							<input name="beginDate" onclick="WdatePicker()" value="<#if beginDate??>${beginDate}</#if>" />
+							<input name="beginDate" onclick="WdatePicker()"  />
 							~
-							<input name="endDate" onclick="WdatePicker()" value="<#if endDate??>${endDate}</#if>" />
+							<input name="endDate" onclick="WdatePicker()" />
 						</td>
 					</tr>	
 					<tr>
 						<td>
 						</td>	
 						<td colspan="3" align="center">
-							<input type="submit" class="formButton" value="查询" />	
-							<a href="order!search.action?dateScope=day">今日订单</a>
-							<a href="order!search.action?dateScope=week">本周订单</a>
-							<a href="order!search.action?dateScope=month">本月订单</a>
-							<a href="order!search.action?dateScope=quarter">季度订单</a>
+							<input type="button" class="formButton query" value="查询" />	
+							<a href="#" alt="order!search.action?dateScope=day" class="quickquery">今日订单</a>
+							<a href="#" alt="order!search.action?dateScope=week" class="quickquery">本周订单</a>
+							<a href="#" alt="order!search.action?dateScope=month" class="quickquery">本月订单</a>
+							<a href="#" alt="order!search.action?dateScope=quarter" class="quickquery">季度订单</a>
 						</td>
 					</tr>	
 				</table>
@@ -156,11 +165,11 @@ $().ready( function() {
 					<tr>
 						<th>开始时间：</th>
 						<td >
-							<input name="beginDate" onclick="WdatePicker()" value="<#if beginDate??>${beginDate}</#if>" />
+							<input name="beginDate" onclick="WdatePicker()" />
 						</td>
 						<th>结束时间：</th>
 						<td >
-							<input name="endDate" onclick="WdatePicker()" value="<#if endDate??>${endDate}</#if>" />
+							<input name="endDate" onclick="WdatePicker()" />
 						</td>
 					</tr>
 					<tr>

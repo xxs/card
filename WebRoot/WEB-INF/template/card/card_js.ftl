@@ -15,6 +15,81 @@ function currencyFormat(price) {
 
 $().ready( function() {
 
+	/* ---------- MemberVerify ---------- */
+	
+	$.memberVerify = function () {
+		if(getCookie("memberUsername") != null) {
+			var isMemberLogin = false;
+			$.ajax({
+				url: xxs.base + "/card/member!ajaxMemberVerify.action",
+				type: "POST",
+				dataType: "json",
+				async: false,
+				cache: false,
+				success: function(data) {
+					if (data.status) {
+						isMemberLogin = true;
+					}
+				}
+			});
+			return isMemberLogin;
+		} else {
+			return false;
+		}
+	}
+
+	/* ---------- Header ---------- */
+	
+	var $header = $("#header");
+	if ($header.size() > 0) {
+		var $headerLogin = $("#headerLogin");
+		var $headerRegister = $("#headerRegister");
+		var $headerMemberCenter = $("#headerMemberCenter");
+		var $headerLogout = $("#headerLogout");
+		$.flushHeaderInfo = function () {
+			if(getCookie("memberUsername") != null) {
+				$headerMemberCenter.show();
+				$headerLogout.show();
+				$headerLogin.hide();
+				$headerRegister.hide();
+			} else {
+				$headerLoginMemberUsername.text("");
+				$headerLogin.show();
+				$headerRegister.show();
+				$headerMemberCenter.hide();
+				$headerLogout.hide();
+			}
+		}
+		
+		$.flushHeaderInfo();
+	}	
+		/* ---------- LoginContext ---------- */
+		alert("333");
+	var loginBeforeHtml = '您还没有登陆';
+	var loginAfterHtml = '<div id="afterLogin" class="hide">
+			         	<h1 style="font-size:18px"><strong>欢迎使用名臣福利!</strong></h1>
+			         	<hr noshade width=100% style="margin-left:-15px;margin-top:5px"><br />
+			         	<font style="font-size:15px">你当前使用的名臣福利账号是：</font><br />
+	         			<br/>
+	         			<strong><span id="account" style="text-align:center;font-size:16px;color:#FF9700">里显示账号123456789@qq.com</span></strong><br />
+	         			<br />
+		         		<div style="margin-left:10px;margin-top:15px;">
+		         			<a target="_blank" href="#"><img src="images/jinru.jpg" style="margin-left:0px;" /></a>
+		         			<a target="_self" href="#"><img src="images/tc.jpg" style="margin-left:15px" name="logout" /></a>
+		         		</div>
+           			</div>';
+	var $loginWindowContext = $("#loginWindowContext");
+	if ($loginWindowContext.size() > 0) {
+		$.flushLoginInfo = function () {
+			alert(getCookie("memberUsername"));
+			if(getCookie("memberUsername") != null) {
+				$loginWindowContext.text(loginAfterHtml);
+			} else {
+				$loginWindowContext.text(loginBeforeHtml);
+			}
+		}
+		$.flushLoginInfo();
+	}
 	/* ---------- ArticleContent ---------- */
 	
 	var $articleContent = $("#articleContent");

@@ -56,68 +56,24 @@
 	</div>
 	</div>
 	
-	 <!--中部banner上层-->
+	<!--中部banner上层-->
     <div class="banner2">
-    <div class="banner_over">
-     <div class="banner_right">
-    	<div class="banner_xiao">
-		<div class="tab">
-			<div class="tab_menu">
-				<ul>
-					<li class="selected">会员登录</li>
-					<li>已登录</li>
-				</ul>
-		 	</div>
-		 <div class="tab_box"> 
-		 	<div id="beforeLogin" class="anan">
-            	<form id="loginForm" action="${base}/card/member!login.action" method="post">
-					<input type="hidden" id="loginRedirectUrl" name="loginRedirectUrl" />
-	                <div>
-	                	<p>账&nbsp;&nbsp;号</p> 
-	                	<span>
-	                		<input type="text" id="memberUsername"  size="15" name="member.username" class="oo" />
-	                	</span>
-	                </div>
-	                <div style="margin-top:19px;">
-	                  	<p>密&nbsp;&nbsp;码</p> 
-	                  	<span>
-	                  		<input type="password" id="memberPassword" name="member.password" class="oo" />
-	                  	</span>
-	                </div>
-	                <div style="margin-top:19px;">
-	                	<p>验证码</p>
-	                  	<span>
-	                  		<input type="text" id="captcha" maxlength="4" name="j_captcha" style="width:90px" class="oo captcha" />
-	                  		<img id="captchaImage" class="captchaImage" src="${base}/captcha.jpeg" alt="换一张" />
-	                  	</span>
-	                </div>
-	                <span id="loginError" style="font-size:15px;margin-top:10px;margin-bottom:5px;text-align:center;color:red;font-weight:bold">验证失败，此处提示错误信息</span>
-	                <div class="ddsa" >
-	                	<input id="loginButton1" class="button" style="display:inline" type="button"  name="login" value="登&nbsp;&nbsp;&nbsp;录" onclick="change()" />
-	                </div>
-	                <div class="wenz">
-	                	还没有账号？<a href="reg.html" style="font-size:14px;font-weight:bold">免费注册</a>&nbsp;|
-	                	&nbsp;<a href="${base}/card/member!passwordRecover.action" style="font-size:13px;font-weight:bold">忘记密码？</a>
-	                </div>
-                </form>
-            </div>
-		 	<div id="afterLogin" class="hide">
-	         	<h1 style="font-size:18px"><strong>欢迎使用名臣福利!</strong></h1>
-	         	<hr noshade width=100% style="margin-left:-15px;margin-top:5px"><br />
-	         	<font style="font-size:15px">你当前使用的名臣福利账号是：</font><br />
-	         	<br/>
-	         	<strong><span id="account" style="text-align:center;font-size:16px;color:#FF9700">里显示账号123456789@qq.com</span></strong><br />
-	         	<br />
-         		<div style="margin-left:10px;margin-top:15px;">
-         			<a target="_blank" href="#"><img src="images/jinru.jpg" style="margin-left:0px;" /></a>
-         			<a target="_self" href="#"><img src="images/tc.jpg" style="margin-left:15px" name="logout" /></a>
-         		</div>
-           	</div>
-          </div>
-		</div>
-     </div>
-    </div>  
- </div>   
+    	<div class="banner_over">
+     		<div class="banner_right">
+    			<div class="banner_xiao">
+					<div class="tab">
+						<div class="tab_menu">
+							<ul>
+								<li class="selected">会员登录</li>
+								<li>已登录</li>
+							</ul>
+		 				</div>
+		 			<div class="tab_box" id="loginWindowContext"> 
+          			</div>
+				</div>
+     		</div>
+    	</div>  
+ 	</div>   
  </div>
 	<!--内容区-->
 	<div class="column1">

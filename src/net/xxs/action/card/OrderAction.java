@@ -373,15 +373,15 @@ public class OrderAction extends BaseCardAction {
 			endDate	= new Date();
 		}
 		if("week".equals(dateScope)){
-			beginDate = DateUtil.getAfterDay(7);
+			beginDate = DateUtil.getAfterDay(-7);
 			endDate	= new Date();
 		}
 		if("month".equals(dateScope)){
-			beginDate = DateUtil.getMonthFirst();
+			beginDate = DateUtil.getAfterDay(-30);
 			endDate	= new Date();	
 		}
 		if("quarter".equals(dateScope)){
-			beginDate = DateUtil.getAfterMonth(3);
+			beginDate = DateUtil.getAfterMonth(-3);
 			endDate	= new Date();
 		}
 		pager = orderService.getOrderPager(beginDate,endDate,order,pager);
