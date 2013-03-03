@@ -31,13 +31,13 @@
         	<dl>
             	<span>帮助中心</span>
                 <dt>
-                <@article_list type="hot" count=5; articleList>
+                <@article_list type="hot" article_category_id="4028bc743c286bdc013c289277c5000a" count=5; articleList>
 					<#list articleList as article>
 						<img src="/template/card/images/${article.title}.png" width="16" height="16" alt="${article.title}" />
 					</#list>
 				</@article_list>
                 </dt>
-                <@article_list type="hot" count=5; articleList>
+                <@article_list type="hot" article_category_id="4028bc743c286bdc013c289277c5000a"  count=5; articleList>
 					<#list articleList as article>
 						<dd><a href="${base}${article.htmlPath}" title="${article.title}">${substring(article.title, 24, "...")}</a></dd>
 					</#list>

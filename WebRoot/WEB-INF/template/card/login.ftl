@@ -61,63 +61,78 @@
 </script>
 </head>
 <body class="login">
-	<!--标志-->
-	<div class="logo">
-		<div class="logo_995">
-	    	<div class="logo_left"><a href="${base}/" ><img src="/template/card/images/logo.jpg" alt="${(setting.shopName)!}" width="162" height="46" border="0" /></a><span>用户登录</span><div class="shu"></div></div>
-		</div>
-	    <div class="clear"></div>
-	</div>
+	<#include "/WEB-INF/template/card/header.ftl">
 
-	<div class="blank"></div>
-	<div class="body">
-		<div class="loginDetail">
-			<div class="top1">会员登录</div>
-			<div class="middle">
-				<form id="loginForm" action="${base}/card/member!login.action" method="post">
-					<input type="hidden" id="loginRedirectUrl" name="loginRedirectUrl" />
-					<table>
-						<tr>
-							<th>账&nbsp;&nbsp;&nbsp;号</th>
-							<td>
-								<input type="text" id="memberUsername" name="member.username" class="formText" />
-							</td>
-						</tr>
-						<tr>
-							<th>密&nbsp;&nbsp;&nbsp;码</th>
-							<td>
-								<input type="password" id="memberPassword" name="member.password" class="formText" />
-							</td>
-						</tr>
-						<tr>
-							<th>验证码</th>
-							<td>
-								<input type="text" id="captcha" name="j_captcha" class="formText captcha" />
-								<img id="captchaImage" class="captchaImage" src="${base}/captcha.jpeg" alt="换一张" />
-							</td>
-						</tr>
-						<tr>
-							<th>&nbsp;</th>
-							<td>
-								<span class="warnIcon">&nbsp;</span>
-								<a href="${base}/card/member!passwordRecover.action">忘记了密码? 点击找回!</a>
-							</td>
-						</tr>
-						<tr>
-							<th>&nbsp;</th>
-							<td>
-								<input type="submit" id="submitButton" class="formButton" value="登 录" hidefocus />
-							</td>
-						</tr>
-					</table>
-				</form>
-			</div>
-			<div class="bottom"></div>
-		</div>
-		<div class="blank"></div>
-		<#include "/WEB-INF/template/card/friend_link.ftl">
-	</div>
-	<div class="blank"></div>
+<div class="column">
+	<div class="column_left">
+		<div class="column_left_1">
+			<a href="reg.html">免费注册</a>
+			<a href="findpassword.html">找回密码</a>
+			<a href="login.html">立刻登陆</a>
+        </div>
+        <ul>
+			<@article_list type="hot" count=6; articleList>
+				<#list articleList as article>
+					<li class="number${article_index + 1}">
+						<a href="${base}${article.htmlPath}" title="${article.title}">${substring(article.title, 24, "...")}</a>
+					</li>
+				</#list>
+			</@article_list>		
+        </ul>
+        <div class="column_left_3">
+        	<dl>
+            	<span>帮助中心</span>
+                <dt>
+                <@article_list type="hot"  article_category_id="4028bc743c286bdc013c289277c5000a"  count=5; articleList>
+					<#list articleList as article>
+						<img src="/template/card/images/${article.title}.png" width="16" height="16" alt="${article.title}" />
+					</#list>
+				</@article_list>
+                </dt>
+                <@article_list type="hot" article_category_id="4028bc743c286bdc013c289277c5000a"  count=5; articleList>
+					<#list articleList as article>
+						<dd><a href="${base}${article.htmlPath}" title="${article.title}">${substring(article.title, 24, "...")}</a></dd>
+					</#list>
+				</@article_list>
+        	</dl>
+        </div>
+    </div>
+    <div class="column_right">
+   	    <div class="column_right_1"><p><img src="images/hhh.jpg" width="38" height="37" alt="jj" /></p>
+   	    马上登陆，登陆后进入会员中心寄售点卡供货！</div>
+        <div class="column_right_2">
+        	<div class="column_right_2_shang">
+            	<span>
+                <font>立刻登陆</font>
+                </span>
+            </div>     
+   	    
+       <form id="loginForm" action="${base}/card/member!login.action" method="post">
+	<input type="hidden" id="loginRedirectUrl" name="loginRedirectUrl" />
+        <ol id="need">
+
+<li><label class="email">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;账&nbsp;&nbsp;号：</label> 
+	<input type="text" id="memberUsername" name="member.username" class="formText" /><dfn>注册时填写的用户名</dfn></li>
+
+<li><label class="new_password">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;密&nbsp;&nbsp;码：</label> 
+<input type="password" id="memberPassword" name="member.password" class="formText" /><dfn>您的登录密码</dfn></li>
+
+<li><label class="email">&nbsp;&nbsp;&nbsp;&nbsp;验证码：</label> 
+<input type="text" id="captcha" name="j_captcha" class="formText captcha" />
+								<img id="captchaImage" class="captchaImage" src="${base}/captcha.jpeg" alt="换一张" /><dfn>输入左方图片中的验证码</dfn></li>
+
+</ol>
+ <div class="anniu"><input type="submit" value="登 录" class="button"/><input type="reset" value="重新填写" class="button" style="margin-left:30px;" /></div>
+
+         </form>
+         
+         </div>
+        </div>
+    </div>
 	<#include "/WEB-INF/template/card/footer.ftl">
+	<script type="text/javascript" src="${base}/template/common/js/jquery.js"></script>
+	<script type="text/javascript" src="${base}/template/common/js/jquery.tools.js"></script>
+	<script type="text/javascript" src="${base}/template/card/js/base.js"></script>
+	<script type="text/javascript" src="${base}/template/card/js/card.js"></script>
 </body>
 </html>

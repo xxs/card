@@ -63,25 +63,13 @@ $().ready( function() {
 		
 		$.flushHeaderInfo();
 	}	
-		/* ---------- LoginContext ---------- */
-		alert("333");
+	/* ---------- LoginContext ---------- */
 	var loginBeforeHtml = '您还没有登陆';
-	var loginAfterHtml = '<div id="afterLogin" class="hide">
-			         	<h1 style="font-size:18px"><strong>欢迎使用名臣福利!</strong></h1>
-			         	<hr noshade width=100% style="margin-left:-15px;margin-top:5px"><br />
-			         	<font style="font-size:15px">你当前使用的名臣福利账号是：</font><br />
-	         			<br/>
-	         			<strong><span id="account" style="text-align:center;font-size:16px;color:#FF9700">里显示账号123456789@qq.com</span></strong><br />
-	         			<br />
-		         		<div style="margin-left:10px;margin-top:15px;">
-		         			<a target="_blank" href="#"><img src="images/jinru.jpg" style="margin-left:0px;" /></a>
-		         			<a target="_self" href="#"><img src="images/tc.jpg" style="margin-left:15px" name="logout" /></a>
-		         		</div>
-           			</div>';
+	var loginAfterHtml = '您已经登陆';
 	var $loginWindowContext = $("#loginWindowContext");
 	if ($loginWindowContext.size() > 0) {
 		$.flushLoginInfo = function () {
-			alert(getCookie("memberUsername"));
+			//alert(getCookie("memberUsername"));
 			if(getCookie("memberUsername") != null) {
 				$loginWindowContext.text(loginAfterHtml);
 			} else {

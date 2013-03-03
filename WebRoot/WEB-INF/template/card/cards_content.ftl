@@ -256,6 +256,7 @@
 			var $sBtn = $("#sBtn");
 			var $pBtn = $("#pBtn");
 			$sBtn.click( function() {
+			alert("444");
 				$.ajax({
 					url: "order!save.action",
 					data: $sForm.serialize(),
@@ -279,6 +280,7 @@
 				return false;
 			});
 			$pBtn.click( function() {
+			alert("4eee44");
 				$.ajax({
 					url: "order!batch.action",
 					data: $pForm.serialize(),

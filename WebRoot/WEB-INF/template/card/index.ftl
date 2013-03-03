@@ -20,6 +20,15 @@
 	<![endif]-->
 	<!--鼠标移动到登录挂件标签后自动切换的JS-->
 	<script type="text/javascript" >
+	$().ready( function() {
+		$(".gonggao").bind("click",function(event){
+		alert("huanying");
+			$content = event.target.name;
+			$title = event.target.title;
+			$.showAdviceWindow($title,$content);
+			return false;
+		});
+	});
 	//<![CDATA[
 		$(function(){
 		    var $div_li =$("div.tab_menu ul li");
