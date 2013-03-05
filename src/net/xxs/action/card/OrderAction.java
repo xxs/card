@@ -129,7 +129,6 @@ public class OrderAction extends BaseCardAction {
 		Brand brand = product.getCards().getBrand();//为order准备brandId
 		PaymentDiscount paymentDiscount = paymentDiscountService.getPaymentDiscountByPaymentConfigAndBrand(paymentConfig, brand);
 		if (null == paymentDiscount){
-			addActionError("");
 			return ajax(Status.error,"通道信息异常!请与客服联系解决！");
 		}
 		if(!"0".equals(paymentDiscount.getFace())){

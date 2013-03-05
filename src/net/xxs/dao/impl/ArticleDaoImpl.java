@@ -164,8 +164,8 @@ public class ArticleDaoImpl extends BaseDaoImpl<Article, String> implements Arti
 	
 	@SuppressWarnings("unchecked")
 	public List<Article> getArticleTree() {
-		String hql = "from Article as article order by article.createDate asc";
-		List<Article> articleTreeList = getSession().createQuery(hql).list();
+		String hql = "from Article as article where article.isAdvice != :isAdvice order by article.createDate asc";
+		List<Article> articleTreeList = getSession().createQuery(hql).setParameter("isAdvice", true).list();
 		return articleTreeList;
 	}
 	

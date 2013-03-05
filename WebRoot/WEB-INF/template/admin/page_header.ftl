@@ -65,7 +65,7 @@ $().ready(function() {
 							<a href="menu!content.action" target="menuFrame" hidefocus>页面内容</a>
 						</li>
 					</@sec.authorize>
-					<@sec.authorize ifAnyGranted="ROLE_ADMIN,ROLE_ROLE,ROLE_MESSAGE,ROLE_LOG">
+					<@sec.authorize ifAnyGranted="ROLE_ADMIN,ROLE_ROLE,ROLE_MESSAGE,ROLE_LOG,ROLE_REPORT">
 						<li class="menuItem">
 							<a href="menu!admin.action" target="menuFrame" hidefocus>管理员</a>
 						</li>

@@ -195,11 +195,16 @@ $().ready(function() {
 						<label>
 							<input type="checkbox" name="role.authorityList" class="roleAuthorityList" value="ROLE_ROLE"<#if (isAddAction || role.authorityList.contains("ROLE_ROLE"))!> checked</#if> />角色管理
 						</label>
+						<!-- 
 						<label>
 							<input type="checkbox" name="role.authorityList" class="roleAuthorityList" value="ROLE_MESSAGE"<#if (isAddAction || role.authorityList.contains("ROLE_MESSAGE"))!> checked</#if> />站内消息管理
 						</label>
+						-->
 						<label>
 							<input type="checkbox" name="role.authorityList" class="roleAuthorityList" value="ROLE_LOG"<#if (isAddAction || role.authorityList.contains("ROLE_LOG"))!> checked</#if> />日志管理
+						</label>
+						<label>
+							<input type="checkbox" name="role.authorityList" class="roleAuthorityList" value="ROLE_REPORT"<#if (isAddAction || role.authorityList.contains("ROLE_REPORT"))!> checked</#if> />统计报表
 						</label>
 					</td>
 				</tr>

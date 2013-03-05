@@ -29,6 +29,7 @@
 				</@sec.authorize>
 			</dl>
 		</@sec.authorize>
+		<!-- 
 		<@sec.authorize ifAnyGranted="ROLE_MESSAGE">
 			<dl>
 				<dt>
@@ -42,6 +43,7 @@
 				</dd>
 			</dl>
 		</@sec.authorize>
+		-->
 		<@sec.authorize ifAnyGranted="ROLE_LOG">
 			<dl>
 				<dt>
@@ -49,6 +51,16 @@
 				</dt>
 				<dd>
 					<a href="log!list.action" target="mainFrame">查看日志</a>
+				</dd>
+			</dl>
+		</@sec.authorize>
+		<@sec.authorize ifAnyGranted="ROLE_REPORT">
+			<dl>
+				<dt>
+					<span>统计报表&nbsp;</span>
+				</dt>
+				<dd>
+					<a href="report!info.action" target="mainFrame">统计报表</a>
 				</dd>
 			</dl>
 		</@sec.authorize>

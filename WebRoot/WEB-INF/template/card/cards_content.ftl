@@ -87,7 +87,7 @@
 		 			<div class="hide">
 				 	<div class="memberCenter">
 					<form id="pForm" autocomplete="off">
-					<table class="tabTable">
+					<table class="tabTable" id="cardsTable">
 						<#if cards.isSpecificationEnabled>
 							<#assign specificationValueSet = cards.specificationValueSet>
 							<#list cards.specificationSet as specification>
@@ -121,13 +121,25 @@
 							<th>卡密组合:</th>
 							<td>
 								<p>输入格式如:xxxxx(账号)xxxxx,xxxxxx(密码)xxxx</p>
-								<textarea cols="60" rows="10" name="cardString"  class="formTextarea"></textarea>
+								<textarea cols="60" rows="10" name="cardString" id="kamizu"  class="formTextarea"></textarea>
+							</td>
+						</tr>
+						<tr>
+							<th></th>
+							<td>
+								您填写了  <span id="shuliang" class="red">0</span>  张${substring(cards.name, 50, "...")}
 							</td>
 						</tr>
 						<tr>
 							<th></th>
 							<td>
 								<input type="button" id="pBtn" class="formButton" value="生成订单" />
+							</td>
+						</tr>
+						<tr>
+							<th></th>
+							<td>
+								<div id="jieguo" class="red"></div>
 							</td>
 						</tr>
 					</table>
@@ -255,8 +267,10 @@
 			var $pForm = $("#pForm");
 			var $sBtn = $("#sBtn");
 			var $pBtn = $("#pBtn");
+			var $kamizu = $("#kamizu");
+			var $cardsTable = $("#productTable");
+			var $jieguo = $("#jieguo");
 			$sBtn.click( function() {
-			alert("444");
 				$.ajax({
 					url: "order!save.action",
 					data: $sForm.serialize(),
@@ -279,28 +293,53 @@
 				});
 				return false;
 			});
+			$kamizu.keydown(function(){
+				$("#shuliang").text($kamizu.val().split("\n").length);
+			})
+			
 			$pBtn.click( function() {
-			alert("4eee44");
-				$.ajax({
-					url: "order!batch.action",
-					data: $pForm.serialize(),
-					type: "POST",
-					dataType: "json",
-					cache: false,
-					beforeSend: function(data) {
-						//$.dialog({type: 'warn', content: '<span class="loadingIcon">&nbsp;</span>提交中...', modal: true, autoCloseTime: 1000});
-						$pBtn.attr("disabled", true);
-					},
-					success: function(data) {
-						if (data.status == "success") {
-							$.dialog({type: data.status, content: data.message, modal: true, autoCloseTime: 3000});
-							$("input[type='text'],textarea").val("");
-						} else {
-							$.dialog({type: data.status, content: data.message, modal: true, autoCloseTime: 3000});
+				if($kamizu.val()==""){
+					$.dialog({type: "warn", content: "请至少输入一行账号密码组合", modal: true, autoCloseTime: 3000});
+				}
+				var cards=$kamizu.val().split("\n");
+				for(i=0; i<cards.length; i++){
+					if(cards[i]!=""){
+						var items=cards[i].split(",");
+						alert(items.length);
+						if(items.length==2){
+							$.ajax({
+								url: "order!batch.action",
+								data: $pForm.serialize(),
+								type: "POST",
+								dataType: "json",
+								cache: false,
+								beforeSend: function(data) {
+									//$.dialog({type: 'warn', content: '<span class="loadingIcon">&nbsp;</span>提交中...', modal: true, autoCloseTime: 1000});
+									$pBtn.attr("disabled", true);
+								},
+								success: function(data) {
+									if (data.status == "success") {
+										var cardsHtml = $("#jieguo").text()+'第'+(i+1)+'张['+data.message+']<br/>';
+										$("#jieguo").text(cardsHtml);
+										//$.dialog({type: data.status, content: data.message, modal: true, autoCloseTime: 3000});
+										//$("input[type='text'],textarea").val("");
+									} else {
+										var cardsHtml = $("#jieguo").text()+'第'+(i+1)+'张['+data.message+']<br/>';
+										$("#jieguo").text(cardsHtml);
+										//$.dialog({type: data.status, content: data.message, modal: true, autoCloseTime: 3000});
+									}
+									$pBtn.attr("disabled", false);
+								}
+							});
+						}else{
+							var cardsHtml = $("#jieguo").text()+'第'+(i+1)+'张[卡密有误，不予受理]<br/>';
+							$("#jieguo").text(cardsHtml);
 						}
-						$pBtn.attr("disabled", false);
+					}else{
+						var cardsHtml = $("#jieguo").text()+'第'+(i+1)+'张[卡密为空，不予受理]<br/>';
+						$("#jieguo").text(cardsHtml);
 					}
-				});
+				}
 				return false;
 			});
 		})

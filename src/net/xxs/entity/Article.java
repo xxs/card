@@ -52,7 +52,7 @@ public class Article extends BaseEntity {
 	private String metaKeywords;// 页面关键词
 	private String metaDescription;// 页面描述
 	private Boolean isPublication;// 是否发布
-	private Boolean isTop;// 是否置顶
+	private Boolean isTop;// 是否可设置为导航项
 	private Boolean isAdvice;// 是否是公告信息
 	private Boolean isRecommend;// 是否为推荐文章
 	private Integer pageCount;// 文章页数

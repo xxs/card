@@ -66,6 +66,8 @@
 		<sec:intercept-url pattern="/admin/message!**" access="ROLE_MESSAGE" />
 		<!-- 日志管理 -->
 		<sec:intercept-url pattern="/admin/log!**" access="ROLE_LOG" />
+		<!-- 统计报表 -->
+		<sec:intercept-url pattern="/admin/log!**" access="ROLE_REPORT" />
 		<!-- 系统设置 -->
 		<sec:intercept-url pattern="/admin/setting!**" access="ROLE_SETTING" />
 		<!-- 在线客服 -->

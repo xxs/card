@@ -88,44 +88,13 @@ $().ready( function() {
 						<select id="systemUrl">
 							<option value="">------------</option>
 							<option value="<#noparse>${base}/</#noparse>"<#if ("$" + "{base}/" == navigation.url)!> selected</#if>>网站首页</option>
-							<option value="<#noparse>${base}</#noparse>/card/leave_message.htm"<#if ("$" + "{base}/card/leave_message.htm" == navigation.url)!> selected</#if>>在线留言</option>
-							<option value="<#noparse>${base}</#noparse>/card/deposit_success.htm"<#if ("$" + "{base}/card/deposit_success.htm" == navigation.url)!> selected</#if>>成功案例</option>
-							<#list articleCategoryTreeList as articleCategoryTree>
-								<option value="<#noparse>${base}</#noparse>${articleCategoryTree.url}"<#if (("$" + "{base}" + articleCategoryTree.url) == navigation.url)!> selected</#if>>
-									<#if articleCategoryTree.grade != 0>
-										<#list 1..articleCategoryTree.grade as i>
-											&nbsp;&nbsp;
-										</#list>
-									</#if>
-									${articleCategoryTree.name}
-								</option>
-							</#list>
-							<#list cardsCategoryTreeList as cardsCategoryTree>
-								<option value="<#noparse>${base}</#noparse>${cardsCategoryTree.url}"<#if (("$" + "{base}" + cardsCategoryTree.url) == navigation.url)!> selected</#if>>
-									<#if cardsCategoryTree.grade != 0>
-										<#list 1..cardsCategoryTree.grade as i>
-											&nbsp;&nbsp;
-										</#list>
-									</#if>
-									${cardsCategoryTree.name}
-								</option>
-							</#list>
-						</select>
-						<select>
+							<!-- <option value="<#noparse>${base}</#noparse>/card/leave_message.htm"<#if ("$" + "{base}/card/leave_message.htm" == navigation.url)!> selected</#if>>在线留言</option> -->
+							<option value="<#noparse>${base}</#noparse>/card/deposit_success.htm"<#if ("$" + "{base}/card/deposit_success.htm" == navigation.url)!> selected</#if>>成功案例(动态)</option>
 							<#list articleTreeList as article>
-								<option >
-									${article.title}
+								<option value="<#noparse>${base}</#noparse>${article.htmlPath}" <#if (("$" + "{base}" + article.htmlPath) == navigation.url)!> selected</#if>>
+									${article.title}(静态)
 								</option>
 							</#list>
-						</select>
-						<select>
-							<@article_list type="hot" count=5; articleList>
-								<#list articleList as article>
-									<option >
-									${article.title}
-								</option>
-								</#list>
-							</@article_list>
 						</select>
 					</td>
 				</tr>
