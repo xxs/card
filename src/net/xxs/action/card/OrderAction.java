@@ -1,5 +1,6 @@
 package net.xxs.action.card;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Date;
@@ -67,6 +68,8 @@ public class OrderAction extends BaseCardAction {
 	private String dateScope; //时间范围
 	private Date beginDate;// 开始日期
 	private Date endDate;// 结束日期
+	private String tempBeginDate;// 开始日期
+	private String tempEndDate;// 结束日期
 	
 	private List<Order> orderList = new ArrayList<Order>();
 	private PaymentConfig paymentConfig;// 支付方式
@@ -366,6 +369,7 @@ public class OrderAction extends BaseCardAction {
 	
 	// 查询订单
 	public String search() {
+		SimpleDateFormat sf = new SimpleDateFormat("yyyy-MM-dd");
 		order.setMember(getLoginMember());
 		if("day".equals(dateScope)){
 			beginDate = new Date();
@@ -384,6 +388,12 @@ public class OrderAction extends BaseCardAction {
 			endDate	= new Date();
 		}
 		pager = orderService.getOrderPager(beginDate,endDate,order,pager);
+		if(beginDate!=null){
+			tempBeginDate = sf.format(beginDate);
+		}
+		if(endDate!=null){
+			tempEndDate = sf.format(endDate);
+		}
 		return LIST;
 	}
 	
@@ -497,6 +507,18 @@ public class OrderAction extends BaseCardAction {
 	}
 	public void setDateScope(String dateScope) {
 		this.dateScope = dateScope;
+	}
+	public String getTempBeginDate() {
+		return tempBeginDate;
+	}
+	public void setTempBeginDate(String tempBeginDate) {
+		this.tempBeginDate = tempBeginDate;
+	}
+	public String getTempEndDate() {
+		return tempEndDate;
+	}
+	public void setTempEndDate(String tempEndDate) {
+		this.tempEndDate = tempEndDate;
 	}
 	
 }

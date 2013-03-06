@@ -142,9 +142,9 @@ $().ready( function() {
 						</td>	
 						<th>时间范围</th>
 						<td >
-							<input name="beginDate" onclick="WdatePicker()"  />
+							<input name="beginDate" onclick="WdatePicker()" value="${tempBeginDate}" />
 							~
-							<input name="endDate" onclick="WdatePicker()" />
+							<input name="endDate" onclick="WdatePicker()" value="${tempEndDate}"/>
 						</td>
 					</tr>	
 					<tr>

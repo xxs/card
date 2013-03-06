@@ -121,6 +121,9 @@ $().ready(function() {
 							<input type="checkbox" name="role.authorityList" class="roleAuthorityList" value="ROLE_ORDER"<#if (isAddAction || role.authorityList.contains("ROLE_ORDER"))!> checked</#if> />订单管理
 						</label>
 						<label>
+							<input type="checkbox" name="role.authorityList" class="roleAuthorityList" value="ROLE_ORDERQUERY"<#if (isAddAction || role.authorityList.contains("ROLE_ORDERQUERY"))!> checked</#if> />订单查询
+						</label>
+						<label>
 							<input type="checkbox" name="role.authorityList" class="roleAuthorityList" value="ROLE_WITHDRAW"<#if (isAddAction || role.authorityList.contains("ROLE_WITHDRAW"))!> checked</#if> />提现管理
 						</label>
 						<label>

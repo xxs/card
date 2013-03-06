@@ -11,29 +11,38 @@ import net.xxs.entity.Order.OrderStatus;
 import net.xxs.entity.OrderLog;
 import net.xxs.entity.OrderLog.OrderLogType;
 import net.xxs.entity.PaymentConfig;
+import net.xxs.payment.BasePaymentProduct;
+import net.xxs.payment.PaymentResult;
 import net.xxs.service.AdminService;
 import net.xxs.service.OrderLogService;
 import net.xxs.service.OrderService;
 import net.xxs.service.PaymentConfigService;
+import net.xxs.util.PaymentProductUtil;
 
+import org.apache.commons.lang.StringUtils;
 import org.apache.struts2.convention.annotation.ParentPackage;
 import org.apache.struts2.convention.annotation.Result;
 import org.apache.struts2.convention.annotation.Results;
+
+import com.opensymphony.xwork2.interceptor.annotations.InputConfig;
+import com.opensymphony.xwork2.validator.annotations.RequiredFieldValidator;
+import com.opensymphony.xwork2.validator.annotations.Validations;
 
 /**
  * 后台Action类 - 订单
  */
 
 @ParentPackage("admin")
-@Results({ @Result(name = "processAction", location = "order!process.action", params = {
-		"id", "${order.id}" }, type = "redirect") })
+@Results({ @Result(name = "processAction", location = "order!process.action", params = {"id", "${order.id}" }, type = "redirect") })
 public class OrderAction extends BaseAdminAction {
 
 	private static final long serialVersionUID = -2080980180511054311L;
 
 	private Order order;
+	private String orderSn;
 	private PaymentConfig paymentConfig;
-
+	private PaymentResult paymentResult;
+	
 	@Resource(name = "orderServiceImpl")
 	private OrderService orderService;
 	@Resource(name = "orderLogServiceImpl")
@@ -131,7 +140,48 @@ public class OrderAction extends BaseAdminAction {
 		order = orderService.load(id);
 		return "view";
 	}
-
+	// 订单查看
+	public String query() {
+		return "query";
+	}
+	//查询订单最新状态
+	@Validations(
+		requiredFields = { 
+			@RequiredFieldValidator(fieldName = "orderSn", message = "订单号不能为空!")
+		}		
+	)
+	@InputConfig(resultName = "error")	
+	public String Rquery() {
+		if(orderSn!=null){
+			order = orderService.getOrderByOrderSn(orderSn);
+			if(order.getOrderStatus()==OrderStatus.failure || order.getOrderStatus() == OrderStatus.paid){
+				return ajax(Status.success,"刷新成功");
+			}
+			paymentConfig = order.getPaymentConfig();
+			BasePaymentProduct paymentProduct = PaymentProductUtil.getPaymentProduct(paymentConfig.getPaymentProductId());
+			//发送查询请求
+			try {
+				paymentResult = paymentProduct.cardQuery(paymentConfig,order.getOrderSn(), getRequest());
+			} catch (Exception e) {
+				addActionError("订单支付提交失败!");
+				return ERROR;
+			}
+			if ((paymentResult == null || StringUtils.isEmpty(paymentResult.getOrderSn()))){
+				addActionError("缺失支付单号!");
+				return ERROR;
+			}
+			order = orderService.getOrderByOrderSn(paymentResult.getOrderSn());
+			if(StringUtils.isEmpty(order.getRetCode())||!paymentResult.getCode().equals(order.getRetCode())){
+				order.setRetCode(paymentResult.getCode());
+				order.setRetMsg(paymentResult.getReturnMsg());
+				System.out.println("订单状态已变更");
+				orderService.update(order);
+			}else{
+				System.out.println("订单状态未变化");
+			}
+		}		
+		return ajax(Status.success,"刷新成功");
+	}
 	// 获取所有支付方式集合
 	public List<PaymentConfig> getAllPaymentConfigList() {
 		return paymentConfigService.getAllList();
@@ -174,6 +224,22 @@ public class OrderAction extends BaseAdminAction {
 
 	public void setPaymentConfig(PaymentConfig paymentConfig) {
 		this.paymentConfig = paymentConfig;
+	}
+
+	public String getOrderSn() {
+		return orderSn;
+	}
+
+	public void setOrderSn(String orderSn) {
+		this.orderSn = orderSn;
+	}
+
+	public PaymentResult getPaymentResult() {
+		return paymentResult;
+	}
+
+	public void setPaymentResult(PaymentResult paymentResult) {
+		this.paymentResult = paymentResult;
 	}
 
 }

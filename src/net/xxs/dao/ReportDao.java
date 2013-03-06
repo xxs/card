@@ -13,7 +13,7 @@ import net.xxs.entity.Withdraw.WithdrawStatus;
 
 public interface ReportDao  {
 	public List getReportList(Date beginDate, Date endDate);
-	public String getTotalOrderMoney(OrderStatus orderStatus,Date beginDate, Date endDate);
-	public String getTotalDepositMoney(DepositType depositType,Date beginDate, Date endDate);
-	public String getTotalWithdrawMoney(WithdrawStatus withdrawStatus,Date beginDate, Date endDate);
+	public List getTotalOrderMoney(OrderStatus orderStatus,Date beginDate, Date endDate);
+	public List getTotalDepositMoney(DepositType depositType,Date beginDate, Date endDate);
+	public List getTotalWithdrawMoney(WithdrawStatus withdrawStatus,Date beginDate, Date endDate);
 }

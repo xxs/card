@@ -50,7 +50,7 @@ $().ready(function() {
 							<a href="menu!cards.action" target="menuFrame" hidefocus>充值卡管理</a>
 						</li>
 					</@sec.authorize>
-					<@sec.authorize ifAnyGranted="ROLE_ORDER,ROLE_PAYMENT,ROLE_REFUND,ROLE_SHIPPING,ROLE_RESHIP,ROLE_DELIVERY_CENTER,ROLE_DELIVERY_TEMPLATE">
+					<@sec.authorize ifAnyGranted="ROLE_ORDER,ROLE_ORDERQUERY,ROLE_PAYMENT,ROLE_REFUND,ROLE_SHIPPING,ROLE_RESHIP,ROLE_DELIVERY_CENTER,ROLE_DELIVERY_TEMPLATE">
 						<li class="menuItem">
 							<a href="menu!order.action" target="menuFrame" hidefocus>订单处理</a>
 						</li>

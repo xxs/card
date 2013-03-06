@@ -12,7 +12,7 @@
 </head>
 <body class="menu">
 	<div class="body">
-		<@sec.authorize ifAnyGranted="ROLE_ORDER,ROLE_PAYMENT,ROLE_REFUND">
+		<@sec.authorize ifAnyGranted="ROLE_ORDER,ROLE_ORDERQUERY,ROLE_PAYMENT,ROLE_REFUND">
 			<dl>
 				<dt>
 					<span>订单管理</span>
@@ -20,6 +20,11 @@
 				<@sec.authorize ifAnyGranted="ROLE_ORDER">
 					<dd>
 						<a href="order!list.action" target="mainFrame">订单列表</a>
+					</dd>
+				</@sec.authorize>
+				<@sec.authorize ifAnyGranted="ROLE_ORDERQUERY">
+					<dd>
+						<a href="order!query.action" target="mainFrame">订单查询</a>
 					</dd>
 				</@sec.authorize>
 			</dl>
