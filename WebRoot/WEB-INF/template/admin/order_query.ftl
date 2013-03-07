@@ -16,14 +16,14 @@
 <body class="list">
 	<div class="body">
 		<form id="queryForm" method="post">
-			<table id="listTable" class="listTable">
+			<table class="listTable">
 					<tr>
 						<td align="right">
 							订单号批量查询：
 						</td>
 						<td>
 							<textarea name="cardString" id="orderSns"  class="formTextarea"></textarea>
-							<input type="text" id="orderSn" name="orderSn" class="formText" />
+							<input type="hidden" id="orderSn" name="orderSn" class="formText" />
 						</td>
 					</tr>
 					<tr>
@@ -34,33 +34,36 @@
 							<input type="button" id="searchButton" class="formButton" value="查询" hidefocus />
 						</td>
 					</tr>
-					<tr>
-						<td ></td>
-						<td>
-							<div id="jieguo" class="red"></div>
-						</td>
-					</tr>
 			</table>
 		</form>
+		<table id="listTable" class="listTable">
+			<tr>
+				<th><a href="#" class="sort">订单号</a></th>
+				<th><a href="#" class="sort">流水号</a></th>
+				<th><a href="#" class="sort">支付金额</a></th>
+				<th><a href="#" class="sort">详细</a></th>
+				<th><a href="#" class="sort">状态码</a></th>
+				<th><a href="#" class="sort">到账金额</a></th>
+				<th><a href="#" class="sort">处理时间</a></th>
+			</tr>
+		</table>
 	</div>
 	<script type="text/javascript">
 		$().ready(function() {
 			$orderSns = $("#orderSns");
-			$jieguo = $("#jieguo");
+			$listTable = $("#listTable");
 			$orderSn = $("#orderSn");
 			$queryForm = $("#queryForm");
 			$searchButton = $("#searchButton");
 			$searchButton.click( function() {
+				$(".dataTr").hide();
 				if($orderSns.val()==""){
 					$.dialog({type: "warn", content: "请至少输入一个订单号", modal: true, autoCloseTime: 3000});
 				}
 				var sn=$orderSns.val().split("\n");
-				//alert(orderSn);
 				for(i=0; i<sn.length; i++){
 					if(sn[i]!=""){
-						//alert(sn[i]);
 						$orderSn.val(sn[i]);
-						alert($orderSn.val());
 							$.ajax({
 								url: "order!Rquery.action",
 								data: $queryForm.serialize(),
@@ -68,23 +71,27 @@
 								dataType: "json",
 								cache: false,
 								beforeSend: function(data) {
-								//$.dialog({type: 'warn', content: '<span class="loadingIcon">&nbsp;</span>提交中...', modal: true, autoCloseTime: 1000});
+									//$.dialog({type: 'warn', content: '<span class="loadingIcon">&nbsp;</span>提交中...', modal: true, autoCloseTime: 1000});
 									$searchButton.attr("disabled", true);
-									alert("commit......");
 								},
 								success: function(data) {
 										if (data.status == "success") {
-											$.dialog({type: data.status, content: data.message, modal: true, autoCloseTime: 3000});
+											//$.dialog({type: data.status, content: data.message, modal: true, autoCloseTime: 3000});
+											var appTr = '<tr class=dataTr ><td>'+data.orderSn+'</td><td>'+data.paySn+'</td><td>'+data.amount+'</td><td>'+data.retMsg+'</td><td>'+data.retCode+'</td><td>'+data.paidAmount+'</td><td>'+data.time+'</td></tr>';
+											$listTable.append(appTr);
 										} else {
-											$.dialog({type: data.status, content: data.message, modal: true, autoCloseTime: 3000});
+											//$.dialog({type: data.status, content: data.message, modal: true, autoCloseTime: 3000});
+											var appTr = '<tr class=dataTr ><td>'+data.orderSn+'</td><td colspan=6 >'+data.message+'</td></tr>';
+											$listTable.append(appTr);
 										}
-											$pBtn.attr("disabled", false);
-										}
-									});
+										$pBtn.attr("disabled", false);
+									}
+								});
 							}else{
 								$.dialog({type: data.status, content: data.message, modal: true, autoCloseTime: 3000});
 							}
 						}
+						$searchButton.attr("disabled", false);
 						return false;
 					});
 		})

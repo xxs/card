@@ -93,7 +93,7 @@ public class OrderDaoImpl extends BaseDaoImpl<Order, String> implements
 	}
 
 	public Order getOrderByOrderSn(String orderSn) {
-		String hql = "from Order as order where lower(order.orderSn) = lower(:ordersn)";
+		String hql = "from Order as order where order.orderSn = :ordersn";
 		Order order = (Order)getSession().createQuery(hql).setParameter("ordersn", orderSn).uniqueResult();
 		if (order != null) {
 			return order;

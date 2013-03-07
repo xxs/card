@@ -46,6 +46,16 @@ public class ReportAction extends BaseAdminAction {
 	
 	// 报表首页
 	public String info() {
+		if (beginDate != null) {
+			beginDate.setHours(0);
+			beginDate.setMinutes(0);
+			beginDate.setSeconds(0);
+		}
+		if (endDate != null) {
+			endDate.setHours(23);
+			endDate.setMinutes(59);
+			endDate.setSeconds(59);
+		}
 		List contentlist = reportService.getReportList(beginDate, endDate);
 		List applyWithdrawList = reportService.getTotalWithdrawMoney(WithdrawStatus.apply, beginDate, endDate);
 		List successWithdrawList = reportService.getTotalWithdrawMoney(WithdrawStatus.success, beginDate, endDate);

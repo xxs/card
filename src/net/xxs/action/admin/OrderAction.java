@@ -2,7 +2,9 @@ package net.xxs.action.admin;
 
 import java.util.Calendar;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.annotation.Resource;
 
@@ -152,32 +154,61 @@ public class OrderAction extends BaseAdminAction {
 	)
 	@InputConfig(resultName = "error")	
 	public String Rquery() {
+		Map<String, Object> jsonMap = new HashMap<String, Object>();
 		if(orderSn!=null){
 			order = orderService.getOrderByOrderSn(orderSn);
-			if(order.getOrderStatus()==OrderStatus.failure || order.getOrderStatus() == OrderStatus.paid){
-				return ajax(Status.success,"刷新成功");
-			}
-			paymentConfig = order.getPaymentConfig();
-			BasePaymentProduct paymentProduct = PaymentProductUtil.getPaymentProduct(paymentConfig.getPaymentProductId());
-			//发送查询请求
-			try {
-				paymentResult = paymentProduct.cardQuery(paymentConfig,order.getOrderSn(), getRequest());
-			} catch (Exception e) {
-				addActionError("订单支付提交失败!");
-				return ERROR;
-			}
-			if ((paymentResult == null || StringUtils.isEmpty(paymentResult.getOrderSn()))){
-				addActionError("缺失支付单号!");
-				return ERROR;
-			}
-			order = orderService.getOrderByOrderSn(paymentResult.getOrderSn());
-			if(StringUtils.isEmpty(order.getRetCode())||!paymentResult.getCode().equals(order.getRetCode())){
-				order.setRetCode(paymentResult.getCode());
-				order.setRetMsg(paymentResult.getReturnMsg());
-				System.out.println("订单状态已变更");
-				orderService.update(order);
+			if(order == null){
+				jsonMap.put(STATUS_PARAMETER_NAME, "fail");
+				jsonMap.put("orderSn", orderSn);
+				jsonMap.put("message", "订单号有误，不存在该单！");
+				return ajax(jsonMap);
 			}else{
-				System.out.println("订单状态未变化");
+				if(order.getOrderStatus()==OrderStatus.failure || order.getOrderStatus() == OrderStatus.paid){
+					jsonMap.put(STATUS_PARAMETER_NAME, "success");
+					jsonMap.put("orderSn", orderSn);
+					jsonMap.put("paySn", order.getPaySn());
+					jsonMap.put("amount",order.getAmount());
+					jsonMap.put("paidAmount",order.getPaidAmount());
+					jsonMap.put("retMsg", order.getRetMsg());
+					jsonMap.put("retCode", order.getRetCode());
+					jsonMap.put("time", order.getModifyDate());
+					return ajax(jsonMap);
+				}
+				paymentConfig = order.getPaymentConfig();
+				BasePaymentProduct paymentProduct = PaymentProductUtil.getPaymentProduct(paymentConfig.getPaymentProductId());
+				//发送查询请求
+				try {
+					paymentResult = paymentProduct.cardQuery(paymentConfig,order.getOrderSn(), getRequest());
+				} catch (Exception e) {
+					jsonMap.put(STATUS_PARAMETER_NAME, "fail");
+					jsonMap.put("orderSn", orderSn);
+					jsonMap.put("message", "查询失败！");
+					return ajax(jsonMap);
+				}
+				if ((paymentResult == null || StringUtils.isEmpty(paymentResult.getOrderSn()))){
+					jsonMap.put(STATUS_PARAMETER_NAME, "fail");
+					jsonMap.put("orderSn", orderSn);
+					jsonMap.put("message", "缺失订单号！");
+					return ajax(jsonMap);
+				}
+				order = orderService.getOrderByOrderSn(paymentResult.getOrderSn());
+				if(StringUtils.isEmpty(order.getRetCode())||!paymentResult.getCode().equals(order.getRetCode())){
+					order.setRetCode(paymentResult.getCode());
+					order.setRetMsg(paymentResult.getReturnMsg());
+					System.out.println("订单状态已变更");
+					orderService.update(order);
+				}else{
+					System.out.println("订单状态未变化");
+				}
+				jsonMap.put(STATUS_PARAMETER_NAME, "success");
+				jsonMap.put("orderSn", orderSn);
+				jsonMap.put("paySn", order.getPaySn());
+				jsonMap.put("amount",order.getAmount());
+				jsonMap.put("paidAmount",order.getPaidAmount());
+				jsonMap.put("retMsg", order.getRetMsg());
+				jsonMap.put("retCode", order.getRetCode());
+				jsonMap.put("time", order.getModifyDate());
+				return ajax(jsonMap);
 			}
 		}		
 		return ajax(Status.success,"刷新成功");

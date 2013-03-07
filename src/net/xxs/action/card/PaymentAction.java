@@ -66,7 +66,7 @@ public class PaymentAction extends BaseCardAction {
 	private BrandService brandService;
 	
 	// 支付回调处理
-	@Validations(requiredStrings = { @RequiredStringValidator(fieldName = "paymentsn", message = "支付编号不允许为空!") })
+	@Validations(requiredStrings = { @RequiredStringValidator(fieldName = "orderSn", message = "订单号不允许为空!") })
 	@InputConfig(resultName = "error")
 	public String payreturn() {
 		System.out.println("支付回调处理......");
@@ -83,7 +83,7 @@ public class PaymentAction extends BaseCardAction {
 
 		BigDecimal totalAmount = paymentProduct.getPaymentAmount(getRequest());
 		boolean isSuccess = paymentProduct.isPaySuccess(getRequest());
-		payreturnMessage = paymentProduct.getPayreturnMessage(null);//获取回送关键字
+		payreturnMessage = paymentProduct.getPayreturnMessage(ordersn);
 
 		if (!paymentProduct.verifySign(order.getPaymentConfig(), getRequest())) {
 			addActionError("支付签名错误!");

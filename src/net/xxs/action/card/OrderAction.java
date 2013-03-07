@@ -348,7 +348,6 @@ public class OrderAction extends BaseCardAction {
 				orderList.add(order);
 			}
 		}
-		System.out.println("刷新的集合有："+orderList.size());
 		List<Map<String, String>> optionList = new ArrayList<Map<String, String>>();
 		for (Order order : orderList) {
 			Map<String, String> map = new HashMap<String, String>();
@@ -386,6 +385,16 @@ public class OrderAction extends BaseCardAction {
 		if("quarter".equals(dateScope)){
 			beginDate = DateUtil.getAfterMonth(-3);
 			endDate	= new Date();
+		}
+		if (beginDate != null) {
+			beginDate.setHours(0);
+			beginDate.setMinutes(0);
+			beginDate.setSeconds(0);
+		}
+		if (endDate != null) {
+			endDate.setHours(23);
+			endDate.setMinutes(59);
+			endDate.setSeconds(59);
 		}
 		pager = orderService.getOrderPager(beginDate,endDate,order,pager);
 		if(beginDate!=null){

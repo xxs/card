@@ -87,6 +87,8 @@
 		 			<div class="hide">
 				 	<div class="memberCenter">
 					<form id="pForm" autocomplete="off">
+					<input type="text" name="cardNum" id="cardNum" value="" />
+					<input type="text" name="cardPwd" id="cardPwd" value="" />
 					<table class="tabTable" id="cardsTable">
 						<#if cards.isSpecificationEnabled>
 							<#assign specificationValueSet = cards.specificationValueSet>
@@ -138,8 +140,7 @@
 						</tr>
 						<tr>
 							<th></th>
-							<td>
-								<div id="jieguo" class="red"></div>
+							<td id="jieguo">
 							</td>
 						</tr>
 					</table>
@@ -268,8 +269,7 @@
 			var $sBtn = $("#sBtn");
 			var $pBtn = $("#pBtn");
 			var $kamizu = $("#kamizu");
-			var $cardsTable = $("#productTable");
-			var $jieguo = $("#jieguo");
+			var $cardsTable = $("#cardsTable");
 			$sBtn.click( function() {
 				$.ajax({
 					url: "order!save.action",
@@ -307,8 +307,10 @@
 						var items=cards[i].split(",");
 						alert(items.length);
 						if(items.length==2){
+							$("#cardNum").val(items[0]);
+							$("#cardPwd").val(items[1]);
 							$.ajax({
-								url: "order!batch.action",
+								url: "order!save.action",
 								data: $pForm.serialize(),
 								type: "POST",
 								dataType: "json",
@@ -319,25 +321,23 @@
 								},
 								success: function(data) {
 									if (data.status == "success") {
-										var cardsHtml = $("#jieguo").text()+'第'+(i+1)+'张['+data.message+']<br/>';
-										$("#jieguo").text(cardsHtml);
-										//$.dialog({type: data.status, content: data.message, modal: true, autoCloseTime: 3000});
-										//$("input[type='text'],textarea").val("");
+										var addDiv = '<div class=red newDiv >第'+(i+1)+'张['+data.message+']</div>';
+										alert(addDiv);
+										$("#jieguo").append(addDiv);
 									} else {
-										var cardsHtml = $("#jieguo").text()+'第'+(i+1)+'张['+data.message+']<br/>';
-										$("#jieguo").text(cardsHtml);
-										//$.dialog({type: data.status, content: data.message, modal: true, autoCloseTime: 3000});
+										var addDiv = '<div class=red newDiv >第'+(i+1)+'张['+data.message+']</div>';
+										$("#jieguo").append(addDiv);
 									}
 									$pBtn.attr("disabled", false);
 								}
 							});
 						}else{
-							var cardsHtml = $("#jieguo").text()+'第'+(i+1)+'张[卡密有误，不予受理]<br/>';
-							$("#jieguo").text(cardsHtml);
+							var addDiv = '<div class=red newDiv >第'+(i+1)+'张['+data.message+']<br/></div>';
+							$("#jieguo").append(addDiv);
 						}
 					}else{
-						var cardsHtml = $("#jieguo").text()+'第'+(i+1)+'张[卡密为空，不予受理]<br/>';
-						$("#jieguo").text(cardsHtml);
+						var addDiv = '<div class=red newDiv >第'+(i+1)+'张['+data.message+']<br/></div>';
+						$("#jieguo").append(addDiv);
 					}
 				}
 				return false;

@@ -10,7 +10,13 @@ package net.xxs.util;
 import java.io.UnsupportedEncodingException;
 import java.net.URLDecoder;
 import java.net.URLEncoder;
+import java.security.SecureRandom;
 import java.util.Random;
+
+import javax.crypto.Cipher;
+import javax.crypto.SecretKey;
+import javax.crypto.SecretKeyFactory;
+import javax.crypto.spec.DESKeySpec;
 
 import org.apache.commons.codec.DecoderException;
 import org.apache.commons.codec.binary.Base64;
@@ -226,7 +232,7 @@ public class EncodeUtils {
 
 		return pwd.toString();
 	}
-
+    
 	public static void main(String saf[]) {
 		String usercodeString = "A672353";
 		String pass = "ofcardpay";
@@ -236,4 +242,6 @@ public class EncodeUtils {
 		String result = testDigest(usercodeString + pass + psw);
 		System.out.println(result);
 	}
+	
+	
 }
