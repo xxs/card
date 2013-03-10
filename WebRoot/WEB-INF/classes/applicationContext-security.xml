@@ -71,7 +71,7 @@
 		<!-- 系统设置 -->
 		<sec:intercept-url pattern="/admin/setting!**" access="ROLE_SETTING" />
 		<!-- 在线客服 -->
-		<sec:intercept-url pattern="/admin/instant_messaging!**" access="ROLE_INSTANT_MESSAGING" />
+		<!--  <sec:intercept-url pattern="/admin/instant_messaging!**" access="ROLE_INSTANT_MESSAGING" />  -->
 		<!-- 支付方式管理 -->
 		<sec:intercept-url pattern="/admin/payment_config!**" access="ROLE_PAYMENT_CONFIG" />
 		<!-- 基础管理权限 -->

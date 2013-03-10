@@ -185,9 +185,6 @@ $().ready( function() {
 				<li>
 					<input type="button" value="银行卡信息" hidefocus />
 				</li>
-				<li>
-					<input type="button" value="商户信息" hidefocus />
-				</li>
 			</ul>
 			<table id="infoTable" class="inputTable tabContent">
 				<tr>
@@ -268,6 +265,9 @@ $().ready( function() {
 					<td>
 						<label>
 							<@checkbox name="member.isAccountEnabled" value="${(member.isAccountEnabled)!true}" />启用
+						</label>
+						<label>
+							<@checkbox name="member.isAccountLocked" value="${(member.isAccountLocked)!true}" />是否锁定
 						</label>
 					</td>
 				</tr>
@@ -475,128 +475,6 @@ $().ready( function() {
 						</td>
 					</tr>
 				</#list>
-			</table>
-			<table id="memberBusinessTable" class="inputTable tabContent">
-				<tr>
-					<th>
-						商户类型
-					</th>
-					<td>
-						${action.getText("MemberBusiness." + member.memberBusiness.businessType)}
-					</td>
-					<th>
-						真实姓名 
-					</th>
-					<td>
-						${member.memberBusiness.realName}
-					</td>
-				</tr>
-				<tr>
-					<th>
-						身份证（营业执照）
-					</th>
-					<td>
-						${member.memberBusiness.businessNumber}
-					</td>
-					<th>
-						商户名称 
-					</th>
-					<td>
-						${member.memberBusiness.businessName}
-					</td>
-				</tr>
-				<tr>
-					<th>
-						商户地区
-					</th>
-					<td>
-						${member.memberBusiness.city}
-					</td>
-					<th>
-						经营范围
-					</th>
-					<td>
-						${member.memberBusiness.scope}
-					</td>
-				</tr>
-				<tr>
-					<th>
-						商城网址
-					</th>
-					<td>
-						<a href="${member.memberBusiness.url}">${member.memberBusiness.url}</a>
-					</td>
-					<th>
-						ICP证备案号
-					</th>
-					<td>
-						${member.memberBusiness.icp}
-					</td>
-				</tr>
-				<tr>
-					<th>
-						联系人
-					</th>
-					<td>
-						${member.memberBusiness.linkMan}
-					</td>
-					<th>
-						业务电话
-					</th>
-					<td>
-						${member.memberBusiness.tel}
-					</td>
-				</tr>
-				<tr>
-					<th>
-						业务手机
-					</th>
-					<td>
-						${member.memberBusiness.phone}
-					</td>
-					<th>
-						服务热线
-					</th>
-					<td>
-						${member.memberBusiness.serverTel}
-					</td>
-				</tr>
-				<tr>
-					<th>
-						客服工作时间
-					</th>
-					<td>
-						${member.memberBusiness.serverTime}
-					</td>
-					<th>
-						即时通讯
-					</th>
-					<td>
-						${member.memberBusiness.QQ}
-					</td>
-				</tr>
-				<tr>
-					<th>
-						通讯地址
-					</th>
-					<td>
-						${member.memberBusiness.address}
-					</td>
-					<th>
-						邮编
-					</th>
-					<td>
-						${member.memberBusiness.zipcode}
-					</td>
-				</tr>
-				<tr>
-					<th>
-						备注
-					</th>
-					<td colspan="3">
-						${member.memberBusiness.mome}
-					</td>
-				</tr>
 			</table>
 			<div class="buttonArea">
 				<input type="submit" class="formButton" value="确  定" hidefocus />&nbsp;&nbsp;

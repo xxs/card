@@ -219,9 +219,11 @@ $().ready(function() {
 						<label>
 							<input type="checkbox" name="role.authorityList" class="roleAuthorityList" value="ROLE_SETTING"<#if (isAddAction || role.authorityList.contains("ROLE_SETTING"))!> checked</#if> />系统设置
 						</label>
+						<!--
 						<label>
 							<input type="checkbox" name="role.authorityList" class="roleAuthorityList" value="ROLE_INSTANT_MESSAGING"<#if (isAddAction || role.authorityList.contains("ROLE_INSTANT_MESSAGING"))!> checked</#if> />在线客服
 						</label>
+						-->
 						<label>
 							<input type="checkbox" name="role.authorityList" class="roleAuthorityList" value="ROLE_PAYMENT_CONFIG"<#if (isAddAction || role.authorityList.contains("ROLE_PAYMENT_CONFIG"))!> checked</#if> />支付方式管理
 						</label>

@@ -28,7 +28,7 @@
 	
 	<rule>
 		<note>推广注册</note>
-		<from>^/(\w+).htm$</from>
+		<from>^/card/(\w+).htm$</from>
 		<to type="forward">/card/member!register.action?id=$1</to>
 	</rule>
 </urlrewrite>

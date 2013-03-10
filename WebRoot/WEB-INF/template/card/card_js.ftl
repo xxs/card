@@ -53,7 +53,6 @@ $().ready( function() {
 				$headerLogin.hide();
 				$headerRegister.hide();
 			} else {
-				$headerLoginMemberUsername.text("");
 				$headerLogin.show();
 				$headerRegister.show();
 				$headerMemberCenter.hide();
@@ -64,20 +63,126 @@ $().ready( function() {
 		$.flushHeaderInfo();
 	}	
 	/* ---------- LoginContext ---------- */
-	var loginBeforeHtml = '您还没有登陆';
-	var loginAfterHtml = '您已经登陆';
+	<@compress single_line = true>
+		var loginBeforeHtml = '<div id="beforeLogin" class="anan">
+            			<form id="loginForm" action="${base}/card/member!login.action" method="post">
+						<input type="hidden" id="loginRedirectUrl" name="loginRedirectUrl" />
+	                	<div>
+	                		<p>账&nbsp;&nbsp;号</p> 
+		                	<span>
+		                		<input type="text" id="memberUsername"  size="15" name="member.username" class="oo" />
+		                	</span>
+	                	</div>
+	                	<div style="margin-top:19px;">
+		                  	<p>密&nbsp;&nbsp;码</p> 
+		                  	<span>
+		                  		<input type="password" id="memberPassword" name="member.password" class="oo" />
+		                  	</span>
+	                	</div>
+		                <div style="margin-top:19px;">
+		                	<p>验证码</p>
+		                  	<span>
+		                  		<input type="text" id="captcha" maxlength="4" name="j_captcha" style="width:90px" class="oo captcha" />
+		                  		<img id="captchaImage" class="captchaImage" src="${base}/captcha.jpeg" alt="换一张" />
+		                  	</span>
+		                </div>
+		                <span id="loginError" style="font-size:15px;margin-top:10px;margin-bottom:5px;text-align:center;color:red;font-weight:bold">验证失败，此处提示错误信息</span>
+		                <div class="ddsa" >
+		                	<input id="loginButton" class="button" style="display:inline" type="button"  name="login" value="登&nbsp;&nbsp;&nbsp;录" />
+		                </div>
+		                <div class="wenz">
+		                	还没有账号？<a href="reg.html" style="font-size:14px;font-weight:bold">免费注册</a>&nbsp;|
+		                	&nbsp;<a href="${base}/card/member!passwordRecover.action" style="font-size:13px;font-weight:bold">忘记密码？</a>
+		                </div>
+                		</form>
+					</div>';
+	</@compress>	
+	<@compress single_line = true>
+		var loginAfterHtml = '<div id="afterLogin">
+			         	<h1 style="font-size:18px"><strong>欢迎使用名臣福利!</strong></h1>
+			         	<hr noshade width=100% style="margin-left:-15px;margin-top:5px"><br />
+			         	<font style="font-size:15px">你当前使用的名臣福利账号是：</font><br />
+	         			<br/>
+	         			<strong><span id="account" style="text-align:center;font-size:16px;color:#FF9700">'+getCookie("memberUsername")+'</span></strong><br />
+	         			<br />
+		         		<div style="margin-left:10px;margin-top:15px;">
+		         			<a href="${base}/card/member_center!index.action"><img src="${base}/template/card/images/jinru.jpg" style="margin-left:0px;" /></a>
+		         			<a href="${base}/card/member!logout.action"><img src="${base}/template/card/images/tc.jpg" style="margin-left:15px" name="logout" /></a>
+		         		</div>
+           			</div>';
+	</@compress>	
 	var $loginWindowContext = $("#loginWindowContext");
 	if ($loginWindowContext.size() > 0) {
 		$.flushLoginInfo = function () {
-			//alert(getCookie("memberUsername"));
 			if(getCookie("memberUsername") != null) {
-				$loginWindowContext.text(loginAfterHtml);
+				$loginWindowContext.html(loginAfterHtml);
 			} else {
-				$loginWindowContext.text(loginBeforeHtml);
+				$loginWindowContext.html(loginBeforeHtml);
 			}
 		}
 		$.flushLoginInfo();
 	}
+	var $loginForm = $("#loginForm");
+	var $memberUsername = $("#memberUsername");
+	var $memberPassword = $("#memberPassword");
+	var $captcha = $("#captcha");
+	var $captchaImage = $("#captchaImage");
+	var $loginButton = $("#loginButton");
+	var $loginError = $("#loginError");
+	$loginError.text("");
+	function loginWindowCaptchaImageRefresh() {
+		$captchaImage.attr("src", xxs.base + "/captcha.jpeg?timestamp=" + (new Date()).valueOf());
+	}
+	$captchaImage.click( function() {
+		loginWindowCaptchaImageRefresh();
+	});
+	$loginButton.click( function() {
+		if ($.trim($memberUsername.val()) == "") {
+			$memberUsername.focus();
+			$loginError.text("请输入用户名!");
+			return false;
+		}
+		if ($.trim($memberPassword.val()) == "") {
+			$memberPassword.focus();
+			$loginError.text("请输入密码!");
+			return false;
+		}
+		if ($.trim($captcha.val()) == "") {
+			$captcha.focus();
+			$loginError.text("请输入验证码!");
+			return false;
+		}
+		$.ajax({
+			url: xxs.base + "/card/member!ajaxLogin.action",
+			data: $loginForm.serialize(),
+			type: "POST",
+			dataType: "json",
+			cache: false,
+			beforeSend: function() {
+				$loginForm.find("button").attr("disabled", true);
+			},
+			success: function(data) {
+				if (data.status == "success") {
+					$.flushHeaderInfo();
+					$.flushLoginInfo();
+					location.reload();
+				}
+				$loginError.text(data.message);
+				loginWindowCaptchaImageRefresh();
+				if(redirectUrl != null) {
+					location.href = redirectUrl;
+				}
+				$loginForm.find("button").attr("disabled", false);
+			},
+			complete: function() {
+				$loginError.text(data.message);
+				$captcha.val("");
+				loginWindowCaptchaImageRefresh();
+				$loginForm.find("button").attr("disabled", false);
+			}
+		});
+		return false;
+	});
 	/* ---------- ArticleContent ---------- */
 	
 	var $articleContent = $("#articleContent");

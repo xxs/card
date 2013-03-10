@@ -22,11 +22,13 @@
 						<a href="setting!edit.action" target="mainFrame">系统设置</a>
 					</dd>
 				</@sec.authorize>
+				<!--
 				<@sec.authorize ifAnyGranted="ROLE_INSTANT_MESSAGING">
 					<dd>
 						<a href="instant_messaging!edit.action" target="mainFrame">在线客服</a>
 					</dd>
 				</@sec.authorize>
+				-->
 			</dl>
 		</@sec.authorize>
 		<@sec.authorize ifAnyGranted="ROLE_PAYMENT_CONFIG">

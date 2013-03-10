@@ -314,7 +314,7 @@ public class MemberAction extends BaseAdminAction {
 		} else {
 			member.setPassword(StringUtil.md5(member.getPassword()));
 		}
-		BeanUtils.copyProperties(member, persistent, new String[] {"id", "createDate", "modifyDate", "username", "safeQuestion", "safeAnswer", "isAccountLocked", "loginFailureCount", "lockedDate", "registerIp", "loginIp", "loginDate", "passwordRecoverKey", "receiverSet", "favoriteCardsSet", "inboxMessageSet", "outboxMessageSet", "orderSet", "depositSet", "cardsNotifySet" });
+		BeanUtils.copyProperties(member, persistent, new String[] {"id", "createDate", "modifyDate", "username", "safeQuestion", "safeAnswer", "loginFailureCount", "lockedDate", "registerIp", "loginIp", "loginDate", "passwordRecoverKey", "receiverSet", "favoriteCardsSet", "inboxMessageSet", "outboxMessageSet", "orderSet", "depositSet", "cardsNotifySet" });
 		if (!memberService.isExistByReferrer(member.getReferrer())) {
 			addActionError("推荐人不存在!");
 			return ERROR;

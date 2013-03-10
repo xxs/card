@@ -19,10 +19,10 @@
 			<a href="login.html">立刻登陆</a>
         </div>
         <ul>
-			<@article_list type="hot" count=6; articleList>
+			<@article_list type="hot" article_category_id="4028bc743c286bdc013c289277c5000a" count=6; articleList>
 				<#list articleList as article>
 					<li class="number${article_index + 1}">
-						<a href="${base}${article.htmlPath}" title="${article.title}">${substring(article.title, 24, "...")}</a>
+						<a href="${base}${article.htmlPath}" title="${article.title}">${substring(article.title, 10, "...")}</a>
 					</li>
 				</#list>
 			</@article_list>		
@@ -50,15 +50,15 @@
    	    	<#if (article.metaDescription)! != "">${article.metaDescription}</#if>
    	   		<#if (article.metaDescription)! == "">您尚未登陆，请点击<a href="${base}/card/promotion.action">登陆</a>立即参与到分享二维码，推荐会员拿提成活动</#if>
    	   </div>
-        <div class="column_right_2">
-        	<div class="column_right_2_shang">
-            	<span>
-                <font>${substring(article.title, 40, "...")}</font>
-                </span>
-            </div>     
-       		${article.contentText}
-       </div>
-        
+        	<div class="column_right_2">
+	        	<div class="column_right_2_shang">
+	            	<span>
+	                <font>${substring(article.title, 40, "...")}</font>
+	                </span>
+	            </div>     
+       			${article.contentText}
+       		</div>
+        </div>
         </div>
         </div>
     </div>

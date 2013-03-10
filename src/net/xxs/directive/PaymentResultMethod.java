@@ -82,6 +82,35 @@ public class PaymentResultMethod implements TemplateMethodModel {
 		resultMap.put("ofpay2017","匹配订单失败");
 		resultMap.put("ofpay2018","余额不足");
 		resultMap.put("ofpay2999","其他错误");
+		resultMap.put("szfpay101","md5 验证失败");
+		resultMap.put("szfpay102","订单号重复");
+		resultMap.put("szfpay103","恶意用户");
+		resultMap.put("szfpay104","序列号，密码简单验证失败");
+		resultMap.put("szfpay105","密码正在处理中");
+		resultMap.put("szfpay106","系统繁忙，暂停提交");
+		resultMap.put("szfpay107","多次支付时卡内余额不足");
+		resultMap.put("szfpay109","des 解密失败");
+		resultMap.put("szfpay501","插入数据库失败");
+		resultMap.put("szfpay502","插入数据库失败");
+		resultMap.put("szfpay200","请求成功");
+		resultMap.put("szfpay201","证书验证失败");
+		resultMap.put("szfpay902","商户参数不全");
+		resultMap.put("szfpay903","商户ID 不存在");
+		resultMap.put("szfpay904","商户没有激活");
+		resultMap.put("szfpay905","商户没有使用该接口的权限");
+		resultMap.put("szfpay906","商户没有设置密钥（privateKey）");
+		resultMap.put("szfpay907","商户没有设置DES 密钥");
+		resultMap.put("szfpay908","该笔订单已经处理完成");
+		resultMap.put("szfpay909","该笔订单不符合重复支付的条件");
+		resultMap.put("szfpay910","服务器返回地址，不符合规范");
+		resultMap.put("szfpay911","订单号，不符合规范");
+		resultMap.put("szfpay912","非法订单");
+		resultMap.put("szfpay913","该地方卡暂时不支持");
+		resultMap.put("szfpay914","支付金额非法");
+		resultMap.put("szfpay915","卡面额非法");
+		resultMap.put("szfpay916","商户不支持该充值卡的支付");
+		resultMap.put("szfpay917","参数格式不正确");
+		resultMap.put("szfpay0","网络连接失败");
 		return resultMap.get(resultcode);
 	}
 
