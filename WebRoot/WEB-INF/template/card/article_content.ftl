@@ -39,14 +39,14 @@
                 </dt>
                 <@article_list type="hot" article_category_id="4028bc743c286bdc013c289277c5000a"  count=5; articleList>
 					<#list articleList as article>
-						<dd><a href="${base}${article.htmlPath}" title="${article.title}">${substring(article.title, 24, "...")}</a></dd>
+						<dd><a href="${base}${article.htmlPath}" title="${article.title}">${substring(article.title, 10, "...")}</a></dd>
 					</#list>
 				</@article_list>
         	</dl>
         </div>
     </div>
     <div class="column_right">
-   	    <div class="column_right_1"><p><img src="images/hhh.jpg" width="38" height="37" alt="jj" /></p>
+   	    <div class="column_right_1"><p><img src="/template/card/images/hhh.jpg" width="38" height="37" alt="jj" /></p>
    	    	<#if (article.metaDescription)! != "">${article.metaDescription}</#if>
    	   		<#if (article.metaDescription)! == "">您尚未登陆，请点击<a href="${base}/card/promotion.action">登陆</a>立即参与到分享二维码，推荐会员拿提成活动</#if>
    	   </div>

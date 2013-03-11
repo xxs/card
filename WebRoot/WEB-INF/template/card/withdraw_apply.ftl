@@ -78,7 +78,7 @@ $().ready( function() {
 												<input type="radio" name="memberBank.id" value="${memberBank.id}" <#if memberBank.isDefault >checked="checked"</#if> />${memberBank.banknum}(开户名：${memberBank.openname},开户银行:${memberBank.bankname})<br />
 											</#if>
 										</#list>
-										<div class="hei">没有找到合适的账户，<a href="bank!add.action?redirectUrl=withdraw!apply.action">点击添加！</a>(最多添加5个账户，请谨慎操作)</div>
+										<div class="hei"><a href="bank!list.action?redirectUrl=withdraw!apply.action">点击设置默认账户！</a>(最多添加5个账户，请谨慎操作)</div>
 								</td>
 							</tr>
 							<tr>

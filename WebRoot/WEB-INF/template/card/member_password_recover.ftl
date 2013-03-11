@@ -33,6 +33,9 @@
 		var $submitButton = $("#submitButton");
 		var $status = $("#status");
 	
+		$memberSafeQuestionTr.hide();
+		$memberSafeAnswerTr.hide();
+		
 		$passwordRecoverForm.submit( function() {
 			if ($.trim($memberUsername.val()) == "") {
 				$.dialog({type: "warn", content: "请输入用户名!", modal: true, autoCloseTime: 3000});
@@ -142,52 +145,46 @@
 </head>
 <body>
 	<#include "/WEB-INF/template/card/header.ftl">
-	<div class="center">
-	<div class="singlePage body passwordRecover">
-		<div class="sendTable">
-			<div class="left"></div>
-			<div class="middle">
-				<span class="icon">&nbsp;</span>找回密码
-			</div>
-			<div class="right"></div>
-		</div>
-		<div class="blank"></div>
-		<div class="column">
+
+<div class="column">
 	<div class="column_left">
-    	<div class="column_left_1"><a href="reg.html">免费注册</a><a href="findpassword.html"  class="current" >找回密码</a><a href="login.html">立刻登陆</a>
+		<div class="column_left_1">
+			<a href="reg.html">免费注册</a>
+			<a href="findpassword.html">找回密码</a>
+			<a href="login.html">立刻登陆</a>
         </div>
-       <ul>
-        	<li><a href="card.html">支持卡种</a></li>
-            <li><a href="safeguard.html">交易保障</a></li>
-            <li style=" text-align:left; padding-left:19px;width:66px;"><a href="success.html">成功案例</a></li>
-            <li><a href="contribution.html">名臣公益</a></li>
-         
+        <ul>
+			<@article_list type="hot" article_category_id="4028bc743c286bdc013c289277c5000a"  count=6; articleList>
+				<#list articleList as article>
+					<li class="number${article_index + 1}">
+						<a href="${base}${article.htmlPath}" title="${article.title}">${substring(article.title, 10, "...")}</a>
+					</li>
+				</#list>
+			</@article_list>		
         </ul>
         <div class="column_left_3">
         	<dl>
             	<span>帮助中心</span>
                 <dt>
-                <img src="images/saaaa/xin.png" width="16" height="16" alt="s" />
-                <img src="images/saaaa/a3.jpg" width="16" height="16" alt="s" /> 
-                <img src="images/saaaa/a2.jpg" width="16" height="16" alt="s" /> 
-                <img src="images/saaaa/cell.png" width="16" height="16" alt="s" /> 
-                <img src="images/saaaa/dlzq.gif" width="16" height="16" alt="s" /> 
-                <img src="images/saaaa/zizhi.png" width="16" height="16" alt="s" /> 
+                <@article_list type="hot"  article_category_id="4028bc743c286bdc013c289277c5000a"  count=5; articleList>
+					<#list articleList as article>
+						<img src="/template/card/images/${article.title}.png" width="16" height="16" alt="${article.title}" />
+					</#list>
+				</@article_list>
                 </dt>
-                <dd><a href="help.html">新手入门</a></dd>
-                <dd><a href="question.html">常见问题</a></dd>
-                <dd><a href="withdraw.html">提现说明</a></dd>
-                <dd><a href="contact.html">联系我们</a></dd>
-                <dd><a href="business.html">商务合作</a></dd>
-                <dd><a href="company.html">公司资质</a></dd>
-               <!-- <p style="background:url(images/saaaa/a7.jpg) no-repeat;"><a href="#">添加</a></p>     
-                <p  style="background:url(images/saaaa/a8.jpg) no-repeat;"><a href="#">管理</a></p>-->
+                <@article_list type="hot" article_category_id="4028bc743c286bdc013c289277c5000a"  count=5; articleList>
+					<#list articleList as article>
+						<dd><a href="${base}${article.htmlPath}" title="${article.title}">${substring(article.title, 10, "...")}</a></dd>
+					</#list>
+				</@article_list>
         	</dl>
         </div>
     </div>
     <div class="column_right">
-   	    <div class="column_right_1"><p><img src="images/hhh.jpg" width="38" height="37" alt="jj" /></p>
-   	    忘记账号密码了？填写用户名和注册时留下的邮箱后进查收邮件修改密码！</div>
+   	    <div class="column_right_1">
+   	    	<p><img src="/template/card/images/hhh.jpg" width="38" height="37" alt="jj" /></p>
+   	    	忘记账号密码了？填写用户名和注册时留下的邮箱后进查收邮件修改密码！
+   	    </div>
         <div class="column_right_2">
         	<div class="column_right_2_shang">
             	<span>
@@ -195,69 +192,41 @@
                 </span>
             </div>     
    	    
-        <form action="" method="post" >
-        <ol id="need">
-
-<li><label class="email">&nbsp;&nbsp;&nbsp;&nbsp;用户名：</label> <input name='' type='text' id='' maxlength="18" />*<dfn>填写您登录时使用的账号</dfn></li>
-
-<li><label class="email">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;邮&nbsp;箱：</label> <input name='' type='text' id='' />*<dfn>填写注册时留下的邮箱</dfn></li>
-
-</ol>
- <div class="anniu"><input type="submit" value="确 定" class="button"/><input type="reset" value="重新填写" class="button" style="margin-left:30px;" /></div>
-
-         </form>
-         
+	        <form id="passwordRecoverForm">
+		        <ol id="need">
+					<li>
+						<label class="email">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;用户名：</label>
+						<input type="text" id="memberUsername" name="member.username" class="formText" />
+						<dfn>填写您登录时使用的账号</dfn>
+					</li>
+					<li>
+						<label class="email">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;邮&nbsp;箱：</label> 
+						<input type="text" id="memberEmail" name="member.email" class="formText" />
+						<dfn>填写注册时留下的邮箱</dfn>
+					</li>
+					<li id="memberSafeQuestionTr" class="hidden">
+						<label class="email">密码保护问题：</label> 
+						<span id="memberSafeQuestion"></span>
+					</li>
+					<li id="memberSafeAnswerTr" class="hidden">
+						<label class="email">密码保护答案：</label> 
+						<input type="text" id="memberSafeAnswer" name="member.safeAnswer" class="formText" disabled />
+					</li>
+					<li id="memberSafeAnswerTr" class="hidden">
+						<label class="email"></label> 
+						<span class="gray"><span id="status"></span></span>&nbsp;
+					</li>
+				</ol>
+		 		<div class="anniu">
+		 			<input type="submit" value="确 定" class="button"/>
+		 			<input type="reset" value="重新填写" class="button" style="margin-left:30px;" />
+		 			<span class="warnIcon">&nbsp;</span>如果忘记密码,请填写您的用户名和注册邮箱重新获取密码!
+		 		</div>
+	         </form>
          </div>
         </div>
     </div>
-		<div class="singlePageDetail">
-			<form id="passwordRecoverForm">
-				<table class="sendTable">
-					<tr>
-						<th>用户名: </th>
-						<td>
-							<input type="text" id="memberUsername" name="member.username" class="formText" />
-						</td>
-					</tr>
-					<tr>
-						<th>E-mail: </th>
-						<td>
-							<input type="text" id="memberEmail" name="member.email" class="formText" />
-						</td>
-					</tr>
-					<tr id="memberSafeQuestionTr" class="hidden">
-						<th>密码保护问题: </th>
-						<td>
-							<span id="memberSafeQuestion"></span>
-						</td>
-					</tr>
-					<tr id="memberSafeAnswerTr" class="hidden">
-						<th>密码保护答案: </th>
-						<td>
-							<input type="text" id="memberSafeAnswer" name="member.safeAnswer" class="formText" disabled />
-						</td>
-					</tr>
-					<tr>
-						<th>&nbsp;</th>
-						<td>
-							<input type="submit" id="submitButton" class="formButton" value="确  定" hidefocus />
-						</td>
-					</tr>
-					<tr>
-						<th>&nbsp;</th>
-						<td height="20">
-							<span class="gray"><span id="status"></span></span>&nbsp;
-						</td>
-					</tr>
-					<tr>
-						<th>&nbsp;</th>
-						<td>
-							<span class="warnIcon">&nbsp;</span>如果忘记密码,请填写您的用户名和注册邮箱重新获取密码!
-						</td>
-					</tr>
-				</table>
-			</form>
-		</div>
+
 		<div class="blank"></div>
 		<#include "/WEB-INF/template/card/friend_link.ftl">
 	</div>

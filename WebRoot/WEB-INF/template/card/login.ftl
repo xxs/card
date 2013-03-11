@@ -71,10 +71,10 @@
 			<a href="login.html">立刻登陆</a>
         </div>
         <ul>
-			<@article_list type="hot" count=6; articleList>
+			<@article_list type="hot" article_category_id="4028bc743c286bdc013c289277c5000a"  count=6; articleList>
 				<#list articleList as article>
 					<li class="number${article_index + 1}">
-						<a href="${base}${article.htmlPath}" title="${article.title}">${substring(article.title, 24, "...")}</a>
+						<a href="${base}${article.htmlPath}" title="${article.title}">${substring(article.title, 10, "...")}</a>
 					</li>
 				</#list>
 			</@article_list>		
@@ -91,14 +91,14 @@
                 </dt>
                 <@article_list type="hot" article_category_id="4028bc743c286bdc013c289277c5000a"  count=5; articleList>
 					<#list articleList as article>
-						<dd><a href="${base}${article.htmlPath}" title="${article.title}">${substring(article.title, 24, "...")}</a></dd>
+						<dd><a href="${base}${article.htmlPath}" title="${article.title}">${substring(article.title, 10, "...")}</a></dd>
 					</#list>
 				</@article_list>
         	</dl>
         </div>
     </div>
     <div class="column_right">
-   	    <div class="column_right_1"><p><img src="images/hhh.jpg" width="38" height="37" alt="jj" /></p>
+   	    <div class="column_right_1"><p><img src="/template/card/images/hhh.jpg" width="38" height="37" alt="jj" /></p>
    	    		马上登陆，登陆后进入会员中心寄售点卡供货！
    		</div>
         <div class="column_right_2">
@@ -112,16 +112,19 @@
 		        <ol id="need">
 					<li>
 						<label class="email">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;账&nbsp;&nbsp;号：</label> 
-						<input type="text" id="memberUsername" name="member.username" class="formText" /><dfn>注册时填写的用户名</dfn>
+						<input type="text" id="memberUsername" name="member.username" class="formText" />
+						<dfn>注册时填写的用户名</dfn>
 					</li>
 					<li>
 						<label class="new_password">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;密&nbsp;&nbsp;码：</label> 
-						<input type="password" id="memberPassword" name="member.password" class="formText" /><dfn>您的登录密码</dfn>
+						<input type="password" id="memberPassword" name="member.password" class="formText" />
+						<dfn>您的登录密码</dfn>
 					</li>
-					<li>
+					<li style="height:20px;">
 						<label class="email">&nbsp;&nbsp;&nbsp;&nbsp;验证码：</label> 
-						<input type="text" id="captcha" name="j_captcha" class="formText captcha" />
-						<img id="captchaImage" class="captchaImage" src="${base}/captcha.jpeg" alt="换一张" /><dfn>输入左方图片中的验证码</dfn>
+						<div class="ssh"><input type="text" id="captcha" name="j_captcha" class="formText captcha" /></div>
+						<div class="ssh1"><img id="captchaImage" class="captchaImage" src="${base}/captcha.jpeg" alt="换一张" /></div>
+						<dfn>输入图片中的验证码</dfn>
 					</li>
 				</ol>
 		 		<div class="anniu">

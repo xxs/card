@@ -84,7 +84,7 @@ $().ready( function() {
 <body class="memberCenter">
 	<#include "/WEB-INF/template/card/member_header.ftl">
 	<div class="content">
-	<div class="contentLeft" style="min-height:320px;">
+	<div class="contentLeft" style="min-height:185px;">
 		<#include "/WEB-INF/template/card/menu_order.ftl">
 	</div>
 	<div class="contentRight">
@@ -160,6 +160,7 @@ $().ready( function() {
 					</tr>	
 				</table>
 				</form>
+			<!-- 	
 				<form id="queryForm" >
 				<table class="stateTable">
 					<tr>
@@ -218,6 +219,7 @@ $().ready( function() {
 					</tr>	
 				</table>
 				</form>
+				-->
 				</div>
 			</div>
 		</div>

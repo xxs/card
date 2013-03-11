@@ -143,7 +143,7 @@ background:url(../images/tg_flash_p2.png) no-repeat 0px 0px; _background:none; _
 		.column_right_1 p{float:left;margin:24px 14px 0 129px;}
 	.column_right_2{height:395px;border:1px solid #d7d7d7; margin-bottom:20px;}
 	.column_right_2_shang{height:50px;padding:45px 0 0 55px;}
-		.column_right_2_shang span{height:40px;width:580px;display:block; background:url(../images/saaaa/sa3.jpg) no-repeat;padding-left:75px;border-bottom:1px dashed #878a86;}
+		.column_right_2_shang span{height:40px;width:580px;display:block; background:url(../images/sa3.jpg) no-repeat;padding-left:75px;border-bottom:1px dashed #878a86;}
 		.column_right_2_shang span font{font-family:"Microsoft YaHei", Verdana;font-size:20px;margin-top:50px;}
 		.anniu_shang{margin:40px 0px 30px 90px;font-size:16px;font-weight:bold;color:#CC070E;}
 		.anniu{margin:30px 0px 30px 150px;}
@@ -176,8 +176,24 @@ background:url(../images/tg_flash_p2.png) no-repeat 0px 0px; _background:none; _
 .login .loginDetail table {width: 100%;}
 .login .loginDetail th {width: 160px;line-height: 35px;padding-right: 10px;text-align: right;font-weight: normal;}
 .login .loginDetail td {line-height: 35px;text-align: left;}
-.login .loginDetail .captcha {width: 95px;margin-right: 1px;text-transform: uppercase;}
+.login .loginDetail .captcha {width: 95px;height: 20px;margin-right: 1px;text-transform: uppercase;}
 .login .loginDetail .captchaImage {vertical-align: middle;cursor: pointer;}
+.ssh{width:100px;height:22px;float:right;}
+.ssh1{width:100px;height:22px;float:right;}
+
+
+/*表单所用元素值*/
+#need {margin: 0px auto 0;width: 610px;}
+#need li {height: 26px;width: 600px;font-family:"Microsoft YaHei", Verdana;background: #FFD;border-bottom: 1px dashed #E0E0E0;display: block;cursor: text;padding: 7px 0px 7px 10px;padding: 5px 0px 5px 10px;}
+#need li:hover,#need li.hover {background: #FFE8E8;}
+#need input {line-height: 14px;background: #FFF;height: 14px;width: 200px;border: 1px solid #E0E0E0;vertical-align: middle;padding: 6px;}
+#need label {padding-left: 30px;}
+#need label.old_password {background-position: 0 -277px;}
+#need label.new_password {background-position: 0 -1576px;}
+#need label.rePassword {background-position: 0 -1638px;}
+#need label.email {background-position: 0 -429px;}
+#need dfn {font-style:normal;display: none;}
+#need li:hover dfn, #need li.hover dfn {display:inline;margin-left: 7px;color: #676767;}
 
 .agreement .dialogContent {padding: 5px;margin: 0px;overflow: hidden;}
 .agreement .agreementContent {
