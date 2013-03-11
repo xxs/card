@@ -224,9 +224,9 @@ $().ready( function() {
 			</div>
 		</div>
 	</div>
-	<div class="memberCenter">
 		<form id="refForm" >
-			<table class="listTable tabContent">
+		<div class="tab3">
+			<table width="995px" cellspacing=0>
 				<tr>
 							<th>订单编号</th>
 							<th>充值卡名称</th>
@@ -235,7 +235,7 @@ $().ready( function() {
 							<th>充值卡卡号</th>
 							<th>订单金额</th>
 							<th>订单状态</th>
-							<th><input class="formButton red" id="refBtn" type="button" value="刷新订单"/></th>
+							<th><a class="red" id="refBtn" >点击刷新</a></th>
 						</tr>
 						<#list pager.result as order>
 							<tr>

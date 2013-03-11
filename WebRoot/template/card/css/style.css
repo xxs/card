@@ -15,9 +15,9 @@
 /* logo */
 .logo{width:100%;height:77px;margin:0 auto 1px;; background:url(../images/bj_top.jpg) repeat-x;}
 .logo_995{width:995px;margin:0 auto;}
-.logo_left{padding-top:14px;width:290px; float:left;}
-.logo_left .shu{margin-top:10px;width:2px;height:30px; float:right;background:#e10911;margin-left:2px;margin-right:2px;}
-.logo_left span{padding-top:14px;width:120px; float:right;font-size:18px;font-weight:bold;font-family:"仿宋";}
+.logo_left{padding-top:14px;width:290px;height:30px; float:left;}
+.logo_left .shu{margin-top:10px;width:2px;height:30px; float:left;background:#e10911;margin-left:2px;margin-right:2px;}
+.logo_left span{padding-top:14px;width:80px; float:left;font-size:18px;font-weight:bold;font-family:"仿宋";}
 .logo_right{float:right;width:700px;margin-top:45px;}
 .logo_right ul{width:700px;float:right; height:27px;}
 .logo_right ul li{float:right;font-size:18px;font-family:"黑体";text-align:center;width:120px;height:27px;}
@@ -176,10 +176,11 @@ background:url(../images/tg_flash_p2.png) no-repeat 0px 0px; _background:none; _
 .login .loginDetail table {width: 100%;}
 .login .loginDetail th {width: 160px;line-height: 35px;padding-right: 10px;text-align: right;font-weight: normal;}
 .login .loginDetail td {line-height: 35px;text-align: left;}
-.login .loginDetail .captcha {width: 95px;height: 20px;margin-right: 1px;text-transform: uppercase;}
+.login .loginDetail .captcha {width: 95px;margin-right: 1px;text-transform: uppercase;}
 .login .loginDetail .captchaImage {vertical-align: middle;cursor: pointer;}
-.ssh{width:100px;height:22px;float:right;}
-.ssh1{width:100px;height:22px;float:right;}
+.ssh{width:100px;height:22px;float:left;}
+.ssh1{width:100px;height:22px;float:left;margin-left:20px;}
+.ssh3{width:100px;height:22px;float:left;}
 
 
 /*表单所用元素值*/
@@ -191,7 +192,7 @@ background:url(../images/tg_flash_p2.png) no-repeat 0px 0px; _background:none; _
 #need label.old_password {background-position: 0 -277px;}
 #need label.new_password {background-position: 0 -1576px;}
 #need label.rePassword {background-position: 0 -1638px;}
-#need label.email {background-position: 0 -429px;}
+#need label.email {background-position: 0 -1029px;}
 #need dfn {font-style:normal;display: none;}
 #need li:hover dfn, #need li.hover dfn {display:inline;margin-left: 7px;color: #676767;}
 

@@ -141,7 +141,6 @@ $().ready(function() {
 		rules: {
 			"setting.cardName": "required",
 			"setting.cardUrl": "required",
-			"cardLogo": "imageFile",
 			"setting.email": "email",
 			"setting.bigCardsImageWidth": {
 				required: true,
@@ -206,9 +205,8 @@ $().ready(function() {
 			}
 		},
 		messages: {
-			"setting.cardName": "请填写网店名称",
-			"setting.cardUrl": "请填写网店网址",
-			"cardLogo": "网店LOGO格式错误",
+			"setting.cardName": "请填写网站名称",
+			"setting.cardUrl": "请填写网站网址",
 			"setting.email": "E-mail格式不正确",
 			"setting.bigCardsImageWidth": {
 				required: "请填写充值卡图片(大)的宽度",
@@ -296,9 +294,6 @@ $().ready(function() {
 					<input type="button" value="基本设置" hidefocus />
 				</li>
 				<li>
-					<input type="button" value="显示设置" hidefocus />
-				</li>
-				<li>
 					<input type="button" value="安全设置" hidefocus />
 				</li>
 				<li>
@@ -309,33 +304,6 @@ $().ready(function() {
 				</li>
 			</ul>
 			<table class="inputTable tabContent">
-				<tr>
-					<th>
-						网店名称: 
-					</th>
-					<td>
-						<input type="text" name="setting.cardName" class="formText" value="${setting.cardName}" />
-						<label class="requireField">*</label>
-					</td>
-				</tr>
-				<tr>
-					<th>
-						网店网址: 
-					</th>
-					<td>
-						<input type="text" name="setting.cardUrl" class="formText" value="${setting.cardUrl}" />
-						<label class="requireField">*</label>
-					</td>
-				</tr>
-				<tr>
-					<th>
-						网店LOGO: 
-					</th>
-					<td>
-						<input type="file" name="cardLogo" />
-						<a href="${base}${setting.cardLogoPath}?random=${random}" target="_blank">查看</a>
-					</td>
-				</tr>
 				<tr>
 					<th>
 						热门搜索关键词: 
@@ -398,105 +366,6 @@ $().ready(function() {
 					</th>
 					<td>
 						<textarea name="setting.metaDescription" class="formTextarea">${setting.metaDescription}</textarea>
-					</td>
-				</tr>
-			</table>
-			<table class="inputTable tabContent">
-				<tr>
-					<th>
-						充值卡图片(大): 
-					</th>
-					<td>
-						<span class="fieldTitle">宽度: </span>
-						<input type="text" name="setting.bigCardsImageWidth" class="formText" value="${setting.bigCardsImageWidth}" style="width: 50px;" title="单位: 像素, 只允许输入正整数" />
-						<label class="requireField">*</label>
-						<span class="fieldTitle">高度: </span>
-						<input type="text" name="setting.bigCardsImageHeight" class="formText" value="${setting.bigCardsImageHeight}" style="width: 50px;" title="单位: 像素, 只允许输入正整数" />
-						<label class="requireField">*</label>
-					</td>
-				</tr>
-				<tr>
-					<th>
-						充值卡图片(小): 
-					</th>
-					<td>
-						<span class="fieldTitle">宽度: </span>
-						<input type="text" name="setting.smallCardsImageWidth" class="formText" value="${setting.smallCardsImageWidth}" style="width: 50px;" title="单位: 像素, 只允许输入正整数" />
-						<label class="requireField">*</label>
-						<span class="fieldTitle">高度: </span>
-						<input type="text" name="setting.smallCardsImageHeight" class="formText" value="${setting.smallCardsImageHeight}" style="width: 50px;" title="单位: 像素, 只允许输入正整数" />
-						<label class="requireField">*</label>
-					</td>
-				</tr>
-				<tr>
-					<th>
-						充值卡缩略图: 
-					</th>
-					<td>
-						<span class="fieldTitle">宽度: </span>
-						<input type="text" name="setting.thumbnailCardsImageWidth" class="formText" value="${setting.thumbnailCardsImageWidth}" style="width: 50px;" title="单位: 像素, 只允许输入正整数" />
-						<label class="requireField">*</label>
-						<span class="fieldTitle">高度: </span>
-						<input type="text" name="setting.thumbnailCardsImageHeight" class="formText" value="${setting.thumbnailCardsImageHeight}" style="width: 50px;" title="单位: 像素, 只允许输入正整数" />
-						<label class="requireField">*</label>
-					</td>
-				</tr>
-				<tr>
-					<th>
-						默认充值卡图片(大): 
-					</th>
-					<td>
-						<input type="file" name="defaultBigCardsImage" />
-						<a href="${base}${setting.defaultBigCardsImagePath}?random=${random}" target="_blank">查看</a>
-					</td>
-				</tr>
-				<tr>
-					<th>
-						默认充值卡图片(小): 
-					</th>
-					<td>
-						<input type="file" name="defaultSmallCardsImage" />
-						<a href="${base}${setting.defaultSmallCardsImagePath}?random=${random}" target="_blank">查看</a>
-					</td>
-				</tr>
-				<tr>
-					<th>
-						默认缩略图: 
-					</th>
-					<td>
-						<input type="file" name="defaultThumbnailCardsImage" />
-						<a href="${base}${setting.defaultThumbnailCardsImagePath}?random=${random}" target="_blank">查看</a>
-					</td>
-				</tr>
-				<tr>
-					<th>
-						水印图片: 
-					</th>
-					<td>
-						<input type="file" name="watermarkImage" />
-						<a href="${base}${setting.watermarkImagePath}?random=${random}" target="_blank">查看</a>
-					</td>
-				</tr>
-				<tr>
-					<th>
-						水印位置: 
-					</th>
-					<td>
-						<#list watermarkPositionList as watermarkPosition>
-							<label>
-								<input type="radio" name="setting.watermarkPosition" value="${watermarkPosition}"<#if watermarkPosition == setting.watermarkPosition> checked</#if> />
-								${action.getText("WatermarkPosition." + watermarkPosition)}&nbsp;
-							</label>
-						</#list>
-					</td>
-				</tr>
-				<tr>
-					<th>
-						水印透明度: 
-					</th>
-					<td>
-						<input type="text" name="setting.watermarkAlpha" class="formText" value="${setting.watermarkAlpha}" title="取值范围: 0-100,  0代表完全透明" />
-						<label class="requireField">*</label>
 					</td>
 				</tr>
 			</table>
@@ -599,100 +468,6 @@ $().ready(function() {
 				</tr>
 			</table>
 			<table class="inputTable tabContent">
-				<tr>
-					<th>
-						货币种类: 
-					</th>
-					<td>
-						<select id="currencyType" name="setting.currencyType">
-							<option value="">请选择...</option>
-							<#list currencyTypeList as currencyType>
-								<option value="${currencyType}"<#if currencyType == setting.currencyType> selected</#if>>
-									${action.getText("CurrencyType." + currencyType)}
-								</option>
-							</#list>
-						</select>
-						<label class="requireField">*</label>
-					</td>
-				</tr>
-				<tr>
-					<th>
-						货币符号: 
-					</th>
-					<td>
-						<input type="text" name="setting.currencySign" class="formText" value="${setting.currencySign}" />
-						<label class="requireField">*</label>
-					</td>
-				</tr>
-				<tr>
-					<th>
-						货币单位: 
-					</th>
-					<td>
-						<input type="text" name="setting.currencyUnit" class="formText" value="${setting.currencyUnit}" />
-						<label class="requireField">*</label>
-					</td>
-				</tr>
-				<tr>
-					<th>
-						价格精确位数: 
-					</th>
-					<td>
-						<select name="setting.priceScale">
-							<option value="0" <#if setting.priceScale == 0> selected</#if>>
-								无小数位
-							</option>
-							<option value="1" <#if setting.priceScale == 1> selected</#if>>
-								1位小数
-							</option>
-							<option value="2" <#if setting.priceScale == 2> selected</#if>>
-								2位小数
-							</option>
-							<option value="3" <#if setting.priceScale == 3> selected</#if>>
-								3位小数
-							</option>
-							<option value="4" <#if setting.priceScale == 4> selected</#if>>
-								4位小数
-							</option>
-						</select>
-					</td>
-				</tr>
-				<tr>
-					<th>
-						价格精确方式: 
-					</th>
-					<td>
-						<select name="setting.priceRoundType">
-							<#list roundTypeList as roundType>
-								<option value="${roundType}"<#if roundType == setting.priceRoundType> selected</#if>>
-									${action.getText("RoundType." + roundType)}
-								</option>
-							</#list>
-						</select>
-					</td>
-				</tr>
-				<tr>
-					<th>
-						积分获取方式: 
-					</th>
-					<td>
-						<#list scoreTypeList as scoreType>
-							<label>
-								<input type="radio" name="setting.scoreType" class="scoreType" value="${scoreType}"<#if scoreType == setting.scoreType> checked</#if> />
-								${action.getText("ScoreType." + scoreType)}&nbsp;
-							</label>
-						</#list>
-					</td>
-				</tr>
-				<tr id="scoreScaleTr"<#if setting.scoreType != "orderAmount"> class="hidden"</#if>>
-					<th>
-						积分换算比率: 
-					</th>
-					<td>
-						<input type="text" id="scoreScale" name="setting.scoreScale" class="formText" value="${setting.scoreScale}" title="每消费1元可获得积分数" />
-						<label class="requireField">*</label>
-					</td>
-				</tr>
 				<tr>
 					<th>
 						HTML自动生成延时: 

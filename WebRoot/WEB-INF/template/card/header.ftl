@@ -28,7 +28,10 @@
 <!--标志-->
 <div class="logo">
 	<div class="logo_995">
-    	<div class="logo_left"><a href="${base}/" ><img src="/template/card/images/logo.jpg" alt="${(setting.shopName)!}" width="162" height="46" border="0" /></a><span>名臣收卡平台</span><div class="shu"></div></div>
+    	<div class="logo_left">
+    		<a href="${base}/" ><img src="/template/card/images/logo.jpg" alt="${(setting.shopName)!}" width="162" height="46" border="0" /></a>
+    		收卡平台
+    	</div>
     	<div class="logo_right">
         	<ul>
         		<@navigation_list position="middle"; navigationList>

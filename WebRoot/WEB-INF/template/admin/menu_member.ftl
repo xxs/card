@@ -42,32 +42,6 @@
 				</dd>
 			</dl>
 		</@sec.authorize>
-		<@sec.authorize ifAnyGranted="ROLE_MEMBER_BUSINESS">
-			<dl>
-				<dt>
-					<span>商户申请管理</span>
-				</dt>
-				<dd>
-					<a href="member_business!list.action" target="mainFrame">商户列表</a>
-				</dd>
-				<dd>
-					<a href="member_business!applying.action" target="mainFrame">新商户申请</a>
-				</dd>
-			</dl>
-		</@sec.authorize>
-		<@sec.authorize ifAnyGranted="ROLE_LEAVE_MESSAGE">
-			<dl>
-				<dt>
-					<span>在线留言</span>
-				</dt>
-				<dd>
-					<a href="leave_message!list.action" target="mainFrame">留言列表</a>
-				</dd>
-				<dd>
-					<a href="leave_message!setting.action" target="mainFrame">留言设置</a>
-				</dd>
-			</dl>
-		</@sec.authorize>
 	</div>
 </body>
 </html>

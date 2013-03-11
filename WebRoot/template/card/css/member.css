@@ -35,7 +35,21 @@ h1,h2,h3,h4,h5,h6{font-size:12px;font-weight:normal;}
 .tab_box {clear:both;border-top:none;overflow:hidden;padding-top:0px;}
 .hide{display:none}
 .tab_box_1{clear:both;border-top:none;overflow:hidden;padding-top:0px;}
-		
+
+/*会员中心公告表格样式*/
+.tab3{margin-left:0px;margin-top:0px;width:775px;}
+.tab3 table{border:1px solid #EEE5E1;border-collapse:collapse;padding:0px;margin:0px}
+.tab3 table tr th{height:34px;background:url(../images/4back_th.png) repeat-x;border:1px solid #EEE5E1;color:#4F1A01;font-size:14px;padding:0px;margin:0px;font-family:"Microsoft YaHei", Verdana}
+.tab3 table tr td{width:auto;height:31px;border:1px solid #EEE5E1;color:#404040;text-align:center;vertical-align:middle;font-family:"Microsoft YaHei", Verdana;padding:0px}
+/*会员中心订单表格样式*/
+.tab4{margin-left:0px;margin-top:0px;width:1000px;float:left;}
+.tab4 table{border:1px solid #EEE5E1;border-collapse:collapse;padding:0px;margin:0px}
+.tab4 table tr th{height:34px;background:url(../images/4back_th.png) repeat-x;border:1px solid #EEE5E1;color:#4F1A01;font-size:12px;padding:0px;margin:0px;font-family:"Microsoft YaHei", Verdana}
+.tab4 table tr td{width:auto;height:31px;border:1px solid #EEE5E1;color:#404040;text-align:center;vertical-align:middle;font-family:"Microsoft YaHei", Verdana;margin:0px;padding:0px;font-size:12px;}
+.hidden{display:none}
+.show{display:block;}
+
+
 .katong{height:120px;}
 .fangz{background:url(../images/chongz_16.jpg) no-repeat;height:37px;border-bottom:1px solid #ebebeb;font-weight:bold;font-size:24px;color:#666;padding-left:30px;line-height:34px;margin-bottom:10px;}
 .fangz a{font-weight:none;color:#f00;text-decoration:none;}
@@ -101,6 +115,34 @@ input.red_button:hover {
 .biaoTitle{height:35px;border-bottom:1px solid #e1e2e2;background:#f2f2f2;}
 .biaoTitle li{float:left;border-right:1px solid #e1e2e2;text-align:center;line-height:35px;}
 .biaoText{height:90px;width:745px;text-align:center;line-height:90px;margin-bottom:10px;}
+
+.column_right{float:right;width:791px;height:536px;}
+	.column_right_1{width:777px;height:30px;padding-top:5px;border-bottom:1px solid #ebebeb; margin-bottom:20px;}
+		.column_right_1 strong{float:left; color:#666666;}
+		.column_right_1 p{color:#e10911;}
+	.column_right_2{width:767px;height:127px; border:1px solid #e1e2e2; background:#f5f5f5; margin-bottom:10px;}
+		.right_2{width:439px; float:left;padding:26px 0 0 20px;}
+		.right_2 ul li{height:26px;display:block;}
+		.wenzi{width:300px;float:left;color:#666666;font-size:14px;padding:20px 0px 0 0;}
+		.wenzi span{float:left;display:block;width:280px;}
+		.wenzi p{display:block;float:right;}
+	
+	.column_right_3{width:754px;height:62px;background:#faeadc; border:1px solid #efd7cc;padding:13px 0 0 13px; margin-bottom:10px;}
+		.column_right_3 dl dt{margin-right:20px;float:left;}
+		.column_right_3 dl dd{height:28px; color:#e19709;}
+		.column_right_3 dl dd a{ color:#e19709;}
+	.column_right_4{width:766px;}	
+ 		.tab {width:767px;}
+ 		.tab_menu {clear:both;border-bottom:1px solid #ddd; height:40px;}
+ 		.tab_menu li{border:1px solid #e1e2e2; border-bottom:none;border-right:none;float:left;color:#666;text-align:center;padding:0 15px;cursor:pointer;height:40px;line-height:40px;background:#efefef url(../images/xian.jpg) bottom no-repeat;font-size:14px;font-weight:bold;}
+ 		.tab_menu li.hover {background:#fff;color:#666;}
+ 		.tab_menu li.selected {color:#600;background:#fff;}
+ 		.tab_box {clear:both;border:1px solid #ddd;border-top:none;height:182px;padding-top:30px;}
+		.hide{display:none}
+		.tab_box_1{width:400px;height:159px;background:url(../images/sas.jpg) no-repeat;margin:0 auto;}
+		.tab_box_1 span{ padding:50px 0 0 130px;float:left;}
+		.tab_box_1 p{color:#FF0000; padding-top:50px;}
+
 
 .memberCenter table.stateTable {width: 100%;border: 2px solid #e8e8e8;overflow:hidden;}
 .memberCenter table.stateTable th {line-height: 30px;padding-left: 10px;text-align: center;border-bottom: 1px solid #f1f1f1;background-color: #f6f6f6;}

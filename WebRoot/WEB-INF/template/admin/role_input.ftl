@@ -126,9 +126,6 @@ $().ready(function() {
 						<label>
 							<input type="checkbox" name="role.authorityList" class="roleAuthorityList" value="ROLE_WITHDRAW"<#if (isAddAction || role.authorityList.contains("ROLE_WITHDRAW"))!> checked</#if> />提现管理
 						</label>
-						<label>
-							<input type="checkbox" name="role.authorityList" class="roleAuthorityList" value="ROLE_PAYMENT"<#if (isAddAction || role.authorityList.contains("ROLE_PAYMENT"))!> checked</#if> />收款管理
-						</label>
 					</td>
 				</tr>
 				<tr class="authorityList">
@@ -147,12 +144,6 @@ $().ready(function() {
 						</label>
 						<label>
 							<input type="checkbox" name="role.authorityList" class="roleAuthorityList" value="ROLE_MEMBER_BANK"<#if (isAddAction || role.authorityList.contains("ROLE_MEMBER_BANK"))!> checked</#if> />银行卡管理
-						</label>
-						<label>
-							<input type="checkbox" name="role.authorityList" class="roleAuthorityList" value="ROLE_MEMBER_BUSINESS"<#if (isAddAction || role.authorityList.contains("ROLE_MEMBER_BUSINESS"))!> checked</#if> />商户管理
-						</label>
-						<label>
-							<input type="checkbox" name="role.authorityList" class="roleAuthorityList" value="ROLE_LEAVE_MESSAGE"<#if (isAddAction || role.authorityList.contains("ROLE_LEAVE_MESSAGE"))!> checked</#if> />在线留言管理
 						</label>
 					</td>
 				</tr>

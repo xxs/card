@@ -77,7 +77,8 @@
 						<tr>
 							<th></th>
 							<td>
-								<input type="button" id="sBtn" class="formButton" value="生成订单" />
+								<input type="button" id="sBtn" class="button" value="生成订单" />
+								<span class="loadingIcon">&nbsp;</span>提交中...
 							</td>
 						</tr>
 					</table>
@@ -87,8 +88,8 @@
 		 			<div class="hide">
 				 	<div class="memberCenter">
 					<form id="pForm" autocomplete="off">
-					<input type="text" name="cardNum" id="cardNum" value="" />
-					<input type="text" name="cardPwd" id="cardPwd" value="" />
+					<input type="hidden" name="cardNum" id="cardNum" value="" />
+					<input type="hidden" name="cardPwd" id="cardPwd" value="" />
 					<table class="tabTable" id="cardsTable">
 						<#if cards.isSpecificationEnabled>
 							<#assign specificationValueSet = cards.specificationValueSet>
@@ -135,7 +136,8 @@
 						<tr>
 							<th></th>
 							<td>
-								<input type="button" id="pBtn" class="formButton" value="生成订单" />
+								<input type="button" id="pBtn" class="button" value="生成订单" />
+								<span class="loadingIcon">&nbsp;</span>提交中...
 							</td>
 						</tr>
 						<tr>

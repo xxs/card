@@ -68,15 +68,6 @@
 						<a href="#" class="sort" name="isMarketable" hidefocus>上架</a>
 					</th>
 					<th>
-						<a href="#" class="sort" name="isBest" hidefocus>精品</a>
-					</th>
-					<th>
-						<a href="#" class="sort" name="isNew" hidefocus>新品</a>
-					</th>
-					<th>
-						<a href="#" class="sort" name="isHot" hidefocus>热销</a>
-					</th>
-					<th>
 						<a href="#" class="sort" name="orderList" hidefocus>排序</a>
 					</th>
 					<th>
@@ -101,15 +92,6 @@
 						</td>
 						<td>
 							<span class="${cards.isMarketable?string('true','false')}Icon">&nbsp;</span>
-						</td>
-						<td>
-							<span class="${cards.isBest?string('true','false')}Icon">&nbsp;</span>
-						</td>
-						<td>
-							<span class="${cards.isNew?string('true','false')}Icon">&nbsp;</span>
-						</td>
-						<td>
-							<span class="${cards.isHot?string('true','false')}Icon">&nbsp;</span>
 						</td>
 						<td>
 							<span >${cards.orderList}</span>

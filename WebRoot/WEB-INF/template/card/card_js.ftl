@@ -91,7 +91,7 @@ $().ready( function() {
 		                	<input id="loginButton" class="button" style="display:inline" type="button"  name="login" value="登&nbsp;&nbsp;&nbsp;录" />
 		                </div>
 		                <div class="wenz">
-		                	还没有账号？<a href="reg.html" style="font-size:14px;font-weight:bold">免费注册</a>&nbsp;|
+		                	还没有账号？<a href="${base}/card/member!register.action" style="font-size:14px;font-weight:bold">免费注册</a>&nbsp;|
 		                	&nbsp;<a href="${base}/card/member!passwordRecover.action" style="font-size:13px;font-weight:bold">忘记密码？</a>
 		                </div>
                 		</form>

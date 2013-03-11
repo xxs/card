@@ -95,7 +95,7 @@ $().ready( function() {
 									&nbsp;
 								</th>
 								<td>
-									<input type="submit" class="formButton" value="申  请" hidefocus />
+									<input type="submit" class="button" value="申  请" hidefocus />
 								</td>
 							</tr>
 						</table>

@@ -24,43 +24,29 @@
 		<#include "/WEB-INF/template/card/menu_center.ftl">
 	</div>
 	<div class="contentRight">
-		<div class="katong">
-				<table class="stateTable">
+		<div class="column_right_1"><strong>晚上好，xxx（注册邮箱）</strong>  <p>[已认证]</p></div>
+        <div class="column_right_2">
+	        	<div class="right_2">
+	        	<ul>
+	            	<li>您的账户余额：<strong style="font-size:18px;color:#e10911;">${loginMember.deposit?string(currencyFormat)}</strong></li>
+	                <li>账户安全：<img src="/template/card/images/ds.jpg" alt="dsa" />    <span class="STYLE1">低</span>  <strong style="color:#e10911; margin-left:12px;">提升</strong>      资料完整度：<img src="/template/card/images/fdf.jpg" alt="fg" width="39" height="9" />        40% <strong style="color:#e10911; margin-left:6px;">完善</strong></li>
+	                <li>注册时间：${loginMember.createDate?string("yyyy-MM-dd HH:mm:ss")}  上次登录IP：${loginMember.loginIp} <span class="red">登录历史</span></li>
+	            </ul>
+	            </div>
+	            <div class="wenzi"><span>个人数据最后修改时间：${loginMember.createDate?string("yyyy-MM-dd")}</span>   <p><img src="/template/card/images/dsfsd.jpg" alt="sd" /></p></div>
+	        
+	      </div>
+	     <div class="column_right_3">
+        	<dl>
+            	<dt><img src="/template/card/images/da.jpg" width="42" height="40" alt="s" /></dt>
+                <dd style="color:#e10911; font-weight:bold;">系统检测到您还有以下几项安全资料没有完成，现在就去完成账户安全升级吧！</dd>
+                <dd>《<a href="#"> 实名认证</a> 《<a href="#"> 手机认证</a> 《<a href="#"> 提现密码</a> 《<a href="#"> 设置密保</a> 《<a href="#"> 结算账户</a></dd>
+            </dl>
+        </div>
+		<div class="tab3">
+					<table width="770px" cellspacing=0>
 						<tr>
-							<td colspan="4">
-								您目前是[${loginMember.memberRank.name}],目前等级享受的提现手续费率为：${(1-loginMember.memberRank.lossrate)*100}%&nbsp;!
-								下一等级将享受的提现手续费率为：${(1-loginMember.memberRank.lossrate)*100}%
-							</td>
-						</tr>
-						<tr>
-							<th>帐户总积分</th>
-							<td>${loginMember.score}</td>
-							<th>订单总数量</th>
-							<td>
-								${loginMember.orderSet?size}&nbsp;&nbsp;
-								<a href="order!list.action">[查看订单列表]</a>
-							</td>
-						</tr>
-						<tr>
-							<th>预存款余额</th>
-							<td>${loginMember.deposit?string(currencyFormat)}&nbsp;&nbsp;<a href="deposit!list.action">[预存款明细]</a></td>
-							<th>未读消息数</th>
-							<td>
-								${unreadMessageCount}&nbsp;&nbsp;
-								<!--<a href="message!inbox.action">[查看收件箱]</a>-->
-							</td>
-						</tr>
-						<tr>
-							<th>注册日期</th>
-							<td>${loginMember.createDate?string("yyyy-MM-dd HH:mm:ss")}</td>
-							<th>最后登录IP</th>
-							<td>${loginMember.loginIp}</td>
-						</tr>
-					</table>
-					<div class="blank"></div>
-					<table class="listTable">
-						<tr>
-							<th>公告信息</th>
+							<th width="640px">公告信息</th>
 							<th>发布日期</th>
 						</tr>
 						<@article_list type="advice" count=10; articleList>
@@ -70,13 +56,14 @@
 								<a href="#" name="${article.content}" class="red gonggao" title="${article.title}">${substring(article.title, 150, "...")}</a>
 							</td>
 								<td>
-								<span title="${article.createDate?string("yyyy-MM-dd HH:mm:ss")}">${article.createDate?string("yyyy-MM-dd HH:mm:ss")}</span>
+								<span title="${article.createDate?string("yyyy-MM-dd HH:mm:ss")}">${article.createDate?string("yyyy-MM-dd")}</span>
 								</td>
 							</tr>	
 							</#list>
 						</@article_list>
 					</table>
 					<#include "/WEB-INF/template/card/pager.ftl">
+					</div>
 		</div>
 	</div>
 </div>

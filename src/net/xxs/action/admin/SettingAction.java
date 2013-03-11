@@ -99,48 +99,23 @@ public class SettingAction extends BaseAdminAction {
 	// 更新
 	@Validations(
 		requiredStrings = { 
-			@RequiredStringValidator(fieldName = "setting.cardName", message = "网店名称不允许为空!"),
-			@RequiredStringValidator(fieldName = "setting.cardUrl", message = "网店网址不允许为空!"),
 			@RequiredStringValidator(fieldName = "setting.smtpFromMail", message = "发件人邮箱不允许为空!"),
 			@RequiredStringValidator(fieldName = "setting.smtpHost", message = "SMTP服务器地址不允许为空!"),
-			@RequiredStringValidator(fieldName = "setting.smtpUsername", message = "SMTP用户名不允许为空!"),
-			@RequiredStringValidator(fieldName = "setting.currencySign", message = "货币符号不允许为空!"),
-			@RequiredStringValidator(fieldName = "setting.currencyUnit", message = "货币单位不允许为空!")
+			@RequiredStringValidator(fieldName = "setting.smtpUsername", message = "SMTP用户名不允许为空!")
 		}, 
 		requiredFields = {
-			@RequiredFieldValidator(fieldName = "setting.currencyType", message = "货币种类不允许为空!"),
-			@RequiredFieldValidator(fieldName = "setting.priceScale", message = "充值卡价格精确位数不允许为空!"),
-			@RequiredFieldValidator(fieldName = "setting.priceRoundType", message = "充值卡价格精确方式不允许为空!"),
 			@RequiredFieldValidator(fieldName = "setting.isRegisterEnabled", message = "是否开放注册不允许为空!"),
 			@RequiredFieldValidator(fieldName = "setting.isLoginFailureLock", message = "是否开启自动锁定账号功能不允许为空!"),
 			@RequiredFieldValidator(fieldName = "setting.loginFailureLockCount", message = "连续登录失败最大次数不允许为空!"),
 			@RequiredFieldValidator(fieldName = "setting.loginFailureLockTime", message = "自动解锁时间不允许为空!"),
-			@RequiredFieldValidator(fieldName = "setting.bigCardsImageWidth", message = "充值卡图片（大）宽不允许为空!"),
-			@RequiredFieldValidator(fieldName = "setting.bigCardsImageHeight", message = "充值卡图片（大）高不允许为空!"),
-			@RequiredFieldValidator(fieldName = "setting.smallCardsImageWidth", message = "充值卡图片（小）宽不允许为空!"),
-			@RequiredFieldValidator(fieldName = "setting.smallCardsImageHeight", message = "充值卡图片（小）高不允许为空!"),
-			@RequiredFieldValidator(fieldName = "setting.thumbnailCardsImageWidth", message = "充值卡缩略图宽不允许为空!"),
-			@RequiredFieldValidator(fieldName = "setting.thumbnailCardsImageHeight", message = "充值卡缩略图高不允许为空!"),
 			@RequiredFieldValidator(fieldName = "setting.smtpPort", message = "SMTP服务器端口不允许为空!"),
-			@RequiredFieldValidator(fieldName = "setting.watermarkAlpha", message = "水印透明度不允许为空!"),
-			@RequiredFieldValidator(fieldName = "setting.scoreType", message = "积分获取方式不允许为空!"),
-			@RequiredFieldValidator(fieldName = "setting.scoreScale", message = "积分换算比率不允许为空!"),
 			@RequiredFieldValidator(fieldName = "setting.isGzipEnabled", message = "是否开启GZIP功能不允许为空!"),
 			@RequiredFieldValidator(fieldName = "setting.buildHtmlDelayTime", message = "HTML自动生成延时不允许为空!")
 		},
 		intRangeFields = {
-			@IntRangeFieldValidator(fieldName = "setting.priceScale", min = "0", message = "充值卡价格精确位数必须为零或正整数!"),
-			@IntRangeFieldValidator(fieldName = "setting.priceScale", max = "4", message = "充值卡价格精确位数位不能大于4!"),
 			@IntRangeFieldValidator(fieldName = "setting.loginFailureLockCount", min = "1", message = "连续登录失败最大次数必须为正整数!"),
 			@IntRangeFieldValidator(fieldName = "setting.loginFailureLockTime", min = "0", message = "自动解锁时间必须为零或正整数!"),
-			@IntRangeFieldValidator(fieldName = "setting.bigCardsImageWidth", min = "1", message = "充值卡图片（大）宽必须为正整数!"),
-			@IntRangeFieldValidator(fieldName = "setting.bigCardsImageHeight", min = "1", message = "充值卡图片（大）高必须为正整数!"),
-			@IntRangeFieldValidator(fieldName = "setting.smallCardsImageWidth", min = "1", message = "充值卡图片（小）宽必须为正整数!"),
-			@IntRangeFieldValidator(fieldName = "setting.smallCardsImageHeight", min = "1", message = "充值卡图片（小）高必须为正整数!"),
-			@IntRangeFieldValidator(fieldName = "setting.thumbnailCardsImageWidth", min = "1", message = "充值卡缩略图宽必须为正整数!"),
-			@IntRangeFieldValidator(fieldName = "setting.thumbnailCardsImageHeight", min = "1", message = "充值卡缩略图高必须为正整数!"),
 			@IntRangeFieldValidator(fieldName = "setting.smtpPort", min = "0", message = "SMTP端口必须为零或正整数!"),
-			@IntRangeFieldValidator(fieldName = "setting.watermarkAlpha", min = "0", max="100", message = "水印透明度取值范围在${min}-${max}之间!"),
 			@IntRangeFieldValidator(fieldName = "setting.buildHtmlDelayTime", min = "0", message = "HTML自动生成延时必须为零或正整数!")
 		},
 		emails = {
@@ -150,10 +125,6 @@ public class SettingAction extends BaseAdminAction {
 	)
 	@InputConfig(resultName = "error")
 	public String update() throws Exception {
-		if (setting.getScoreScale() < 0) {
-			addActionError("积分换算比率不允许小于0!");
-			return ERROR;
-		}
 		Setting persistent = SettingUtil.getSetting();
 		
 		if (StringUtils.isNotEmpty(setting.getSmtpPassword())) {
@@ -183,7 +154,7 @@ public class SettingAction extends BaseAdminAction {
 			File destWatermarkImage = new File(getRealPath(persistent.getWatermarkImagePath()));
 			ImageUtil.toJpegImageFile(watermarkImage, destWatermarkImage);
 		}
-		BeanUtils.copyProperties(setting, persistent, new String[] {"systemName", "systemVersion", "systemDescription", "contextPath", "imageUploadPath", "imageBrowsePath", "adminLoginUrl", "adminLoginProcessingUrl", "isShowPoweredInfo","withdrawEveryDayCount","withdrawEveryDayMoney","withdrawEveryMaxMoney","withdrawEveryMinMoney","withdrawMaxMoney","withdrawMaxCount", "cardLogoPath", "defaultBigCardsImagePath", "defaultSmallCardsImagePath", "defaultThumbnailCardsImagePath", "watermarkImagePath", "isInstantMessagingEnabled", "instantMessagingPosition", "instantMessagingTitle", "isLeaveMessageEnabled", "isLeaveMessageCaptchaEnabled", "leaveMessageDisplayType", "isCommentEnabled", "isCommentCaptchaEnabled", "commentAuthority", "commentDisplayType"});
+		BeanUtils.copyProperties(setting, persistent, new String[] {"cardName","cardUrl","currencyType","currencySign","currencyUnit","priceScale","priceRoundType","watermarkImagePath","watermarkPosition","watermarkAlpha","bigCardsImageWidth","bigCardsImageHeight","smallCardsImageWidth","smallCardsImageHeight","thumbnailCardsImageWidth","thumbnailCardsImageHeight","defaultBigCardsImagePath","defaultSmallCardsImagePath","defaultThumbnailCardsImagePath","scoreType","scoreScale","isInstantMessagingEnabled","instantMessagingPosition","instantMessagingTitle","isLeaveMessageEnabled","isLeaveMessageCaptchaEnabled","leaveMessageDisplayType","cardLogoPath","systemName", "systemVersion", "systemDescription", "contextPath", "imageUploadPath", "imageBrowsePath", "adminLoginUrl", "adminLoginProcessingUrl", "isShowPoweredInfo","withdrawEveryDayCount","withdrawEveryDayMoney","withdrawEveryMaxMoney","withdrawEveryMinMoney","withdrawMaxMoney","withdrawMaxCount", "cardLogoPath", "defaultBigCardsImagePath", "defaultSmallCardsImagePath", "defaultThumbnailCardsImagePath", "watermarkImagePath", "isInstantMessagingEnabled", "instantMessagingPosition", "instantMessagingTitle", "isLeaveMessageEnabled", "isLeaveMessageCaptchaEnabled", "leaveMessageDisplayType", "isCommentEnabled", "isCommentCaptchaEnabled", "commentAuthority", "commentDisplayType"});
 		SettingUtil.updateSetting(persistent);
 		
 		cacheService.flushAllPageCache(getRequest());
