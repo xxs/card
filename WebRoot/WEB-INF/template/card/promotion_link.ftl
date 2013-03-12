@@ -23,9 +23,9 @@ jQuery(function(){
 		<div class="katong">
 			<div class="fangz">推广链接 </div>
 			<div class="red">
-				<p>推广链接：<input type="text" class="formText" value="http://116.255.199.171/card/${member.username}.html"/> 
+				<p>推广链接：<input type="text" class="formText" value="http://116.255.199.171/card/${member.username}.htm"/> 
 					&nbsp;<a class="formButton">复制</a>
-					&nbsp;<a class="formButton" href="member!register.action?id=${member.username}" target="_block">测试</a>
+					&nbsp;<a class="formButton" href="/card/${member.username}.htm" target="_block">测试</a>
 				</p>
 			</div>
 			<div class="hei">分享二维码，获取更多的推荐用户</div>

@@ -24,7 +24,7 @@
 		<#include "/WEB-INF/template/card/menu_center.ftl">
 	</div>
 	<div class="contentRight">
-		<div class="column_right_1"><strong>晚上好，xxx（注册邮箱）</strong>  <p>[已认证]</p></div>
+		<div class="column_right_1"><strong>您好，${loginMember.username}&nbsp;&nbsp;</strong>  <p>[认证邮箱：${loginMember.email}]</p></div>
         <div class="column_right_2">
 	        	<div class="right_2">
 	        	<ul>

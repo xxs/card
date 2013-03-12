@@ -137,11 +137,8 @@ input.red_button:hover {
  		.tab_menu li{border:1px solid #e1e2e2; border-bottom:none;border-right:none;float:left;color:#666;text-align:center;padding:0 15px;cursor:pointer;height:40px;line-height:40px;background:#efefef url(../images/xian.jpg) bottom no-repeat;font-size:14px;font-weight:bold;}
  		.tab_menu li.hover {background:#fff;color:#666;}
  		.tab_menu li.selected {color:#600;background:#fff;}
- 		.tab_box {clear:both;border:1px solid #ddd;border-top:none;height:182px;padding-top:30px;}
 		.hide{display:none}
-		.tab_box_1{width:400px;height:159px;background:url(../images/sas.jpg) no-repeat;margin:0 auto;}
-		.tab_box_1 span{ padding:50px 0 0 130px;float:left;}
-		.tab_box_1 p{color:#FF0000; padding-top:50px;}
+		
 
 
 .memberCenter table.stateTable {width: 100%;border: 2px solid #e8e8e8;overflow:hidden;}

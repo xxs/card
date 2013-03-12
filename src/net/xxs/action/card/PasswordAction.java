@@ -101,6 +101,9 @@ public class PasswordAction extends BaseCardAction {
 				addActionError("旧密保答案验证失败!");
 				return ERROR;
 			}
+		}else{
+			persistent.setSafeQuestion(member.getSafeQuestion());
+			persistent.setSafeAnswer(member.getSafeAnswer());
 		}
 		memberService.update(persistent);
 		return SUCCESS;

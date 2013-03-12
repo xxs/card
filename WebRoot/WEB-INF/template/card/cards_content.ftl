@@ -65,20 +65,20 @@
 						<tr>
 							<th>卡号:</th>
 							<td>
-								<input type="text" name="cardNum"  class="formText"/>
+								<input type="text" id="cardNum" name="cardNum"  class="formText"/>
 							</td>
 						</tr>
 						<tr>
 							<th>密码:</th>
 							<td>
-								<input type="text" name="cardPwd"  class="formText"/>
+								<input type="text" id="cardPwd" name="cardPwd"  class="formText"/>
 							</td>
 						</tr>
 						<tr>
 							<th></th>
 							<td>
 								<input type="button" id="sBtn" class="button" value="生成订单" />
-								<span class="loadingIcon">&nbsp;</span>提交中...
+								<span id="sload"><label class="loadingIcon"></label>提交中...</span>
 							</td>
 						</tr>
 					</table>
@@ -137,7 +137,7 @@
 							<th></th>
 							<td>
 								<input type="button" id="pBtn" class="button" value="生成订单" />
-								<span class="loadingIcon">&nbsp;</span>提交中...
+								<span id="pload"><label class="loadingIcon"></label>提交中...</span>
 							</td>
 						</tr>
 						<tr>
@@ -270,8 +270,12 @@
 			var $pForm = $("#pForm");
 			var $sBtn = $("#sBtn");
 			var $pBtn = $("#pBtn");
+			var $sload = $("#sload");
+			var $pload = $("#pload");
 			var $kamizu = $("#kamizu");
 			var $cardsTable = $("#cardsTable");
+			$sload.hide();
+			$pload.hide();
 			$sBtn.click( function() {
 				$.ajax({
 					url: "order!save.action",
@@ -280,8 +284,10 @@
 					dataType: "json",
 					cache: false,
 					beforeSend: function(data) {
-						//$.dialog({type: 'warn', content: '<span class="loadingIcon">&nbsp;</span>提交中...', modal: true, autoCloseTime: 1000});
 						$sBtn.attr("disabled", true);
+						$sBtn.removeAttr("button");
+						$sload.show();
+						$sBtn.attr("class", "button_click");
 					},
 					success: function(data) {
 						if (data.status == "success") {
@@ -291,6 +297,10 @@
 							$.dialog({type: data.status, content: data.message, modal: true, autoCloseTime: 3000});
 						}
 							$sBtn.attr("disabled", false);
+							$sBtn.removeAttr("button_click");
+							$sBtn.attr("class", "button");
+							$pload.attr("class", "red");
+							$sload.text(data.message);
 					}
 				});
 				return false;
@@ -320,6 +330,9 @@
 								beforeSend: function(data) {
 									//$.dialog({type: 'warn', content: '<span class="loadingIcon">&nbsp;</span>提交中...', modal: true, autoCloseTime: 1000});
 									$pBtn.attr("disabled", true);
+									$pBtn.removeAttr("button");
+									$pBtn.attr("class", "button_click");
+									$sload.show();
 								},
 								success: function(data) {
 									if (data.status == "success") {
@@ -331,6 +344,10 @@
 										$("#jieguo").append(addDiv);
 									}
 									$pBtn.attr("disabled", false);
+									$pBtn.removeAttr("button_click");
+									$pBtn.attr("class", "button");
+									$pload.attr("class", "red");
+									$pload.text(data.message);
 								}
 							});
 						}else{

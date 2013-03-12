@@ -30,9 +30,11 @@ $().ready( function() {
 			<div class="fangz">账户列表 </div>
 			<div class="red">注：请一定正确选择卡面值提交,否则造成损失商户自行承担； </div>
 			<div class="hei">可点击<a class="formButton" href="bank!add.action">添加账户</a>页面添加</div>
+			<br/>
 			<input value="${member.safeQuestion}" type="hidden" id="question"/>
 			<div class="memberCenter">
-			<table class="listTable">
+			<div class="tab3">
+			<table width="760px" cellspacing=0>
 				<tr>
 					<th>账号	</th>
 					<th>开户名</th>
@@ -69,6 +71,7 @@ $().ready( function() {
 						</tr>
 					</#list>		
 				</table>
+			</div>
 			</div>
 		</div>
 	</div>
