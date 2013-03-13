@@ -10,37 +10,40 @@
 <script type="text/javascript" src="${base}/template/common/js/jquery.validate.methods.js"></script>
 <script type="text/javascript">
 $().ready( function() {
-	
-	var $validateErrorContainer = $("#validateErrorContainer");
-	var $validateErrorLabelContainer = $("#validateErrorContainer ul");
-	var $withdrawRechargeForm = $("#withdrawRechargeForm");
-	
-	// 表单验证
-	$withdrawRechargeForm.validate({
-		errorContainer: $validateErrorContainer,
-		errorLabelContainer: $validateErrorLabelContainer,
-		wrapper: "li",
-		errorClass: "validateError",
-		ignoreTitle: true,
-		rules: {
-			"rechargeAmount": {
-				required: true,
-				positive: true
-			},
-			"paymentConfig.id": "required"
-		},
-		messages: {
-			"rechargeAmount": {
-				required: "请填写充值金额",
-				positive: "充值金额必须为正数"
-			},
-			"paymentConfig.id": "请选择支付方式"
-		},
-		submitHandler: function(form) {
-			$(form).find(":submit").attr("disabled", true);
-			form.submit();
-		}
-	});
+		var $bankForm = $("#bankForm");
+		var $username = $("#username");
+		var $banknum = $("#banknum");
+		var $openname = $("#openname");
+		var $bankname = $("#bankname");
+		var $bankcity = $("#bankcity");
+		var $banddetail = $("#banddetail");
+		// 表单验证
+		$bankForm.submit( function() {
+			if ($.trim($username.val()) == "") {
+				$.dialog({type: "warn", content: "请输入会员名!", modal: true, autoCloseTime: 3000});
+				return false;
+			}
+			if ($.trim($banknum.val()) == "") {
+				$.dialog({type: "warn", content: "请输入银行账号!", modal: true, autoCloseTime: 3000});
+				return false;
+			}
+			if ($.trim($openname.val()) == "") {
+				$.dialog({type: "warn", content: "请输入开户姓名!", modal: true, autoCloseTime: 3000});
+				return false;
+			}
+			if ($.trim($bankname.val()) == "") {
+				$.dialog({type: "warn", content: "请输入所属银行!", modal: true, autoCloseTime: 3000});
+				return false;
+			}
+			if ($.trim($bankcity.val()) == "") {
+				$.dialog({type: "warn", content: "请输入银行归属地!", modal: true, autoCloseTime: 3000});
+				return false;
+			}
+			if ($.trim($banddetail.val()) == "") {
+				$.dialog({type: "warn", content: "请输入所属支行!", modal: true, autoCloseTime: 3000});
+				return false;
+			}
+		});
 	
 });
 </script>
@@ -57,8 +60,7 @@ $().ready( function() {
 			<div class="red">注：请一定正确选择卡面值提交,否则造成损失商户自行承担； </div>
 			<div class="hei">卡信息提交成功后，可在<a href="#">订单查询</a>页面查询支付结果。处理结果以订单查询页为准。</div>
 			<div class="memberCenter">
-			<form id="withdrawRechargeForm66" action="<#if isAddAction>bank!save.action<#else>bank!update.action</#if>" method="post">
-						<input type="hidden" name="redirectUrl" value="${redirectUrl}" />
+			<form id="bankForm" action="<#if isAddAction>bank!save.action<#else>bank!update.action</#if>" method="post">
 						<table class="inputTable">
 							<input type="hidden" name="id" value="${id}" />
 							<tr>
@@ -66,7 +68,7 @@ $().ready( function() {
 									所属会员名: 
 								</th>
 								<td>
-									<input type="hidden" name="memberBank.member.username" value="${loginMember.username}" />
+									<input type="hidden" id="username" name="memberBank.member.username" value="${loginMember.username}" />
 									${loginMember.username}
 								</td>
 							</tr>
@@ -75,7 +77,7 @@ $().ready( function() {
 									银行账号: 
 								</th>
 								<td>
-									<input type="text" name="memberBank.banknum" class="formText" value="${(memberBank.banknum)!}" />
+									<input type="text" id="banknum" name="memberBank.banknum" class="formText" value="${(memberBank.banknum)!}" />
 									<label class="requireField">*</label>
 								</td>
 							</tr>
@@ -84,7 +86,7 @@ $().ready( function() {
 									开户姓名: 
 								</th>
 								<td>
-									<input type="text" name="memberBank.openname" class="formText" value="${(memberBank.openname)!}" title="" />
+									<input type="text" id="openname" name="memberBank.openname" class="formText" value="${(memberBank.openname)!}" title="" />
 									<label class="requireField">*</label>
 								</td>
 							</tr>
@@ -93,7 +95,7 @@ $().ready( function() {
 									所属银行: 
 								</th>
 								<td>
-									<input type="text" name="memberBank.bankname" class="formText" value="${(memberBank.bankname)!}" title="" />
+									<input type="text" id="bankname" name="memberBank.bankname" class="formText" value="${(memberBank.bankname)!}" title="" />
 									<label class="requireField">*</label>
 								</td>
 							</tr>
@@ -102,7 +104,7 @@ $().ready( function() {
 									银行归属地: 
 								</th>
 								<td>
-									<input type="text" name="memberBank.bankcity" class="formText" value="${(memberBank.bankcity)!}" title="" />
+									<input type="text" id="bankcity" name="memberBank.bankcity" class="formText" value="${(memberBank.bankcity)!}" title="" />
 									<label class="requireField">*</label>
 								</td>
 							</tr>
@@ -111,7 +113,7 @@ $().ready( function() {
 									所属支行: 
 								</th>
 								<td>
-									<input type="text" name="memberBank.bankdetail" class="formText" value="${(memberBank.bankdetail)!}" title="只允许输入零或正整数" />
+									<input type="text" id="banddetail" name="memberBank.bankdetail" class="formText" value="${(memberBank.bankdetail)!}" title="只允许输入零或正整数" />
 									<label class="requireField">*</label>
 								</td>
 							</tr>

@@ -9,67 +9,26 @@
 <script type="text/javascript">
 $().ready( function() {
 
-	var $tab = $("#tab");
-	
-	var $validateErrorContainer = $("#validateErrorContainer");
-	var $validateErrorLabelContainer = $("#validateErrorContainer ul");
+	var $subbtn = $("#subbtn");
 	var $passwordForm = $("#passwordForm");
-
-	// Tab效果
-	$tab.tabs(".tabContent", {
-		tabs: "input"
-	});
-	
 	// 表单验证
-	$passwordForm.validate({
-		errorContainer: $validateErrorContainer,
-		errorLabelContainer: $validateErrorLabelContainer,
-		wrapper: "li",
-		errorClass: "validateError",
-		ignoreTitle: true,
-		rules: {
-			"oldPassword": {
-				requiredTo: "#password"
-			},
-			"member.password": {
-				minlength: 4,
-				maxlength: 20,
-				requiredTo: "#oldPassword"
-			},
-			"rePassword": {
-				equalTo: "#password"
-			},
-			"member.safeQuestion": {
-				requiredTo: "#memberSafeAnswer"
-			},
-			"member.safeAnswer": {
-				requiredTo: "#memberSafeQuestion"
+	$passwordForm.submit( function() {
+			if ($.trim($("#password").val()) == "") {
+				$.dialog({type: "warn", content: "请输入新密码!", modal: true, autoCloseTime: 3000});
+				return false;
 			}
-		},
-		messages: {
-			"oldPassword": {
-				requiredTo: "请填写旧密码"
-			},
-			"member.password": {
-				minlength: "密码长度必须大于等于4",
-				maxlength: "密码长度必须小于等于20",
-				requiredTo: "请填写新密码"
-			},
-			"rePassword": {
-				equalTo: "两次密码输入不一致"
-			},
-			"member.safeQuestion": {
-				requiredTo: "请填写安全问题"
-			},
-			"member.safeAnswer": {
-				requiredTo: "请填写安全答案"
+			if ($.trim($("#rePassword").val()) == "") {
+				$.dialog({type: "warn", content: "请再次输入新密码!", modal: true, autoCloseTime: 3000});
+				return false;
 			}
-		},
-		submitHandler: function(form) {
-			$(form).find(":submit").attr("disabled", true);
-			form.submit();
-		}
-	});
+			if ($.trim($("#rePassword").val()) != $.trim($("#password").val())) {
+				$.dialog({type: "warn", content: "两次新密码不相同!", modal: true, autoCloseTime: 3000});
+				return false;
+			}
+			$subbtn.attr("disabled", false);
+			$subbtn.removeAttr("button_click");
+			$subbtn.attr("class", "button");
+		});
 
 });
 </script>
@@ -86,6 +45,7 @@ $().ready( function() {
 			<div class="red">注：请一定正确选择卡面值提交,否则造成损失商户自行承担； </div>
 			<div class="hei">卡信息提交成功后，可在<a href="#">订单查询</a>页面查询支付结果。处理结果以订单查询页为准。</div>
 			<div class="memberCenter">
+			<form id="passwordForm" action="password!updateWithdrawPwd.action" method="post">
 				<table class="inputTable">
 							<tr>
 								<th>
@@ -108,7 +68,7 @@ $().ready( function() {
 									确认新提现密码: 
 								</th>
 								<td>
-									<input type="password" name="rePassword" class="formText" />
+									<input type="password" id="rePassword" name="rePassword" class="formText" />
 								</td>
 							</tr>
 							<tr>
@@ -129,6 +89,7 @@ $().ready( function() {
 								</td>
 							</tr>
 						</table>
+					</form>	
 			</div>
 		</div>
 	</div>

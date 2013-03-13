@@ -10,37 +10,23 @@
 <script type="text/javascript" src="${base}/template/common/js/jquery.validate.methods.js"></script>
 <script type="text/javascript">
 $().ready( function() {
-	
-	var $validateErrorContainer = $("#validateErrorContainer");
-	var $validateErrorLabelContainer = $("#validateErrorContainer ul");
-	var $withdrawRechargeForm = $("#withdrawRechargeForm");
+	var $subbtn = $("#subbtn");
+	var $withdrawForm = $("#withdrawForm");
 	
 	// 表单验证
-	$withdrawRechargeForm.validate({
-		errorContainer: $validateErrorContainer,
-		errorLabelContainer: $validateErrorLabelContainer,
-		wrapper: "li",
-		errorClass: "validateError",
-		ignoreTitle: true,
-		rules: {
-			"rechargeAmount": {
-				required: true,
-				positive: true
-			},
-			"paymentConfig.id": "required"
-		}, 
-		messages: {
-			"rechargeAmount": {
-				required: "请填写充值金额",
-				positive: "充值金额必须为正数"
-			},
-			"paymentConfig.id": "请选择支付方式"
-		},
-		submitHandler: function(form) {
-			$(form).find(":submit").attr("disabled", true);
-			form.submit();
-		}
-	});
+		$withdrawForm.submit( function() {
+			if($.trim($("input[class='banklist']:checked").val()) == ""){
+					$.dialog({type: "warn", content: "提现账户为必选项", modal: true, autoCloseTime: 3000});
+					return false;
+				}
+			if ($.trim($("#withdrawmoney").val()) == "") {
+				$.dialog({type: "warn", content: "请输入提现金额!", modal: true, autoCloseTime: 3000});
+				return false;
+			}
+			$subbtn.attr("disabled", false);
+			$subbtn.removeAttr("button_click");
+			$subbtn.attr("class", "button");
+		});
 	
 });
 </script>
@@ -57,7 +43,7 @@ $().ready( function() {
 			<div class="red">注：请一定正确选择卡面值提交,否则造成损失商户自行承担； </div>
 			<div class="hei">卡信息提交成功后，可在<a href="#">订单查询</a>页面查询支付结果。处理结果以订单查询页为准。</div>
 			<div class="memberCenter">
-			<form id="withdrawRechargeForm" action="withdraw!save.action" method="post">
+			<form id="withdrawForm" action="withdraw!save.action" method="post">
 						<input type="hidden" name="paymentType" value="recharge" />
 						<table class="inputTable">
 							<tr>
@@ -75,7 +61,7 @@ $().ready( function() {
 								<td>
 										<#list loginMember.memberBankSet as memberBank>
 											<#if memberBank.isDefault >
-												<input type="radio" name="memberBank.id" value="${memberBank.id}" <#if memberBank.isDefault >checked="checked"</#if> />${memberBank.banknum}(开户名：${memberBank.openname},开户银行:${memberBank.bankname})<br />
+												<input type="radio" class="banklist" name="memberBank.id" value="${memberBank.id}" <#if memberBank.isDefault >checked="checked"</#if> />${memberBank.banknum}(开户名：${memberBank.openname},开户银行:${memberBank.bankname})<br />
 											</#if>
 										</#list>
 										<div class="hei"><a href="bank!list.action?redirectUrl=withdraw!apply.action">点击设置默认账户！</a>(最多添加5个账户，请谨慎操作)</div>
@@ -86,7 +72,7 @@ $().ready( function() {
 									提现金额: 
 								</th>
 								<td>
-									<input type="text" name="withdraw.money" class="formText" />
+									<input type="text" id="withdrawmoney" name="withdraw.money" class="formText" />
 									<label class="requireField">*</label>
 								</td>
 							</tr>
@@ -95,7 +81,7 @@ $().ready( function() {
 									&nbsp;
 								</th>
 								<td>
-									<input type="submit" class="button" value="申  请" hidefocus />
+									<input type="submit" id="subbtn" class="button" value="申  请" hidefocus />
 								</td>
 							</tr>
 						</table>

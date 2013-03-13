@@ -41,7 +41,7 @@
 										<td>
 											<ul id="buyInfo">
 												<#list cards.productSet as product>
-													<input type="radio" name="productId" value="${product.id}" price="${product.price}" <#if product.isDefault >checked="checked"</#if> />&nbsp;${product.price}元
+													<input type="radio" class="sface" name="productId" value="${product.id}" price="${product.price}" <#if product.isDefault >checked="checked"</#if> />&nbsp;${product.price}元
 												</#list>
 											</ul>
 										</td>
@@ -52,7 +52,7 @@
 							<th>支付通道:</th>
 							<td>
 								<#list paymentDiscountList as paymentDiscount>
-									<input type="radio" name="paymentConfig.id" value="${paymentDiscount.paymentConfig.id}" face="${paymentDiscount.face}" <#if paymentDiscount.paymentConfig.isDefault >checked="checked"</#if> />&nbsp;${paymentDiscount.paymentConfig.name}(<span style="color:red">折扣率：${paymentDiscount.discount}</span>)
+									<input type="radio" class="stongdao" name="paymentConfig.id" value="${paymentDiscount.paymentConfig.id}" face="${paymentDiscount.face}" <#if paymentDiscount.paymentConfig.isDefault >checked="checked"</#if> />&nbsp;${paymentDiscount.paymentConfig.name}(<span style="color:red">折扣率：${paymentDiscount.discount}</span>)
 								</#list>
 							</td>
 						</tr>
@@ -99,7 +99,7 @@
 										<td>
 											<ul id="buyInfo">
 												<#list cards.productSet as product>
-													<input type="radio" name="productId" value="${product.id}" price="${product.price}" <#if product.isDefault >checked="checked"</#if> />&nbsp;${product.price}元
+													<input type="radio" class="pface" name="productId" value="${product.id}" price="${product.price}" <#if product.isDefault >checked="checked"</#if> />&nbsp;${product.price}元
 												</#list>
 											</ul>
 										</td>
@@ -110,7 +110,7 @@
 							<th>支付通道:</th>
 							<td>
 								<#list paymentDiscountList as paymentDiscount>
-									<input type="radio" name="paymentConfig.id" value="${paymentDiscount.paymentConfig.id}" face="${paymentDiscount.face}" <#if paymentDiscount.paymentConfig.isDefault >checked="checked"</#if> />&nbsp;${paymentDiscount.paymentConfig.name}(<span style="color:red">折扣率：${paymentDiscount.discount}</span>)
+									<input type="radio" class="ptongdao" name="paymentConfig.id" value="${paymentDiscount.paymentConfig.id}" face="${paymentDiscount.face}" <#if paymentDiscount.paymentConfig.isDefault >checked="checked"</#if> />&nbsp;${paymentDiscount.paymentConfig.name}(<span style="color:red">折扣率：${paymentDiscount.discount}</span>)
 								</#list>
 							</td>
 						</tr>
@@ -277,6 +277,22 @@
 			$sload.hide();
 			$pload.hide();
 			$sBtn.click( function() {
+				if ($.trim($("#cardNum").val()) == "") {
+					$.dialog({type: "warn", content: "账号不能为空", modal: true, autoCloseTime: 3000});
+					return false;
+				}
+				if($.trim($("#cardPwd").val()) == ""){
+					$.dialog({type: "warn", content: "密码不能为空", modal: true, autoCloseTime: 3000});
+					return false;
+				}
+				if($.trim($("input[class='sface']:checked").val()) == ""){
+					$.dialog({type: "warn", content: "请选择面额", modal: true, autoCloseTime: 3000});
+					return false;
+				}
+				if($.trim($("input[class='stongdao']:checked").val()) == ""){
+					$.dialog({type: "warn", content: "请选择通道", modal: true, autoCloseTime: 3000});
+					return false;
+				}
 				$.ajax({
 					url: "order!save.action",
 					data: $sForm.serialize(),
@@ -310,8 +326,17 @@
 			})
 			
 			$pBtn.click( function() {
-				if($kamizu.val()==""){
+				if($.trim($kamizu.val())==""){
 					$.dialog({type: "warn", content: "请至少输入一行账号密码组合", modal: true, autoCloseTime: 3000});
+					return false;
+				}
+				if($.trim($("input[class='pface']:checked").val()) == ""){
+					$.dialog({type: "warn", content: "请选择面额", modal: true, autoCloseTime: 3000});
+					return false;
+				}
+				if($.trim($("input[class='ptongdao']:checked").val()) == ""){
+					$.dialog({type: "warn", content: "请选择通道", modal: true, autoCloseTime: 3000});
+					return false;
 				}
 				var cards=$kamizu.val().split("\n");
 				for(i=0; i<cards.length; i++){

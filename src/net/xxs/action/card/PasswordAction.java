@@ -69,9 +69,38 @@ public class PasswordAction extends BaseCardAction {
 			String newPasswordMd5 = StringUtil.md5(member.getPassword());
 			persistent.setPassword(newPasswordMd5);
 		}
-		if (StringUtils.isNotEmpty(member.getSafeQuestion()) && StringUtils.isNotEmpty(member.getSafeAnswer())) {
-			persistent.setSafeQuestion(member.getSafeQuestion());
-			persistent.setSafeAnswer(member.getSafeAnswer());
+		memberService.update(persistent);
+		return SUCCESS;
+	}
+	// 密码更新
+	@Validations(
+		stringLengthFields = {
+			@StringLengthFieldValidator(fieldName = "member.withdraw", minLength = "4", maxLength = "20", message = "新密码长度必须在${minLength}到${maxLength}之间!") 
+		}
+	)
+	@InputConfig(resultName = "error")
+	public String updateWithdrawPwd() {
+		Member persistent = getLoginMember();
+		if (StringUtils.isNotEmpty(oldPassword) && StringUtils.isNotEmpty(member.getWithdrawPwd())) {
+			String oldPasswordMd5 = StringUtil.md5(oldPassword);
+			if (!StringUtils.equals(persistent.getWithdrawPwd(), oldPasswordMd5)) {
+				addActionError("旧密码不正确!");
+				return ERROR;
+			}
+			String newPasswordMd5 = StringUtil.md5(member.getWithdrawPwd());
+			if (StringUtils.equals(persistent.getPassword(), newPasswordMd5)) {
+				addActionError("提现密码不能与登录密码相同!");
+				return ERROR;
+			}
+			persistent.setWithdrawPwd(newPasswordMd5);
+		}
+		if(StringUtils.isEmpty(oldPassword) && StringUtils.isEmpty(persistent.getWithdrawPwd())){
+			String newPasswordMd5 = StringUtil.md5(member.getWithdrawPwd());
+			if (StringUtils.equals(persistent.getPassword(), newPasswordMd5)) {
+				addActionError("提现密码不能与登录密码相同!");
+				return ERROR;
+			}
+			persistent.setWithdrawPwd(newPasswordMd5);
 		}
 		memberService.update(persistent);
 		return SUCCESS;
@@ -85,12 +114,6 @@ public class PasswordAction extends BaseCardAction {
 	@InputConfig(resultName = "error")
 	public String updateSafeQuestion() {
 		Member persistent = getLoginMember();
-//				addActionError("旧密码不正确!");
-//				return ERROR;
-//			}
-//			String newPasswordMd5 = StringUtil.md5(member.getPassword());
-//			persistent.setPassword(newPasswordMd5);
-//		}
 		if(StringUtils.isNotEmpty(persistent.getSafeQuestion())){
 			if(memberService.verifyMemberQuestion(persistent,member.getSafeQuestion(), member.getSafeAnswer())){
 				if (StringUtils.isNotEmpty(member.getSafeQuestion()) && StringUtils.isNotEmpty(member.getSafeAnswer())) {
