@@ -37,13 +37,24 @@
 							<#assign specificationValueSet = cards.specificationValueSet>
 							<#list cards.specificationSet as specification>
 									<tr class="text1">
-										<th>${specification.name}:</th>
+										<th >${specification.name}:</th>
 										<td>
 											<ul id="buyInfo">
 												<#list cards.productSet as product>
 													<input type="radio" class="sface" name="productId" value="${product.id}" price="${product.price}" <#if product.isDefault >checked="checked"</#if> />&nbsp;${product.price}元
+													<#if product_index%5 == 4>
+														<br/>
+													</#if>
 												</#list>
 											</ul>
+										</td>
+										<td rowspan="7" style="border-left:1px solid #e8e8e8;">
+										<span class="warnInfo" style="margin-left:100px;"><span class="icon">&nbsp;</span><b>重要提示：</b></span>
+											<div class="red" style="width:250px;margin-left:20px;">
+												<p>1、如果确定卡号、卡密、卡面额输入正确，单系统提示错误，请重新输入提交一次；</p>
+												<p>2、在提交电话充值卡时	如不清楚面额的，请一定要选择最大面额进行提交，避免造成损失。</p>
+												<p>3、如需开通移动、联通大面值（200、300、500面值）请先联系商务开通再提交!</p>
+											</div>
 										</td>
 									</tr>
 							</#list>
@@ -53,6 +64,9 @@
 							<td>
 								<#list paymentDiscountList as paymentDiscount>
 									<input type="radio" class="stongdao" name="paymentConfig.id" value="${paymentDiscount.paymentConfig.id}" face="${paymentDiscount.face}" <#if paymentDiscount.paymentConfig.isDefault >checked="checked"</#if> />&nbsp;${paymentDiscount.paymentConfig.name}(<span style="color:red">折扣率：${paymentDiscount.discount}</span>)
+									<#if paymentDiscount_index%2 == 1>
+										<br/>
+									</#if>
 								</#list>
 							</td>
 						</tr>
@@ -81,6 +95,12 @@
 								<span id="sload"><label class="loadingIcon"></label>提交中...</span>
 							</td>
 						</tr>
+						<tr>
+							<th>&nbsp;</th>
+							<td>
+								&nbsp;
+							</td>
+						</tr>
 					</table>
 				</form>
 				</div>
@@ -88,8 +108,8 @@
 		 			<div class="hide">
 				 	<div class="memberCenter">
 					<form id="pForm" autocomplete="off">
-					<input type="hidden" name="cardNum" id="cardNum" value="" />
-					<input type="hidden" name="cardPwd" id="cardPwd" value="" />
+					<input type="hidden" name="cardNum" id="hcardNum" value="" />
+					<input type="hidden" name="cardPwd" id="hcardPwd" value="" />
 					<table class="tabTable" id="cardsTable">
 						<#if cards.isSpecificationEnabled>
 							<#assign specificationValueSet = cards.specificationValueSet>
@@ -100,8 +120,19 @@
 											<ul id="buyInfo">
 												<#list cards.productSet as product>
 													<input type="radio" class="pface" name="productId" value="${product.id}" price="${product.price}" <#if product.isDefault >checked="checked"</#if> />&nbsp;${product.price}元
+													<#if product_index%5 == 4>
+														<br/>
+													</#if>
 												</#list>
 											</ul>
+										</td>
+										<td rowspan="7" style="border-left:1px solid #e8e8e8;">
+										<span class="warnInfo" style="margin-left:100px;"><span class="icon">&nbsp;</span><b>重要提示：</b></span>
+											<div class="red"  style="width:230px;margin-left:20px;">
+												<p>1、如果确定卡号、卡密、卡面额输入正确，单系统提示错误，请重新输入提交一次；</p>
+												<p>2、在提交电话充值卡时	如不清楚面额的，请一定要选择最大面额进行提交，避免造成损失。</p>
+												<p>3、如需开通移动、联通大面值（200、300、500面值）请先联系商务开通再提交!</p>
+											</div>
 										</td>
 									</tr>
 							</#list>
@@ -111,6 +142,9 @@
 							<td>
 								<#list paymentDiscountList as paymentDiscount>
 									<input type="radio" class="ptongdao" name="paymentConfig.id" value="${paymentDiscount.paymentConfig.id}" face="${paymentDiscount.face}" <#if paymentDiscount.paymentConfig.isDefault >checked="checked"</#if> />&nbsp;${paymentDiscount.paymentConfig.name}(<span style="color:red">折扣率：${paymentDiscount.discount}</span>)
+									<#if paymentDiscount_index%2 == 1>
+										<br/>
+									</#if>
 								</#list>
 							</td>
 						</tr>
@@ -141,7 +175,7 @@
 							</td>
 						</tr>
 						<tr>
-							<th></th>
+							<th>&nbsp;</th>
 							<td id="jieguo">
 							</td>
 						</tr>
@@ -344,8 +378,10 @@
 						var items=cards[i].split(",");
 						alert(items.length);
 						if(items.length==2){
-							$("#cardNum").val(items[0]);
-							$("#cardPwd").val(items[1]);
+							$("#hcardNum").val(items[0]);
+							$("#hcardPwd").val(items[1]);
+							alert($("#hcardNum").val());
+							alert($("#hcardPwd").val());
 							$.ajax({
 								url: "order!save.action",
 								data: $pForm.serialize(),
@@ -353,11 +389,10 @@
 								dataType: "json",
 								cache: false,
 								beforeSend: function(data) {
-									//$.dialog({type: 'warn', content: '<span class="loadingIcon">&nbsp;</span>提交中...', modal: true, autoCloseTime: 1000});
 									$pBtn.attr("disabled", true);
 									$pBtn.removeAttr("button");
 									$pBtn.attr("class", "button_click");
-									$sload.show();
+									$pload.show();
 								},
 								success: function(data) {
 									if (data.status == "success") {
@@ -376,7 +411,7 @@
 								}
 							});
 						}else{
-							var addDiv = '<div class=red newDiv >第'+(i+1)+'张['+data.message+']<br/></div>';
+							var addDiv = '<div class=red newDiv >第'+(i+1)+'张[格式有误]<br/></div>';
 							$("#jieguo").append(addDiv);
 						}
 					}else{

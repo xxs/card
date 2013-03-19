@@ -69,6 +69,7 @@ public class BankAction extends BaseCardAction {
 	// 账户更新
 	@Validations(
 			requiredStrings = { 
+				@RequiredStringValidator(fieldName = "memberBank.id", message = "更新的银行主键不允许为空!"),
 				@RequiredStringValidator(fieldName = "memberBank.banknum", message = "账号不允许为空!"),
 				@RequiredStringValidator(fieldName = "memberBank.bankname", message = "银行名称不允许为空!"),
 				@RequiredStringValidator(fieldName = "memberBank.openname", message = "开户姓名不允许为空!"),
@@ -78,9 +79,9 @@ public class BankAction extends BaseCardAction {
 		)
 	@InputConfig(resultName = "error")
 	public String update() {
-		MemberBank persistent = memberBankService.get(id);
+		MemberBank persistent = memberBankService.get(memberBank.getId());
 		BeanUtils.copyProperties(memberBank, persistent, new String[] {"id", "createDate", "modifyDate", "member"});
-		memberBankService.update(memberBank);
+		memberBankService.update(persistent);
 		if(null == redirectUrl){
 			redirectUrl = "bank!list.action";
 		}

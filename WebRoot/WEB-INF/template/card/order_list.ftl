@@ -160,72 +160,12 @@ $().ready( function() {
 					</tr>	
 				</table>
 				</form>
-			<!-- 	
-				<form id="queryForm" >
-				<table class="stateTable">
-					<tr>
-						<th>开始时间：</th>
-						<td >
-							<input name="beginDate" onclick="WdatePicker()" />
-						</td>
-						<th>结束时间：</th>
-						<td >
-							<input name="endDate" onclick="WdatePicker()" />
-						</td>
-					</tr>
-					<tr>
-						<th>充值卡品牌</th>
-						<td>
-							<select name="order.brandId">
-								<option value="">请选择...</option>
-								<#list allBrandList as brand>
-									<option value="${brand.id}" <#if order??><#if brand.id == order.brandId> selected</#if></#if>>
-										${brand.name}
-									</option>
-								</#list>
-							</select>
-						</td>	
-						<th>单据通道</th>
-						<td>
-							<select name="order.paymentConfig.id">
-								<option value="">请选择...</option>
-								<#list allPaymentConfigList as paymentConfig>
-									<option value="${paymentConfig.id}" <#if order??><#if paymentConfig == order.paymentConfig> selected</#if></#if>>
-										${paymentConfig.name}
-									</option>
-								</#list>
-							</select>
-						</td>
-					</tr>
-					<tr>
-						<th>单据状态</th>
-						<td>
-							<select name="order.orderStatus">
-								<option value="">请选择...</option>
-								<#list orderStatusList as orderStatus> 
-									<option value="${orderStatus}" <#if order??><#if order.orderStatus == orderStatus>selected="selected"</#if></#if> >
-										${action.getText("OrderStatus." + orderStatus)}
-									</option>
-								</#list>
-							</select>
-						</td>	
-					</tr>	
-					<tr>
-						<td>
-						</td>	
-						<td colspan="3" align="center">
-							<input type="button" id="queryBtn" class="formButton" value="查询" />	
-						</td>
-					</tr>	
-				</table>
-				</form>
-				-->
 				</div>
 			</div>
 		</div>
 	</div>
 		<form id="refForm" >
-		<div class="tab3">
+		<div class="tab4">
 			<table width="995px" cellspacing=0>
 				<tr>
 							<th>订单编号</th>

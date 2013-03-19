@@ -47,14 +47,26 @@ $().ready( function() {
 			<div class="memberCenter">
 			<form id="passwordForm" action="password!updateWithdrawPwd.action" method="post">
 				<table class="inputTable">
+							<#if member.withdrawPwd != "">
 							<tr>
 								<th>
 									旧提现密码: 
 								</th>
 								<td>
-									<input type="password" id="oldPassword" name="oldPassword" class="formText" /> 如果第一次设置，可以为空不填。
+									<input type="password" id="oldPassword" name="oldPassword" class="formText" />* 系统检测到您已设置提现密码，如需修改，此项为必填项。
 								</td>
 							</tr>
+							<#else>
+							<tr>
+								<th>
+									旧提现密码: 
+								</th>
+								<td>
+									系统检测到您尚未设置提现密码。
+								</td>
+							</tr>
+							
+							</#if>
 							<tr>
 								<th>
 									新提现密码: 
@@ -76,7 +88,7 @@ $().ready( function() {
 									&nbsp;
 								</th>
 								<td>
-									<span class="warnInfo"><span class="icon">&nbsp;</span>系统提示: 若密码留空则保持不变</span>
+									<span class="warnInfo"><span class="icon">&nbsp;</span>系统提示: 第一次设置提现密码请直接填写新密码及确认新密码</span>
 								</td>
 							</tr>
 							<tr>

@@ -36,9 +36,11 @@ $().ready(function() {
 				success: function(data) {
 					$.message({type: data.status, content: data.message});
 					if (data.status == "success") {
+						alert("成功");
 						 window.localtion.href="${base}/admin/withdraw!applying.action";
 					} else {
-						$this.attr("disabled", true);
+						alert("有问题${base}/admin/withdraw!list.action");
+						$this.attr("disabled", false);
 					}
 				}
 			});
@@ -60,6 +62,7 @@ $().ready(function() {
 				},
 				success: function(data) {
 					$.message({type: data.status, content: data.message});
+					alert("有问题${base}/admin/withdraw!list.action");
 					if (data.status == "success") {
 						window.localtion.href="${base}/admin/withdraw!list.action";
 					} else {

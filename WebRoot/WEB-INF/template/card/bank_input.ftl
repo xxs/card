@@ -62,7 +62,7 @@ $().ready( function() {
 			<div class="memberCenter">
 			<form id="bankForm" action="<#if isAddAction>bank!save.action<#else>bank!update.action</#if>" method="post">
 						<table class="inputTable">
-							<input type="hidden" name="id" value="${id}" />
+							<input type="hidden" name="memberBank.id" value="${id}" />
 							<tr>
 								<th>
 									所属会员名: 

@@ -4,6 +4,7 @@ import java.util.List;
 
 import javax.annotation.Resource;
 
+import net.xxs.bean.Pager;
 import net.xxs.entity.Member;
 import net.xxs.entity.PaymentConfig;
 import net.xxs.service.DepositService;
@@ -38,6 +39,10 @@ public class DepositAction extends BaseCardAction {
 	}
 	// 获取成功案例列表
 	public String successList() {
+		if(pager == null){
+			Pager pager = new Pager();
+		}
+		pager.setPageSize(4);
 		pager = depositService.findPager(pager);
 		return "success";
 	}

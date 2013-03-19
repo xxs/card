@@ -14,9 +14,9 @@
 	<div class="column">
 	<div class="column_left">
 		<div class="column_left_1">
-			<a href="reg.html">免费注册</a>
-			<a href="findpassword.html">找回密码</a>
-			<a href="login.html">立刻登陆</a>
+			<a href="${base}/card/member!register.action">免费注册</a>
+			<a href="${base}/card/member!passwordRecover.action">找回密码</a>
+			<a href="${base}/html/login.html">立刻登陆</a>
         </div>
         <ul>
 			<@article_list type="hot" article_category_id="4028bc743c286bdc013c289277c5000a" count=6; articleList>

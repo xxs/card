@@ -51,10 +51,10 @@ public class PasswordAction extends BaseCardAction {
 		return "withdraw_pwd";
 	}
 
-	// 密码更新
+	// 登陆密码更新
 	@Validations(
 		stringLengthFields = {
-			@StringLengthFieldValidator(fieldName = "member.password", minLength = "4", maxLength = "20", message = "新密码长度必须在${minLength}到${maxLength}之间!") 
+			@StringLengthFieldValidator(fieldName = "member.password", minLength = "4", maxLength = "20", message = "新登陆密码长度必须在${minLength}到${maxLength}之间!") 
 		}
 	)
 	@InputConfig(resultName = "error")
@@ -72,10 +72,10 @@ public class PasswordAction extends BaseCardAction {
 		memberService.update(persistent);
 		return SUCCESS;
 	}
-	// 密码更新
+	// 提现密码更新
 	@Validations(
 		stringLengthFields = {
-			@StringLengthFieldValidator(fieldName = "member.withdraw", minLength = "4", maxLength = "20", message = "新密码长度必须在${minLength}到${maxLength}之间!") 
+			@StringLengthFieldValidator(fieldName = "member.withdrawPwd", minLength = "4", maxLength = "20", message = "新提现密码长度必须在${minLength}到${maxLength}之间!") 
 		}
 	)
 	@InputConfig(resultName = "error")
@@ -84,7 +84,7 @@ public class PasswordAction extends BaseCardAction {
 		if (StringUtils.isNotEmpty(oldPassword) && StringUtils.isNotEmpty(member.getWithdrawPwd())) {
 			String oldPasswordMd5 = StringUtil.md5(oldPassword);
 			if (!StringUtils.equals(persistent.getWithdrawPwd(), oldPasswordMd5)) {
-				addActionError("旧密码不正确!");
+				addActionError("旧提现密码不正确!");
 				return ERROR;
 			}
 			String newPasswordMd5 = StringUtil.md5(member.getWithdrawPwd());
@@ -106,16 +106,11 @@ public class PasswordAction extends BaseCardAction {
 		return SUCCESS;
 	}
 	// 密保更新
-	@Validations(
-		stringLengthFields = {
-			@StringLengthFieldValidator(fieldName = "member.password", minLength = "4", maxLength = "20", message = "新密码长度必须在${minLength}到${maxLength}之间!") 
-		}
-	)
 	@InputConfig(resultName = "error")
 	public String updateSafeQuestion() {
 		Member persistent = getLoginMember();
 		if(StringUtils.isNotEmpty(persistent.getSafeQuestion())){
-			if(memberService.verifyMemberQuestion(persistent,member.getSafeQuestion(), member.getSafeAnswer())){
+			if(StringUtils.equals(persistent.getSafeAnswer(),oldSafeAnswer)){
 				if (StringUtils.isNotEmpty(member.getSafeQuestion()) && StringUtils.isNotEmpty(member.getSafeAnswer())) {
 					persistent.setSafeQuestion(member.getSafeQuestion());
 					persistent.setSafeAnswer(member.getSafeAnswer());
@@ -129,6 +124,7 @@ public class PasswordAction extends BaseCardAction {
 			persistent.setSafeAnswer(member.getSafeAnswer());
 		}
 		memberService.update(persistent);
+		redirectUrl = "password!safe.action";
 		return SUCCESS;
 	}
 

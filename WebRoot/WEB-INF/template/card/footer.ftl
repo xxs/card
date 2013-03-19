@@ -30,7 +30,15 @@
         
   </div>
     <div class="copyright_xia">
-    	<span><a href="help.html">关于名臣福利</a> <a href="business.html">商务合作</a> <a href="help.html">帮助中心 </a> <a href="contact.html">联系我们</a> <a href="reg.html">服务协议</a></span>
+    	<span>
+    		<@navigation_list position="bottom"; navigationList>
+					<#list navigationList as navigation>
+							<a href="<@navigation.url?interpret />"
+								<#if navigation.isBlankTarget> target="_blank"</#if>>${navigation.name}
+							</a>
+					</#list>
+				</@navigation_list>
+    	</span>
       <p>Copyright &copy; 2012-2013&nbsp;&nbsp;名臣福利 版权所有&nbsp;Inc. All rights reserved.&nbsp;<a href="http://www.miibeian.gov.cn" target="_blank">粤ICP备12031800号</a>&nbsp;<script src="http://s21.cnzz.com/stat.php?id=4460850&web_id=4460850" language="JavaScript"></script></p>
       <p>关键词：<b>名臣福利 收购手机充值卡 手机充值卡回收 手机充值卡回购 手机充值卡变现 手机充值卡提现 一卡通回收 Q币卡点卡回收 点卡供货 点卡寄售</b></p><br />
   </div>

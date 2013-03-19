@@ -160,9 +160,10 @@ input.red_button:hover {
 .memberCenter table.inputTable tr:hover td {background-color: #fafafa;}
 
 .memberCenter table.tabTable {width: 100%;border: 2px solid #e8e8e8;margin-top:-1px;overflow:hidden;}
-.memberCenter table.tabTable th {	width: 150px;line-height: 35px;	padding-right: 10px;text-align: right;color: #333333;background-color: #fafafa;}
+.memberCenter table.tabTable th {	width: 100px;line-height: 35px;	padding-right: 10px;text-align: right;color: #333333;}
 .memberCenter table.tabTable td {	line-height: 30px;padding: 3px 5px;	text-align: left;color: #595959;}
-.memberCenter table.tabTable tr:hover td {background-color: #fafafa;}
+
+/* .memberCenter table.tabTable tr:hover td {background-color: #fafafa;}*/
 
 .pager {float: right;clear: both;margin-top:15px;margin-bottom:15px;}
 .pager li {line-height: 18px;display: block;float: left;padding: 0px 5px;margin: 0px 3px;font-size: 12px;border: 1px solid #cccccc;}

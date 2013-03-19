@@ -82,11 +82,11 @@ $().ready( function() {
 		                <div style="margin-top:19px;">
 		                	<p>验证码</p>
 		                  	<span>
-		                  		<input type="text" id="captcha" maxlength="4" name="j_captcha" style="width:90px" class="oo captcha" />
-		                  		<img id="captchaImage" class="captchaImage" src="${base}/captcha.jpeg" alt="换一张" />
+		                  		<div class="ssh"><input type="text" id="captcha" maxlength="4" name="j_captcha" style="width:90px" class="oo captcha" /></div>
+		                  		<div class="ssh1"><img id="captchaImage" class="captchaImage" src="${base}/captcha.jpeg" alt="换一张" /></div>
 		                  	</span>
 		                </div>
-		                <span id="loginError" style="font-size:15px;margin-top:10px;margin-bottom:5px;text-align:center;color:red;font-weight:bold">验证失败，此处提示错误信息</span>
+		                <span id="loginError" style="font-size:15px;margin-top:60px;margin-bottom:10px;text-align:center;color:red;font-weight:bold">验证失败，此处提示错误信息</span>
 		                <div class="ddsa" >
 		                	<input id="loginButton" class="button" style="display:inline" type="button"  name="login" value="登&nbsp;&nbsp;&nbsp;录" />
 		                </div>
