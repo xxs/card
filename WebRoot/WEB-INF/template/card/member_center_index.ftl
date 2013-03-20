@@ -36,13 +36,31 @@
 	            <div class="wenzi"><span>个人数据最后修改时间：${loginMember.createDate?string("yyyy-MM-dd")}</span>   <p><img src="/template/card/images/dsfsd.jpg" alt="sd" /></p></div>
 	        
 	      </div>
+	     <#if isverifyname || isverifyphone || isverifywithdrawPwd || isverifysafe || isverifybank > 
 	     <div class="column_right_3">
         	<dl>
             	<dt><img src="/template/card/images/da.jpg" width="42" height="40" alt="s" /></dt>
                 <dd style="color:#e10911; font-weight:bold;">系统检测到您还有以下几项安全资料没有完成，现在就去完成账户安全升级吧！</dd>
-                <dd>《<a href="#"> 实名认证</a> 《<a href="#"> 手机认证</a> 《<a href="#"> 提现密码</a> 《<a href="#"> 设置密保</a> 《<a href="#"> 结算账户</a></dd>
+                <dd>
+                	<#if isverifyname>
+	                	<a href="profile!edit.action" > 实名认证</a> 《
+                	</#if>
+                	<#if isverifyphone>
+            	    	<a href="profile!edit.action" > 手机认证</a> 《
+                	</#if>
+                	<#if isverifywithdrawpwd>
+        	        	<a href="password!withdrawPwd.action"> 提现密码</a> 《
+                	</#if>
+                	<#if isverifysafe>
+    	            	<a href="password!safe.action"> 设置密保</a> 《
+                	</#if>
+                	<#if isverifybank>
+	                	<a href="bank!add.action"> 结算账户</a> 《
+                	</#if>
+                </dd>
             </dl>
         </div>
+                	</#if>
 		<div class="tab3">
 					<table width="770px" cellspacing=0>
 						<tr>

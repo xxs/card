@@ -41,60 +41,42 @@ $().ready( function() {
 		<table class="inputTable tabContent">
 			<tr>
 				<th>
-					订单状态: 
-				</th>
-				<td colspan="3">
-					<span class="red">
-						[${action.getText("OrderStatus." + order.orderStatus)}]
-					</span>
-				</td>
-			</tr>
-			<tr>
-				<td colspan="4">
-					&nbsp;
-				</td>
-			</tr>
-			<tr>
-				<th>
 					订单编号: 
 				</th>
 				<td>
 					${order.orderSn}
 				</td>
 				<th>
+					支付方式: 
+				</th>
+				<td>
+					${order.paymentConfigName}
+				</td>
+			</tr>
+			<tr>	
+				<th>
 					下单时间: 
 				</th>
 				<td>
 					${order.createDate?string("yyyy-MM-dd HH:mm:ss")}
 				</td>
+				<th>卡种：</th>
+				<td>
+					${order.productName}
+				</td>
 			</tr>
 			<tr>
 				<th>
-					充值卡总金额: 
+					提交金额: 
 				</th>
 				<td>
 					<span class="red">${order.amount?string(currencyFormat)}</span>
 				</td>
 				<th>
-					订单总金额: 
+					订单流水号: 
 				</th>
 				<td>
-					<span class="red">${order.amount?string(currencyFormat)}</span>&nbsp;&nbsp;
-					<strong class="red">[已付金额: ${order.paidAmount?string(currencyFormat)}]</strong>
-				</td>
-			</tr>
-			<tr>
-				<th>货号</th>
-				<td>
-					<a href="${base}${order.cardsHtmlPath}" target="_blank">
-						${order.productSn}
-					</a>
-				</td>
-				<th>充值卡名称</th>
-				<td>
-					<a href="${base}${order.cardsHtmlPath}" target="_blank">
-						${order.productName}
-					</a>
+					${order.paySn}
 				</td>
 			</tr>
 			<tr>
@@ -108,28 +90,55 @@ $().ready( function() {
 				</td>
 			</tr>
 			<tr>
-				<th>价格</th>
+				<th>成功金额：</th>
 				<td>
-					${order.amount?string(currencyFormat)}
+					${order.paidAmount?string(currencyFormat)}
 				</td>
 				<th>
-					支付方式: 
+					 交易时间：
 				</th>
 				<td>
-					${order.paymentConfigName}
+					${order.modifyDate?string("yyyy-MM-dd HH:mm:ss")}
 				</td>
 			</tr>
 			<tr>
 				<th>
-					附言: 
+					 订单状态：
 				</th>
-				<td colspan="3">
-					${(order.memo)!}
+				<td>
+					<span class="red">
+						${action.getText("OrderStatus." + order.orderStatus)}
+					</span>
+				</td>
+				<th>
+					 详细：
+				</th>
+				<td>
+					<span class="red">
+						${order.retMsg}
+					</span>
 				</td>
 			</tr>
 			<tr>
-				<td colspan="4">
-					&nbsp;
+				<th>
+					 兑换率：
+				</th>
+				<td>
+					<span class="red">
+						${order.cardDiscount*100}%
+					</span>
+				</td>
+				<th>
+					 结算货款：
+				</th>
+				<td>
+					<span class="red">
+						<#if order.paidAmount == 0>
+							￥0.00元
+						 <#else>
+							￥${order.paidAmount*order.cardDiscount}元
+						</#if>
+					</span>
 				</td>
 			</tr>
 			<#if order.member??>

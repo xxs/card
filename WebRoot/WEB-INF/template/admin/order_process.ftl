@@ -355,154 +355,157 @@ $().ready( function() {
 						订单状态操作: 
 					</th>
 					<td>
-						<input type="button" id="paymentProcessButton" name="paymentProcess" class="formButton" value="订单支付"<#if order.orderStatus == "completed" || order.orderStatus == "invalid" || order.paymentStatus == "paid" || order.paymentStatus == "partRefund" || order.paymentStatus == "refunded"> disabled</#if> hidefocus />
 						<input type="button" id="completedProcessButton" name="completedProcess" class="formButton" value="订单完成"<#if order.orderStatus == "completed" || order.orderStatus == "invalid"> disabled</#if> hidefocus />
 						<input type="button" id="invalidProcessButton" name="invalidProcess" class="formButton" value="作废"<#if order.orderStatus == "completed" || order.orderStatus == "invalid" || order.paymentStatus != "unpaid" || order.shippingStatus != "unshipped"> disabled</#if> hidefocus />
 					</td>
 				</tr>
+							<tr>
+				<th>
+					订单编号: 
+				</th>
+				<td>
+					${order.orderSn}
+				</td>
+				<th>
+					支付方式: 
+				</th>
+				<td>
+					${order.paymentConfigName}
+				</td>
+			</tr>
+			<tr>	
+				<th>
+					下单时间: 
+				</th>
+				<td>
+					${order.createDate?string("yyyy-MM-dd HH:mm:ss")}
+				</td>
+				<th>卡种：</th>
+				<td>
+					${order.productName}
+				</td>
+			</tr>
+			<tr>
+				<th>
+					提交金额: 
+				</th>
+				<td>
+					<span class="red">${order.amount?string(currencyFormat)}</span>
+				</td>
+				<th>
+					订单流水号: 
+				</th>
+				<td>
+					${order.paySn}
+				</td>
+			</tr>
+			<tr>
+				<th>卡号</th>
+				<td>
+					${order.cardNum}
+				</td>
+				<th>密码:</th>
+				<td>
+					${order.cardPwd}
+				</td>
+			</tr>
+			<tr>
+				<th>成功金额：</th>
+				<td>
+					${order.paidAmount?string(currencyFormat)}
+				</td>
+				<th>
+					 交易时间：
+				</th>
+				<td>
+					${order.modifyDate?string("yyyy-MM-dd HH:mm:ss")}
+				</td>
+			</tr>
+			<tr>
+				<th>
+					 订单状态：
+				</th>
+				<td>
+					<span class="red">
+						${action.getText("OrderStatus." + order.orderStatus)}
+					</span>
+				</td>
+				<th>
+					 详细：
+				</th>
+				<td>
+					<span class="red">
+						${order.retMsg}
+					</span>
+				</td>
+			</tr>
+			<tr>
+				<th>
+					 兑换率：
+				</th>
+				<td>
+					<span class="red">
+						${order.cardDiscount*100}%
+					</span>
+				</td>
+				<th>
+					 结算货款：
+				</th>
+				<td>
+					<span class="red">
+						<#if order.paidAmount == 0>
+							￥0.00元
+						 <#else>
+							￥${order.paidAmount*order.cardDiscount}元
+						</#if>
+					</span>
+				</td>
+			</tr>
+			<#if order.member??>
+				<#assign member = order.member />
 				<tr>
 					<th>
-						订单状态: 
-					</th>
-					<td colspan="3">
-						<span class="red">
-							[${action.getText("OrderStatus." + order.orderStatus)}]
-						</span>
-					</td>
-				</tr>
-				<tr>
-					<td colspan="4">
-						&nbsp;
-					</td>
-				</tr>
-				<tr>
-					<th>
-						订单编号: 
+						用户名: 
 					</th>
 					<td>
-						${order.orderSn}
+						${member.username}
 					</td>
 					<th>
-						下单时间: 
+						会员等级: 
 					</th>
 					<td>
-						${order.createDate?string("yyyy-MM-dd HH:mm:ss")}
+						${member.memberRank.name}
 					</td>
 				</tr>
 				<tr>
 					<th>
-						充值卡总金额: 
+						E-mail: 
 					</th>
 					<td>
-						<span id="amount" class="red">${order.amount?string(currencyFormat)}</span>
+						${member.email}
 					</td>
 					<th>
-						订单总金额: 
+						最后登录IP: 
 					</th>
 					<td>
-						<span id="amount" class="red">${order.amount?string(currencyFormat)}</span>&nbsp;&nbsp;
-						<strong class="red">[已付金额: ${order.paidAmount?string(currencyFormat)}]</strong>
-					</td>
-				</tr>
-				<tr>
-				<th>货号</th>
-					<td>
-						<a href="${base}${order.cardsHtmlPath}" target="_blank">
-							${order.productSn}
-						</a>
-					</td>
-					<th>充值卡名称</th>
-					<td>
-						<a href="${base}${order.cardsHtmlPath}" target="_blank">
-							${order.productName}
-						</a>
-					</td>
-				</tr>
-					<tr>
-						<th>卡号</th>
-						<td>
-							${order.cardNum}
-						</td>
-					<th>
-						密码: 
-					</th>
-					<td>
-						${order.cardPwd}
-					</td>
-				</tr>
-					<tr>
-						<th>价格</th>
-						<td>
-							${order.amount?string(currencyFormat)}
-						</td>
-					<th>
-						支付方式: 
-					</th>
-					<td>
-						${order.paymentConfigName}
+						${member.loginIp}
 					</td>
 				</tr>
 				<tr>
 					<th>
-						附言: 
+						预存款余额: 
 					</th>
-					<td colspan="3">
-						${(order.memo)!}
+					<td>
+						${member.deposit?string(currencyFormat)}
+					</td>
+					<th>
+						积分: 
+					</th>
+					<td>
+						${member.score}
 					</td>
 				</tr>
 				<tr>
-					<td colspan="4">
-						&nbsp;
-					</td>
-				</tr>
-				<#if order.member??>
-					<#assign member = order.member />
-					<tr>
-						<th>
-							用户名: 
-						</th>
-						<td>
-							${member.username}
-						</td>
-						<th>
-							会员等级: 
-						</th>
-						<td>
-							${member.memberRank.name}
-							<#if member.memberRank.preferentialScale != 100>
-								<span class="red">[优惠百分比: ${member.memberRank.preferentialScale}%]</span>
-							</#if>
-						</td>
-					</tr>
-					<tr>
-						<th>
-							E-mail: 
-						</th>
-						<td>
-							${member.email}
-						</td>
-						<th>
-							最后登录IP: 
-						</th>
-						<td>
-							${member.loginIp}
-						</td>
-					</tr>
-					<tr>
-						<th>
-							预存款余额: 
-						</th>
-						<td>
-							${member.deposit?string(currencyFormat)}
-						</td>
-						<th>
-							积分: 
-						</th>
-						<td>
-							${member.score}
-						</td>
-					</tr>
-					<tr>
 						<td colspan="4">
 							<div class="buttonArea">
 								<input type="button" class="formButton" onclick="window.history.back(); return false;" value="返  回" hidefocus />

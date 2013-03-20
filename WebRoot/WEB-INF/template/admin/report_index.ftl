@@ -16,7 +16,30 @@
 <body class="index">
 	<div class="body">
 		<div class="bodyLeft">
-			<table class="listTable">
+		<table class="listTable">
+				<tr>
+					<th colspan="2">
+						日期范围：
+						<form action="report!info.action" method="post" name="thisform">
+							<input name="beginDate" onclick="WdatePicker()" value="${tempBeginDate}" />
+							~
+							<input name="endDate" onclick="WdatePicker()" value="${tempEndDate}"/>
+							<input type="submit" value="查询"/>
+						</form>	
+					</th>
+				</tr>
+				<tr>
+					<td>
+						&nbsp; 
+					</td>
+					<td>
+					</td>
+				</tr>
+			</table>
+			<div class="blank"></div>
+		</div>
+		<div class="bodyRight">
+		<table class="listTable">
 				<tr>
 					<th colspan="2">
 						提现信息
@@ -52,46 +75,6 @@
 					</td>
 					<td>
 						${applyWithdrawTotalMoney?string(currencyFormat)}
-					</td>
-				</tr>
-			</table>
-			<div class="blank"></div>
-		</div>
-		<div class="bodyRight">
-			<table class="listTable">
-				<tr>
-					<th colspan="2">
-						订单信息   日期范围：
-						<form action="report!info.action" method="post" name="thisform">
-							<input name="beginDate" onclick="WdatePicker()" value="${tempBeginDate}" />
-							~
-							<input name="endDate" onclick="WdatePicker()" value="${tempEndDate}"/>
-							<input type="submit" value="查询"/>
-						</form>	
-					</th>
-				</tr>
-				<tr>
-					<td >
-						已上架充值卡: 
-					</td>
-					<td>
-						${marketableCardsCount}
-					</td>
-				</tr>
-				<tr>
-					<td>
-						会员总数: 
-					</td>
-					<td>
-						${memberTotalCount}  人
-					</td>
-				</tr>
-				<tr>
-					<td>
-						文章总数: 
-					</td>
-					<td>
-						${articleTotalCount}  篇
 					</td>
 				</tr>
 			</table>

@@ -2,6 +2,7 @@ package net.xxs.action.card;
 
 import javax.annotation.Resource;
 
+import net.xxs.entity.Member;
 import net.xxs.service.MemberService;
 import net.xxs.service.MessageService;
 
@@ -22,6 +23,12 @@ public class MemberCenterAction extends BaseCardAction {
 
 	private static final long serialVersionUID = -3568504222758246021L;
 	
+	private Boolean isverifyname;
+	private Boolean isverifyphone;
+	private Boolean isverifywithdrawpwd;
+	private Boolean isverifysafe;
+	private Boolean isverifybank;
+	
 	@Resource(name = "memberServiceImpl")
 	MemberService memberService;
 	@Resource(name = "messageServiceImpl")
@@ -29,12 +36,60 @@ public class MemberCenterAction extends BaseCardAction {
 	
 	// 会员中心首页
 	public String index() {
+		Member loginMember = getLoginMember();
+		if(null != loginMember){
+			isverifyname = (null == loginMember.getName())?true:false;
+			isverifyphone = (null == loginMember.getPhone())?true:false;
+			isverifywithdrawpwd = (null == loginMember.getWithdrawPwd())?true:false;
+			isverifysafe = (null == loginMember.getSafeQuestion())?true:false;
+			isverifybank = loginMember.getMemberBankSet().isEmpty();
+		}
 		return "index";
 	}
 
 	// 获取未读消息数量
 	public Long getUnreadMessageCount() {
 		return messageService.getUnreadMessageCount(getLoginMember());
+	}
+
+	public Boolean getIsverifyname() {
+		return isverifyname;
+	}
+
+	public void setIsverifyname(Boolean isverifyname) {
+		this.isverifyname = isverifyname;
+	}
+
+	public Boolean getIsverifyphone() {
+		return isverifyphone;
+	}
+
+	public void setIsverifyphone(Boolean isverifyphone) {
+		this.isverifyphone = isverifyphone;
+	}
+
+	public Boolean getIsverifywithdrawpwd() {
+		return isverifywithdrawpwd;
+	}
+
+	public void setIsverifywithdrawpwd(Boolean isverifywithdrawpwd) {
+		this.isverifywithdrawpwd = isverifywithdrawpwd;
+	}
+
+	public Boolean getIsverifysafe() {
+		return isverifysafe;
+	}
+
+	public void setIsverifysafe(Boolean isverifysafe) {
+		this.isverifysafe = isverifysafe;
+	}
+
+	public Boolean getIsverifybank() {
+		return isverifybank;
+	}
+
+	public void setIsverifybank(Boolean isverifybank) {
+		this.isverifybank = isverifybank;
 	}
 	
 }
