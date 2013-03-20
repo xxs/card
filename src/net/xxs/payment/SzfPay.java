@@ -165,7 +165,6 @@ public class SzfPay extends BasePaymentProduct {
 		// 创建非银行卡专业版消费请求结果
 		PaymentResult paymentResult = new PaymentResult();
 		System.out.println("开始组织参数");
-		
 	    String version = VERSION; //接口版本号
 	    String merId = paymentConfig.getBargainorId(); //商户ID
 	    String merUserName = "";  //商户用户 名
@@ -243,81 +242,6 @@ public class SzfPay extends BasePaymentProduct {
 	@Override
 	public PaymentResult cardQuery(PaymentConfig paymentConfig,
 			String paymentSn,HttpServletRequest httpServletRequest) {
-		try {
-			// 创建非银行卡专业版消费请求结果
-			PaymentResult paymentResult = new PaymentResult();
-			String usercode = paymentConfig.getBargainorId();
-			String mode = QUERY_MODE;
-			String version = VERSION;
-			String format = FORMAT;
-			String sign = "";
-			String orderno = paymentSn;
-			String md5key = paymentConfig.getBargainorKey();
-			String datetime = DateUtil.getNowTime();
-			String md5src = usercode + mode + version + orderno + format;
-			sign = EncodeUtils.testDigest(md5src + md5key);
-
-			HttpClient hClient = new HttpClient();
-			HttpConnectionManagerParams managerParams = hClient
-					.getHttpConnectionManager().getParams();
-			// 设置连接超时时间(单位毫秒)
-			managerParams.setConnectionTimeout(10000);
-			// 设置读数据超时时间(单位毫秒)
-			managerParams.setSoTimeout(10000);
-			PostMethod post = null;
-			post = new PostMethod(QUERY_URL);
-			NameValuePair[] nvp = { new NameValuePair("mode", mode),
-					new NameValuePair("version", version),
-					new NameValuePair("usercode", usercode),
-					new NameValuePair("orderno", orderno),
-					new NameValuePair("format", format),
-					new NameValuePair("datetime", datetime),
-					new NameValuePair("sign", sign) };
-			post.setRequestBody(nvp);
-			post.setRequestHeader("Connection", "close");
-			hClient.executeMethod(post);
-			String returnStr = post.getResponseBodyAsString();
-			System.out.println("提交收卡支付返回:" + returnStr);
-			XmlStringParse xml = new XmlStringParse(returnStr);
-			String retusercode = xml.getParameter("usercode");
-			String retmode = xml.getParameter("mode");
-			String retversion = xml.getParameter("version");
-			String retorderno = xml.getParameter("orderno");
-			String retbillid = xml.getParameter("billid");
-			String retresult = xml.getParameter("result");
-			String retinfo = xml.getParameter("info");
-			String retdatetime = xml.getParameter("datetime");
-			String retsign = xml.getParameter("sign");
-			String retvalue = xml.getParameter("value");
-			String retaccountvalue = xml.getParameter("accountvalue");
-			
-			System.out.println(xml);
-			md5src = usercode + mode + version
-			+ orderno + retbillid + retresult + retinfo + retvalue + retaccountvalue
-			+ retdatetime;
-			if (!retsign.equals(EncodeUtils.testDigest(md5src + md5key))) {
-				System.out.println("加密验证失败");
-			}
-			post.releaseConnection();
-			post = null;
-			hClient = null;
-			
-			paymentResult.setCmd(retmode);
-			paymentResult.setCode(retresult);
-			paymentResult.setReturnMsg(retinfo);
-			paymentResult.setOrderSn(retorderno);
-			paymentResult.setHmac(EncodeUtils.testDigest(md5src + md5key));
-			if("2000".equals(retresult)||"2011".equals(retresult)){
-				paymentResult.setIsSuccess(true);
-			}else{
-				paymentResult.setIsSuccess(false);
-			}
-			return paymentResult;
-		} catch (Exception e) {
-			e.printStackTrace();
-		}finally{
-			
-		}
 		return null;
 	}
 
