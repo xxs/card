@@ -38,10 +38,10 @@ public class MemberCenterAction extends BaseCardAction {
 	public String index() {
 		Member loginMember = getLoginMember();
 		if(null != loginMember){
-			isverifyname = (null == loginMember.getName())?true:false;
-			isverifyphone = (null == loginMember.getPhone())?true:false;
-			isverifywithdrawpwd = (null == loginMember.getWithdrawPwd())?true:false;
-			isverifysafe = (null == loginMember.getSafeQuestion())?true:false;
+			isverifyname = (null == loginMember.getName()&&(!"".equals(loginMember.getName())))?true:false;
+			isverifyphone = (null == loginMember.getPhone()&&(!"".equals(loginMember.getPhone())))?true:false;
+			isverifywithdrawpwd = (null == loginMember.getWithdrawPwd()&&(!"".equals(loginMember.getWithdrawPwd())))?true:false;
+			isverifysafe = (null == loginMember.getSafeQuestion()&&(!"".equals(loginMember.getSafeQuestion())))?true:false;
 			isverifybank = loginMember.getMemberBankSet().isEmpty();
 		}
 		return "index";

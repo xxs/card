@@ -89,7 +89,7 @@ public class PaymentResultMethod implements TemplateMethodModel {
 		resultMap.put("szfpay105","密码正在处理中");
 		resultMap.put("szfpay106","系统繁忙，暂停提交");
 		resultMap.put("szfpay107","多次支付时卡内余额不足");
-		resultMap.put("szfpay109","des 解密失败");
+		resultMap.put("szfpay109","des解密失败");
 		resultMap.put("szfpay501","插入数据库失败");
 		resultMap.put("szfpay502","插入数据库失败");
 		resultMap.put("szfpay200","请求成功");
@@ -111,6 +111,28 @@ public class PaymentResultMethod implements TemplateMethodModel {
 		resultMap.put("szfpay916","商户不支持该充值卡的支付");
 		resultMap.put("szfpay917","参数格式不正确");
 		resultMap.put("szfpay0","网络连接失败");
+		resultMap.put("szfpay200","支付成功");
+		resultMap.put("szfpay201","您输入的充值卡密码错误");
+		resultMap.put("szfpay202","您输入的充值卡已被使用");
+		resultMap.put("szfpay203","您输入的充值卡密码非法");
+		resultMap.put("szfpay204","您输入的卡号或密码错误次数过多");
+		resultMap.put("szfpay205","卡号密码正则不匹配或者被禁止");
+		resultMap.put("szfpay206","本卡之前被提交过，本次订单失败，不再继续处理");
+		resultMap.put("szfpay207","暂不支持该充值卡的支付");
+		resultMap.put("szfpay208","您输入的充值卡卡号错误");
+		resultMap.put("szfpay209","您输入的充值卡未激活（生成卡）");
+		resultMap.put("szfpay210","您输入的充值卡已经作废（能查到有该卡，但是没卡的信息）");
+		resultMap.put("szfpay211","您输入的充值卡已过期");
+		resultMap.put("szfpay212","您选择的卡面额不正确");
+		resultMap.put("szfpay213","该卡为特殊本地业务卡，系统不支持");
+		resultMap.put("szfpay214","该卡为增值业务卡，系统不支持");
+		resultMap.put("szfpay215","新生卡");
+		resultMap.put("szfpay216","系统维护");
+		resultMap.put("szfpay217","接口维护");
+		resultMap.put("szfpay218","运营商系统维护");
+		resultMap.put("szfpay219","系统忙，请稍后再试");
+		resultMap.put("szfpay220","未知错误");
+		resultMap.put("szfpay221","本卡之前被处理完毕，本次订单失败，不再继续处理");
 		return resultMap.get(resultcode);
 	}
 

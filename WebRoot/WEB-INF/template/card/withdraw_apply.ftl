@@ -23,6 +23,10 @@ $().ready( function() {
 				$.dialog({type: "warn", content: "请输入提现金额!", modal: true, autoCloseTime: 3000});
 				return false;
 			}
+			if($.trim($("#withdrawpwd").val()) == ""){
+					$.dialog({type: "warn", content: "请输入提现密码", modal: true, autoCloseTime: 3000});
+					return false;
+				}
 			$subbtn.attr("disabled", false);
 			$subbtn.removeAttr("button_click");
 			$subbtn.attr("class", "button");
@@ -74,6 +78,20 @@ $().ready( function() {
 								<td>
 									<input type="text" id="withdrawmoney" name="withdraw.money" class="formText" />
 									<label class="requireField">*</label>
+								</td>
+							</tr>
+							<tr>
+								<th>
+									提现密码: 
+								</th>
+								<td>
+									
+									<#if loginMember.withdrawPwd != "">
+										<input type="password" id="withdrawpwd" name="withdrawpwd" class="formText" /><label class="requireField">*</label>
+									<#else>
+										系统检测到您尚未设置提现密码，<a href="password!withdrawPwd.action" class="red">点击设置提现密码！</a>
+									</#if>
+									
 								</td>
 							</tr>
 							<tr>

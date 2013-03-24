@@ -19,18 +19,12 @@ import java.util.Map;
 import javax.servlet.http.HttpServletRequest;
 
 import net.xxs.bean.Setting.CurrencyType;
+import net.xxs.directive.PaymentResultMethod;
 import net.xxs.entity.Order;
 import net.xxs.entity.PaymentConfig;
 import net.xxs.payment.util.ServerConnSzxUtils;
-import net.xxs.util.DateUtil;
-import net.xxs.util.EncodeUtils;
-import net.xxs.util.XmlStringParse;
 
 import org.apache.commons.codec.digest.DigestUtils;
-import org.apache.commons.httpclient.HttpClient;
-import org.apache.commons.httpclient.NameValuePair;
-import org.apache.commons.httpclient.methods.PostMethod;
-import org.apache.commons.httpclient.params.HttpConnectionManagerParams;
 import org.apache.commons.lang.StringUtils;
 
 import sun.misc.BASE64Decoder;
@@ -76,7 +70,7 @@ public class SzfPay extends BasePaymentProduct {
 		if (httpServletRequest == null) {
 			return null;
 		}
-		String value = httpServletRequest.getParameter("value");
+		String value = httpServletRequest.getParameter("payMoney");
 		if (StringUtils.isEmpty(value)) {
 			return null;
 		}
@@ -87,8 +81,8 @@ public class SzfPay extends BasePaymentProduct {
 		if (httpServletRequest == null) {
 			return false;
 		}
-		String result = httpServletRequest.getParameter("result");
-		if (StringUtils.equals(result, "2000")||StringUtils.equals(result, "2011")) {
+		String result = httpServletRequest.getParameter("payResult");
+		if (StringUtils.equals(result, "1")) {
 			return true;
 		} else {
 			return false;
@@ -213,6 +207,7 @@ public class SzfPay extends BasePaymentProduct {
 	        httpConnection.setDoInput(true);
 	        code = httpConnection.getResponseCode();
 	        System.out.println("连接神州付服务器：" + PAYMENT_URL + "，HTTP响应代码：" + code);
+	        System.out.println("ttttttttttt:"+HttpURLConnection.HTTP_OK);
 	        if (code == HttpURLConnection.HTTP_OK) {
 	            try {
 	                String strCurrentLine;
@@ -223,10 +218,14 @@ public class SzfPay extends BasePaymentProduct {
 	                System.out.println("连接神州付服务器：" + PAYMENT_URL + "，SZF响应代码：" + szfResponseCode);
 	                //数据通过校验
 	                if (szfResponseCode == 200) {
-	                	paymentResult.setReason("提交成功");
+	                	paymentResult.setOrderSn(order.getOrderSn());
+	                	paymentResult.setCode(String.valueOf(szfResponseCode));
+	                	paymentResult.setReason(PaymentResultMethod.resultText(String.valueOf(szfResponseCode)));
 	        			paymentResult.setIsSuccess(true);
 	                }else{
-	                	paymentResult.setReason("加密验证失败");
+	                	paymentResult.setOrderSn(order.getOrderSn());
+	                	paymentResult.setCode(String.valueOf(szfResponseCode));
+	                	paymentResult.setReason(PaymentResultMethod.resultText(String.valueOf(szfResponseCode)));
 	        			paymentResult.setIsSuccess(false);
 	                }
 	            } catch (IOException e) {

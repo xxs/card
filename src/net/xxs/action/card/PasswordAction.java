@@ -103,6 +103,7 @@ public class PasswordAction extends BaseCardAction {
 			persistent.setWithdrawPwd(newPasswordMd5);
 		}
 		memberService.update(persistent);
+		redirectUrl = "password!withdrawPwd.action";
 		return SUCCESS;
 	}
 	// 密保更新

@@ -60,27 +60,30 @@ $().ready( function() {
 			<div class="tab3">
 					<table width="770px" cellspacing=0>
 						<tr>
-							<th>操作信息</th>
+							<th>用户名</th>
 							<th>提现金额</th>
-							<th>收款账号</th>
 							<th>实发金额</th>
+							<th>收款账号</th>
+							<th>银行名称</th>
 							<th>申请日期</th>
 							<th>状态</th>
 						</tr>
 						<#list pager.result as withdraw>
 							<tr>
 								<td>
-										${withdraw.message}
+										${withdraw.member.username}
 								</td>
 								<td>
 										${withdraw.money?string(currencyFormat)}
 								</td>
 								<td>
-										${withdraw.memo}
+										${withdraw.totalMoney?string(currencyFormat)}
 								</td>
 								<td>
-										${withdraw.totalMoney?string(currencyFormat)}
-									
+										${withdraw.memberBank.banknum}
+								</td>
+								<td>
+										${withdraw.memberBank.bankname}
 								</td>
 								<td>
 									<span title="${withdraw.createDate?string("yyyy-MM-dd HH:mm:ss")}">${withdraw.createDate}</span>

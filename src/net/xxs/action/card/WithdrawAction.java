@@ -13,7 +13,9 @@ import net.xxs.service.MemberBankService;
 import net.xxs.service.WithdrawService;
 import net.xxs.util.SerialNumberUtil;
 import net.xxs.util.SettingUtil;
+import net.xxs.util.StringUtil;
 
+import org.apache.commons.lang.StringUtils;
 import org.apache.struts2.convention.annotation.InterceptorRef;
 import org.apache.struts2.convention.annotation.InterceptorRefs;
 import org.apache.struts2.convention.annotation.ParentPackage;
@@ -37,6 +39,7 @@ public class WithdrawAction extends BaseCardAction {
 
 	private static final long serialVersionUID = 7391785904288731356L;
 	private Withdraw withdraw;
+	private String withdrawpwd;
 	private MemberBank memberBank;
 	private List<Withdraw> withdrawList;
 	
@@ -59,7 +62,8 @@ public class WithdrawAction extends BaseCardAction {
 	// 保存
 	@Validations(
 			requiredStrings = {
-				@RequiredStringValidator(fieldName = "memberBank.id", message = "提现账户不能为空!")
+				@RequiredStringValidator(fieldName = "memberBank.id", message = "提现账户不能为空!"),
+				@RequiredStringValidator(fieldName = "withdrawpwd", message = "提现密码不能为空!")
 			},
 			requiredFields = { 
 				@RequiredFieldValidator(fieldName = "withdraw.money", message = "提现金额不允许为空!")
@@ -70,6 +74,16 @@ public class WithdrawAction extends BaseCardAction {
 		)
 	@InputConfig(resultName = "error")
 	public String save() {
+		if(null != withdrawpwd){
+			String newpwd = StringUtil.md5(withdrawpwd);
+			if (!StringUtils.equals(getLoginMember().getWithdrawPwd(), newpwd)) {
+				addActionError("提现密码不正确!");
+				return ERROR;
+			}
+		}else{
+			addActionError("提现密码不能为空！");
+			return ERROR;
+		}
 		Setting setting = SettingUtil.getSetting();
 		if(0 != setting.getWithdrawEveryMinMoney()&&null != setting.getWithdrawEveryMinMoney()){
 			if(null != withdraw.getMoney()&& Integer.parseInt(withdraw.getMoney().toString()) < setting.getWithdrawEveryMinMoney()){
@@ -151,6 +165,12 @@ public class WithdrawAction extends BaseCardAction {
 	}
 	public void setMemberBank(MemberBank memberBank) {
 		this.memberBank = memberBank;
+	}
+	public String getWithdrawpwd() {
+		return withdrawpwd;
+	}
+	public void setWithdrawpwd(String withdrawpwd) {
+		this.withdrawpwd = withdrawpwd;
 	}
 	
 	

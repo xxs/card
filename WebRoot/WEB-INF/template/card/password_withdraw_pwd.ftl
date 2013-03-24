@@ -48,24 +48,23 @@ $().ready( function() {
 			<form id="passwordForm" action="password!updateWithdrawPwd.action" method="post">
 				<table class="inputTable">
 							<#if member.withdrawPwd != "">
-							<tr>
-								<th>
-									旧提现密码: 
-								</th>
-								<td>
-									<input type="password" id="oldPassword" name="oldPassword" class="formText" />* 系统检测到您已设置提现密码，如需修改，此项为必填项。
-								</td>
-							</tr>
+								<tr>
+									<th>
+										旧提现密码: 
+									</th>
+									<td>
+										<input type="password" id="oldPassword" name="oldPassword" class="formText" />* 系统检测到您已设置提现密码，如需修改，此项为必填项。
+									</td>
+								</tr>
 							<#else>
-							<tr>
-								<th>
-									旧提现密码: 
-								</th>
-								<td>
-									系统检测到您尚未设置提现密码。
-								</td>
-							</tr>
-							
+								<tr>
+									<th>
+										旧提现密码: 
+									</th>
+									<td>
+										系统检测到您尚未设置提现密码。
+									</td>
+								</tr>
 							</#if>
 							<tr>
 								<th>

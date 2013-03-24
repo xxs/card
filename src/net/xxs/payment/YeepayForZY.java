@@ -182,27 +182,45 @@ public class YeepayForZY extends BasePaymentProduct {
 		String p2_Order = order.getOrderSn();// 商户订单号
 		String p3_Amt = order.getAmount().toString();// 支付金额（单位：元）
 		String p4_verifyAmt = "false";// 是否校验金额 （值：true校验金额; false不校验金额）
-		String p5_Pid = "";// 充值卡名称(选填项)
-		String p6_Pcat = "";// 充值卡种类(选填项)
-		String p7_Pdesc = "";// 充值卡描述(选填项)
+		String p5_Pid = "123";// 充值卡名称(选填项)
+		String p6_Pcat = "123";// 充值卡种类(选填项)
+		String p7_Pdesc = "123";// 充值卡描述(选填项)
 		String p8_Url = SettingUtil.getSetting().getCardUrl() + RETURN_URL + "?ordersn=" + order.getOrderSn();// 回调处理URL
-		String pa_MP = "";// 扩展信息(选填项)
+		String pa_MP = "123";// 扩展信息(选填项)
 		String pa7_cardAmt = order.getAmount().toString();// 面额组合
 		String pa8_cardNo = order.getCardNum();// 卡号组合
 		String pa9_cardPwd = order.getCardPwd();// 秘钥组合
 		String pd_FrpId = order.getCardCode().toUpperCase();// 通道编码
 		String pr_NeedResponse = "1";// 应答机制
 		String pz_userId = order.getMember().getId();// 会员ID（payment中的member可以查询到）
-		String pz1_userRegTime = order.getMember().getCreateDate().toString();// 会员注册时间（payment中的member可以查询到）
+		String pz1_userRegTime = "123";// 会员注册时间（payment中的member可以查询到）
 		String keyValue = paymentConfig.getBargainorKey();// 密钥
 
 		// 生成hmac，保证交易信息不被篡改,关于hmac详见《易宝支付非银行卡支付专业版接口文档 v3.0》
+		System.out.println(p0_Cmd);
+		System.out.println(p1_MerId);
+		System.out.println(p2_Order);
+		System.out.println(p3_Amt);
+		System.out.println(p4_verifyAmt);
+		System.out.println(p5_Pid);
+		System.out.println(p6_Pcat);
+		System.out.println(p7_Pdesc);
+		System.out.println(p8_Url);
+		System.out.println(pa_MP);
+		System.out.println(pa7_cardAmt);
+		System.out.println(pa8_cardNo);
+		System.out.println(pa9_cardPwd);
+		System.out.println(pd_FrpId);
+		System.out.println(pr_NeedResponse);
+		System.out.println(pz_userId);
+		System.out.println(pz1_userRegTime);
+		System.out.println(keyValue);
 		String hmac = "";
 		hmac = DigestUtil.getHmac(new String[] { p0_Cmd, p1_MerId, p2_Order,
 				p3_Amt, p4_verifyAmt, p5_Pid, p6_Pcat, p7_Pdesc, p8_Url, pa_MP,
 				pa7_cardAmt, pa8_cardNo, pa9_cardPwd, pd_FrpId,
 				pr_NeedResponse, pz_userId, pz1_userRegTime }, keyValue);
-
+		System.out.println("hmac:"+hmac);
 		// 封装请求参数，参数说明详见《易宝支付非银行卡支付专业版接口文档 v3.0》
 		Map reqParams = new HashMap();
 		reqParams.put("p0_Cmd", p0_Cmd);
