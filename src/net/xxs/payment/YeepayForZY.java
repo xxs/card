@@ -25,7 +25,6 @@ public class YeepayForZY extends BasePaymentProduct {
 
 	public static final String PAYMENT_URL = "https://www.yeepay.com/app-merchant-proxy/command.action";// 正式支付请求URL
 	public static final String RETURN_URL = "/card/payment!payreturn.action";// 回调处理URL
-	public static final String SHOW_URL = "/";// 充值卡显示URL
 
 	private static final String P0_CMD = "ChargeCardDirect"; // 请求命令名称
 
@@ -42,11 +41,11 @@ public class YeepayForZY extends BasePaymentProduct {
 		if (httpServletRequest == null) {
 			return null;
 		}
-		String r6Order = httpServletRequest.getParameter("r6_Order");
-		if (StringUtils.isEmpty(r6Order)) {
+		String p2_Order = httpServletRequest.getParameter("p2_Order");
+		if (StringUtils.isEmpty(p2_Order)) {
 			return null;
 		}
-		return r6Order;
+		return p2_Order;
 	}
 
 	@Override
@@ -98,8 +97,7 @@ public class YeepayForZY extends BasePaymentProduct {
 		// 卡序列号组
 		String p5_CardNo = httpServletRequest.getParameter("p5_CardNo");
 		// 确认金额组
-		String p6_confirmAmount = httpServletRequest
-				.getParameter("p6_confirmAmount");
+		String p6_confirmAmount = httpServletRequest.getParameter("p6_confirmAmount");
 		// 实际金额组
 		String p7_realAmount = httpServletRequest.getParameter("p7_realAmount");
 		// 卡状态组

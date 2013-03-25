@@ -30,7 +30,6 @@ public class OfPay extends BasePaymentProduct {
 	public static final String PAYMENT_URL ="http://card.pay.ofpay.com/rcvcard.do";// 正式支付请求URL
 	public static final String QUERY_URL ="http://card.pay.ofpay.com/querycard.do";// 正式查询请求URL
 	public static final String RETURN_URL = "/card/payment!payreturn.action";// 回调处理URL
-	public static final String SHOW_URL = "/";// 充值卡显示URL
 	public static final String PAY_MODE = "r";// 支付mode
 	public static final String QUERY_MODE = "q";// 查询mode  
 	public static final String VERSION = "1.0";// 版本version
@@ -151,17 +150,17 @@ public class OfPay extends BasePaymentProduct {
 		//签名（参见Sign计算方法）
 		String sign = EncodeUtils.testDigest(md5src);
 		System.out.println(sign);
-		try {
-			System.out.println("1");
-			System.out.println("usercode"+usercode);
+//		try {
+//			System.out.println("1");
+//			System.out.println("usercode"+usercode);
 //			usercode = RSA.encrypt(usercode, "gbk");
 //			System.out.println("2");
 //			System.out.println("cardpass"+cardpass);
 //			cardpass = RSA.encrypt(cardpass, "gbk");
-		} catch (Exception e1) {
-			paymentResult.setReason("参数编码失败");
-			paymentResult.setIsSuccess(false);
-		}
+//		} catch (Exception e1) {
+//			paymentResult.setReason("参数编码失败");
+//			paymentResult.setIsSuccess(false);
+//		}
 		HttpClient hClient = new HttpClient();
 		HttpConnectionManagerParams managerParams = hClient.getHttpConnectionManager().getParams();
 		// 设置连接超时时间(单位毫秒)

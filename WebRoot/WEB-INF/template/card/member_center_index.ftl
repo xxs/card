@@ -28,15 +28,39 @@
         <div class="column_right_2">
 	        	<div class="right_2">
 	        	<ul>
-	            	<li>您的账户余额：<strong style="font-size:18px;color:#e10911;">${loginMember.deposit?string(currencyFormat)}</strong></li>
-	                <li>账户安全：<img src="/template/card/images/ds.jpg" alt="dsa" />    <span class="STYLE1">低</span>  <strong style="color:#e10911; margin-left:12px;">提升</strong>      资料完整度：<img src="/template/card/images/fdf.jpg" alt="fg" width="39" height="9" />        40% <strong style="color:#e10911; margin-left:6px;">完善</strong></li>
-	                <li>注册时间：${loginMember.createDate?string("yyyy-MM-dd HH:mm:ss")}  上次登录IP：${loginMember.loginIp} <span class="red">登录历史</span></li>
+	            	<li style="margin-bottom:10px;margin-top:0px;">
+	            		您的账户余额：
+	            		<strong style="font-size:18px;color:#e10911;">${loginMember.deposit?string(currencyFormat)}</strong>
+	            	</li>
+	                <li>账户安全：<img src="/template/card/images/ds.jpg" width="${safeperfect*40}" height="9" style="margin-top:3px;margin-right:6px;"/>
+	                	<#if safeperfect <= 0.3>
+		                	<span class="STYLE1">${safeperfect*100}%-很低</span>
+	                	<#elseif safeperfect = 0.9>
+		                	<span class="STYLE1">${safeperfect*100}%-中等</span>
+	                	<#elseif safeperfect = 1>
+		                	<span class="STYLE1">${safeperfect*100}%-安全</span>
+	                	<#else>
+		                	<span class="STYLE1">${safeperfect*100}%-较低</span>
+	                	</#if>
+	                	<span style="margin-right:60px;"></span>
+	                	资料完整度：<img src="/template/card/images/fdf.jpg"  width="${personalinfo*40}" height="9" style="margin-top:3px;margin-right:6px;"/>${personalinfo*100}%
+	                	<#if personalinfo != 1>
+	                		<a style="color:#e10911; margin-left:6px;font-weight:blod;" href="profile!edit.action">立即完善</a>
+	                	</#if>	
+	                </li>
+	                <li>注册时间：${loginMember.createDate?string("yyyy-MM-dd HH:mm:ss")}
+	                	<span style="margin-right:40px;"></span>
+	                	上次登录IP：${loginMember.loginIp}<a href="" title="暂未开放" style="margin-left:6px;" >登录历史</a>
+	                </li>
 	            </ul>
 	            </div>
-	            <div class="wenzi"><span>个人数据最后修改时间：${loginMember.createDate?string("yyyy-MM-dd")}</span>   <p><img src="/template/card/images/dsfsd.jpg" alt="sd" /></p></div>
+	            <div class="wenzi">
+	            	<span>个人数据最后修改时间：${loginMember.createDate?string("yyyy-MM-dd")}</span>
+	            	<p><img src="/template/card/images/dsfsd.jpg"/></p>
+	            </div>
 	        
 	      </div>
-	     <#if isverifyname || isverifyphone || isverifywithdrawPwd || isverifysafe || isverifybank > 
+	     <#if isverifyname || isverifyphone || isverifywithdrawpwd || isverifysafe || isverifybank > 
 	     <div class="column_right_3">
         	<dl>
             	<dt><img src="/template/card/images/da.jpg" width="42" height="40" alt="s" /></dt>

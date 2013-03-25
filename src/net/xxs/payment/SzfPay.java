@@ -38,7 +38,6 @@ public class SzfPay extends BasePaymentProduct {
 	public static final String PAYMENT_URL ="http://pay3.shenzhoufu.com/interface/version3/serverconnszx/entry-noxml.aspx";// 正式支付请求URL
 	public static final String QUERY_URL ="http://card.pay.ofpay.com/querycard.do";// 正式查询请求URL
 	public static final String RETURN_URL = "/card/payment!payreturn.action";// 回调处理URL
-	public static final String SHOW_URL = "/";// 充值卡显示URL
 	public static final String VERIFYTYPE = "1";// 校验MD5
 	public static final String QUERY_MODE = "q";// 查询mode  
 	public static final String VERSION = "3";// 版本version
@@ -167,28 +166,27 @@ public class SzfPay extends BasePaymentProduct {
 	    String verifyType = VERIFYTYPE;//MD5 校验
 	    String desKey = DESKEY;
 	    String privateKey = "123456";
-	    String cardTypeCombine = order.getCardCode(); //0：移动 1：联通 2：电信
-	    String cardInfo = ServerConnSzxUtils.getDesEncryptBase64String(order.getAmount().toString(), order.getCardNum(), order.getCardPwd(), desKey);   //充值卡加密信息
-	    String combineString = version + merId + order.getAmount().toString() + order.getOrderSn() + RETURN_URL + cardInfo + privateField + verifyType + privateKey;
+	    String payMoney = order.getAmount().multiply(BigDecimal.valueOf(100)).toString();
+	    Integer cardTypeCombine = Integer.parseInt(order.getCardCode()); //0：移动 1：联通 2：电信
+	    String cardInfo = ServerConnSzxUtils.getDesEncryptBase64String(payMoney, order.getCardNum(), order.getCardPwd(), desKey);   //充值卡加密信息
+	    String combineString = version + merId + payMoney + order.getOrderSn() + RETURN_URL + cardInfo + privateField + verifyType + privateKey;
 	    String md5String = DigestUtils.md5Hex(combineString); //md5加密串
 	    System.out.println("md5加密前拼窜：" + combineString);
-		
 	  //构造 url 请求数据
 	    String urlRequestData = "";
 		try {
-			urlRequestData = PAYMENT_URL + "?version=" + version
-			        + "&merId=" + merId
-			        + "&payMoney=" + order.getAmount().toString()
-			        + "&orderId=" + order.getOrderSn()
-			        + "&returnUrl=" + RETURN_URL
-			        + "&cardInfo=" + URLEncoder.encode(cardInfo, "utf-8")
-			        + "&merUserName=" + merUserName
-			        + "&merUserMail=" + merUserMail
-			        + "&privateField=" + privateField
-			        + "&verifyType=" + verifyType
-			        + "&cardTypeCombine=" + cardTypeCombine
-			        + "&md5String=" + md5String
-			        + "&signString=";
+			urlRequestData = PAYMENT_URL + "?version=" + bianma(version)
+			        + "&merId=" + bianma(merId)
+			        + "&payMoney=" + bianma(order.getAmount().toString())
+			        + "&orderId=" + bianma(order.getOrderSn())
+			        + "&returnUrl=" + bianma(RETURN_URL)
+			        + "&cardInfo=" + bianma(URLEncoder.encode(cardInfo, "utf-8"))
+			        + "&merUserName=" + bianma(merUserName)
+			        + "&merUserMail=" + bianma(merUserMail)
+			        + "&privateField=" + bianma(privateField)
+			        + "&verifyType=" + bianma(verifyType)
+			        + "&cardTypeCombine=" + bianma(cardTypeCombine.toString())
+			        + "&md5String=" + bianma(md5String)+"";
 		} catch (UnsupportedEncodingException e1) {
 			e1.printStackTrace();
 			System.out.println("拼装请求路径异常");
@@ -254,6 +252,14 @@ public class SzfPay extends BasePaymentProduct {
 			return null;
 		}
 		return billid;
+	}
+	private String bianma(String str)throws UnsupportedEncodingException {
+		if (null == str) {
+			str = "";
+		} else {
+			str.replace(" ", "");
+		}
+		return URLEncoder.encode(str, "utf-8");
 	}
 
 }

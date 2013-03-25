@@ -28,6 +28,9 @@ public class MemberCenterAction extends BaseCardAction {
 	private Boolean isverifywithdrawpwd;
 	private Boolean isverifysafe;
 	private Boolean isverifybank;
+	private double safeperfect;
+	private double personalinfo;
+	
 	
 	@Resource(name = "memberServiceImpl")
 	MemberService memberService;
@@ -38,11 +41,50 @@ public class MemberCenterAction extends BaseCardAction {
 	public String index() {
 		Member loginMember = getLoginMember();
 		if(null != loginMember){
-			isverifyname = (null == loginMember.getName()&&(!"".equals(loginMember.getName())))?true:false;
-			isverifyphone = (null == loginMember.getPhone()&&(!"".equals(loginMember.getPhone())))?true:false;
-			isverifywithdrawpwd = (null == loginMember.getWithdrawPwd()&&(!"".equals(loginMember.getWithdrawPwd())))?true:false;
-			isverifysafe = (null == loginMember.getSafeQuestion()&&(!"".equals(loginMember.getSafeQuestion())))?true:false;
+			isverifyname = (null == loginMember.getName()||("".equals(loginMember.getName())))?true:false;
+			isverifyphone = (null == loginMember.getPhone()||("".equals(loginMember.getPhone())))?true:false;
+			isverifywithdrawpwd = (null == loginMember.getWithdrawPwd()||("".equals(loginMember.getWithdrawPwd())))?true:false;
+			isverifysafe = (null == loginMember.getSafeQuestion()||("".equals(loginMember.getSafeQuestion())))?true:false;
 			isverifybank = loginMember.getMemberBankSet().isEmpty();
+		}
+		if(!isverifyname){
+			safeperfect+=0.2;
+		}
+		if(!isverifyphone){
+			safeperfect+=0.2;
+		}
+		if(!isverifywithdrawpwd){
+			safeperfect+=0.2;
+		}
+		if(!isverifysafe){
+			safeperfect+=0.2;
+		}
+		if(!isverifybank){
+			safeperfect+=0.2;
+		}
+		if(null != loginMember.getName()&&(!"".equals(loginMember.getName()))){
+			personalinfo+=0.2;
+		}
+		if(null != loginMember.getGender()&&(!"".equals(loginMember.getGender()))){
+			personalinfo+=0.1;
+		}
+		if(null != loginMember.getBirth()&&(!"".equals(loginMember.getBirth()))){
+			personalinfo+=0.1;
+		}
+		if(null != loginMember.getAddress()&&(!"".equals(loginMember.getAddress()))){
+			personalinfo+=0.1;
+		}
+		if(null != loginMember.getZipCode()&&(!"".equals(loginMember.getZipCode()))){
+			personalinfo+=0.1;
+		}
+		if(null != loginMember.getPhone()&&(!"".equals(loginMember.getPhone()))){
+			personalinfo+=0.1;
+		}
+		if(null != loginMember.getMobile()&&(!"".equals(loginMember.getMobile()))){
+			personalinfo+=0.1;
+		}
+		if(null != loginMember.getReferrer()&&(!"".equals(loginMember.getReferrer()))){
+			personalinfo+=0.2;
 		}
 		return "index";
 	}
@@ -90,6 +132,22 @@ public class MemberCenterAction extends BaseCardAction {
 
 	public void setIsverifybank(Boolean isverifybank) {
 		this.isverifybank = isverifybank;
+	}
+
+	public double getSafeperfect() {
+		return safeperfect;
+	}
+
+	public void setSafeperfect(double safeperfect) {
+		this.safeperfect = safeperfect;
+	}
+
+	public double getPersonalinfo() {
+		return personalinfo;
+	}
+
+	public void setPersonalinfo(double personalinfo) {
+		this.personalinfo = personalinfo;
 	}
 	
 }
