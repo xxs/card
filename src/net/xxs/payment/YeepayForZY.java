@@ -178,14 +178,14 @@ public class YeepayForZY extends BasePaymentProduct {
 		String p0_Cmd = P0_CMD; // 业务类型（非银行卡专业版支付请求固定值“ChargeCardDirect”）
 		String p1_MerId = paymentConfig.getBargainorId(); // 商户编号
 		String p2_Order = order.getOrderSn();// 商户订单号
-		String p3_Amt = order.getAmount().toString();// 支付金额（单位：元）
+		String p3_Amt = String.valueOf((order.getAmount().intValue()));// 支付金额（单位：元）
 		String p4_verifyAmt = "false";// 是否校验金额 （值：true校验金额; false不校验金额）
 		String p5_Pid = "123";// 充值卡名称(选填项)
 		String p6_Pcat = "123";// 充值卡种类(选填项)
 		String p7_Pdesc = "123";// 充值卡描述(选填项)
 		String p8_Url = SettingUtil.getSetting().getCardUrl() + RETURN_URL + "?ordersn=" + order.getOrderSn();// 回调处理URL
 		String pa_MP = "123";// 扩展信息(选填项)
-		String pa7_cardAmt = order.getAmount().toString();// 面额组合
+		String pa7_cardAmt = String.valueOf((order.getAmount().intValue()));// 面额组合
 		String pa8_cardNo = order.getCardNum();// 卡号组合
 		String pa9_cardPwd = order.getCardPwd();// 秘钥组合
 		String pd_FrpId = order.getCardCode().toUpperCase();// 通道编码
@@ -195,24 +195,24 @@ public class YeepayForZY extends BasePaymentProduct {
 		String keyValue = paymentConfig.getBargainorKey();// 密钥
 
 		// 生成hmac，保证交易信息不被篡改,关于hmac详见《易宝支付非银行卡支付专业版接口文档 v3.0》
-		System.out.println(p0_Cmd);
-		System.out.println(p1_MerId);
-		System.out.println(p2_Order);
-		System.out.println(p3_Amt);
-		System.out.println(p4_verifyAmt);
-		System.out.println(p5_Pid);
-		System.out.println(p6_Pcat);
-		System.out.println(p7_Pdesc);
-		System.out.println(p8_Url);
-		System.out.println(pa_MP);
-		System.out.println(pa7_cardAmt);
-		System.out.println(pa8_cardNo);
-		System.out.println(pa9_cardPwd);
-		System.out.println(pd_FrpId);
-		System.out.println(pr_NeedResponse);
-		System.out.println(pz_userId);
-		System.out.println(pz1_userRegTime);
-		System.out.println(keyValue);
+		System.out.println("p0_Cmd:"+p0_Cmd);
+		System.out.println("p1_MerId:"+p1_MerId);
+		System.out.println("p2_Order:"+p2_Order);
+		System.out.println("p3_Amt:"+p3_Amt);
+		System.out.println("p4_verifyAmt:"+p4_verifyAmt);
+		System.out.println("p5_Pid:"+p5_Pid);
+		System.out.println("p6_Pcat:"+p6_Pcat);
+		System.out.println("p7_Pdesc:"+p7_Pdesc);
+		System.out.println("p8_Url:"+p8_Url);
+		System.out.println("pa_MP:"+pa_MP);
+		System.out.println("pa7_cardAmt:"+pa7_cardAmt);
+		System.out.println("pa8_cardNo:"+pa8_cardNo);
+		System.out.println("pa9_cardPwd:"+pa9_cardPwd);
+		System.out.println("pd_FrpId:"+pd_FrpId);
+		System.out.println("pr_NeedResponse:"+pr_NeedResponse);
+		System.out.println("pz_userId:"+pz_userId);
+		System.out.println("pz1_userRegTime:"+pz1_userRegTime);
+		System.out.println("keyValue:"+keyValue);
 		String hmac = "";
 		hmac = DigestUtil.getHmac(new String[] { p0_Cmd, p1_MerId, p2_Order,
 				p3_Amt, p4_verifyAmt, p5_Pid, p6_Pcat, p7_Pdesc, p8_Url, pa_MP,

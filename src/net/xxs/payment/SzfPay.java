@@ -165,22 +165,24 @@ public class SzfPay extends BasePaymentProduct {
 	    String privateField = ""; //商户私有数据
 	    String verifyType = VERIFYTYPE;//MD5 校验
 	    String desKey = DESKEY;
-	    String privateKey = "123456";
-	    String payMoney = order.getAmount().multiply(BigDecimal.valueOf(100)).toString();
+	    String privateKey = paymentConfig.getBargainorKey();
+	    Integer payface = (order.getAmount()).intValue();
+	    Integer payMoney = (order.getAmount().multiply(BigDecimal.valueOf(100))).intValue();
 	    Integer cardTypeCombine = Integer.parseInt(order.getCardCode()); //0：移动 1：联通 2：电信
-	    String cardInfo = ServerConnSzxUtils.getDesEncryptBase64String(payMoney, order.getCardNum(), order.getCardPwd(), desKey);   //充值卡加密信息
+	    String cardInfo = ServerConnSzxUtils.getDesEncryptBase64String(payface.toString(), order.getCardNum(), order.getCardPwd(), desKey);   //充值卡加密信息
+	    System.out.println("充值卡信息加密后的串："+cardInfo);
 	    String combineString = version + merId + payMoney + order.getOrderSn() + RETURN_URL + cardInfo + privateField + verifyType + privateKey;
 	    String md5String = DigestUtils.md5Hex(combineString); //md5加密串
 	    System.out.println("md5加密前拼窜：" + combineString);
-	  //构造 url 请求数据
+	    //构造 url 请求数据
 	    String urlRequestData = "";
 		try {
 			urlRequestData = PAYMENT_URL + "?version=" + bianma(version)
 			        + "&merId=" + bianma(merId)
-			        + "&payMoney=" + bianma(order.getAmount().toString())
+			        + "&payMoney=" + bianma(payMoney.toString())
 			        + "&orderId=" + bianma(order.getOrderSn())
 			        + "&returnUrl=" + bianma(RETURN_URL)
-			        + "&cardInfo=" + bianma(URLEncoder.encode(cardInfo, "utf-8"))
+			        + "&cardInfo=" + URLEncoder.encode(cardInfo, "utf-8")
 			        + "&merUserName=" + bianma(merUserName)
 			        + "&merUserMail=" + bianma(merUserMail)
 			        + "&privateField=" + bianma(privateField)
@@ -205,7 +207,7 @@ public class SzfPay extends BasePaymentProduct {
 	        httpConnection.setDoInput(true);
 	        code = httpConnection.getResponseCode();
 	        System.out.println("连接神州付服务器：" + PAYMENT_URL + "，HTTP响应代码：" + code);
-	        System.out.println("ttttttttttt:"+HttpURLConnection.HTTP_OK);
+	        System.out.println("浏览器请求结果状态:"+HttpURLConnection.HTTP_OK);
 	        if (code == HttpURLConnection.HTTP_OK) {
 	            try {
 	                String strCurrentLine;
