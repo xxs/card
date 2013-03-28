@@ -1,5 +1,6 @@
 package net.xxs.action.admin;
 
+import java.lang.reflect.Member;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
@@ -7,9 +8,11 @@ import java.util.List;
 import java.util.Map;
 
 import javax.annotation.Resource;
+import javax.servlet.http.HttpSession;
 
 import net.xxs.bean.Report;
 import net.xxs.entity.Withdraw.WithdrawStatus;
+import net.xxs.listener.SessionListener;
 import net.xxs.service.ReportService;
 
 import org.apache.struts2.convention.annotation.ParentPackage;
@@ -39,7 +42,7 @@ public class ReportAction extends BaseAdminAction {
 	private Double onlineMoney;
 	private Double onlineTotalMoney;
 	private Double serverTotalMoney;
-	
+	private List onlineList = new ArrayList();
 	
 	@Resource(name = "reportServiceImpl")
 	private ReportService reportService;
@@ -110,9 +113,10 @@ public class ReportAction extends BaseAdminAction {
 		if(endDate!=null){
 			tempEndDate = sf.format(endDate);
 		}
+		onlineList = SessionListener.getSessions();  
+		System.out.println(onlineList.size());
 		return "index";
 	}
-
 	public List<Report> getReportList() {
 		return reportList;
 	}
@@ -239,6 +243,12 @@ public class ReportAction extends BaseAdminAction {
 
 	public void setTempEndDate(String tempEndDate) {
 		this.tempEndDate = tempEndDate;
+	}
+	public List getOnlineList() {
+		return onlineList;
+	}
+	public void setOnlineList(List onlineList) {
+		this.onlineList = onlineList;
 	}
 
 }

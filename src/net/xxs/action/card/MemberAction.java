@@ -146,7 +146,6 @@ public class MemberAction extends BaseCardAction {
 		
 		setCookie(Member.MEMBER_USERNAME_COOKIE_NAME, URLEncoder.encode(member.getUsername().toLowerCase(), "UTF-8"));
 		
-		
 		if (StringUtils.isNotEmpty(loginRedirectUrl)) {
 			redirectUrl = loginRedirectUrl;
 		}

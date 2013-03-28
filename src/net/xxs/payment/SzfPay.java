@@ -23,8 +23,15 @@ import net.xxs.directive.PaymentResultMethod;
 import net.xxs.entity.Order;
 import net.xxs.entity.PaymentConfig;
 import net.xxs.payment.util.ServerConnSzxUtils;
+import net.xxs.util.DateUtil;
+import net.xxs.util.EncodeUtils;
+import net.xxs.util.XmlStringParse;
 
 import org.apache.commons.codec.digest.DigestUtils;
+import org.apache.commons.httpclient.HttpClient;
+import org.apache.commons.httpclient.NameValuePair;
+import org.apache.commons.httpclient.methods.PostMethod;
+import org.apache.commons.httpclient.params.HttpConnectionManagerParams;
 import org.apache.commons.lang.StringUtils;
 
 import sun.misc.BASE64Decoder;
@@ -36,7 +43,7 @@ import sun.misc.BASE64Decoder;
 public class SzfPay extends BasePaymentProduct {
 
 	public static final String PAYMENT_URL ="http://pay3.shenzhoufu.com/interface/version3/serverconnszx/entry-noxml.aspx";// 正式支付请求URL
-	public static final String QUERY_URL ="http://card.pay.ofpay.com/querycard.do";// 正式查询请求URL
+	public static final String QUERY_URL ="http://pay3.shenzhoufu.com/query/batch.aspx";// 正式查询请求URL
 	public static final String RETURN_URL = "/card/payment!payreturn.action";// 回调处理URL
 	public static final String VERIFYTYPE = "1";// 校验MD5
 	public static final String QUERY_MODE = "q";// 查询mode  
@@ -241,6 +248,85 @@ public class SzfPay extends BasePaymentProduct {
 	@Override
 	public PaymentResult cardQuery(PaymentConfig paymentConfig,
 			String paymentSn,HttpServletRequest httpServletRequest) {
+		try {
+			// 创建非银行卡专业版消费请求结果
+			PaymentResult paymentResult = new PaymentResult();
+			String mode = QUERY_MODE;
+			String version = VERSION;//必传，目前版本3
+			String merId = paymentConfig.getBargainorId();//必传，商户在神州付的唯一身份标识（6位数字）
+			String orderIds = paymentSn;//多个订单号之间以”|”分隔，最多一次可以传20个订单号
+			String queryBegin = "";//格式：yyyy-MM-dd
+			String queryEnd = "";//格式：yyyy-MM-dd
+			String resultFormat = "1";
+			String sign = "";
+			String privateKey = paymentConfig.getBargainorKey();
+			String md5key = paymentConfig.getBargainorKey();
+			String datetime = DateUtil.getNowTime();
+			String md5src = version+merId+orderIds+queryBegin+queryEnd+privateKey;
+			String md5src = usercode + mode + version + orderno + format;
+			sign = EncodeUtils.testDigest(md5src + md5key);
+
+			HttpClient hClient = new HttpClient();
+			HttpConnectionManagerParams managerParams = hClient
+					.getHttpConnectionManager().getParams();
+			// 设置连接超时时间(单位毫秒)
+			managerParams.setConnectionTimeout(10000);
+			// 设置读数据超时时间(单位毫秒)
+			managerParams.setSoTimeout(10000);
+			PostMethod post = null;
+			post = new PostMethod(QUERY_URL);
+			NameValuePair[] nvp = { new NameValuePair("mode", mode),
+					new NameValuePair("version", version),
+					new NameValuePair("usercode", usercode),
+					new NameValuePair("orderno", orderno),
+					new NameValuePair("format", format),
+					new NameValuePair("datetime", datetime),
+					new NameValuePair("sign", sign) };
+			post.setRequestBody(nvp);
+			post.setRequestHeader("Connection", "close");
+			hClient.executeMethod(post);
+			String returnStr = post.getResponseBodyAsString();
+			System.out.println("提交收卡支付返回:" + returnStr);
+			XmlStringParse xml = new XmlStringParse(returnStr);
+			String retusercode = xml.getParameter("usercode");
+			String retmode = xml.getParameter("mode");
+			String retversion = xml.getParameter("version");
+			String retorderno = xml.getParameter("orderno");
+			String retbillid = xml.getParameter("billid");
+			String retresult = xml.getParameter("result");
+			String retinfo = xml.getParameter("info");
+			String retdatetime = xml.getParameter("datetime");
+			String retsign = xml.getParameter("sign");
+			String retvalue = xml.getParameter("value");
+			String retaccountvalue = xml.getParameter("accountvalue");
+			
+			System.out.println(xml);
+			md5src = usercode + mode + version
+			+ orderno + retbillid + retresult + retinfo + retvalue + retaccountvalue
+			+ retdatetime;
+			if (!retsign.equals(EncodeUtils.testDigest(md5src + md5key))) {
+				System.out.println("加密验证失败");
+			}
+			post.releaseConnection();
+			post = null;
+			hClient = null;
+			
+			paymentResult.setCmd(retmode);
+			paymentResult.setCode(retresult);
+			paymentResult.setReturnMsg(retinfo);
+			paymentResult.setOrderSn(retorderno);
+			paymentResult.setHmac(EncodeUtils.testDigest(md5src + md5key));
+			if("2000".equals(retresult)||"2011".equals(retresult)){
+				paymentResult.setIsSuccess(true);
+			}else{
+				paymentResult.setIsSuccess(false);
+			}
+			return paymentResult;
+		} catch (Exception e) {
+			e.printStackTrace();
+		}finally{
+			
+		}
 		return null;
 	}
 

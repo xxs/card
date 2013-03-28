@@ -18,21 +18,38 @@
 		<div class="bodyLeft">
 		<table class="listTable">
 				<tr>
-					<th colspan="2">
+					<th>
+						目前在线人数：${onlineList?size} 人
+					</th>
+					<th>&nbsp;
+					</th>	
+				</tr>
+				<tr>
+					<td >
 						日期范围：
+						
+					</td>
+					<td>
 						<form action="report!info.action" method="post" name="thisform">
 							<input name="beginDate" onclick="WdatePicker()" value="${tempBeginDate}" />
 							~
 							<input name="endDate" onclick="WdatePicker()" value="${tempEndDate}"/>
 							<input type="submit" value="查询"/>
 						</form>	
-					</th>
+					</td>
 				</tr>
 				<tr>
 					<td>
 						&nbsp; 
 					</td>
 					<td>
+					</td>
+				</tr>
+				<tr>
+					<td>
+						&nbsp; 
+					</td>
+					<td>&nbsp;
 					</td>
 				</tr>
 			</table>

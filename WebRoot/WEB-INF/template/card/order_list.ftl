@@ -212,6 +212,9 @@ $().ready( function() {
 										${resultText(order.paymentConfig.paymentProductId,order.retCode)}
 									</span>
 								</td>
+								<td  width="250">
+									${resultText(order.paymentConfig.paymentProductId,"Ajax",order.retCode)}
+								</td>
 							</tr>
 						</#list>	
 				</table>
