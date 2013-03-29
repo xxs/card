@@ -263,9 +263,8 @@ public class SzfPay extends BasePaymentProduct {
 			String md5key = paymentConfig.getBargainorKey();
 			String datetime = DateUtil.getNowTime();
 			String md5src = version+merId+orderIds+queryBegin+queryEnd+privateKey;
-			String md5src = usercode + mode + version + orderno + format;
-			sign = EncodeUtils.testDigest(md5src + md5key);
-
+			String md5String = DigestUtils.md5Hex(md5src); //md5加密串
+			
 			HttpClient hClient = new HttpClient();
 			HttpConnectionManagerParams managerParams = hClient
 					.getHttpConnectionManager().getParams();
@@ -277,36 +276,21 @@ public class SzfPay extends BasePaymentProduct {
 			post = new PostMethod(QUERY_URL);
 			NameValuePair[] nvp = { new NameValuePair("mode", mode),
 					new NameValuePair("version", version),
-					new NameValuePair("usercode", usercode),
-					new NameValuePair("orderno", orderno),
-					new NameValuePair("format", format),
-					new NameValuePair("datetime", datetime),
-					new NameValuePair("sign", sign) };
+					new NameValuePair("merId", usercode),
+					new NameValuePair("queryResult", orderno),
+					new NameValuePair("orders", sign) };
 			post.setRequestBody(nvp);
 			post.setRequestHeader("Connection", "close");
 			hClient.executeMethod(post);
 			String returnStr = post.getResponseBodyAsString();
 			System.out.println("提交收卡支付返回:" + returnStr);
 			XmlStringParse xml = new XmlStringParse(returnStr);
-			String retusercode = xml.getParameter("usercode");
-			String retmode = xml.getParameter("mode");
-			String retversion = xml.getParameter("version");
-			String retorderno = xml.getParameter("orderno");
-			String retbillid = xml.getParameter("billid");
-			String retresult = xml.getParameter("result");
-			String retinfo = xml.getParameter("info");
-			String retdatetime = xml.getParameter("datetime");
-			String retsign = xml.getParameter("sign");
-			String retvalue = xml.getParameter("value");
-			String retaccountvalue = xml.getParameter("accountvalue");
+			String version = xml.getParameter("version");
+			String merId = xml.getParameter("merId");
+			String queryResult = xml.getParameter("queryResult");
+			String orders = xml.getParameter("orders");
 			
 			System.out.println(xml);
-			md5src = usercode + mode + version
-			+ orderno + retbillid + retresult + retinfo + retvalue + retaccountvalue
-			+ retdatetime;
-			if (!retsign.equals(EncodeUtils.testDigest(md5src + md5key))) {
-				System.out.println("加密验证失败");
-			}
 			post.releaseConnection();
 			post = null;
 			hClient = null;

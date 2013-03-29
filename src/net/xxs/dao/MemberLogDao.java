@@ -1,5 +1,7 @@
 package net.xxs.dao;
 
+import net.xxs.bean.Pager;
+import net.xxs.entity.Member;
 import net.xxs.entity.MemberLog;
 
 /**
@@ -8,4 +10,5 @@ import net.xxs.entity.MemberLog;
 
 public interface MemberLogDao extends BaseDao<MemberLog, String> {
 
+	public Pager getMemberLogPager(Member member,Pager pager);
 }

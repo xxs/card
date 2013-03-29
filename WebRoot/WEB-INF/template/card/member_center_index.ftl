@@ -50,7 +50,7 @@
 	                </li>
 	                <li>注册时间：${loginMember.createDate?string("yyyy-MM-dd HH:mm:ss")}
 	                	<span style="margin-right:40px;"></span>
-	                	上次登录IP：${loginMember.loginIp}<a href="" title="暂未开放" style="margin-left:6px;" >登录历史</a>
+	                	上次登录IP：${loginMember.loginIp}<a href="member_log!list.action?pager.searchBy=actionMethod&pager.keyword=login" style="margin-left:6px;" >登录历史</a>
 	                </li>
 	            </ul>
 	            </div>

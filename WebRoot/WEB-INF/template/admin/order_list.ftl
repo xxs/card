@@ -12,22 +12,6 @@
 <script type="text/javascript" src="${base}/template/common/js/jquery.pager.js"></script>
 <script type="text/javascript" src="${base}/template/admin/js/base.js"></script>
 <script type="text/javascript" src="${base}/template/admin/js/admin.js"></script>
-<script type="text/javascript">
-$().ready(function() {
-
-	var $print = $("#listForm .print");
-	
-	// 打印选择
-	$print.change( function() {
-		var $this = $(this);
-		
-		if ($this.val() != "") {
-			window.open($this.val());
-		}
-	});
-
-})
-</script>
 </head>
 <body class="list">
 	<div class="bar">
