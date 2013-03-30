@@ -25,6 +25,7 @@ import net.xxs.entity.PaymentConfig;
 import net.xxs.payment.util.ServerConnSzxUtils;
 import net.xxs.util.DateUtil;
 import net.xxs.util.EncodeUtils;
+import net.xxs.util.StringUtil;
 import net.xxs.util.XmlStringParse;
 
 import org.apache.commons.codec.digest.DigestUtils;
@@ -251,17 +252,13 @@ public class SzfPay extends BasePaymentProduct {
 		try {
 			// 创建非银行卡专业版消费请求结果
 			PaymentResult paymentResult = new PaymentResult();
-			String mode = QUERY_MODE;
 			String version = VERSION;//必传，目前版本3
 			String merId = paymentConfig.getBargainorId();//必传，商户在神州付的唯一身份标识（6位数字）
 			String orderIds = paymentSn;//多个订单号之间以”|”分隔，最多一次可以传20个订单号
 			String queryBegin = "";//格式：yyyy-MM-dd
 			String queryEnd = "";//格式：yyyy-MM-dd
 			String resultFormat = "1";
-			String sign = "";
 			String privateKey = paymentConfig.getBargainorKey();
-			String md5key = paymentConfig.getBargainorKey();
-			String datetime = DateUtil.getNowTime();
 			String md5src = version+merId+orderIds+queryBegin+queryEnd+privateKey;
 			String md5String = DigestUtils.md5Hex(md5src); //md5加密串
 			
@@ -274,35 +271,71 @@ public class SzfPay extends BasePaymentProduct {
 			managerParams.setSoTimeout(10000);
 			PostMethod post = null;
 			post = new PostMethod(QUERY_URL);
-			NameValuePair[] nvp = { new NameValuePair("mode", mode),
+			NameValuePair[] nvp = { 
 					new NameValuePair("version", version),
-					new NameValuePair("merId", usercode),
-					new NameValuePair("queryResult", orderno),
-					new NameValuePair("orders", sign) };
+					new NameValuePair("merId", merId),
+					new NameValuePair("orderIds", orderIds),
+					new NameValuePair("queryBegin", queryBegin),
+					new NameValuePair("queryEnd", queryEnd),
+					new NameValuePair("md5String", md5String),
+					new NameValuePair("resultFormat", resultFormat) };
 			post.setRequestBody(nvp);
 			post.setRequestHeader("Connection", "close");
 			hClient.executeMethod(post);
 			String returnStr = post.getResponseBodyAsString();
 			System.out.println("提交收卡支付返回:" + returnStr);
 			XmlStringParse xml = new XmlStringParse(returnStr);
-			String version = xml.getParameter("version");
-			String merId = xml.getParameter("merId");
-			String queryResult = xml.getParameter("queryResult");
-			String orders = xml.getParameter("orders");
+			String rversion = xml.getParameter("version");
+			String rmerId = xml.getParameter("merId");
+			String rqueryResult = xml.getParameter("queryResult");
+			String rorders = xml.getParameter("orders");
+			//---------子项变量
+			String RorderId = "";
+			String RpayMoney = "";
+			String RorderDate = "";
+			String RendDate = "";
+			String RpayStatus = "";
+			String RcardNo = "";
+			if(!"".equals(rorders)&&!StringUtil.isEmpty(rorders)){
+				XmlStringParse xml2 = new XmlStringParse(rorders);
+				RorderId = xml2.getParameter("orderId");
+				RpayMoney = xml2.getParameter("payMoney");
+				RorderDate = xml2.getParameter("orderDate");
+				RendDate = xml2.getParameter("endDate");
+				RpayStatus = xml2.getParameter("payStatus");
+				RcardNo = xml2.getParameter("cardNo");
+			}
+			
 			
 			System.out.println(xml);
 			post.releaseConnection();
 			post = null;
 			hClient = null;
-			
-			paymentResult.setCmd(retmode);
-			paymentResult.setCode(retresult);
-			paymentResult.setReturnMsg(retinfo);
-			paymentResult.setOrderSn(retorderno);
-			paymentResult.setHmac(EncodeUtils.testDigest(md5src + md5key));
-			if("2000".equals(retresult)||"2011".equals(retresult)){
-				paymentResult.setIsSuccess(true);
+			String rqueryText = null;
+			if("000".equals(rqueryResult)){
+				rqueryText = "查询成功";
+				if(!"".equals(rorders)&&!StringUtil.isEmpty(rorders)){
+					rqueryText = "查询成功";
+					paymentResult.setOrderSn(RorderId);
+					paymentResult.setCode(rqueryResult);
+					paymentResult.setReturnMsg(rqueryText);
+					if("1".equals(RpayStatus)){
+						paymentResult.setIsSuccess(true);
+					}else{
+						paymentResult.setIsSuccess(false);
+					}
+				}
+			}else if("001".equals(rqueryResult)){
+				rqueryText = "参数错误";
+				paymentResult.setIsSuccess(false);
+			}else if("002".equals(rqueryResult)){
+				rqueryText = "商户不存在";
+				paymentResult.setIsSuccess(false);
+			}else if("003".equals(rqueryResult)){
+				rqueryText = "md5校验失败";
+				paymentResult.setIsSuccess(false);
 			}else{
+				rqueryText = "状态不明";
 				paymentResult.setIsSuccess(false);
 			}
 			return paymentResult;

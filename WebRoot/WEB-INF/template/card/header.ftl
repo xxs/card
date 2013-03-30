@@ -19,8 +19,6 @@
     	<div class="top_995_right">
     		<p><a href="${base}/card/member!register.action" id="headerRegister">注册</a></p>
     		<span><a href="${base}/card/member_center!index.action" id="headerLogin">登陆</a></span> 
-    		<p><a href="${base}/card/member!logout.action" id="headerLogout">退出</a></p>
-    		<span><a href="${base}/card/member_center!index.action" id="headerMemberCenter">进入会员中心</a></span> 
     	</div>
   	</div>
 </div>

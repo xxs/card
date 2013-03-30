@@ -20,7 +20,6 @@ import javax.persistence.Transient;
 
 import net.xxs.bean.CardsImage;
 import net.xxs.bean.PageTemplateConfig;
-import net.xxs.bean.Setting;
 import net.xxs.bean.SpecificationValue;
 import net.xxs.util.JsonUtil;
 import net.xxs.util.ReflectionUtil;
@@ -360,8 +359,7 @@ public class Cards extends BaseEntity {
 		if (cardsImageList != null && cardsImageList.size() > 0) {
 			return cardsImageList.get(0).getBigImagePath();
 		} else {
-			Setting setting = SettingUtil.getSetting();
-			return setting.getDefaultBigCardsImagePath();
+			return null;
 		}
 	}
 	
@@ -372,8 +370,7 @@ public class Cards extends BaseEntity {
 		if (cardsImageList != null && cardsImageList.size() > 0) {
 			return cardsImageList.get(0).getSmallImagePath();
 		} else {
-			Setting setting = SettingUtil.getSetting();
-			return setting.getDefaultSmallCardsImagePath();
+			return null;
 		}
 	}
 	
@@ -384,8 +381,7 @@ public class Cards extends BaseEntity {
 		if (cardsImageList != null && cardsImageList.size() > 0) {
 			return cardsImageList.get(0).getThumbnailImagePath();
 		} else {
-			Setting setting = SettingUtil.getSetting();
-			return setting.getDefaultThumbnailCardsImagePath();
+			return null;
 		}
 	}
 	

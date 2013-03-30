@@ -57,33 +57,17 @@
 	                </span>
 	            </div>     
        			${article.contentText}
+       			<br />
        		</div>
         </div>
         </div>
         </div>
     </div>
+    <div class="clear"></div>
 	<#include "/WEB-INF/template/card/footer.ftl">
 	<script type="text/javascript" src="${base}/template/common/js/jquery.js"></script>
 	<script type="text/javascript" src="${base}/template/common/js/jquery.tools.js"></script>
 	<script type="text/javascript" src="${base}/template/card/js/base.js"></script>
 	<script type="text/javascript" src="${base}/template/card/js/card.js"></script>
-	<script type="text/javascript">
-		$().ready( function() {
-		
-			$hits = $("#hits");
-		
-			// 统计文章点击数
-			$.ajax({
-				url: "${base}/card/article!ajaxHits.action?id=${article.id}",
-				dataType: "json",
-				success: function(data) {
-					if (data.status == "success") {
-						$hits.text(data.hits);
-					}
-				}
-			});
-		
-		});
-		</script>
 </body>
 </html>

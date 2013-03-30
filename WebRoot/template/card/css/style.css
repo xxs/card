@@ -41,7 +41,7 @@
 		.banner_xiao a:hover{color:#f13;}
 		.banner_xiao a:visited{color:#fff}
 		.tab_menu {clear:both;height:32px;background-color:rgba(0,0,0,0.6);font: 12px Microsoft YaHei, Verdana; color:#fff}
- 		.tab_menu li {float:left;text-align:center;cursor:pointer;list-style:none; font-family:"Microsoft YaHei", Verdana; font-size:16px;margin-right:1px;width:148px;height:32px;line-height:32px; font-weight:bold;color:#000}
+ 		.tab_menu li {float:left;text-align:center;cursor:pointer;list-style:none; font-family:"Microsoft YaHei", Verdana; font-size:16px;margin-right:1px;width:250px;height:32px;line-height:32px; font-weight:bold;color:#000}
  		.tab_menu li.hover{color:#fff}
  		.tab_menu li.selected{color:#fff}
  		.tab_box {margin-top:0px;clear:both;height:230px; padding:23px 0 0 25px;}
@@ -102,7 +102,7 @@ background:url(../images/tg_flash_p2.png) no-repeat 0px 0px; _background:none; _
 .bottom{clear:both;height:50px;line-height:25px;text-align:center;width:760px;color:#929292;margin:0 auto 10px;}
 
 /* 版权 */
-.copyright{width:100%;height:246px;background:#dbdbdb;}
+.copyright{width:100%;height:246px;background:#dbdbdb;margin-top:10px;}
 .copyright_shang{ height:123px; padding-top:20px;border-bottom:1px solid #c0c0c0;width:995px; margin:0 auto;}
 .copyright_shang dl{float:left; display:block;}
 .copyright_shang dl dt{ font-size:12px;}
@@ -125,7 +125,7 @@ background:url(../images/tg_flash_p2.png) no-repeat 0px 0px; _background:none; _
 /* 内容区 */
 .column{margin:20px auto;width:995px;height:493px;}
 
-.column_left{float:left;width:175px;height:490px;background:#f8f8f8;border:1px solid #d7d7d7;}
+.column_left{float:left;width:175px;overflow: hidden;background:#f8f8f8;border:1px solid #d7d7d7;}
 .column_left_1{height:120px;background:url(../images/sda1.jpg) no-repeat;padding-top:10px;border-bottom:1px solid #d7d7d7; }
 .current{color:#DE0B14}
 .column_left_1 a{font-family:"Microsoft YaHei", Verdana;font-size:13px;display:block;text-align:center;width:52px; margin:0 auto;height:30px;}
@@ -138,10 +138,10 @@ background:url(../images/tg_flash_p2.png) no-repeat 0px 0px; _background:none; _
 .column_left_3 dl dd{width:100px;float:left;display:block;margin:8px 0 7px 3px;font-family:"Microsoft YaHei", Verdana;font-size:13px;}
 .column_left_3 dl p{width:40px;float:left;margin:8px 0 0 10px;padding-left:17px;}
 
-.column_right{overflow: hidden;width:770px;float:right;}
+.column_right{overflow: hidden;width:770px;float:right;padding-bottom:10px;}
 	.column_right_1{height:82px;line-height:82px;border:3px solid #d7d7d7;background:#f8f8f8;margin-bottom:10px;font-size:14px;font-weight:bold;color:#666666;}
 		.column_right_1 p{float:left;margin:24px 14px 0 129px;}
-	.column_right_2{height:395px;border:1px solid #d7d7d7; margin-bottom:20px;}
+	.column_right_2{overflow: hidden;border:1px solid #d7d7d7; margin-bottom:30px;}
 	.column_right_2_shang{height:50px;padding:45px 0 0 55px;}
 		.column_right_2_shang span{height:40px;width:580px;display:block; background:url(../images/sa3.jpg) no-repeat;padding-left:75px;border-bottom:1px dashed #878a86;}
 		.column_right_2_shang span font{font-family:"Microsoft YaHei", Verdana;font-size:20px;margin-top:50px;}
@@ -160,7 +160,9 @@ background:url(../images/tg_flash_p2.png) no-repeat 0px 0px; _background:none; _
 .right2 a:link{color:#2C93BC}
 .right2 a:hover{text-decoration:underline}
 .right2 ul{margin-top:0px;margin-left:57px;}
-.right2 ul li{margin-top:10px;}		
+.right2 ul li{margin-top:10px;}
+
+
 /* ---------- Login ---------- */
 .loginWindow .dialogContent {padding: 10px;margin: 0px;}
 .loginWindow table {width: 100%;}
@@ -273,3 +275,22 @@ ul,li{ list-style-type:none;}
 .pagination LI {MARGIN: 0px 1px; FLOAT: left}
 .pagination LI A {BACKGROUND-IMAGE: url(../images/pagination.png); WIDTH: 15px; DISPLAY: block; BACKGROUND-POSITION: 0px -1px; FLOAT: left; HEIGHT: 0px; OVERFLOW: hidden; PADDING-TOP: 12px}
 .pagination LI.current A {BACKGROUND-POSITION: 0px -18px}
+
+/*表格样式*/
+.tab{margin-left:57px;}
+.tab table{border:1px solid #B2D6F2;border-collapse:collapse;padding:0px;margin:0px}
+.tab table tr th{height:30px;background:url(../images/title3.gif) repeat-x;border:1px solid #B2D6F2;color:#5183A6;font-size:12px;padding:0px;margin:0px;font-family:"Microsoft YaHei", Verdana}
+.tab table tr td{width:auto;height:30px;border:1px solid #B2D6F2;color:#006298;text-align:center;vertical-align:middle;font-family:"Microsoft YaHei", Verdana;padding:0px}
+
+.tab2{margin-left:0px;}
+.tab2 table{border:1px solid #B2D6F2;border-collapse:collapse;padding:0px;margin:0px}
+.tab2 table tr th{height:30px;background:url(../images/title3.gif) repeat-x;border:1px solid #B2D6F2;color:#5183A6;font-size:12px;padding:0px;margin:0px;font-family:"Microsoft YaHei", Verdana}
+.tab2 table tr td{width:auto;height:30px;border:1px solid #B2D6F2;color:#006298;text-align:center;vertical-align:middle;font-family:"Microsoft YaHei", Verdana;padding:0px}
+/*表格样式*/
+.tab_top{margin-left:57px;font-family:"Microsoft YaHei", Verdana;font-size:13px;margin-bottom:10px;width:680px;}
+.tab_top a:link{color:black;line-height:18px;}
+.tab_top a:hover{text-decoration:underline;color:blue}
+.tab{margin-left:57px;}
+.tab table{border:1px solid #B2D6F2;border-collapse:collapse;padding:0px;margin:0px}
+.tab table tr th{height:30px;background:url(../images/title3.gif) repeat-x;border:1px solid #B2D6F2;color:#5183A6;font-size:12px;padding:0px;margin:0px;font-family:"Microsoft YaHei", Verdana}
+.tab table tr td{width:auto;height:30px;border:1px solid #B2D6F2;color:#006298;text-align:center;vertical-align:middle;font-family:"Microsoft YaHei", Verdana;padding:0px}

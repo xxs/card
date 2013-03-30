@@ -49,7 +49,7 @@
         </div>
     </div>
     <div class="column_right">
-   	    <div class="column_right_1"><p>您尚未登陆，请点击<a href="${base}/card/promotion.action">登陆</a>立即参与到分享二维码，推荐会员拿提成活动</div>
+   	    <div class="column_right_1"><p><img src="/template/card/images/hhh.jpg" width="38" height="37" alt="jj" /></p>您尚未登陆，请点击<a href="${base}/card/promotion.action" class="red" style="margin-left:5px;margin-right:5px;">登陆</a>立即参与到分享二维码，推荐会员拿提成活动</div>
         <div class="column_right_2">
             <#list pager.result as deposit>
             <div class="column_right_2_shang">
@@ -67,16 +67,12 @@
 							${deposit.debit?string(currencyFormat)}
 						</#if>
 				</p>
-					
             </div>     
 			</#list>
           </div>
         </div>
     </div>
 </div>
-		<div class="blank"></div>
-		<#include "/WEB-INF/template/card/friend_link.ftl">
-	</div>
 	<div class="blank"></div>
 	<#include "/WEB-INF/template/card/footer.ftl">
 </body>

@@ -10,7 +10,6 @@
 <link rel="icon" href="favicon.ico" type="image/x-icon" />
 <link href="${base}/template/card/css/base.css" rel="stylesheet" type="text/css" />
 <link href="${base}/template/card/css/style.css" rel="stylesheet" type="text/css" />
-
 	<!--[if lte IE 6]>
 	<script type="text/javascript" src="${base}/template/common/js/belatedPNG.js"></script>
 	<script type="text/javascript">
@@ -18,35 +17,6 @@
 		DD_belatedPNG.fix(".belatedPNG");
 	</script>
 	<![endif]-->
-	<!--鼠标移动到登录挂件标签后自动切换的JS-->
-	<script type="text/javascript" >
-	$().ready( function() {
-		$(".gonggao").bind("click",function(event){
-		alert("huanying");
-			$content = event.target.name;
-			$title = event.target.title;
-			$.showAdviceWindow($title,$content);
-			return false;
-		});
-	});
-	//<![CDATA[
-		$(function(){
-		    var $div_li =$("div.tab_menu ul li");
-		    $div_li.mouseover(function(){//要点击切换这click
-				$(this).addClass("selected")            //当前<li>元素高亮
-					   .siblings().removeClass("selected");  //去掉其它同辈<li>元素的高亮
-	            var index =  $div_li.index(this);  // 获取当前点击的<li>元素 在 全部li元素中的索引。
-				$("div.tab_box > div")   	//选取子节点。不选取子节点的话，会引起错误。如果里面还有div 
-						.eq(index).show()   //显示 <li>元素对应的<div>元素
-						.siblings().hide(); //隐藏其它几个同辈的<div>元素
-			}).hover(function(){
-				$(this).addClass("hover");
-			},function(){
-				$(this).removeClass("hover");
-			})
-		})
-	//]]>
-	</script>
 </head>
 <body>
 	<#include "/WEB-INF/template/card/header.ftl">
@@ -70,11 +40,11 @@
     	<div class="banner_over">
      		<div class="banner_right">
     			<div class="banner_xiao">
-					<div class="tab">
+					<div>
 						<div class="tab_menu">
 							<ul>
 								<li class="selected">会员登录</li>
-								<li>已登录</li>
+								
 							</ul>
 		 				</div>
 		 			<div class="tab_box" id="loginWindowContext"> 

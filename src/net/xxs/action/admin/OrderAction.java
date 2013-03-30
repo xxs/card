@@ -188,7 +188,7 @@ public class OrderAction extends BaseAdminAction {
 				if ((paymentResult == null || StringUtils.isEmpty(paymentResult.getOrderSn()))){
 					jsonMap.put(STATUS_PARAMETER_NAME, "fail");
 					jsonMap.put("orderSn", orderSn);
-					jsonMap.put("message", "缺失订单号！");
+					jsonMap.put("message", "查无此单！");
 					return ajax(jsonMap);
 				}
 				order = orderService.getOrderByOrderSn(paymentResult.getOrderSn());

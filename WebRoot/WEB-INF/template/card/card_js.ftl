@@ -44,19 +44,17 @@ $().ready( function() {
 	if ($header.size() > 0) {
 		var $headerLogin = $("#headerLogin");
 		var $headerRegister = $("#headerRegister");
-		var $headerMemberCenter = $("#headerMemberCenter");
-		var $headerLogout = $("#headerLogout");
 		$.flushHeaderInfo = function () {
 			if(getCookie("memberUsername") != null) {
-				$headerMemberCenter.show();
-				$headerLogout.show();
-				$headerLogin.hide();
-				$headerRegister.hide();
+				$headerLogin.attr("href","${base}/card/member_center!index.action");
+				$headerLogin.html("进入会员中心");
+				$headerRegister.attr("href","${base}/card/member!logout.action");
+				$headerRegister.html("退出");
 			} else {
-				$headerLogin.show();
-				$headerRegister.show();
-				$headerMemberCenter.hide();
-				$headerLogout.hide();
+				$headerLogin.attr("href","${base}/card/member_center!index.action");
+				$headerLogin.html("登陆");
+				$headerRegister.attr("href","${base}/card/member!register.action");
+				$headerRegister.html("注册");
 			}
 		}
 		
