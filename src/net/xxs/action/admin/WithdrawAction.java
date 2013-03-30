@@ -138,7 +138,6 @@ public class WithdrawAction extends BaseAdminAction {
 		setting.setWithdrawEveryDayMoney(withdrawEveryDayMoney);
 		setting.setWithdrawEveryDayCount(withdrawEveryDayCount);
 		SettingUtil.updateSetting(setting);
-		cacheService.flushLeaveMessagePageCache(getRequest());
 		redirectUrl = "withdraw!setting.action";
 		return SUCCESS;
 	}

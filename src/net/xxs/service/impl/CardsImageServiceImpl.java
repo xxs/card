@@ -42,7 +42,6 @@ public class CardsImageServiceImpl implements CardsImageService, ServletContextA
 		File bigCardsImageFile = new File(servletContext.getRealPath(cardsImage.getBigImagePath()));
 		File smallCardsImageFile = new File(servletContext.getRealPath(cardsImage.getSmallImagePath()));
 		File thumbnailCardsImageFile = new File(servletContext.getRealPath(cardsImage.getThumbnailImagePath()));
-		File watermarkImageFile = new File(servletContext.getRealPath(setting.getWatermarkImagePath()));
 
 		File sourceCardsImageParentFile = sourceCardsImageFile.getParentFile();
 		File bigCardsImageParentFile = bigCardsImageFile.getParentFile();
@@ -67,10 +66,6 @@ public class CardsImageServiceImpl implements CardsImageService, ServletContextA
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-		ImageUtil.reduceAndImageWatermark(cardsImageFile, bigCardsImageFile, setting.getBigCardsImageWidth(), setting.getBigCardsImageHeight(), watermarkImageFile, setting.getWatermarkPosition(), setting.getWatermarkAlpha());
-		ImageUtil.reduceAndImageWatermark(cardsImageFile, smallCardsImageFile, setting.getSmallCardsImageWidth(), setting.getSmallCardsImageHeight(), watermarkImageFile, setting.getWatermarkPosition(), setting.getWatermarkAlpha());
-		ImageUtil.reduce(cardsImageFile, thumbnailCardsImageFile, setting.getThumbnailCardsImageHeight(), setting.getThumbnailCardsImageWidth());
-		
 		return cardsImage;
 	}
 

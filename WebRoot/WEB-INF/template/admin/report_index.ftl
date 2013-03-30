@@ -19,17 +19,13 @@
 		<table class="listTable">
 				<tr>
 					<th>
-						目前在线人数：${onlineList?size} 人
+						日期范围：
 					</th>
 					<th>&nbsp;
 					</th>	
 				</tr>
 				<tr>
-					<td >
-						日期范围：
-						
-					</td>
-					<td>
+					<td colspan="2">
 						<form action="report!info.action" method="post" name="thisform">
 							<input name="beginDate" onclick="WdatePicker()" value="${tempBeginDate}" />
 							~

@@ -18,5 +18,6 @@
 	<li><a href="password!safe.action">密保问题</a></li>
 	<li><a href="password!edit.action">登录密码</a></li>
 	<li><a href="password!withdrawPwd.action">提现密码</a></li>
+	<li><a href="member_log!list.action">操作记录</a></li>
 	<li><a href="promotion.action">推广链接</a></li>
 </ul>

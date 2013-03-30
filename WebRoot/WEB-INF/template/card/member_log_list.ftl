@@ -16,16 +16,23 @@
 	<div class="contentRight">
 		<div class="katong">
 			<div class="fangz">用户操作日志 </div>
-			<div class="red">注：请一定正确选择卡面值提交,否则造成损失商户自行承担； </div>
-			<div class="hei">可点击<a class="formButton" href="bank!add.action">添加账户</a>页面添加</div>
+			<div class="red">注：以下为用户的重要操作信息！ </div>
+			<div class="hei">
+				操作类型：${pager.keyword}${pager.searchBy}
+				<select name="pager.searchBy">
+					<option value="">请选择...${pager.keyword}</option>
+					<option value="login" <#if pager.keyword == "login">selected="selected"</#if>>会员登陆</option>
+				</select>
+				<a class="formButton" href="bank!add.action">查询</a>
+			</div>
 			<br/>
 			<div class="memberCenter">
 			<div class="tab3">
 			<table width="760px" cellspacing=0>
 				<tr>
 					<th>操作类型	</th>
-					<th>日志信息</th>
 					<th>操作时间</th>
+					<th>记录信息</th>
 					<th>IP地址</th>
 				</tr>
 					<#list pager.result as memberLog>
@@ -34,10 +41,10 @@
 								${memberLog.operation}
 							</td>
 							<td>
-								${memberLog.info}
+								${memberLog.createDate}
 							</td>
 							<td>
-								${memberLog.createDate}
+								${memberLog.info}
 							</td>
 							<td>
 								${memberLog.ip}

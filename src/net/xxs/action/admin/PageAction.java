@@ -1,13 +1,19 @@
 package net.xxs.action.admin;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.annotation.Resource;
 
+import net.xxs.bean.Setting;
+import net.xxs.listener.SessionListener;
 import net.xxs.service.ArticleService;
 import net.xxs.service.CardsService;
 import net.xxs.service.MemberService;
 import net.xxs.service.MessageService;
 import net.xxs.service.OrderService;
 import net.xxs.service.WithdrawService;
+import net.xxs.util.SettingUtil;
 
 import org.apache.commons.lang.StringUtils;
 import org.apache.struts2.convention.annotation.ParentPackage;
@@ -20,7 +26,9 @@ import org.apache.struts2.convention.annotation.ParentPackage;
 public class PageAction extends BaseAdminAction {
 
 	private static final long serialVersionUID = 3148667965663281403L;
-
+	private List onlineList = new ArrayList();
+	private Setting setting;
+	
 	@Resource(name = "orderServiceImpl")
 	private OrderService orderService;
 	@Resource(name = "messageServiceImpl")
@@ -56,6 +64,9 @@ public class PageAction extends BaseAdminAction {
 	
 	// 后台首页
 	public String index() {
+		onlineList = SessionListener.getSessions();  
+		System.out.println(onlineList.size());
+		setting = SettingUtil.getSetting();
 		return "index";
 	}
 	
@@ -122,6 +133,22 @@ public class PageAction extends BaseAdminAction {
 	// 获取Servlet版本
 	public String getServletVersion() {
 		return getServletContext().getMajorVersion() + "." + getServletContext().getMinorVersion();
+	}
+
+	public List getOnlineList() {
+		return onlineList;
+	}
+
+	public void setOnlineList(List onlineList) {
+		this.onlineList = onlineList;
+	}
+
+	public Setting getSetting() {
+		return setting;
+	}
+
+	public void setSetting(Setting setting) {
+		this.setting = setting;
 	}
 
 }

@@ -11,9 +11,11 @@ import javax.annotation.Resource;
 import javax.servlet.http.HttpSession;
 
 import net.xxs.bean.Report;
+import net.xxs.bean.Setting;
 import net.xxs.entity.Withdraw.WithdrawStatus;
 import net.xxs.listener.SessionListener;
 import net.xxs.service.ReportService;
+import net.xxs.util.SettingUtil;
 
 import org.apache.struts2.convention.annotation.ParentPackage;
 
@@ -113,8 +115,6 @@ public class ReportAction extends BaseAdminAction {
 		if(endDate!=null){
 			tempEndDate = sf.format(endDate);
 		}
-		onlineList = SessionListener.getSessions();  
-		System.out.println(onlineList.size());
 		return "index";
 	}
 	public List<Report> getReportList() {

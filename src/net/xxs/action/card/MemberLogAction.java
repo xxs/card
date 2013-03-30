@@ -29,6 +29,8 @@ public class MemberLogAction extends BaseCardAction {
 	
 	// 列表
 	public String list() {
+		System.out.println(pager.getSearchBy());
+		System.out.println(pager.getKeyword());
 		pager = memberLogService.getMemberLogPager(getLoginMember(),pager);
 		return LIST;
 	}

@@ -68,10 +68,26 @@
 				</tr>
 				<tr>
 					<td width="110">
-						已上架充值卡: 
+						目前在线人数: 
 					</td>
 					<td>
-						${marketableCardsCount}
+						${onlineList?size} 人
+					</td>
+				</tr>
+				<tr>
+					<td width="110">
+						历史在线高峰: 
+					</td>
+					<td>
+						同时 ${setting.onLineMaxCount} 人在线，发生在${setting.onLineMaxCountDate}
+					</td>
+				</tr>
+				<tr>
+					<td width="110">
+						目前充值卡种类: 
+					</td>
+					<td>
+						${marketableCardsCount} 种
 					</td>
 				</tr>
 				<tr>
@@ -80,14 +96,6 @@
 					</td>
 					<td>
 						${memberTotalCount}  人
-					</td>
-				</tr>
-				<tr>
-					<td>
-						文章总数: 
-					</td>
-					<td>
-						${articleTotalCount}  篇
 					</td>
 				</tr>
 			</table>

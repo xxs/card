@@ -138,23 +138,7 @@ public class SettingAction extends BaseAdminAction {
 			File destCardLogo = new File(getRealPath(persistent.getCardLogoPath()));
 			ImageUtil.toJpegImageFile(cardLogo, destCardLogo);
 		}
-		if (defaultBigCardsImage != null) {
-			File destDefaultBigCardsImage = new File(getRealPath(persistent.getDefaultBigCardsImagePath()));
-			ImageUtil.toJpegImageFile(defaultBigCardsImage, destDefaultBigCardsImage);
-		}
-		if (defaultSmallCardsImage != null) {
-			File destDefaultSmallCardsImage = new File(getRealPath(persistent.getDefaultSmallCardsImagePath()));
-			ImageUtil.toJpegImageFile(defaultSmallCardsImage, destDefaultSmallCardsImage);
-		}
-		if (defaultThumbnailCardsImage != null) {
-			File destDefaultThumbnailCardsImage = new File(getRealPath(persistent.getDefaultThumbnailCardsImagePath()));
-			ImageUtil.toJpegImageFile(defaultThumbnailCardsImage, destDefaultThumbnailCardsImage);
-		}
-		if (watermarkImage != null) {
-			File destWatermarkImage = new File(getRealPath(persistent.getWatermarkImagePath()));
-			ImageUtil.toJpegImageFile(watermarkImage, destWatermarkImage);
-		}
-		BeanUtils.copyProperties(setting, persistent, new String[] {"cardName","cardUrl","currencyType","currencySign","currencyUnit","priceScale","priceRoundType","watermarkImagePath","watermarkPosition","watermarkAlpha","bigCardsImageWidth","bigCardsImageHeight","smallCardsImageWidth","smallCardsImageHeight","thumbnailCardsImageWidth","thumbnailCardsImageHeight","defaultBigCardsImagePath","defaultSmallCardsImagePath","defaultThumbnailCardsImagePath","scoreType","scoreScale","isInstantMessagingEnabled","instantMessagingPosition","instantMessagingTitle","isLeaveMessageEnabled","isLeaveMessageCaptchaEnabled","leaveMessageDisplayType","cardLogoPath","systemName", "systemVersion", "systemDescription", "contextPath", "imageUploadPath", "imageBrowsePath", "adminLoginUrl", "adminLoginProcessingUrl", "isShowPoweredInfo","withdrawEveryDayCount","withdrawEveryDayMoney","withdrawEveryMaxMoney","withdrawEveryMinMoney","withdrawMaxMoney","withdrawMaxCount", "cardLogoPath", "defaultBigCardsImagePath", "defaultSmallCardsImagePath", "defaultThumbnailCardsImagePath", "watermarkImagePath", "isInstantMessagingEnabled", "instantMessagingPosition", "instantMessagingTitle", "isLeaveMessageEnabled", "isLeaveMessageCaptchaEnabled", "leaveMessageDisplayType", "isCommentEnabled", "isCommentCaptchaEnabled", "commentAuthority", "commentDisplayType"});
+		BeanUtils.copyProperties(setting, persistent, new String[] {"cardName","cardUrl","currencyType","currencySign","currencyUnit","priceScale","priceRoundType","scoreType","scoreScale","isInstantMessagingEnabled","isLeaveMessageEnabled","isLeaveMessageCaptchaEnabled","leaveMessageDisplayType","cardLogoPath","systemName", "systemVersion", "systemDescription", "contextPath", "imageUploadPath", "imageBrowsePath", "adminLoginUrl", "adminLoginProcessingUrl", "isShowPoweredInfo","withdrawEveryDayCount","withdrawEveryDayMoney","withdrawEveryMaxMoney","withdrawEveryMinMoney","withdrawMaxMoney","withdrawMaxCount", "cardLogoPath", "defaultBigCardsImagePath", "defaultSmallCardsImagePath", "defaultThumbnailCardsImagePath", "watermarkImagePath", "isInstantMessagingEnabled", "instantMessagingPosition", "instantMessagingTitle", "isLeaveMessageEnabled", "isLeaveMessageCaptchaEnabled", "leaveMessageDisplayType", "isCommentEnabled", "isCommentCaptchaEnabled", "commentAuthority", "commentDisplayType"});
 		SettingUtil.updateSetting(persistent);
 		
 		cacheService.flushAllPageCache(getRequest());

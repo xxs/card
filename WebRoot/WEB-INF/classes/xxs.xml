@@ -39,18 +39,8 @@
 		<withdrawEveryMinMoney>0</withdrawEveryMinMoney>  
 		<withdrawMaxMoney>0</withdrawMaxMoney>
 		<withdrawMaxCount>0</withdrawMaxCount>  
-		<watermarkImagePath>/images/watermark.jpg</watermarkImagePath>  
-		<watermarkPosition>bottomRight</watermarkPosition>  
-		<watermarkAlpha>50</watermarkAlpha>  
-		<bigCardsImageWidth>500</bigCardsImageWidth>  
-		<bigCardsImageHeight>500</bigCardsImageHeight>  
-		<smallCardsImageWidth>300</smallCardsImageWidth>  
-		<smallCardsImageHeight>300</smallCardsImageHeight>  
-		<thumbnailCardsImageWidth>140</thumbnailCardsImageWidth>  
-		<thumbnailCardsImageHeight>140</thumbnailCardsImageHeight>  
-		<defaultBigCardsImagePath>/images/default_big_cards_image.jpg</defaultBigCardsImagePath>  
-		<defaultSmallCardsImagePath>/images/default_small_cards_image.jpg</defaultSmallCardsImagePath>  
-		<defaultThumbnailCardsImagePath>/images/default_thumbnail_cards_image.jpg</defaultThumbnailCardsImagePath>  
+		<onLineMaxCount>0</onLineMaxCount>  
+		<onLineMaxCountDate>2012-12-12</onLineMaxCountDate>  
 		<smtpFromMail>test@xxs.net</smtpFromMail>  
 		<smtpHost>smtp.xxs.net</smtpHost>  
 		<smtpPort>25</smtpPort>  
@@ -61,8 +51,6 @@
 		<buildHtmlDelayTime>0</buildHtmlDelayTime>  
 		<isGzipEnabled>false</isGzipEnabled>  
 		<isInstantMessagingEnabled>true</isInstantMessagingEnabled>  
-		<instantMessagingPosition>right</instantMessagingPosition>  
-		<instantMessagingTitle>7 × 24小时服务</instantMessagingTitle>  
 		<isLeaveMessageEnabled>true</isLeaveMessageEnabled>  
 		<isLeaveMessageCaptchaEnabled>true</isLeaveMessageCaptchaEnabled>  
 		<leaveMessageDisplayType>direct</leaveMessageDisplayType>  

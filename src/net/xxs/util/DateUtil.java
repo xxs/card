@@ -12,6 +12,10 @@ public class DateUtil {
 				"yyyyMMddHHmmss");// 添加不同的参数，显示不同格式的日期
 		return simpleDateFormat.format(now).toString();
 	}
+	public static String getDate(Date date,String format) {
+		SimpleDateFormat simpleDateFormat = new SimpleDateFormat(format);// 添加不同的参数，显示不同格式的日期
+		return simpleDateFormat.format(date).toString();
+	}
 	// 获取当天日期
 	public static Date getNowDate() {
 		return new Date();

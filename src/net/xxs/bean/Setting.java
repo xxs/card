@@ -86,18 +86,8 @@ public class Setting {
 	private Integer withdrawEveryMinMoney;// 每次提现最小金额(单位: 元,0表示不限制)
 	private Integer withdrawMaxCount;// 提现中的提现最大次数(单位: 次,0表示不限制)
 	private Integer withdrawMaxMoney;// 提现中的提现最大金额(单位: 元,0表示不限制)
-	private String watermarkImagePath; // 水印图片路径
-	private WatermarkPosition watermarkPosition; // 水印位置
-	private Integer watermarkAlpha;// 水印透明度
-	private Integer bigCardsImageWidth;// 充值卡图片(大)宽度
-	private Integer bigCardsImageHeight;// 充值卡图片(大)高度
-	private Integer smallCardsImageWidth;// 充值卡图片(小)宽度
-	private Integer smallCardsImageHeight;// 充值卡图片(小)高度
-	private Integer thumbnailCardsImageWidth;// 充值卡缩略图宽度
-	private Integer thumbnailCardsImageHeight;// 充值卡缩略图高度
-	private String defaultBigCardsImagePath;// 默认充值卡图片(大)
-	private String defaultSmallCardsImagePath;// 默认充值卡图片(小)
-	private String defaultThumbnailCardsImagePath;// 默认缩略图
+	private Integer onLineMaxCount;// 在线最大的人数
+	private String onLineMaxCountDate;// 在线最大的人数发生日期
 	private String smtpFromMail;// 发件人邮箱
 	private String smtpHost;// SMTP服务器地址
 	private Integer smtpPort;// SMTP服务器端口
@@ -107,9 +97,6 @@ public class Setting {
 	private Double scoreScale;// 积分换算比率
 	private Integer buildHtmlDelayTime;// 生成HTML任务延时(单位: 秒)
 	private Boolean isGzipEnabled;// 是否开启GZIP功能
-	private Boolean isInstantMessagingEnabled;// 是否开启在线客服功能
-	private InstantMessagingPosition instantMessagingPosition;// 在线客服位置
-	private String instantMessagingTitle;// 在线客服标题
 	private Boolean isLeaveMessageEnabled;// 是否开启在线留言功能
 	private Boolean isLeaveMessageCaptchaEnabled;// 是否开启在线留言验证码功能
 	private LeaveMessageDisplayType leaveMessageDisplayType;// 在线留言显示方式
@@ -346,102 +333,6 @@ public class Setting {
 		this.isRegisterEnabled = isRegisterEnabled;
 	}
 
-	public String getWatermarkImagePath() {
-		return watermarkImagePath;
-	}
-
-	public void setWatermarkImagePath(String watermarkImagePath) {
-		this.watermarkImagePath = watermarkImagePath;
-	}
-
-	public WatermarkPosition getWatermarkPosition() {
-		return watermarkPosition;
-	}
-
-	public void setWatermarkPosition(WatermarkPosition watermarkPosition) {
-		this.watermarkPosition = watermarkPosition;
-	}
-
-	public Integer getWatermarkAlpha() {
-		return watermarkAlpha;
-	}
-
-	public void setWatermarkAlpha(Integer watermarkAlpha) {
-		this.watermarkAlpha = watermarkAlpha;
-	}
-
-	public Integer getBigCardsImageWidth() {
-		return bigCardsImageWidth;
-	}
-
-	public void setBigCardsImageWidth(Integer bigCardsImageWidth) {
-		this.bigCardsImageWidth = bigCardsImageWidth;
-	}
-
-	public Integer getBigCardsImageHeight() {
-		return bigCardsImageHeight;
-	}
-
-	public void setBigCardsImageHeight(Integer bigCardsImageHeight) {
-		this.bigCardsImageHeight = bigCardsImageHeight;
-	}
-
-	public Integer getSmallCardsImageWidth() {
-		return smallCardsImageWidth;
-	}
-
-	public void setSmallCardsImageWidth(Integer smallCardsImageWidth) {
-		this.smallCardsImageWidth = smallCardsImageWidth;
-	}
-
-	public Integer getSmallCardsImageHeight() {
-		return smallCardsImageHeight;
-	}
-
-	public void setSmallCardsImageHeight(Integer smallCardsImageHeight) {
-		this.smallCardsImageHeight = smallCardsImageHeight;
-	}
-
-	public Integer getThumbnailCardsImageWidth() {
-		return thumbnailCardsImageWidth;
-	}
-
-	public void setThumbnailCardsImageWidth(Integer thumbnailCardsImageWidth) {
-		this.thumbnailCardsImageWidth = thumbnailCardsImageWidth;
-	}
-
-	public Integer getThumbnailCardsImageHeight() {
-		return thumbnailCardsImageHeight;
-	}
-
-	public void setThumbnailCardsImageHeight(Integer thumbnailCardsImageHeight) {
-		this.thumbnailCardsImageHeight = thumbnailCardsImageHeight;
-	}
-
-	public String getDefaultBigCardsImagePath() {
-		return defaultBigCardsImagePath;
-	}
-
-	public void setDefaultBigCardsImagePath(String defaultBigCardsImagePath) {
-		this.defaultBigCardsImagePath = defaultBigCardsImagePath;
-	}
-
-	public String getDefaultSmallCardsImagePath() {
-		return defaultSmallCardsImagePath;
-	}
-
-	public void setDefaultSmallCardsImagePath(String defaultSmallCardsImagePath) {
-		this.defaultSmallCardsImagePath = defaultSmallCardsImagePath;
-	}
-
-	public String getDefaultThumbnailCardsImagePath() {
-		return defaultThumbnailCardsImagePath;
-	}
-
-	public void setDefaultThumbnailCardsImagePath(String defaultThumbnailCardsImagePath) {
-		this.defaultThumbnailCardsImagePath = defaultThumbnailCardsImagePath;
-	}
-
 	public String getSmtpFromMail() {
 		return smtpFromMail;
 	}
@@ -514,30 +405,6 @@ public class Setting {
 		this.isGzipEnabled = isGzipEnabled;
 	}
 
-	public Boolean getIsInstantMessagingEnabled() {
-		return isInstantMessagingEnabled;
-	}
-
-	public void setIsInstantMessagingEnabled(Boolean isInstantMessagingEnabled) {
-		this.isInstantMessagingEnabled = isInstantMessagingEnabled;
-	}
-
-	public InstantMessagingPosition getInstantMessagingPosition() {
-		return instantMessagingPosition;
-	}
-
-	public void setInstantMessagingPosition(InstantMessagingPosition instantMessagingPosition) {
-		this.instantMessagingPosition = instantMessagingPosition;
-	}
-
-	public String getInstantMessagingTitle() {
-		return instantMessagingTitle;
-	}
-
-	public void setInstantMessagingTitle(String instantMessagingTitle) {
-		this.instantMessagingTitle = instantMessagingTitle;
-	}
-
 	public Boolean getIsLeaveMessageEnabled() {
 		return isLeaveMessageEnabled;
 	}
@@ -608,6 +475,22 @@ public class Setting {
 
 	public void setWithdrawMaxMoney(Integer withdrawMaxMoney) {
 		this.withdrawMaxMoney = withdrawMaxMoney;
+	}
+
+	public Integer getOnLineMaxCount() {
+		return onLineMaxCount;
+	}
+
+	public void setOnLineMaxCount(Integer onLineMaxCount) {
+		this.onLineMaxCount = onLineMaxCount;
+	}
+
+	public String getOnLineMaxCountDate() {
+		return onLineMaxCountDate;
+	}
+
+	public void setOnLineMaxCountDate(String onLineMaxCountDate) {
+		this.onLineMaxCountDate = onLineMaxCountDate;
 	}
 
 	// 获取热门搜索关键词集合

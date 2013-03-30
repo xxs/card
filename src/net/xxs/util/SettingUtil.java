@@ -10,11 +10,9 @@ import java.text.NumberFormat;
 
 import net.xxs.bean.Setting;
 import net.xxs.bean.Setting.CurrencyType;
-import net.xxs.bean.Setting.InstantMessagingPosition;
 import net.xxs.bean.Setting.LeaveMessageDisplayType;
 import net.xxs.bean.Setting.RoundType;
 import net.xxs.bean.Setting.ScoreType;
-import net.xxs.bean.Setting.WatermarkPosition;
 
 import org.dom4j.Document;
 import org.dom4j.DocumentException;
@@ -88,18 +86,8 @@ public class SettingUtil {
 		Node withdrawEveryMinMoneyNode = document.selectSingleNode("/xxs/setting/withdrawEveryMinMoney");
 		Node withdrawMaxMoneyNode = document.selectSingleNode("/xxs/setting/withdrawMaxMoney");
 		Node withdrawMaxCountNode = document.selectSingleNode("/xxs/setting/withdrawMaxCount");
-		Node watermarkImagePathNode = document.selectSingleNode("/xxs/setting/watermarkImagePath");
-		Node watermarkPositionNode = document.selectSingleNode("/xxs/setting/watermarkPosition");
-		Node watermarkAlphaNode = document.selectSingleNode("/xxs/setting/watermarkAlpha");
-		Node bigCardsImageWidthNode = document.selectSingleNode("/xxs/setting/bigCardsImageWidth");
-		Node bigCardsImageHeightNode = document.selectSingleNode("/xxs/setting/bigCardsImageHeight");
-		Node smallCardsImageWidthNode = document.selectSingleNode("/xxs/setting/smallCardsImageWidth");
-		Node smallCardsImageHeightNode = document.selectSingleNode("/xxs/setting/smallCardsImageHeight");
-		Node thumbnailCardsImageWidthNode = document.selectSingleNode("/xxs/setting/thumbnailCardsImageWidth");
-		Node thumbnailCardsImageHeightNode = document.selectSingleNode("/xxs/setting/thumbnailCardsImageHeight");
-		Node defaultBigCardsImagePathNode = document.selectSingleNode("/xxs/setting/defaultBigCardsImagePath");
-		Node defaultSmallCardsImagePathNode = document.selectSingleNode("/xxs/setting/defaultSmallCardsImagePath");
-		Node defaultThumbnailCardsImagePathNode = document.selectSingleNode("/xxs/setting/defaultThumbnailCardsImagePath");
+		Node onLineMaxCountNode = document.selectSingleNode("/xxs/setting/onLineMaxCount");
+		Node onLineMaxCountDateNode = document.selectSingleNode("/xxs/setting/onLineMaxCountDate");
 		Node smtpFromMailNode = document.selectSingleNode("/xxs/setting/smtpFromMail");
 		Node smtpHostNode = document.selectSingleNode("/xxs/setting/smtpHost");
 		Node smtpPortNode = document.selectSingleNode("/xxs/setting/smtpPort");
@@ -109,9 +97,6 @@ public class SettingUtil {
 		Node scoreScaleNode = document.selectSingleNode("/xxs/setting/scoreScale");
 		Node isGzipEnabledNode = document.selectSingleNode("/xxs/setting/isGzipEnabled");
 		Node buildHtmlDelayTimeNode = document.selectSingleNode("/xxs/setting/buildHtmlDelayTime");
-		Node isInstantMessagingEnabledNode = document.selectSingleNode("/xxs/setting/isInstantMessagingEnabled");
-		Node instantMessagingPositionNode = document.selectSingleNode("/xxs/setting/instantMessagingPosition");
-		Node instantMessagingTitleNode = document.selectSingleNode("/xxs/setting/instantMessagingTitle");
 		Node isLeaveMessageEnabledNode = document.selectSingleNode("/xxs/setting/isLeaveMessageEnabled");
 		Node isLeaveMessageCaptchaEnabledNode = document.selectSingleNode("/xxs/setting/isLeaveMessageCaptchaEnabled");
 		Node leaveMessageDisplayTypeNode = document.selectSingleNode("/xxs/setting/leaveMessageDisplayType");
@@ -138,6 +123,8 @@ public class SettingUtil {
 		setting.setWithdrawEveryMinMoney(Integer.valueOf(withdrawEveryMinMoneyNode.getText()));
 		setting.setWithdrawMaxMoney(Integer.valueOf(withdrawMaxMoneyNode.getText()));
 		setting.setWithdrawMaxCount(Integer.valueOf(withdrawMaxCountNode.getText()));
+		setting.setOnLineMaxCount(Integer.valueOf(onLineMaxCountNode.getText()));
+		setting.setOnLineMaxCountDate(onLineMaxCountDateNode.getText());
 		setting.setAddress(addressNode.getText());
 		setting.setPhone(phoneNode.getText());
 		setting.setZipCode(zipCodeNode.getText());
@@ -152,18 +139,6 @@ public class SettingUtil {
 		setting.setLoginFailureLockCount(Integer.valueOf(loginFailureLockCountNode.getText()));
 		setting.setLoginFailureLockTime(Integer.valueOf(loginFailureLockTimeNode.getText()));
 		setting.setIsRegisterEnabled(Boolean.valueOf(isRegisterEnabledNode.getText()));
-		setting.setWatermarkImagePath(watermarkImagePathNode.getText());
-		setting.setWatermarkPosition(WatermarkPosition.valueOf(watermarkPositionNode.getText()));
-		setting.setWatermarkAlpha(Integer.valueOf(watermarkAlphaNode.getText()));
-		setting.setBigCardsImageWidth(Integer.valueOf(bigCardsImageWidthNode.getText()));
-		setting.setBigCardsImageHeight(Integer.valueOf(bigCardsImageHeightNode.getText()));
-		setting.setSmallCardsImageWidth(Integer.valueOf(smallCardsImageWidthNode.getText()));
-		setting.setSmallCardsImageHeight(Integer.valueOf(smallCardsImageHeightNode.getText()));
-		setting.setThumbnailCardsImageWidth(Integer.valueOf(thumbnailCardsImageWidthNode.getText()));
-		setting.setThumbnailCardsImageHeight(Integer.valueOf(thumbnailCardsImageHeightNode.getText()));
-		setting.setDefaultBigCardsImagePath(defaultBigCardsImagePathNode.getText());
-		setting.setDefaultSmallCardsImagePath(defaultSmallCardsImagePathNode.getText());
-		setting.setDefaultThumbnailCardsImagePath(defaultThumbnailCardsImagePathNode.getText());
 		setting.setSmtpFromMail(smtpFromMailNode.getText());
 		setting.setSmtpHost(smtpHostNode.getText());
 		setting.setSmtpPort(Integer.valueOf(smtpPortNode.getText()));
@@ -173,9 +148,6 @@ public class SettingUtil {
 		setting.setScoreScale(Double.valueOf(scoreScaleNode.getText()));
 		setting.setBuildHtmlDelayTime(Integer.valueOf(buildHtmlDelayTimeNode.getText()));
 		setting.setIsGzipEnabled(Boolean.valueOf(isGzipEnabledNode.getText()));
-		setting.setIsInstantMessagingEnabled(Boolean.valueOf(isInstantMessagingEnabledNode.getText()));
-		setting.setInstantMessagingPosition(InstantMessagingPosition.valueOf(instantMessagingPositionNode.getText()));
-		setting.setInstantMessagingTitle(instantMessagingTitleNode.getText());
 		setting.setIsLeaveMessageEnabled(Boolean.valueOf(isLeaveMessageEnabledNode.getText()));
 		setting.setIsLeaveMessageCaptchaEnabled(Boolean.valueOf(isLeaveMessageCaptchaEnabledNode.getText()));
 		setting.setLeaveMessageDisplayType(LeaveMessageDisplayType.valueOf(leaveMessageDisplayTypeNode.getText()));
@@ -252,14 +224,8 @@ public class SettingUtil {
 		Node withdrawEveryMinMoneyNode = document.selectSingleNode("/xxs/setting/withdrawEveryMinMoney");
 		Node withdrawMaxMoneyNode = document.selectSingleNode("/xxs/setting/withdrawMaxMoney");
 		Node withdrawMaxCountNode = document.selectSingleNode("/xxs/setting/withdrawMaxCount");
-		Node watermarkPositionNode = document.selectSingleNode("/xxs/setting/watermarkPosition");
-		Node watermarkAlphaNode = document.selectSingleNode("/xxs/setting/watermarkAlpha");
-		Node bigCardsImageWidthNode = document.selectSingleNode("/xxs/setting/bigCardsImageWidth");
-		Node bigCardsImageHeightNode = document.selectSingleNode("/xxs/setting/bigCardsImageHeight");
-		Node smallCardsImageWidthNode = document.selectSingleNode("/xxs/setting/smallCardsImageWidth");
-		Node smallCardsImageHeightNode = document.selectSingleNode("/xxs/setting/smallCardsImageHeight");
-		Node thumbnailCardsImageWidthNode = document.selectSingleNode("/xxs/setting/thumbnailCardsImageWidth");
-		Node thumbnailCardsImageHeightNode = document.selectSingleNode("/xxs/setting/thumbnailCardsImageHeight");
+		Node onLineMaxCountNode = document.selectSingleNode("/xxs/setting/onLineMaxCount");
+		Node onLineMaxCountDateNode = document.selectSingleNode("/xxs/setting/onLineMaxCountDate");
 		Node smtpFromMailNode = document.selectSingleNode("/xxs/setting/smtpFromMail");
 		Node smtpHostNode = document.selectSingleNode("/xxs/setting/smtpHost");
 		Node smtpPortNode = document.selectSingleNode("/xxs/setting/smtpPort");
@@ -349,35 +315,17 @@ public class SettingUtil {
 	    if(withdrawMaxCountNode == null){
 	    	withdrawMaxCountNode = settingElement.addElement("withdrawMaxCount");
 	    }	
+	    if(onLineMaxCountNode == null){
+	    	onLineMaxCountNode = settingElement.addElement("onLineMaxCount");
+	    }	
+	    if(onLineMaxCountDateNode == null){
+	    	onLineMaxCountDateNode = settingElement.addElement("onLineMaxCountDate");
+	    }	
 		if(loginFailureLockTimeNode == null){
 			loginFailureLockTimeNode = settingElement.addElement("loginFailureLockTime");
 		}
 		if(isRegisterEnabledNode == null){
 			isRegisterEnabledNode = settingElement.addElement("isRegisterEnabled");
-		}
-		if(watermarkPositionNode == null){
-			watermarkPositionNode = settingElement.addElement("watermarkPosition");
-		}
-		if(watermarkAlphaNode == null){
-			watermarkAlphaNode = settingElement.addElement("watermarkAlpha");
-		}
-		if(bigCardsImageWidthNode == null){
-			bigCardsImageWidthNode = settingElement.addElement("bigCardsImageWidth");
-		}
-		if(bigCardsImageHeightNode == null){
-			bigCardsImageHeightNode = settingElement.addElement("bigCardsImageHeight");
-		}
-		if(smallCardsImageWidthNode == null){
-			smallCardsImageWidthNode = settingElement.addElement("smallCardsImageWidth");
-		}
-		if(smallCardsImageHeightNode == null){
-			smallCardsImageHeightNode = settingElement.addElement("smallCardsImageHeight");
-		}
-		if(thumbnailCardsImageWidthNode == null){
-			thumbnailCardsImageWidthNode = settingElement.addElement("thumbnailCardsImageWidth");
-		}
-		if(thumbnailCardsImageHeightNode == null){
-			thumbnailCardsImageHeightNode = settingElement.addElement("thumbnailCardsImageHeight");
 		}
 		if(smtpFromMailNode == null){
 			smtpFromMailNode = settingElement.addElement("smtpFromMail");
@@ -463,15 +411,10 @@ public class SettingUtil {
 		withdrawEveryMinMoneyNode.setText(String.valueOf(setting.getWithdrawEveryMinMoney()));
 		withdrawMaxMoneyNode.setText(String.valueOf(setting.getWithdrawMaxMoney()));
 		withdrawMaxCountNode.setText(String.valueOf(setting.getWithdrawMaxCount()));
+
+		onLineMaxCountDateNode.setText(String.valueOf(setting.getOnLineMaxCountDate()));
+		onLineMaxCountNode.setText(String.valueOf(setting.getOnLineMaxCount()));
 		
-		watermarkPositionNode.setText(String.valueOf(setting.getWatermarkPosition()));
-		watermarkAlphaNode.setText(String.valueOf(setting.getWatermarkAlpha()));
-		bigCardsImageWidthNode.setText(String.valueOf(setting.getBigCardsImageWidth()));
-		bigCardsImageHeightNode.setText(String.valueOf(setting.getBigCardsImageHeight()));
-		smallCardsImageWidthNode.setText(String.valueOf(setting.getSmallCardsImageWidth()));
-		smallCardsImageHeightNode.setText(String.valueOf(setting.getSmallCardsImageHeight()));
-		thumbnailCardsImageWidthNode.setText(String.valueOf(setting.getThumbnailCardsImageWidth()));
-		thumbnailCardsImageHeightNode.setText(String.valueOf(setting.getThumbnailCardsImageHeight()));
 		smtpFromMailNode.setText(setting.getSmtpFromMail());
 		smtpHostNode.setText(setting.getSmtpHost());
 		smtpPortNode.setText(String.valueOf(setting.getSmtpPort()));
@@ -481,9 +424,6 @@ public class SettingUtil {
 		scoreScaleNode.setText(setting.getScoreScale().toString());
 		buildHtmlDelayTimeNode.setText(setting.getBuildHtmlDelayTime().toString());
 		isGzipEnabledNode.setText(setting.getIsGzipEnabled().toString());
-		isInstantMessagingEnabledNode.setText(setting.getIsInstantMessagingEnabled().toString());
-		instantMessagingPositionNode.setText(setting.getInstantMessagingPosition().toString());
-		instantMessagingTitleNode.setText(setting.getInstantMessagingTitle());
 		isLeaveMessageEnabledNode.setText(setting.getIsLeaveMessageEnabled().toString());
 		isLeaveMessageCaptchaEnabledNode.setText(setting.getIsLeaveMessageCaptchaEnabled().toString());
 		leaveMessageDisplayTypeNode.setText(setting.getLeaveMessageDisplayType().toString());
