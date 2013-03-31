@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="content-type" content="text/html; charset=utf-8" />
-<title>订单列表 - XXS</title>
+<title>会员私有折扣列表 - XXS</title>
 <meta name="Author" content="XXS-DW" />
 <meta name="Copyright" content="XXS" />
 <link rel="icon" href="favicon.ico" type="image/x-icon" />
@@ -15,21 +15,20 @@
 </head>
 <body class="list">
 	<div class="bar">
-		订单列表&nbsp;总记录数: ${pager.totalCount} (共${pager.pageCount}页)
+		会员折扣管理&nbsp;总记录数: ${pager.totalCount} (共${pager.pageCount}页)
 	</div>
 	<div class="body">
-		<form id="listForm" action="order!list.action" method="post">
+		<form id="listForm" action="member_discount!list.action" method="post">
 			<div class="listBar">
+				<input type="button" class="formButton" onclick="location.href='member_discount!add.action'" value="添加" hidefocus />
+				&nbsp;&nbsp;
 				<label>查找: </label>
 				<select name="pager.searchBy">
-					<option value="orderSn"<#if pager.searchBy == "orderSn"> selected</#if>>
-						订单编号
+					<option value="discountnum"<#if pager.searchBy == "discountnum"> selected</#if>>
+						会员名
 					</option>
-					<option value="member.username"<#if pager.searchBy == "member.username"> selected</#if>>
-						用户名
-					</option>
-					<option value="cardNum"<#if pager.searchBy == "cardNum"> selected</#if>>
-						充值卡卡号
+					<option value="openname"<#if pager.searchBy == "openname"> selected</#if>>
+						卡种品牌
 					</option>
 				</select>
 				<input type="text" name="pager.keyword" value="${pager.keyword!}" />
@@ -57,71 +56,34 @@
 						<input type="checkbox" class="allCheck" />
 					</th>
 					<th>
-						<a href="#" class="sort" name="orderSn" hidefocus>订单编号</a>
+						<a href="#" class="sort" name="discountnum" hidefocus>会员名</a>
 					</th>
 					<th>
-						<a href="#" class="sort" name="member" hidefocus>用户名</a>
+						<a href="#" class="sort" name="openname" hidefocus>卡种品牌</a>
 					</th>
 					<th>
-						<a href="#" class="sort" name="orderSn" hidefocus>卡种类型</a>
-					</th>
-					<th>
-						<a href="#" class="sort" name="amount" hidefocus>面额</a>
-					</th>
-					<th>
-						<a href="#" class="sort" name="amount" hidefocus>折扣率</a>
-					</th>
-					<th>
-						<a href="#" class="sort" name="paymentConfigName" hidefocus>支付方式</a>
-					</th>
-					<th>
-						<a href="#" class="sort" name="cardNum" hidefocus>卡号,密码</a>
-					</th>
-					<th>
-						<a href="#" class="sort" name="createDate" hidefocus>下单时间</a>
-					</th>
-					<th>
-						<a href="#" class="sort" name="orderStatus" hidefocus>订单状态</a>
+						<a href="#" class="sort" name="discountname" hidefocus>折扣率</a>
 					</th>
 					<th>
 						<span>操作</span>
 					</th>
 				</tr>
-				<#list pager.result as order>
+				<#list pager.result as memberdiscount>
 					<tr>
 						<td>
-							<input type="checkbox" name="ids" value="${order.id}" />
+							<input type="checkbox" name="ids" value="${memberdiscount.id}" />
 						</td>
 						<td>
-							${order.orderSn}
+							${memberdiscount.member.username}
 						</td>
 						<td>
-							${(order.member.username)!"-"}
+							${memberdiscount.brand.name}
 						</td>
 						<td>
-							${order.productName}
+							${memberdiscount.discount}
 						</td>
 						<td>
-							${order.amount?string(currencyFormat)}
-						</td>
-						<td>
-							${order.cardDiscount*100}%
-						</td>
-						<td>
-							${order.paymentConfigName}
-						</td>
-						<td>
-							${order.cardNum},${order.cardPwd}
-						</td>
-						<td>
-							<span title="${order.createDate?string("yyyy-MM-dd HH:mm:ss")}">${order.createDate}</span>
-						</td>
-						<td>
-							${action.getText("OrderStatus." + order.orderStatus)}
-						</td>
-						<td>
-							<a href="order!view.action?id=${order.id}" title="查看">[查看]</a>
-							<a href="order!process.action?id=${order.id}" title="处理">[处理]</a>
+							<a href="member_discount!edit.action?id=${memberdiscount.id}" title="编辑">[编辑]</a>
 						</td>
 					</tr>
 				</#list>
@@ -129,7 +91,7 @@
 			<#if (pager.result?size > 0)>
 				<div class="pagerBar">
 					<div class="delete">
-						<input type="button" id="deleteButton" class="formButton" url="order!delete.action" value="删 除" disabled hidefocus />
+						<input type="button" id="deleteButton" class="formButton" url="member_discount!delete.action" value="删 除" disabled hidefocus />
 					</div>
 					<div class="pager">
 						<#include "/WEB-INF/template/admin/pager.ftl" />

@@ -185,6 +185,9 @@ $().ready( function() {
 				<li>
 					<input type="button" value="银行卡信息" hidefocus />
 				</li>
+				<li>
+					<input type="button" value="优惠信息" hidefocus />
+				</li>
 			</ul>
 			<table id="infoTable" class="inputTable tabContent">
 				<tr>
@@ -400,10 +403,10 @@ $().ready( function() {
 						提成订单号
 					</th>
 				</tr>
-				<#list (member.depositSet)! as deposit>
+				<#list pager.result as deposit>
 					<tr >
 						<td>
-							${action.getText("DepositType." + deposit.depositType)}
+							${deposit.depositType}
 						</td>
 						<td>
 							${deposit.credit}
@@ -426,6 +429,15 @@ $().ready( function() {
 					</tr>
 				</#list>
 			</table>
+			<#if (pager.result?size > 0)>
+				<div class="pagerBar">
+					<div class="pager">
+						<#include "/WEB-INF/template/admin/pager.ftl" />
+					</div>
+				<div>
+			<#else>
+				<div class="noRecord">没有找到任何记录!</div>
+			</#if>
 			<table id="memberBankTable" class="inputTable tabContent">
 				<tr class="title">
 					<th>
@@ -475,6 +487,26 @@ $().ready( function() {
 						</td>
 					</tr>
 				</#list>
+			</table>
+			<table id="memberDiscountTable" class="inputTable tabContent">
+				<tr class="title">
+					<th>
+						充值卡品牌
+					</th>
+					<th>
+						折扣率
+					</th>
+				</tr>
+					<#list (member.memberDiscountSet)! as memberDiscount>
+						<tr >
+							<td>
+								${memberDiscount.brand.name}
+							</td>
+							<td>
+								${memberDiscount.discount}
+							</td>
+						</tr>
+					</#list>
 			</table>
 			<div class="buttonArea">
 				<input type="submit" class="formButton" value="确  定" hidefocus />&nbsp;&nbsp;

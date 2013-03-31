@@ -65,7 +65,6 @@ public class PageAction extends BaseAdminAction {
 	// 后台首页
 	public String index() {
 		onlineList = SessionListener.getSessions();  
-		System.out.println(onlineList.size());
 		setting = SettingUtil.getSetting();
 		return "index";
 	}

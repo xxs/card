@@ -20,6 +20,7 @@ import net.xxs.service.DepositService;
 import net.xxs.service.MemberAttributeService;
 import net.xxs.service.MemberRankService;
 import net.xxs.service.MemberService;
+import net.xxs.service.WithdrawService;
 import net.xxs.util.CheckUtil;
 import net.xxs.util.StringUtil;
 
@@ -48,7 +49,7 @@ public class MemberAction extends BaseAdminAction {
 
 	private Member member;
 	private Map<String, String[]> memberAttributeValueMap;
-
+	
 	@Resource(name = "memberServiceImpl")
 	private MemberService memberService;
 	@Resource(name = "memberRankServiceImpl")
@@ -57,6 +58,8 @@ public class MemberAction extends BaseAdminAction {
 	private MemberAttributeService memberAttributeService;
 	@Resource(name = "depositServiceImpl")
 	private DepositService depositService;
+	@Resource(name = "withdrawServiceImpl")
+	private WithdrawService withdrawService;
 
 	// 是否已存在 ajax验证
 	public String checkUsername() {
@@ -103,6 +106,7 @@ public class MemberAction extends BaseAdminAction {
 	// 编辑
 	public String edit() {
 		member = memberService.load(id);
+		pager = withdrawService.getWithdeawPager(member, pager);
 		return INPUT;
 	}
 

@@ -99,7 +99,7 @@ public class Member extends BaseEntity {
 	private Set<Message> outboxMessageSet = new HashSet<Message>();// 发件箱消息
 	private Set<Order> orderSet = new HashSet<Order>();// 订单
 	private Set<Deposit> depositSet = new HashSet<Deposit>();// 预存款
-	//新添加选项
+	private Set<MemberDiscount> memberDiscountSet = new HashSet<MemberDiscount>();// 会员私有折扣率
 	private Set<MemberBank> memberBankSet = new HashSet<MemberBank>();//银行卡信息
 	
 
@@ -535,6 +535,15 @@ public class Member extends BaseEntity {
 		this.memberBankSet = memberBankSet;
 	}
 	
+	@OneToMany(mappedBy = "member", fetch = FetchType.LAZY, cascade = {CascadeType.REMOVE})
+	@OrderBy("createDate asc")
+	public Set<MemberDiscount> getMemberDiscountSet() {
+		return memberDiscountSet;
+	}
+
+	public void setMemberDiscountSet(Set<MemberDiscount> memberDiscountSet) {
+		this.memberDiscountSet = memberDiscountSet;
+	}
 	// 获取会员注册项值
 	@Transient
 	public Object getMemberAttributeValue(MemberAttribute memberAttribute) {
@@ -643,7 +652,7 @@ public class Member extends BaseEntity {
 			throw new IllegalArgumentException("memberAttributeValue error");
 		}
 	}
-	
+
 	// 保存处理
 	@Override
 	@Transient

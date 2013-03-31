@@ -21,6 +21,11 @@
 					<a href="member!list.action" target="mainFrame">会员管理</a>
 				</dd>
 			</@sec.authorize>
+			<@sec.authorize ifAnyGranted="ROLE_MEMBER_DISCOUNT">
+				<dd>
+					<a href="member_discount!list.action" target="mainFrame">会员折扣</a>
+				</dd>
+			</@sec.authorize>
 			<@sec.authorize ifAnyGranted="ROLE_MEMBER_RANK">
 				<dd>
 					<a href="member_rank!list.action" target="mainFrame">会员等级</a>

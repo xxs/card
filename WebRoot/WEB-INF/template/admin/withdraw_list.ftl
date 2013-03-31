@@ -66,13 +66,13 @@
 						<a href="#" class="sort" name="memberBank" hidefocus>提现账户</a>    
 					</th>
 					<th>
-						<a href="#" class="sort" name="message" hidefocus>操作类型</a>    
+						<a href="#" class="sort" name="bankname" hidefocus>提现银行</a>    
 					</th>
 					<th>
 						<a href="#" class="sort" name="money" hidefocus>提现金额</a>
 					</th>
 					<th>
-						<a href="#" class="sort" name="totalMoney" hidefocus>实发金额</a>
+						<a href="#" class="sort" name="totalMoney" hidefocus>应发金额</a>
 					</th>
 					<th>
 						<a href="#" class="sort" name="createDate" hidefocus>日期</a>
@@ -96,10 +96,10 @@
 							${(withdraw.member.username)!"-"}
 						</td>
 						<td>
-							${(withdraw.memberBank.banknum)!"-"}
+							${(withdraw.banknum)!"-"}
 						</td>
 						<td>
-							${withdraw.message}
+							${withdraw.bankname}
 						</td>
 						<td>
 							${withdraw.money?string(currencyFormat)}

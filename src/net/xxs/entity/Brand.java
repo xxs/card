@@ -29,7 +29,9 @@ public class Brand extends BaseEntity {
 	private Integer orderList;// 排序
 	
 	private Set<PaymentDiscount> paymentDiscountSet = new HashSet<PaymentDiscount>();// 费率设置
+	private Set<MemberDiscount> memberDiscountSet = new HashSet<MemberDiscount>();// 会员私有折扣率
 	private Set<Cards> cardsSet = new HashSet<Cards>();// 充值卡
+	
 
 	@Column(nullable = false)
 	public String getName() {
@@ -81,7 +83,17 @@ public class Brand extends BaseEntity {
 	public void setCardsSet(Set<Cards> cardsSet) {
 		this.cardsSet = cardsSet;
 	}
+	
+	@OneToMany(mappedBy = "brand", fetch = FetchType.LAZY, cascade = {CascadeType.REMOVE})
+	@OrderBy("createDate asc")
+	public Set<MemberDiscount> getMemberDiscountSet() {
+		return memberDiscountSet;
+	}
 
+	public void setMemberDiscountSet(Set<MemberDiscount> memberDiscountSet) {
+		this.memberDiscountSet = memberDiscountSet;
+	}
+	
 	// 保存处理
 	@Override
 	@Transient

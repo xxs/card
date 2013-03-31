@@ -137,6 +137,9 @@ $().ready(function() {
 							<input type="checkbox" name="role.authorityList" class="roleAuthorityList" value="ROLE_MEMBER"<#if (isAddAction || role.authorityList.contains("ROLE_MEMBER"))!> checked</#if> />会员管理
 						</label>
 						<label>
+							<input type="checkbox" name="role.authorityList" class="roleAuthorityList" value="ROLE_MEMBER_DISCOUNT"<#if (isAddAction || role.authorityList.contains("ROLE_MEMBER_DISCOUNT"))!> checked</#if> />会员折扣
+						</label>
+						<label>
 							<input type="checkbox" name="role.authorityList" class="roleAuthorityList" value="ROLE_MEMBER_RANK"<#if (isAddAction || role.authorityList.contains("ROLE_MEMBER_RANK"))!> checked</#if> />会员等级管理
 						</label>
 						<label>

@@ -55,7 +55,7 @@ $().ready(function() {
 							<a href="menu!order.action" target="menuFrame" hidefocus>订单处理</a>
 						</li>
 					</@sec.authorize>
-					<@sec.authorize ifAnyGranted="ROLE_MEMBER,ROLE_MEMBER_RANK,ROLE_MEMBER_ATTRIBUTE,ROLE_COMMENT,ROLE_LEAVE_MESSAGE">
+					<@sec.authorize ifAnyGranted="ROLE_MEMBER,ROLE_MEMBER_DISCOUNT,ROLE_MEMBER_RANK,ROLE_MEMBER_ATTRIBUTE,ROLE_COMMENT,ROLE_LEAVE_MESSAGE">
 						<li class="menuItem">
 							<a href="menu!member.action" target="menuFrame" hidefocus>会员管理</a>
 						</li>

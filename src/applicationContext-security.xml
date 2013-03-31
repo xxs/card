@@ -32,6 +32,8 @@
 		<sec:intercept-url pattern="/admin/withdraw!**" access="ROLE_WITHDRAW" />
 		<!-- 会员管理 -->
 		<sec:intercept-url pattern="/admin/member!**" access="ROLE_MEMBER" />
+		<!-- 会员折扣 -->
+		<sec:intercept-url pattern="/admin/member_discount!**" access="ROLE_MEMBER_DISCOUNT" />
 		<!-- 会员等级管理 -->
 		<sec:intercept-url pattern="/admin/member_rank!**" access="ROLE_MEMBER_RANK" />
 		<!-- 会员注册项管理 -->
