@@ -178,7 +178,7 @@ background:url(../images/tg_flash_p2.png) no-repeat 0px 0px; _background:none; _
 .login .loginDetail table {width: 100%;}
 .login .loginDetail th {width: 160px;line-height: 35px;padding-right: 10px;text-align: right;font-weight: normal;}
 .login .loginDetail td {line-height: 35px;text-align: left;}
-.login .loginDetail .captcha {width: 95px;margin-right: 1px;text-transform: uppercase;}
+.captcha {width: 95px;margin-right: 1px;text-transform: uppercase;}
 .login .loginDetail .captchaImage {vertical-align: middle;cursor: pointer;}
 .ssh{width:100px;height:22px;float:left;}
 .ssh1{width:100px;height:22px;float:left;margin-left:20px;}

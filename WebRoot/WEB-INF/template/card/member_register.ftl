@@ -247,7 +247,7 @@
 			</li>
 			<li>
 				<div class="ssh3"><label class="email">&nbsp;&nbsp;&nbsp;&nbsp;验证码：</label></div>
-				<div class="ssh"><input type="text" id="registerCaptcha" name="j_captcha" class="formText captcha" style="width:90px"/></div>
+				<div class="ssh"><input type="text" id="registerCaptcha" maxlength="4" name="j_captcha" class="formText captcha" style="width:90px"/></div>
 				<div class="ssh1"><img id="registerCaptchaImage" class="captchaImage" src="${base}/captcha.jpeg" alt="换一张" /></div>
 				<dfn>输入图片中的验证码</dfn>
 			</li>

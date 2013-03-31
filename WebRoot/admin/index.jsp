@@ -182,7 +182,7 @@ $().ready( function() {
                 		验证码:
                 	</th>
                     <td>
-                    	<input type="text" id="captcha" name="j_captcha" class="formText captcha" />
+                    	<input type="text" id="captcha" name="j_captcha" maxlength="4" class="formText captcha" />
                    		<img id="captchaImage" class="captchaImage" src="<%=base%>/captcha.jpeg" alt="换一张" />
                     </td>
                 </tr>
