@@ -78,6 +78,11 @@ public class MemberDiscountAction extends BaseAdminAction {
 		}
 		Member member = memberService.getMemberByUsername(memberDiscount.getMember().getUsername());
 		Brand brand =  brandService.get(memberDiscount.getBrand().getId());
+		//验证是否此会员添加过此品牌的折扣率
+		if (memberDiscountService.isExistDiscount(member, brand)) {
+			addActionError("会员"+member.getUsername()+"的"+brand.getName()+"优惠折扣率已存在，请查询后更新即可!");
+			return ERROR;
+		}
 		memberDiscount.setMember(member);
 		memberDiscount.setBrand(brand);
 		memberDiscountService.save(memberDiscount);

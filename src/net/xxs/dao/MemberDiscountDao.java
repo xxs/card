@@ -1,5 +1,7 @@
 package net.xxs.dao;
 
+import net.xxs.entity.Brand;
+import net.xxs.entity.Member;
 import net.xxs.entity.MemberDiscount;
 
 /**
@@ -7,5 +9,9 @@ import net.xxs.entity.MemberDiscount;
  */
 
 public interface MemberDiscountDao extends BaseDao<MemberDiscount, String> {
-	
+	/**
+	 * 判断会员的此品牌是否存在
+	 * 
+	 */
+	public MemberDiscount getDiscountByMemberAndBrand(Member member,Brand brand);
 }

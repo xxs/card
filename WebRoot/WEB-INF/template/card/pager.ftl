@@ -3,6 +3,15 @@
 		<li class="pageInfo">
 			共 ${pageCount} 页
 		</li>
+		<li class="pageInfo">
+			跳转到 
+			<select>
+				<#list (pageItem?keys)! as key>
+					<option value="${base}${pageItem[key]}">${key}</option>
+				</#list>
+			</select>
+			 页
+		</li>
 		
 		<#if (pageNumber > 1)>
 			<li class="firstPage">

@@ -1,5 +1,6 @@
 package net.xxs.action.card;
 
+import java.math.BigDecimal;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -14,6 +15,7 @@ import net.xxs.bean.Card;
 import net.xxs.directive.PaymentResultMethod;
 import net.xxs.entity.Brand;
 import net.xxs.entity.Member;
+import net.xxs.entity.MemberDiscount;
 import net.xxs.entity.Order;
 import net.xxs.entity.Order.OrderStatus;
 import net.xxs.entity.OrderLog;
@@ -24,6 +26,7 @@ import net.xxs.entity.Product;
 import net.xxs.payment.BasePaymentProduct;
 import net.xxs.payment.PaymentResult;
 import net.xxs.service.BrandService;
+import net.xxs.service.MemberDiscountService;
 import net.xxs.service.OrderLogService;
 import net.xxs.service.OrderService;
 import net.xxs.service.PaymentConfigService;
@@ -88,6 +91,8 @@ public class OrderAction extends BaseCardAction {
 	private ProductService productService;
 	@Resource(name = "brandServiceImpl")
 	private BrandService brandService;
+	@Resource(name = "memberDiacountServiceImpl")
+	private MemberDiscountService memberDiacountService;
 	
 	
 	public List<Card> jiexi(String str){
@@ -139,37 +144,13 @@ public class OrderAction extends BaseCardAction {
 				return ajax(Status.error,paymentConfig.getName()+"暂不支持名额为："+product.getPrice()+"元的"+product.getCards().getName());
 			}
 		}
-		//生成订单
-		order = new Order();
-		order.setBrandId(brand.getId());//此列不能为空
-		order.setOrderStatus(OrderStatus.paymenting);
-		order.setPaymentConfigName(paymentConfig.getName());
-		order.setAmount(SettingUtil.setPriceScale(product.getPrice()));//默认充值卡面额为订单金额
-		order.setMemo(memo);
-		order.setMember(loginMember);
-		order.setPaymentConfig(paymentConfig);
-		order.setProductSn(product.getProductSn());
-		order.setProductName(product.getName());//货品名称
-		order.setProductPrice(product.getPrice());//价格默认为销售价
-		order.setCardCode(paymentDiscount.getCode());//通道编码
-		order.setCardDiscount(paymentDiscount.getDiscount());//即时折扣率
-		order.setProduct(product);
-		order.setCardNum(cardNum);//卡号
-		order.setCardPwd(cardPwd);//密码
-		orderService.save(order);
-		order = orderService.get(order.getId());
-		// 订单日志
-		OrderLog orderLog = new OrderLog();
-		orderLog.setOrderLogType(OrderLogType.create);
-		orderLog.setOrderSn(order.getOrderSn());
-		orderLog.setOperator(null);
-		orderLog.setInfo(null);
-		orderLog.setOrder(order);
-		orderLogService.save(orderLog);
-		//生成支付单
+		Double tempmemberdiscount = 0.00;
+		MemberDiscount md =  memberDiacountService.getDiscountByMemberAndBrand(loginMember, brand);
+		if(md!=null){
+			tempmemberdiscount = md.getDiscount();
+		}
+		order = makeOrder(loginMember, product, brand, paymentDiscount,	tempmemberdiscount);
 		BasePaymentProduct paymentProduct = PaymentProductUtil.getPaymentProduct(paymentConfig.getPaymentProductId());
-		String bankName = paymentProduct.getName();
-		String bankAccount = paymentConfig.getBargainorId();
 		//发送支付信息
 		try {
 			paymentResult = paymentProduct.cardPay(paymentConfig,order, getRequest());
@@ -196,100 +177,38 @@ public class OrderAction extends BaseCardAction {
 		}
 		return ajax(Status.success,"提交成功");
 	}
-	//保存提交的充值卡订单
-	@Validations(
-		requiredStrings = {
-			@RequiredStringValidator(fieldName = "paymentConfig.id", message = "请选择一个支付通道!"),
-			@RequiredStringValidator(fieldName = "productId", message = "请选择一种面额!"),
-			@RequiredStringValidator(fieldName = "cardString", message = "请输入卡密组合!")
-		},
-		stringLengthFields = {
-			@StringLengthFieldValidator(fieldName = "cardString", minLength = "1", maxLength = "1000", message = "卡密组长度超出限制!")
-		}
-	)
-	@InputConfig(resultName = "error")
-	public String batch() {
-		List<Card> cardList = null;
-		try {
-			cardList = jiexi(cardString);
-		} catch (Exception e) {
-			return ajax(Status.error,"卡号组解析异常，请严格按照给定的格式填写!");
-		}
-		if(null == cardList){
-			return ajax(Status.error,"请至少输入一个卡密组合!");
-		}
-		Member loginMember = getLoginMember();
-		Product product = productService.load(productId);
-		paymentConfig = paymentConfigService.load(paymentConfig.getId());//获取支付方式
-		String paymentConfigName = paymentConfig.getName();//设置支付方式名称
-		Brand brand = product.getCards().getBrand();//为order准备brandId
-		PaymentDiscount paymentDiscount = paymentDiscountService.getPaymentDiscountByPaymentConfigAndBrand(paymentConfig, brand);
-		if (null == paymentDiscount){
-			return ajax(Status.error,"通道信息异常!请与客服联系解决！");
-		}
-		if(!"0".equals(paymentDiscount.getFace())){
-			if (containsAny(paymentDiscount.getFace(),String.valueOf(product.getPrice().intValue()))){
-				return ajax(Status.error,paymentConfig.getName()+"暂不支持名额为："+product.getPrice()+"元的"+product.getCards().getName());
-			}
-		}
-		for (int i = 0; i < cardList.size(); i++) {
-			Card card = cardList.get(i);
-			//生成订单
-			order = new Order();
-			order.setBrandId(brand.getId());//此列不能为空
-			order.setOrderStatus(OrderStatus.paymenting);
-			order.setPaymentConfigName(paymentConfigName);
-			order.setAmount(SettingUtil.setPriceScale(product.getPrice()));//默认充值卡面额为订单金额
-			order.setMemo(memo);
-			order.setMember(loginMember);
-			order.setPaymentConfig(paymentConfig);
-			order.setProductSn(product.getProductSn());
-			order.setProductName(product.getName());//货品名称
-			order.setProductPrice(product.getPrice());//价格默认为销售价
-			order.setCardCode(paymentDiscount.getCode());//通道编码
-			order.setCardDiscount(paymentDiscount.getDiscount());//即时折扣率
-			order.setProduct(product);
-			order.setCardNum(card.getNum());//卡号
-			order.setCardPwd(card.getPwd());//密码
-			orderService.save(order);
-			order = orderService.get(order.getId());
-			// 订单日志
-			OrderLog orderLog = new OrderLog();
-			orderLog.setOrderLogType(OrderLogType.create);
-			orderLog.setOrderSn(order.getOrderSn());
-			orderLog.setOperator(null);
-			orderLog.setInfo(null);
-			orderLog.setOrder(order);
-			orderLogService.save(orderLog);
-			//生成支付单
-			BasePaymentProduct paymentProduct = PaymentProductUtil.getPaymentProduct(paymentConfig.getPaymentProductId());
-			String bankName = paymentProduct.getName();
-			String bankAccount = paymentConfig.getBargainorId();
-			//发送支付信息
-			try {
-				paymentResult = paymentProduct.cardPay(paymentConfig,order, getRequest());
-			} catch (Exception e) {
-				return ajax(Status.error,"订单支付提交失败!");
-			}
-			if ((paymentResult == null || StringUtils.isEmpty(paymentResult.getOrderSn()))){
-				return ajax(Status.error,"缺失支付单号!");
-			}
-			order = orderService.getOrderByOrderSn(paymentResult.getOrderSn());
-			if(StringUtils.isEmpty(order.getRetCode())||!paymentResult.getCode().equals(order.getRetCode())){
-				if(paymentResult.getIsSuccess()){
-					order.setOrderStatus(OrderStatus.paymenting);
-				}else{
-					order.setOrderStatus(OrderStatus.failure);
-				}
-				order.setRetCode(paymentResult.getCode());
-				order.setRetMsg(paymentResult.getReturnMsg());
-				System.out.println("订单状态已变更");
-				orderService.update(order);
-			}else{
-				System.out.println("订单状态未变化");
-			}
-		}
-		return ajax(Status.success,"提交成功");
+	private Order makeOrder(Member loginMember, Product product, Brand brand,PaymentDiscount paymentDiscount, Double tempmemberdiscount) {
+		//生成订单
+		order = new Order();
+		order.setBrandId(brand.getId());//此列不能为空
+		order.setOrderStatus(OrderStatus.paymenting);
+		order.setPaymentConfigName(paymentConfig.getName());
+		order.setAmount(SettingUtil.setPriceScale(product.getPrice()));//默认充值卡面额为订单金额
+		order.setMemo(memo);
+		order.setMember(loginMember);
+		order.setPaymentConfig(paymentConfig);
+		order.setProductSn(product.getProductSn());
+		order.setProductName(product.getName());//货品名称
+		order.setProductPrice(product.getPrice());//价格默认为销售价
+		order.setCardCode(paymentDiscount.getCode());//通道编码
+		order.setCardDiscount(paymentDiscount.getDiscount());//即时折扣率
+		order.setMemberDiscount(BigDecimal.valueOf(tempmemberdiscount));//即时会员优惠率
+		order.setProduct(product);
+		order.setCardNum(cardNum);//卡号
+		order.setCardPwd(cardPwd);//密码
+		order.setBankAccount(paymentConfig.getBargainorId());
+		order.setBankName(paymentConfig.getName());
+		orderService.save(order);
+		order = orderService.get(order.getId());
+		// 订单日志
+		OrderLog orderLog = new OrderLog();
+		orderLog.setOrderLogType(OrderLogType.create);
+		orderLog.setOrderSn(order.getOrderSn());
+		orderLog.setOperator(null);
+		orderLog.setInfo(null);
+		orderLog.setOrder(order);
+		orderLogService.save(orderLog);
+		return order;
 	}
 	//查询订单最新状态
 	@Validations(

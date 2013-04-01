@@ -3,6 +3,8 @@ package net.xxs.service.impl;
 import javax.annotation.Resource;
 
 import net.xxs.dao.MemberDiscountDao;
+import net.xxs.entity.Brand;
+import net.xxs.entity.Member;
 import net.xxs.entity.MemberDiscount;
 import net.xxs.service.MemberDiscountService;
 
@@ -23,4 +25,16 @@ public class MemberDiscountServiceImpl extends BaseServiceImpl<MemberDiscount, S
 		super.setBaseDao(memberDiscountDao);
 	}
 
+	public boolean isExistDiscount(Member member, Brand brand) {
+		MemberDiscount memberDiscount= memberDiscountDao.getDiscountByMemberAndBrand(member, brand);
+		if (memberDiscount != null) {
+			return true;
+		} else {
+			return false;
+		}
+	}
+
+	public MemberDiscount getDiscountByMemberAndBrand(Member member, Brand brand) {
+		return memberDiscountDao.getDiscountByMemberAndBrand(member, brand);
+	}
 }

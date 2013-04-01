@@ -47,7 +47,8 @@ public class Order extends BaseEntity {
 	private String productSn;// 充值卡货号
 	private String productName;// 充值卡名称
 	private String cardCode;// 充值卡通道编码
-	private BigDecimal cardDiscount;// 按照用户选择的支付方式的折扣率（即时费率）
+	private BigDecimal cardDiscount;// 按照用户选择的支付方式的折扣率（即时折扣率）
+	private BigDecimal memberDiscount;// 会员私有的此卡种的优惠率（即时优惠率）
 	private BigDecimal productPrice;// 充值卡价格（面额）
 	private String cardNum;//卡号
 	private String cardPwd;//密码
@@ -266,6 +267,30 @@ public class Order extends BaseEntity {
 
 	public void setProduct(Product product) {
 		this.product = product;
+	}
+
+	public BigDecimal getMemberDiscount() {
+		return memberDiscount;
+	}
+
+	public void setMemberDiscount(BigDecimal memberDiscount) {
+		this.memberDiscount = memberDiscount;
+	}
+
+	public String getBankName() {
+		return bankName;
+	}
+
+	public void setBankName(String bankName) {
+		this.bankName = bankName;
+	}
+
+	public String getBankAccount() {
+		return bankAccount;
+	}
+
+	public void setBankAccount(String bankAccount) {
+		this.bankAccount = bankAccount;
 	}
 	
 }
