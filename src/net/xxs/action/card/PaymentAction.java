@@ -117,16 +117,22 @@ public class PaymentAction extends BaseCardAction {
 		Member member = order.getMember();
 		System.out.println("提现人为：" + member.getUsername());
 		System.out.println("用户提现前的预存款：" + member.getDeposit());
-		Brand brand = brandService.get(order.getBrandId());
-		PaymentDiscount paymentDiscount = paymentDiscountService.getPaymentDiscountByPaymentConfigAndBrand(order.getPaymentConfig(), brand);
+		//充值卡折扣率
+		BigDecimal cardDiscount = order.getCardDiscount();
+		System.out.println("充值卡折扣率:"+cardDiscount);
+		//会员优惠率
+		BigDecimal memberDiscount = order.getMemberDiscount();
+		System.out.println("会员优惠率:"+memberDiscount);
+		//会员优惠率
+		BigDecimal orderDiscount = order.getMemberDiscount().add(order.getMemberDiscount());
 		System.out.println("订单成功金额为：" + totalAmount);
 		BigDecimal tempAmount = new BigDecimal(0);
-		if (null == paymentDiscount) {
+		if (null == orderDiscount) {
 			System.out.println("没有找到相应的通道折扣率配置");
 			addActionError("没有找到通道折扣率设置!");
 			return ERROR;
 		} else {
-			tempAmount = totalAmount.multiply(paymentDiscount.getDiscount());
+			tempAmount = totalAmount.multiply(orderDiscount);
 		}
 		System.out.println("计算折扣率后的应为会员充值的金额为：" + tempAmount);
 		member.setDeposit(member.getDeposit().add(tempAmount));
@@ -138,7 +144,7 @@ public class PaymentAction extends BaseCardAction {
 		deposit.setCredit(totalAmount);
 		deposit.setDebit(new BigDecimal(0));
 		deposit.setBalance(member.getDeposit());
-		deposit.setLossrate(paymentDiscount.getDiscount());
+		deposit.setLossrate(orderDiscount);// 存储的是订单的折扣率（总和）
 		deposit.setMember(member);
 		deposit.setOrder(order);
 		depositService.save(deposit);
