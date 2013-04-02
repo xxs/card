@@ -2,40 +2,31 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="content-type" content="text/html; charset=utf-8" />
-<title>${(setting.shopName)!}<#if setting.isShowPoweredInfo> - XXS</#if></title>
-<meta name="Author" content="XXS-DW" />
-<meta name="Copyright" content="XXS" />
+<title>${(setting.shopName)!}<#if setting.isShowPoweredInfo> - 名臣福利</#if></title>
+<meta name="Author" content="MCFL" />
+<meta name="Copyright" content="2.0" />
 <#if (setting.metaKeywords)! != ""><meta name="keywords" content="${setting.metaKeywords}" /></#if>
 <#if (setting.metaDescription)! != ""><meta name="description" content="${setting.metaDescription}" /></#if>
-<link rel="icon" href="favicon.ico" type="image/x-icon" />
-<link href="${base}/template/card/css/base.css" rel="stylesheet" type="text/css" />
-<link href="${base}/template/card/css/style.css" rel="stylesheet" type="text/css" />
-	<!--[if lte IE 6]>
-	<script type="text/javascript" src="${base}/template/common/js/belatedPNG.js"></script>
-	<script type="text/javascript">
-		// 解决IE6透明PNG图片BUG
-		DD_belatedPNG.fix(".belatedPNG");
-	</script>
-	<![endif]-->
+<link href="${base}/template/card/css/index.css" rel="stylesheet" type="text/css" />
+<#include "/WEB-INF/template/card/head.ftl">
 </head>
 <body>
 	<#include "/WEB-INF/template/card/header.ftl">
 	<div id="flashBg" style="background-color: rgb(11, 11, 11); ">
-	<div id="flashLine">
-	<div id="flash">
-	<a href="#" target="_blank" id="flash1" style="display: block; " name="#0b0b0b"><img src="${base}/template/card/images/01.jpg" width="980" height="393"></a>
-	<a href="#" target="_blank" id="flash2" name="#194982" style="display: none; "><img src="${base}/template/card/images/02.jpg" width="980" height="393"></a>
-	<a href="#" target="_blank" id="flash3" name="#04304b" style="display: none; "><img src="${base}/template/card/images/03.jpg" width="980" height="393"></a>
-	  <div class="flash_bar">
-	<div class="dq" id="f1" onclick="changeflash(1)"></div>
-	<div class="no" id="f2" onclick="changeflash(2)"></div>
-	<div class="no" id="f3" onclick="changeflash(3)"></div>
-	  </div>
+		<div id="flashLine">
+			<div id="flash">
+				<a href="#" target="_blank" id="flash1" style="display: block; " name="#0b0b0b"><img src="${base}/template/card/images/01.jpg" width="980" height="393"></a>
+				<a href="#" target="_blank" id="flash2" name="#194982" style="display: none; "><img src="${base}/template/card/images/02.jpg" width="980" height="393"></a>
+				<a href="#" target="_blank" id="flash3" name="#04304b" style="display: none; "><img src="${base}/template/card/images/03.jpg" width="980" height="393"></a>
+	  			<div class="flash_bar">
+					<div class="dq" id="f1" onclick="changeflash(1)"></div>
+					<div class="no" id="f2" onclick="changeflash(2)"></div>
+					<div class="no" id="f3" onclick="changeflash(3)"></div>
+	  			</div>
+			</div>
+		</div>
 	</div>
-	</div>
-	</div>
-	
-	<!--中部banner上层-->
+	<!-用户登录-->
     <div class="banner2">
     	<div class="banner_over">
      		<div class="banner_right">

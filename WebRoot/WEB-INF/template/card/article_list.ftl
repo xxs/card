@@ -2,9 +2,9 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="content-type" content="text/html; charset=utf-8" />
-<title>${articleCategory.name} 文章列表<#if setting.isShowPoweredInfo> - XXS</#if></title>
-<meta name="Author" content="XXS-DW" />
-<meta name="Copyright" content="XXS" />
+<title>${articleCategory.name} 文章列表<#if setting.isShowPoweredInfo> - 名臣福利</#if></title>
+<meta name="Author" content="MCFL" />
+<meta name="Copyright" content="2.0" />
 <#if (articleCategory.metaKeywords)! != ""><meta name="keywords" content="${articleCategory.metaKeywords}" /></#if>
 <#if (articleCategory.metaDescription)! != ""><meta name="description" content="${articleCategory.metaDescription}" /></#if>
 <#include "/WEB-INF/template/card/head.ftl">

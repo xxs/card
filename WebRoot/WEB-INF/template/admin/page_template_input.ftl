@@ -3,8 +3,8 @@
 <head>
 <meta http-equiv="content-type" content="text/html; charset=utf-8" />
 <title>编辑页面模板 - XXS</title>
-<meta name="Author" content="XXS-DW" />
-<meta name="Copyright" content="XXS" />
+<meta name="Author" content="MCFL" />
+<meta name="Copyright" content="2.0" />
 <link rel="icon" href="favicon.ico" type="image/x-icon" />
 <link href="${base}/template/admin/css/base.css" rel="stylesheet" type="text/css" />
 <link href="${base}/template/admin/css/admin.css" rel="stylesheet" type="text/css" />

@@ -2,9 +2,9 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="content-type" content="text/html; charset=utf-8" />
-<title><#if setting.isShowPoweredInfo> - XXS</#if></title>
-<meta name="Author" content="XXS-DW" />
-<meta name="Copyright" content="XXS" />
+<title><#if setting.isShowPoweredInfo> - 名臣福利</#if></title>
+<meta name="Author" content="MCFL" />
+<meta name="Copyright" content="2.0" />
 <#if (cards.metaKeywords)! != ""><meta name="keywords" content="${cards.metaKeywords}" /></#if>
 <#if (cards.metaDescription)! != ""><meta name="description" content="${cards.metaDescription}" /></#if>
 <#include "/WEB-INF/template/card/member_head.ftl">

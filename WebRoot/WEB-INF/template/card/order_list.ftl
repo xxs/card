@@ -2,9 +2,9 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="content-type" content="text/html; charset=utf-8" />
-<title>订单列表<#if setting.isShowPoweredInfo> - XXS</#if></title>
-<meta name="Author" content="XXS-DW" />
-<meta name="Copyright" content="XXS" />
+<title>订单列表<#if setting.isShowPoweredInfo> - 名臣福利</#if></title>
+<meta name="Author" content="MCFL" />
+<meta name="Copyright" content="2.0" />
 <script type="text/javascript" src="${base}/template/common/datePicker/WdatePicker.js"></script>
 <#include "/WEB-INF/template/card/member_head.ftl">
 <script type="text/javascript">

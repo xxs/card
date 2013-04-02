@@ -3,8 +3,8 @@
 <head>
 <meta http-equiv="content-type" content="text/html; charset=utf-8" />
 <title>个人信息<#if setting.isShowPoweredInfo> - 会员中心</#if></title>
-<meta name="Author" content="XXS-DW" />
-<meta name="Copyright" content="XXS" />
+<meta name="Author" content="MCFL" />
+<meta name="Copyright" content="2.0" />
 <#include "/WEB-INF/template/card/member_head.ftl">
 <script type="text/javascript" src="${base}/template/common/js/jquery.lSelect.js"></script>
 <script type="text/javascript" src="${base}/template/common/datePicker/WdatePicker.js"></script>

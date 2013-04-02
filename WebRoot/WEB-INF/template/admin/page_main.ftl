@@ -3,8 +3,8 @@
 <head>
 <meta http-equiv="content-type" content="text/html; charset=utf-8" />
 <title>管理中心 - XXS</title>
-<meta name="Author" content="XXS-DW" />
-<meta name="Copyright" content="XXS" />
+<meta name="Author" content="MCFL" />
+<meta name="Copyright" content="2.0" />
 <link rel="icon" href="favicon.ico" type="image/x-icon" />
 </head>
 <frameset id="parentFrameset" rows="60,*" cols="*" frameborder="no" border="0" framespacing="0">

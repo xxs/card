@@ -3,8 +3,8 @@
 <head>
 <meta http-equiv="content-type" content="text/html; charset=utf-8" />
 <title>密码找回 - XXS</title>
-<meta name="Author" content="XXS-DW" />
-<meta name="Copyright" content="XXS" />
+<meta name="Author" content="MCFL" />
+<meta name="Copyright" content="2.0" />
 </head>
 <body>
 <p>亲爱的${member.username}: </p>

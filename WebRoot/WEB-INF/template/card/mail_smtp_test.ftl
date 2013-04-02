@@ -3,8 +3,8 @@
 <head>
 <meta http-equiv="content-type" content="text/html; charset=utf-8" />
 <title>SMTP邮箱配置测试邮件 - XXS</title>
-<meta name="Author" content="XXS-DW" />
-<meta name="Copyright" content="XXS" />
+<meta name="Author" content="MCFL" />
+<meta name="Copyright" content="2.0" />
 </head>
 <body>
 <strong>SMTP邮箱配置测试邮件</strong>

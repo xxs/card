@@ -3,8 +3,8 @@
 <head>
 <meta http-equiv="content-type" content="text/html; charset=utf-8" />
 <title>在线支付</title>
-<meta name="Author" content="XXS-DW" />
-<meta name="Copyright" content="XXS" />
+<meta name="Author" content="MCFL" />
+<meta name="Copyright" content="2.0" />
 <link rel="icon" href="favicon.ico" type="image/x-icon" />
 </head>
 <body onload="javascript: document.forms[0].submit();">

@@ -1,7 +1,7 @@
 /*
 Navicat MySQL Data Transfer
 
-Source Server         : JTM
+Source Server         : xxs
 Source Server Version : 50154
 Source Host           : localhost:3306
 Source Database       : card
@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50154
 File Encoding         : 65001
 
-Date: 2013-04-01 17:33:04
+Date: 2013-04-03 00:37:57
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -43,7 +43,7 @@ CREATE TABLE `xx_admin` (
 -- ----------------------------
 -- Records of xx_admin
 -- ----------------------------
-INSERT INTO `xx_admin` VALUES ('0731dcsoft2010031200000000000017', '2011-01-01 00:00:00', '2013-04-01 09:36:02', '名臣管理员', 'xxs@163.com', '', '', '', '', '2012-12-17 14:28:34', '2013-04-01 09:36:02', '0', '127.0.0.1', 'ADMIN', '21232f297a57a5a743894a0e4a801fc3', 'admin');
+INSERT INTO `xx_admin` VALUES ('0731dcsoft2010031200000000000017', '2011-01-01 00:00:00', '2013-04-02 23:29:49', '名臣管理员', 'xxs@163.com', '', '', '', '', '2012-12-17 14:28:34', '2013-04-02 23:29:49', '0', '127.0.0.1', 'ADMIN', '21232f297a57a5a743894a0e4a801fc3', 'admin');
 
 -- ----------------------------
 -- Table structure for `xx_admin_role`
