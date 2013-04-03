@@ -2,7 +2,7 @@ package net.xxs.bean;
 
 
 /**
- * Bean类 - 日志配置
+ * Bean类 - 日志配置 第二次git协作测试
  */
 
 public class LogConfig {
