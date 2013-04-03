@@ -18,7 +18,7 @@ import com.opensymphony.xwork2.validator.annotations.RequiredStringValidator;
 import com.opensymphony.xwork2.validator.annotations.Validations;
 
 /**
- * 后台Action类 - 文章
+ * 后台Action类 - 文章  测试
  */
 
 @ParentPackage("admin")
