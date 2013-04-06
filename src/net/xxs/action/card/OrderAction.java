@@ -91,8 +91,8 @@ public class OrderAction extends BaseCardAction {
 	private ProductService productService;
 	@Resource(name = "brandServiceImpl")
 	private BrandService brandService;
-	@Resource(name = "memberDiacountServiceImpl")
-	private MemberDiscountService memberDiacountService;
+	@Resource(name = "memberDiscountServiceImpl") 
+	private MemberDiscountService memberDiscountService;
 	
 	
 	public List<Card> jiexi(String str){
@@ -131,9 +131,10 @@ public class OrderAction extends BaseCardAction {
 	)
 	@InputConfig(resultName = "error")
 	public String save() {
+		System.out.println(productId);
 		Member loginMember = getLoginMember();
-		Product product = productService.load(productId); 
-		paymentConfig = paymentConfigService.load(paymentConfig.getId());//获取支付方式
+		Product product = productService.get(productId); 
+		paymentConfig = paymentConfigService.get(paymentConfig.getId());//获取支付方式
 		Brand brand = product.getCards().getBrand();//为order准备brandId
 		PaymentDiscount paymentDiscount = paymentDiscountService.getPaymentDiscountByPaymentConfigAndBrand(paymentConfig, brand);
 		if (null == paymentDiscount){
@@ -145,7 +146,7 @@ public class OrderAction extends BaseCardAction {
 			}
 		}
 		Double tempmemberdiscount = 0.00;
-		MemberDiscount md =  memberDiacountService.getDiscountByMemberAndBrand(loginMember, brand);
+		MemberDiscount md =  memberDiscountService.getDiscountByMemberAndBrand(loginMember, brand);
 		if(md!=null){
 			tempmemberdiscount = md.getDiscount();
 		}

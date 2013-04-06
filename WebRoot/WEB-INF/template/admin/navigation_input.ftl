@@ -89,7 +89,7 @@ $().ready( function() {
 							<option value="">------------</option>
 							<option value="<#noparse>${base}/</#noparse>"<#if ("$" + "{base}/" == navigation.url)!> selected</#if>>网站首页</option>
 							<!-- <option value="<#noparse>${base}</#noparse>/card/leave_message.htm"<#if ("$" + "{base}/card/leave_message.htm" == navigation.url)!> selected</#if>>在线留言</option> -->
-							<option value="<#noparse>${base}</#noparse>/card/deposit_success.htm"<#if ("$" + "{base}/card/deposit_success.htm" == navigation.url)!> selected</#if>>成功案例(动态)</option>
+							<!-- <option value="<#noparse>${base}</#noparse>/card/deposit_success.htm"<#if ("$" + "{base}/card/deposit_success.htm" == navigation.url)!> selected</#if>>成功案例(动态)</option> -->
 							<#list articleTreeList as article>
 								<option value="<#noparse>${base}</#noparse>${article.htmlPath}" <#if (("$" + "{base}" + article.htmlPath) == navigation.url)!> selected</#if>>
 									${article.title}(静态)

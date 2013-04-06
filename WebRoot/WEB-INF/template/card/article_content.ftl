@@ -33,13 +33,7 @@
 	        <div class="item_three">
 	        	<dl>
 	            	<span>帮助中心</span>
-	                <dt>
-	                <@article_list type="hot"  article_category_id="4028bc743c286bdc013c289277c5000a"  count=5; articleList>
-						<#list articleList as article>
-							<img src="/template/card/images/${article.title}.png" width="16" height="16" alt="${article.title}" />
-						</#list>
-					</@article_list>
-	                </dt>
+	                <dt><@article_list type="hot"  article_category_id="4028bc743c286bdc013c289277c5000a"  count=5; articleList><#list articleList as article><img src="/template/card/images/${article.title}.png" width="16" height="16" alt="${article.title}" /></#list></@article_list></dt>
 	                <@article_list type="hot" article_category_id="4028bc743c286bdc013c289277c5000a"  count=5; articleList>
 						<#list articleList as article>
 							<dd><a href="${base}${article.htmlPath}" title="${article.title}">${substring(article.title, 10, "...")}</a></dd>
@@ -49,11 +43,8 @@
 	        </div>
 	    </div>
     <div class="right">
-   	    <div class="item_one">
-   	    	<p>
-   	    		<img src="/template/card/images/hhh.jpg" width="38" height="37" alt="jj" />
-   	    	</p>
-   	    	<#if (article.metaDescription)! != "">${article.metaDescription}</#if>
+   	    <div class="item_one"><p><img src="/template/card/images/hhh.jpg" width="38" height="37" /></p>
+   	       	<#if (article.metaDescription)! != "">${article.metaDescription}</#if>
    	   		<#if (article.metaDescription)! == "">您尚未登陆，请点击<a href="${base}/card/promotion.action">登陆</a>立即参与到分享二维码，推荐会员拿提成活动</#if>
    	   </div>
         	<div class="item_two">

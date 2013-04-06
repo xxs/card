@@ -70,12 +70,13 @@ background:url(../images/tg_flash_p2.png) no-repeat 0px 0px; _background:none; _
 #flashBg { height:393px; overflow:hidden; width:100%; clear:both; margin:0; padding:0;}
 #flashLine {background:url(../images/touming.png) repeat-x center bottom;height:393px; width:100%; clear:both;}
 
+
 /* 内容区 */
-.column1{width:100%;height:471px;background:#eeeeee;}
+.column1{width:100%;height:471px;background:#eeeeee; }
 .column2{width:995px;height:110px;margin:0 auto; background:url(../images/xianj.jpg) bottom no-repeat;}
 .column2 ul{float:right;margin:15px 8px 0 8px;}
 .column2 ul li{width:48px;float:left; margin-left:45px;}
-.Service{width:995px;height:305px;margin:20px auto;}
+.Service{width:995px;height:305px;margin:20px auto; }
 .Service_left{;width:635px;float:left;height:305px; display:block;background-color:#FFF;border:1px solid #D5D5D5}
 /*.Service ul{width:662px;float:left;height:311px; display:block;background-color:#FFF;border:1px  solid #d5d5d5;}*/
 .Service_left span{position:relative;float:left;display:inline;font-family:"Microsoft YaHei", Verdana;font-size:16px;margin-left:9px;margin-top:15px;}
@@ -84,8 +85,8 @@ background:url(../images/tg_flash_p2.png) no-repeat 0px 0px; _background:none; _
 .Service_left ul li{margin-top:5px;width:150px;height:52px;float:left;margin-left:7px;color:#666666;line-height:23px;font-family:"Microsoft YaHei", Verdana;}
 .Service_left ul li h1{font-weight:bolder;font-size:13px}
 .Service_right{width:327px;float:right; border:1px solid #d5d5d5;background:#FFF;height:305px;}
-	.Service_right_top{width:327px;height:141px; background:url(../images/ff1.jpg) no-repeat; margin-bottom:20px;}
-	.Service_right_top span{float:right;width:213px;padding-left:114px;padding-top:46px;}
+	.Service_right_top{width:327px;height:141px; background:url(../images/ff1.jpg) no-repeat; margin-bottom:20px;padding-right:40px;}
+	.Service_right_top span{float:right;width:213px;padding-top:46px;padding-right:10px;}
 	.Service_right_top span a{ margin:0 3px;}
 	.Service_right_top p{ padding-left:29px;width:110px;height:29px;float:right; line-height:29px;margin-top:10px;margin-right:12px; background:url(../images/dd2.jpg) no-repeat;}
 	.Service_right_top p a{ color:#FFF;}
@@ -94,16 +95,11 @@ background:url(../images/tg_flash_p2.png) no-repeat 0px 0px; _background:none; _
 .Service_right dl dd{height:18px;}
 .Service_right dl dd a{color:#b90007;}
 
-/* friendlink */
-.friendlink{width:995px;height:110px;margin:0 auto; background:url(../images/index/xianj.jpg) bottom no-repeat;}
-.friendlink ul{float:right;margin:15px 8px 0 8px;}
-.friendlink ul li{width:103px;float:left; margin-left:5px;}
-.friendlink ul li span{width:60px;float:left; margin-left:20px;line-height:30px;}
 /* copyright */
-.bottom{clear:both;height:50px;line-height:25px;text-align:center;width:760px;color:#929292;margin:0 auto 10px;}
+.bottom{clear:both;height:50px;line-height:25px;text-align:center;width:760px;color:#929292;margin:0 auto 10px; }
 
 /* 版权 */
-.copyright{width:100%;height:246px;background:#dbdbdb;margin-top:10px;clear:both;}
+.copyright{width:100%;height:246px;background:#dbdbdb;clear:both;}
 .copyright_shang{ height:123px; padding-top:20px;border-bottom:1px solid #c0c0c0;width:995px; margin:0 auto;}
 .copyright_shang dl{float:left; display:block;}
 .copyright_shang dl dt{ font-size:12px;}
@@ -123,46 +119,6 @@ background:url(../images/tg_flash_p2.png) no-repeat 0px 0px; _background:none; _
 .copyright_xia span{text-align:center;width:995px;display:block;font-size:12px;color:#999; line-height:39px;}
 .copyright_xia span a{ margin:0 5px;}
 .copyright_xia p{text-align:center; color:#999;font-size:12px;}
-/* 内容区 */
-.column{margin:20px auto;width:995px;height:493px;}
-
-.column_left{float:left;width:175px;overflow: hidden;background:#f8f8f8;border:1px solid #d7d7d7;}
-.column_left_1{height:120px;background:url(../images/sda1.jpg) no-repeat;padding-top:10px;border-bottom:1px solid #d7d7d7; }
-.current{color:#DE0B14}
-.column_left_1 a{font-family:"Microsoft YaHei", Verdana;font-size:13px;display:block;text-align:center;width:52px; margin:0 auto;height:30px;}
-.column_left ul{overflow: hidden;border-bottom:1px solid #d7d7d7; padding-top:10px;padding-bottom:10px;margin-top:5px;}
-.column_left ul li{float:left;width:87px;line-height:25px;text-align:center;font-size:13px;}
-.column_left_3 dl{width:175px;}
-.column_left_3 dl span{margin-left:50px;color:#666666;display:block;padding-top:30px;font-size:15px;font-weight:bold;height:30px;font-family:"Microsoft YaHei", Verdana}
-.column_left_3 dl dt{margin-left:20px;float:left;padding-left:10px;width:16px;height:188px; display:block;}
-.column_left_3 dl dt img{margin:9px auto;}
-.column_left_3 dl dd{width:100px;float:left;display:block;margin:8px 0 7px 3px;font-family:"Microsoft YaHei", Verdana;font-size:13px;}
-.column_left_3 dl p{width:40px;float:left;margin:8px 0 0 10px;padding-left:17px;}
-
-.column_right{overflow: hidden;width:770px;float:right;padding-bottom:10px;}
-	.column_right_1{height:82px;line-height:82px;border:3px solid #d7d7d7;background:#f8f8f8;margin-bottom:10px;font-size:14px;font-weight:bold;color:#666666;}
-		.column_right_1 p{float:left;margin:24px 14px 0 129px;}
-	.column_right_2{overflow: hidden;border:1px solid #d7d7d7; margin-bottom:30px;}
-	.column_right_2_shang{height:50px;padding:45px 0 0 55px;}
-		.column_right_2_shang span{height:40px;width:580px;display:block; background:url(../images/sa3.jpg) no-repeat;padding-left:75px;border-bottom:1px dashed #878a86;}
-		.column_right_2_shang span font{font-family:"Microsoft YaHei", Verdana;font-size:20px;margin-top:50px;}
-		.anniu_shang{margin:40px 0px 30px 90px;font-size:16px;font-weight:bold;color:#CC070E;}
-		.anniu{margin:30px 0px 30px 150px;}
-		/*.column_right_2_shang span strong{ float:left;width:400px;display:block;font-size:16px;color:#e10911; font-family:"宋体";line-height:36px;}*/
-		.column_right_2_shang span p{width:230px;float:left; display:block;}
-		.column_right_2_shang span b{ width:110px;float:right;}
-		.ddd{width:680px;border-bottom:1px solid #dbdcda;margin-left:55px;}
-		.column_right_ooo1{width:580px;height:50px;padding-left:80px;line-height:26px;margin-top:45px;background:url(../images/saaaa/sa4.jpg) no-repeat;}
-		.column_right_ooo1 strong{color:#e10911;font-family:"宋体";font-size:16px; display:block;float:left;}
-		.column_right_ooo1 b{ float:right;display:block;}
-		.column_right_ooo2{color:#929292;text-align:center;line-height:65px;}
-		.column_right_ooo2 a{ margin:0 10px;}
-.right2{width:600px;margin-left:80px;font-family:"Microsoft YaHei", Verdana;color:#4B4C4C;line-height:23px;}
-.right2 a:link{color:#2C93BC}
-.right2 a:hover{text-decoration:underline}
-.right2 ul{margin-top:0px;margin-left:57px;}
-.right2 ul li{margin-top:10px;}
-
 
 /* ---------- Login ---------- */
 .loginWindow .dialogContent {padding: 10px;margin: 0px;}
@@ -185,39 +141,6 @@ background:url(../images/tg_flash_p2.png) no-repeat 0px 0px; _background:none; _
 .ssh1{width:100px;height:22px;float:left;margin-left:20px;}
 .ssh3{width:100px;height:22px;float:left;}
 
-
-/*表单所用元素值*/
-#need {margin: 0px auto 0;width: 610px;}
-#need li {height: 26px;width: 600px;font-family:"Microsoft YaHei", Verdana;background: #FFD;border-bottom: 1px dashed #E0E0E0;display: block;cursor: text;padding: 7px 0px 7px 10px;padding: 5px 0px 5px 10px;}
-#need li:hover,#need li.hover {background: #FFE8E8;}
-#need input {line-height: 14px;background: #FFF;height: 14px;width: 200px;border: 1px solid #E0E0E0;vertical-align: middle;padding: 6px;}
-#need label {padding-left: 30px;}
-#need label.old_password {background-position: 0 -277px;}
-#need label.new_password {background-position: 0 -1576px;}
-#need label.rePassword {background-position: 0 -1638px;}
-#need label.email {background-position: 0 -1029px;}
-#need dfn {font-style:normal;display: none;}
-#need li:hover dfn, #need li.hover dfn {display:inline;margin-left: 7px;color: #676767;}
-
-.agreement .dialogContent {padding: 5px;margin: 0px;overflow: hidden;}
-.agreement .agreementContent {
-	width: 486px;
-	height: 260px;
-	line-height: 20px;
-	clear: both;
-	text-align: left;
-	color: #6f6f6f;
-	border: 1px solid #e0e5e9;
-	padding: 10px;
-	overflow-y: scroll;
-	scrollbar-face-color: #ffffff;
-	scrollbar-shadow-color: #d2e5f4;
-	scrollbar-highlight-color: #d2e5f4;
-	scrollbar-3dlight-color: #ffffff;
-	scrollbar-darkshadow-color: #ffffff;
-	scrollbar-track-color: #ffffff;
-	scrollbar-arrow-color: #d2e5f4;
-}
 /* ---------- Register ---------- */
 *{margin:0;padding:0;list-style-type:none;}
 a,img{border:0;}
@@ -276,22 +199,3 @@ ul,li{ list-style-type:none;}
 .pagination LI {MARGIN: 0px 1px; FLOAT: left}
 .pagination LI A {BACKGROUND-IMAGE: url(../images/pagination.png); WIDTH: 15px; DISPLAY: block; BACKGROUND-POSITION: 0px -1px; FLOAT: left; HEIGHT: 0px; OVERFLOW: hidden; PADDING-TOP: 12px}
 .pagination LI.current A {BACKGROUND-POSITION: 0px -18px}
-
-/*表格样式*/
-.tab{margin-left:57px;}
-.tab table{border:1px solid #B2D6F2;border-collapse:collapse;padding:0px;margin:0px}
-.tab table tr th{height:30px;background:url(../images/title3.gif) repeat-x;border:1px solid #B2D6F2;color:#5183A6;font-size:12px;padding:0px;margin:0px;font-family:"Microsoft YaHei", Verdana}
-.tab table tr td{width:auto;height:30px;border:1px solid #B2D6F2;color:#006298;text-align:center;vertical-align:middle;font-family:"Microsoft YaHei", Verdana;padding:0px}
-
-.tab2{margin-left:0px;}
-.tab2 table{border:1px solid #B2D6F2;border-collapse:collapse;padding:0px;margin:0px}
-.tab2 table tr th{height:30px;background:url(../images/title3.gif) repeat-x;border:1px solid #B2D6F2;color:#5183A6;font-size:12px;padding:0px;margin:0px;font-family:"Microsoft YaHei", Verdana}
-.tab2 table tr td{width:auto;height:30px;border:1px solid #B2D6F2;color:#006298;text-align:center;vertical-align:middle;font-family:"Microsoft YaHei", Verdana;padding:0px}
-/*表格样式*/
-.tab_top{margin-left:57px;font-family:"Microsoft YaHei", Verdana;font-size:13px;margin-bottom:10px;width:680px;}
-.tab_top a:link{color:black;line-height:18px;}
-.tab_top a:hover{text-decoration:underline;color:blue}
-.tab{margin-left:57px;}
-.tab table{border:1px solid #B2D6F2;border-collapse:collapse;padding:0px;margin:0px}
-.tab table tr th{height:30px;background:url(../images/title3.gif) repeat-x;border:1px solid #B2D6F2;color:#5183A6;font-size:12px;padding:0px;margin:0px;font-family:"Microsoft YaHei", Verdana}
-.tab table tr td{width:auto;height:30px;border:1px solid #B2D6F2;color:#006298;text-align:center;vertical-align:middle;font-family:"Microsoft YaHei", Verdana;padding:0px}
