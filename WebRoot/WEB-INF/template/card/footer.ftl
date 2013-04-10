@@ -2,7 +2,7 @@
 <div class="copyright">
 	<div class="copyright_shang">
 		
-    	<dl class="xiao2" style="width:295px; margin-left:0px;">
+    	<dl class="xiao2" style="width:330px; margin-left:0px;">
        	  <dt>合作伙伴</dt>
             <dd>
             	<@friend_link_list type="picture" count=9; friendLinkList>
@@ -27,7 +27,6 @@
                 <p><a href="http://210.76.65.188" target="_blank"><img src="/template/card/images/bottom/gt.gif" width="43" height="52" alt="网络警察" /></a></p>
             </dd>
       </dl>
-        
   </div>
     <div class="copyright_xia">
     	<span>
