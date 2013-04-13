@@ -1,7 +1,6 @@
 <!--底部版权-->
 <div class="copyright">
 	<div class="copyright_shang">
-		
     	<dl class="xiao2" style="width:330px; margin-left:0px;">
        	  <dt>合作伙伴</dt>
             <dd>

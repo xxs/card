@@ -3,7 +3,6 @@
 <script type="text/javascript" src="${base}/template/card/js/base.js"></script>
 <script type="text/javascript" src="${base}/template/card/js/card.js"></script>
 <script type="text/javascript" src="${base}/template/card/js/jquery.js"></script>
-<script type="text/javascript" src="${base}/template/card/js/jquery.slides.js"></script>
 <!--[if lte IE 6]>
 	<script type="text/javascript" src="${base}/template/common/js/belatedPNG.js"></script>
 	<script type="text/javascript">

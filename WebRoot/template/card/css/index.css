@@ -1,6 +1,6 @@
 @charset "utf-8";
 
-.main {width:1000px;margin:5px auto;background:#fff;padding:15px 20px;}
+.main {width:1000px;overflow:hidden;height:1200px;margin:5px auto;background:#fff;padding:15px 20px;}
 
 /* logo */
 #top {height:60px;background:url(topbg.gif) no-repeat right bottom;}
@@ -18,7 +18,7 @@
 #menu2 ul li a {color: #fff;}
 #menu2 ul li a span.over {color: #fff;background-color: #960b08;}
 /* banner */
-#slideshow {!important;border:0px !important; text-align:center}
+#slideshow {!important;border:0px !important;float:left;with:600px;height:500px;}  
 #focus {width:710px; height:350px; overflow:hidden; position:relative;}
 #focus ul {height:270px; position:absolute;}
 #focus ul li {float:left; width:710px; height:350px; overflow:hidden; position:relative; background:#000;}
@@ -39,8 +39,8 @@
 #focus ul li .slideother a:hover{ color:#FFF;}
 #focus ul li .slideother p a:hover{ text-decoration:none;}
 /* common */
-.common{float:left;width:710px;padding-left:2px;}
-.panel-1{border:1px solid #E8E8E8;margin-top:10px;background:url(../images/panel-1-bg.jpg) repeat-x top;padding:10px;-webkit-border-radius:3px;-moz-border-radius:3px;}
+.common{float:left;width:710px;padding-left:0px;}
+.panel-1{border:1px solid #E8E8E8;margin-top:10px;background:url(../images/panel-1-bg.jpg) repeat-x top;padding:10px;}
 .panel-1 h2{font-size:15px;border-bottom:1px solid #E8E8E8;height:28px;}
 
 .rj{background:url(../images/rj.gif) no-repeat;height:122px;margin:15px 15px 0 15px;padding-left:80px;line-height:20px;color:#666;}
@@ -57,13 +57,22 @@
 .function li h3{font-size:18px;margin-top:10px;font-weight:normal;}
 .function li p{line-height:18px;color:#888;padding-top:5px;}
 /* loginBar */
-#loginBar {float:right;with:300px;height:500px;color:red;}
+#loginBar {float:right;with:305px;height:500px;}
+.panel-login{border:1px solid #E8E8E8;margin-top:-30px;padding:10px;with:285px;}
+.panel-login h2{font-size:15px;text-align:center;border-bottom:1px solid #E8E8E8;height:28px;with:280px;color:red;}
+.panel-login h2 span{float:right;margin-top:3px;}
+.list-login{margin:0 5px;padding-top:10px;}
+.list-login li{text-indent:10px;height:30px;overflow:hidden;line-height:30px;margin-bottom:5px;}
+.list-login li span{float:right;color:#999;}
+
 .panel-2{border:1px solid #E8E8E8;margin-top:10px;padding:10px;}
 .panel-2 h2{font-size:15px;border-bottom:1px solid #E8E8E8;height:28px;}
 .panel-2 h2 span{float:right;margin-top:3px;}
+
 .list{margin:0 5px;padding-top:10px;}
 .list li{background:url(../images/dot.gif) no-repeat 0 9px;text-indent:10px;height:20px;overflow:hidden;line-height:20px;margin-bottom:5px;}
 .list li span{float:right;color:#999;}
+
 .flink{padding-top:10px;height:90px;line-height:18px;}
 .uplog{padding:10px 10px 0 10px;line-height:20px;}
 .uplog h3{}

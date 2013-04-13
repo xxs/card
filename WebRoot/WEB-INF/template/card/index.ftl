@@ -35,7 +35,7 @@
 			</div>
 		<!-- advice end -->
 		<!-- banner begin -->
-		<div id="slideshow" class="block" style="float:left;with:600px;height:500px;color:red;">
+		<div id="slideshow" class="block">
 			<div id="focus">
 				<ul>
 					<li>
@@ -80,9 +80,9 @@
 					</li>
 				</ul>
 			</div>
-		</div>
+		
 		<!-- banner end -->
-		<!-- common begin-->
+		<!-- common begin -->
 		<div class="common">
 			<div class="panel-1">
 				<h2>电脑店 常用软件快速安装包</h2>
@@ -105,12 +105,29 @@
 			</div>
 		</div>
 		<!-- common end-->
+		</div>
 		<!-- loginBar begin -->
 		<div id="loginBar">
+			<div class="panel-login">
+				<h2>会员登陆</h2>
+				<ul class="list-login">
+					<li><span><a href="#"><input type="text" class="formText" style="width: 150px;" /></a></span><a href="#">用户名：</a></li>
+					<li><span><a href="#"><input type="text" class="formText" style="width: 150px;" /></a></span><a href="#">密码：</a></li>
+					<li>
+					<div class="ssh"><input type="text" id="captcha" name="j_captcha" maxlength="4" class="formText captcha" style="width:90px"/></div>
+					<div class="ssh1"><img id="captchaImage" class="captchaImage" src="${base}/captcha.jpeg" alt="换一张" /></div>
+					
+					<span><a href="#"><input type="text" class="formText captcha" style="width: 90px;" id="captcha" name="j_captcha" maxlength="4" /></a><img id="captchaImage" class="captchaImage" src="${base}/captcha.jpeg" alt="换一张" /></span><a href="#">验证码：</a>
+					
+					</li>
+					<li><span><a href="#"><input type="text" class="formText" style="width: 150px;" /></a></li>
+					<li><span><a href="#"><input type="text" class="formText" style="width: 150px;" /></a></span><a href="#">验证码：</a></li>
+				</ul>
+			</div>
 			<div class="panel-2">
 				<h2>会员登陆</h2>
 				<ul class="list">
-					<li><span><a href="/down.diannaodian.com:90/电脑店常用软件包.rar">立即下载&raquo;</a></span><a href="/down.diannaodian.com:90/电脑店常用软件包.rar">电脑店 常 V2012</a></li>
+					<li><span><a href="#">立即下载&raquo;</a></span><a href="#">电脑店 常 V2012</a></li>
 				</ul>
 			</div>
 			<div class="panel-2">
@@ -134,176 +151,14 @@
 	</div>
 	<!-- blfw begin -->	
 	<div class="leftcont2">
-	    <div class="blfw">
-		<div class="title">便民服务</div>
-		<div class="more"><a href="blfw_xykhk.html">更多</a></div>
-		</div>
-		<div class="case_icon">
-        	<!--分隔线-->
-            <div class="rollBox">
-            	<table>
-            		<tr>
-            			<td width="20" align="center"><img onmousedown="ISL_GoDown()" onmouseup="ISL_StopDown()" onmouseout="ISL_StopDown()"  class="img1" src="images/icon_l.gif" width="11" height="31" style="cursor:hand" /></td>
-					  <td>
-   						<div class="Cont" id="ISL_Cont">
-						  <div class="ScrCont">
-   							<div id="List1">
-       						  <!-- 图片列表 begin -->
-   							  <div class="pic">
-   								<a href="blfw_xykhk.html" target="_blank"><img src="images/icon01.gif" width="36" height="40" /></a>
-   								<a href="blfw_xykhk.html" target="_blank">信用卡还款</a>
-   							  </div>
-            						<div class="pic">
-          								<a href="blfw_sdmjf.html" target="_blank"><img src="images/icon04.gif " width="36" height="40" /></a>
-       								  <a href="blfw_sdmjf.html" target="_blank">水电煤缴费</a>
-   							  </div>
-            						<div class="pic">
-          								<a href="blfw_ghkdjf.html" target="_blank"><img src="images/icon07.gif " width="36" height="40" /></a>
-          								<a href="blfw_ghkdjf.html" target="_blank">缴固定电话费</a>
-         							</div>
-	  <div class="pic">
-          								<a href="blfw_ghkdjf.html" target="_blank"><img src="images/icon08.gif " width="36" height="40" /></a>
-          								<a href="blfw_ghkdjf.html" target="_blank">缴宽带费</a>
-   							  </div>
-            						<div class="pic">
-          								<a href="blfw_sjcz.html" target="_blank"><img src="images/icon09.gif " width="36" height="40" /></a>
-          								<a href="blfw_sjcz.html" target="_blank">手机充值</a>
-         							</div>
-            						<div class="pic">
-          								<a href="blfw_yxdk.html" target="_blank"><img src="images/icon12.gif " width="36" height="40" /></a>
-          								<a href="blfw_yxdk.html" target="_blank">游戏充值卡</a>
-         							</div>
-
-
-            						<div class="pic">
-          								<a href="blfw_zzhk.html" target="_blank"><img src="images/icon17.gif " width="36" height="40" /></a>
-          								<a href="blfw_zzhk.html" target="_blank">转账汇款</a>
-         							</div>
-            						<div class="pic">
-          								<a href="blfw_yecx.html" target="_blank"><img src="images/icon02.gif " width="36" height="40" /></a>
-          								<a href="blfw_yecx.html" target="_blank">银行卡余额查询</a>
-         							</div>
-            						<div class="pic">
-          								<a href="blfw_zhzc.html" target="_blank"><img src="images/icon13.gif " width="36" height="40" /></a>
-          								<a href="blfw_zhzc.html" target="_blank">账户直充</a>
-         							</div>
-            						<div class="pic">
-          								<a href="blfw_zfb.html" target="_blank"><img src="images/icon14.gif " width="36" height="40" /></a>
-          								<a href="blfw_zfb.html" target="_blank">支付宝充值码</a>
-         							</div>
-            						<div class="pic">
-          								<a href="blfw_cft.html" target="_blank"><img src="images/icon11.gif " width="36" height="40" /></a>
-          								<a href="blfw_cft.html" target="_blank">财付通账户充值</a>
-         							</div>
-            						<div class="pic">
-          								<a href="blfw_zdhfk.html" target="_blank"><img src="images/icon15.gif " width="36" height="40" /></a>
-          								<a href="blfw_zdhfk.html" target="_blank">账单号付款</a>
-         							</div>
-            						<div class="pic">
-          								<a href="blfw_tb.html" target="_blank"><img src="images/icon10.gif " width="36" height="40" /></a>
-          								<a href="blfw_tb.html" target="_blank">淘宝/支付宝交易付款</a>
-         							</div>
-
-
-            						<div class="pic">
-          								<a href="/user.lakala.com/beneficence/index.jsp" target="_blank"><img src="images/icon16.gif " width="36" height="40" /></a>
-          								<a href="/user.lakala.com/beneficence/index.jsp" target="_blank">公益捐款</a>
-         							</div>
-                                    <div class="pic">
-          								<a href="blfw_jp.html" target="_blank"><img src="images/icon21.gif " width="36" height="40" /></a>
-       								  <a href="blfw_jp.html" target="_blank">机票</a>
-         							</div>
-                                    <div class="pic">
-          								<a href="blfw_thjd.html" target="_blank"><img src="images/icon20.gif " width="36" height="40" /></a>
-       								  <a href="blfw_thjd.html" target="_blank">旅游酒店</a>
-         							</div>
-                                    <div class="pic">
-          								<a href="blfw_dyp.html" target="_blank"><img src="images/icon25.gif " width="36" height="40" /></a>
-       								  <a href="blfw_dyp.html" target="_blank">电影票</a>
-   							  </div>
-                                    <div class="pic">
-          								<a href="blfw_ycp.html" target="_blank"><img src="images/icon26.gif " width="36" height="40" /></a>
-       								  <a href="blfw_ycp.html" target="_blank">演出票</a>
-         							</div>
-                                    <div class="pic">
-          								<a href="blfw_xhlp.html" target="_blank"><img src="images/icon23.gif " width="36" height="40" /></a>
-       								  <a href="blfw_xhlp.html" target="_blank">鲜花礼品</a>
-         							</div>
-                                    <div class="pic">
-          								<a href="blfw_cp.html" target="_blank"><img src="images/icon27.gif " width="36" height="40" /></a>
-       								  <a href="blfw_cp.html" target="_blank">彩票生活</a>
-         							</div>
-                                    <div class="pic">
-          								<a href="blfw_qkdy.html" target="_blank"><img src="images/icon24.gif " width="36" height="40" /></a>
-          								<a href="blfw_qkdy.html" target="_blank">期刊订阅</a>
-         							</div>
-   							  <!-- 图片列表 end -->
-   							</div>
-       							<div id="List2"></div>
-      						</div>
-                            <div class="clear"></div>
-     					</div>
-     				</td>
-     				<td width="20" align="center"><img  onmousedown="ISL_GoUp()" onmouseup="ISL_StopUp()" onmouseout="ISL_StopUp()"  class="img2" src="images/icon_r.gif" width="11" height="31" style="cursor:hand" /></td>
-    			</tr>
-    		</table>
-    		</div>
-            <!--结束-->
-        </div>
-      </div>
+    </div>
 	<!-- blfw end -->	
 	
 	</div>
+	<div class="clear"></div>
 	<#include "/WEB-INF/template/card/footer.ftl">
 	<script type="text/javascript" src="${base}/template/card/js/base.js"></script>
 	<script type="text/javascript" src="${base}/template/card/js/card.js"></script>
-	<script type="text/javascript">
-		$(function(){
-			var slideX = {
-					thisUl : $('.slideTxt'),
-					btnLeft : $('.arr_prev'),
-					btnRight : $('.arr_next'),
-					thisLi : $('.slideTxt li'),
-					slideWidth : 600, //滑动的长度，一般和层的宽一致
-					init : function() {
-						slideX.thisUl.width(slideX.thisLi.length * slideX.slideWidth);
-						slideX.slideAuto();
-						slideX.btnLeft.click(slideX.slideLeft).hover(slideX.slideStop,slideX.slideAuto);
-						slideX.btnRight.click(slideX.slideRight).hover(slideX.slideStop,slideX.slideAuto);
-						slideX.thisUl.hover(slideX.slideStop, slideX.slideAuto);
-					},
-					slideLeft : function() {
-						slideX.btnLeft.unbind('click', slideX.slideLeft);
-						slideX.thisUl.find('li:last').prependTo(slideX.thisUl);
-						slideX.thisUl.css('marginLeft', -1 * slideX.slideWidth);
-						slideX.thisUl.animate({
-							'marginLeft' : 0
-						}, 750, function() {
-							slideX.btnLeft.bind('click', slideX.slideLeft);
-						});
-						return false;
-					},
-					slideRight : function() {
-						slideX.btnRight.unbind('click', slideX.slideRight);
-						slideX.thisUl.animate({
-							'marginLeft' : -1 * slideX.slideWidth
-						}, 750, function() {
-							slideX.thisUl.css('marginLeft', '0');
-							slideX.thisUl.find('li:first').appendTo(slideX.thisUl);
-							slideX.btnRight.bind('click', slideX.slideRight);
-						});
-						return false;
-					},
-					slideAuto : function() {
-						slideX.intervalId = window.setInterval(slideX.slideRight, 6000);
-					},
-					slideStop : function() {
-						window.clearInterval(slideX.intervalId);
-					}
-			};
-			//公告滚动初始化
-			slideX.init();
-		});
-	</script>
+	<script type="text/javascript" src="${base}/template/card/js/jquery.slides.js"></script>
 </body>
 </html>
