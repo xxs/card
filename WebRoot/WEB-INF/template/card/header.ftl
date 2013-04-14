@@ -5,15 +5,11 @@
 
 	<div id="menu2" class="menu">
 		<ul>
-				<@navigation_list position="middle"; navigationList>
-					<#list navigationList as navigation>
-						<li>
-							<a href="<@navigation.url?interpret />"
-								<#if navigation.isBlankTarget> target="_blank"</#if>>${navigation.name}
-							</a>
-						</li>
-					</#list>
-				</@navigation_list>
+			<@navigation_list position="middle"; navigationList>
+				<#list navigationList as navigation>
+					<li><a href="<@navigation.url?interpret />"	<#if navigation.isBlankTarget> target="_blank"</#if>>${navigation.name}</a></li>
+				</#list>
+			</@navigation_list>
 		</ul>
 		<div class="clear"></div>
 	</div>

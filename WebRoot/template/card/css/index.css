@@ -6,8 +6,8 @@
 #top {height:60px;background:url(topbg.gif) no-repeat right bottom;}
 #nav {height:40px;background:#0068ac url(nav.gif) no-repeat;}
 /* nav */
-.menu {	height: 40px;display: block;padding: 3px;width: 1000px;margin: 0 auto;}
-.menu ul {list-style: none;padding: 0;margin: 0;}
+.menu {	height: 40px;display: block;padding: 3px;margin: 0 auto;}
+.menu ul {list-style: none;padding: 0;margin: 0;width: 1000px;}
 .menu ul li {float: left;overflow: hidden;position: relative;line-height: 40px;text-align: center;}
 .menu ul li a {position: relative;display: block;width: 120px;height: 40px;font-family: "微软雅黑", "宋体";font-size: 16px;text-decoration: none;cursor: pointer;}
 .menu ul li a span {position: absolute;left: 0;	width: 90px;}
@@ -56,14 +56,39 @@
 .function .function-6{background-position:-350px 0;}
 .function li h3{font-size:18px;margin-top:10px;font-weight:normal;}
 .function li p{line-height:18px;color:#888;padding-top:5px;}
+
+
 /* loginBar */
 #loginBar {float:right;with:305px;height:500px;}
-.panel-login{border:1px solid #E8E8E8;margin-top:-30px;padding:10px;with:285px;}
+.panel-login{border:1px solid #ddd;margin-top:0px;padding:10px;with:285px;}
 .panel-login h2{font-size:15px;text-align:center;border-bottom:1px solid #E8E8E8;height:28px;with:280px;color:red;}
 .panel-login h2 span{float:right;margin-top:3px;}
 .list-login{margin:0 5px;padding-top:10px;}
 .list-login li{text-indent:10px;height:30px;overflow:hidden;line-height:30px;margin-bottom:5px;}
 .list-login li span{float:right;color:#999;}
+
+/*login in*/
+.login_in{ margin-left:-1px; border:1px solid #ddd;}
+.login_in_bd{min-height:329px;_height:329px;border:1px solid #999;}
+.login_in_tit{ padding:0 10px; border-bottom:1px solid #ddd; background:#ececec; line-height:28px;}
+.login_in_con{ padding:10px 15px; color:#666;}
+.login_in_con p{margin-bottom:6px;}
+.login_in_con .u_name{font-size:14px; color:#000;}
+.login_in_con .log_out{ color:#06c}
+.last_login_time{}
+.identity{ padding-top:3px;}
+.identity .id_name{ color:#f60}
+.my_account{ width:97px; height:22px; margin-left:10px; display:inline-block; background:url(../../../img/v2/pay/index/index_sp.png) -43px -164px no-repeat; vertical-align:middle; text-indent:-999em; overflow:hidden;}
+.cur_account{ margin-top:18px; padding-top:10px; border-top: 1px solid #ddd;}
+.cur_account span,.money span{ display:inline-block;}
+.money{ padding-top:0;}
+.money span{ font-size:14px; font-weight:700; color:#c00}
+.s_nav{ width:210px; margin:20px auto 0; }
+.s_nav li{ display:inline; float:left;}
+.s_nav li a{ width:103px; float:left; margin:-1px 0 0 -1px; display:inline; border:1px solid #ccc; background:#f1f8ff; color:#06c; text-align:center; line-height:32px; position:relative; z-index:1}
+.s_nav li a:hover{border:1px solid #81ace2;background:#deeeff; text-decoration:none;z-index:2}
+
+
 
 .panel-2{border:1px solid #E8E8E8;margin-top:10px;padding:10px;}
 .panel-2 h2{font-size:15px;border-bottom:1px solid #E8E8E8;height:28px;}
@@ -81,7 +106,7 @@
 /* advice */
 .notice { margin:5px auto; float:left;width:648px; height:24px;line-height:24px; padding:0 50px 0 10px;  border:1px solid #ddd; background:#fff;position:relative; font-family:\5b8b\4f53}
 .notice .tit{ height:24px; float:left;}
-.notice_con{ width:600px; height:24px; float:left; overflow:hidden;}
+.notice_con{ width:400px; height:24px; float:left; overflow:hidden;}
 .notice_con li, .notice_con li a{ color:#666}
 .notice_con li a:hover{ color:#c00; text-decoration:none;}
 .notice_con .time { padding-left:10px;}
@@ -90,8 +115,8 @@
 .arr_next{ right:-1px; background-position:-72px 0;}
 .arr_prev:hover,.arr_next:hover{border:1px solid #c30000; z-index:2; text-decoration:none;background-position:-24px 0;}
 .arr_next:hover{background-position:-48px 0;}
-.catalog {position: relative;height:40px;width: 600px;overflow: hidden;}      
-.slideTxt li {float: left;width: 600px;}
+.catalog {position: relative;height:40px;width: 400px;overflow: hidden;}      
+.slideTxt li {float: left;width: 400px;}
 /* copyright */
 .copyright{width:100%;height:220px;background:#fff;clear:both;}
 .copyright_shang{ height:100px; padding-top:10px;background:#c0c0c0;border-bottom:1px solid #c0c0c0;width:1000px; margin:0 auto;}

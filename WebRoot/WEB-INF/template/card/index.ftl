@@ -108,6 +108,40 @@
 		</div>
 		<!-- loginBar begin -->
 		<div id="loginBar">
+			<div class="login_in">
+				<div class="login_in_bd">
+					<p class="login_in_tit">用户信息</p>
+					<div class="login_in_con">
+						<p class="user">
+							<strong class="u_name">夏琛</strong> 欢迎您！
+							<a href="https://www.hnapay.com/website/logout.htm" class="log_out">[注销]</a>
+						</p>
+						<p class="last_login_time">上次登录：
+							2013-04-13 18:38:04
+						</p>
+						<p class="identity">
+							身份：
+							<span class="id_name">个人</span>
+							<a class="my_account" href="javascript:location.href='/website/app/myAccount.htm'">进入我的账户</a>
+						</p>
+						<p class="cur_account">
+							当前账户：<span>xiaoshi332@163.com</span>
+						</p>
+						<p class="money">
+							可用余额：<span>0.00</span> 元
+						</p>
+						<ul class="s_nav">
+							<li><a href="https://www.hnapay.com/website/app/acctCharge.htm">充　　值</a></li>
+							<li><a href="https://www.hnapay.com/website/app/withdraw.htm">提　　现</a></li>
+							<li><a href="https://www.hnapay.com/website/app/pay2account.htm">付　　款</a></li>
+							<li><a href="https://www.hnapay.com/website/app/queryBalanceList.htm?method=queryBalance">收支汇总</a></li>
+							<li><a href="https://www.hnapay.com/website/app/accountInfo.htm">账户信息</a></li>
+							<li><a href="https://www.hnapay.com/website/app/accountActive.htm?method=accountSafe">安全中心</a></li>
+						</ul>
+					</div>
+				</div>
+			</div>	
+		
 			<div class="panel-login">
 				<h2>会员登陆</h2>
 				<ul class="list-login">
@@ -124,6 +158,9 @@
 					<li><span><a href="#"><input type="text" class="formText" style="width: 150px;" /></a></span><a href="#">验证码：</a></li>
 				</ul>
 			</div>
+			
+			
+			
 			<div class="panel-2">
 				<h2>会员登陆</h2>
 				<ul class="list">
@@ -153,7 +190,6 @@
 	<div class="leftcont2">
     </div>
 	<!-- blfw end -->	
-	
 	</div>
 	<div class="clear"></div>
 	<#include "/WEB-INF/template/card/footer.ftl">
