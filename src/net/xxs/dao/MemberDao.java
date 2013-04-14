@@ -1,6 +1,9 @@
 package net.xxs.dao;
 
+import java.util.List;
+
 import net.xxs.entity.Member;
+import net.xxs.entity.Order;
 
 /**
  * Dao接口 - 会员
@@ -25,5 +28,10 @@ public interface MemberDao extends BaseDao<Member, String> {
 	 * 
 	 */
 	public Member getMemberByUsername(String username);
+	/**
+	 * 获取用户最近num条订单
+	 * 
+	 */
+	public List<Order> getMemberOrderList(Member member,int num);
 	
 }

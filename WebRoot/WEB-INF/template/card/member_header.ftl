@@ -10,33 +10,25 @@
 				<li class="menu_line"></li> 
 				<li><a href="deposit!list.action" onmouseover="javascript:qiehuan(3)" id="mynav3" class="nav_off"><span>提取货款</span></a></li>
 				<li class="menu_line"></li>
-				<li><a href="member!logout.action" onmouseover="javascript:qiehuan(3)" id="mynav3" class="nav_off"><span>退出登录</span></a></li>
+				<li><a href="member!logout.action" onmouseover="javascript:qiehuan(4)" id="mynav4" class="nav_off"><span>安全中心</span></a></li>
 				<li class="menu_line"></li>
 			</UL>
 		<div id="menu_con"><div id="qh_con0" style="DISPLAY: block">
 			<UL>
 			  	<li><a href="profile!edit.action"><span>个人信息</span></a></li><LI class=menu_line2></LI>
 				<li><a href="bank!list.action"><span>提现账户</span></a></li><LI class=menu_line2></LI>
-				<li><a href="password!safe.action"><span>密保问题</span></a></li><LI class=menu_line2></LI>
-				<li><a href="password!edit.action"><span>登录密码</span></a></li><LI class=menu_line2></LI>
-				<li><a href="password!withdrawPwd.action"><span>提现密码</span></a></li><LI class=menu_line2></LI>
-				<li><a href="member_log!list.action"><span>操作记录</span></a></li><LI class=menu_line2></LI>
 				<li><a href="promotion.action"><span>推广链接</span></a></li>
 			  	
 			</UL>
 		</div> 
 		<div id="qh_con1" style="DISPLAY: none">
 			<UL>
-  				<LI><a href="#"><span>栏目名称4</span></A></LI><LI class=menu_line2></LI>
-  				<LI><A href="#"><SPAN>栏目名称5</SPAN></A></LI><LI class=menu_line2></LI>
-  				<LI><A href="#"><SPAN>栏目名称6</SPAN></A></LI>
+  				<LI><A href="#"><SPAN>充值卡回收</SPAN></A></LI>
 			</UL>
 		</div> 
 		<div id="qh_con2" style="DISPLAY: none">
 			<UL>
-		  		<LI><a href="#"><span>栏目名称7</span></A></LI><LI class=menu_line2></LI>
-		  		<LI><A href="#"><SPAN>栏目名称8</SPAN></A></LI><LI class=menu_line2></LI>
-		  		<LI><A href="#"><SPAN>栏目名称9</SPAN></A></LI>
+		  		<LI><A href="#"><SPAN>历史订单查询</SPAN></A></LI>
 			</UL>
 		</div> 
 		<div id="qh_con3" style="DISPLAY: none">
@@ -46,12 +38,21 @@
 				<li><a href="withdraw!apply.action"><span>立即申请提现</span></a></li>
 			</UL>
 		</div> 
+		<div id="qh_con4" style="DISPLAY: none">
+			<UL>
+				<li><a href="member_log!list.action"><span>操作记录</span></a></li><LI class=menu_line2></LI>
+				<li><a href="password!edit.action"><span>登录密码</span></a></li><LI class=menu_line2></LI>
+				<li><a href="password!withdrawPwd.action"><span>提现密码</span></a></li><LI class=menu_line2></LI>
+				<li><a href="password!safe.action"><span>密保问题</span></a></li><LI class=menu_line2></LI>
+				<li><a href="withdraw!apply.action"><span>安全退出</span></a></li>
+			</UL>
+		</div> 
 	</div>
 </div>
 
 <script language="javascript">
 	function qiehuan(num){
-		for(var id = 0;id<=3;id++)
+		for(var id = 0;id<=4;id++)
 		{
 			if(id==num)
 			{

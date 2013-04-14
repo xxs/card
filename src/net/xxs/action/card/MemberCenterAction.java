@@ -1,10 +1,15 @@
 package net.xxs.action.card;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.annotation.Resource;
 
 import net.xxs.entity.Member;
+import net.xxs.entity.Order;
 import net.xxs.service.MemberService;
 import net.xxs.service.MessageService;
+import net.xxs.service.OrderService;
 
 import org.apache.struts2.convention.annotation.InterceptorRef;
 import org.apache.struts2.convention.annotation.InterceptorRefs;
@@ -30,16 +35,20 @@ public class MemberCenterAction extends BaseCardAction {
 	private Boolean isverifybank;
 	private double safeperfect;
 	private double personalinfo;
+	private List<Order> orderList = new ArrayList<Order>();
 	
 	
 	@Resource(name = "memberServiceImpl")
 	MemberService memberService;
 	@Resource(name = "messageServiceImpl")
 	MessageService messageService;
+	@Resource(name = "orderServiceImpl")
+	OrderService orderService;
 	
 	// 会员中心首页
 	public String index() {
 		Member loginMember = getLoginMember();
+		orderList = memberService.getMemberOrderList(loginMember, 10);
 		if(null != loginMember){
 			isverifyname = (null == loginMember.getName()||("".equals(loginMember.getName())))?true:false;
 			isverifyphone = (null == loginMember.getPhone()||("".equals(loginMember.getPhone())))?true:false;
@@ -149,5 +158,14 @@ public class MemberCenterAction extends BaseCardAction {
 	public void setPersonalinfo(double personalinfo) {
 		this.personalinfo = personalinfo;
 	}
+
+	public List<Order> getOrderList() {
+		return orderList;
+	}
+
+	public void setOrderList(List<Order> orderList) {
+		this.orderList = orderList;
+	}
+	
 	
 }

@@ -1,8 +1,10 @@
 package net.xxs.service;
 
 import java.util.Date;
+import java.util.List;
 
 import net.xxs.entity.Member;
+import net.xxs.entity.Order;
 
 /**
  * Service接口 - 会员
@@ -64,5 +66,11 @@ public interface MemberService extends BaseService<Member, String> {
 	 * @return 生成日期
 	 */
 	public Date getPasswordRecoverKeyBuildDate(String passwordRecoverKey);
+	/**
+	 * 获取用户最近num条订单
+	 * 
+	 */
+	public List<Order> getMemberOrderList(Member member,int num);
+
 	
 }

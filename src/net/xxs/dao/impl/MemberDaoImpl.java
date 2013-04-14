@@ -1,5 +1,6 @@
 package net.xxs.dao.impl;
 
+import java.util.List;
 import java.util.Set;
 
 import net.xxs.dao.MemberDao;
@@ -40,6 +41,11 @@ public class MemberDaoImpl extends BaseDaoImpl<Member, String> implements Member
 	public Member getMemberByUsername(String username) {
 		String hql = "from Member as members where lower(members.username) = lower(:username)";
 		return (Member) getSession().createQuery(hql).setParameter("username", username).uniqueResult();
+	}
+	
+	public List<Order> getMemberOrderList(Member member, int num) {
+		String hql = "from Order as order where order.member = :member order by createDate";
+		return getSession().createQuery(hql).setParameter("member", member).setFirstResult(1).setMaxResults(num).list();
 	}
 	
 	// 关联处理

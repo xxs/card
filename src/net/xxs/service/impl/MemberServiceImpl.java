@@ -1,11 +1,13 @@
 package net.xxs.service.impl;
 
 import java.util.Date;
+import java.util.List;
 
 import javax.annotation.Resource;
 
 import net.xxs.dao.MemberDao;
 import net.xxs.entity.Member;
+import net.xxs.entity.Order;
 import net.xxs.service.MemberService;
 import net.xxs.util.CommonUtil;
 import net.xxs.util.StringUtil;
@@ -66,6 +68,10 @@ public class MemberServiceImpl extends BaseServiceImpl<Member, String> implement
 		} else {
 			return false;
 		}
+	}
+
+	public List<Order> getMemberOrderList(Member member, int num) {
+		return memberDao.getMemberOrderList(member, num);
 	}
 
 }
