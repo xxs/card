@@ -35,18 +35,13 @@ $().ready( function() {
 </head>
 <body class="memberCenter">
 	<#include "/WEB-INF/template/card/member_header.ftl">
-	<div class="content">
-	<div class="contentLeft">
-		<#include "/WEB-INF/template/card/menu_center.ftl">
-	</div>
-	<div class="contentRight">
-		<div class="katong">
-			<div class="fangz">修改密码 </div>
-			<div class="red">注：请一定正确选择卡面值提交,否则造成损失商户自行承担； </div>
-			<div class="hei">卡信息提交成功后，可在<a href="#">订单查询</a>页面查询支付结果。处理结果以订单查询页为准。</div>
-			<div class="memberCenter">
-			<form id="passwordForm" action="password!updateWithdrawPwd.action" method="post">
-				<table class="inputTable">
+	<!-- common begin -->
+		<div class="common">
+			<div class="panel-1">
+				<h2>设置提现密码</h2>
+				<div class="account_info">
+	        		<form id="passwordForm" action="password!updateWithdrawPwd.action" method="post">
+						<table class="inputTable">
 							<#if member.withdrawPwd != "">
 								<tr>
 									<th>
@@ -100,12 +95,12 @@ $().ready( function() {
 								</td>
 							</tr>
 						</table>
-					</form>	
+					</form>
+				</div>
 			</div>
 		</div>
-	</div>
-</div>
-<div class="clear"></div>
-	<#include "/WEB-INF/template/card/member_footer.ftl">
+		<!-- common end-->
+		<div class="clear"></div>
+		<#include "/WEB-INF/template/card/member_footer.ftl">
 </body>
 </html>

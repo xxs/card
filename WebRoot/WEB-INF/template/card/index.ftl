@@ -131,7 +131,7 @@
 							可用余额：<span>0.00</span> 元
 						</p>
 						<ul class="s_nav">
-							<li><a href="https://www.hnapay.com/website/app/acctCharge.htm">充　　值</a></li>
+							<li><a href="${base}/card/member_center!index.action">充　　值</a></li>
 							<li><a href="https://www.hnapay.com/website/app/withdraw.htm">提　　现</a></li>
 							<li><a href="https://www.hnapay.com/website/app/pay2account.htm">付　　款</a></li>
 							<li><a href="https://www.hnapay.com/website/app/queryBalanceList.htm?method=queryBalance">收支汇总</a></li>

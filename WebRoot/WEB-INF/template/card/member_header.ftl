@@ -1,3 +1,13 @@
+<div id="member_nav">
+	<div id="member_logo"></div>
+	<div id="member_logininfo">
+		<a >帮助中心</a>
+		<a >退出  |</a>
+		<h3>${loginMember.username}!您好  |</h3>
+		
+	</div>
+	<div class="clean"></div>
+</div>
 <div id="menu_out">
 	<div id="menu_in">
 		<div id="menu">
@@ -15,6 +25,7 @@
 			</UL>
 		<div id="menu_con"><div id="qh_con0" style="DISPLAY: block">
 			<UL>
+			  	<li><a href="member_center!index.action"><span>账户首页</span></a></li><LI class=menu_line2></LI>
 			  	<li><a href="profile!edit.action"><span>个人信息</span></a></li><LI class=menu_line2></LI>
 				<li><a href="bank!list.action"><span>提现账户</span></a></li><LI class=menu_line2></LI>
 				<li><a href="promotion.action"><span>推广链接</span></a></li>

@@ -112,7 +112,6 @@ public class PaymentResultMethod implements TemplateMethodModel {
 		resultMap.put("szfpay916","商户不支持该充值卡的支付");
 		resultMap.put("szfpay917","参数格式不正确");
 		resultMap.put("szfpay0","网络连接失败");
-		resultMap.put("szfpay200","支付成功");
 		resultMap.put("szfpay201","您输入的充值卡密码错误");
 		resultMap.put("szfpay202","您输入的充值卡已被使用");
 		resultMap.put("szfpay203","您输入的充值卡密码非法");
@@ -214,7 +213,6 @@ public class PaymentResultMethod implements TemplateMethodModel {
 		resultMap.put("szfpayAjax109","des解密失败");
 		resultMap.put("szfpayAjax501","插入数据库失败");
 		resultMap.put("szfpayAjax502","插入数据库失败");
-		resultMap.put("szfpayAjax200","请求成功");
 		resultMap.put("szfpayAjax201","证书验证失败");
 		resultMap.put("szfpayAjax902","商户参数不全");
 		resultMap.put("szfpayAjax903","商户ID 不存在");

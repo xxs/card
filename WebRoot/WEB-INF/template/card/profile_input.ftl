@@ -107,16 +107,12 @@ $().ready( function() {
 </head>
 <body class="memberCenter">
 	<#include "/WEB-INF/template/card/member_header.ftl">
-		<div class="content">
-	<div class="contentLeft">
-		<#include "/WEB-INF/template/card/menu_center.ftl">
-	</div>
-	<div class="contentRight">
-		<div class="katong">
-			<div class="fangz">个人信息 </div>
-			<div class="hei">注：完善个人信息有助于申请商户权限</div>
-			<div class="memberCenter">
-			<form id="validateForm" action="profile!update.action" method="post">
+	<!-- common begin -->
+		<div class="common">
+			<div class="panel-1">
+				<h2>设置个人资料</h2>
+				<div class="account_info">
+	        		<form id="validateForm" action="profile!update.action" method="post">
 						<table class="inputTable">
 							<tr>
 								<th>
@@ -205,10 +201,10 @@ $().ready( function() {
 							</tr>
 						</table>
 					</form>
+				</div>
 			</div>
 		</div>
-	</div>
-</div>
+		<!-- common end-->
 	<div class="clear"></div>
 	<#include "/WEB-INF/template/card/member_footer.ftl">
 </body>

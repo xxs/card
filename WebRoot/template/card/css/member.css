@@ -6,6 +6,33 @@ img{vertical-align:top;border:0;}
 h1,h2,h3,h4,h5,h6{font-size:12px;font-weight:normal;}
 .clear{clear:both;width:0px;height:0px;line-height:0px;font-size:0;overflow:hidden;}
 /*主导航菜单*/
+#member_nav{
+	width:1000px;
+	padding-left:4px;
+	margin-left:auto;
+	margin-right:auto;
+	height:60px;
+}
+#member_logo{
+	float:left;
+	width:400px;
+	margin:5px auto;
+	height:50px;
+	background:red;
+	background:url(../images/logo.jpg) no-repeat;
+}
+#member_logininfo{
+	width:500px;
+	float:right;
+	padding-left:4px;
+	margin-left:auto;
+	margin-right:auto;
+	height:40px;
+}
+#member_logininfo a,h3{
+	float:right;
+	padding:10px;
+}
 #menu ul{
 	padding:0;
 	border:0;
@@ -114,7 +141,16 @@ h1,h2,h3,h4,h5,h6{font-size:12px;font-weight:normal;}
 /* common */
 .common-left {float:left;width:740px;}
 .panel-1{border:1px solid #E8E8E8;margin-top:10px;background:url(../images/panel-1-bg.jpg) repeat-x top;padding:10px;overflow:hidden;zoom:1}
-.panel-1 h2{font-size:15px;border-bottom:1px solid #E8E8E8;height:25px;}
+.panel-1 h2{font-size:15px;font-weight:700;border-bottom:1px solid #E8E8E8;height:25px;}
+.panel-1 h2 a{float:right;font-weight:400;margin-top:-5px;margin-right:20px;}
+.panel-1 h2 span{float:right;font-weight:400;margin-right:20px;line-height:20px;}
+
+.panel-left{border:1px solid #E8E8E8;border-right:none;margin-top:10px;width:467px;float:left;background:#f6f6f6;padding-top:10px;padding-left:30px;padding-bottom:10px;overflow:hidden;zoom:1}
+.panel-left li{font-size:15px;height:30px;overflow:hidden;line-height:30px;padding-buttom:5px;}
+.panel-left li span{font-size:15px;height:30px; width:80px;text-align:right;display:inline-block}
+
+.panel-right{border:1px solid #E8E8E8;border-left:none;margin-top:10px;height:210px;width:467px;float:right;background:#f6f6f6;padding-top:10px;padding-left:30px;padding-bottom:10px;overflow:hidden;zoom:1}
+.panel-right li{font-size:15px;height:30px;overflow:hidden;line-height:20px;padding-buttom:5px;}
 
 .account_info{ margin-top:5px;}
 .account_info .balance {_height:62px; margin-top:5px; padding:11px 0 11px 20px; overflow:hidden; float:left; width:700px; clear:both;background:#faeadc;}
@@ -175,6 +211,13 @@ h1,h2,h3,h4,h5,h6{font-size:12px;font-weight:normal;}
 .uplog{padding:10px 10px 0 10px;line-height:20px;}
 .uplog h3{}
 .uplog p{padding-bottom:10px;color:#888}
+
+table.inputTable {width: 100%;border: 0px;margin-top:15px;overflow:hidden;}
+table.inputTable th {width:30%;line-height: 35px;	padding-right: 10px;text-align: right;color: #333333;}
+table.inputTable td {line-height: 30px;padding: 3px 5px;	text-align: left;color: #595959;}
+
+
+
 
 /*会员中心公告表格样式*/
 .tab3{margin-left:0px;margin-top:0px;width:775px;}
@@ -293,11 +336,7 @@ input.red_button:hover {
 .memberCenter table.listTable td {line-height: 35px;padding: 3px 5px;	text-align: center;color: #595959;}
 .memberCenter table.listTable tr:hover td {background-color: #fafafa;}
 
-.memberCenter table.inputTable {width: 100%;border: 2px solid #e8e8e8;margin-top:15px;overflow:hidden;}
-.memberCenter table.inputTable th {	width: 150px;line-height: 35px;	padding-right: 10px;text-align: right;color: #333333;background-color: #fafafa;}
-.memberCenter table.inputTable tr:hover th {background-color: #eeeeee;}
-.memberCenter table.inputTable td {	line-height: 30px;padding: 3px 5px;	text-align: left;color: #595959;}
-.memberCenter table.inputTable tr:hover td {background-color: #fafafa;}
+
 
 .memberCenter table.tabTable {width: 100%;border: 2px solid #e8e8e8;margin-top:-1px;overflow:hidden;}
 .memberCenter table.tabTable th {	width: 100px;line-height: 35px;	padding-right: 10px;text-align: right;color: #333333;}

@@ -47,28 +47,24 @@ $().ready( function() {
 </head>
 <body class="memberCenter">
 	<#include "/WEB-INF/template/card/member_header.ftl">
-	<div class="content">
-	<div class="contentLeft">
-		<#include "/WEB-INF/template/card/menu_deposit.ftl">
-	</div>
-	<div class="contentRight">
-		<div class="katong">
-			<div class="fangz">交易明细</a></div>
-			<div class="red">注：请一定正确选择卡面值提交,否则造成损失商户自行承担； </div>
-			<div class="hei">卡信息提交成功后，可在<a href="#">订单查询</a>页面查询支付结果。处理结果以订单查询页为准。</div>
-			<br/>
-			<div class="tab3">
-					<table width="770px" cellspacing=0>
-						<tr>
-							<th>用户名</th>
-							<th>提现金额</th>
-							<th>实发金额</th>
-							<th>收款账号</th>
-							<th>银行名称</th>
-							<th>申请日期</th>
-							<th>状态</th>
-						</tr>
-						<#list pager.result as withdraw>
+	<div class="common">
+		<div class="panel-1 trade_info">
+				<h2>提现账户<a class="formButton red" href="withdraw!apply.action">立即提现</a></h2>
+				<form id="refForm" >
+				<table style="margin-top:10px;">
+					<thead>
+							<tr>
+								<th>用户名</th>
+								<th>提现金额</th>
+								<th>实发金额</th>
+								<th>收款账号</th>
+								<th>银行名称</th>
+								<th>申请日期</th>
+								<th>状态</th>
+							</tr>
+						</thead>
+						<tbody>
+							<#list pager.result as withdraw>
 							<tr>
 								<td>
 										${withdraw.member.username}
@@ -93,16 +89,14 @@ $().ready( function() {
 								</td>
 							</tr>
 						</#list>
+						</tbody>
 					</table>
 					<@pagination pager=pager baseUrl="/card/withdraw!list.action">
          				<#include "/WEB-INF/template/card/pager.ftl">
          			</@pagination>
-				</div>
+			</div>
 		</div>
-	</div>
-	</div>
-</div>
-<div class="clear"></div>
+	<div class="clear"></div>
 	<#include "/WEB-INF/template/card/member_footer.ftl">
 </body>
 </html>

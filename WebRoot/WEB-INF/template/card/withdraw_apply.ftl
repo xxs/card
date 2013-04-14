@@ -37,17 +37,12 @@ $().ready( function() {
 </head>
 <body class="memberCenter">
 	<#include "/WEB-INF/template/card/member_header.ftl">
-	<div class="content">
-	<div class="contentLeft">
-		<#include "/WEB-INF/template/card/menu_deposit.ftl">
-	</div>
-	<div class="contentRight">
-		<div class="katong">
-			<div class="fangz">提现申请</a></div>
-			<div class="red">注：请一定正确选择卡面值提交,否则造成损失商户自行承担； </div>
-			<div class="hei">卡信息提交成功后，可在<a href="#">订单查询</a>页面查询支付结果。处理结果以订单查询页为准。</div>
-			<div class="memberCenter">
-			<form id="withdrawForm" action="withdraw!save.action" method="post">
+	<!-- common begin -->
+		<div class="common">
+			<div class="panel-1">
+				<h2>申请提现</h2>
+				<div class="account_info">
+	        		<form id="withdrawForm" action="withdraw!save.action" method="post">
 						<input type="hidden" name="paymentType" value="recharge" />
 						<table class="inputTable">
 							<tr>
@@ -105,11 +100,10 @@ $().ready( function() {
 						</table>
 					</form>
 				</div>
+			</div>
 		</div>
-	</div>
-	</div>
-</div>
-<div class="clear"></div>
+		<!-- common end-->
+	<div class="clear"></div>
 	<#include "/WEB-INF/template/card/member_footer.ftl">
 </body>
 </html>

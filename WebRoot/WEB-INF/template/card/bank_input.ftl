@@ -58,17 +58,12 @@ $().ready( function() {
 </head>
 <body class="memberCenter">
 	<#include "/WEB-INF/template/card/member_header.ftl">
-	<div class="content">
-	<div class="contentLeft">
-		<#include "/WEB-INF/template/card/menu_center.ftl">
-	</div>
-	<div class="contentRight">
-		<div class="katong">
-			<div class="fangz"><#if isAddAction>添加账户<#else>编辑账户</#if></div>
-			<div class="red">注：请一定正确选择卡面值提交,否则造成损失商户自行承担； </div>
-			<div class="hei">卡信息提交成功后，可在<a href="#">订单查询</a>页面查询支付结果。处理结果以订单查询页为准。</div>
-			<div class="memberCenter">
-			<form id="bankForm" action="<#if isAddAction>bank!save.action<#else>bank!update.action</#if>" method="post">
+	<!-- common begin -->
+		<div class="common">
+			<div class="panel-1">
+				<h2>修改登陆密码</h2>
+				<div class="account_info">
+	        		<form id="bankForm" action="<#if isAddAction>bank!save.action<#else>bank!update.action</#if>" method="post">
 						<table class="inputTable">
 							<input type="hidden" name="memberBank.id" value="${id}" />
 							<tr>
@@ -208,11 +203,10 @@ $().ready( function() {
 						</table>
 					</form>
 				</div>
+			</div>
 		</div>
-	</div>
-	</div>
-</div>
-<div class="clear"></div>
+		<!-- common end-->
+	<div class="clear"></div>
 	<#include "/WEB-INF/template/card/member_footer.ftl">
 </body>
 </html>

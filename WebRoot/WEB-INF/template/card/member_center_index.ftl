@@ -71,32 +71,60 @@
 			</div>
 			<a name="intro"></a>
 			<div class="panel-1 trade_info">
-				<h2>最近订单信息</h2>
+				<h2>最近10订单信息</h2>
 				<table style="margin-top:10px;">
 					<thead>
 							<tr>
-								<th class="date c_666">创建时间</th>
-								<th class="type">交易内容</th>
-								<th class="cost">收/支</th>
-								<th class="num">交易金额(元)</th>
-								<th class="state">交易状态</th>
-								<th class="operate">操作</th>
-							</tr>
+								<th>订单编号</th>
+								<th>充值卡名称</th>
+								<th>下单时间</th>
+								<th>单据通道</th>
+								<th>充值卡卡号</th>
+								<th>订单金额</th>
+								<th>订单状态</th>
+								<th><a class="red" id="refBtn" >点击刷新</a></th>							</tr>
 						</thead>
 						<tbody>
 							<#list orderList as order>
 							<tr>
-								<td class="null">最近一月内</td>
-								<td class="null">最近一月内</td>
-								<td class="null">最近一月内</td>
-								<td class="null">最近一月内录...</td>
-								<td class="null">最近一月内...</td>
-								<td class="null">最近一月内...</td>
+								<td>
+									${order.orderSn}
+								</td>
+								<td width="250">
+										${order.productName}
+								</td>
+								<td width="200">
+									<span title="${order.createDate?string("yyyy-MM-dd HH:mm:ss")}">${order.createDate?string("yyyy-MM-dd HH:mm:ss")}</span>
+								</td>
+								<td>
+									${order.paymentConfig.name}
+								</td>
+								<td>
+									${order.cardNum}
+								</td>
+								<td>
+									${order.amount?string(currencyFormat)}
+								</td>
+								<td>
+									<span class="state" id="ss${order.id}">
+									<#if order.orderStatus == "paid">
+										<span class="green">${action.getText("OrderStatus." + order.orderStatus)}</span>
+									<#else>
+										<span class="red"> ${action.getText("OrderStatus." + order.orderStatus)}</span>
+									</#if>
+									</span>
+								</td>
 							</tr>
-							</#list>
-							<tr>
-								<td colspan="6" class="null">最近一月内没有交易记录...</td>
-							</tr>
+						</#list>
+							<#if orderList?exists>
+								<tr>
+									<td colspan="7" class="null" align="right"><a href="order!list.action" style="float:right;margin-right:10px;">更多订单</a></td>
+								</tr>
+							<#else>
+								<tr>
+									<td colspan="7" class="null">最近一月内没有交易记录...</td>
+								</tr>
+							</#if>
 						</tbody>
 					</table>
 					<#include "/WEB-INF/template/card/pager.ftl">

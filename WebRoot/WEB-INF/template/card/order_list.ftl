@@ -83,31 +83,14 @@ $().ready( function() {
 </head>
 <body class="memberCenter">
 	<#include "/WEB-INF/template/card/member_header.ftl">
-	<div class="content">
-	<div class="contentLeft" style="min-height:185px;">
-		<#include "/WEB-INF/template/card/menu_order.ftl">
-	</div>
-	<div class="contentRight">
-		<div class="katong">
-			<div class="fangz">订单列表</div>
-			<div class="hei">
-				<div class="memberCenter">
-				<form action="order!search.action" method="post" name="thisform">
-				<table class="stateTable">
-					<tr>
-						<th>订单编号</th>
-						<td>
-							<input type="text" name="order.orderSn" value="<#if order??>${order.orderSn!""}</#if>"/>
-						</td>	
-						<th>充值卡卡号</th>
-						<td>
-							<input type="text" name="order.cardNum" value="<#if order??>${order.cardNum!""}</#if>"/>
-						</td>
-					</tr>
-					<tr>
-						<th>充值卡品牌</th>
-						<td>
-							<select name="order.brandId">
+	<!-- common begin -->
+		<div class="common">
+			<form action="order!search.action" method="post" name="thisform">
+			<div class="panel-left">
+				<ul>
+					<li><span>订单编号:</span><input type="text" name="order.orderSn" value="<#if order??>${order.orderSn!""}</#if>"/></li>
+					<li><span>充值卡卡号:</span><input type="text" name="order.cardNum" value="<#if order??>${order.orderSn!""}</#if>"/></li>
+					<li><span>充值卡品牌:</span><select name="order.brandId">
 								<option value="">请选择...</option>
 								<#list allBrandList as brand>
 									<option value="${brand.id}" <#if order??><#if brand.id == order.brandId> selected</#if></#if>>
@@ -115,10 +98,8 @@ $().ready( function() {
 									</option>
 								</#list>
 							</select>
-						</td>	
-						<th>单据通道</th>
-						<td>
-							<select name="order.paymentConfig.id">
+					</li>
+					<li><span>充值通道:</span><select name="order.paymentConfig.id">
 								<option value="">请选择...</option>
 								<#list allPaymentConfigList as paymentConfig>
 									<option value="${paymentConfig.id}" <#if order??><#if paymentConfig == order.paymentConfig> selected</#if></#if>>
@@ -126,12 +107,8 @@ $().ready( function() {
 									</option>
 								</#list>
 							</select>
-						</td>
-					</tr>
-					<tr>
-						<th>单据状态</th>
-						<td>
-							<select name="order.orderStatus">
+					</li>
+					<li><span>单据状态:</span><select name="order.orderStatus">
 								<option value="">请选择...</option>
 								<#list orderStatusList as orderStatus> 
 									<option value="${orderStatus}" <#if order??><#if order.orderStatus == orderStatus>selected="selected"</#if></#if> >
@@ -139,45 +116,73 @@ $().ready( function() {
 									</option>
 								</#list>
 							</select>
-						</td>	
-						<th>时间范围</th>
-						<td >
-							<input name="beginDate" onclick="WdatePicker()" value="${tempBeginDate}" />
+					</li>
+					<li><span>时间范围:</span><input name="beginDate" readonly onclick="WdatePicker()" value="${tempBeginDate}" />
 							~
-							<input name="endDate" onclick="WdatePicker()" value="${tempEndDate}"/>
-						</td>
-					</tr>	
-					<tr>
-						<td>
-						</td>	
-						<td colspan="3" align="center">
-							<input type="button" class="formButton query" value="查询" />	
-							<a href="#" alt="order!search.action?dateScope=day" class="quickquery">今日订单</a>
-							<a href="#" alt="order!search.action?dateScope=week" class="quickquery">本周订单</a>
-							<a href="#" alt="order!search.action?dateScope=month" class="quickquery">本月订单</a>
-							<a href="#" alt="order!search.action?dateScope=quarter" class="quickquery">季度订单</a>
-						</td>
-					</tr>	
-				</table>
-				</form>
-				</div>
+							<input name="endDate" onclick="WdatePicker()" readonly value="${tempEndDate}"/>
+					</li>
+					<li><span>&nbsp;</span><input type="submit" class="formButton" value="查询" />
+					</li>
+				</ul>
 			</div>
+			</form>
+			<div class="panel-right trade_info">
+				<ul>
+					<li>时间区间:<select name="dateScope">
+								<option value="week">最近一周</option>
+								<option value="month">最近一个月</option>
+								<option value="quarter">最近三个月</option>
+							</select>
+					</li>
+					<li>时间区间:<select name="dateScope">
+								<option value="week">最近一周</option>
+								<option value="month">最近一个月</option>
+								<option value="quarter">最近三个月</option>
+							</select>
+					</li>
+					<table style="margin-left:0px;margin-right:40px;width:400px;">
+						<thead>
+							<tr>
+								<th >成功订单</th>
+								<th >成功金额</th>
+								<th >总订单数</th>
+								<th >提现金额</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr>
+								<td class="null">14笔</td>
+								<td class="null">￥2300元</td>
+								<td class="null">￥4400元</td>
+								<td class="null">￥200元</td>
+							</tr>
+						</tbody>
+					</table>
+				</ul>
+			</div>
+			<div class="clean"></div>
 		</div>
-	</div>
-		<form id="refForm" >
-		<div class="tab4">
-			<table width="995px" cellspacing=0>
-				<tr>
-							<th>订单编号</th>
-							<th>充值卡名称</th>
-							<th>下单时间</th>
-							<th>单据通道</th>
-							<th>充值卡卡号</th>
-							<th>订单金额</th>
-							<th>订单状态</th>
-							<th><a class="red" id="refBtn" >点击刷新</a></th>
-						</tr>
-						<#list pager.result as order>
+		</div>
+		<!-- common end-->
+		<div class="common" style="margin-top:250px;">
+		<div class="panel-1 trade_info">
+				<h2>订单列表</h2>
+				<form id="refForm" >
+				<table style="margin-top:10px;">
+					<thead>
+							<tr>
+								<th>订单编号</th>
+								<th>充值卡名称</th>
+								<th>下单时间</th>
+								<th>单据通道</th>
+								<th>充值卡卡号</th>
+								<th>订单金额</th>
+								<th>订单状态</th>
+								<th><a class="red" id="refBtn" >点击刷新</a></th>
+							</tr>
+						</thead>
+						<tbody>
+							<#list pager.result as order>
 							<tr>
 								<td>
 									${order.orderSn}
@@ -209,23 +214,24 @@ $().ready( function() {
 								<td  width="250">
 									<input type="hidden" name="ids" value="${order.id}"/>
 									<span class="recode" id="rr${order.id}" title="${order.retCode}">
-										${resultText(order.paymentConfig.paymentProductId,order.retCode)}
+										<#if order.orderStatus == "paid">
+											${resultText(order.paymentConfig.paymentProductId,"Ajax",order.retCode)}
+										<#else>
+											${resultText(order.paymentConfig.paymentProductId,order.retCode)}
+										</#if>
 									</span>
-								</td>
-								<td  width="250">
-									${resultText(order.paymentConfig.paymentProductId,"Ajax",order.retCode)}
 								</td>
 							</tr>
 						</#list>	
-				</table>
+						</tbody>
+					</table>
 				</form>
 				<@pagination pager=pager baseUrl="/card/order!list.action">
          			<#include "/WEB-INF/template/card/pager.ftl">
          		</@pagination>
 			</div>
-	</div>
-</div>
-<div class="clear"></div>
+		</div>
+	<div class="clear"></div>
 	<#include "/WEB-INF/template/card/member_footer.ftl">
 </body>
 </html>

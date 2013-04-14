@@ -21,63 +21,53 @@ $().ready( function() {
 </head>
 <body class="memberCenter">
 	<#include "/WEB-INF/template/card/member_header.ftl">
-	<div class="content">
-	<div class="contentLeft">
-		<#include "/WEB-INF/template/card/menu_center.ftl">
-	</div>
-	<div class="contentRight">
-		<div class="katong">
-			<div class="fangz">账户列表 </div>
-			<div class="red">注：请一定正确选择卡面值提交,否则造成损失商户自行承担； </div>
-			<div class="hei">可点击<a class="formButton" href="bank!add.action">添加账户</a>页面添加</div>
-			<br/>
-			<input value="${member.safeQuestion}" type="hidden" id="question"/>
-			<div class="memberCenter">
-			<div class="tab3">
-			<table width="760px" cellspacing=0>
-				<tr>
-					<th>账号	</th>
-					<th>开户名</th>
-					<th>开户银行</th>
-					<th>开户城市</th>
-					<th>支行明细</th>
-					<th>状态</th>
-					<th>操作</th>
-				</tr>
-					<#list member.memberBankSet as memberBank>
-						<tr>
-							<td>
-								${memberBank.banknum}
-							</td>
-							<td>
-								${memberBank.openname}
-							</td>
-							<td>
-								${memberBank.bankname}
-							</td>
-							<td>
-								${memberBank.bankcity}
-							</td>
-							<td>
-								${memberBank.bankdetail}
-							</td>
-							<td>
-								${memberBank.isDefault?string('是','否')}
-							</td>
-							<td>
-								<a name="bank!check.action?id=${memberBank.id}" class="xiugai">[默认]</a>
-								<a name="bank!edit.action?id=${memberBank.id}" class="xiugai">[修改]</a>
-							</td>
-						</tr>
-					</#list>		
-				</table>
-			</div>
+		<div class="common">
+		<div class="panel-1 trade_info">
+				<h2>提现账户<a class="formButton red" href="bank!add.action">添加账户</a></h2>
+				<form id="refForm" >
+				<table style="margin-top:10px;">
+					<thead>
+							<tr>
+								<th>账号	</th>
+								<th>开户名</th>
+								<th>开户银行</th>
+								<th>开户城市</th>
+								<th>支行明细</th>
+								<th>状态</th>
+								<th>操作</th>
+							</tr>
+						</thead>
+						<tbody>
+							<#list member.memberBankSet as memberBank>
+							<tr>
+								<td>
+									${memberBank.banknum}
+								</td>
+								<td>
+									${memberBank.openname}
+								</td>
+								<td>
+									${memberBank.bankname}
+								</td>
+								<td>
+									${memberBank.bankcity}
+								</td>
+								<td>
+									${memberBank.bankdetail}
+								</td>
+								<td align="center">
+									${memberBank.isDefault?string('是','否')}
+								</td>
+								<td align="center">
+									<a name="bank!check.action?id=${memberBank.id}" class="xiugai">默认</a>
+									<a name="bank!edit.action?id=${memberBank.id}" class="xiugai">修改</a>
+								</td>
+							</tr>
+						</#list>
+						</tbody>
+					</table>
 			</div>
 		</div>
-	</div>
-</div>
-<div class="clear"></div>
-	</div>
 	<div class="blank"></div>
 	<#include "/WEB-INF/template/card/member_footer.ftl">
 </body>

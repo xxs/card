@@ -7,43 +7,34 @@
 <meta name="Copyright" content="2.0" />
 <#include "/WEB-INF/template/card/member_head.ftl">
 <script type="text/javascript">
-$().ready( function() {
-
-	var $questionForm = $("#questionForm");
-	var $subbtn = $("#subbtn");
-	// 表单验证
-	$questionForm.submit( function() {
-			if ($.trim($("#memberSafeQuestion").val()) == "") {
-				$.dialog({type: "warn", content: "请输入密保问题!", modal: true, autoCloseTime: 3000});
-				return false;
-			}
-			if ($.trim($("#memberSafeAnswer").val()) == "") {
-				$.dialog({type: "warn", content: "请输入密保答案!", modal: true, autoCloseTime: 3000});
-				return false;
-			}
-			$subbtn.attr("disabled", false);
-			$subbtn.removeAttr("button_click");
-			$subbtn.attr("class", "button");
-		});	
-
-});
+	$().ready( function() {
+		var $questionForm = $("#questionForm");
+		var $subbtn = $("#subbtn");
+		// 表单验证
+		$questionForm.submit( function() {
+				if ($.trim($("#memberSafeQuestion").val()) == "") {
+					$.dialog({type: "warn", content: "请输入密保问题!", modal: true, autoCloseTime: 3000});
+					return false;
+				}
+				if ($.trim($("#memberSafeAnswer").val()) == "") {
+					$.dialog({type: "warn", content: "请输入密保答案!", modal: true, autoCloseTime: 3000});
+					return false;
+				}
+				$subbtn.attr("disabled", false);
+				$subbtn.removeAttr("button_click");
+				$subbtn.attr("class", "button");
+			});	
+	});
 </script>
 </head>
 <body class="memberCenter">
 	<#include "/WEB-INF/template/card/member_header.ftl">
-	<div class="content">
-	<div class="contentLeft">
-		<#include "/WEB-INF/template/card/menu_center.ftl">
-	</div>
-	<div class="contentRight">
-		<div class="katong">
-			<div class="fangz"><#if member.safeQuestion == "">设置密保<#else>修改密保</#if> </div>
-			<div class="red">注意：问题或答案最多可输入15个字。请保证您的密码问题不出现泄密，以保障您的隐私。 </div>
-			<div class="red">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;如果设置答案的时候有带符号、空格等的，验证时也都必须输入完整</div>
-			<div class="hei">示例：问题：我最喜欢的收卡网站？</div>
-			<div class="hei">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;答案：名臣福利</div>
-			<div class="memberCenter">
-				<form id="questionForm" action="password!updateSafeQuestion.action" method="post">
+	<!-- common begin -->
+		<div class="common">
+			<div class="panel-1">
+				<h2>设置密保问题</h2>
+				<div class="account_info">
+	        		<form id="questionForm" action="password!updateSafeQuestion.action" method="post">
 				<#if member.safeQuestion == "">
 					<table class="inputTable tabContent">
 						<tr>
@@ -124,11 +115,11 @@ $().ready( function() {
 					</table>
 					</#if>
 					</form>
+				</div>
 			</div>
 		</div>
-	</div>
-</div>
-<div class="clear"></div>
-	<#include "/WEB-INF/template/card/member_footer.ftl">
+		<!-- common end-->
+		<div class="clear"></div>
+		<#include "/WEB-INF/template/card/member_footer.ftl">
 </body>
 </html>

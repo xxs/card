@@ -4,6 +4,7 @@
 
 input.formText {
 	width: 180px;
+	height: 15px;
 	padding: 5px;
 	border-top: 1px solid #999999;
 	border-right: 1px solid #e1e1e1;
